@@ -1,0 +1,12 @@
+{
+  "name": "",
+  "description": "",
+  "author": "Alejandro Sanabria <alejandro@brandspa.com>",
+  "dependencies": {
+    "gulp": "",
+    "gulp-util": "",
+    "gulp-ruby-sass": "",
+    "gulp-coffee": "",
+    "gulp-concat": ""
+  }
+}

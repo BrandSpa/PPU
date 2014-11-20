@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
-  scope "(:locale)", locale: /en/ do
-    namespace :api do 
-      resources :lawyers
-      resources :categories
-      resources :trades
-    end
+  namespace :api do 
+    resources :lawyers
+    resources :categories
+    resources :trades
   end
 
-  get "abogados", to: 'lawyers#index'
+  scope "(:locale)", locale: /es|en/ do
+    get "abogados", to: 'lawyers#index'
+    get "lawyers", to: 'lawyers#index'
+  end
 end

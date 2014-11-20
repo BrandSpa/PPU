@@ -10,7 +10,7 @@ class Api::LawyersController < ApplicationController
     trade_id = params[:trade_id]
     country = params[:country]
 
-    collection = Lawyer.select(:id, :name, :lastname, :position, :phone, :email, :img_path).where(nil).lang(lang)
+    collection = Lawyer.select(:id, :lang, :name, :lastname, :position, :phone, :email, :img_path).where(nil).lang(lang)
     collection = collection.by_position(position) if position.present?
     collection = collection.by_category(category) if category.present?
     collection = collection.by_trade(trade) if trade.present?
