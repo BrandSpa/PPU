@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141118222101) do
+ActiveRecord::Schema.define(version: 20141119231626) do
 
   create_table "articles", force: true do |t|
     t.integer  "lawyer_id"
@@ -25,14 +25,15 @@ ActiveRecord::Schema.define(version: 20141118222101) do
     t.integer  "lawyer_id"
     t.string   "title"
     t.string   "description"
-    t.string   "img_path"
+    t.string   "img_name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "categories", force: true do |t|
+    t.string   "lang",        default: "es"
     t.string   "name"
-    t.string   "img"
+    t.string   "img_name"
     t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -54,6 +55,17 @@ ActiveRecord::Schema.define(version: 20141118222101) do
   end
 
   add_index "educations", ["lawyer_id"], name: "index_educations_on_lawyer_id", using: :btree
+
+  create_table "institutions", force: true do |t|
+    t.integer  "lawyer_id"
+    t.string   "title"
+    t.string   "country"
+    t.string   "year"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "institutions", ["lawyer_id"], name: "index_institutions_on_lawyer_id", using: :btree
 
   create_table "jobs", force: true do |t|
     t.integer  "lawyer_id"
@@ -84,6 +96,44 @@ ActiveRecord::Schema.define(version: 20141118222101) do
     t.text     "description"
     t.text     "keywords"
     t.string   "img_path"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "lawyers_transactions", id: false, force: true do |t|
+    t.integer "lawyer_id"
+    t.integer "transaction_id"
+  end
+
+  create_table "phrases", force: true do |t|
+    t.integer  "lawyer_id"
+    t.text     "content"
+    t.string   "author"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "recognitions", force: true do |t|
+    t.integer  "lawyer_id"
+    t.string   "title"
+    t.string   "country"
+    t.string   "year"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "recognitions", ["lawyer_id"], name: "index_recognitions_on_lawyer_id", using: :btree
+
+  create_table "transactions", force: true do |t|
+    t.string   "lang",         default: "es"
+    t.string   "country",      default: "Colombia"
+    t.string   "company"
+    t.string   "company_link"
+    t.string   "title"
+    t.date     "date"
+    t.text     "description"
+    t.string   "logo_img"
+    t.text     "keywords"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

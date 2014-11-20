@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
-  devise_for :users
   scope "(:locale)", locale: /en/ do
     namespace :api do 
       resources :lawyers
+      resources :categories
+      resources :trades
     end
   end
+
+  get "abogados", to: 'lawyers#index'
 end
