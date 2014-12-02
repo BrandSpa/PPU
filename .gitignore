@@ -15,6 +15,5 @@
 /log/*.log
 /tmp
 
-/public/bower_components
 /public/node_modules
 /public/.sass-cache
