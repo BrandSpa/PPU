@@ -1,3 +1,4 @@
 class Education < ActiveRecord::Base
-  belongs_to :lawyer_id
+  belongs_to :lawyer
+  validates :title, length: { minimum: 3 }
 end

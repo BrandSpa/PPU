@@ -10,7 +10,7 @@ class CreateLawyers < ActiveRecord::Migration
       t.string :email
       t.text :description
       t.text :keywords
-      t.string :img_path
+      t.string :img_name
       t.timestamps
     end
   end

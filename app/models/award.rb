@@ -1,3 +1,3 @@
 class Award < ActiveRecord::Base
-  belongs_to :lawyer
+  has_and_belongs_to_many :lawyer
 end

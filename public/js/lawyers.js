@@ -119,7 +119,7 @@ $(function() {
     return LawyersFilters;
 
   })(Backbone.View);
-  return ppu.LawyerDetailView = (function(_super) {
+  ppu.LawyerDetailView = (function(_super) {
     __extends(LawyerDetailView, _super);
 
     function LawyerDetailView() {
@@ -142,6 +142,188 @@ $(function() {
     };
 
     return LawyerDetailView;
+
+  })(Backbone.View);
+  ppu.LawyerCreate = (function(_super) {
+    __extends(LawyerCreate, _super);
+
+    function LawyerCreate() {
+      return LawyerCreate.__super__.constructor.apply(this, arguments);
+    }
+
+    LawyerCreate.prototype.el = $("#lawyer-create");
+
+    LawyerCreate.prototype.events = {
+      'click .lawyer-store': 'store',
+      'click .lawyer-add-education': 'addEducation',
+      'click .lawyer-add-job': 'addJob',
+      'click .lawyer-add-recognition': 'addRecognition',
+      'click .lawyer-add-institution': 'addInstitution',
+      'click .lawyer-add-langs': 'addLang',
+      'click .lawyer-add-pharase': 'addPharase',
+      'change .lawyer-lang': 'changeLang'
+    };
+
+    LawyerCreate.prototype.initialize = function() {
+      this.listenTo(this.model, 'error', this.showErrors);
+      this.listenTo(this.model, 'sync', this.stored);
+      this.getCategories();
+      return this.appendDatePicker();
+    };
+
+    LawyerCreate.prototype.changeLang = function(e) {
+      var el;
+      el = $(e.currentTarget);
+      if (el.val() === 'en') {
+        return window.location = '/en/crear-abogado';
+      } else {
+        return window.location = '/crear-abogado';
+      }
+    };
+
+    LawyerCreate.prototype.getCategories = function() {
+      var categories, source, template;
+      categories = new ppu.Categories;
+      source = $("#lawyer-categories-template").html();
+      template = Handlebars.compile(source);
+      return categories.fetch().done(function(collection) {
+        return $("#lawyer-list-categories").html(template(collection));
+      });
+    };
+
+    LawyerCreate.prototype.appendDatePicker = function() {
+      return $(document).find('.datepicker-year').datepicker({
+        format: 'yyyy',
+        viewMode: "years",
+        minViewMode: "years",
+        language: 'es',
+        autoclose: true
+      });
+    };
+
+    LawyerCreate.prototype.addEducation = function(e) {
+      var el, source;
+      e.preventDefault();
+      el = $(e.currentTarget);
+      source = $("#lawyer-form-education-template").html();
+      el.parent().before(source);
+      return this.appendDatePicker();
+    };
+
+    LawyerCreate.prototype.addJob = function(e) {
+      var el, source;
+      e.preventDefault();
+      el = $(e.currentTarget);
+      source = $("#lawyer-form-job-template").html();
+      el.parent().before(source);
+      return this.appendDatePicker();
+    };
+
+    LawyerCreate.prototype.addRecognition = function(e) {
+      var el, source;
+      e.preventDefault();
+      el = $(e.currentTarget);
+      source = $("#lawyer-form-recognition-template").html();
+      el.parent().before(source);
+      return this.appendDatePicker();
+    };
+
+    LawyerCreate.prototype.addInstitution = function(e) {
+      var el, source;
+      e.preventDefault();
+      el = $(e.currentTarget);
+      source = $("#lawyer-form-institution-template").html();
+      el.parent().before(source);
+      return this.appendDatePicker();
+    };
+
+    LawyerCreate.prototype.addLang = function(e) {
+      var el, source;
+      e.preventDefault();
+      el = $(e.currentTarget);
+      source = $("#lawyer-form-langs-template").html();
+      el.parent().before(source);
+      return this.appendDatePicker();
+    };
+
+    LawyerCreate.prototype.addPharase = function(e) {
+      var el, source;
+      e.preventDefault();
+      el = $(e.currentTarget);
+      source = $("#lawyer-form-pharase-template").html();
+      el.parent().before(source);
+      return this.appendDatePicker();
+    };
+
+    LawyerCreate.prototype.store = function(e) {
+      var data;
+      e.preventDefault();
+      data = $(document).find(this.el).find('form').serializeJSON();
+      return this.model.save(data);
+    };
+
+    LawyerCreate.prototype.stored = function(model) {
+      var id, new_model, view;
+      id = model.id;
+      new_model = new ppu.Lawyer({
+        id: id
+      });
+      new_model.fetch();
+      view = new ppu.LawyerFinish({
+        model: new_model
+      });
+      return $(this.el).fadeOut().remove();
+    };
+
+    return LawyerCreate;
+
+  })(Backbone.View);
+  ppu.LawyerFinish = (function(_super) {
+    __extends(LawyerFinish, _super);
+
+    function LawyerFinish() {
+      return LawyerFinish.__super__.constructor.apply(this, arguments);
+    }
+
+    LawyerFinish.prototype.el = $('#lawyer-finish');
+
+    LawyerFinish.prototype.template = $('#lawyer-finish-template');
+
+    LawyerFinish.prototype.initialize = function() {
+      return this.listenTo(this.model, 'change', this.render);
+    };
+
+    LawyerFinish.prototype.render = function() {
+      var source, t;
+      source = this.template.html();
+      t = Handlebars.compile(source);
+      $(this.el).find(".panel-body").html(t(this.model.toJSON()));
+      return $(this.el).removeClass("hidden");
+    };
+
+    return LawyerFinish;
+
+  })(Backbone.View);
+  return ppu.LawyerImageUpload = (function(_super) {
+    __extends(LawyerImageUpload, _super);
+
+    function LawyerImageUpload() {
+      return LawyerImageUpload.__super__.constructor.apply(this, arguments);
+    }
+
+    LawyerImageUpload.prototype.el = $('#lawyer-upload-image-modal');
+
+    LawyerImageUpload.prototype.render = function() {
+      $(this.el).modal({
+        backdrop: 'static'
+      });
+      ppu.mediaDropzone = new Dropzone("#media-dropzone");
+      return ppu.mediaDropzone.on("success", function(file, responseText) {
+        return console.log(responseText);
+      });
+    };
+
+    return LawyerImageUpload;
 
   })(Backbone.View);
 });

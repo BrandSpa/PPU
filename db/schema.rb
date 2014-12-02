@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141119231626) do
+ActiveRecord::Schema.define(version: 20141125232838) do
 
   create_table "articles", force: true do |t|
     t.integer  "lawyer_id"
@@ -22,12 +22,16 @@ ActiveRecord::Schema.define(version: 20141119231626) do
   end
 
   create_table "awards", force: true do |t|
-    t.integer  "lawyer_id"
     t.string   "title"
-    t.string   "description"
     t.string   "img_name"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "awards_lawyers", id: false, force: true do |t|
+    t.integer "award_id"
+    t.integer "lawyer_id"
+    t.string  "subtitle"
   end
 
   create_table "categories", force: true do |t|
@@ -95,14 +99,14 @@ ActiveRecord::Schema.define(version: 20141119231626) do
     t.string   "email"
     t.text     "description"
     t.text     "keywords"
-    t.string   "img_path"
+    t.string   "img_name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "lawyers_transactions", id: false, force: true do |t|
+  create_table "lawyers_trades", id: false, force: true do |t|
     t.integer "lawyer_id"
-    t.integer "transaction_id"
+    t.integer "trade_id"
   end
 
   create_table "phrases", force: true do |t|
@@ -111,6 +115,31 @@ ActiveRecord::Schema.define(version: 20141119231626) do
     t.string   "author"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "posts", force: true do |t|
+    t.string   "lang",       default: "es"
+    t.string   "country",    default: "Colombia"
+    t.datetime "date"
+    t.string   "title"
+    t.string   "topic"
+    t.string   "author"
+    t.string   "content"
+    t.string   "slug"
+    t.text     "keywords"
+    t.integer  "featured"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "posts_categories", id: false, force: true do |t|
+    t.integer "post_id"
+    t.integer "category_id"
+  end
+
+  create_table "posts_lawyers", id: false, force: true do |t|
+    t.integer "post_id"
+    t.integer "lawyer_id"
   end
 
   create_table "recognitions", force: true do |t|
@@ -124,7 +153,7 @@ ActiveRecord::Schema.define(version: 20141119231626) do
 
   add_index "recognitions", ["lawyer_id"], name: "index_recognitions_on_lawyer_id", using: :btree
 
-  create_table "transactions", force: true do |t|
+  create_table "trades", force: true do |t|
     t.string   "lang",         default: "es"
     t.string   "country",      default: "Colombia"
     t.string   "company"
@@ -132,7 +161,7 @@ ActiveRecord::Schema.define(version: 20141119231626) do
     t.string   "title"
     t.date     "date"
     t.text     "description"
-    t.string   "logo_img"
+    t.string   "img_name"
     t.text     "keywords"
     t.datetime "created_at"
     t.datetime "updated_at"

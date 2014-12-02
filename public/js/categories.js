@@ -1,0 +1,31 @@
+var __hasProp = {}.hasOwnProperty,
+  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+$(function() {
+  ppu.Category = (function(_super) {
+    __extends(Category, _super);
+
+    function Category() {
+      return Category.__super__.constructor.apply(this, arguments);
+    }
+
+    Category.prototype.urlRoot = '/api/categories';
+
+    return Category;
+
+  })(Backbone.Model);
+  return ppu.Categories = (function(_super) {
+    __extends(Categories, _super);
+
+    function Categories() {
+      return Categories.__super__.constructor.apply(this, arguments);
+    }
+
+    Categories.prototype.url = '/api/categories';
+
+    Categories.prototype.model = ppu.Category;
+
+    return Categories;
+
+  })(Backbone.Collection);
+});

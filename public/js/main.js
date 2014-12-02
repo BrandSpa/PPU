@@ -22,3 +22,25 @@ Backbone.View.prototype.en = function() {
     return false;
   }
 };
+
+Backbone.View.prototype.showErrors = function(model, response) {
+  var errors;
+  errors = JSON.parse(response.responseText);
+  return _.each(errors, function(message, row) {
+    return toastr.error(message);
+  });
+};
+
+$(document).ajaxSend(function(e, xhr, options) {
+  var token;
+  token = $("meta[name='csrf-token']").attr("content");
+  return xhr.setRequestHeader("X-CSRF-Token", token);
+});
+
+$(document).find('.datepicker-year').datepicker({
+  format: 'yyyy',
+  viewMode: "years",
+  minViewMode: "years",
+  language: 'es',
+  autoclose: true
+});
