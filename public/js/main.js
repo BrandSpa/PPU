@@ -2,6 +2,8 @@ var lang;
 
 window.ppu = {};
 
+Dropzone.autoDiscover = false;
+
 ppu.pathUrl = window.location.pathname.split('/');
 
 lang = ppu.pathUrl[1];
@@ -29,6 +31,12 @@ Backbone.View.prototype.showErrors = function(model, response) {
   return _.each(errors, function(message, row) {
     return toastr.error(message);
   });
+};
+
+Backbone.View.prototype.closeModal = function() {
+  this.remove();
+  $('.modal-backdrop').remove();
+  return $('body').removeClass('modal-open');
 };
 
 $(document).ajaxSend(function(e, xhr, options) {

@@ -263,14 +263,14 @@ $(function() {
     };
 
     LawyerCreate.prototype.stored = function(model) {
-      var id, new_model, view;
+      var id, view;
       id = model.id;
-      new_model = new ppu.Lawyer({
+      ppu.lawyerFinish = new ppu.Lawyer({
         id: id
       });
-      new_model.fetch();
+      ppu.lawyerFinish.fetch();
       view = new ppu.LawyerFinish({
-        model: new_model
+        model: ppu.lawyerFinish
       });
       return $(this.el).fadeOut().remove();
     };
@@ -289,6 +289,10 @@ $(function() {
 
     LawyerFinish.prototype.template = $('#lawyer-finish-template');
 
+    LawyerFinish.prototype.events = {
+      'click .lawyer-open-upload-photo': 'openUploadPhoto'
+    };
+
     LawyerFinish.prototype.initialize = function() {
       return this.listenTo(this.model, 'change', this.render);
     };
@@ -301,10 +305,19 @@ $(function() {
       return $(this.el).removeClass("hidden");
     };
 
+    LawyerFinish.prototype.openUploadPhoto = function(e) {
+      var el, id, view;
+      e.preventDefault();
+      el = $(e.currentTarget);
+      id = el.data('lawyer');
+      view = new ppu.LawyerImageUpload;
+      return view.render(id);
+    };
+
     return LawyerFinish;
 
   })(Backbone.View);
-  return ppu.LawyerImageUpload = (function(_super) {
+  ppu.LawyerImageUpload = (function(_super) {
     __extends(LawyerImageUpload, _super);
 
     function LawyerImageUpload() {
@@ -313,17 +326,177 @@ $(function() {
 
     LawyerImageUpload.prototype.el = $('#lawyer-upload-image-modal');
 
-    LawyerImageUpload.prototype.render = function() {
+    LawyerImageUpload.prototype.render = function(id) {
+      var t;
+      t = this;
       $(this.el).modal({
         backdrop: 'static'
       });
+      $(this.el).find('input[name="lawyer_id"]').val(id);
       ppu.mediaDropzone = new Dropzone("#media-dropzone");
       return ppu.mediaDropzone.on("success", function(file, responseText) {
-        return console.log(responseText);
+        console.log(responseText);
+        ppu.lawyerFinish.set(responseText);
+        return t.closeModal();
       });
     };
 
     return LawyerImageUpload;
+
+  })(Backbone.View);
+  ppu.LawyerArticleUpload = (function(_super) {
+    __extends(LawyerArticleUpload, _super);
+
+    function LawyerArticleUpload() {
+      return LawyerArticleUpload.__super__.constructor.apply(this, arguments);
+    }
+
+    LawyerArticleUpload.prototype.el = $('#lawyer-upload-image-modal');
+
+    LawyerArticleUpload.prototype.render = function(id) {
+      var t;
+      t = this;
+      $(this.el).modal({
+        backdrop: 'static'
+      });
+      $(this.el).find('input[name="lawyer_id"]').val(id);
+      ppu.mediaDropzone = new Dropzone("#media-dropzone");
+      return ppu.mediaDropzone.on("success", function(file, responseText) {
+        return t.closeModal();
+      });
+    };
+
+    return LawyerArticleUpload;
+
+  })(Backbone.View);
+  ppu.LawyerDashboard = (function(_super) {
+    __extends(LawyerDashboard, _super);
+
+    function LawyerDashboard() {
+      return LawyerDashboard.__super__.constructor.apply(this, arguments);
+    }
+
+    LawyerDashboard.prototype.tagName = 'tr';
+
+    LawyerDashboard.prototype.template = $('#lawyer-dashbord-template');
+
+    LawyerDashboard.prototype.initialize = function() {
+      this.listenTo(this.model, 'change', this.render);
+      return this.listenTo(this.model, 'error', this.showErrors);
+    };
+
+    LawyerDashboard.prototype.render = function() {
+      var source, t;
+      source = this.template.html();
+      t = Handlebars.compile(source);
+      $(this.el).html(t(this.model.toJSON()));
+      return this;
+    };
+
+    return LawyerDashboard;
+
+  })(Backbone.View);
+  return ppu.LawyersDashboard = (function(_super) {
+    __extends(LawyersDashboard, _super);
+
+    function LawyersDashboard() {
+      return LawyersDashboard.__super__.constructor.apply(this, arguments);
+    }
+
+    LawyersDashboard.prototype.el = $('#lawyers-dashboard');
+
+    LawyersDashboard.prototype.events = {
+      'click .lawyer-see-more': 'seeMore',
+      'submit .lawyer-search': 'search',
+      'change .lawyer-filter-lang': 'filterLang',
+      'change .lawyer-filter-country': 'filterCountry',
+      'change .lawyer-filter-position': 'filterPosition'
+    };
+
+    LawyersDashboard.prototype.initialize = function() {
+      this.listenTo(this.collection, 'reset', this.render);
+      return this.listenTo(this.collection, 'add', this.addOne, this);
+    };
+
+    LawyersDashboard.prototype.addOne = function(model) {
+      var view;
+      view = new ppu.LawyerDashboard({
+        model: model
+      });
+      return $(this.el).find('thead').append(view.render().el);
+    };
+
+    LawyersDashboard.prototype.render = function() {
+      $(this.el).find('tbody').html('');
+      return this.collection.each(function(model) {
+        var view;
+        view = new ppu.LawyerDashboard({
+          model: model
+        });
+        return $(this.el).find('tbody').append(view.render().el);
+      }, this);
+    };
+
+    LawyersDashboard.prototype.seeMore = function(e) {
+      var el, more, offset;
+      e.preventDefault();
+      el = e.currentTarget;
+      offset = $(el).data('offset');
+      more = offset + 10;
+      this.collection.fetch({
+        data: {
+          offset: more
+        }
+      });
+      return $(el).data('offset', more);
+    };
+
+    LawyersDashboard.prototype.search = function(e) {
+      var query;
+      e.preventDefault();
+      query = $('input[name="query"]').val();
+      return this.collection.fetch({
+        reset: true,
+        data: {
+          keyword: query
+        }
+      });
+    };
+
+    LawyersDashboard.prototype.filterLang = function(e) {
+      var el;
+      el = $(e.currentTarget);
+      return this.collection.fetch({
+        reset: true,
+        data: {
+          lang: el.val()
+        }
+      });
+    };
+
+    LawyersDashboard.prototype.filterCountry = function(e) {
+      var el;
+      el = $(e.currentTarget);
+      return this.collection.fetch({
+        reset: true,
+        data: {
+          country: el.val()
+        }
+      });
+    };
+
+    LawyersDashboard.prototype.filterPosition = function(e) {
+      var el;
+      el = $(e.currentTarget);
+      return this.collection.fetch({
+        reset: true,
+        data: {
+          position: el.val()
+        }
+      });
+    };
+
+    return LawyersDashboard;
 
   })(Backbone.View);
 });

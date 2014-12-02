@@ -22,7 +22,9 @@ ActiveRecord::Schema.define(version: 20141125232838) do
   end
 
   create_table "awards", force: true do |t|
+    t.integer  "lawyer_id"
     t.string   "title"
+    t.string   "description"
     t.string   "img_name"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -99,14 +101,14 @@ ActiveRecord::Schema.define(version: 20141125232838) do
     t.string   "email"
     t.text     "description"
     t.text     "keywords"
-    t.string   "img_name"
+    t.string   "img_path"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "lawyers_trades", id: false, force: true do |t|
+  create_table "lawyers_transactions", id: false, force: true do |t|
     t.integer "lawyer_id"
-    t.integer "trade_id"
+    t.integer "transaction_id"
   end
 
   create_table "phrases", force: true do |t|
@@ -153,7 +155,7 @@ ActiveRecord::Schema.define(version: 20141125232838) do
 
   add_index "recognitions", ["lawyer_id"], name: "index_recognitions_on_lawyer_id", using: :btree
 
-  create_table "trades", force: true do |t|
+  create_table "transactions", force: true do |t|
     t.string   "lang",         default: "es"
     t.string   "country",      default: "Colombia"
     t.string   "company"
@@ -161,7 +163,7 @@ ActiveRecord::Schema.define(version: 20141125232838) do
     t.string   "title"
     t.date     "date"
     t.text     "description"
-    t.string   "img_name"
+    t.string   "logo_img"
     t.text     "keywords"
     t.datetime "created_at"
     t.datetime "updated_at"

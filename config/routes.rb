@@ -3,6 +3,7 @@ Rails.application.routes.draw do
     resources :lawyers
     resources :categories
     resources :trades
+    post "lawyer-attach-img", to: 'lawyers#attach_img'
   end
 
   scope "(:locale)", locale: /es|en/ do
@@ -10,8 +11,10 @@ Rails.application.routes.draw do
     get "lawyers", to: 'lawyers#index'
     get "crear-abogado", to: 'admin/lawyers#index'
     get "terminar-abogado/:id", to: 'admin/lawyers#index'
-    get "lawyer-attach-img", to: 'admin/lawyers#attach_img'
+    
   end
+
+  get "dashboard", to: 'admin/lawyers#dashboard'
 
   
 

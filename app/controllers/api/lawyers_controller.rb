@@ -9,8 +9,9 @@ class Api::LawyersController < ApplicationController
     trade = params[:trade]
     trade_id = params[:trade_id]
     country = params[:country]
+    offset = params[:offset]
 
-    collection = Lawyer.select(:id, :lang, :name, :lastname, :position, :phone, :email, :img_name).where(nil).lang(lang)
+    collection = Lawyer.select(:id, :lang, :name, :lastname, :country, :position, :phone, :email, :img_name).where(nil).lang(lang).limit(10).offset(offset).order('id DESC')
     collection = collection.by_position(position) if position.present?
     collection = collection.by_category(category) if category.present?
     collection = collection.by_trade(trade) if trade.present?
@@ -71,7 +72,10 @@ class Api::LawyersController < ApplicationController
   def attach_img
     id = params[:lawyer_id]
     model = Lawyer.find(id)
-    model.img_name = params[:img_name]
+    model.img_name = params[:file]
+    model.save!
+    render json: model
+
   end
 
   private

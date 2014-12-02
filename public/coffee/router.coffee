@@ -8,6 +8,7 @@ $ ->
       "crear-abogado": 'adminLawyer'
       "terminar-abogado/:id": 'finishLawyer'
       ":lang/crear-abogado": 'adminLawyer'
+      "dashboard": 'dashboard'
 
     lawyers: (lang) ->
       ppu.lawyers =  new ppu.Lawyers
@@ -27,9 +28,14 @@ $ ->
 
     finishLawyer: (id) ->
       $("#lawyer-create").fadeOut().remove()
-      new_model = new ppu.Lawyer id: id 
-      new_model.fetch()
-      view = new ppu.LawyerFinish model: new_model
+      ppu.lawyerFinish = new ppu.Lawyer id: id 
+      ppu.lawyerFinish.fetch()
+      view = new ppu.LawyerFinish model: ppu.lawyerFinish
+
+    dashboard: ->
+      ppu.lawyers = new ppu.Lawyers
+      ppu.lawyers.fetch reset: true
+      ppu.lawyersDashboard = new ppu.LawyersDashboard collection: ppu.lawyers
 
   new ppu.Workspace
   Backbone.history.start pushState: true 

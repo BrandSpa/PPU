@@ -1,5 +1,7 @@
 window.ppu = {}
 
+Dropzone.autoDiscover = false
+
 ppu.pathUrl = window.location.pathname.split( '/' )
 
 lang = ppu.pathUrl[1]
@@ -19,6 +21,10 @@ Backbone.View::showErrors = (model, response) ->
     _.each errors, (message, row) ->
       toastr.error message
       
+Backbone.View::closeModal = ->
+  @remove()
+  $('.modal-backdrop').remove()
+  $('body').removeClass 'modal-open'
 
 $(document).ajaxSend (e, xhr, options) ->
   token = $("meta[name='csrf-token']").attr("content")

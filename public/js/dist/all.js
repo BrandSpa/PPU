@@ -60,8 +60,10 @@ $(function() {
       "abogados": "lawyers",
       ":lang/abogados": "lawyers",
       "abogados/:id": "lawyer",
-      "nuevo-abogado": 'adminLawyer',
-      ":lang/nuevo-abogado": 'adminLawyer'
+      "crear-abogado": 'adminLawyer',
+      "crear-abogado": 'adminLawyer',
+      "terminar-abogado/:id": 'finishLawyer',
+      ":lang/crear-abogado": 'adminLawyer'
     };
 
     Workspace.prototype.lawyers = function(lang) {
@@ -77,11 +79,28 @@ $(function() {
 
     Workspace.prototype.lawyer = function() {};
 
-    Workspace.prototype.adminLawyer = function() {
+    Workspace.prototype.adminLawyer = function(param) {
       var model;
+      if (param === 'en') {
+        $('.lawyer-lang option:eq(2)').prop('selected', true);
+      } else {
+        $('.lawyer-lang option:eq(1)').prop('selected', true);
+      }
       model = new ppu.Lawyer;
       return ppu.lawyerCreate = new ppu.LawyerCreate({
         model: model
+      });
+    };
+
+    Workspace.prototype.finishLawyer = function(id) {
+      var new_model, view;
+      $("#lawyer-create").fadeOut().remove();
+      new_model = new ppu.Lawyer({
+        id: id
+      });
+      new_model.fetch();
+      return view = new ppu.LawyerFinish({
+        model: new_model
       });
     };
 
