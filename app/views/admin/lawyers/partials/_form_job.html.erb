@@ -1,7 +1,8 @@
-<div class="panel panel-default">
+<div class="panel panel-default" id="lawyer-job-form">
   <div class="panel-body">
     <h4><%= t('professional_experience') %></h4>
     <hr>
+    <form action="">
     <div class="form-group col-lg-4">
       <input type="text" name="jobs[][title]" class="form-control" placeholder="Título">
     </div>
@@ -18,7 +19,7 @@
     <div class="form-group col-lg-2">
       <input type="text" name="jobs[][until]" class="form-control datepicker-year" placeholder="Hasta">
     </div>
-
+  </form>
     <div class="col-lg-12">
     <hr>
       <a href="#" class="btn btn-info pull-right lawyer-add-job">+</a>

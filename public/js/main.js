@@ -29,6 +29,7 @@ Backbone.View.prototype.showErrors = function(model, response) {
   var errors;
   errors = JSON.parse(response.responseText);
   return _.each(errors, function(message, row) {
+    console.log(message);
     return toastr.error(message);
   });
 };

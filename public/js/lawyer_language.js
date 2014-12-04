@@ -1,1 +1,71 @@
+var __hasProp = {}.hasOwnProperty,
+  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
+$(function() {
+  ppu.LawyerLanguage = (function(_super) {
+    __extends(LawyerLanguage, _super);
+
+    function LawyerLanguage() {
+      return LawyerLanguage.__super__.constructor.apply(this, arguments);
+    }
+
+    LawyerLanguage.prototype.url = "/api/languages";
+
+    return LawyerLanguage;
+
+  })(Backbone.Model);
+  ppu.LawyerLanguages = (function(_super) {
+    __extends(LawyerLanguages, _super);
+
+    function LawyerLanguages() {
+      return LawyerLanguages.__super__.constructor.apply(this, arguments);
+    }
+
+    LawyerLanguages.prototype.url = "/api/languages";
+
+    LawyerLanguages.prototype.model = ppu.LawyerLanguage;
+
+    return LawyerLanguages;
+
+  })(Backbone.Collection);
+  return ppu.LawyerLanguageCreate = (function(_super) {
+    __extends(LawyerLanguageCreate, _super);
+
+    function LawyerLanguageCreate() {
+      return LawyerLanguageCreate.__super__.constructor.apply(this, arguments);
+    }
+
+    LawyerLanguageCreate.prototype.el = $("#lawyer-language-form");
+
+    LawyerLanguageCreate.prototype.template = $("#lawyer-form-language-template");
+
+    LawyerLanguageCreate.prototype.events = {
+      'click .lawyer-add-language': 'addFields'
+    };
+
+    LawyerLanguageCreate.prototype.addFields = function(e) {
+      var source;
+      e.preventDefault();
+      source = $(this.template).html();
+      $(this.el).find('form').append(source);
+      return ppu.appendDatePickerYear;
+    };
+
+    LawyerLanguageCreate.prototype.store = function(lawyer_id) {
+      var $form, data;
+      $form = $(this.el).find('form');
+      data = $form.serializeJSON();
+      data = _.map(data.fields, function(model) {
+        return _.extend(model, {
+          lawyer_id: lawyer_id
+        });
+      });
+      return this.model.save({
+        languages: data
+      });
+    };
+
+    return LawyerLanguageCreate;
+
+  })(Backbone.View);
+});

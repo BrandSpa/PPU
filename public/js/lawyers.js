@@ -165,6 +165,16 @@ $(function() {
       return ppu.appendDatePickerYear;
     };
 
+    LawyerCreate.prototype.getCategories = function() {
+      ppu.categories = new ppu.Categories;
+      return ppu.categories.fetch().done(function(collection) {
+        var source, template;
+        source = $('#lawyer-categories-template').html();
+        template = Handlebars.compile(source);
+        return $('#lawyer-list-categories').html(template(collection));
+      });
+    };
+
     LawyerCreate.prototype.changeLang = function(e) {
       var el;
       el = $(e.currentTarget);

@@ -19,6 +19,7 @@ Backbone.View::en = ->
 Backbone.View::showErrors = (model, response) ->
     errors = JSON.parse(response.responseText)
     _.each errors, (message, row) ->
+      console.log message
       toastr.error message
       
 Backbone.View::closeModal = ->

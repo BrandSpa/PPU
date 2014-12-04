@@ -42,8 +42,8 @@ $ ->
       ppu.lawyerPharase = new ppu.LawyerPharase
       ppu.lawyerPharaseCreate = new ppu.LawyerPharaseCreate model: ppu.lawyerPharase
 
-      ppu.lawyerRecognintion = new ppu.LawyerRecognintion
-      ppu.lawyerRecognintionCreate = new ppu.LawyerRecognintionCreate model: ppu.lawyerRecognintion
+      ppu.lawyerRecognition = new ppu.LawyerRecognition
+      ppu.lawyerRecognitionCreate = new ppu.LawyerRecognitionCreate model: ppu.lawyerRecognintion
 
       ppu.lawyer =  new ppu.Lawyer
       ppu.lawyerCreate = new ppu.LawyerCreate model: ppu.lawyer

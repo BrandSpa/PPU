@@ -63,8 +63,8 @@ $(function() {
       ppu.lawyerPharaseCreate = new ppu.LawyerPharaseCreate({
         model: ppu.lawyerPharase
       });
-      ppu.lawyerRecognintion = new ppu.LawyerRecognintion;
-      ppu.lawyerRecognintionCreate = new ppu.LawyerRecognintionCreate({
+      ppu.lawyerRecognition = new ppu.LawyerRecognition;
+      ppu.lawyerRecognitionCreate = new ppu.LawyerRecognitionCreate({
         model: ppu.lawyerRecognintion
       });
       ppu.lawyer = new ppu.Lawyer;

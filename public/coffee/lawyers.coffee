@@ -71,6 +71,13 @@ $ ->
       @getCategories()
       ppu.appendDatePickerYear
 
+    getCategories: ->
+      ppu.categories = new ppu.Categories
+      ppu.categories.fetch().done (collection) ->
+        source = $('#lawyer-categories-template').html()
+        template = Handlebars.compile(source)
+        $('#lawyer-list-categories').html template( collection )
+
     changeLang: (e) ->
       el = $(e.currentTarget)
       if el.val() == 'en'

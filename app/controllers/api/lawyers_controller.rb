@@ -27,8 +27,7 @@ class Api::LawyersController < ApplicationController
 
     if id.present?
       model = Lawyer.lang(lang).find(id)
-      render json: model.to_json(:include => 
-          [ {:categories => { :only => :name }}, :educations, :jobs , {:languages=> { :only => :name }}, :awards, :articles, :phrases, :recognitions, :institutions, :trades])
+      render json: model.to_json(:include => [ {:categories => { :only => :name }}, :educations, :jobs , {:languages=> { :only => :name }}, :awards, :articles, :phrases, :recognitions, :institutions, :trades])
     else
       render json: "id don't finded", status: 400
     end
@@ -39,7 +38,7 @@ class Api::LawyersController < ApplicationController
     if model.valid?
       render json: model, status: 200
     else
-      render json:  model.errors.messages, status: 400
+      render json:  model.errors, status: 400
     end
     
   end
@@ -48,7 +47,7 @@ class Api::LawyersController < ApplicationController
     id = params[:id]
     model = Lawyer.find(id)
     model.img_name = params[:file]
-    model.save!
+    model.save
 
     if model
       render json: model
