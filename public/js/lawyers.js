@@ -155,12 +155,6 @@ $(function() {
 
     LawyerCreate.prototype.events = {
       'click .lawyer-store': 'store',
-      'click .lawyer-add-education': 'addEducation',
-      'click .lawyer-add-job': 'addJob',
-      'click .lawyer-add-recognition': 'addRecognition',
-      'click .lawyer-add-institution': 'addInstitution',
-      'click .lawyer-add-langs': 'addLang',
-      'click .lawyer-add-pharase': 'addPharase',
       'change .lawyer-lang': 'changeLang'
     };
 
@@ -168,7 +162,7 @@ $(function() {
       this.listenTo(this.model, 'error', this.showErrors);
       this.listenTo(this.model, 'sync', this.stored);
       this.getCategories();
-      return this.appendDatePicker();
+      return ppu.appendDatePickerYear;
     };
 
     LawyerCreate.prototype.changeLang = function(e) {
@@ -181,80 +175,6 @@ $(function() {
       }
     };
 
-    LawyerCreate.prototype.getCategories = function() {
-      var categories, source, template;
-      categories = new ppu.Categories;
-      source = $("#lawyer-categories-template").html();
-      template = Handlebars.compile(source);
-      return categories.fetch().done(function(collection) {
-        return $("#lawyer-list-categories").html(template(collection));
-      });
-    };
-
-    LawyerCreate.prototype.appendDatePicker = function() {
-      return $(document).find('.datepicker-year').datepicker({
-        format: 'yyyy',
-        viewMode: "years",
-        minViewMode: "years",
-        language: 'es',
-        autoclose: true
-      });
-    };
-
-    LawyerCreate.prototype.addEducation = function(e) {
-      var el, source;
-      e.preventDefault();
-      el = $(e.currentTarget);
-      source = $("#lawyer-form-education-template").html();
-      el.parent().before(source);
-      return this.appendDatePicker();
-    };
-
-    LawyerCreate.prototype.addJob = function(e) {
-      var el, source;
-      e.preventDefault();
-      el = $(e.currentTarget);
-      source = $("#lawyer-form-job-template").html();
-      el.parent().before(source);
-      return this.appendDatePicker();
-    };
-
-    LawyerCreate.prototype.addRecognition = function(e) {
-      var el, source;
-      e.preventDefault();
-      el = $(e.currentTarget);
-      source = $("#lawyer-form-recognition-template").html();
-      el.parent().before(source);
-      return this.appendDatePicker();
-    };
-
-    LawyerCreate.prototype.addInstitution = function(e) {
-      var el, source;
-      e.preventDefault();
-      el = $(e.currentTarget);
-      source = $("#lawyer-form-institution-template").html();
-      el.parent().before(source);
-      return this.appendDatePicker();
-    };
-
-    LawyerCreate.prototype.addLang = function(e) {
-      var el, source;
-      e.preventDefault();
-      el = $(e.currentTarget);
-      source = $("#lawyer-form-langs-template").html();
-      el.parent().before(source);
-      return this.appendDatePicker();
-    };
-
-    LawyerCreate.prototype.addPharase = function(e) {
-      var el, source;
-      e.preventDefault();
-      el = $(e.currentTarget);
-      source = $("#lawyer-form-pharase-template").html();
-      el.parent().before(source);
-      return this.appendDatePicker();
-    };
-
     LawyerCreate.prototype.store = function(e) {
       var data;
       e.preventDefault();
@@ -263,16 +183,9 @@ $(function() {
     };
 
     LawyerCreate.prototype.stored = function(model) {
-      var id, view;
+      var id;
       id = model.id;
-      ppu.lawyerFinish = new ppu.Lawyer({
-        id: id
-      });
-      ppu.lawyerFinish.fetch();
-      view = new ppu.LawyerFinish({
-        model: ppu.lawyerFinish
-      });
-      return $(this.el).fadeOut().remove();
+      return ppu.lawyerEducationCreate.store(id);
     };
 
     return LawyerCreate;
@@ -290,7 +203,7 @@ $(function() {
     LawyerFinish.prototype.template = $('#lawyer-finish-template');
 
     LawyerFinish.prototype.events = {
-      'click .lawyer-open-upload-photo': 'openUploadPhoto'
+      'click .lawyer-save-img': 'uploadPhoto'
     };
 
     LawyerFinish.prototype.initialize = function() {
@@ -303,6 +216,22 @@ $(function() {
       t = Handlebars.compile(source);
       $(this.el).find(".panel-body").html(t(this.model.toJSON()));
       return $(this.el).removeClass("hidden");
+    };
+
+    LawyerFinish.prototype.uploadPhoto = function(e) {
+      var $form, ajaxOptions, myData;
+      e.preventDefault();
+      console.log(this.model);
+      $form = $('#lawyer-img');
+      myData = new FormData($form[0]);
+      ajaxOptions = {
+        type: "PUT",
+        data: myData,
+        processData: false,
+        cache: false,
+        contentType: false
+      };
+      return this.model.save(myData, $.extend({}, ajaxOptions));
     };
 
     LawyerFinish.prototype.openUploadPhoto = function(e) {

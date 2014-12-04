@@ -63,19 +63,13 @@ $ ->
 
     events:
       'click .lawyer-store': 'store'
-      'click .lawyer-add-education': 'addEducation'
-      'click .lawyer-add-job': 'addJob'
-      'click .lawyer-add-recognition': 'addRecognition'
-      'click .lawyer-add-institution': 'addInstitution'
-      'click .lawyer-add-langs': 'addLang'
-      'click .lawyer-add-pharase': 'addPharase'
       'change .lawyer-lang': 'changeLang'
 
     initialize: ->
       @listenTo @model, 'error', @showErrors
       @listenTo @model, 'sync', @stored
       @getCategories()
-      @appendDatePicker()
+      ppu.appendDatePickerYear
 
     changeLang: (e) ->
       el = $(e.currentTarget)
@@ -84,63 +78,6 @@ $ ->
       else
         window.location = '/crear-abogado'
 
-    getCategories: ->
-      categories = new ppu.Categories
-      source = $("#lawyer-categories-template").html()
-      template = Handlebars.compile(source)
-      categories.fetch().done (collection) ->
-        $("#lawyer-list-categories").html template( collection  )
-
-    appendDatePicker: ->
-      $(document).find('.datepicker-year').datepicker
-       format: 'yyyy'
-       viewMode: "years"
-       minViewMode: "years"
-       language: 'es'
-       autoclose: true
-
-    addEducation: (e) ->
-      e.preventDefault()
-      el = $(e.currentTarget)
-      source = $("#lawyer-form-education-template").html()
-      el.parent().before source
-      @appendDatePicker()
-
-    addJob: (e) ->
-      e.preventDefault()
-      el = $(e.currentTarget)
-      source = $("#lawyer-form-job-template").html()
-      el.parent().before source
-      @appendDatePicker()
-
-    addRecognition: (e) ->
-      e.preventDefault()
-      el = $(e.currentTarget)
-      source = $("#lawyer-form-recognition-template").html()
-      el.parent().before source
-      @appendDatePicker()
-
-    addInstitution: (e) ->
-      e.preventDefault()
-      el = $(e.currentTarget)
-      source = $("#lawyer-form-institution-template").html()
-      el.parent().before source
-      @appendDatePicker()
-
-    addLang: (e) ->
-      e.preventDefault()
-      el = $(e.currentTarget)
-      source = $("#lawyer-form-langs-template").html()
-      el.parent().before source
-      @appendDatePicker()
-
-    addPharase: (e) ->
-      e.preventDefault()
-      el = $(e.currentTarget)
-      source = $("#lawyer-form-pharase-template").html()
-      el.parent().before source
-      @appendDatePicker()
-
     store: (e) ->
       e.preventDefault()
       data = $(document).find(@el).find('form').serializeJSON()
@@ -148,16 +85,18 @@ $ ->
 
     stored: (model)->
       id = model.id
-      ppu.lawyerFinish = new ppu.Lawyer id: id
-      ppu.lawyerFinish.fetch()
-      view = new ppu.LawyerFinish model: ppu.lawyerFinish
-      $(@el).fadeOut().remove()
+      ppu.lawyerEducationCreate.store(id)
+
+      # ppu.lawyerFinish = new ppu.Lawyer id: id
+      # ppu.lawyerFinish.fetch()
+      # view = new ppu.LawyerFinish model: ppu.lawyerFinish
+      # $(@el).fadeOut().remove()
       
   class ppu.LawyerFinish extends Backbone.View
     el: $ '#lawyer-finish'
     template: $ '#lawyer-finish-template'
     events: 
-      'click .lawyer-open-upload-photo': 'openUploadPhoto'
+      'click .lawyer-save-img': 'uploadPhoto'
     
     initialize: ->
       @listenTo(@model, 'change', @render)
@@ -167,6 +106,19 @@ $ ->
       t = Handlebars.compile(source)
       $(@el).find(".panel-body").html t( @model.toJSON() )
       $(@el).removeClass("hidden")
+
+    uploadPhoto: (e) ->
+      e.preventDefault()
+      console.log @model
+      $form = $('#lawyer-img') 
+      myData = new FormData($form[0])
+      ajaxOptions = 
+        type: "PUT",
+        data: myData,
+        processData: false,
+        cache: false,
+        contentType: false
+      @model.save myData, $.extend({}, ajaxOptions)
 
     openUploadPhoto: (e)->
       e.preventDefault()
@@ -212,7 +164,6 @@ $ ->
       t = Handlebars.compile(source)
       $(@el).html t( @model.toJSON() )
       @
-
 
   class ppu.LawyersDashboard extends Backbone.View
     el: $ '#lawyers-dashboard'

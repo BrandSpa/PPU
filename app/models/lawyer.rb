@@ -1,7 +1,7 @@
 class Lawyer < ActiveRecord::Base
   has_and_belongs_to_many :categories
   has_and_belongs_to_many :trades
-  has_and_belongs_to_many :awards
+  has_many :awards
   has_many :educations
   has_many :jobs
   has_many :languages

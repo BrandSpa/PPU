@@ -1,5 +1,5 @@
 class Api::LawyersController < ApplicationController
-
+  before_action :authenticate_user!, except: [:index, :show]
   def index
     lang = params[:lang] || "es"
     position = params[:position]
@@ -18,7 +18,6 @@ class Api::LawyersController < ApplicationController
     collection = collection.by_category_id(category_id) if category.present?
     collection = collection.by_country(country) if country.present?
     collection = collection.search(keyword) if keyword.present?
-
     render json: collection
   end
 
@@ -36,16 +35,9 @@ class Api::LawyersController < ApplicationController
   end
 
   def create
-    model = Lawyer.create(lawer_params)
+    model = Lawyer.create(lawyer_params)
     if model.valid?
-      Lawyer.attach_categories(model, params[:categories])
-      Lawyer.attach_collection(model.educations, params[:educations])
-      Lawyer.attach_collection(model.jobs, params[:jobs])
-      Lawyer.attach_collection(model.recognitions, params[:recognitions])
-      Lawyer.attach_collection(model.institutions, params[:institutions])
-      Lawyer.attach_collection(model.languages, params[:languages]) 
-      Lawyer.attach_collection(model.phrases, params[:phrases]) 
-      render json: model
+      render json: model, status: 200
     else
       render json:  model.errors.messages, status: 400
     end
@@ -55,13 +47,10 @@ class Api::LawyersController < ApplicationController
   def update
     id = params[:id]
     model = Lawyer.find(id)
-    if model.valid?
-      Lawyer.attach_categories(model, params[:categories])
-      Lawyer.attach_collection(model.educations, params[:educations])
-      Lawyer.attach_collection(model.jobs, params[:jobs])
-      Lawyer.attach_collection(model.recognitions, params[:recognitions])
-      Lawyer.attach_collection(model.institutions, params[:institutions])
-      Lawyer.attach_collection(model.languages, params[:languages]) 
+    model.img_name = params[:file]
+    model.save!
+
+    if model
       render json: model
     else
       render json:  model.errors.messages, status: 400
@@ -69,27 +58,10 @@ class Api::LawyersController < ApplicationController
     
   end
 
-  def attach_img
-    id = params[:lawyer_id]
-    model = Lawyer.find(id)
-    model.img_name = params[:file]
-    model.save!
-    render json: model
-
-  end
 
   private
-    def lawer_params
-      params.permit(
-        :lang, 
-        :country,
-        :name ,
-        :lastname, 
-        :phone, 
-        :position, 
-        :email, 
-        :description
-      )
+    def lawyer_params
+      params.permit(:lang, :country, :name , :lastname, :phone, :position, :email, :description) 
     end
 
 end

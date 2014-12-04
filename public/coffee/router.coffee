@@ -23,8 +23,30 @@ $ ->
         $('.lawyer-lang option:eq(2)').prop('selected', true)
       else
         $('.lawyer-lang option:eq(1)').prop('selected', true)
-      model =  new ppu.Lawyer
-      ppu.lawyerCreate = new ppu.LawyerCreate model: model
+
+      ppu.lawyerAward = new ppu.LawyerAward
+      ppu.lawyerAwardCreate = new ppu.LawyerAwardCreate model: ppu.lawyerAward
+
+      ppu.lawyerEducation = new ppu.LawyerEducation
+      ppu.lawyerEducationCreate = new ppu.LawyerEducationCreate model: ppu.lawyerEducation
+
+      ppu.lawyerInstitution = new ppu.LawyerInstitution
+      ppu.lawyerInstitutionCreate = new ppu.LawyerInstitutionCreate model: ppu.lawyerInstitution
+
+      ppu.lawyerJob = new ppu.LawyerJob
+      ppu.lawyerJobCreate = new ppu.LawyerJobCreate model: ppu.lawyerJob
+
+      ppu.lawyerLanguage = new ppu.LawyerLanguage
+      ppu.lawyerLanguageCreate = new ppu.LawyerLanguageCreate model: ppu.lawyerLanguage
+
+      ppu.lawyerPharase = new ppu.LawyerPharase
+      ppu.lawyerPharaseCreate = new ppu.LawyerPharaseCreate model: ppu.lawyerPharase
+
+      ppu.lawyerRecognintion = new ppu.LawyerRecognintion
+      ppu.lawyerRecognintionCreate = new ppu.LawyerRecognintionCreate model: ppu.lawyerRecognintion
+
+      ppu.lawyer =  new ppu.Lawyer
+      ppu.lawyerCreate = new ppu.LawyerCreate model: ppu.lawyer
 
     finishLawyer: (id) ->
       $("#lawyer-create").fadeOut().remove()

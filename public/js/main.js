@@ -36,7 +36,17 @@ Backbone.View.prototype.showErrors = function(model, response) {
 Backbone.View.prototype.closeModal = function() {
   this.remove();
   $('.modal-backdrop').remove();
-  return $('body').removeClass('modal-open');
+  $('body').removeClass('modal-open');
+  return ppu.appendDatePickerYear = function() {
+    $(document).find('.datepicker-year').datepicker;
+    return {
+      format: 'yyyy',
+      viewMode: "years",
+      minViewMode: "years",
+      language: 'es',
+      autoclose: true
+    };
+  };
 };
 
 $(document).ajaxSend(function(e, xhr, options) {

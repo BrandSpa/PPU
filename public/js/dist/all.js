@@ -2,6 +2,8 @@ var lang;
 
 window.ppu = {};
 
+Dropzone.autoDiscover = false;
+
 ppu.pathUrl = window.location.pathname.split('/');
 
 lang = ppu.pathUrl[1];
@@ -29,6 +31,12 @@ Backbone.View.prototype.showErrors = function(model, response) {
   return _.each(errors, function(message, row) {
     return toastr.error(message);
   });
+};
+
+Backbone.View.prototype.closeModal = function() {
+  this.remove();
+  $('.modal-backdrop').remove();
+  return $('body').removeClass('modal-open');
 };
 
 $(document).ajaxSend(function(e, xhr, options) {
@@ -63,7 +71,8 @@ $(function() {
       "crear-abogado": 'adminLawyer',
       "crear-abogado": 'adminLawyer',
       "terminar-abogado/:id": 'finishLawyer',
-      ":lang/crear-abogado": 'adminLawyer'
+      ":lang/crear-abogado": 'adminLawyer',
+      "dashboard": 'dashboard'
     };
 
     Workspace.prototype.lawyers = function(lang) {
@@ -93,14 +102,24 @@ $(function() {
     };
 
     Workspace.prototype.finishLawyer = function(id) {
-      var new_model, view;
+      var view;
       $("#lawyer-create").fadeOut().remove();
-      new_model = new ppu.Lawyer({
+      ppu.lawyerFinish = new ppu.Lawyer({
         id: id
       });
-      new_model.fetch();
+      ppu.lawyerFinish.fetch();
       return view = new ppu.LawyerFinish({
-        model: new_model
+        model: ppu.lawyerFinish
+      });
+    };
+
+    Workspace.prototype.dashboard = function() {
+      ppu.lawyers = new ppu.Lawyers;
+      ppu.lawyers.fetch({
+        reset: true
+      });
+      return ppu.lawyersDashboard = new ppu.LawyersDashboard({
+        collection: ppu.lawyers
       });
     };
 

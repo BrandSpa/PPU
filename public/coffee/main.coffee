@@ -26,6 +26,15 @@ Backbone.View::closeModal = ->
   $('.modal-backdrop').remove()
   $('body').removeClass 'modal-open'
 
+
+  ppu.appendDatePickerYear = ->
+    $(document).find('.datepicker-year').datepicker
+    format: 'yyyy'
+    viewMode: "years"
+    minViewMode: "years"
+    language: 'es'
+    autoclose: true
+
 $(document).ajaxSend (e, xhr, options) ->
   token = $("meta[name='csrf-token']").attr("content")
   xhr.setRequestHeader("X-CSRF-Token", token)

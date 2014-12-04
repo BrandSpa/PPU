@@ -1,0 +1,70 @@
+body{
+  background: #E4E6EB; 
+  font-family: 'Roboto';
+}
+
+.container{
+  background: #fff;
+  margin: 150px auto;
+  width:670px;
+  height: 500px;
+  font-weight: 200;
+  padding: 0;
+}
+
+.container p{
+  padding-top: 20px;
+  padding-left: 100px;
+  padding-right: 100px;
+  line-height: 27px;
+  color: #5D5D5D;
+
+}
+
+.logos ul {
+  padding: 0; 
+  list-style: none;
+  padding-top: 50px;
+  padding-left: 100px;
+}
+.logos ul li {
+    padding-bottom: 30px;
+    display: inline-block;
+  }
+
+    .logos ul li a {
+      display: block;
+      width: 170px;
+      height: 50px;
+      background: url("../img/logos.png") 0 0 no-repeat;
+      background-size: 100%; }
+    .logos ul li .philippi {
+      background-position: 0 -50px; }
+    .logos ul li .uria {
+      background-position: 0 -100px; }
+
+
+@media only screen and (max-width: 529px) {
+.container{
+  background: #fff;
+  margin: 0 5px 0 0 !important;
+  width:100%;
+  height: auto !important;
+  font-weight: 200;
+}
+
+#header img{
+  width: 100%
+}
+.container p{
+  padding-left: 50px !important;
+  padding-right: 50px !important;
+}
+
+.logos ul {
+  padding: 0; 
+  list-style: none;
+  padding-left: 50px;
+}
+
+}

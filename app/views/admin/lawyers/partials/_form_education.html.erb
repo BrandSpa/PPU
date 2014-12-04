@@ -1,25 +1,27 @@
-<div class="panel panel-default">
+<div class="panel panel-default" id="lawyer-education-form">
   <div class="panel-body">
      <h4><%= t('education') %></h4>
      <hr>
      <div class="row">
-      <div class="form-group col-lg-4">
-        <input type="text" name="educations[][title]" class="form-control" placeholder="Título">
-      </div>
-      <div class="form-group col-lg-4">
-        <input type="text" name="educations[][institution]" class="form-control" placeholder="Institución">
-      </div>
+     <form action="#">
+        <div class="form-group col-lg-4">
+          <input type="text" name="fields[][title]" class="form-control" placeholder="Título">
+        </div>
+        <div class="form-group col-lg-4">
+          <input type="text" name="fields[][institution]" class="form-control" placeholder="Institución">
+        </div>
 
-      <div class="form-group col-lg-2">
-        <select name="educations[][country]" class="form-control">
-          <option value="">Seleccionar País</option>
-          <%= render "partials/countries" %>
-        </select>
-      </div>
+        <div class="form-group col-lg-2">
+          <select name="fields[][country]" class="form-control">
+            <option value="">Seleccionar País</option>
+            <%= render "partials/countries" %>
+          </select>
+        </div>
 
-      <div class="form-group col-lg-2">
-        <input type="text" name="educations[][year]" class="form-control datepicker-year" placeholder="Año">
-      </div>
+        <div class="form-group col-lg-2">
+          <input type="text" name="fields[][year]" class="form-control datepicker-year" placeholder="Año">
+        </div>
+      </form>
        <div class="col-lg-12">
        <hr>
         <a href="#" class="btn btn-info pull-right lawyer-add-education">+</a>
@@ -31,23 +33,23 @@
 
  <script type="text/x-handlebars-template" id="lawyer-form-education-template">
       <div class="form-group col-lg-4">
-        <input type="text" name="educations[][title]" class="form-control" placeholder="Título">
+        <input type="text" name="fields[][title]" class="form-control" placeholder="Título">
       </div>
       <div class="form-group col-lg-4">
-        <input type="text" name="educations[][institution]" class="form-control" placeholder="Institución">
+        <input type="text" name="fields[][institution]" class="form-control" placeholder="Institución">
       </div>
 
 
 
       <div class="form-group col-lg-2">
-        <select name="educations[][country]" class="form-control">
+        <select name="fields[][country]" class="form-control">
           <option value="">Seleccionar País</option>
           <%= render "partials/countries" %>
         </select>
       </div>
 
       <div class="form-group col-lg-2">
-        <input type="text" name="educations[][year]" class="form-control datepicker-year" placeholder="Año">
+        <input type="text" name="fields[][year]" class="form-control datepicker-year" placeholder="Año">
       </div>
 </script>
 
