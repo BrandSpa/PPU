@@ -1,5 +1,6 @@
 class Api::LawyersController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
+
   def index
     lang = params[:lang] || "es"
     position = params[:position]
@@ -34,12 +35,12 @@ class Api::LawyersController < ApplicationController
   end
 
   def create
-    params_model.each do |data|
-      new_data = {}
-      new_data.merge!(data)
-      entity.create(new_data)
+    model = entity.create(lawyer_params)
+    if model.valid?
+      render json: model, status: 200
+    else
+      render json: model.errors.messages, status: 400
     end
-    render json: "models created", status: 200
   end
 
   def update
@@ -53,13 +54,14 @@ class Api::LawyersController < ApplicationController
     else
       render json:  model.errors.messages, status: 400
     end
-    
   end
 
 
   private
     def lawyer_params
-      params.permit(:lang, :country, :img_name, :name , :lastname, :phone, :position, :email, :description) 
+      params.require(:fields).permit(:lang, :country, :img_name, :name , :lastname, :phone, :position, :email, :description) 
     end
-
+    def entity
+      Lawyer
+    end
 end

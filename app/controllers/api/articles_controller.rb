@@ -7,10 +7,6 @@ class Api::ArticlesController < ApplicationController
     params[:fields]
   end
 
-  def param_lawyer_id
-    params[:lawyer_id]
-  end
-
   def index
     lawyer_id = param_lawyer_id
     collection = entity.where('lawyer_id = ?', lawyer_id) if lawyer_id.present?
@@ -24,12 +20,10 @@ class Api::ArticlesController < ApplicationController
   end
 
   def create
-    params_model.each do |data|
-      new_data = {}
-      new_data.merge!(data)
-      entity.create(new_data)
-    end
-    render json: "models created", status: 200
+    new_data = {}
+    new_data.merge!(params_model)
+    model = entity.create(new_data)
+    render json: model, status: 200
   end
 
   def update

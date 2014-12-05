@@ -186,10 +186,13 @@ $(function() {
     };
 
     LawyerCreate.prototype.store = function(e) {
-      var data;
+      var $forms, datas, options;
       e.preventDefault();
-      data = $(document).find(this.el).find('form').serializeJSON();
-      return this.model.save(data);
+      $forms = $("#lawyer-form-create").find('form');
+      console.log($forms);
+      datas = new FormData($forms[0]);
+      options = ppu.ajaxOptions("POST", datas);
+      return this.model.save(datas, $.extend({}, options));
     };
 
     LawyerCreate.prototype.stored = function(model) {

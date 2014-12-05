@@ -87,8 +87,11 @@ $ ->
 
     store: (e) ->
       e.preventDefault()
-      data = $(document).find(@el).find('form').serializeJSON()
-      @model.save data
+      $forms = $("#lawyer-form-create").find('form')
+      console.log $forms
+      datas = new FormData($forms[0])
+      options = ppu.ajaxOptions("POST", datas)
+      @model.save datas, $.extend({}, options)
 
     stored: (model)->
       id = model.id

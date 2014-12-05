@@ -4,11 +4,7 @@ class Api::RecognitionsController < ApplicationController
   end
 
   def params_model
-    params[:recognitions]
-  end
-
-  def param_lawyer_id
-    params[:lawyer_id]
+    params[:fields]
   end
 
   def index
@@ -23,13 +19,11 @@ class Api::RecognitionsController < ApplicationController
     render json: model, status: 200
   end
 
-   def create
-    params_model.each do |data|
-      new_data = {}
-      new_data.merge!(data)
-      entity.create(new_data)
-    end
-    render json: "models created", status: 200
+  def create
+    new_data = {}
+    new_data.merge!(params_model)
+    model = entity.create(new_data)
+    render json: model, status: 200
   end
 
   def update

@@ -1,28 +1,54 @@
+<div id="lawyer-form-create">
+<form action=""  enctype="multipart/form-data">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <h3><%= t('lawyer') %></h3><hr>
+      <div class="row">
+        <div class="form-group col-lg-3">
+         <select name="fields[lang]" class="form-control lawyer-lang">
+          <option value="">Seleccionar Idioma</option>
+          <option value="es">Español</option>
+          <option value="en">English</option>
+        </select>
+      </div>
+
+      <div class="form-group col-lg-3">
+        <select name="fields[country]" class="form-control" id="">
+          <option value="">Seleccionar País</option>
+          <option value="Chile">Chile</option>
+          <option value="Colombia">Colombia</option>
+          <option value="Chile">España</option>
+        </select>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="panel panel-default">
   <div class="panel-body">
     <div class="row">
       <div class="form-group col-lg-12">
         <label for="file">Adjuntar Foto de perfil</label>
-        <input type="file" name="file" class='form-control'>
+        <input type="file" name="fields[img_name]" class='form-control'>
       </div>
       <div class="form-group col-lg-6">
-        <input type="text" name="name" class="form-control" placeholder="Nombre">
-      </div>
-
-      <div class="form-group col-lg-6">
-        <input type="text" name="lastname" class="form-control" placeholder="Apellidos">
+        <input type="text" name="fields[name]" class="form-control" placeholder="Nombre">
       </div>
 
       <div class="form-group col-lg-6">
-        <input type="text" name="email" class="form-control" placeholder="Email">
+        <input type="text" name="fields[lastname]" class="form-control" placeholder="Apellidos">
       </div>
 
       <div class="form-group col-lg-6">
-        <input type="text" name="phone" class="form-control" placeholder="Teléfono">
+        <input type="text" name="fields[email]" class="form-control" placeholder="Email">
       </div>
 
       <div class="form-group col-lg-6">
-        <select name="position" class="form-control">
+        <input type="text" name="fields[phone]" class="form-control" placeholder="Teléfono">
+      </div>
+
+      <div class="form-group col-lg-6">
+        <select name="fields[position]" class="form-control">
           <option value="">Seleccionar cargo</option>
           <option value="<%= t('lawyer')%>"><%= t('lawyer')%></option>
           <option value="<%= t('associated')%>"><%= t('associated')%></option>
@@ -33,7 +59,7 @@
       </div>
 
       <div class="form-group col-lg-6">
-        <select name="level" class="form-control" id="">
+        <select name="fields[level" class="form-control" id="">
           <option value="">Seleccionar nivel</option>
           <option value="1">1</option>
           <option value="2">2</option>
@@ -51,8 +77,10 @@
       </div>
 
       <div class="form-group col-lg-12">
-        <textarea name="description" class="form-control" rows="5" placeholder="Descripción"></textarea>
+        <textarea name="fields[description]" class="form-control" rows="5" placeholder="Descripción"></textarea>
       </div>
     </div>
   </div>
+</div>
+</form>
 </div>
