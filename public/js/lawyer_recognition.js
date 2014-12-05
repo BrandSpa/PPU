@@ -35,12 +35,12 @@ $(function() {
       return LawyerRecognitionCreate.__super__.constructor.apply(this, arguments);
     }
 
-    LawyerRecognitionCreate.prototype.el = $("#lawyer-pharase-form");
+    LawyerRecognitionCreate.prototype.el = $("#lawyer-recognition-form");
 
-    LawyerRecognitionCreate.prototype.template = $("#lawyer-form-pharase-template");
+    LawyerRecognitionCreate.prototype.template = $("#lawyer-form-recognition-template");
 
     LawyerRecognitionCreate.prototype.events = {
-      'click .lawyer-add-pharase': 'addFields'
+      'click .lawyer-add-recognition': 'addFields'
     };
 
     LawyerRecognitionCreate.prototype.addFields = function(e) {

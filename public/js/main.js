@@ -50,6 +50,16 @@ Backbone.View.prototype.closeModal = function() {
   };
 };
 
+ppu.ajaxOptions = function(type, data) {
+  return {
+    type: type,
+    data: data,
+    processData: false,
+    cache: false,
+    contentType: false
+  };
+};
+
 $(document).ajaxSend(function(e, xhr, options) {
   var token;
   token = $("meta[name='csrf-token']").attr("content");

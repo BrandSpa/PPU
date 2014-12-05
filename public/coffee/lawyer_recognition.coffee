@@ -7,10 +7,10 @@ $ ->
     model: ppu.LawyerRecognition
 
   class ppu.LawyerRecognitionCreate extends Backbone.View
-    el: $ "#lawyer-pharase-form"
-    template: $ "#lawyer-form-pharase-template"
+    el: $ "#lawyer-recognition-form"
+    template: $ "#lawyer-form-recognition-template"
     events: 
-      'click .lawyer-add-pharase': 'addFields'
+      'click .lawyer-add-recognition': 'addFields'
 
     addFields: (e) ->
       e.preventDefault()

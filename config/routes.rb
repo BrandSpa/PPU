@@ -3,8 +3,15 @@ Rails.application.routes.draw do
 
   namespace :api do 
     resources :lawyers
-    resources :educations
+    resources :articles
+    resources :awards
     resources :categories
+    resources :educations
+    resources :institutions
+    resources :jobs
+    resources :languages
+    resources :pharases
+    resources :recognitions
     resources :trades
     post "lawyer-attach-img", to: 'lawyers#attach_img'
   end

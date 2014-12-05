@@ -11,9 +11,6 @@ class LawyerImgUploader < CarrierWave::Uploader::Base
   #storage :fog
 
 
-  process :convert_to_grayscale
-
-
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
@@ -29,7 +26,7 @@ class LawyerImgUploader < CarrierWave::Uploader::Base
   # end
 
   # Process files as they are uploaded:
-  process :scale => [200, 300]
+  #process :scale => [200, 300]
   #
   # def scale(width, height)
   #   # do something
@@ -40,15 +37,6 @@ class LawyerImgUploader < CarrierWave::Uploader::Base
   #   process :resize_to_fit => [50, 50]
   # end
 
-  def convert_to_grayscale
-    manipulate! do |img|
-      img.combine_options do |c|
-        c.colorspace("gray")
-      end
-       img = yield(img) if block_given?
-       img
-    end
-  end
 
 
 

@@ -1,16 +1,46 @@
 class Api::TradesController < ApplicationController
+  def entity
+    Trade
+  end
+
+  def params_model
+    params[:trades]
+  end
+
+  def param_lawyer_id
+    params[:lawyer_id]
+  end
 
   def index
-    lang = params[:lang] || "es"
-    collection = Trade.where(nil).lang(lang)
-    render json: collection
+    lawyer_id = param_lawyer_id
+    collection = entity.where('lawyer_id = ?', lawyer_id) if lawyer_id.present?
+    render json: collection, status: 200
   end
 
   def show
     id = params[:id]
-    lang = params[:lang] || "es"
+    model = entity.find(id) if id.present?
+    render json: model, status: 200
+  end
 
-    model = Trade.lang(lang).find(id)
-    render json: model.to_json(:include => [:lawyers])
+  def create
+    params_model.each do |data|
+      new_data = {}
+      new_data.merge!(data)
+      entity.create(new_data)
+    end
+    render json: "models created", status: 200
+  end
+
+  def update
+    id = params[:id]
+    model = entity.find(id) if id.present?
+    models = params_model
+    models.each do |data|
+      new_data = {}
+      new_data.merge!(data)
+      model.update(education_params)
+    end
+    render json: models, status: 200
   end
 end

@@ -36,6 +36,13 @@ Backbone.View::closeModal = ->
     language: 'es'
     autoclose: true
 
+ppu.ajaxOptions = (type, data) ->
+  type: type
+  data: data
+  processData: false
+  cache: false
+  contentType: false
+
 $(document).ajaxSend (e, xhr, options) ->
   token = $("meta[name='csrf-token']").attr("content")
   xhr.setRequestHeader("X-CSRF-Token", token)

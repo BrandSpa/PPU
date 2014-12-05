@@ -2,8 +2,9 @@
   <div class="panel-body">
     <h4><%= t('languages') %></h4>
     <hr>
+        <form action="">
     <div class="row">
-    <form action="">
+
       <div class="form-group col-lg-3">
         <select name="languages[][name]" class="form-control">
           <option value="">Seleccionar idioma</option>
@@ -17,8 +18,10 @@
           <%= render "partials/langs" %>
         </select>
       </div>
-      </form>
-    </div>
+    
+    </div>  
+    </form>
+
       <div class="col-lg-12">
         <hr>
         <a href="#" class="btn btn-info pull-right lawyer-add-language">+</a>

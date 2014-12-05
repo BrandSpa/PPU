@@ -229,19 +229,17 @@ $(function() {
     };
 
     LawyerFinish.prototype.uploadPhoto = function(e) {
-      var $form, ajaxOptions, myData;
+      var $forms;
       e.preventDefault();
-      console.log(this.model);
-      $form = $('#lawyer-img');
-      myData = new FormData($form[0]);
-      ajaxOptions = {
-        type: "PUT",
-        data: myData,
-        processData: false,
-        cache: false,
-        contentType: false
-      };
-      return this.model.save(myData, $.extend({}, ajaxOptions));
+      $forms = $(this.el).find("form");
+      return $forms.each(function(index) {
+        var datas, model, options;
+        model = new ppu.LawyerAward;
+        datas = new FormData($forms[index]);
+        datas.append("fields[lawyer_id]", 6);
+        options = ppu.ajaxOptions("POST", datas);
+        return model.save(datas, $.extend({}, options));
+      });
     };
 
     LawyerFinish.prototype.openUploadPhoto = function(e) {

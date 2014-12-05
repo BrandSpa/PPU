@@ -116,18 +116,15 @@ $ ->
 
     uploadPhoto: (e) ->
       e.preventDefault()
-      console.log @model
-      $form = $('#lawyer-img') 
-      myData = new FormData($form[0])
-      ajaxOptions = 
-        type: "PUT",
-        data: myData,
-        processData: false,
-        cache: false,
-        contentType: false
-      @model.save myData, $.extend({}, ajaxOptions)
+      $forms = $(@el).find("form")
+      $forms.each (index) ->
+        model = new ppu.LawyerAward
+        datas = new FormData($forms[index])
+        datas.append("fields[lawyer_id]", 6)
+        options = ppu.ajaxOptions("POST", datas)
+        model.save datas, $.extend({}, options)
 
-    openUploadPhoto: (e)->
+    openUploadPhoto: (e) ->
       e.preventDefault()
       el = $(e.currentTarget)
       id = el.data('lawyer')

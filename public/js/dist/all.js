@@ -29,6 +29,7 @@ Backbone.View.prototype.showErrors = function(model, response) {
   var errors;
   errors = JSON.parse(response.responseText);
   return _.each(errors, function(message, row) {
+    console.log(message);
     return toastr.error(message);
   });
 };
@@ -36,7 +37,17 @@ Backbone.View.prototype.showErrors = function(model, response) {
 Backbone.View.prototype.closeModal = function() {
   this.remove();
   $('.modal-backdrop').remove();
-  return $('body').removeClass('modal-open');
+  $('body').removeClass('modal-open');
+  return ppu.appendDatePickerYear = function() {
+    $(document).find('.datepicker-year').datepicker;
+    return {
+      format: 'yyyy',
+      viewMode: "years",
+      minViewMode: "years",
+      language: 'es',
+      autoclose: true
+    };
+  };
 };
 
 $(document).ajaxSend(function(e, xhr, options) {
@@ -89,15 +100,42 @@ $(function() {
     Workspace.prototype.lawyer = function() {};
 
     Workspace.prototype.adminLawyer = function(param) {
-      var model;
       if (param === 'en') {
         $('.lawyer-lang option:eq(2)').prop('selected', true);
       } else {
         $('.lawyer-lang option:eq(1)').prop('selected', true);
       }
-      model = new ppu.Lawyer;
+      ppu.lawyerAward = new ppu.LawyerAward;
+      ppu.lawyerAwardCreate = new ppu.LawyerAwardCreate({
+        model: ppu.lawyerAward
+      });
+      ppu.lawyerEducation = new ppu.LawyerEducation;
+      ppu.lawyerEducationCreate = new ppu.LawyerEducationCreate({
+        model: ppu.lawyerEducation
+      });
+      ppu.lawyerInstitution = new ppu.LawyerInstitution;
+      ppu.lawyerInstitutionCreate = new ppu.LawyerInstitutionCreate({
+        model: ppu.lawyerInstitution
+      });
+      ppu.lawyerJob = new ppu.LawyerJob;
+      ppu.lawyerJobCreate = new ppu.LawyerJobCreate({
+        model: ppu.lawyerJob
+      });
+      ppu.lawyerLanguage = new ppu.LawyerLanguage;
+      ppu.lawyerLanguageCreate = new ppu.LawyerLanguageCreate({
+        model: ppu.lawyerLanguage
+      });
+      ppu.lawyerPharase = new ppu.LawyerPharase;
+      ppu.lawyerPharaseCreate = new ppu.LawyerPharaseCreate({
+        model: ppu.lawyerPharase
+      });
+      ppu.lawyerRecognition = new ppu.LawyerRecognition;
+      ppu.lawyerRecognitionCreate = new ppu.LawyerRecognitionCreate({
+        model: ppu.lawyerRecognintion
+      });
+      ppu.lawyer = new ppu.Lawyer;
       return ppu.lawyerCreate = new ppu.LawyerCreate({
-        model: model
+        model: ppu.lawyer
       });
     };
 

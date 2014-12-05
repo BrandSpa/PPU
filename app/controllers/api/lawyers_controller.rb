@@ -34,19 +34,18 @@ class Api::LawyersController < ApplicationController
   end
 
   def create
-    model = Lawyer.create(lawyer_params)
-    if model.valid?
-      render json: model, status: 200
-    else
-      render json:  model.errors, status: 400
+    params_model.each do |data|
+      new_data = {}
+      new_data.merge!(data)
+      entity.create(new_data)
     end
-    
+    render json: "models created", status: 200
   end
 
   def update
     id = params[:id]
     model = Lawyer.find(id)
-    model.img_name = params[:file]
+    model.update(lawyer_params)
     model.save
 
     if model
@@ -60,7 +59,7 @@ class Api::LawyersController < ApplicationController
 
   private
     def lawyer_params
-      params.permit(:lang, :country, :name , :lastname, :phone, :position, :email, :description) 
+      params.permit(:lang, :country, :img_name, :name , :lastname, :phone, :position, :email, :description) 
     end
 
 end

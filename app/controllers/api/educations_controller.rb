@@ -4,6 +4,10 @@ class Api::EducationsController < ApplicationController
     Education
   end
 
+  def params_model
+    params[:educations]
+  end
+
   def index
     lawyer_id = params[:lawyer_id]
     collection = entity.where('lawyer_id = ?', lawyer_id) if lawyer_id.present?
@@ -16,16 +20,13 @@ class Api::EducationsController < ApplicationController
     render json: model, status: 200
   end
 
-  def create
-    lawyer_id = params[:lawyer_id]
-    models = params[:educations]
-
-    models.each do |data|
+   def create
+    params_model.each do |data|
       new_data = {}
       new_data.merge!(data)
       entity.create(new_data)
     end
-    render json: models, status: 200
+    render json: "models created", status: 200
   end
 
   def update
