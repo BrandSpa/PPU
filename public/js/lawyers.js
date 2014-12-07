@@ -144,6 +144,46 @@ $(function() {
     return LawyerDetailView;
 
   })(Backbone.View);
+  ppu.LawyerCreateForm = (function(_super) {
+    __extends(LawyerCreateForm, _super);
+
+    function LawyerCreateForm() {
+      return LawyerCreateForm.__super__.constructor.apply(this, arguments);
+    }
+
+    LawyerCreateForm.prototype.initialize = function() {
+      this.listenTo(this.model, "error", this.showErrors);
+      return this.listenTo(this.model, "sync", this.stored);
+    };
+
+    LawyerCreateForm.prototype.store = function(e) {
+      var $forms, datas, options;
+      if (e) {
+        e.preventDefault();
+      }
+      $forms = $("#lawyer-form-create").find('form');
+      datas = new FormData($forms[0]);
+      options = ppu.ajaxOptions("POST", datas);
+      return this.model.save(datas, $.extend({}, options));
+    };
+
+    LawyerCreateForm.prototype.stored = function(model) {
+      var id;
+      id = model.id;
+      ppu.lawyerLanguageCreate.store(id);
+      ppu.lawyerEducationCreate.store(id);
+      ppu.lawyerJobCreate.store(id);
+      ppu.lawyerRecognitionCreate.store(id);
+      ppu.lawyerInstitutionCreate.store(id);
+      ppu.lawyerAwardCreate.store(id);
+      ppu.lawyerArticleCreate.store(id);
+      ppu.lawyerPharaseCreate.store(id);
+      return window.location = "/terminar-abogado/" + id;
+    };
+
+    return LawyerCreateForm;
+
+  })(Backbone.View);
   ppu.LawyerCreate = (function(_super) {
     __extends(LawyerCreate, _super);
 
@@ -159,10 +199,8 @@ $(function() {
     };
 
     LawyerCreate.prototype.initialize = function() {
-      this.listenTo(this.model, 'error', this.showErrors);
-      this.listenTo(this.model, 'sync', this.stored);
       this.getCategories();
-      return ppu.appendDatePickerYear;
+      return ppu.appendDatePickerYear(this.el);
     };
 
     LawyerCreate.prototype.getCategories = function() {
@@ -186,127 +224,13 @@ $(function() {
     };
 
     LawyerCreate.prototype.store = function(e) {
-      var $forms, datas, options;
       e.preventDefault();
-      $forms = $("#lawyer-form-create").find('form');
-      console.log($forms);
-      datas = new FormData($forms[0]);
-      options = ppu.ajaxOptions("POST", datas);
-      return this.model.save(datas, $.extend({}, options));
+      return ppu.lawyerCreateForm.store();
     };
 
-    LawyerCreate.prototype.stored = function(model) {
-      var id;
-      id = model.id;
-      return ppu.lawyerEducationCreate.store(id);
-    };
+    LawyerCreate.prototype.stored = function(model) {};
 
     return LawyerCreate;
-
-  })(Backbone.View);
-  ppu.LawyerFinish = (function(_super) {
-    __extends(LawyerFinish, _super);
-
-    function LawyerFinish() {
-      return LawyerFinish.__super__.constructor.apply(this, arguments);
-    }
-
-    LawyerFinish.prototype.el = $('#lawyer-finish');
-
-    LawyerFinish.prototype.template = $('#lawyer-finish-template');
-
-    LawyerFinish.prototype.events = {
-      'click .lawyer-save-img': 'uploadPhoto'
-    };
-
-    LawyerFinish.prototype.initialize = function() {
-      return this.listenTo(this.model, 'change', this.render);
-    };
-
-    LawyerFinish.prototype.render = function() {
-      var source, t;
-      source = this.template.html();
-      t = Handlebars.compile(source);
-      $(this.el).find(".panel-body").html(t(this.model.toJSON()));
-      return $(this.el).removeClass("hidden");
-    };
-
-    LawyerFinish.prototype.uploadPhoto = function(e) {
-      var $forms;
-      e.preventDefault();
-      $forms = $(this.el).find("form");
-      return $forms.each(function(index) {
-        var datas, model, options;
-        model = new ppu.LawyerAward;
-        datas = new FormData($forms[index]);
-        datas.append("fields[lawyer_id]", 6);
-        options = ppu.ajaxOptions("POST", datas);
-        return model.save(datas, $.extend({}, options));
-      });
-    };
-
-    LawyerFinish.prototype.openUploadPhoto = function(e) {
-      var el, id, view;
-      e.preventDefault();
-      el = $(e.currentTarget);
-      id = el.data('lawyer');
-      view = new ppu.LawyerImageUpload;
-      return view.render(id);
-    };
-
-    return LawyerFinish;
-
-  })(Backbone.View);
-  ppu.LawyerImageUpload = (function(_super) {
-    __extends(LawyerImageUpload, _super);
-
-    function LawyerImageUpload() {
-      return LawyerImageUpload.__super__.constructor.apply(this, arguments);
-    }
-
-    LawyerImageUpload.prototype.el = $('#lawyer-upload-image-modal');
-
-    LawyerImageUpload.prototype.render = function(id) {
-      var t;
-      t = this;
-      $(this.el).modal({
-        backdrop: 'static'
-      });
-      $(this.el).find('input[name="lawyer_id"]').val(id);
-      ppu.mediaDropzone = new Dropzone("#media-dropzone");
-      return ppu.mediaDropzone.on("success", function(file, responseText) {
-        console.log(responseText);
-        ppu.lawyerFinish.set(responseText);
-        return t.closeModal();
-      });
-    };
-
-    return LawyerImageUpload;
-
-  })(Backbone.View);
-  ppu.LawyerArticleUpload = (function(_super) {
-    __extends(LawyerArticleUpload, _super);
-
-    function LawyerArticleUpload() {
-      return LawyerArticleUpload.__super__.constructor.apply(this, arguments);
-    }
-
-    LawyerArticleUpload.prototype.el = $('#lawyer-upload-image-modal');
-
-    LawyerArticleUpload.prototype.render = function(id) {
-      var t;
-      t = this;
-      $(this.el).modal({
-        backdrop: 'static'
-      });
-      $(this.el).find('input[name="lawyer_id"]').val(id);
-      ppu.mediaDropzone = new Dropzone("#media-dropzone");
-      return ppu.mediaDropzone.on("success", function(file, responseText) {
-        return t.closeModal();
-      });
-    };
-
-    return LawyerArticleUpload;
 
   })(Backbone.View);
   ppu.LawyerDashboard = (function(_super) {
@@ -336,7 +260,7 @@ $(function() {
     return LawyerDashboard;
 
   })(Backbone.View);
-  return ppu.LawyersDashboard = (function(_super) {
+  ppu.LawyersDashboard = (function(_super) {
     __extends(LawyersDashboard, _super);
 
     function LawyersDashboard() {
@@ -437,6 +361,50 @@ $(function() {
     };
 
     return LawyersDashboard;
+
+  })(Backbone.View);
+  return ppu.LawyerFinish = (function(_super) {
+    __extends(LawyerFinish, _super);
+
+    function LawyerFinish() {
+      return LawyerFinish.__super__.constructor.apply(this, arguments);
+    }
+
+    LawyerFinish.prototype.el = $('#lawyer-finish');
+
+    LawyerFinish.prototype.template = $('#lawyer-finish-template');
+
+    LawyerFinish.prototype.events = {
+      'click .lawyer-save-img': 'uploadPhoto'
+    };
+
+    LawyerFinish.prototype.initialize = function() {
+      return this.listenTo(this.model, 'change', this.render);
+    };
+
+    LawyerFinish.prototype.render = function() {
+      var source, t;
+      source = this.template.html();
+      t = Handlebars.compile(source);
+      $(this.el).find(".panel-body").html(t(this.model.toJSON()));
+      return $(this.el).removeClass("hidden");
+    };
+
+    LawyerFinish.prototype.uploadPhoto = function(e) {
+      var $forms;
+      e.preventDefault();
+      $forms = $(this.el).find("form");
+      return $forms.each(function(index) {
+        var datas, model, options;
+        model = new ppu.LawyerAward;
+        datas = new FormData($forms[index]);
+        datas.append("fields[lawyer_id]", 6);
+        options = ppu.ajaxOptions("POST", datas);
+        return model.save(datas, $.extend({}, options));
+      });
+    };
+
+    return LawyerFinish;
 
   })(Backbone.View);
 });

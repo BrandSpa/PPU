@@ -10,16 +10,17 @@ $ ->
     el: $ "#lawyer-recognition-form"
     template: $ "#lawyer-form-recognition-template"
     events: 
-      'click .lawyer-add-recognition': 'addFields'
+      'click .lawyer-add-recognition': 'addForm'
 
-    addFields: (e) ->
+    initialize: ->
+      @appendForm()
+
+    appendForm: ->
+      ppu.appendForm(@el, @template)
+
+     addForm: (e) ->
       e.preventDefault()
-      source = $(@template).html()
-      $(@el).find('form').append source
-      ppu.appendDatePickerYear
+      @appendForm()
 
     store: (lawyer_id) ->
-      $form = $(@el).find('form')
-      data = $form.serializeJSON()
-      data = _.map data.fields, (model) -> _.extend(model, lawyer_id: lawyer_id)
-      @model.save recognitions:  data
+      ppu.saveMultipeForms(@el, @model, lawyer_id)

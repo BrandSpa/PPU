@@ -28,13 +28,18 @@ Backbone.View::closeModal = ->
   $('body').removeClass 'modal-open'
 
 
-  ppu.appendDatePickerYear = ->
-    $(document).find('.datepicker-year').datepicker
+ppu.appendDatePickerYear = (el) ->
+  $(el).find('.datepicker-year').datepicker
     format: 'yyyy'
     viewMode: "years"
     minViewMode: "years"
     language: 'es'
     autoclose: true
+
+ppu.appendForm = (el, template)->
+  source = $(template).html()
+  temp = Handlebars.compile(source)
+  $(el).find('.fields').append(temp).fadeIn()
 
 ppu.ajaxOptions = (type, data) ->
   type: type
@@ -42,6 +47,14 @@ ppu.ajaxOptions = (type, data) ->
   processData: false
   cache: false
   contentType: false
+
+ppu.saveMultipeForms = (el, model, lawyer_id) ->
+  $forms = $(el).find("form")
+  model = model
+  $forms.each (index) ->
+    data = new FormData($forms[index])
+    data.append("fields[lawyer_id]", lawyer_id)
+    model.save data, $.extend({}, ppu.ajaxOptions("POST", data))
 
 $(document).ajaxSend (e, xhr, options) ->
   token = $("meta[name='csrf-token']").attr("content")

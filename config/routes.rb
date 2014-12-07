@@ -13,7 +13,6 @@ Rails.application.routes.draw do
     resources :pharases
     resources :recognitions
     resources :trades
-    post "lawyer-attach-img", to: 'lawyers#attach_img'
   end
   get "", to: 'posts#index'
   scope "(:locale)", locale: /es|en/ do

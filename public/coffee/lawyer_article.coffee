@@ -1,25 +1,26 @@
 $ ->
-  class ppu.LawyerAward extends Backbone.Model
-    urlRoot: "/api/awards"
+  class ppu.LawyerArticle extends Backbone.Model
+    urlRoot: "/api/articles"
 
-  class ppu.LawyerAwards extends Backbone.Collection
-    url: "/api/awards"
-    model: ppu.LawyerAward
+  class ppu.LawyerArticles extends Backbone.Collection
+    url: "/api/articles"
+    model: ppu.LawyerArticle
 
-  class ppu.LawyerAwardCreate extends Backbone.View
-    el: $ "#lawyer-award-form"
-    template: $ "#lawyer-form-award-template"
+  class ppu.LawyerArticleCreate extends Backbone.View
+    el: $ "#lawyer-article-form"
+    template: $ "#lawyer-form-article-template"
     events: 
-      'click .lawyer-add-award': 'addFields'
+      'click .lawyer-add-article': 'addForm'
 
-    addFields: (e) ->
+    initialize: ->
+      @appendForm()
+
+    appendForm: ->
+      ppu.appendForm(@el, @template)
+
+    addForm: (e) ->
       e.preventDefault()
-      source = $(@template).html()
-      $(@el).find('form').append source
-      ppu.appendDatePickerYear
+      @appendForm()
 
     store: (lawyer_id) ->
-      $form = $(@el).find('form')
-      data = $form.serializeJSON()
-      data = _.map data.fields, (model) -> _.extend(model, lawyer_id: lawyer_id)
-      @model.save educations:  data
+      ppu.saveMultipeForms(@el, @model, lawyer_id)

@@ -58,18 +58,41 @@ $ ->
       compile = Handlebars.compile(source)
       $(@el).html t( @model.toJSON() )
 
+  class ppu.LawyerCreateForm extends Backbone.View
+    initialize: ->
+      @listenTo @model, "error", @showErrors
+      @listenTo @model, "sync", @stored
+
+    store: (e) ->
+      if e
+        e.preventDefault()
+      
+      $forms = $("#lawyer-form-create").find('form')
+      datas = new FormData($forms[0])
+      options = ppu.ajaxOptions("POST", datas)
+      @model.save(datas, $.extend({}, options))
+
+    stored: (model)->
+      id = model.id
+      ppu.lawyerLanguageCreate.store(id)
+      ppu.lawyerEducationCreate.store(id)
+      ppu.lawyerJobCreate.store(id)
+      ppu.lawyerRecognitionCreate.store(id)
+      ppu.lawyerInstitutionCreate.store(id)
+      ppu.lawyerAwardCreate.store(id)
+      ppu.lawyerArticleCreate.store(id)
+      ppu.lawyerPharaseCreate.store(id)
+      window.location = "/terminar-abogado/#{id}"
+
   class ppu.LawyerCreate extends Backbone.View
     el: $ "#lawyer-create"
-
     events:
       'click .lawyer-store': 'store'
       'change .lawyer-lang': 'changeLang'
 
     initialize: ->
-      @listenTo @model, 'error', @showErrors
-      @listenTo @model, 'sync', @stored
       @getCategories()
-      ppu.appendDatePickerYear
+      ppu.appendDatePickerYear(@el)
 
     getCategories: ->
       ppu.categories = new ppu.Categories
@@ -87,77 +110,11 @@ $ ->
 
     store: (e) ->
       e.preventDefault()
-      $forms = $("#lawyer-form-create").find('form')
-      console.log $forms
-      datas = new FormData($forms[0])
-      options = ppu.ajaxOptions("POST", datas)
-      @model.save datas, $.extend({}, options)
+      ppu.lawyerCreateForm.store()
 
-    stored: (model)->
-      id = model.id
-      ppu.lawyerEducationCreate.store(id)
-
-      # ppu.lawyerFinish = new ppu.Lawyer id: id
-      # ppu.lawyerFinish.fetch()
-      # view = new ppu.LawyerFinish model: ppu.lawyerFinish
-      # $(@el).fadeOut().remove()
-      
-  class ppu.LawyerFinish extends Backbone.View
-    el: $ '#lawyer-finish'
-    template: $ '#lawyer-finish-template'
-    events: 
-      'click .lawyer-save-img': 'uploadPhoto'
-    
-    initialize: ->
-      @listenTo(@model, 'change', @render)
-
-    render: ->
-      source = @template.html()
-      t = Handlebars.compile(source)
-      $(@el).find(".panel-body").html t( @model.toJSON() )
-      $(@el).removeClass("hidden")
-
-    uploadPhoto: (e) ->
-      e.preventDefault()
-      $forms = $(@el).find("form")
-      $forms.each (index) ->
-        model = new ppu.LawyerAward
-        datas = new FormData($forms[index])
-        datas.append("fields[lawyer_id]", 6)
-        options = ppu.ajaxOptions("POST", datas)
-        model.save datas, $.extend({}, options)
-
-    openUploadPhoto: (e) ->
-      e.preventDefault()
-      el = $(e.currentTarget)
-      id = el.data('lawyer')
-      view = new ppu.LawyerImageUpload
-      view.render(id)
-
-  class ppu.LawyerImageUpload extends Backbone.View
-    el: $ '#lawyer-upload-image-modal'
-
-    render: (id)->
-      t = @
-      $(@el).modal backdrop: 'static'
-      $(@el).find('input[name="lawyer_id"]').val(id)
-      ppu.mediaDropzone = new Dropzone("#media-dropzone")
-      ppu.mediaDropzone.on "success", (file, responseText) ->
-        console.log responseText
-        ppu.lawyerFinish.set responseText
-        t.closeModal()
-
-  class ppu.LawyerArticleUpload extends Backbone.View
-    el: $ '#lawyer-upload-image-modal'
-
-    render: (id) ->
-      t = @
-      $(@el).modal backdrop: 'static'
-      $(@el).find('input[name="lawyer_id"]').val(id)
-      ppu.mediaDropzone = new Dropzone("#media-dropzone")
-      ppu.mediaDropzone.on "success", (file, responseText) ->
-        t.closeModal()
-
+    stored: (model) ->
+      #duplicate fields
+   
   class ppu.LawyerDashboard extends Backbone.View
     tagName: 'tr'
     template: $ '#lawyer-dashbord-template'
@@ -220,3 +177,28 @@ $ ->
     filterPosition: (e) ->
       el = $(e.currentTarget)
       @collection.fetch reset: true, data: position: el.val()
+
+  class ppu.LawyerFinish extends Backbone.View
+    el: $ '#lawyer-finish'
+    template: $ '#lawyer-finish-template'
+    events: 
+      'click .lawyer-save-img': 'uploadPhoto'
+    
+    initialize: ->
+      @listenTo(@model, 'change', @render)
+
+    render: ->
+      source = @template.html()
+      t = Handlebars.compile(source)
+      $(@el).find(".panel-body").html t( @model.toJSON() )
+      $(@el).removeClass("hidden")
+
+    uploadPhoto: (e) ->
+      e.preventDefault()
+      $forms = $(@el).find("form")
+      $forms.each (index) ->
+        model = new ppu.LawyerAward
+        datas = new FormData($forms[index])
+        datas.append("fields[lawyer_id]", 6)
+        options = ppu.ajaxOptions("POST", datas)
+        model.save datas, $.extend({}, options)

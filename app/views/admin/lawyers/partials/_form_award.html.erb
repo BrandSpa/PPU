@@ -1,31 +1,22 @@
-<div class="panel panel-default" id="lawyer-award-form">
+  <div class="panel panel-default" id="lawyer-award-form">
   <div class="panel-body">
-  <h4>Premios</h4>
+   <h4><%= t('awards') %></h4>
   <hr>
-  <form action="">
-  <div class="row">
-    
-      <div class="form-group col-lg-4">
-        <input type="text" class="form-control" name="fields[][title]" placeholder="Título">
-      </div>
-      <div class="form-group col-lg-3">
-        <input type="file" class="form-control" name="fields[][file]" >
-      </div>
-    
-  </div>
-  </form>
+  <div class="fields"></div>
     <hr>
-    <a href="#" class="btn btn-info pull-right lawyer-add-award">+</a>
+    <a href="#" class="btn btn-info lawyer-add-award">+</a>
   </div>
 </div>
 
 <script type="text/x-handlebars-template" id="lawyer-form-award-template">
+<form>
  <div class="row">
     <div class="form-group col-lg-4">
-      <input type="text" class="form-control" name="fields[][title]" placeholder="Título">
+      <input type="text" class="form-control" name="fields[title]" placeholder="Título" value="{{ title }}">
     </div>
-    <div class="form-group col-lg-3">
-      <input type="file" class="form-control" name="fields[][file]" >
+    <div class="form-group col-lg-4">
+      <input type="file" class="form-control" name="fields[file]" >
     </div>
   </div>
+</form>
 </script>

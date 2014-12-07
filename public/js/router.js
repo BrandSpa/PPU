@@ -39,6 +39,14 @@ $(function() {
       } else {
         $('.lawyer-lang option:eq(1)').prop('selected', true);
       }
+      ppu.lawyer = new ppu.Lawyer;
+      ppu.lawyerCreateForm = new ppu.LawyerCreateForm({
+        model: ppu.lawyer
+      });
+      ppu.lawyerArticle = new ppu.LawyerArticle;
+      ppu.lawyerArticleCreate = new ppu.LawyerArticleCreate({
+        model: ppu.lawyerArticle
+      });
       ppu.lawyerAward = new ppu.LawyerAward;
       ppu.lawyerAwardCreate = new ppu.LawyerAwardCreate({
         model: ppu.lawyerAward
@@ -65,12 +73,9 @@ $(function() {
       });
       ppu.lawyerRecognition = new ppu.LawyerRecognition;
       ppu.lawyerRecognitionCreate = new ppu.LawyerRecognitionCreate({
-        model: ppu.lawyerRecognintion
+        model: ppu.lawyerRecognition
       });
-      ppu.lawyer = new ppu.Lawyer;
-      return ppu.lawyerCreate = new ppu.LawyerCreate({
-        model: ppu.lawyer
-      });
+      return ppu.lawyerCreate = new ppu.LawyerCreate;
     };
 
     Workspace.prototype.finishLawyer = function(id) {

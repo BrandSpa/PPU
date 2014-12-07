@@ -40,29 +40,24 @@ $(function() {
     LawyerRecognitionCreate.prototype.template = $("#lawyer-form-recognition-template");
 
     LawyerRecognitionCreate.prototype.events = {
-      'click .lawyer-add-recognition': 'addFields'
+      'click .lawyer-add-recognition': 'addForm'
     };
 
-    LawyerRecognitionCreate.prototype.addFields = function(e) {
-      var source;
+    LawyerRecognitionCreate.prototype.initialize = function() {
+      return this.appendForm();
+    };
+
+    LawyerRecognitionCreate.prototype.appendForm = function() {
+      return ppu.appendForm(this.el, this.template);
+    };
+
+    LawyerRecognitionCreate.prototype.addForm = function(e) {
       e.preventDefault();
-      source = $(this.template).html();
-      $(this.el).find('form').append(source);
-      return ppu.appendDatePickerYear;
+      return this.appendForm();
     };
 
     LawyerRecognitionCreate.prototype.store = function(lawyer_id) {
-      var $form, data;
-      $form = $(this.el).find('form');
-      data = $form.serializeJSON();
-      data = _.map(data.fields, function(model) {
-        return _.extend(model, {
-          lawyer_id: lawyer_id
-        });
-      });
-      return this.model.save({
-        recognitions: data
-      });
+      return ppu.saveMultipeForms(this.el, this.model, lawyer_id);
     };
 
     return LawyerRecognitionCreate;

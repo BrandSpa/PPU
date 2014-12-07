@@ -40,29 +40,24 @@ $(function() {
     LawyerLanguageCreate.prototype.template = $("#lawyer-form-language-template");
 
     LawyerLanguageCreate.prototype.events = {
-      'click .lawyer-add-language': 'addFields'
+      'click .lawyer-add-language': 'addForm'
     };
 
-    LawyerLanguageCreate.prototype.addFields = function(e) {
-      var source;
+    LawyerLanguageCreate.prototype.initialize = function() {
+      return this.appendForm();
+    };
+
+    LawyerLanguageCreate.prototype.appendForm = function() {
+      return ppu.appendForm(this.el, this.template);
+    };
+
+    LawyerLanguageCreate.prototype.addForm = function(e) {
       e.preventDefault();
-      source = $(this.template).html();
-      $(this.el).find('form').append(source);
-      return ppu.appendDatePickerYear;
+      return this.appendForm();
     };
 
     LawyerLanguageCreate.prototype.store = function(lawyer_id) {
-      var $form, data;
-      $form = $(this.el).find('form');
-      data = $form.serializeJSON();
-      data = _.map(data.fields, function(model) {
-        return _.extend(model, {
-          lawyer_id: lawyer_id
-        });
-      });
-      return this.model.save({
-        languages: data
-      });
+      return ppu.saveMultipeForms(this.el, this.model, lawyer_id);
     };
 
     return LawyerLanguageCreate;

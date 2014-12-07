@@ -37,17 +37,24 @@ Backbone.View.prototype.showErrors = function(model, response) {
 Backbone.View.prototype.closeModal = function() {
   this.remove();
   $('.modal-backdrop').remove();
-  $('body').removeClass('modal-open');
-  return ppu.appendDatePickerYear = function() {
-    $(document).find('.datepicker-year').datepicker;
-    return {
-      format: 'yyyy',
-      viewMode: "years",
-      minViewMode: "years",
-      language: 'es',
-      autoclose: true
-    };
-  };
+  return $('body').removeClass('modal-open');
+};
+
+ppu.appendDatePickerYear = function(el) {
+  return $(el).find('.datepicker-year').datepicker({
+    format: 'yyyy',
+    viewMode: "years",
+    minViewMode: "years",
+    language: 'es',
+    autoclose: true
+  });
+};
+
+ppu.appendForm = function(el, template) {
+  var source, temp;
+  source = $(template).html();
+  temp = Handlebars.compile(source);
+  return $(el).find('.fields').append(temp).fadeIn();
 };
 
 ppu.ajaxOptions = function(type, data) {
@@ -58,6 +65,18 @@ ppu.ajaxOptions = function(type, data) {
     cache: false,
     contentType: false
   };
+};
+
+ppu.saveMultipeForms = function(el, model, lawyer_id) {
+  var $forms;
+  $forms = $(el).find("form");
+  model = model;
+  return $forms.each(function(index) {
+    var data;
+    data = new FormData($forms[index]);
+    data.append("fields[lawyer_id]", lawyer_id);
+    return model.save(data, $.extend({}, ppu.ajaxOptions("POST", data)));
+  });
 };
 
 $(document).ajaxSend(function(e, xhr, options) {

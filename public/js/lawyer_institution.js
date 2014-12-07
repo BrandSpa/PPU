@@ -40,29 +40,24 @@ $(function() {
     LawyerInstitutionCreate.prototype.template = $("#lawyer-form-institution-template");
 
     LawyerInstitutionCreate.prototype.events = {
-      'click .lawyer-add-institution': 'addFields'
+      'click .lawyer-add-institution': 'addForm'
     };
 
-    LawyerInstitutionCreate.prototype.addFields = function(e) {
-      var source;
+    LawyerInstitutionCreate.prototype.initialize = function() {
+      return this.appendForm();
+    };
+
+    LawyerInstitutionCreate.prototype.appendForm = function() {
+      return ppu.appendForm(this.el, this.template);
+    };
+
+    LawyerInstitutionCreate.prototype.addForm = function(e) {
       e.preventDefault();
-      source = $(this.template).html();
-      $(this.el).find('form').append(source);
-      return ppu.appendDatePickerYear;
+      return this.appendForm();
     };
 
     LawyerInstitutionCreate.prototype.store = function(lawyer_id) {
-      var $form, data;
-      $form = $(this.el).find('form');
-      data = $form.serializeJSON();
-      data = _.map(data.fields, function(model) {
-        return _.extend(model, {
-          lawyer_id: lawyer_id
-        });
-      });
-      return this.model.save({
-        educations: data
-      });
+      return ppu.saveMultipeForms(this.el, this.model, lawyer_id);
     };
 
     return LawyerInstitutionCreate;

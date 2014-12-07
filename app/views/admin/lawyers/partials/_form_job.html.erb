@@ -2,47 +2,33 @@
   <div class="panel-body">
     <h4><%= t('professional_experience') %></h4>
     <hr>
-    <form action="">
+    <div class="fields"></div>
+    <div class="col-lg-12">
+      <hr>
+      <a href="#" class="btn btn-info lawyer-add-job">+</a>
+    </div>
+  </div>
+</div>
+
+ <script type="text/x-handlebars-template" id="lawyer-form-job-template"> 
+  <form>
+   <div class="row">
     <div class="form-group col-lg-4">
-      <input type="text" name="jobs[][title]" class="form-control" placeholder="Título">
+      <input type="text" name="fields[title]" class="form-control" placeholder="Título">
     </div>
     <div class="form-group col-lg-2">
-      <select name="jobs[][country]" class="form-control">
+      <select name="fields[country]" class="form-control">
         <option value="">Seleccionar País</option>
         <%= render "partials/countries" %>
       </select>
     </div>
     <div class="form-group col-lg-2">
-      <input type="text" name="jobs[][from]" class="form-control datepicker-year" placeholder="Desde">
+      <input type="text" name="fields[from]" class="form-control datepicker-year" placeholder="Desde">
     </div>
 
     <div class="form-group col-lg-2">
-      <input type="text" name="jobs[][until]" class="form-control datepicker-year" placeholder="Hasta">
+      <input type="text" name="fields[until]" class="form-control datepicker-year" placeholder="Hasta">
     </div>
+  </div>
   </form>
-    <div class="col-lg-12">
-    <hr>
-      <a href="#" class="btn btn-info pull-right lawyer-add-job">+</a>
-    </div>
-  </div>
-</div>
-
-
- <script type="text/x-handlebars-template" id="lawyer-form-job-template"> 
-  <div class="form-group col-lg-4">
-    <input type="text" name="jobs[][title]" class="form-control" placeholder="Título">
-  </div>
-   <div class="form-group col-lg-2">
-    <select name="jobs[][country]" class="form-control">
-    <option value="">Seleccionar País</option>
-      <%= render "partials/countries" %>
-    </select>
-  </div>
-  <div class="form-group col-lg-2">
-    <input type="text" name="jobs[][from]" class="form-control datepicker-year" placeholder="Desde">
-  </div>
-
-   <div class="form-group col-lg-2">
-    <input type="text" name="jobs[][until]" class="form-control datepicker-year" placeholder="Hasta">
-  </div>
 </script>

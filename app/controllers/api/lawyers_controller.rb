@@ -37,6 +37,8 @@ class Api::LawyersController < ApplicationController
   def create
     model = entity.create(lawyer_params)
     if model.valid?
+      categories = params[:categories]
+      entity.attach_categories(model, categories)
       render json: model, status: 200
     else
       render json: model.errors.messages, status: 400
@@ -52,14 +54,15 @@ class Api::LawyersController < ApplicationController
     if model
       render json: model
     else
-      render json:  model.errors.messages, status: 400
+      errors = model.errors.messages
+      render json: errors, status: 400
     end
   end
 
 
   private
     def lawyer_params
-      params.require(:fields).permit(:lang, :country, :img_name, :name , :lastname, :phone, :position, :email, :description) 
+      params.require(:fields).permit(:lang, :country, :img_name, :name , :lastname, :phone, :position, :email, :description, :categories => []) 
     end
     def entity
       Lawyer

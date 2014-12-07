@@ -40,29 +40,24 @@ $(function() {
     LawyerJobCreate.prototype.template = $("#lawyer-form-job-template");
 
     LawyerJobCreate.prototype.events = {
-      'click .lawyer-add-job': 'addFields'
+      'click .lawyer-add-job': 'addForm'
     };
 
-    LawyerJobCreate.prototype.addFields = function(e) {
-      var source;
+    LawyerJobCreate.prototype.initialize = function() {
+      return this.appendForm();
+    };
+
+    LawyerJobCreate.prototype.appendForm = function() {
+      return ppu.appendForm(this.el, this.template);
+    };
+
+    LawyerJobCreate.prototype.addForm = function(e) {
       e.preventDefault();
-      source = $(this.template).html();
-      $(this.el).find('form').append(source);
-      return ppu.appendDatePickerYear;
+      return this.appendForm();
     };
 
     LawyerJobCreate.prototype.store = function(lawyer_id) {
-      var $form, data;
-      $form = $(this.el).find('form');
-      data = $form.serializeJSON();
-      data = _.map(data.fields, function(model) {
-        return _.extend(model, {
-          lawyer_id: lawyer_id
-        });
-      });
-      return this.model.save({
-        jobs: data
-      });
+      return ppu.saveMultipeForms(this.el, this.model, lawyer_id);
     };
 
     return LawyerJobCreate;

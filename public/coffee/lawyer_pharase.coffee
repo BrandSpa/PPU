@@ -10,16 +10,17 @@ $ ->
     el: $ "#lawyer-pharase-form"
     template: $ "#lawyer-form-pharase-template"
     events: 
-      'click .lawyer-add-pharase': 'addFields'
+      'click .lawyer-add-pharase': 'addForm'
 
-    addFields: (e) ->
+    initialize: ->
+      @appendForm()
+
+    appendForm: ->
+      ppu.appendForm(@el, @template)
+
+     addForm: (e) ->
       e.preventDefault()
-      source = $(@template).html()
-      $(@el).find('form').append source
-      ppu.appendDatePickerYear
+      @appendForm()
 
     store: (lawyer_id) ->
-      $form = $(@el).find('form')
-      data = $form.serializeJSON()
-      data = _.map data.fields, (model) -> _.extend(model, lawyer_id: lawyer_id)
-      @model.save pharases:  data
+      ppu.saveMultipeForms(@el, @model, lawyer_id)

@@ -2,70 +2,65 @@ var __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
 $(function() {
-  ppu.LawyerAward = (function(_super) {
-    __extends(LawyerAward, _super);
+  ppu.LawyerArticle = (function(_super) {
+    __extends(LawyerArticle, _super);
 
-    function LawyerAward() {
-      return LawyerAward.__super__.constructor.apply(this, arguments);
+    function LawyerArticle() {
+      return LawyerArticle.__super__.constructor.apply(this, arguments);
     }
 
-    LawyerAward.prototype.urlRoot = "/api/awards";
+    LawyerArticle.prototype.urlRoot = "/api/articles";
 
-    return LawyerAward;
+    return LawyerArticle;
 
   })(Backbone.Model);
-  ppu.LawyerAwards = (function(_super) {
-    __extends(LawyerAwards, _super);
+  ppu.LawyerArticles = (function(_super) {
+    __extends(LawyerArticles, _super);
 
-    function LawyerAwards() {
-      return LawyerAwards.__super__.constructor.apply(this, arguments);
+    function LawyerArticles() {
+      return LawyerArticles.__super__.constructor.apply(this, arguments);
     }
 
-    LawyerAwards.prototype.url = "/api/awards";
+    LawyerArticles.prototype.url = "/api/articles";
 
-    LawyerAwards.prototype.model = ppu.LawyerAward;
+    LawyerArticles.prototype.model = ppu.LawyerArticle;
 
-    return LawyerAwards;
+    return LawyerArticles;
 
   })(Backbone.Collection);
-  return ppu.LawyerAwardCreate = (function(_super) {
-    __extends(LawyerAwardCreate, _super);
+  return ppu.LawyerArticleCreate = (function(_super) {
+    __extends(LawyerArticleCreate, _super);
 
-    function LawyerAwardCreate() {
-      return LawyerAwardCreate.__super__.constructor.apply(this, arguments);
+    function LawyerArticleCreate() {
+      return LawyerArticleCreate.__super__.constructor.apply(this, arguments);
     }
 
-    LawyerAwardCreate.prototype.el = $("#lawyer-award-form");
+    LawyerArticleCreate.prototype.el = $("#lawyer-article-form");
 
-    LawyerAwardCreate.prototype.template = $("#lawyer-form-award-template");
+    LawyerArticleCreate.prototype.template = $("#lawyer-form-article-template");
 
-    LawyerAwardCreate.prototype.events = {
-      'click .lawyer-add-award': 'addFields'
+    LawyerArticleCreate.prototype.events = {
+      'click .lawyer-add-article': 'addForm'
     };
 
-    LawyerAwardCreate.prototype.addFields = function(e) {
-      var source;
+    LawyerArticleCreate.prototype.initialize = function() {
+      return this.appendForm();
+    };
+
+    LawyerArticleCreate.prototype.appendForm = function() {
+      return ppu.appendForm(this.el, this.template);
+    };
+
+    LawyerArticleCreate.prototype.addForm = function(e) {
       e.preventDefault();
-      source = $(this.template).html();
-      $(this.el).find('form').append(source);
-      return ppu.appendDatePickerYear;
+      return this.appendForm();
     };
 
-    LawyerAwardCreate.prototype.store = function(lawyer_id) {
-      var $form, data;
-      $form = $(this.el).find('form');
-      data = $form.serializeJSON();
-      data = _.map(data.fields, function(model) {
-        return _.extend(model, {
-          lawyer_id: lawyer_id
-        });
-      });
-      return this.model.save({
-        educations: data
-      });
+    LawyerArticleCreate.prototype.store = function(lawyer_id) {
+      return ppu.saveMultipeForms(this.el, this.model, lawyer_id);
     };
 
-    return LawyerAwardCreate;
+    return LawyerArticleCreate;
 
   })(Backbone.View);
 });

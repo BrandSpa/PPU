@@ -10,16 +10,17 @@ $ ->
     el: $ "#lawyer-language-form"
     template: $ "#lawyer-form-language-template"
     events: 
-      'click .lawyer-add-language': 'addFields'
+      'click .lawyer-add-language': 'addForm'
 
-    addFields: (e) ->
+    initialize: ->
+      @appendForm()
+
+    appendForm: ->
+      ppu.appendForm(@el, @template)
+
+     addForm: (e) ->
       e.preventDefault()
-      source = $(@template).html()
-      $(@el).find('form').append source
-      ppu.appendDatePickerYear
+      @appendForm()
 
     store: (lawyer_id) ->
-      $form = $(@el).find('form')
-      data = $form.serializeJSON()
-      data = _.map data.fields, (model) -> _.extend(model, lawyer_id: lawyer_id)
-      @model.save languages: data
+      ppu.saveMultipeForms(@el, @model, lawyer_id)

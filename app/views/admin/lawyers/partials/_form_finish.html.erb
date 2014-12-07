@@ -1,59 +1,70 @@
 <div class="panel panel-default hidden" id="lawyer-finish">
-  <div class="panel-body">
-
-  </div>
+  <div class="panel-body"> sdasds</div>
 </div>
 
 <script type="text/x-handlebars-template" id="lawyer-finish-template">
-
 <div class="row">
 {{#if img_name.url}}
 <div class="col-lg-3">
   <img src="{{img_name.url}}" width="250">
 </div>  
 {{/if}}
-<div class="col-lg-3">
+<div class="col-lg-5">
   <p>{{ position }}</p>
   <p>{{ name }} {{ lastname }}</p>
   <p>{{ phone }}</p>
   <p>{{ email }}</p>
+
+<h4><%= t('practice_areas') %></h4>
+{{#each categories }}
+  <p>{{ name }}</p>
+{{/each}}
+
+ <h4><%= t('education') %></h4>
+{{#each educations }}
+  <p>{{ title }} {{ institution }} {{ country }} {{ year }}</p>
+{{/each}}
+
+<h4><%= t('professional_experience') %></h4>
+{{#each jobs }}
+  <p>{{ title }} {{ country }} {{ from }} {{ until }}</p>
+{{/each}}
+
+ <h4><%= t('conferences_recognitions') %></h4>
+{{#each recognitions }}
+  <p>{{ title }} {{ country }} {{ year }}</p>
+{{/each}}
+
+ <h4><%= t('memberships') %></h4>
+{{#each institutions }}
+  <p>{{ title }} {{ country }}</p>
+{{/each}}
+
+ <h4><%= t('languages') %></h4>
+{{#each languages }}
+  <p>{{ name }}</p>
+{{/each}}
+
+ <h4><%= t('pharase') %></h4>
+{{#each pharases}}
+  <p>{{ title }}</p>
+  <p>{{ content }}</p>
+{{/each}}
 </div>  
+<div class="col-lg-4">
+<h4><%= t('awards') %></h4>
+{{#each awards }}
+  <p>{{ title }}</p>
+  <img src="{{img_name.url}}">
+{{/each}}
+
+<h4><%= t('article') %></h4>
+{{#each articles }}
+  <p><a href="{{ file_name.url }}">{{ title }}</a></p>
+{{/each}}
 </div>
-
-  <hr>
-
-<form action="#" enctype="multipart/form-data">
-  <div class="form-group col-lg-6">
-    <input type="text" name="fields[title]" class='form-control'>
-  </div>
-  <div class="form-group col-lg-6">
-    <label for="file">Adjuntar Foto de perfil</label>
-    <input type="file" name="fields[img_name]" class='form-control'>
-  </div>
-</form>
-
-<form action="#" enctype="multipart/form-data">
-  <div class="form-group col-lg-6">
-    <input type="text" name="fields[title]" class='form-control'>
-  </div>
-  <div class="form-group col-lg-6">
-    <label for="file">Adjuntar Foto de perfil</label>
-    <input type="file" name="fields[img_name]" class='form-control'>
-  </div>
-  </form>
-  <form action="#" enctype="multipart/form-data">
-    <div class="form-group col-lg-6">
-    <input type="text" name="fields[title]" class='form-control'>
-  </div>
-  <div class="form-group col-lg-6">
-    <label for="file">Adjuntar Foto de perfil</label>
-    <input type="file" name="fields[img_name]" class='form-control'>
-  </div>
-
-  </form>
-
-   <hr>
-    <a href="#" class="btn btn-info lawyer-save-img" data-lawyer="{{ id }}">Adjuntar Foto</a>
-    <a href="#" class="btn btn-info" data-lawyer="{{ id }}">Adjuntar Articulos</a>
-    <a href="#" class="btn btn-info" data-lawyer="{{ id }}">Adjuntar Reconocimientos</a>
+</div>
 </script>
+
+
+
