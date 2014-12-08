@@ -2,6 +2,14 @@ body
   background: #E4E6EB
   font-size: 14px
   padding: 0 0 30px 0
+
+.modal-backdrop
+  background: #002855
+  &.in
+    opacity: .9 !important
+.modal-content
+  background: #EEE
+  
 ul
   padding: 0
 .form-control
@@ -90,6 +98,10 @@ ul
 #lawyer-finish
   background: #fff
   padding: 0
+  border: none
+  .panel-body
+    padding: 0 0 30px 0
+
   li
     list-style-position: inside
   h4
@@ -106,9 +118,12 @@ ul
     position: relative
     overflow: hidden
     color: #fff
+
+
     h1
       font-size: 1.4em
       margin-top: 0
+      margin-bottom: 30px
 
     p
       margin: 0

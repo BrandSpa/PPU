@@ -6,7 +6,8 @@ $ ->
       "abogados/:id" : "lawyer"
       "crear-abogado": 'adminLawyer'
       "crear-abogado": 'adminLawyer'
-      "terminar-abogado/:id": 'finishLawyer'
+      "editar-abogado/:name": 'finishLawyer'
+      ":lang/editar-abogado/:id": 'finishLawyer'
       ":lang/crear-abogado": 'adminLawyer'
       "dashboard": 'dashboard'
 
@@ -19,11 +20,6 @@ $ ->
     lawyer: ->
 
     adminLawyer: (param) ->
-      if param == 'en'
-        $('.lawyer-lang option:eq(2)').prop('selected', true)
-      else
-        $('.lawyer-lang option:eq(1)').prop('selected', true)
-
       ppu.lawyer =  new ppu.Lawyer
       ppu.lawyerCreateForm = new ppu.LawyerCreateForm model: ppu.lawyer
 
@@ -54,8 +50,8 @@ $ ->
       ppu.lawyerCreate = new ppu.LawyerCreate
 
     finishLawyer: (id) ->
-      $("#lawyer-create").fadeOut().remove()
-      ppu.lawyerFinish = new ppu.Lawyer id: id 
+      $("#lawyer-create").remove()
+      ppu.lawyerFinish = new ppu.Lawyer id: id
       ppu.lawyerFinish.fetch()
       view = new ppu.LawyerFinish model: ppu.lawyerFinish
 

@@ -3,6 +3,14 @@ body {
   font-size: 14px;
   padding: 0 0 30px 0; }
 
+.modal-backdrop {
+  background: #002855; }
+  .modal-backdrop.in {
+    opacity: 0.9 !important; }
+
+.modal-content {
+  background: #eeeeee; }
+
 ul {
   padding: 0; }
 
@@ -88,7 +96,10 @@ ul {
 
 #lawyer-finish {
   background: white;
-  padding: 0; }
+  padding: 0;
+  border: none; }
+  #lawyer-finish .panel-body {
+    padding: 0 0 30px 0; }
   #lawyer-finish li {
     list-style-position: inside; }
   #lawyer-finish h4 {
@@ -105,7 +116,8 @@ ul {
     color: white; }
     #lawyer-finish .lawyer-header h1 {
       font-size: 1.4em;
-      margin-top: 0; }
+      margin-top: 0;
+      margin-bottom: 30px; }
     #lawyer-finish .lawyer-header p {
       margin: 0;
       font-size: 1.1em; }

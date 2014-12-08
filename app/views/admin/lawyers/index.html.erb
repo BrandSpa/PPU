@@ -1,16 +1,18 @@
-<div id="lawyer-create">
+<%= render "admin/lawyers/partials/form_finish" %>
 <%= render "admin/lawyers/partials/form_lawyer" %>
-<%= render "admin/lawyers/partials/form_categories" %>
+<div id="lawyer-create">
+<div class="panel panel-default" id="lawyer-form-create">
+  <div class="panel-body"> </div>
+</div>
+
 <%= render "admin/lawyers/partials/form_langs" %>
 <%= render "admin/lawyers/partials/form_education" %>
 <%= render "admin/lawyers/partials/form_job" %>
 <%= render "admin/lawyers/partials/form_recognitions" %>
-<%= render "admin/lawyers/partials/form_article" %>
 <%= render "admin/lawyers/partials/form_institution" %>
-<%= render "admin/lawyers/partials/form_award" %>
 <%= render "admin/lawyers/partials/form_phrase" %>
-
+<%= render "admin/lawyers/partials/form_award" %>
+<%= render "admin/lawyers/partials/form_article" %>
 
 <a href="#" class="btn btn-store pull-right btn-lg lawyer-store">Guardar</a>
 </div>
-<%= render "admin/lawyers/partials/form_finish" %>

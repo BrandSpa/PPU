@@ -6,7 +6,6 @@ class Api::RecognitionsController < ApplicationController
   end
 
   def index
-    lawyer_id = param_lawyer_id
     collection = entity.where('lawyer_id = ?', lawyer_id) if lawyer_id.present?
     render json: collection, status: 200
   end

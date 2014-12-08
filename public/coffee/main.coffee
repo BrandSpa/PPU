@@ -27,7 +27,6 @@ Backbone.View::closeModal = ->
   $('.modal-backdrop').remove()
   $('body').removeClass 'modal-open'
 
-
 ppu.appendDatePickerYear = (el) ->
   $(el).find('.datepicker-year').datepicker
     format: 'yyyy'
@@ -56,6 +55,9 @@ ppu.saveMultipeForms = (el, model, lawyer_id) ->
     data = new FormData($forms[index])
     data.append("fields[lawyer_id]", lawyer_id)
     model.save data, $.extend({}, ppu.ajaxOptions("POST", data))
+
+Handlebars.registerHelper 'checked', (val1, val2) ->
+    return val1 == val2 ? ' checked="checked"' : ''
 
 $(document).ajaxSend (e, xhr, options) ->
   token = $("meta[name='csrf-token']").attr("content")

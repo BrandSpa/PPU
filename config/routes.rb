@@ -14,12 +14,14 @@ Rails.application.routes.draw do
     resources :recognitions
     resources :trades
   end
+  
   get "", to: 'posts#index'
+
   scope "(:locale)", locale: /es|en/ do
     get "abogados", to: 'lawyers#index'
     get "lawyers", to: 'lawyers#index'
     get "crear-abogado", to: 'admin/lawyers#index'
-    get "terminar-abogado/:id", to: 'admin/lawyers#index'
+    get "editar-abogado/:id", to: 'admin/lawyers#index'
   end
 
   get "dashboard", to: 'admin/lawyers#dashboard'

@@ -2,9 +2,6 @@
   <div class="panel-body"></div>
 </div>
 
-</div>
-<div class="col-lg-6"></div>
-
 <script type="text/x-handlebars-template" id="lawyer-finish-template">
 <div class="lawyer-header">
   <p>{{ position }}</p>
@@ -14,24 +11,19 @@
 {{#if img_name.url}}
   <img src="{{img_name.url}}" width="250" class="pull-right">
 {{/if}}
-<a href="#" class="btn btn-info open-edit-lawyer">Editar</a>
 </div>
 <p class="lawyer-description">{{ description }}</p>
+<a href="#" class="btn btn-info open-edit-lawyer">Editar</a>
 <hr>
 
 <div class="col-lg-6">
 <h3>Información general</h3>
-<h4>
-  <%= t('practice_areas') %> 
-  <a href="#" class="btn btn-info btn-xs open-edit-lawyer-categories">Editar</a>
-</h4>
+<h4> <%= t('practice_areas') %> </h4>
 <ul>
   {{#each categories }}
   <li>{{ name }}</li>
   {{/each}}
 </ul>
-
-
 
  <h4>
  <%= t('education') %>
