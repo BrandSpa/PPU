@@ -1,80 +1,116 @@
-<div class="panel panel-default hidden" id="lawyer-finish">
-  <div class="panel-body"> sdasds</div>
+<div class="panel panel-default col-lg-10 hidden" id="lawyer-finish">
+  <div class="panel-body"></div>
 </div>
 
+</div>
+<div class="col-lg-6"></div>
+
 <script type="text/x-handlebars-template" id="lawyer-finish-template">
-<div class="row">
-<div class="col-lg-5">
-{{#if img_name.url}}
-  <img src="{{img_name.url}}" width="250">
-{{/if}}
+<div class="lawyer-header">
   <p>{{ position }}</p>
-  <p>{{ name }} {{ lastname }}</p>
-  <p>{{ phone }}</p>
-  <p>{{ email }}</p>
-
+  <h1>{{ name }} {{ lastname }}</h1>
+  <a href="tel:{+571 {{ phone }}" class="lawyer-phone">+571 {{ phone }}</a>
+  <a href="mailto:{{ email }}" class="lawyer-email">{{ email }}</a>
+{{#if img_name.url}}
+  <img src="{{img_name.url}}" width="250" class="pull-right">
+{{/if}}
 <a href="#" class="btn btn-info open-edit-lawyer">Editar</a>
+</div>
+<p class="lawyer-description">{{ description }}</p>
 <hr>
 
-<h4><%= t('practice_areas') %></h4>
-{{#each categories }}
-  <p>{{ name }}</p>
-{{/each}}
-<a href="#" class="btn btn-info open-edit-lawyer-categories">Editar</a>
-<hr>
+<div class="col-lg-6">
+<h3>Información general</h3>
+<h4>
+  <%= t('practice_areas') %> 
+  <a href="#" class="btn btn-info btn-xs open-edit-lawyer-categories">Editar</a>
+</h4>
+<ul>
+  {{#each categories }}
+  <li>{{ name }}</li>
+  {{/each}}
+</ul>
 
- <h4><%= t('education') %></h4>
+
+
+ <h4>
+ <%= t('education') %>
+   <a href="#" class="btn btn-info btn-xs open-add-lawyer-education">+</a>
+ </h4>
+ <ul>
 {{#each educations }}
-  <p>{{ title }} {{ institution }} {{ country }} {{ year }}</p>
-  <a href="#" class="btn btn-info btn-xs open-edit-lawyer-education">Editar</a>
+  <li>{{ title }} {{ institution }} {{ country }} {{ year }}  <a href="#" class="btn btn-info btn-xs open-edit-lawyer-education">Editar</a></li>
 {{/each}}
-<hr>
+ </ul>
 
-<h4><%= t('professional_experience') %></h4>
+
+<h4>
+<%= t('professional_experience') %>
+<a href="#" class="btn btn-info btn-xs open-add-lawyer-job">+</a>
+</h4>
+<ul>
 {{#each jobs }}
-  <p>{{ title }} {{ country }} {{ from }} {{ until }}</p>
+<li>
+  {{ title }} {{ country }} {{ from }} {{ until }}
   <a href="#" class="btn btn-info btn-xs open-edit-lawyer-job">Editar</a>
+  </li>
 {{/each}}
-<hr>
+</ul>
 
-<h4><%= t('conferences_recognitions') %></h4>
+<h4>
+<%= t('conferences_recognitions') %>
+<a href="#" class="btn btn-info btn-xs open-add-lawyer-job">+</a>
+</h4>
 {{#each recognitions }}
   <p>{{ title }} {{ country }} {{ year }}</p>
   <a href="#" class="btn btn-info btn-xs open-edit-lawyer-recognition">Editar</a>
 {{/each}}
-<hr>
 
- <h4><%= t('memberships') %></h4>
+
+ <h4>
+ <%= t('memberships') %>
+ <a href="#" class="btn btn-info btn-xs open-add-lawyer-institution">+</a>
+ </h4>
 {{#each institutions }}
   <p>{{ title }} {{ country }}</p>
   <a href="#" class="btn btn-info btn-xs open-edit-lawyer-institution">Editar</a>
 {{/each}}
-<hr>
 
- <h4><%= t('languages') %></h4>
+
+ <h4>
+ <%= t('languages') %>
+ <a href="#" class="btn btn-info btn-xs open-add-lawyer-language">+</a>
+ </h4>
 {{#each languages }}
   <p>{{ name }}</p>
   <a href="#" class="btn btn-info btn-xs open-edit-lawyer-language">Editar</a>
 {{/each}}
-<hr>
 
-<h4><%= t('phrases') %></h4>
+
+<h4>
+<%= t('phrases') %>
+<a href="#" class="btn btn-info btn-xs open-add-lawyer-pharase">+</a>
+</h4>
 {{#each phrases}}
+  <p>"{{ content }}"</p>
   <p>{{ author }}</p>
-  <p>{{ content }}</p>
   <a href="#" class="btn btn-info btn-xs open-edit-lawyer-phrase">Editar</a>
 {{/each}}
-<hr>
 
-<h4><%= t('awards') %></h4>
+</div>
+<div class="col-lg-6">
+<h3><%= t('awards') %> <a href="#" class="btn btn-info btn-xs open-add-lawyer-award">+</a></h3>
 {{#each awards }}
   <p>{{ title }}</p>
   <img src="{{img_name.url}}">
   <a href="#" class="btn btn-info btn-xs open-edit-lawyer-award">Editar</a>
 {{/each}}
-<hr>
 
-<h4><%= t('article') %></h4>
+
+<h3>
+<%= t('article') %>
+<a href="#" class="btn btn-info btn-xs open-add-lawyer-article">+</a>
+</h3>
 {{#each articles }}
   <p><a href="{{ file_name.url }}">{{ title }}</a></p>
   <a href="#" class="btn btn-info btn-xs open-edit-lawyer-article">Editar</a>

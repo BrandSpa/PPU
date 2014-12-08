@@ -2,7 +2,8 @@ body
   background: #E4E6EB
   font-size: 14px
   padding: 0 0 30px 0
-  
+ul
+  padding: 0
 .form-control
   box-shadow: none
   border: 2px solid #ddd
@@ -26,11 +27,9 @@ body
 
 .panel-default
   background: #f8f8f8
+
   .panel-body
     color: #5F5F5F
-
-    h3, h4
-      margin: 0
 
     .btn-info 
       background: #00A1B1
@@ -38,8 +37,10 @@ body
 .navbar-default
   background: #002855
   color: #fff
+
   .navbar-brand
     color: #fff
+
   .navbar-nav
     &>.active
       &>a
@@ -85,3 +86,50 @@ body
     float: left
   .radio-inline
     color: #fff
+
+#lawyer-finish
+  background: #fff
+  padding: 0
+  li
+    list-style-position: inside
+  h4
+    margin-top: 30px
+    margin-bottom: 30px
+
+  .lawyer-description
+    text-align: left
+    padding: 15px
+
+  .lawyer-header
+    background: #002855
+    padding: 30px
+    position: relative
+    overflow: hidden
+    color: #fff
+    h1
+      font-size: 1.4em
+      margin-top: 0
+
+    p
+      margin: 0
+      font-size: 1.1em
+
+    .lawyer-phone, .lawyer-email
+      color: #00A1B1
+      font-size: 1.1em
+      display: block
+      width: 100%
+
+    .lawyer-email
+      font-size: 1em
+      margin-bottom: 15px
+
+    img
+      position: absolute
+      top: 0
+      right: 0 
+      -webkit-filter: grayscale(100%)
+      -moz-filter: grayscale(100%)
+      filter: grayscale(100%)
+
+

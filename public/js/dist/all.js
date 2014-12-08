@@ -37,17 +37,25 @@ Backbone.View.prototype.showErrors = function(model, response) {
 Backbone.View.prototype.closeModal = function() {
   this.remove();
   $('.modal-backdrop').remove();
-  $('body').removeClass('modal-open');
-  return ppu.appendDatePickerYear = function() {
-    $(document).find('.datepicker-year').datepicker;
-    return {
-      format: 'yyyy',
-      viewMode: "years",
-      minViewMode: "years",
-      language: 'es',
-      autoclose: true
-    };
-  };
+  return $('body').removeClass('modal-open');
+};
+
+ppu.appendDatePickerYear = function(el) {
+  return $(el).find('.datepicker-year').datepicker({
+    format: 'yyyy',
+    viewMode: "years",
+    minViewMode: "years",
+    language: 'es',
+    autoclose: true
+  });
+};
+
+ppu.appendForm = function(el, template) {
+  var source, temp;
+  source = $(template).html();
+  temp = Handlebars.compile(source);
+  $(el).find('.fields').append(temp).fadeIn();
+  return ppu.appendDatePickerYear(el);
 };
 
 ppu.ajaxOptions = function(type, data) {
@@ -58,6 +66,18 @@ ppu.ajaxOptions = function(type, data) {
     cache: false,
     contentType: false
   };
+};
+
+ppu.saveMultipeForms = function(el, model, lawyer_id) {
+  var $forms;
+  $forms = $(el).find("form");
+  model = model;
+  return $forms.each(function(index) {
+    var data;
+    data = new FormData($forms[index]);
+    data.append("fields[lawyer_id]", lawyer_id);
+    return model.save(data, $.extend({}, ppu.ajaxOptions("POST", data)));
+  });
 };
 
 $(document).ajaxSend(function(e, xhr, options) {
@@ -115,6 +135,14 @@ $(function() {
       } else {
         $('.lawyer-lang option:eq(1)').prop('selected', true);
       }
+      ppu.lawyer = new ppu.Lawyer;
+      ppu.lawyerCreateForm = new ppu.LawyerCreateForm({
+        model: ppu.lawyer
+      });
+      ppu.lawyerArticle = new ppu.LawyerArticle;
+      ppu.lawyerArticleCreate = new ppu.LawyerArticleCreate({
+        model: ppu.lawyerArticle
+      });
       ppu.lawyerAward = new ppu.LawyerAward;
       ppu.lawyerAwardCreate = new ppu.LawyerAwardCreate({
         model: ppu.lawyerAward
@@ -141,12 +169,9 @@ $(function() {
       });
       ppu.lawyerRecognition = new ppu.LawyerRecognition;
       ppu.lawyerRecognitionCreate = new ppu.LawyerRecognitionCreate({
-        model: ppu.lawyerRecognintion
+        model: ppu.lawyerRecognition
       });
-      ppu.lawyer = new ppu.Lawyer;
-      return ppu.lawyerCreate = new ppu.LawyerCreate({
-        model: ppu.lawyer
-      });
+      return ppu.lawyerCreate = new ppu.LawyerCreate;
     };
 
     Workspace.prototype.finishLawyer = function(id) {
