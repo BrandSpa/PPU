@@ -54,7 +54,8 @@ ppu.appendForm = function(el, template) {
   var source, temp;
   source = $(template).html();
   temp = Handlebars.compile(source);
-  return $(el).find('.fields').append(temp).fadeIn();
+  $(el).find('.fields').append(temp).fadeIn();
+  return ppu.appendDatePickerYear(el);
 };
 
 ppu.ajaxOptions = function(type, data) {

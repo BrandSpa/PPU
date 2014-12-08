@@ -40,6 +40,7 @@ ppu.appendForm = (el, template)->
   source = $(template).html()
   temp = Handlebars.compile(source)
   $(el).find('.fields').append(temp).fadeIn()
+  ppu.appendDatePickerYear(el)
 
 ppu.ajaxOptions = (type, data) ->
   type: type

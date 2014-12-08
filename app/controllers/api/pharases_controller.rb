@@ -2,7 +2,7 @@ class Api::PharasesController < ApplicationController
   include CreateBelongsToLawyer
 
   def entity
-    Pharase
+    Phrase
   end
 
   def index

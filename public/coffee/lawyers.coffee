@@ -82,7 +82,7 @@ $ ->
       ppu.lawyerAwardCreate.store(id)
       ppu.lawyerArticleCreate.store(id)
       ppu.lawyerPharaseCreate.store(id)
-      window.location = "/terminar-abogado/#{id}"
+      #window.location = "/terminar-abogado/#{id}"
 
   class ppu.LawyerCreate extends Backbone.View
     el: $ "#lawyer-create"
@@ -114,7 +114,27 @@ $ ->
 
     stored: (model) ->
       #duplicate fields
-   
+
+
+  class ppu.lawyerEdit extends Backbone.View
+    el: $ "#lawyer-edit-modal"
+    template: $ "#lawyer-edit-template"
+    events:
+      "click .lawyer-edit-update" "update"
+
+    render: ->
+      source = @template.html()
+      compile = Handlebars.compile(source)
+      $(@el).html t( @model.toJSON() )
+      $(@el).modal()
+
+    update: (e) ->
+      e.preventDefault()
+      $forms = $(@el).find("form")
+      data = new FormData($forms[0])
+      #data.append("fields[lawyer_id]", lawyer_id)
+      model.save data, $.extend({}, ppu.ajaxOptions("PUT", data))
+
   class ppu.LawyerDashboard extends Backbone.View
     tagName: 'tr'
     template: $ '#lawyer-dashbord-template'

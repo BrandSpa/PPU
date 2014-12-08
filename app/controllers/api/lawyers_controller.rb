@@ -46,12 +46,10 @@ class Api::LawyersController < ApplicationController
   end
 
   def update
-    id = params[:id]
-    model = Lawyer.find(id)
+    model = Lawyer.find(params[:id])
     model.update(lawyer_params)
     model.save
-
-    if model
+    if model.valid?
       render json: model
     else
       errors = model.errors.messages

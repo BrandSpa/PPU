@@ -177,8 +177,7 @@ $(function() {
       ppu.lawyerInstitutionCreate.store(id);
       ppu.lawyerAwardCreate.store(id);
       ppu.lawyerArticleCreate.store(id);
-      ppu.lawyerPharaseCreate.store(id);
-      return window.location = "/terminar-abogado/" + id;
+      return ppu.lawyerPharaseCreate.store(id);
     };
 
     return LawyerCreateForm;
@@ -231,6 +230,29 @@ $(function() {
     LawyerCreate.prototype.stored = function(model) {};
 
     return LawyerCreate;
+
+  })(Backbone.View);
+  ppu.lawyerEdit = (function(_super) {
+    __extends(lawyerEdit, _super);
+
+    function lawyerEdit() {
+      return lawyerEdit.__super__.constructor.apply(this, arguments);
+    }
+
+    lawyerEdit.prototype.el = $("#lawyer-edit-modal");
+
+    lawyerEdit.prototype.template = $("#lawyer-edit-template");
+
+    lawyerEdit.prototype.events = "click .lawyer-edit-update";
+
+    lawyerEdit.prototype.render = function() {
+      var compile, source;
+      source = this.template.html();
+      compile = Handlebars.compile(source);
+      return $(this.el).html(t(this.model.toJSON()));
+    };
+
+    return lawyerEdit;
 
   })(Backbone.View);
   ppu.LawyerDashboard = (function(_super) {
