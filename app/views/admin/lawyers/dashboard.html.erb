@@ -1,62 +1,60 @@
 <div class="panel panel-default" id="lawyers-dashboard">
-<div class="panel-body">
-<div class="row">
-<div class="col-lg-3">
-	<form class="lawyer-search">
-		<input name="query" class="form-control" placeholder="Buscar">
-	</form>
-	
-</div>	
-<div class="col-lg-3">
-<select class="form-control lawyer-filter-lang">
-	<option>Idioma</option>
-	<option value="es">Español</option>
-	<option value="en">English</option>
-</select>
-</div>	
-<div class="col-lg-3">
-<select class="form-control lawyer-filter-country">
-	<option>País</option>
-	<option value="Chile">Chile</option>
-	<option value="Colombia">Colombia</option>
-	<option value="España">España</option>
-</select>
+	<div class="panel-body">
+		<div class="row">
+			<div class="col-lg-3">
+				<form class="lawyer-search">
+					<input name="query" class="form-control" placeholder="Buscar">
+				</form>
+				
+			</div>	
+			<div class="col-lg-3">
+				<select class="form-control lawyer-filter-lang">
+					<option>Idioma</option>
+					<option value="es">Español</option>
+					<option value="en">English</option>
+				</select>
+			</div>	
+			<div class="col-lg-3">
+				<select class="form-control lawyer-filter-country">
+					<option>País</option>
+					<option value="Chile">Chile</option>
+					<option value="Colombia">Colombia</option>
+					<option value="España">España</option>
+				</select>
+			</div>
+			<div class="col-lg-3">
+				<select class="form-control lawyer-filter-position">
+					<option>Cargo</option>
+					<option value="<%= t('lawyer')%>"><%= t('lawyer')%></option>
+					<option value="<%= t('associated')%>"><%= t('associated')%></option>
+					<option value="<%= t('specialist')%>"><%= t('specialist')%></option>
+					<option value="<%= t('partner')%>"><%= t('partner')%></option>
+					<option value="<%= t('senior_counsel')%>"><%= t('senior_counsel')%></option>
+				</select>
+			</div>
+		</div>	
+		<hr>
+		<a class="btn btn-info lawyer-see-more" data-offset="0">Ver más</a>
+		<hr>
+		<table class="table table-condensed">
+			<thead>
+				<tr>
+					<th>Idioma</th>
+					<th>Nombre</th>
+					<th>Cargo</th>
+					<th>País</th>
+					<th>Opciones</th>
+				</tr>
+			</thead>
+			<tbody></tbody>
+		</table>
+	</div>
 </div>
-<div class="col-lg-3">
-<select class="form-control lawyer-filter-position">
-	<option>Cargo</option>
-	  <option value="<%= t('lawyer')%>"><%= t('lawyer')%></option>
-          <option value="<%= t('associated')%>"><%= t('associated')%></option>
-          <option value="<%= t('specialist')%>"><%= t('specialist')%></option>
-          <option value="<%= t('partner')%>"><%= t('partner')%></option>
-          <option value="<%= t('senior_counsel')%>"><%= t('senior_counsel')%></option>
-</select>
-</div>
-</div>	
-<hr>
-<a class="btn btn-info lawyer-see-more" data-offset="0">Ver más</a>
-<hr>
-<table class="table table-condensed">
-<thead>
-<tr>
-	<th>Idioma</th>
-	<th>Nombre</th>
-	<th>Cargo</th>
-	<th>País</th>
-	<th>Opciones</th>
-</tr>
-</thead>
-<tbody></tbody>
-</table>
-
-</div>
-</div>
-
 
 <script type="text/x-handlebars-template" id="lawyer-dashbord-template">
 	<td>{{ lang }}</td>
 	<td>{{ position }}</td>
 	<td>{{ name }} {{ lastname }}</td>
 	<td>{{ country }}</td>
-	<td><a href="/terminar-abogado/{{id}}" class="btn btn-info lawyer-edit">Editar</a></td>
+	<td><a href="/editar-abogado/{{id}}" class="btn btn-info lawyer-edit">Editar</a></td>
 </script>

@@ -197,7 +197,8 @@ $(function() {
       ppu.lawyerInstitutionCreate.store(id);
       ppu.lawyerAwardCreate.store(id);
       ppu.lawyerArticleCreate.store(id);
-      return ppu.lawyerPharaseCreate.store(id);
+      ppu.lawyerPharaseCreate.store(id);
+      return window.location = "/dashboard";
     };
 
     return LawyerCreateForm;
