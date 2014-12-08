@@ -1,32 +1,114 @@
-<div class="panel panel-default hidden" id="lawyer-finish">
-  <div class="panel-body">
-
-  </div>
+<div class="panel panel-default col-lg-10 hidden" id="lawyer-finish">
+  <div class="panel-body"></div>
 </div>
 
 <script type="text/x-handlebars-template" id="lawyer-finish-template">
-
-<div class="row">
-{{#if img_name.url}}
-<div class="col-lg-3">
-  <img src="{{img_name.url}}" width="250">
-</div>  
-{{/if}}
-<div class="col-lg-3">
+<div class="lawyer-header">
   <p>{{ position }}</p>
-  <p>{{ name }} {{ lastname }}</p>
-  <p>{{ phone }}</p>
-  <p>{{ email }}</p>
-</div>  
+  <h1>{{ name }} {{ lastname }}</h1>
+  <a href="tel:{+571 {{ phone }}" class="lawyer-phone">+571 {{ phone }}</a>
+  <a href="mailto:{{ email }}" class="lawyer-email">{{ email }}</a>
+{{#if img_name.url}}
+  <img src="{{img_name.url}}" width="250" class="pull-right">
+{{/if}}
 </div>
+<p class="lawyer-description">{{ description }}</p>
+<a href="#" class="btn btn-info open-edit-lawyer">Editar</a>
+<hr>
 
-  <hr>
-  <form id="lawyer-img" enctype="multipart/form-data">
-    <input type="file" name="file">
-  </form>
-   <hr>
-    <a href="#" class="btn btn-info lawyer-save-img" data-lawyer="{{ id }}">Adjuntar Foto</a>
-    <a href="#" class="btn btn-info" data-lawyer="{{ id }}">Adjuntar Articulos</a>
-    <a href="#" class="btn btn-info" data-lawyer="{{ id }}">Adjuntar Reconocimientos</a>
+<div class="col-lg-6">
+<h3>Información general</h3>
+<h4> <%= t('practice_areas') %> </h4>
+<ul>
+  {{#each categories }}
+  <li>{{ name }}</li>
+  {{/each}}
+</ul>
+
+ <h4>
+ <%= t('education') %>
+   <a href="#" class="btn btn-info btn-xs open-add-lawyer-education">+</a>
+ </h4>
+ <ul>
+{{#each educations }}
+  <li>{{ title }} {{ institution }} {{ country }} {{ year }}  <a href="#" class="btn btn-info btn-xs open-edit-lawyer-education">Editar</a></li>
+{{/each}}
+ </ul>
+
+
+<h4>
+<%= t('professional_experience') %>
+<a href="#" class="btn btn-info btn-xs open-add-lawyer-job">+</a>
+</h4>
+<ul>
+{{#each jobs }}
+<li>
+  {{ title }} {{ country }} {{ from }} {{ until }}
+  <a href="#" class="btn btn-info btn-xs open-edit-lawyer-job">Editar</a>
+  </li>
+{{/each}}
+</ul>
+
+<h4>
+<%= t('conferences_recognitions') %>
+<a href="#" class="btn btn-info btn-xs open-add-lawyer-job">+</a>
+</h4>
+{{#each recognitions }}
+  <p>{{ title }} {{ country }} {{ year }}</p>
+  <a href="#" class="btn btn-info btn-xs open-edit-lawyer-recognition">Editar</a>
+{{/each}}
+
+
+ <h4>
+ <%= t('memberships') %>
+ <a href="#" class="btn btn-info btn-xs open-add-lawyer-institution">+</a>
+ </h4>
+{{#each institutions }}
+  <p>{{ title }} {{ country }}</p>
+  <a href="#" class="btn btn-info btn-xs open-edit-lawyer-institution">Editar</a>
+{{/each}}
+
+
+ <h4>
+ <%= t('languages') %>
+ <a href="#" class="btn btn-info btn-xs open-add-lawyer-language">+</a>
+ </h4>
+{{#each languages }}
+  <p>{{ name }}</p>
+  <a href="#" class="btn btn-info btn-xs open-edit-lawyer-language">Editar</a>
+{{/each}}
+
+
+<h4>
+<%= t('phrases') %>
+<a href="#" class="btn btn-info btn-xs open-add-lawyer-pharase">+</a>
+</h4>
+{{#each phrases}}
+  <p>"{{ content }}"</p>
+  <p>{{ author }}</p>
+  <a href="#" class="btn btn-info btn-xs open-edit-lawyer-phrase">Editar</a>
+{{/each}}
+
+</div>
+<div class="col-lg-6">
+<h3><%= t('awards') %> <a href="#" class="btn btn-info btn-xs open-add-lawyer-award">+</a></h3>
+{{#each awards }}
+  <p>{{ title }}</p>
+  <img src="{{img_name.url}}">
+  <a href="#" class="btn btn-info btn-xs open-edit-lawyer-award">Editar</a>
+{{/each}}
+
+
+<h3>
+<%= t('article') %>
+<a href="#" class="btn btn-info btn-xs open-add-lawyer-article">+</a>
+</h3>
+{{#each articles }}
+  <p><a href="{{ file_name.url }}">{{ title }}</a></p>
+  <a href="#" class="btn btn-info btn-xs open-edit-lawyer-article">Editar</a>
+{{/each}}
+</div>
 </script>
+
+
 

@@ -1,16 +1,19 @@
 class Api::TradesController < ApplicationController
+  include CreateBelongsToLawyer
+  
+  def entity
+    Trade
+  end
 
   def index
-    lang = params[:lang] || "es"
-    collection = Trade.where(nil).lang(lang)
-    render json: collection
+    collection = entity.where('lawyer_id = ?', lawyer_id) if lawyer_id.present?
+    render json: collection, status: 200
   end
 
   def show
     id = params[:id]
-    lang = params[:lang] || "es"
-
-    model = Trade.lang(lang).find(id)
-    render json: model.to_json(:include => [:lawyers])
+    model = entity.find(id) if id.present?
+    render json: model, status: 200
   end
+
 end

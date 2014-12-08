@@ -3,6 +3,17 @@ body {
   font-size: 14px;
   padding: 0 0 30px 0; }
 
+.modal-backdrop {
+  background: #002855; }
+  .modal-backdrop.in {
+    opacity: 0.9 !important; }
+
+.modal-content {
+  background: #eeeeee; }
+
+ul {
+  padding: 0; }
+
 .form-control {
   box-shadow: none;
   border: 2px solid #dddddd;
@@ -31,8 +42,6 @@ body {
   background: #f8f8f8; }
   .panel-default .panel-body {
     color: #5f5f5f; }
-    .panel-default .panel-body h3, .panel-default .panel-body h4 {
-      margin: 0; }
     .panel-default .panel-body .btn-info {
       background: #00a1b1; }
 
@@ -84,3 +93,46 @@ body {
     float: left; }
   #lawyers-filters .radio-inline {
     color: white; }
+
+#lawyer-finish {
+  background: white;
+  padding: 0;
+  border: none; }
+  #lawyer-finish .panel-body {
+    padding: 0 0 30px 0; }
+  #lawyer-finish li {
+    list-style-position: inside; }
+  #lawyer-finish h4 {
+    margin-top: 30px;
+    margin-bottom: 30px; }
+  #lawyer-finish .lawyer-description {
+    text-align: left;
+    padding: 15px; }
+  #lawyer-finish .lawyer-header {
+    background: #002855;
+    padding: 30px;
+    position: relative;
+    overflow: hidden;
+    color: white; }
+    #lawyer-finish .lawyer-header h1 {
+      font-size: 1.4em;
+      margin-top: 0;
+      margin-bottom: 30px; }
+    #lawyer-finish .lawyer-header p {
+      margin: 0;
+      font-size: 1.1em; }
+    #lawyer-finish .lawyer-header .lawyer-phone, #lawyer-finish .lawyer-header .lawyer-email {
+      color: #00a1b1;
+      font-size: 1.1em;
+      display: block;
+      width: 100%; }
+    #lawyer-finish .lawyer-header .lawyer-email {
+      font-size: 1em;
+      margin-bottom: 15px; }
+    #lawyer-finish .lawyer-header img {
+      position: absolute;
+      top: 0;
+      right: 0;
+      -webkit-filter: grayscale(100%);
+      -moz-filter: grayscale(100%);
+      filter: grayscale(100%); }

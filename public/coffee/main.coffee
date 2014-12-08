@@ -19,6 +19,7 @@ Backbone.View::en = ->
 Backbone.View::showErrors = (model, response) ->
     errors = JSON.parse(response.responseText)
     _.each errors, (message, row) ->
+      console.log message
       toastr.error message
       
 Backbone.View::closeModal = ->
@@ -26,14 +27,37 @@ Backbone.View::closeModal = ->
   $('.modal-backdrop').remove()
   $('body').removeClass 'modal-open'
 
-
-  ppu.appendDatePickerYear = ->
-    $(document).find('.datepicker-year').datepicker
+ppu.appendDatePickerYear = (el) ->
+  $(el).find('.datepicker-year').datepicker
     format: 'yyyy'
     viewMode: "years"
     minViewMode: "years"
     language: 'es'
     autoclose: true
+
+ppu.appendForm = (el, template)->
+  source = $(template).html()
+  temp = Handlebars.compile(source)
+  $(el).find('.fields').append(temp).fadeIn()
+  ppu.appendDatePickerYear(el)
+
+ppu.ajaxOptions = (type, data) ->
+  type: type
+  data: data
+  processData: false
+  cache: false
+  contentType: false
+
+ppu.saveMultipeForms = (el, model, lawyer_id) ->
+  $forms = $(el).find("form")
+  model = model
+  $forms.each (index) ->
+    data = new FormData($forms[index])
+    data.append("fields[lawyer_id]", lawyer_id)
+    model.save data, $.extend({}, ppu.ajaxOptions("POST", data))
+
+Handlebars.registerHelper 'checked', (val1, val2) ->
+    return val1 == val2 ? ' checked="checked"' : ''
 
 $(document).ajaxSend (e, xhr, options) ->
   token = $("meta[name='csrf-token']").attr("content")

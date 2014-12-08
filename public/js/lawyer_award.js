@@ -9,7 +9,7 @@ $(function() {
       return LawyerAward.__super__.constructor.apply(this, arguments);
     }
 
-    LawyerAward.prototype.url = "/api/awards";
+    LawyerAward.prototype.urlRoot = "/api/awards";
 
     return LawyerAward;
 
@@ -40,29 +40,24 @@ $(function() {
     LawyerAwardCreate.prototype.template = $("#lawyer-form-award-template");
 
     LawyerAwardCreate.prototype.events = {
-      'click .lawyer-add-award': 'addFields'
+      'click .lawyer-add-award': 'addForm'
     };
 
-    LawyerAwardCreate.prototype.addFields = function(e) {
-      var source;
+    LawyerAwardCreate.prototype.initialize = function() {
+      return this.appendForm();
+    };
+
+    LawyerAwardCreate.prototype.appendForm = function() {
+      return ppu.appendForm(this.el, this.template);
+    };
+
+    LawyerAwardCreate.prototype.addForm = function(e) {
       e.preventDefault();
-      source = $(this.template).html();
-      $(this.el).find('form').append(source);
-      return ppu.appendDatePickerYear;
+      return this.appendForm();
     };
 
     LawyerAwardCreate.prototype.store = function(lawyer_id) {
-      var $form, data;
-      $form = $(this.el).find('form');
-      data = $form.serializeJSON();
-      data = _.map(data.fields, function(model) {
-        return _.extend(model, {
-          lawyer_id: lawyer_id
-        });
-      });
-      return this.model.save({
-        educations: data
-      });
+      return ppu.saveMultipeForms(this.el, this.model, lawyer_id);
     };
 
     return LawyerAwardCreate;

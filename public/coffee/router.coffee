@@ -6,7 +6,8 @@ $ ->
       "abogados/:id" : "lawyer"
       "crear-abogado": 'adminLawyer'
       "crear-abogado": 'adminLawyer'
-      "terminar-abogado/:id": 'finishLawyer'
+      "editar-abogado/:name": 'finishLawyer'
+      ":lang/editar-abogado/:id": 'finishLawyer'
       ":lang/crear-abogado": 'adminLawyer'
       "dashboard": 'dashboard'
 
@@ -19,10 +20,11 @@ $ ->
     lawyer: ->
 
     adminLawyer: (param) ->
-      if param == 'en'
-        $('.lawyer-lang option:eq(2)').prop('selected', true)
-      else
-        $('.lawyer-lang option:eq(1)').prop('selected', true)
+      ppu.lawyer =  new ppu.Lawyer
+      ppu.lawyerCreateForm = new ppu.LawyerCreateForm model: ppu.lawyer
+
+      ppu.lawyerArticle = new ppu.LawyerArticle
+      ppu.lawyerArticleCreate = new ppu.LawyerArticleCreate model: ppu.lawyerArticle
 
       ppu.lawyerAward = new ppu.LawyerAward
       ppu.lawyerAwardCreate = new ppu.LawyerAwardCreate model: ppu.lawyerAward
@@ -42,15 +44,14 @@ $ ->
       ppu.lawyerPharase = new ppu.LawyerPharase
       ppu.lawyerPharaseCreate = new ppu.LawyerPharaseCreate model: ppu.lawyerPharase
 
-      ppu.lawyerRecognintion = new ppu.LawyerRecognintion
-      ppu.lawyerRecognintionCreate = new ppu.LawyerRecognintionCreate model: ppu.lawyerRecognintion
+      ppu.lawyerRecognition = new ppu.LawyerRecognition
+      ppu.lawyerRecognitionCreate = new ppu.LawyerRecognitionCreate model: ppu.lawyerRecognition
 
-      ppu.lawyer =  new ppu.Lawyer
-      ppu.lawyerCreate = new ppu.LawyerCreate model: ppu.lawyer
+      ppu.lawyerCreate = new ppu.LawyerCreate
 
     finishLawyer: (id) ->
-      $("#lawyer-create").fadeOut().remove()
-      ppu.lawyerFinish = new ppu.Lawyer id: id 
+      $("#lawyer-create").remove()
+      ppu.lawyerFinish = new ppu.Lawyer id: id
       ppu.lawyerFinish.fetch()
       view = new ppu.LawyerFinish model: ppu.lawyerFinish
 
