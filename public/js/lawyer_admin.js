@@ -144,8 +144,8 @@ $(function() {
     LawyerCreateForm.prototype.template = $("#lawyer-form-template");
 
     LawyerCreateForm.prototype.initialize = function() {
-      this.listenTo(this.model, "error", this.showErrors);
-      this.listenTo(this.model, "sync", this.stored);
+      this.listenTo(this.model, "error", this.renderErrors, this);
+      this.listenTo(this.model, "sync", this.stored, this);
       this.render();
       this.getCategories();
       return this.changeLang();
@@ -215,7 +215,9 @@ $(function() {
 
     LawyerCreate.prototype.events = {
       'click .lawyer-store': 'store',
-      'change .lawyer-lang': 'changeLang'
+      'change .lawyer-lang': 'changeLang',
+      "keydown .form-control": "removeError",
+      "change .form-control": "removeError"
     };
 
     LawyerCreate.prototype.initialize = function() {
@@ -255,7 +257,8 @@ $(function() {
 
     lawyerEdit.prototype.events = {
       "click .lawyer-edit-update": "update",
-      "click .modal-close": "close"
+      "click .modal-close": "close",
+      "keydown .form-control": "removeError"
     };
 
     lawyerEdit.prototype.initialize = function() {

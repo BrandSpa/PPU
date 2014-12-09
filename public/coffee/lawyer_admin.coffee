@@ -67,8 +67,8 @@
     template: $ "#lawyer-form-template"
 
     initialize: ->
-      @listenTo @model, "error", @showErrors
-      @listenTo @model, "sync", @stored
+      @listenTo @model, "error", @renderErrors, @
+      @listenTo @model, "sync", @stored, @
       @render()
       @getCategories()
       @changeLang()
@@ -116,6 +116,8 @@
     events:
       'click .lawyer-store': 'store'
       'change .lawyer-lang': 'changeLang'
+      "keydown .form-control": "removeError"
+      "change .form-control": "removeError"
 
     initialize: ->
       ppu.appendDatePickerYear(@el)
@@ -140,6 +142,7 @@
     events:
       "click .lawyer-edit-update": "update"
       "click .modal-close": "close"
+      "keydown .form-control": "removeError"
 
     initialize: ->
       @getCategories()

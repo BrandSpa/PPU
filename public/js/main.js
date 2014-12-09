@@ -34,6 +34,26 @@ Backbone.View.prototype.showErrors = function(model, response) {
   });
 };
 
+Backbone.View.prototype.renderErrors = function(model, response) {
+  var $form, errors;
+  model = model;
+  $form = this.$el.find('form');
+  errors = JSON.parse(response.responseText);
+  return _.each(errors, function(message, field) {
+    var input;
+    input = $form.find("[name='fields[" + field + "]' ]");
+    input.addClass("error");
+    return input.after("<p class='error-message'>" + message + "</p>");
+  });
+};
+
+Backbone.View.prototype.removeError = function(e) {
+  var el;
+  el = $(e.currentTarget);
+  el.removeClass("error");
+  return el.parent().find('.error-message').remove();
+};
+
 Backbone.View.prototype.closeModal = function() {
   this.remove();
   $('.modal-backdrop').remove();

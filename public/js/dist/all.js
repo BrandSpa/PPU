@@ -80,6 +80,13 @@ ppu.saveMultipeForms = function(el, model, lawyer_id) {
   });
 };
 
+Handlebars.registerHelper('checked', function(val1, val2) {
+  var _ref;
+  return (_ref = val1 === val2) != null ? _ref : {
+    ' checked="checked"': ''
+  };
+});
+
 $(document).ajaxSend(function(e, xhr, options) {
   var token;
   token = $("meta[name='csrf-token']").attr("content");
