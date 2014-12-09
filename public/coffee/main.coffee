@@ -21,7 +21,21 @@ Backbone.View::showErrors = (model, response) ->
     _.each errors, (message, row) ->
       console.log message
       toastr.error message
-      
+
+Backbone.View::renderErrors = (model, response) ->
+    model = model
+    $form = @$el.find('form')
+    errors = JSON.parse(response.responseText)
+    _.each errors, (message, field) ->
+      input = $form.find("[name='fields[#{field}]' ]")
+      input.addClass "error"
+      input.after "<p class='error-message'>#{message}</p>"
+
+Backbone.View::removeError = (e) ->
+  el = $(e.currentTarget)
+  el.removeClass "error"
+  el.parent().find('.error-message').remove()
+
 Backbone.View::closeModal = ->
   @remove()
   $('.modal-backdrop').remove()

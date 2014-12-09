@@ -15,12 +15,12 @@ es:
   lawyer: "Abogado"
   specialist: "Especialista"
   practice_areas: "Áreas de practica"
-  article: "Artículos"
+  article: "Publicaciones"
   awards: "Premios"
   education: "Educación"
   professional_experience: "Trabajo profesional"
-  conferences_recognitions: "Conferencias y reconocimientos"
-  memberships: "Instituciones"
+  conferences_recognitions: "Conferencias"
+  memberships: "Membresías"
   languages: "Idiomas"
   phrases: "Frases"
   save: "Guardar"
@@ -122,10 +122,10 @@ es:
       second: Segundos
       year: Año
   errors:
-    format: ! '%{attribute} %{message}'
+    format: ! '%{message}'
     messages:
       accepted: debe ser aceptado
-      blank: el %{attribute} no puede estar en blanco 
+      blank: no puede estar en blanco 
       confirmation: no coincide con la confirmación
       empty: no puede estar vacío
       equal_to: debe ser igual a %{count}
