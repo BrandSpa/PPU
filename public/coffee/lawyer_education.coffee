@@ -7,7 +7,7 @@ $ ->
     model: ppu.LawyerEducation
 
   class ppu.LawyerEducationCreate extends Backbone.View
-    el: $ "#lawyer-education-form"
+    el: $ "#lawyer-form-education"
     template: $ "#lawyer-form-education-template"
     events: 
       'click .lawyer-add-education': 'addForm'
@@ -24,3 +24,16 @@ $ ->
 
     store: (lawyer_id) ->
       ppu.saveMultipeForms(@el, @model, lawyer_id)
+
+  class ppu.LawyerEducationView extends Backbone.View
+    tagName: 'li'
+    template: $ '#lawyer-education-template'
+   
+    _.extend(@.prototype, mixins.lawyerRelationshipView)
+
+  class ppu.LawyerEducationsEdit extends Backbone.View
+    el: $ "#lawyer-education-edit"
+    view: ppu.LawyerEducationView
+    
+    _.extend(@.prototype, mixins.lawyerRelationshipViews)
+    

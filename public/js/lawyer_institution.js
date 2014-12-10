@@ -28,14 +28,14 @@ $(function() {
     return LawyerInstitutions;
 
   })(Backbone.Collection);
-  return ppu.LawyerInstitutionCreate = (function(_super) {
+  ppu.LawyerInstitutionCreate = (function(_super) {
     __extends(LawyerInstitutionCreate, _super);
 
     function LawyerInstitutionCreate() {
       return LawyerInstitutionCreate.__super__.constructor.apply(this, arguments);
     }
 
-    LawyerInstitutionCreate.prototype.el = $("#lawyer-institution-form");
+    LawyerInstitutionCreate.prototype.el = $("#lawyer-form-institution");
 
     LawyerInstitutionCreate.prototype.template = $("#lawyer-form-institution-template");
 
@@ -61,6 +61,38 @@ $(function() {
     };
 
     return LawyerInstitutionCreate;
+
+  })(Backbone.View);
+  ppu.LawyerInstitutionView = (function(_super) {
+    __extends(LawyerInstitutionView, _super);
+
+    function LawyerInstitutionView() {
+      return LawyerInstitutionView.__super__.constructor.apply(this, arguments);
+    }
+
+    LawyerInstitutionView.prototype.tagName = 'li';
+
+    LawyerInstitutionView.prototype.template = $('#lawyer-institution-template');
+
+    _.extend(LawyerInstitutionView.prototype, mixins.lawyerRelationshipView);
+
+    return LawyerInstitutionView;
+
+  })(Backbone.View);
+  return ppu.LawyerInstitutionsEdit = (function(_super) {
+    __extends(LawyerInstitutionsEdit, _super);
+
+    function LawyerInstitutionsEdit() {
+      return LawyerInstitutionsEdit.__super__.constructor.apply(this, arguments);
+    }
+
+    LawyerInstitutionsEdit.prototype.el = $("#lawyer-institution-edit");
+
+    LawyerInstitutionsEdit.prototype.view = ppu.LawyerInstitutionView;
+
+    _.extend(LawyerInstitutionsEdit.prototype, mixins.lawyerRelationshipViews);
+
+    return LawyerInstitutionsEdit;
 
   })(Backbone.View);
 });

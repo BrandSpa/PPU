@@ -1,4 +1,4 @@
 class Institution < ActiveRecord::Base
-  belongs_to :lawyer
+  include Lawyerable
   validates :title, length: { minimum: 3 }
 end

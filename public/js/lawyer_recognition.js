@@ -28,14 +28,14 @@ $(function() {
     return LawyerRecognitions;
 
   })(Backbone.Collection);
-  return ppu.LawyerRecognitionCreate = (function(_super) {
+  ppu.LawyerRecognitionCreate = (function(_super) {
     __extends(LawyerRecognitionCreate, _super);
 
     function LawyerRecognitionCreate() {
       return LawyerRecognitionCreate.__super__.constructor.apply(this, arguments);
     }
 
-    LawyerRecognitionCreate.prototype.el = $("#lawyer-recognition-form");
+    LawyerRecognitionCreate.prototype.el = $("#lawyer-form-recognition");
 
     LawyerRecognitionCreate.prototype.template = $("#lawyer-form-recognition-template");
 
@@ -61,6 +61,38 @@ $(function() {
     };
 
     return LawyerRecognitionCreate;
+
+  })(Backbone.View);
+  ppu.LawyerRecognitionView = (function(_super) {
+    __extends(LawyerRecognitionView, _super);
+
+    function LawyerRecognitionView() {
+      return LawyerRecognitionView.__super__.constructor.apply(this, arguments);
+    }
+
+    LawyerRecognitionView.prototype.tagName = 'li';
+
+    LawyerRecognitionView.prototype.template = $('#lawyer-recognition-template');
+
+    _.extend(LawyerRecognitionView.prototype, mixins.lawyerRelationshipView);
+
+    return LawyerRecognitionView;
+
+  })(Backbone.View);
+  return ppu.LawyerRecognitionsEdit = (function(_super) {
+    __extends(LawyerRecognitionsEdit, _super);
+
+    function LawyerRecognitionsEdit() {
+      return LawyerRecognitionsEdit.__super__.constructor.apply(this, arguments);
+    }
+
+    LawyerRecognitionsEdit.prototype.el = $("#lawyer-recognition-edit");
+
+    LawyerRecognitionsEdit.prototype.view = ppu.LawyerRecognitionView;
+
+    _.extend(LawyerRecognitionsEdit.prototype, mixins.lawyerRelationshipViews);
+
+    return LawyerRecognitionsEdit;
 
   })(Backbone.View);
 });

@@ -276,7 +276,6 @@ $(function() {
         template = Handlebars.compile(source);
         $(el).find('#lawyer-list-categories').html(template(collection));
         return _.each(categories, function(category) {
-          console.log($(el).find("#lawyer-list-categories input[value='" + category.id + "']"));
           return $(el).find("#lawyer-list-categories input[value='" + category.id + "']").attr("checked", "checked");
         });
       });
@@ -316,9 +315,9 @@ $(function() {
       return LawyerFinish.__super__.constructor.apply(this, arguments);
     }
 
-    LawyerFinish.prototype.el = $('#lawyer-finish');
+    LawyerFinish.prototype.el = $('.container-lawyer');
 
-    LawyerFinish.prototype.template = $('#lawyer-finish-template');
+    LawyerFinish.prototype.template = $('#lawyer-show-template');
 
     LawyerFinish.prototype.events = {
       'click .open-edit-lawyer': 'openEdit'
@@ -332,8 +331,31 @@ $(function() {
       var source, t;
       source = this.template.html();
       t = Handlebars.compile(source);
-      $(this.el).find(".panel-body").html(t(this.model.toJSON()));
-      return $(this.el).removeClass("hidden");
+      $(this.el).html(t(this.model.toJSON()));
+      $("#lawyer-finish").removeClass("hidden");
+      this.$el.append('<a href="#" class="btn btn-info open-edit-lawyer">Editar</a>');
+      return this.getRelationships(this.model.get('id'));
+    };
+
+    LawyerFinish.prototype.getRelationships = function(id) {
+      mixins.renderCollection(ppu.LawyerEducations, ppu.LawyerEducationsEdit, {
+        lawyer_id: id
+      });
+      mixins.renderCollection(ppu.LawyerArticles, ppu.LawyerArticlesEdit, {
+        lawyer_id: id
+      });
+      mixins.renderCollection(ppu.LawyerJobs, ppu.LawyerJobsEdit, {
+        lawyer_id: id
+      });
+      mixins.renderCollection(ppu.LawyerRecognitions, ppu.LawyerRecognitionsEdit, {
+        lawyer_id: id
+      });
+      mixins.renderCollection(ppu.LawyerInstitutions, ppu.LawyerInstitutionsEdit, {
+        lawyer_id: id
+      });
+      return mixins.renderCollection(ppu.LawyerLanguages, ppu.LawyerLanguagesEdit, {
+        lawyer_id: id
+      });
     };
 
     LawyerFinish.prototype.openEdit = function(e) {

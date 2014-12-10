@@ -1,4 +1,4 @@
 class Language < ActiveRecord::Base
-  belongs_to :lawyer
+  include Lawyerable
   validates :name, length: { minimum: 3 }
 end

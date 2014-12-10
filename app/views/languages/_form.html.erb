@@ -1,0 +1,16 @@
+ <script type="text/x-handlebars-template" id="lawyer-form-language-template"> 
+  <form action="">
+   <div class="row">
+      <div class="form-group col-lg-4">
+        <select name="fields[name]" class="form-control">
+          {{#if name}}
+          <option value="{{ name }}">{{ name }}</option>
+          {{else}}
+          <option value="">Seleccionar idioma</option>
+          {{/if}}
+          <%= render "partials/langs" %>
+        </select>
+      </div>
+    </div>
+  </form>
+</script>

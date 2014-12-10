@@ -2,6 +2,8 @@ var lang;
 
 window.ppu = {};
 
+window.mixins = {};
+
 Dropzone.autoDiscover = false;
 
 ppu.pathUrl = window.location.pathname.split('/');
@@ -23,6 +25,12 @@ Backbone.View.prototype.en = function() {
   } else {
     return false;
   }
+};
+
+Backbone.View.prototype.renderCollection = function() {
+  return this.collection.each(function(model) {
+    return this.renderOne(model);
+  }, this);
 };
 
 Backbone.View.prototype.showErrors = function(model, response) {

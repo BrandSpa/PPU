@@ -34,12 +34,21 @@
         <li class="active"><a href="/crear-abogado">Crear Abogado <span class="sr-only">(current)</span></a></li>      
       </ul>
    
-   
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
+
   <%= yield %>
 </div>
+
+  <%= render "articles/form" %>
+  <%= render "awards/form" %>
+  <%= render "educations/form" %>
+  <%= render "institutions/form" %>
+  <%= render "jobs/form" %>
+  <%= render "languages/form" %>
+  <%= render "phrases/form" %>
+  <%= render "recognitions/form" %>
 
   <script src="/bower_components/jquery/dist/jquery.min.js"></script>
   <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -48,14 +57,14 @@
   <script src="/bower_components/underscore/underscore-min.js"></script>
   <script src="/bower_components/backbone/backbone.js"></script>
 
- 
   <script src="/bower_components/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
-   <script src="/bower_components/bootstrap-datepicker/js/locales/bootstrap-datepicker.es.js"></script>
-   <script src="/bower_components/toastr/toastr.min.js"></script>
-     <script src="/bower_components/dropzone/downloads/dropzone.js"></script>
+  <script src="/bower_components/bootstrap-datepicker/js/locales/bootstrap-datepicker.es.js"></script>
+  <script src="/bower_components/toastr/toastr.min.js"></script>
+  <script src="/bower_components/dropzone/downloads/dropzone.js"></script>
   <script src="/bower_components/jquery.iframe-transport/jquery.iframe-transport.js"></script>
   
   <script src="/js/main.js"></script>
+  <script src="/js/mixins.js"></script>
   <script src="/js/categories.js"></script>
   <script src="/js/lawyer_article.js"></script>
   <script src="/js/lawyer_award.js"></script>

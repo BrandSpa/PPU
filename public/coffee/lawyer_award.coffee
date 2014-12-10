@@ -7,7 +7,7 @@ $ ->
     model: ppu.LawyerAward
 
   class ppu.LawyerAwardCreate extends Backbone.View
-    el: $ "#lawyer-award-form"
+    el: $ "#lawyer-form-award"
     template: $ "#lawyer-form-award-template"
     events: 
       'click .lawyer-add-award': 'addForm'

@@ -7,7 +7,7 @@ $ ->
     model: ppu.LawyerJob
 
   class ppu.LawyerJobCreate extends Backbone.View
-    el: $ "#lawyer-job-form"
+    el: $ "#lawyer-form-job"
     template: $ "#lawyer-form-job-template"
     events: 
       'click .lawyer-add-job': 'addForm'
@@ -24,3 +24,15 @@ $ ->
 
     store: (lawyer_id) ->
       ppu.saveMultipeForms(@el, @model, lawyer_id)
+
+  class ppu.LawyerJobView extends Backbone.View
+    tagName: 'li'
+    template: $ '#lawyer-job-template'
+   
+    _.extend(@.prototype, mixins.lawyerRelationshipView)
+
+  class ppu.LawyerJobsEdit extends Backbone.View
+    el: $ "#lawyer-job-edit"
+    view: ppu.LawyerJobView
+    
+    _.extend(@.prototype, mixins.lawyerRelationshipViews)

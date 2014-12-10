@@ -28,14 +28,14 @@ $(function() {
     return LawyerLanguages;
 
   })(Backbone.Collection);
-  return ppu.LawyerLanguageCreate = (function(_super) {
+  ppu.LawyerLanguageCreate = (function(_super) {
     __extends(LawyerLanguageCreate, _super);
 
     function LawyerLanguageCreate() {
       return LawyerLanguageCreate.__super__.constructor.apply(this, arguments);
     }
 
-    LawyerLanguageCreate.prototype.el = $("#lawyer-language-form");
+    LawyerLanguageCreate.prototype.el = $("#lawyer-form-language");
 
     LawyerLanguageCreate.prototype.template = $("#lawyer-form-language-template");
 
@@ -61,6 +61,38 @@ $(function() {
     };
 
     return LawyerLanguageCreate;
+
+  })(Backbone.View);
+  ppu.LawyerLanguageView = (function(_super) {
+    __extends(LawyerLanguageView, _super);
+
+    function LawyerLanguageView() {
+      return LawyerLanguageView.__super__.constructor.apply(this, arguments);
+    }
+
+    LawyerLanguageView.prototype.tagName = 'li';
+
+    LawyerLanguageView.prototype.template = $('#lawyer-language-template');
+
+    _.extend(LawyerLanguageView.prototype, mixins.lawyerRelationshipView);
+
+    return LawyerLanguageView;
+
+  })(Backbone.View);
+  return ppu.LawyerLanguagesEdit = (function(_super) {
+    __extends(LawyerLanguagesEdit, _super);
+
+    function LawyerLanguagesEdit() {
+      return LawyerLanguagesEdit.__super__.constructor.apply(this, arguments);
+    }
+
+    LawyerLanguagesEdit.prototype.el = $("#lawyer-language-edit");
+
+    LawyerLanguagesEdit.prototype.view = ppu.LawyerLanguageView;
+
+    _.extend(LawyerLanguagesEdit.prototype, mixins.lawyerRelationshipViews);
+
+    return LawyerLanguagesEdit;
 
   })(Backbone.View);
 });

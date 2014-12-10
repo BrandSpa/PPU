@@ -1,4 +1,5 @@
 window.ppu = {}
+window.mixins = {}
 
 Dropzone.autoDiscover = false
 
@@ -15,7 +16,12 @@ Backbone.View::en = ->
     return true
   else
     return false
-  
+    
+Backbone.View::renderCollection = ->
+  @collection.each (model) ->
+    @renderOne(model)
+  , @
+
 Backbone.View::showErrors = (model, response) ->
     errors = JSON.parse(response.responseText)
     _.each errors, (message, row) ->

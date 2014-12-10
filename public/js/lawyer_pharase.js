@@ -35,7 +35,7 @@ $(function() {
       return LawyerPharaseCreate.__super__.constructor.apply(this, arguments);
     }
 
-    LawyerPharaseCreate.prototype.el = $("#lawyer-pharase-form");
+    LawyerPharaseCreate.prototype.el = $("#lawyer-form-pharase");
 
     LawyerPharaseCreate.prototype.template = $("#lawyer-form-pharase-template");
 

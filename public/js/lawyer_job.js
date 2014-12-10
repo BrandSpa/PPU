@@ -28,14 +28,14 @@ $(function() {
     return LawyerJobs;
 
   })(Backbone.Collection);
-  return ppu.LawyerJobCreate = (function(_super) {
+  ppu.LawyerJobCreate = (function(_super) {
     __extends(LawyerJobCreate, _super);
 
     function LawyerJobCreate() {
       return LawyerJobCreate.__super__.constructor.apply(this, arguments);
     }
 
-    LawyerJobCreate.prototype.el = $("#lawyer-job-form");
+    LawyerJobCreate.prototype.el = $("#lawyer-form-job");
 
     LawyerJobCreate.prototype.template = $("#lawyer-form-job-template");
 
@@ -61,6 +61,38 @@ $(function() {
     };
 
     return LawyerJobCreate;
+
+  })(Backbone.View);
+  ppu.LawyerJobView = (function(_super) {
+    __extends(LawyerJobView, _super);
+
+    function LawyerJobView() {
+      return LawyerJobView.__super__.constructor.apply(this, arguments);
+    }
+
+    LawyerJobView.prototype.tagName = 'li';
+
+    LawyerJobView.prototype.template = $('#lawyer-job-template');
+
+    _.extend(LawyerJobView.prototype, mixins.lawyerRelationshipView);
+
+    return LawyerJobView;
+
+  })(Backbone.View);
+  return ppu.LawyerJobsEdit = (function(_super) {
+    __extends(LawyerJobsEdit, _super);
+
+    function LawyerJobsEdit() {
+      return LawyerJobsEdit.__super__.constructor.apply(this, arguments);
+    }
+
+    LawyerJobsEdit.prototype.el = $("#lawyer-job-edit");
+
+    LawyerJobsEdit.prototype.view = ppu.LawyerJobView;
+
+    _.extend(LawyerJobsEdit.prototype, mixins.lawyerRelationshipViews);
+
+    return LawyerJobsEdit;
 
   })(Backbone.View);
 });

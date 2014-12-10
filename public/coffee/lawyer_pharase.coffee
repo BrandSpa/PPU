@@ -7,7 +7,7 @@ $ ->
     model: ppu.LawyerPharase
 
   class ppu.LawyerPharaseCreate extends Backbone.View
-    el: $ "#lawyer-pharase-form"
+    el: $ "#lawyer-form-pharase"
     template: $ "#lawyer-form-pharase-template"
     events: 
       'click .lawyer-add-pharase': 'addForm'

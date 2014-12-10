@@ -28,16 +28,16 @@ $(function() {
     return LawyerArticles;
 
   })(Backbone.Collection);
-  return ppu.LawyerArticleCreate = (function(_super) {
+  ppu.LawyerArticleCreate = (function(_super) {
     __extends(LawyerArticleCreate, _super);
 
     function LawyerArticleCreate() {
       return LawyerArticleCreate.__super__.constructor.apply(this, arguments);
     }
 
-    LawyerArticleCreate.prototype.el = $("#lawyer-article-form");
+    LawyerArticleCreate.prototype.el = $("#lawyer-form-article");
 
-    LawyerArticleCreate.prototype.template = $("#lawyer-form-article-template");
+    LawyerArticleCreate.prototype.template = $("#lawyer-article-form-template");
 
     LawyerArticleCreate.prototype.events = {
       'click .lawyer-add-article': 'addForm'
@@ -61,6 +61,38 @@ $(function() {
     };
 
     return LawyerArticleCreate;
+
+  })(Backbone.View);
+  ppu.LawyerArticleView = (function(_super) {
+    __extends(LawyerArticleView, _super);
+
+    function LawyerArticleView() {
+      return LawyerArticleView.__super__.constructor.apply(this, arguments);
+    }
+
+    LawyerArticleView.prototype.tagName = 'li';
+
+    LawyerArticleView.prototype.template = $('#lawyer-article-template');
+
+    _.extend(LawyerArticleView.prototype, mixins.lawyerRelationshipView);
+
+    return LawyerArticleView;
+
+  })(Backbone.View);
+  return ppu.LawyerArticlesEdit = (function(_super) {
+    __extends(LawyerArticlesEdit, _super);
+
+    function LawyerArticlesEdit() {
+      return LawyerArticlesEdit.__super__.constructor.apply(this, arguments);
+    }
+
+    LawyerArticlesEdit.prototype.el = $("#lawyer-article-edit");
+
+    LawyerArticlesEdit.prototype.view = ppu.LawyerArticleView;
+
+    _.extend(LawyerArticlesEdit.prototype, mixins.lawyerRelationshipViews);
+
+    return LawyerArticlesEdit;
 
   })(Backbone.View);
 });

@@ -1,4 +1,4 @@
 class Phrase < ActiveRecord::Base
-  belongs_to :lawyer
+  include Lawyerable
   validates :content, length: { minimum: 3 }
 end

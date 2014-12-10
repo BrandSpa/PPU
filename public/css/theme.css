@@ -112,7 +112,8 @@ ul {
       float: left;
       padding: 15px; }
   #lawyer-finish li {
-    list-style-position: inside; }
+    list-style-position: inside;
+    margin-bottom: 15px; }
   #lawyer-finish h4 {
     margin-top: 30px;
     margin-bottom: 30px; }

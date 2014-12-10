@@ -35,7 +35,7 @@ $(function() {
       return LawyerAwardCreate.__super__.constructor.apply(this, arguments);
     }
 
-    LawyerAwardCreate.prototype.el = $("#lawyer-award-form");
+    LawyerAwardCreate.prototype.el = $("#lawyer-form-award");
 
     LawyerAwardCreate.prototype.template = $("#lawyer-form-award-template");
 
