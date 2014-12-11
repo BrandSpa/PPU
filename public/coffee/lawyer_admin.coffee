@@ -124,7 +124,7 @@
       ppu.lawyerAwardCreate.store(id)
       ppu.lawyerArticleCreate.store(id)
       ppu.lawyerPharaseCreate.store(id)
-      window.location = "/dashboard"
+      #window.location = "/dashboard"
 
   class ppu.LawyerCreate extends Backbone.View
     el: $ "#lawyer-create"
