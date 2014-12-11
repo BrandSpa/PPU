@@ -57,6 +57,10 @@ ul {
   color: white; }
   .navbar-default .navbar-brand {
     color: white; }
+  .navbar-default .navbar-nav > li > a {
+    color: white; }
+    .navbar-default .navbar-nav > li > a:hover {
+      color: #00a1b1; }
   .navbar-default .navbar-nav > .active > a {
     background: #00a1b1;
     color: white; }

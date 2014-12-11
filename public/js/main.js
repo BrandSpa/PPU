@@ -1,6 +1,8 @@
 var lang;
 
-window.ppu = {};
+window.ppu = {
+  admin: {}
+};
 
 window.mixins = {};
 
@@ -132,6 +134,12 @@ $(document).find('.datepicker-year').datepicker({
   format: 'yyyy',
   viewMode: "years",
   minViewMode: "years",
+  language: 'es',
+  autoclose: true
+});
+
+$(document).find('.datepicker').datepicker({
+  format: 'yyyy',
   language: 'es',
   autoclose: true
 });

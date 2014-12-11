@@ -1,6 +1,10 @@
 var lang;
 
-window.ppu = {};
+window.ppu = {
+  admin: {}
+};
+
+window.mixins = {};
 
 Dropzone.autoDiscover = false;
 
@@ -25,18 +29,51 @@ Backbone.View.prototype.en = function() {
   }
 };
 
-Backbone.View.prototype.showErrors = function(model, response) {
+Backbone.View.prototype.renderModel = function() {
+  var source, template;
+  source = $(this.template).html();
+  template = Handlebars.compile(source);
+  this.container.html(template(this.model.toJSON()));
+  return this;
+};
+
+Backbone.View.prototype.renderCollection = function() {
+  return this.collection.each(function(model) {
+    return this.renderOne(model);
+  }, this);
+};
+
+Backbone.View.prototype.notifyError = function(model, response) {
   var errors;
   errors = JSON.parse(response.responseText);
-  return _.each(errors, function(message, row) {
-    console.log(message);
-    return toastr.error(message);
+  if (errors && lang === 'es') {
+    return toastr.error("Tiene errores");
+  }
+};
+
+Backbone.View.prototype.renderErrors = function(model, response) {
+  var $form, errors;
+  model = model;
+  $form = this.$el.find('form');
+  errors = JSON.parse(response.responseText);
+  return _.each(errors, function(message, field) {
+    var input;
+    input = $form.find("[name='fields[" + field + "]' ]");
+    input.addClass("error");
+    return input.after("<div class='error-message'>" + message + "</div>");
   });
 };
 
+Backbone.View.prototype.removeError = function(e) {
+  var el;
+  el = $(e.currentTarget);
+  el.removeClass("error");
+  return el.parent().find('.error-message').remove();
+};
+
 Backbone.View.prototype.closeModal = function() {
-  this.remove();
   $('.modal-backdrop').remove();
+  this.remove();
   return $('body').removeClass('modal-open');
 };
 
@@ -54,7 +91,7 @@ ppu.appendForm = function(el, template) {
   var source, temp;
   source = $(template).html();
   temp = Handlebars.compile(source);
-  $(el).find('.fields').append(temp).fadeIn();
+  $(temp()).appendTo($(el).find('.fields')).hide().slideDown();
   return ppu.appendDatePickerYear(el);
 };
 
