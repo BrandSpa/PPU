@@ -41,6 +41,7 @@
 				<tr>
 					<th>Idioma</th>
 					<th>Nombre</th>
+					<th>Email</th>
 					<th>Cargo</th>
 					<th>País</th>
 					<th>Opciones</th>
@@ -53,8 +54,9 @@
 
 <script type="text/x-handlebars-template" id="lawyer-dashbord-template">
 	<td>{{ lang }}</td>
-	<td>{{ position }}</td>
 	<td>{{ name }} {{ lastname }}</td>
+	<td>{{ email }}</td>
+	<td>{{ position }}</td>
 	<td>{{ country }}</td>
 	<td><a href="/editar-abogado/{{id}}" class="btn btn-info lawyer-edit">Editar</a></td>
 </script>
