@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     resources :pharases
     resources :recognitions
     resources :trades
+    resources :posts
   end
   
   get "", to: 'posts#index'
@@ -22,6 +23,8 @@ Rails.application.routes.draw do
     get "lawyers", to: 'lawyers#index'
     get "crear-abogado", to: 'admin/lawyers#index'
     get "editar-abogado/:id", to: 'admin/lawyers#index'
+    get "crear-noticia", to: 'admin/posts#index'
+    get "editar-noticia", to: 'admin/posts#index'
   end
 
   get "dashboard", to: 'admin/lawyers#dashboard'

@@ -1,4 +1,6 @@
-window.ppu = {}
+window.ppu = 
+  admin: {}
+
 window.mixins = {}
 
 Dropzone.autoDiscover = false
@@ -88,9 +90,14 @@ $(document).ajaxSend (e, xhr, options) ->
   token = $("meta[name='csrf-token']").attr("content")
   xhr.setRequestHeader("X-CSRF-Token", token)
 
- $(document).find('.datepicker-year').datepicker
-        format: 'yyyy'
-        viewMode: "years"
-        minViewMode: "years"
-        language: 'es'
-        autoclose: true
+$(document).find('.datepicker-year').datepicker
+  format: 'yyyy'
+  viewMode: "years"
+  minViewMode: "years"
+  language: 'es'
+  autoclose: true
+
+$(document).find('.datepicker').datepicker
+  format: 'yyyy'
+  language: 'es'
+  autoclose: true
