@@ -36,7 +36,7 @@ mixins.lawyerRelationshipViews =
 
   openCreate: (e)->
     e.preventDefault()
-    lawyer_id = @collection.models[0].get('lawyer_id') || ppu.pathUrl[1]
+    lawyer_id = ppu.pathUrl[1] || @collection.models[0].get('lawyer_id')
     view = new @modal model: new @collection.model, collection: @collection
     view.render(lawyer_id)
 
