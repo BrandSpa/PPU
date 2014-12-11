@@ -47,7 +47,7 @@ mixins.lawyerRelationshipViews = {
   openCreate: function(e) {
     var lawyer_id, view;
     e.preventDefault();
-    lawyer_id = this.collection.models[0].get('lawyer_id');
+    lawyer_id = this.collection.models[0].get('lawyer_id') || ppu.pathUrl[1];
     view = new this.modal({
       model: new this.collection.model,
       collection: this.collection
