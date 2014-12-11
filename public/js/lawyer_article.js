@@ -63,6 +63,22 @@ $(function() {
     return LawyerArticleCreate;
 
   })(Backbone.View);
+  ppu.LawyerArticlesEditModal = (function(_super) {
+    __extends(LawyerArticlesEditModal, _super);
+
+    function LawyerArticlesEditModal() {
+      return LawyerArticlesEditModal.__super__.constructor.apply(this, arguments);
+    }
+
+    LawyerArticlesEditModal.prototype.el = $("#lawyer-article-edit-modal");
+
+    LawyerArticlesEditModal.prototype.template = $("#lawyer-article-form-template");
+
+    _.extend(LawyerArticlesEditModal.prototype, mixins.lawyerRelationshipModalEdit);
+
+    return LawyerArticlesEditModal;
+
+  })(Backbone.View);
   ppu.LawyerArticleView = (function(_super) {
     __extends(LawyerArticleView, _super);
 
@@ -74,9 +90,27 @@ $(function() {
 
     LawyerArticleView.prototype.template = $('#lawyer-article-template');
 
+    LawyerArticleView.prototype.modal = ppu.LawyerArticlesEditModal;
+
     _.extend(LawyerArticleView.prototype, mixins.lawyerRelationshipView);
 
     return LawyerArticleView;
+
+  })(Backbone.View);
+  ppu.LawyerArticleModalCreate = (function(_super) {
+    __extends(LawyerArticleModalCreate, _super);
+
+    function LawyerArticleModalCreate() {
+      return LawyerArticleModalCreate.__super__.constructor.apply(this, arguments);
+    }
+
+    LawyerArticleModalCreate.prototype.el = $("#lawyer-relationship-create-modal");
+
+    LawyerArticleModalCreate.prototype.template = $("#lawyer-article-form-template");
+
+    _.extend(LawyerArticleModalCreate.prototype, mixins.lawyerRelationshipModalCreate);
+
+    return LawyerArticleModalCreate;
 
   })(Backbone.View);
   return ppu.LawyerArticlesEdit = (function(_super) {
@@ -89,6 +123,8 @@ $(function() {
     LawyerArticlesEdit.prototype.el = $("#lawyer-article-edit");
 
     LawyerArticlesEdit.prototype.view = ppu.LawyerArticleView;
+
+    LawyerArticlesEdit.prototype.modal = ppu.LawyerArticleModalCreate;
 
     _.extend(LawyerArticlesEdit.prototype, mixins.lawyerRelationshipViews);
 

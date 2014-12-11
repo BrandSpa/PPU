@@ -9,7 +9,7 @@ $(function() {
       return LawyerInstitution.__super__.constructor.apply(this, arguments);
     }
 
-    LawyerInstitution.prototype.url = "/api/institutions";
+    LawyerInstitution.prototype.urlRoot = "/api/institutions";
 
     return LawyerInstitution;
 
@@ -63,6 +63,22 @@ $(function() {
     return LawyerInstitutionCreate;
 
   })(Backbone.View);
+  ppu.LawyerInstitutionsEditModal = (function(_super) {
+    __extends(LawyerInstitutionsEditModal, _super);
+
+    function LawyerInstitutionsEditModal() {
+      return LawyerInstitutionsEditModal.__super__.constructor.apply(this, arguments);
+    }
+
+    LawyerInstitutionsEditModal.prototype.el = $("#lawyer-institution-edit-modal");
+
+    LawyerInstitutionsEditModal.prototype.template = $("#lawyer-form-institution-template");
+
+    _.extend(LawyerInstitutionsEditModal.prototype, mixins.lawyerRelationshipModalEdit);
+
+    return LawyerInstitutionsEditModal;
+
+  })(Backbone.View);
   ppu.LawyerInstitutionView = (function(_super) {
     __extends(LawyerInstitutionView, _super);
 
@@ -74,9 +90,27 @@ $(function() {
 
     LawyerInstitutionView.prototype.template = $('#lawyer-institution-template');
 
+    LawyerInstitutionView.prototype.modal = ppu.LawyerInstitutionsEditModal;
+
     _.extend(LawyerInstitutionView.prototype, mixins.lawyerRelationshipView);
 
     return LawyerInstitutionView;
+
+  })(Backbone.View);
+  ppu.LawyerInstitutionModalCreate = (function(_super) {
+    __extends(LawyerInstitutionModalCreate, _super);
+
+    function LawyerInstitutionModalCreate() {
+      return LawyerInstitutionModalCreate.__super__.constructor.apply(this, arguments);
+    }
+
+    LawyerInstitutionModalCreate.prototype.el = $("#lawyer-relationship-create-modal");
+
+    LawyerInstitutionModalCreate.prototype.template = $("#lawyer-form-institution-template");
+
+    _.extend(LawyerInstitutionModalCreate.prototype, mixins.lawyerRelationshipModalCreate);
+
+    return LawyerInstitutionModalCreate;
 
   })(Backbone.View);
   return ppu.LawyerInstitutionsEdit = (function(_super) {
@@ -89,6 +123,8 @@ $(function() {
     LawyerInstitutionsEdit.prototype.el = $("#lawyer-institution-edit");
 
     LawyerInstitutionsEdit.prototype.view = ppu.LawyerInstitutionView;
+
+    LawyerInstitutionsEdit.prototype.modal = ppu.LawyerInstitutionModalCreate;
 
     _.extend(LawyerInstitutionsEdit.prototype, mixins.lawyerRelationshipViews);
 

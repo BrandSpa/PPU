@@ -68,6 +68,7 @@
 
     initialize: ->
       @listenTo @model, "error", @renderErrors, @
+      @listenTo @model, "error", @toErrors, @
       @listenTo @model, "sync", @stored, @
       @render()
       @getCategories()
@@ -98,6 +99,9 @@
       datas = new FormData($forms[0])
       options = ppu.ajaxOptions("POST", datas)
       @model.save(datas, $.extend({}, options))
+
+    toErrors: ->
+      window.location = '#lawyer-form-create'
 
     stored: (model)->
       id = model.id
@@ -145,6 +149,8 @@
       "keydown .form-control": "removeError"
 
     initialize: ->
+      @listenTo @model, 'error', @renderErrors
+      @listenTo @model, 'sync', @updated
       @getCategories()
 
     getCategories: ->
@@ -170,7 +176,12 @@
       data = new FormData($forms[0])
       #data.append("fields[lawyer_id]", lawyer_id)
       @model.save data, $.extend({}, ppu.ajaxOptions("PUT", data))
-      @closeModal()
+      
+
+    updated: (model) ->
+      if model.id
+        @closeModal()
+      
 
     close: (e) ->
       e.preventDefault()
@@ -194,12 +205,15 @@
       @getRelationships(@model.get('id'))
 
     getRelationships: (id) ->
+
       mixins.renderCollection(ppu.LawyerEducations, ppu.LawyerEducationsEdit, lawyer_id: id)
       mixins.renderCollection(ppu.LawyerArticles, ppu.LawyerArticlesEdit, lawyer_id: id)
       mixins.renderCollection(ppu.LawyerJobs, ppu.LawyerJobsEdit, lawyer_id: id)
       mixins.renderCollection(ppu.LawyerRecognitions, ppu.LawyerRecognitionsEdit, lawyer_id: id)
       mixins.renderCollection(ppu.LawyerInstitutions, ppu.LawyerInstitutionsEdit, lawyer_id: id)
       mixins.renderCollection(ppu.LawyerLanguages, ppu.LawyerLanguagesEdit, lawyer_id: id)
+      mixins.renderCollection(ppu.LawyerPharases, ppu.LawyerPharasesEdit, lawyer_id: id)
+      mixins.renderCollection(ppu.LawyerAwards, ppu.LawyerAwardsEdit, lawyer_id: id)
 
     openEdit: (e) ->
       e.preventDefault()

@@ -26,12 +26,18 @@ ul
 .btn-store
   background: #002855
   color: #fff
+  box-shadow: 0 1px 1px rgba(0,0,0,.05)
+  border: 1px solid transparent
+  &:hover
+    color: #00A1B1
+
 .btn-inverse
   background: #34495e
   color: #fff
 .btn-info
   background: #3498db
   color: #fff
+
 
 .panel-default
   background: #f8f8f8
@@ -41,6 +47,9 @@ ul
 
     .btn-info 
       background: #00A1B1
+      &:hover
+        background: #002855
+        color: #00A1B1
 
 .navbar-default
   background: #002855
@@ -99,6 +108,7 @@ ul
   background: #fff
   padding: 0
   border: none
+  color: #5F5F5F
   .panel-body
     padding: 0 0 30px 0
   .btn-info 
@@ -158,9 +168,20 @@ ul
       -webkit-filter: grayscale(100%)
       -moz-filter: grayscale(100%)
       filter: grayscale(100%)
-
+      
+#lawyer-award-edit
+  li
+    list-style: none
 .form-control
   &.error
     border-color: red !important
   &:focus 
     border-color: #dddddd !important
+
+.error-message
+  width: 100%
+  background: red
+  color: #fff
+  padding: 5px 15px
+  font-size: 0.9em
+  margin-top: -5px

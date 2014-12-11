@@ -1,14 +1,15 @@
 <script type="text/x-handlebars-template" id="lawyer-form-education-template">
  <form>
   <div class="row">
-    <div class="form-group col-lg-4">
+      <input type="hidden" name="fields[lawyer_id]" value="{{ lawyer_id }}">
+    <div class="form-group col-lg-6">
       <input type="text" name="fields[title]" class="form-control" placeholder="Título" value="{{ title }}">
     </div>
-    <div class="form-group col-lg-4">
+    <div class="form-group col-lg-6">
       <input type="text" name="fields[institution]" class="form-control" placeholder="Institución" value="{{ institution }}">
     </div>
 
-    <div class="form-group col-lg-2">
+    <div class="form-group col-lg-6">
       <select name="fields[country]" class="form-control">
       {{#if country}}
         <option value="{{ country }}">{{ country }}</option>
@@ -20,7 +21,7 @@
       </select>
     </div>
 
-    <div class="form-group col-lg-2">
+    <div class="form-group col-lg-3">
       <input type="text" name="fields[year]" class="form-control datepicker-year" placeholder="Año" value="{{ year }}">
     </div>
   </div>

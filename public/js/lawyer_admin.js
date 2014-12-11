@@ -145,6 +145,7 @@ $(function() {
 
     LawyerCreateForm.prototype.initialize = function() {
       this.listenTo(this.model, "error", this.renderErrors, this);
+      this.listenTo(this.model, "error", this.toErrors, this);
       this.listenTo(this.model, "sync", this.stored, this);
       this.render();
       this.getCategories();
@@ -185,6 +186,10 @@ $(function() {
       datas = new FormData($forms[0]);
       options = ppu.ajaxOptions("POST", datas);
       return this.model.save(datas, $.extend({}, options));
+    };
+
+    LawyerCreateForm.prototype.toErrors = function() {
+      return window.location = '#lawyer-form-create';
     };
 
     LawyerCreateForm.prototype.stored = function(model) {
@@ -262,6 +267,8 @@ $(function() {
     };
 
     lawyerEdit.prototype.initialize = function() {
+      this.listenTo(this.model, 'error', this.renderErrors);
+      this.listenTo(this.model, 'sync', this.updated);
       return this.getCategories();
     };
 
@@ -296,8 +303,13 @@ $(function() {
       e.preventDefault();
       $forms = $(this.el).find("form");
       data = new FormData($forms[0]);
-      this.model.save(data, $.extend({}, ppu.ajaxOptions("PUT", data)));
-      return this.closeModal();
+      return this.model.save(data, $.extend({}, ppu.ajaxOptions("PUT", data)));
+    };
+
+    lawyerEdit.prototype.updated = function(model) {
+      if (model.id) {
+        return this.closeModal();
+      }
     };
 
     lawyerEdit.prototype.close = function(e) {
@@ -353,7 +365,13 @@ $(function() {
       mixins.renderCollection(ppu.LawyerInstitutions, ppu.LawyerInstitutionsEdit, {
         lawyer_id: id
       });
-      return mixins.renderCollection(ppu.LawyerLanguages, ppu.LawyerLanguagesEdit, {
+      mixins.renderCollection(ppu.LawyerLanguages, ppu.LawyerLanguagesEdit, {
+        lawyer_id: id
+      });
+      mixins.renderCollection(ppu.LawyerPharases, ppu.LawyerPharasesEdit, {
+        lawyer_id: id
+      });
+      return mixins.renderCollection(ppu.LawyerAwards, ppu.LawyerAwardsEdit, {
         lawyer_id: id
       });
     };

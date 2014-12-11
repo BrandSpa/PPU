@@ -9,7 +9,7 @@ $(function() {
       return LawyerEducation.__super__.constructor.apply(this, arguments);
     }
 
-    LawyerEducation.prototype.url = "/api/educations";
+    LawyerEducation.prototype.urlRoot = "/api/educations";
 
     return LawyerEducation;
 
@@ -63,6 +63,38 @@ $(function() {
     return LawyerEducationCreate;
 
   })(Backbone.View);
+  ppu.LawyerEducationModalCreate = (function(_super) {
+    __extends(LawyerEducationModalCreate, _super);
+
+    function LawyerEducationModalCreate() {
+      return LawyerEducationModalCreate.__super__.constructor.apply(this, arguments);
+    }
+
+    LawyerEducationModalCreate.prototype.el = $("#lawyer-relationship-create-modal");
+
+    LawyerEducationModalCreate.prototype.template = $("#lawyer-form-education-template");
+
+    _.extend(LawyerEducationModalCreate.prototype, mixins.lawyerRelationshipModalCreate);
+
+    return LawyerEducationModalCreate;
+
+  })(Backbone.View);
+  ppu.LawyerEducationEditModal = (function(_super) {
+    __extends(LawyerEducationEditModal, _super);
+
+    function LawyerEducationEditModal() {
+      return LawyerEducationEditModal.__super__.constructor.apply(this, arguments);
+    }
+
+    LawyerEducationEditModal.prototype.el = $("#lawyer-education-edit-modal");
+
+    LawyerEducationEditModal.prototype.template = $("#lawyer-form-education-template");
+
+    _.extend(LawyerEducationEditModal.prototype, mixins.lawyerRelationshipModalEdit);
+
+    return LawyerEducationEditModal;
+
+  })(Backbone.View);
   ppu.LawyerEducationView = (function(_super) {
     __extends(LawyerEducationView, _super);
 
@@ -73,6 +105,8 @@ $(function() {
     LawyerEducationView.prototype.tagName = 'li';
 
     LawyerEducationView.prototype.template = $('#lawyer-education-template');
+
+    LawyerEducationView.prototype.modal = ppu.LawyerEducationEditModal;
 
     _.extend(LawyerEducationView.prototype, mixins.lawyerRelationshipView);
 
@@ -89,6 +123,8 @@ $(function() {
     LawyerEducationsEdit.prototype.el = $("#lawyer-education-edit");
 
     LawyerEducationsEdit.prototype.view = ppu.LawyerEducationView;
+
+    LawyerEducationsEdit.prototype.modal = ppu.LawyerEducationModalCreate;
 
     _.extend(LawyerEducationsEdit.prototype, mixins.lawyerRelationshipViews);
 

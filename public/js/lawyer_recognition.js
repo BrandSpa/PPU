@@ -9,7 +9,7 @@ $(function() {
       return LawyerRecognition.__super__.constructor.apply(this, arguments);
     }
 
-    LawyerRecognition.prototype.url = "/api/recognitions";
+    LawyerRecognition.prototype.urlRoot = "/api/recognitions";
 
     return LawyerRecognition;
 
@@ -63,6 +63,22 @@ $(function() {
     return LawyerRecognitionCreate;
 
   })(Backbone.View);
+  ppu.LawyerRecognitionsEditModal = (function(_super) {
+    __extends(LawyerRecognitionsEditModal, _super);
+
+    function LawyerRecognitionsEditModal() {
+      return LawyerRecognitionsEditModal.__super__.constructor.apply(this, arguments);
+    }
+
+    LawyerRecognitionsEditModal.prototype.el = $("#lawyer-recognition-edit-modal");
+
+    LawyerRecognitionsEditModal.prototype.template = $("#lawyer-form-recognition-template");
+
+    _.extend(LawyerRecognitionsEditModal.prototype, mixins.lawyerRelationshipModalEdit);
+
+    return LawyerRecognitionsEditModal;
+
+  })(Backbone.View);
   ppu.LawyerRecognitionView = (function(_super) {
     __extends(LawyerRecognitionView, _super);
 
@@ -74,9 +90,27 @@ $(function() {
 
     LawyerRecognitionView.prototype.template = $('#lawyer-recognition-template');
 
+    LawyerRecognitionView.prototype.modal = ppu.LawyerRecognitionsEditModal;
+
     _.extend(LawyerRecognitionView.prototype, mixins.lawyerRelationshipView);
 
     return LawyerRecognitionView;
+
+  })(Backbone.View);
+  ppu.LawyerRecognitionModalCreate = (function(_super) {
+    __extends(LawyerRecognitionModalCreate, _super);
+
+    function LawyerRecognitionModalCreate() {
+      return LawyerRecognitionModalCreate.__super__.constructor.apply(this, arguments);
+    }
+
+    LawyerRecognitionModalCreate.prototype.el = $("#lawyer-relationship-create-modal");
+
+    LawyerRecognitionModalCreate.prototype.template = $("#lawyer-form-recognition-template");
+
+    _.extend(LawyerRecognitionModalCreate.prototype, mixins.lawyerRelationshipModalCreate);
+
+    return LawyerRecognitionModalCreate;
 
   })(Backbone.View);
   return ppu.LawyerRecognitionsEdit = (function(_super) {
@@ -89,6 +123,8 @@ $(function() {
     LawyerRecognitionsEdit.prototype.el = $("#lawyer-recognition-edit");
 
     LawyerRecognitionsEdit.prototype.view = ppu.LawyerRecognitionView;
+
+    LawyerRecognitionsEdit.prototype.modal = ppu.LawyerRecognitionModalCreate;
 
     _.extend(LawyerRecognitionsEdit.prototype, mixins.lawyerRelationshipViews);
 

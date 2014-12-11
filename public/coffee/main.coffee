@@ -16,18 +16,23 @@ Backbone.View::en = ->
     return true
   else
     return false
-    
+
+Backbone.View::renderModel = ->
+  source = $(@template).html()
+  template = Handlebars.compile(source)
+  @container.html template( @model.toJSON() )
+  @
+
 Backbone.View::renderCollection = ->
   @collection.each (model) ->
     @renderOne(model)
   , @
 
-Backbone.View::showErrors = (model, response) ->
+Backbone.View::notifyError = (model, response) ->
     errors = JSON.parse(response.responseText)
-    _.each errors, (message, row) ->
-      console.log message
-      toastr.error message
-
+    if errors && lang == 'es'
+      toastr.error "Tiene errores"
+      
 Backbone.View::renderErrors = (model, response) ->
     model = model
     $form = @$el.find('form')
@@ -35,7 +40,7 @@ Backbone.View::renderErrors = (model, response) ->
     _.each errors, (message, field) ->
       input = $form.find("[name='fields[#{field}]' ]")
       input.addClass "error"
-      input.after "<p class='error-message'>#{message}</p>"
+      input.after "<div class='error-message'>#{message}</div>"
 
 Backbone.View::removeError = (e) ->
   el = $(e.currentTarget)
@@ -43,8 +48,8 @@ Backbone.View::removeError = (e) ->
   el.parent().find('.error-message').remove()
 
 Backbone.View::closeModal = ->
-  @remove()
   $('.modal-backdrop').remove()
+  @remove()
   $('body').removeClass 'modal-open'
 
 ppu.appendDatePickerYear = (el) ->
@@ -58,7 +63,7 @@ ppu.appendDatePickerYear = (el) ->
 ppu.appendForm = (el, template)->
   source = $(template).html()
   temp = Handlebars.compile(source)
-  $(el).find('.fields').append(temp).fadeIn()
+  $(temp()).appendTo($(el).find('.fields')).hide().slideDown()
   ppu.appendDatePickerYear(el)
 
 ppu.ajaxOptions = (type, data) ->

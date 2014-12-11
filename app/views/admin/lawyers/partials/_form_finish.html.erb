@@ -1,4 +1,4 @@
-<div class="panel panel-default col-lg-10 hidden" id="lawyer-finish">
+<div class="panel panel-default col-lg-9 hidden" id="lawyer-finish">
   <div class="panel-body">
   <div class="container-lawyer"></div>
   </div>
@@ -9,7 +9,7 @@
     <%= render "admin/lawyers/partials/section_edit", :model => "recognition", :title => "conferences_recognitions" %>
     <%= render "admin/lawyers/partials/section_edit", :model => "institution", :title => "memberships" %>
     <%= render "admin/lawyers/partials/section_edit", :model => "language", :title => "languages" %>
-    <%= render "admin/lawyers/partials/section_edit", :model => "pharase", :title => "phrases" %>
+    <%= render "admin/lawyers/partials/section_edit", :model => "phrase", :title => "phrases" %>
   </div>
   <div class="col-lg-6 lawyer-right">
 
@@ -28,17 +28,19 @@
 <%= render('awards/award') %>
 <%= render('articles/article') %>
 
-<script type="text/x-handlebars-template" id="lawyer-finish-template">
 
-    <h4> <%= t('practice_areas') %> </h4>
-    <ul>
-      {{#each categories }}
-      <li>{{ name }}</li>
-      {{/each}}
-    </ul>
-  
+<div class="modal fade" id="lawyer-relationship-create-modal">
+  <div class="modal-dialog">
+    <div class="modal-content"> 
+    <div class="modal-body"> </div>
+    <div class="modal-footer">
+    <a href="#" class="btn btn-default modal-close">Cancelar</a>
+    <a href="#" class="btn btn-info create">Guardar</a>
+    </div>
+    </div>
+  </div>
 </div>
-</script>
+
 
 
 
