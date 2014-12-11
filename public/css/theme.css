@@ -28,7 +28,11 @@ ul {
 
 .btn-store {
   background: #002855;
-  color: white; }
+  color: white;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+  border: 1px solid transparent; }
+  .btn-store:hover {
+    color: #00a1b1; }
 
 .btn-inverse {
   background: #34495e;
@@ -44,6 +48,9 @@ ul {
     color: #5f5f5f; }
     .panel-default .panel-body .btn-info {
       background: #00a1b1; }
+      .panel-default .panel-body .btn-info:hover {
+        background: #002855;
+        color: #00a1b1; }
 
 .navbar-default {
   background: #002855;
@@ -97,7 +104,8 @@ ul {
 #lawyer-finish {
   background: white;
   padding: 0;
-  border: none; }
+  border: none;
+  color: #5f5f5f; }
   #lawyer-finish .panel-body {
     padding: 0 0 30px 0; }
   #lawyer-finish .btn-info {
@@ -112,7 +120,8 @@ ul {
       float: left;
       padding: 15px; }
   #lawyer-finish li {
-    list-style-position: inside; }
+    list-style-position: inside;
+    margin-bottom: 15px; }
   #lawyer-finish h4 {
     margin-top: 30px;
     margin-bottom: 30px; }
@@ -148,7 +157,18 @@ ul {
       -moz-filter: grayscale(100%);
       filter: grayscale(100%); }
 
+#lawyer-award-edit li {
+  list-style: none; }
+
 .form-control.error {
   border-color: red !important; }
 .form-control:focus {
   border-color: #dddddd !important; }
+
+.error-message {
+  width: 100%;
+  background: red;
+  color: white;
+  padding: 5px 15px;
+  font-size: 0.9em;
+  margin-top: -5px; }

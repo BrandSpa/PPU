@@ -1,0 +1,13 @@
+ <script id="lawyer-show-template" type="text/x-handlebars-template"> 
+  <div class="lawyer-header">
+    <p>{{ position }}</p>
+    <h1>{{ name }} {{ lastname }}</h1>
+    <a href="tel:{+571 {{ phone }}" class="lawyer-phone">+571 {{ phone }}</a>
+    <a href="mailto:{{ email }}" class="lawyer-email">{{ email }}</a>
+    {{#if img_name.url}}
+    <img src="{{img_name.url}}" width="250" class="pull-right">
+    {{/if}}
+  </div>
+  <p class="lawyer-description">{{ description }}</p>
+</script>
+

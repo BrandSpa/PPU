@@ -1,5 +1,5 @@
 class Api::AwardsController < ApplicationController
-  include CreateBelongsToLawyer
+  include BelongsToLawyer
 
   def entity
     Award
@@ -7,14 +7,9 @@ class Api::AwardsController < ApplicationController
 
   def index
     lawyer_id = params[:lawyer_id]
-    collection = entity.where('lawyer_id = ?', lawyer_id) if lawyer_id.present?
+    collection = entity.all
+    collection = collection.by_lawyer(lawyer_id) if lawyer_id.present?
     render json: collection, status: 200
-  end
-
-  def show
-    id = params[:id]
-    model = entity.find(id) if id.present?
-    render json: model, status: 200
   end
 
 end

@@ -9,7 +9,7 @@ $(function() {
       return LawyerLanguage.__super__.constructor.apply(this, arguments);
     }
 
-    LawyerLanguage.prototype.url = "/api/languages";
+    LawyerLanguage.prototype.urlRoot = "/api/languages";
 
     return LawyerLanguage;
 
@@ -28,14 +28,14 @@ $(function() {
     return LawyerLanguages;
 
   })(Backbone.Collection);
-  return ppu.LawyerLanguageCreate = (function(_super) {
+  ppu.LawyerLanguageCreate = (function(_super) {
     __extends(LawyerLanguageCreate, _super);
 
     function LawyerLanguageCreate() {
       return LawyerLanguageCreate.__super__.constructor.apply(this, arguments);
     }
 
-    LawyerLanguageCreate.prototype.el = $("#lawyer-language-form");
+    LawyerLanguageCreate.prototype.el = $("#lawyer-form-language");
 
     LawyerLanguageCreate.prototype.template = $("#lawyer-form-language-template");
 
@@ -61,6 +61,74 @@ $(function() {
     };
 
     return LawyerLanguageCreate;
+
+  })(Backbone.View);
+  ppu.LawyerLanguagesCreateModal = (function(_super) {
+    __extends(LawyerLanguagesCreateModal, _super);
+
+    function LawyerLanguagesCreateModal() {
+      return LawyerLanguagesCreateModal.__super__.constructor.apply(this, arguments);
+    }
+
+    LawyerLanguagesCreateModal.prototype.el = $("#lawyer-relationship-create-modal");
+
+    LawyerLanguagesCreateModal.prototype.template = $("#lawyer-form-language-template");
+
+    _.extend(LawyerLanguagesCreateModal.prototype, mixins.lawyerRelationshipModalCreate);
+
+    return LawyerLanguagesCreateModal;
+
+  })(Backbone.View);
+  ppu.LawyerLanguagesEditModal = (function(_super) {
+    __extends(LawyerLanguagesEditModal, _super);
+
+    function LawyerLanguagesEditModal() {
+      return LawyerLanguagesEditModal.__super__.constructor.apply(this, arguments);
+    }
+
+    LawyerLanguagesEditModal.prototype.el = $("#lawyer-language-edit-modal");
+
+    LawyerLanguagesEditModal.prototype.template = $("#lawyer-form-language-template");
+
+    _.extend(LawyerLanguagesEditModal.prototype, mixins.lawyerRelationshipModalEdit);
+
+    return LawyerLanguagesEditModal;
+
+  })(Backbone.View);
+  ppu.LawyerLanguageView = (function(_super) {
+    __extends(LawyerLanguageView, _super);
+
+    function LawyerLanguageView() {
+      return LawyerLanguageView.__super__.constructor.apply(this, arguments);
+    }
+
+    LawyerLanguageView.prototype.tagName = 'li';
+
+    LawyerLanguageView.prototype.template = $('#lawyer-language-template');
+
+    LawyerLanguageView.prototype.modal = ppu.LawyerLanguagesEditModal;
+
+    _.extend(LawyerLanguageView.prototype, mixins.lawyerRelationshipView);
+
+    return LawyerLanguageView;
+
+  })(Backbone.View);
+  return ppu.LawyerLanguagesEdit = (function(_super) {
+    __extends(LawyerLanguagesEdit, _super);
+
+    function LawyerLanguagesEdit() {
+      return LawyerLanguagesEdit.__super__.constructor.apply(this, arguments);
+    }
+
+    LawyerLanguagesEdit.prototype.el = $("#lawyer-language-edit");
+
+    LawyerLanguagesEdit.prototype.view = ppu.LawyerLanguageView;
+
+    LawyerLanguagesEdit.prototype.modal = ppu.LawyerLanguagesCreateModal;
+
+    _.extend(LawyerLanguagesEdit.prototype, mixins.lawyerRelationshipViews);
+
+    return LawyerLanguagesEdit;
 
   })(Backbone.View);
 });

@@ -28,14 +28,14 @@ $(function() {
     return LawyerAwards;
 
   })(Backbone.Collection);
-  return ppu.LawyerAwardCreate = (function(_super) {
+  ppu.LawyerAwardCreate = (function(_super) {
     __extends(LawyerAwardCreate, _super);
 
     function LawyerAwardCreate() {
       return LawyerAwardCreate.__super__.constructor.apply(this, arguments);
     }
 
-    LawyerAwardCreate.prototype.el = $("#lawyer-award-form");
+    LawyerAwardCreate.prototype.el = $("#lawyer-form-award");
 
     LawyerAwardCreate.prototype.template = $("#lawyer-form-award-template");
 
@@ -61,6 +61,74 @@ $(function() {
     };
 
     return LawyerAwardCreate;
+
+  })(Backbone.View);
+  ppu.LawyerAwardsEditModal = (function(_super) {
+    __extends(LawyerAwardsEditModal, _super);
+
+    function LawyerAwardsEditModal() {
+      return LawyerAwardsEditModal.__super__.constructor.apply(this, arguments);
+    }
+
+    LawyerAwardsEditModal.prototype.el = $("#lawyer-award-edit-modal");
+
+    LawyerAwardsEditModal.prototype.template = $("#lawyer-form-award-template");
+
+    _.extend(LawyerAwardsEditModal.prototype, mixins.lawyerRelationshipModalEdit);
+
+    return LawyerAwardsEditModal;
+
+  })(Backbone.View);
+  ppu.LawyerAwardView = (function(_super) {
+    __extends(LawyerAwardView, _super);
+
+    function LawyerAwardView() {
+      return LawyerAwardView.__super__.constructor.apply(this, arguments);
+    }
+
+    LawyerAwardView.prototype.tagName = 'li';
+
+    LawyerAwardView.prototype.template = $('#lawyer-award-template');
+
+    LawyerAwardView.prototype.modal = ppu.LawyerAwardsEditModal;
+
+    _.extend(LawyerAwardView.prototype, mixins.lawyerRelationshipView);
+
+    return LawyerAwardView;
+
+  })(Backbone.View);
+  ppu.LawyerAwardModalCreate = (function(_super) {
+    __extends(LawyerAwardModalCreate, _super);
+
+    function LawyerAwardModalCreate() {
+      return LawyerAwardModalCreate.__super__.constructor.apply(this, arguments);
+    }
+
+    LawyerAwardModalCreate.prototype.el = $("#lawyer-relationship-create-modal");
+
+    LawyerAwardModalCreate.prototype.template = $("#lawyer-form-award-template");
+
+    _.extend(LawyerAwardModalCreate.prototype, mixins.lawyerRelationshipModalCreate);
+
+    return LawyerAwardModalCreate;
+
+  })(Backbone.View);
+  return ppu.LawyerAwardsEdit = (function(_super) {
+    __extends(LawyerAwardsEdit, _super);
+
+    function LawyerAwardsEdit() {
+      return LawyerAwardsEdit.__super__.constructor.apply(this, arguments);
+    }
+
+    LawyerAwardsEdit.prototype.el = $("#lawyer-award-edit");
+
+    LawyerAwardsEdit.prototype.view = ppu.LawyerAwardView;
+
+    LawyerAwardsEdit.prototype.modal = ppu.LawyerAwardModalCreate;
+
+    _.extend(LawyerAwardsEdit.prototype, mixins.lawyerRelationshipViews);
+
+    return LawyerAwardsEdit;
 
   })(Backbone.View);
 });

@@ -68,6 +68,7 @@
 
     initialize: ->
       @listenTo @model, "error", @renderErrors, @
+      @listenTo @model, "error", @toErrors, @
       @listenTo @model, "sync", @stored, @
       @render()
       @getCategories()
@@ -98,6 +99,9 @@
       datas = new FormData($forms[0])
       options = ppu.ajaxOptions("POST", datas)
       @model.save(datas, $.extend({}, options))
+
+    toErrors: ->
+      window.location = '#lawyer-form-create'
 
     stored: (model)->
       id = model.id
@@ -145,6 +149,8 @@
       "keydown .form-control": "removeError"
 
     initialize: ->
+      @listenTo @model, 'error', @renderErrors
+      @listenTo @model, 'sync', @updated
       @getCategories()
 
     getCategories: ->
@@ -156,7 +162,6 @@
         template = Handlebars.compile(source)
         $(el).find('#lawyer-list-categories').html template( collection )
         _.each categories, (category) ->
-          console.log $(el).find("#lawyer-list-categories input[value='#{category.id}']")
           $(el).find("#lawyer-list-categories input[value='#{category.id}']").attr("checked", "checked")
 
     render: ->
@@ -171,15 +176,20 @@
       data = new FormData($forms[0])
       #data.append("fields[lawyer_id]", lawyer_id)
       @model.save data, $.extend({}, ppu.ajaxOptions("PUT", data))
-      @closeModal()
+      
+
+    updated: (model) ->
+      if model.id
+        @closeModal()
+      
 
     close: (e) ->
       e.preventDefault()
       @closeModal()
  
   class ppu.LawyerFinish extends Backbone.View
-    el: $ '#lawyer-finish'
-    template: $ '#lawyer-finish-template'
+    el: $ '.container-lawyer'
+    template: $ '#lawyer-show-template'
     events: 
       'click .open-edit-lawyer': 'openEdit'
     
@@ -189,11 +199,23 @@
     render: ->
       source = @template.html()
       t = Handlebars.compile(source)
-      $(@el).find(".panel-body").html t( @model.toJSON() )
-      $(@el).removeClass("hidden")
-    
+      $(@el).html t( @model.toJSON() )
+      $("#lawyer-finish").removeClass("hidden")
+      @$el.append   '<a href="#" class="btn btn-info open-edit-lawyer">Editar</a>'
+      @getRelationships(@model.get('id'))
+
+    getRelationships: (id) ->
+
+      mixins.renderCollection(ppu.LawyerEducations, ppu.LawyerEducationsEdit, lawyer_id: id)
+      mixins.renderCollection(ppu.LawyerArticles, ppu.LawyerArticlesEdit, lawyer_id: id)
+      mixins.renderCollection(ppu.LawyerJobs, ppu.LawyerJobsEdit, lawyer_id: id)
+      mixins.renderCollection(ppu.LawyerRecognitions, ppu.LawyerRecognitionsEdit, lawyer_id: id)
+      mixins.renderCollection(ppu.LawyerInstitutions, ppu.LawyerInstitutionsEdit, lawyer_id: id)
+      mixins.renderCollection(ppu.LawyerLanguages, ppu.LawyerLanguagesEdit, lawyer_id: id)
+      mixins.renderCollection(ppu.LawyerPharases, ppu.LawyerPharasesEdit, lawyer_id: id)
+      mixins.renderCollection(ppu.LawyerAwards, ppu.LawyerAwardsEdit, lawyer_id: id)
+
     openEdit: (e) ->
       e.preventDefault()
       view = new ppu.lawyerEdit model: @model
       view.render()
-

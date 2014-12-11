@@ -145,6 +145,7 @@ $(function() {
 
     LawyerCreateForm.prototype.initialize = function() {
       this.listenTo(this.model, "error", this.renderErrors, this);
+      this.listenTo(this.model, "error", this.toErrors, this);
       this.listenTo(this.model, "sync", this.stored, this);
       this.render();
       this.getCategories();
@@ -185,6 +186,10 @@ $(function() {
       datas = new FormData($forms[0]);
       options = ppu.ajaxOptions("POST", datas);
       return this.model.save(datas, $.extend({}, options));
+    };
+
+    LawyerCreateForm.prototype.toErrors = function() {
+      return window.location = '#lawyer-form-create';
     };
 
     LawyerCreateForm.prototype.stored = function(model) {
@@ -262,6 +267,8 @@ $(function() {
     };
 
     lawyerEdit.prototype.initialize = function() {
+      this.listenTo(this.model, 'error', this.renderErrors);
+      this.listenTo(this.model, 'sync', this.updated);
       return this.getCategories();
     };
 
@@ -276,7 +283,6 @@ $(function() {
         template = Handlebars.compile(source);
         $(el).find('#lawyer-list-categories').html(template(collection));
         return _.each(categories, function(category) {
-          console.log($(el).find("#lawyer-list-categories input[value='" + category.id + "']"));
           return $(el).find("#lawyer-list-categories input[value='" + category.id + "']").attr("checked", "checked");
         });
       });
@@ -297,8 +303,13 @@ $(function() {
       e.preventDefault();
       $forms = $(this.el).find("form");
       data = new FormData($forms[0]);
-      this.model.save(data, $.extend({}, ppu.ajaxOptions("PUT", data)));
-      return this.closeModal();
+      return this.model.save(data, $.extend({}, ppu.ajaxOptions("PUT", data)));
+    };
+
+    lawyerEdit.prototype.updated = function(model) {
+      if (model.id) {
+        return this.closeModal();
+      }
     };
 
     lawyerEdit.prototype.close = function(e) {
@@ -316,9 +327,9 @@ $(function() {
       return LawyerFinish.__super__.constructor.apply(this, arguments);
     }
 
-    LawyerFinish.prototype.el = $('#lawyer-finish');
+    LawyerFinish.prototype.el = $('.container-lawyer');
 
-    LawyerFinish.prototype.template = $('#lawyer-finish-template');
+    LawyerFinish.prototype.template = $('#lawyer-show-template');
 
     LawyerFinish.prototype.events = {
       'click .open-edit-lawyer': 'openEdit'
@@ -332,8 +343,37 @@ $(function() {
       var source, t;
       source = this.template.html();
       t = Handlebars.compile(source);
-      $(this.el).find(".panel-body").html(t(this.model.toJSON()));
-      return $(this.el).removeClass("hidden");
+      $(this.el).html(t(this.model.toJSON()));
+      $("#lawyer-finish").removeClass("hidden");
+      this.$el.append('<a href="#" class="btn btn-info open-edit-lawyer">Editar</a>');
+      return this.getRelationships(this.model.get('id'));
+    };
+
+    LawyerFinish.prototype.getRelationships = function(id) {
+      mixins.renderCollection(ppu.LawyerEducations, ppu.LawyerEducationsEdit, {
+        lawyer_id: id
+      });
+      mixins.renderCollection(ppu.LawyerArticles, ppu.LawyerArticlesEdit, {
+        lawyer_id: id
+      });
+      mixins.renderCollection(ppu.LawyerJobs, ppu.LawyerJobsEdit, {
+        lawyer_id: id
+      });
+      mixins.renderCollection(ppu.LawyerRecognitions, ppu.LawyerRecognitionsEdit, {
+        lawyer_id: id
+      });
+      mixins.renderCollection(ppu.LawyerInstitutions, ppu.LawyerInstitutionsEdit, {
+        lawyer_id: id
+      });
+      mixins.renderCollection(ppu.LawyerLanguages, ppu.LawyerLanguagesEdit, {
+        lawyer_id: id
+      });
+      mixins.renderCollection(ppu.LawyerPharases, ppu.LawyerPharasesEdit, {
+        lawyer_id: id
+      });
+      return mixins.renderCollection(ppu.LawyerAwards, ppu.LawyerAwardsEdit, {
+        lawyer_id: id
+      });
     };
 
     LawyerFinish.prototype.openEdit = function(e) {

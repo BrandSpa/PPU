@@ -9,7 +9,7 @@ $(function() {
       return LawyerPharase.__super__.constructor.apply(this, arguments);
     }
 
-    LawyerPharase.prototype.url = "/api/pharases";
+    LawyerPharase.prototype.urlRoot = "/api/pharases";
 
     return LawyerPharase;
 
@@ -28,19 +28,19 @@ $(function() {
     return LawyerPharases;
 
   })(Backbone.Collection);
-  return ppu.LawyerPharaseCreate = (function(_super) {
+  ppu.LawyerPharaseCreate = (function(_super) {
     __extends(LawyerPharaseCreate, _super);
 
     function LawyerPharaseCreate() {
       return LawyerPharaseCreate.__super__.constructor.apply(this, arguments);
     }
 
-    LawyerPharaseCreate.prototype.el = $("#lawyer-pharase-form");
+    LawyerPharaseCreate.prototype.el = $("#lawyer-form-phrase");
 
-    LawyerPharaseCreate.prototype.template = $("#lawyer-form-pharase-template");
+    LawyerPharaseCreate.prototype.template = $("#lawyer-form-phrase-template");
 
     LawyerPharaseCreate.prototype.events = {
-      'click .lawyer-add-pharase': 'addForm'
+      'click .lawyer-add-phrase': 'addForm'
     };
 
     LawyerPharaseCreate.prototype.initialize = function() {
@@ -61,6 +61,74 @@ $(function() {
     };
 
     return LawyerPharaseCreate;
+
+  })(Backbone.View);
+  ppu.LawyerPhrasesEditModal = (function(_super) {
+    __extends(LawyerPhrasesEditModal, _super);
+
+    function LawyerPhrasesEditModal() {
+      return LawyerPhrasesEditModal.__super__.constructor.apply(this, arguments);
+    }
+
+    LawyerPhrasesEditModal.prototype.el = $("#lawyer-phrase-edit-modal");
+
+    LawyerPhrasesEditModal.prototype.template = $("#lawyer-form-phrase-template");
+
+    _.extend(LawyerPhrasesEditModal.prototype, mixins.lawyerRelationshipModalEdit);
+
+    return LawyerPhrasesEditModal;
+
+  })(Backbone.View);
+  ppu.LawyerPharaseView = (function(_super) {
+    __extends(LawyerPharaseView, _super);
+
+    function LawyerPharaseView() {
+      return LawyerPharaseView.__super__.constructor.apply(this, arguments);
+    }
+
+    LawyerPharaseView.prototype.tagName = 'li';
+
+    LawyerPharaseView.prototype.template = $('#lawyer-phrase-template');
+
+    LawyerPharaseView.prototype.modal = ppu.LawyerPhrasesEditModal;
+
+    _.extend(LawyerPharaseView.prototype, mixins.lawyerRelationshipView);
+
+    return LawyerPharaseView;
+
+  })(Backbone.View);
+  ppu.LawyerPhraseModalCreate = (function(_super) {
+    __extends(LawyerPhraseModalCreate, _super);
+
+    function LawyerPhraseModalCreate() {
+      return LawyerPhraseModalCreate.__super__.constructor.apply(this, arguments);
+    }
+
+    LawyerPhraseModalCreate.prototype.el = $("#lawyer-relationship-create-modal");
+
+    LawyerPhraseModalCreate.prototype.template = $("#lawyer-form-phrase-template");
+
+    _.extend(LawyerPhraseModalCreate.prototype, mixins.lawyerRelationshipModalCreate);
+
+    return LawyerPhraseModalCreate;
+
+  })(Backbone.View);
+  return ppu.LawyerPharasesEdit = (function(_super) {
+    __extends(LawyerPharasesEdit, _super);
+
+    function LawyerPharasesEdit() {
+      return LawyerPharasesEdit.__super__.constructor.apply(this, arguments);
+    }
+
+    LawyerPharasesEdit.prototype.el = $("#lawyer-phrase-edit");
+
+    LawyerPharasesEdit.prototype.view = ppu.LawyerPharaseView;
+
+    LawyerPharasesEdit.prototype.modal = ppu.LawyerPhraseModalCreate;
+
+    _.extend(LawyerPharasesEdit.prototype, mixins.lawyerRelationshipViews);
+
+    return LawyerPharasesEdit;
 
   })(Backbone.View);
 });

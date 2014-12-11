@@ -9,7 +9,7 @@ $(function() {
       return LawyerJob.__super__.constructor.apply(this, arguments);
     }
 
-    LawyerJob.prototype.url = "/api/jobs";
+    LawyerJob.prototype.urlRoot = "/api/jobs";
 
     return LawyerJob;
 
@@ -28,14 +28,14 @@ $(function() {
     return LawyerJobs;
 
   })(Backbone.Collection);
-  return ppu.LawyerJobCreate = (function(_super) {
+  ppu.LawyerJobCreate = (function(_super) {
     __extends(LawyerJobCreate, _super);
 
     function LawyerJobCreate() {
       return LawyerJobCreate.__super__.constructor.apply(this, arguments);
     }
 
-    LawyerJobCreate.prototype.el = $("#lawyer-job-form");
+    LawyerJobCreate.prototype.el = $("#lawyer-form-job");
 
     LawyerJobCreate.prototype.template = $("#lawyer-form-job-template");
 
@@ -61,6 +61,74 @@ $(function() {
     };
 
     return LawyerJobCreate;
+
+  })(Backbone.View);
+  ppu.LawyerJobsEditModal = (function(_super) {
+    __extends(LawyerJobsEditModal, _super);
+
+    function LawyerJobsEditModal() {
+      return LawyerJobsEditModal.__super__.constructor.apply(this, arguments);
+    }
+
+    LawyerJobsEditModal.prototype.el = $("#lawyer-job-edit-modal");
+
+    LawyerJobsEditModal.prototype.template = $("#lawyer-form-job-template");
+
+    _.extend(LawyerJobsEditModal.prototype, mixins.lawyerRelationshipModalEdit);
+
+    return LawyerJobsEditModal;
+
+  })(Backbone.View);
+  ppu.LawyerJobView = (function(_super) {
+    __extends(LawyerJobView, _super);
+
+    function LawyerJobView() {
+      return LawyerJobView.__super__.constructor.apply(this, arguments);
+    }
+
+    LawyerJobView.prototype.tagName = 'li';
+
+    LawyerJobView.prototype.template = $('#lawyer-job-template');
+
+    LawyerJobView.prototype.modal = ppu.LawyerJobsEditModal;
+
+    _.extend(LawyerJobView.prototype, mixins.lawyerRelationshipView);
+
+    return LawyerJobView;
+
+  })(Backbone.View);
+  ppu.LawyerJobModalCreate = (function(_super) {
+    __extends(LawyerJobModalCreate, _super);
+
+    function LawyerJobModalCreate() {
+      return LawyerJobModalCreate.__super__.constructor.apply(this, arguments);
+    }
+
+    LawyerJobModalCreate.prototype.el = $("#lawyer-relationship-create-modal");
+
+    LawyerJobModalCreate.prototype.template = $("#lawyer-form-job-template");
+
+    _.extend(LawyerJobModalCreate.prototype, mixins.lawyerRelationshipModalCreate);
+
+    return LawyerJobModalCreate;
+
+  })(Backbone.View);
+  return ppu.LawyerJobsEdit = (function(_super) {
+    __extends(LawyerJobsEdit, _super);
+
+    function LawyerJobsEdit() {
+      return LawyerJobsEdit.__super__.constructor.apply(this, arguments);
+    }
+
+    LawyerJobsEdit.prototype.el = $("#lawyer-job-edit");
+
+    LawyerJobsEdit.prototype.view = ppu.LawyerJobView;
+
+    LawyerJobsEdit.prototype.modal = ppu.LawyerJobModalCreate;
+
+    _.extend(LawyerJobsEdit.prototype, mixins.lawyerRelationshipViews);
+
+    return LawyerJobsEdit;
 
   })(Backbone.View);
 });
