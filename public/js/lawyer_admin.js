@@ -143,6 +143,10 @@ $(function() {
 
     LawyerCreateForm.prototype.template = $("#lawyer-form-template");
 
+    LawyerCreateForm.prototype.events = {
+      "change .change-level": 'toggleDescription'
+    };
+
     LawyerCreateForm.prototype.initialize = function() {
       this.listenTo(this.model, "error", this.renderErrors, this);
       this.listenTo(this.model, "error", this.toErrors, this);
@@ -167,6 +171,17 @@ $(function() {
         template = Handlebars.compile(source);
         return $('#lawyer-list-categories').html(template(collection));
       });
+    };
+
+    LawyerCreateForm.prototype.toggleDescription = function(e) {
+      var el, val;
+      el = $(e.currentTarget);
+      val = el.val();
+      if (val >= 6) {
+        return $('.lawyer-description').removeClass('hidden').hide().slideDown();
+      } else {
+        return $('.lawyer-description').fadeOut();
+      }
     };
 
     LawyerCreateForm.prototype.changeLang = function() {

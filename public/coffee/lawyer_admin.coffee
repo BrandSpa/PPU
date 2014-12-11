@@ -65,6 +65,8 @@
   class ppu.LawyerCreateForm extends Backbone.View
     el: $ "#lawyer-form-create"
     template: $ "#lawyer-form-template"
+    events:
+      "change .change-level": 'toggleDescription'
 
     initialize: ->
       @listenTo @model, "error", @renderErrors, @
@@ -85,6 +87,15 @@
         source = $('#lawyer-categories-template').html()
         template = Handlebars.compile(source)
         $('#lawyer-list-categories').html template( collection )
+    
+    toggleDescription: (e) ->
+      el = $(e.currentTarget)
+      val = el.val()
+      if val >= 6
+        $('.lawyer-description').removeClass('hidden').hide().slideDown()
+      else
+        $('.lawyer-description').fadeOut()
+      
 
     changeLang: ->
       if lang == 'en'
