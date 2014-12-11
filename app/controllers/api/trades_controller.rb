@@ -1,6 +1,4 @@
-class Api::TradesController < ApplicationController
-  include CreateBelongsToLawyer
-  
+class Api::TradesController < ApplicationController  
   def entity
     Trade
   end
