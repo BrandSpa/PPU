@@ -124,7 +124,7 @@
       ppu.lawyerAwardCreate.store(id)
       ppu.lawyerArticleCreate.store(id)
       ppu.lawyerPharaseCreate.store(id)
-      #window.location = "/dashboard"
+      window.location = "/dashboard"
 
   class ppu.LawyerCreate extends Backbone.View
     el: $ "#lawyer-create"
@@ -212,7 +212,7 @@
       t = Handlebars.compile(source)
       $(@el).html t( @model.toJSON() )
       $("#lawyer-finish").removeClass("hidden")
-      @$el.append   '<a href="#" class="btn btn-info open-edit-lawyer">Editar</a>'
+      @$el.append   '<a href="#" class="btn btn-info open-edit-lawyer"><i class="fa fa-pencil-square"></i></a>'
       @getRelationships(@model.get('id'))
 
     getRelationships: (id) ->

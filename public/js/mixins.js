@@ -1,6 +1,7 @@
 mixins.lawyerRelationshipView = {
   events: {
-    "click .open-edit": "openEdit"
+    "click .open-edit": "openEdit",
+    "click .remove": "remove"
   },
   initialize: function() {
     return this.listenTo(this.model, 'change', this.render);
@@ -10,7 +11,8 @@ mixins.lawyerRelationshipView = {
     source = $(this.template).html();
     template = Handlebars.compile(source);
     this.$el.html(template(this.model.toJSON()));
-    this.$el.append('<a href="#" class="btn btn-info btn-xs open-edit" >Editar</a>');
+    this.$el.append('<a href="#" class="btn btn-info btn-xs open-edit" ><i class="fa fa-pencil-square"></i></a> ');
+    this.$el.append('<a href="#" class="btn btn-danger btn-xs remove" ><i class="fa fa-times"></i></a>');
     return this;
   },
   openEdit: function(e) {
@@ -20,6 +22,12 @@ mixins.lawyerRelationshipView = {
       model: this.model
     });
     return view.render();
+  },
+  remove: function(e) {
+    e.preventDefault();
+    this.model.destroy();
+    this.$el.fadeOut();
+    return this.$el.remove();
   }
 };
 
@@ -85,9 +93,10 @@ mixins.lawyerRelationshipModalCreate = {
     source = $(this.template).html();
     template = Handlebars.compile(source);
     this.$el.find('.modal-body').html(template(data));
-    return $(this.el).modal({
+    $(this.el).modal({
       backdrop: 'static'
     });
+    return ppu.appendDatePickerYear(this.el);
   },
   create: function(e) {
     var $form, data, el, lawyer_id;
@@ -124,9 +133,10 @@ mixins.lawyerRelationshipModalEdit = {
     source = $(this.template).html();
     template = Handlebars.compile(source);
     this.$el.find('.modal-body').html(template(this.model.toJSON()));
-    return $(this.el).modal({
+    $(this.el).modal({
       backdrop: 'static'
     });
+    return ppu.appendDatePickerYear(this.el);
   },
   update: function(e) {
     var $form, data;

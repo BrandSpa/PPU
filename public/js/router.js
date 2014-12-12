@@ -14,7 +14,7 @@ $(function() {
       ":lang/abogados": "lawyers",
       "abogados/:id": "lawyer",
       "crear-abogado": 'adminLawyer',
-      "crear-abogado": 'adminLawyer',
+      "crear-noticia": 'newPost',
       "editar-abogado/:name": 'finishLawyer',
       ":lang/editar-abogado/:id": 'finishLawyer',
       ":lang/crear-abogado": 'adminLawyer',
@@ -84,6 +84,11 @@ $(function() {
       return view = new ppu.LawyerFinish({
         model: ppu.lawyerFinish
       });
+    };
+
+    Workspace.prototype.newPost = function() {
+      ppu.admin.postCreate = new ppu.admin.PostCreate;
+      return ppu.admin.postCreate.render();
     };
 
     Workspace.prototype.dashboard = function() {

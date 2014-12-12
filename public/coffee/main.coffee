@@ -62,6 +62,14 @@ ppu.appendDatePickerYear = (el) ->
     language: 'es'
     autoclose: true
 
+ppu.appendDatePicker = (el) ->
+  $(el).find('.datepicker').datepicker
+    language: 'es'
+    autoclose: true
+
+ppu.appendSummernote = (el) ->
+   $(el).find('.summernote').summernote()
+
 ppu.appendForm = (el, template)->
   source = $(template).html()
   temp = Handlebars.compile(source)

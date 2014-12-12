@@ -11,6 +11,12 @@ gulp.task('coffee', function() {
     .pipe(gulp.dest('js'))
 });
 
+gulp.task('coffee-admin', function() {
+  gulp.src('coffee/admin/*.coffee')
+    .pipe(coffee({bare: true}).on('error', gutil.log))
+    .pipe(gulp.dest('js/admin/'))
+});
+
 gulp.task('sass', function () {
     gulp.src('sass/*.sass')
         .pipe(sass())
@@ -60,6 +66,7 @@ gulp.task('bb-scripts', function() {
 gulp.task('watch', ['sass', 'coffee'], function(){
   gulp.watch('sass/*.sass', ['sass']);
   gulp.watch('coffee/*.coffee', ['coffee']);
+  gulp.watch('coffee/admin/*.coffee', ['coffee-admin']);
 });
  
 gulp.task('default', ['dependencies-scripts', 'bb-scripts','watch']);
