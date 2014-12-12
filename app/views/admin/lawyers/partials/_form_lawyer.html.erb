@@ -101,7 +101,7 @@
       </select>
     </div>
 
-    <div class="form-group col-lg-12 lawyer-description hidden">
+    <div class="form-group col-lg-12 lawyer-description {{#unless description}} hidden {{/unless}}">
       <textarea name="fields[description]" class="form-control" rows="3" placeholder="Descripción">{{ description }}</textarea>
     </div>
 
