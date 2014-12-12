@@ -87,7 +87,8 @@ ul {
   box-sizing: border-box;
   overflow: hidden;
   float: left;
-  margin: 1%; }
+  margin: 1%;
+  font-size: 1em; }
   .lawyer-list .phone, .lawyer-list .email {
     color: #00a1b1;
     display: block;
@@ -95,7 +96,7 @@ ul {
   .lawyer-list img {
     float: left;
     width: 150px;
-    height: 170px;
+    height: 150px;
     margin: 0;
     padding: 0;
     overflow: hidden;
