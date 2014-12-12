@@ -1,6 +1,8 @@
 mixins.lawyerRelationshipView =
   events:
     "click .open-edit": "openEdit"
+    "click .remove": "remove"
+
   initialize: ->
     @listenTo @model, 'change', @render
 
@@ -8,13 +10,20 @@ mixins.lawyerRelationshipView =
     source = $(@template).html()
     template = Handlebars.compile(source)
     @$el.html template( @model.toJSON() )
-    @$el.append '<a href="#" class="btn btn-info btn-xs open-edit" >Editar</a>'
+    @$el.append '<a href="#" class="btn btn-info btn-xs open-edit" ><i class="fa fa-pencil-square"></i></a> '
+    @$el.append '<a href="#" class="btn btn-danger btn-xs remove" ><i class="fa fa-times"></i></a>'
     @
 
   openEdit: (e) ->
     e.preventDefault()
     view = new @modal model: @model
     view.render()
+  
+  remove: (e) ->
+    e.preventDefault()
+    @model.destroy()
+    @$el.fadeOut()
+    @$el.remove()
 
 mixins.lawyerRelationshipViews =
   events:
@@ -60,6 +69,7 @@ mixins.lawyerRelationshipModalCreate =
     template = Handlebars.compile(source)
     @$el.find('.modal-body').html template(data)
     $(@el).modal backdrop: 'static'
+    ppu.appendDatePickerYear(@el)
    
   create: (e) ->
     e.preventDefault()
@@ -93,6 +103,7 @@ mixins.lawyerRelationshipModalEdit =
     template = Handlebars.compile(source)
     @$el.find('.modal-body').html template( @model.toJSON() )
     $(@el).modal backdrop: 'static'
+    ppu.appendDatePickerYear(@el)
    
   update: (e) ->
     e.preventDefault()

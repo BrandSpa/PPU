@@ -360,7 +360,7 @@ $(function() {
       t = Handlebars.compile(source);
       $(this.el).html(t(this.model.toJSON()));
       $("#lawyer-finish").removeClass("hidden");
-      this.$el.append('<a href="#" class="btn btn-info open-edit-lawyer">Editar</a>');
+      this.$el.append('<a href="#" class="btn btn-info open-edit-lawyer"><i class="fa fa-pencil-square"></i></a>');
       return this.getRelationships(this.model.get('id'));
     };
 

@@ -87,6 +87,17 @@ ppu.appendDatePickerYear = function(el) {
   });
 };
 
+ppu.appendDatePicker = function(el) {
+  return $(el).find('.datepicker').datepicker({
+    language: 'es',
+    autoclose: true
+  });
+};
+
+ppu.appendSummernote = function(el) {
+  return $(el).find('.summernote').summernote();
+};
+
 ppu.appendForm = function(el, template) {
   var source, temp;
   source = $(template).html();

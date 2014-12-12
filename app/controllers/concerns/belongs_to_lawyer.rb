@@ -22,6 +22,12 @@ module BelongsToLawyer
     render json: model, status: 200
 	end
 
+  def destroy
+    model = entity.find(params[:id])
+    model.destroy()
+    render json: "destroy"
+  end
+
 	private
 	    def model_params
 	      params.require(:fields).permit!

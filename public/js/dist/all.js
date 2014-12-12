@@ -87,6 +87,17 @@ ppu.appendDatePickerYear = function(el) {
   });
 };
 
+ppu.appendDatePicker = function(el) {
+  return $(el).find('.datepicker').datepicker({
+    language: 'es',
+    autoclose: true
+  });
+};
+
+ppu.appendSummernote = function(el) {
+  return $(el).find('.summernote').summernote();
+};
+
 ppu.appendForm = function(el, template) {
   var source, temp;
   source = $(template).html();
@@ -138,6 +149,12 @@ $(document).find('.datepicker-year').datepicker({
   autoclose: true
 });
 
+$(document).find('.datepicker').datepicker({
+  format: 'yyyy',
+  language: 'es',
+  autoclose: true
+});
+
 var __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
@@ -154,7 +171,7 @@ $(function() {
       ":lang/abogados": "lawyers",
       "abogados/:id": "lawyer",
       "crear-abogado": 'adminLawyer',
-      "crear-abogado": 'adminLawyer',
+      "crear-noticia": 'newPost',
       "editar-abogado/:name": 'finishLawyer',
       ":lang/editar-abogado/:id": 'finishLawyer',
       ":lang/crear-abogado": 'adminLawyer',
@@ -224,6 +241,11 @@ $(function() {
       return view = new ppu.LawyerFinish({
         model: ppu.lawyerFinish
       });
+    };
+
+    Workspace.prototype.newPost = function() {
+      ppu.admin.postCreate = new ppu.admin.PostCreate;
+      return ppu.admin.postCreate.render();
     };
 
     Workspace.prototype.dashboard = function() {

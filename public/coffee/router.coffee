@@ -5,7 +5,7 @@ $ ->
       ":lang/abogados" : "lawyers"
       "abogados/:id" : "lawyer"
       "crear-abogado": 'adminLawyer'
-      "crear-abogado": 'adminLawyer'
+      "crear-noticia": 'newPost'
       "editar-abogado/:name": 'finishLawyer'
       ":lang/editar-abogado/:id": 'finishLawyer'
       ":lang/crear-abogado": 'adminLawyer'
@@ -55,6 +55,9 @@ $ ->
       ppu.lawyerFinish.fetch()
       view = new ppu.LawyerFinish model: ppu.lawyerFinish
 
+    newPost: ->
+      ppu.admin.postCreate = new ppu.admin.PostCreate
+      ppu.admin.postCreate.render()
     dashboard: ->
       ppu.lawyers = new ppu.Lawyers
       ppu.lawyers.fetch reset: true

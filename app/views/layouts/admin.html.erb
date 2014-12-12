@@ -3,12 +3,15 @@
 <head>
   <title>Ppu</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,500,700' rel='stylesheet' type='text/css'> -->
+  <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,500,700' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="/css/theme.css">
   <link rel="stylesheet" href="/bower_components/bootstrap-datepicker/css/datepicker3.css">
   <link rel="stylesheet" href="/bower_components/toastr/toastr.min.css">
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" />
     <link rel="stylesheet" href="/bower_components/dropzone/downloads/css/basic.css">
+    <link rel="stylesheet" href="/bower_components/summernote/dist/summernote.css">
+    <link rel="stylesheet" href="/bower_components/summernote/dist/summernote-bs3.css">
   <%= csrf_meta_tags %>
 </head>
 <body id="ppu-admin">
@@ -62,6 +65,7 @@
   <script src="/bower_components/toastr/toastr.min.js"></script>
   <script src="/bower_components/dropzone/downloads/dropzone.js"></script>
   <script src="/bower_components/jquery.iframe-transport/jquery.iframe-transport.js"></script>
+  <script src="/bower_components/summernote/dist/summernote.min.js"></script>
   
   <script src="/js/main.js"></script>
   <script src="/js/mixins.js"></script>
@@ -76,6 +80,8 @@
   <script src="/js/lawyer_recognition.js"></script>
   <script src="/js/lawyers.js"></script>
   <script src="/js/lawyer_admin.js"></script>
+  <script src="/js/admin/post.js"></script>
+
   <script src="/js/router.js"></script>
 
 </body>
