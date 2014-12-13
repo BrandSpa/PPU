@@ -2,6 +2,7 @@ window.ppu =
   admin: {}
 
 window.mixins = {}
+window.app = {}
 
 ppu.pathUrl = window.location.pathname.split( '/' )
 

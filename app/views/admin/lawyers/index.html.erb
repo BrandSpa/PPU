@@ -1,5 +1,5 @@
-<%= render "admin/lawyers/partials/form_finish" %>
-<%= render "admin/lawyers/partials/form_lawyer" %>
+<%= render "admin/lawyers/partials/edit_lawyer" %>
+<%= render "admin/lawyers/partials/modal_edit_lawyer" %>
 
 <div class="row">
   <div class="col-lg-9" id="lawyer-create">
@@ -7,6 +7,7 @@
     <div class="panel-body"> </div>
   </div>
 
+<%= render "lawyers/form" %>
 <%= render "admin/lawyers/partials/panel_form", :model => "education", :title => "education" %>
 <%= render "admin/lawyers/partials/panel_form", :model => "job", :title => "professional_experience" %>
 <%= render "admin/lawyers/partials/panel_form", :model => "recognition", :title => "conferences_recognitions" %>

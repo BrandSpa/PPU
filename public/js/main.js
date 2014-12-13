@@ -6,6 +6,8 @@ window.ppu = {
 
 window.mixins = {};
 
+window.app = {};
+
 ppu.pathUrl = window.location.pathname.split('/');
 
 lang = ppu.pathUrl[1];
