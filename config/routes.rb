@@ -19,7 +19,9 @@ Rails.application.routes.draw do
   get "", to: 'posts#index'
 
   scope "(:locale)", locale: /es|en/ do
-    get "abogados", to: 'lawyers#index'
+    get "abogados/", to: 'lawyers#index'
+    get "abogados/:name", to: 'lawyers#show'
+    get "abogados/:id/vcard", to: 'lawyers#vcard'
     get "lawyers", to: 'lawyers#index'
     get "crear-abogado", to: 'admin/lawyers#index'
     get "editar-abogado/:id", to: 'admin/lawyers#index'

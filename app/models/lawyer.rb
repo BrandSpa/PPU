@@ -27,12 +27,9 @@ class Lawyer < ActiveRecord::Base
   scope :by_trade, -> (trade){ joins(:trades).where('trades.title' => trade ) }
   scope :by_trade_id, -> (trade){ joins(:trades).where('trades.id' => trade ) }
   scope :search, -> (keyword){ where("keywords LIKE ?", "%#{keyword}%") }
+  scope :by_name, -> (firstname, lastname){  where("name LIKE ? AND lastname LIKE ?", "%#{firstname}%", "%#{lastname}%") }
 
-  def self.by_name(full_name)
-    split_name = full_name.split('-')
-    self.where("name = ? AND lastname = ?", split_name[0], split_name[1])
-  end
-
+ 
 
   def self.attach_categories(model, collection)
     if collection.present?

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Ppu</title>
+  <title>PPU - ADMIN</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,500,700' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
@@ -9,9 +9,9 @@
   <link rel="stylesheet" href="/bower_components/bootstrap-datepicker/css/datepicker3.css">
   <link rel="stylesheet" href="/bower_components/toastr/toastr.min.css">
   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" />
-    <link rel="stylesheet" href="/bower_components/dropzone/downloads/css/basic.css">
-    <link rel="stylesheet" href="/bower_components/summernote/dist/summernote.css">
-    <link rel="stylesheet" href="/bower_components/summernote/dist/summernote-bs3.css">
+  <link rel="stylesheet" href="/bower_components/dropzone/downloads/css/basic.css">
+  <link rel="stylesheet" href="/bower_components/summernote/dist/summernote.css">
+  <link rel="stylesheet" href="/bower_components/summernote/dist/summernote-bs3.css">
   <%= csrf_meta_tags %>
 </head>
 <body id="ppu-admin">
@@ -52,7 +52,10 @@
   <%= render "languages/form" %>
   <%= render "phrases/form" %>
   <%= render "recognitions/form" %>
-
+  <%= render "partials/share_modal" %>
+<script type="text/javascript">var switchTo5x=true;</script>
+<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+<script type="text/javascript">stLight.options({publisher: "0ddbf8d7-ae80-459a-94e4-167fd7e54f82", doNotHash: true, doNotCopy: true, hashAddressBar: false});</script>
   <script src="/bower_components/jquery/dist/jquery.min.js"></script>
   <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
  <script src="/bower_components/jquery.serializeJSON/jquery.serializejson.min.js"></script>

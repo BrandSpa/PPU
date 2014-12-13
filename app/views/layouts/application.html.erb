@@ -9,7 +9,7 @@
   <%= csrf_meta_tags %>
 </head>
 <body id="ppu-app">
-  <div id="nav-main">
+  <div id="nav-main" class="col-lg-1">
     <ul>
       <li><a href="/<%= I18n.locale %>/abogados"><%= t('Lawyers') %></a></li>
       <li><%= I18n.locale %></li>
@@ -22,6 +22,10 @@
     <%else%>
     <a href="/abogados">Español</a>
   <% end %>
+  </div>
+
+  <div class="row">
+   
   </div>
   
   <%= yield %>

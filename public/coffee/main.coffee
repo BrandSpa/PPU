@@ -3,8 +3,6 @@ window.ppu =
 
 window.mixins = {}
 
-Dropzone.autoDiscover = false
-
 ppu.pathUrl = window.location.pathname.split( '/' )
 
 lang = ppu.pathUrl[1]
