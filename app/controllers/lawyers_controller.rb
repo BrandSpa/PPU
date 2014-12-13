@@ -3,19 +3,31 @@ class LawyersController < ApplicationController
   end
 
   def show
+
+  end
+
+  def vcard
+    model = by_id
+    vcard = VCardigan.create
+    vcard.name model.lastname, model.name
+    vcard.fullname "#{model.name} #{model.lastname}"
+    vcard.org "Philipi Prietocarrizosa &Uria"
+    vcard.tel model.phone, :type => 'work'
+    vcard.email model.email, :type => ['work', 'internet'], :preferred => 1
+    #render plain: vcard
+    send_data vcard, :filename => "#{model.name} #{model.lastname}.vcf", :type => 'text/x-vcard'
+  end
+
+  def by_name
     lang = params[:lang] || "es"
     name = I18n.transliterate(params[:name])
     firstname = name.split('-').first
     lastname = name.split('-').last
-    lawyer = Lawyer.lang(lang).by_name(firstname, lastname).first
+    Lawyer.lang(lang).by_name(firstname, lastname).first
+  end
 
-    vcard = VCardigan.create
-    vcard.name lawyer.lastname, lawyer.name
-    vcard.fullname lawyer.name
-    vcard.org "Philipi Prietocarrizosa &Uria"
-    vcard.tel lawyer.phone, :type => 'work'
-    vcard.email lawyer.email, :type => ['work', 'internet'], :preferred => 1
-
-    send_data vcard, :filename => "#{firstname}-#{lastname}.vcf", :type => 'text/x-vcard'
+  def by_id
+    lang = params[:lang] || "es"
+    Lawyer.lang(lang).find(params[:id])
   end
 end

@@ -186,3 +186,7 @@ ul {
   padding: 5px 15px;
   font-size: 0.9em;
   margin-top: -5px; }
+
+.btn-vcard {
+  float: right;
+  margin: -60px 260px; }

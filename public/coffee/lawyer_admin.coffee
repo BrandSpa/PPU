@@ -203,6 +203,7 @@
     template: $ '#lawyer-show-template'
     events: 
       'click .open-edit-lawyer': 'openEdit'
+      'click .open-share': 'openShare'
     
     initialize: ->
       @listenTo(@model, 'change', @render)
@@ -230,3 +231,6 @@
       e.preventDefault()
       view = new ppu.lawyerEdit model: @model
       view.render()
+
+    openShare: (e) ->
+      $('#share-modal').modal()

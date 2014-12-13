@@ -347,7 +347,8 @@ $(function() {
     LawyerFinish.prototype.template = $('#lawyer-show-template');
 
     LawyerFinish.prototype.events = {
-      'click .open-edit-lawyer': 'openEdit'
+      'click .open-edit-lawyer': 'openEdit',
+      'click .open-share': 'openShare'
     };
 
     LawyerFinish.prototype.initialize = function() {
@@ -398,6 +399,10 @@ $(function() {
         model: this.model
       });
       return view.render();
+    };
+
+    LawyerFinish.prototype.openShare = function(e) {
+      return $('#share-modal').modal();
     };
 
     return LawyerFinish;
