@@ -12,6 +12,9 @@ body {
 .modal-content {
   background: #eeeeee; }
 
+.modal-lg {
+  width: 900px !important; }
+
 ul {
   padding: 0; }
 

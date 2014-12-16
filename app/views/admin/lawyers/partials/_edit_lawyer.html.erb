@@ -1,0 +1,46 @@
+<div class="panel panel-default col-lg-9 hidden" id="lawyer-finish">
+  <div class="panel-body">
+  <div class="container-lawyer"></div>
+  </div>
+  <div class="col-lg-6 lawyer-left">
+  <h3><i class="fa fa-briefcase"></i> Información general</h3>
+    <%= render "admin/lawyers/partials/section_edit", :model => "education", :title => "education" %>
+    <%= render "admin/lawyers/partials/section_edit", :model => "job", :title => "professional_experience" %>
+    <%= render "admin/lawyers/partials/section_edit", :model => "recognition", :title => "conferences_recognitions" %>
+    <%= render "admin/lawyers/partials/section_edit", :model => "institution", :title => "memberships" %>
+    <%= render "admin/lawyers/partials/section_edit", :model => "language", :title => "languages" %>
+    <%= render "admin/lawyers/partials/section_edit", :model => "phrase", :title => "phrases" %>
+  </div>
+  <div class="col-lg-6 lawyer-right">
+
+<%= render "admin/lawyers/partials/section_edit", :model => "award", :title => "awards" %>
+<%= render "admin/lawyers/partials/section_edit", :model => "article", :title => "article" %>
+  </div>
+</div>
+
+<%= render('lawyers/lawyer') %>
+<%= render('educations/education') %>
+<%= render('jobs/job') %>
+<%= render('recognitions/recognition') %>
+<%= render('institutions/institution') %>
+<%= render('languages/language') %>
+<%= render('phrases/phrase') %>
+<%= render('awards/award') %>
+<%= render('articles/article') %>
+
+
+<div class="modal fade" id="lawyer-relationship-create-modal" >
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content"> 
+    <div class="modal-body"> </div>
+    <div class="modal-footer">
+    <a href="#" class="btn btn-default modal-close">Cancelar</a>
+    <a href="#" class="btn btn-info create">Guardar</a>
+    </div>
+    </div>
+  </div>
+</div>
+
+
+
+

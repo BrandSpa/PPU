@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     resources :recognitions
     resources :trades
     resources :posts
+    resources :post_images
   end
   
   get "", to: 'posts#index'

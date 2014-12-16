@@ -6,6 +6,8 @@ window.ppu = {
 
 window.mixins = {};
 
+window.app = {};
+
 ppu.pathUrl = window.location.pathname.split('/');
 
 lang = ppu.pathUrl[1];
@@ -17,6 +19,11 @@ if (lang === "en") {
     }
   });
 }
+
+app.compileTemplate = function(source) {
+  source = $(source).html();
+  return Handlebars.compile(source);
+};
 
 Backbone.View.prototype.en = function() {
   lang = ppu.pathUrl[1];
@@ -93,7 +100,34 @@ ppu.appendDatePicker = function(el) {
 };
 
 ppu.appendSummernote = function(el) {
-  return $(el).find('.summernote').summernote();
+  return $(el).find('.summernote').summernote({
+    fontNames: ['Arial', 'Helvetica', 'Roboto'],
+    onImageUpload: function(files, editor, welEditable) {
+      return app.uploadPhotoSummernote(files[0], editor, welEditable);
+    }
+  });
+};
+
+app.uploadPhotoSummernote = function(file, editor, welEditable) {
+  var data;
+  data = new FormData();
+  data.append("postimage[img_name]", file);
+  console.log(welEditable);
+  return $.ajax({
+    data: data,
+    type: "POST",
+    url: "/api/post_images",
+    cache: false,
+    contentType: false,
+    processData: false,
+    error: function(res, mo) {
+      return console.log(mo);
+    },
+    success: function(url) {
+      console.log(url);
+      return editor.insertImage(welEditable, url);
+    }
+  });
 };
 
 ppu.appendForm = function(el, template) {

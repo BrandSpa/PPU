@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141125232838) do
+ActiveRecord::Schema.define(version: 20141215160207) do
 
   create_table "articles", force: true do |t|
     t.integer  "lawyer_id"
@@ -24,16 +24,9 @@ ActiveRecord::Schema.define(version: 20141125232838) do
   create_table "awards", force: true do |t|
     t.integer  "lawyer_id"
     t.string   "title"
-    t.string   "description"
     t.string   "img_name"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "awards_lawyers", id: false, force: true do |t|
-    t.integer "award_id"
-    t.integer "lawyer_id"
-    t.string  "subtitle"
   end
 
   create_table "categories", force: true do |t|
@@ -66,7 +59,6 @@ ActiveRecord::Schema.define(version: 20141125232838) do
     t.integer  "lawyer_id"
     t.string   "title"
     t.string   "country"
-    t.string   "year"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -75,9 +67,11 @@ ActiveRecord::Schema.define(version: 20141125232838) do
 
   create_table "jobs", force: true do |t|
     t.integer  "lawyer_id"
-    t.string   "title"
-    t.string   "from"
-    t.string   "until"
+    t.string   "company",    limit: 150
+    t.string   "title",      limit: 100
+    t.string   "country",    limit: 100
+    t.string   "from",       limit: 50
+    t.string   "until",      limit: 50
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -97,24 +91,32 @@ ActiveRecord::Schema.define(version: 20141125232838) do
     t.string   "name"
     t.string   "lastname"
     t.string   "position"
+    t.integer  "level"
     t.string   "phone"
     t.string   "email"
     t.text     "description"
     t.text     "keywords"
-    t.string   "img_path"
+    t.string   "img_name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "lawyers_transactions", id: false, force: true do |t|
+  create_table "lawyers_trades", id: false, force: true do |t|
     t.integer "lawyer_id"
-    t.integer "transaction_id"
+    t.integer "trade_id"
   end
 
   create_table "phrases", force: true do |t|
     t.integer  "lawyer_id"
     t.text     "content"
     t.string   "author"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "post_images", force: true do |t|
+    t.integer  "post_id"
+    t.string   "img_name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -126,7 +128,7 @@ ActiveRecord::Schema.define(version: 20141125232838) do
     t.string   "title"
     t.string   "topic"
     t.string   "author"
-    t.string   "content"
+    t.text     "content"
     t.string   "slug"
     t.text     "keywords"
     t.integer  "featured"
@@ -155,7 +157,7 @@ ActiveRecord::Schema.define(version: 20141125232838) do
 
   add_index "recognitions", ["lawyer_id"], name: "index_recognitions_on_lawyer_id", using: :btree
 
-  create_table "transactions", force: true do |t|
+  create_table "trades", force: true do |t|
     t.string   "lang",         default: "es"
     t.string   "country",      default: "Colombia"
     t.string   "company"
@@ -163,7 +165,7 @@ ActiveRecord::Schema.define(version: 20141125232838) do
     t.string   "title"
     t.date     "date"
     t.text     "description"
-    t.string   "logo_img"
+    t.string   "img_name"
     t.text     "keywords"
     t.datetime "created_at"
     t.datetime "updated_at"

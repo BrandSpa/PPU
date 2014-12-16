@@ -13,7 +13,7 @@ class Api::LawyersController < ApplicationController
     country = params[:country]
     offset = params[:offset]
 
-    collection = entity.select(:id, :lang, :name, :lastname, :country, :position, :phone, :email, :img_name).all.lang(lang).limit(10).offset(offset).order('id DESC')
+    collection = entity.select(:id, :lang, :name, :lastname, :country, :position, :phone, :email, :img_name).all.order('name ASC')
     collection = collection.by_position(position) if position.present?
     collection = collection.by_category(category) if category.present?
     collection = collection.by_trade(trade) if trade.present?

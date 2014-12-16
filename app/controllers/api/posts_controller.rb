@@ -11,4 +11,12 @@ class Api::PostsController < ApplicationController
     render json: collection
   end
 
+  def create
+    model = entity.create(post_params)
+  end
+
+  private 
+    def post_params
+      params.require(:post).permit(:lang, :country, :author, :title, :content)
+    end
 end
