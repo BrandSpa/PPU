@@ -99,7 +99,11 @@ $(function() {
     };
 
     Router.prototype.createPost = function(lang) {
-      ppu.admin.postCreate = new ppu.admin.PostCreate;
+      var model;
+      model = new ppu.admin.Post;
+      ppu.admin.postCreate = new ppu.admin.PostCreate({
+        model: model
+      });
       return ppu.admin.postCreate.render();
     };
 

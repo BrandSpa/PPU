@@ -28,32 +28,32 @@ $(function() {
     return Posts;
 
   })(Backbone.Collection);
-  ppu.admin.Post = (function(_super) {
-    __extends(Post, _super);
+  ppu.admin.PostView = (function(_super) {
+    __extends(PostView, _super);
 
-    function Post() {
-      return Post.__super__.constructor.apply(this, arguments);
+    function PostView() {
+      return PostView.__super__.constructor.apply(this, arguments);
     }
 
-    Post.prototype.template = $("#");
+    PostView.prototype.template = $("#");
 
-    Post.prototype.render = function() {};
+    PostView.prototype.render = function() {};
 
-    return Post;
+    return PostView;
 
   })(Backbone.View);
-  ppu.admin.Posts = (function(_super) {
-    __extends(Posts, _super);
+  ppu.admin.PostsView = (function(_super) {
+    __extends(PostsView, _super);
 
-    function Posts() {
-      return Posts.__super__.constructor.apply(this, arguments);
+    function PostsView() {
+      return PostsView.__super__.constructor.apply(this, arguments);
     }
 
-    Posts.prototype.el = $("#");
+    PostsView.prototype.el = $("#");
 
-    Posts.prototype.render = function() {};
+    PostsView.prototype.render = function() {};
 
-    return Posts;
+    return PostsView;
 
   })(Backbone.View);
   ppu.admin.PostCreate = (function(_super) {
@@ -81,7 +81,14 @@ $(function() {
     };
 
     PostCreate.prototype.store = function() {
-      return console.log($(this.el).find('.summernote').code());
+      var $form, content, data, options;
+      console.log(this.model);
+      $form = this.$el.find('form');
+      content = $(this.el).find('.summernote').code();
+      data = new FormData($form[0]);
+      data.append("post[content]", content);
+      options = ppu.ajaxOptions("POST", data);
+      return this.model.save(data, $.extend({}, options));
     };
 
     return PostCreate;
@@ -99,7 +106,7 @@ $(function() {
     return PostEdit;
 
   })(Backbone.View);
-  return ppu.admin.SelectLawyersModal = (function(_super) {
+  ppu.admin.SelectLawyersModal = (function(_super) {
     __extends(SelectLawyersModal, _super);
 
     function SelectLawyersModal() {
@@ -108,13 +115,49 @@ $(function() {
 
     SelectLawyersModal.prototype.el = $("#");
 
+    SelectLawyersModal.prototype.template = "#lawyer-select";
+
     SelectLawyersModal.prototype.events = {
       "submit .search": "search"
     };
 
-    SelectLawyersModal.prototype.render = function() {};
+    SelectLawyersModal.prototype.render = function() {
+      this.$el.find('.modal-body').html(app.compileTemplate(this.template));
+      this.$el.modal();
+      return this;
+    };
+
+    SelectLawyersModal.prototype.search = function(e) {
+      var query;
+      query = $(e.currentTarget).val();
+      return this.collection.fetch({
+        data: {
+          query: query
+        }
+      });
+    };
 
     return SelectLawyersModal;
+
+  })(Backbone.View);
+  return ppu.admin.galleryModal = (function(_super) {
+    __extends(galleryModal, _super);
+
+    function galleryModal() {
+      return galleryModal.__super__.constructor.apply(this, arguments);
+    }
+
+    galleryModal.prototype.el = $("#gallery-modal");
+
+    galleryModal.prototype.template = "#gallery-template";
+
+    galleryModal.prototype.render = function() {
+      this.$el.find('.modal-body').html(app.compileTemplate(this.template));
+      this.$el.modal();
+      return this;
+    };
+
+    return galleryModal;
 
   })(Backbone.View);
 });

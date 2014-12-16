@@ -11,6 +11,10 @@ if lang == "en"
   $.ajaxSetup
     data: lang: "en"
 
+app.compileTemplate = (source) ->
+  source = $(source).html()
+  Handlebars.compile source
+
 Backbone.View::en = ->
   lang = ppu.pathUrl[1]
   if lang == "en"
@@ -67,7 +71,28 @@ ppu.appendDatePicker = (el) ->
     autoclose: true
 
 ppu.appendSummernote = (el) ->
-   $(el).find('.summernote').summernote()
+   $(el).find('.summernote').summernote
+    fontNames: ['Arial', 'Helvetica', 'Roboto'],
+    onImageUpload: (files, editor, welEditable) ->
+      app.uploadPhotoSummernote(files[0], editor, welEditable)
+
+app.uploadPhotoSummernote = (file, editor, welEditable) ->
+  data = new FormData()
+  data.append("postimage[img_name]", file)
+  console.log welEditable
+  $.ajax
+    data: data,
+    type: "POST",
+    url: "/api/post_images",
+    cache: false,
+    contentType: false,
+    processData: false,
+    error: (res, mo) ->
+      console.log mo
+    success: (url) ->
+      console.log url
+      editor.insertImage(welEditable, url)
+
 
 ppu.appendForm = (el, template)->
   source = $(template).html()

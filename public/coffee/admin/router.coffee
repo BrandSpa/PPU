@@ -60,8 +60,9 @@ $ ->
       ppu.lawyer.fetch()
       view = new ppu.LawyerEditView model: ppu.lawyer
 
-    createPost: (lang)->
-      ppu.admin.postCreate = new ppu.admin.PostCreate
+    createPost: (lang) ->
+      model = new ppu.admin.Post
+      ppu.admin.postCreate = new ppu.admin.PostCreate model: model
       ppu.admin.postCreate.render()
 
 
