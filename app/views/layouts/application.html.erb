@@ -9,26 +9,29 @@
   <%= csrf_meta_tags %>
 </head>
 <body id="ppu-app">
-  <div id="nav-main" class="col-lg-1">
-    <ul>
-      <li><a href="/<%= I18n.locale %>/abogados"><%= t('Lawyers') %></a></li>
-      <li><%= I18n.locale %></li>
-    </ul>
-  </div>
+
 <div class="container">
-  <div id="select-lang">
-  <%if I18n.locale == I18n.default_locale %>
-    <a href="/en/abogados">English</a>
-    <%else%>
-    <a href="/abogados">Español</a>
-  <% end %>
+  <div class="row">
+
+    <div id="nav-main-container" class="col-lg-2">
+      <ul class="nav-main col-lg-1">
+        <li><a href="/<%= I18n.locale %>/abogados"><%= t('Lawyers') %></a></li>
+        <li><%= I18n.locale %></li>
+      </ul>
   </div>
 
-  <div class="row">
-   
+  <div class="col-lg-10">
+    <div id="select-lang">
+    <%if I18n.locale == I18n.default_locale %>
+      <a href="/en/abogados">English</a>
+      <%else%>
+      <a href="/abogados">Español</a>
+    <% end %>
+    </div>
+    
+    <%= yield %>
   </div>
-  
-  <%= yield %>
+</div>
 </div>
 
   <%= render "lawyers/partials/lawyers" %>
