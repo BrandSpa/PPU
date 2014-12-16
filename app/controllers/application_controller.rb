@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   before_action :set_locale
   layout :layout_by_resource
   def set_locale
-    if  request.subdomain = 'en'
+    if  request.subdomain == 'en'
       I18n.locale = request.subdomain
     end
 
