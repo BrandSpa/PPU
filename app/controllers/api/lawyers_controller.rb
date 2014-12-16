@@ -2,7 +2,7 @@ class Api::LawyersController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
-    lang = params[:lang]
+    lang = I18n.locale
     name = params[:name]
     position = params[:position]
     keyword = params[:keyword]
