@@ -25,7 +25,8 @@ Rails.application.routes.draw do
     get "abogados/:id/vcard", to: 'lawyers#vcard'
     get "lawyers", to: 'lawyers#index'
     get "crear-abogado", to: 'admin/lawyers#index'
-    get "editar-abogado/:id", to: 'admin/lawyers#index'
+    get "editar-abogado/:username", to: 'admin/lawyers#index'
+    get "edit-lawyer/:username", to: 'admin/lawyers#index'
     get "crear-noticia", to: 'admin/posts#index'
     get "editar-noticia", to: 'admin/posts#index'
   end

@@ -2,7 +2,7 @@ class Api::LawyersController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
-    lang = params[:lang] || "es"
+    lang = params[:lang]
     name = params[:name]
     position = params[:position]
     keyword = params[:keyword]
@@ -14,6 +14,7 @@ class Api::LawyersController < ApplicationController
     offset = params[:offset]
 
     collection = entity.select(:id, :lang, :name, :lastname, :country, :position, :phone, :email, :img_name).all.order('name ASC')
+    collection = collection.lang(lang) if lang.present?
     collection = collection.by_position(position) if position.present?
     collection = collection.by_category(category) if category.present?
     collection = collection.by_trade(trade) if trade.present?
