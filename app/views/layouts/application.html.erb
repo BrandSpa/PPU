@@ -33,8 +33,9 @@
   </div>
 </div>
 </div>
-
+  
   <%= render "lawyers/partials/lawyers" %>
+
    <script src="/bower_components/jquery/dist/jquery.min.js"></script>
   <script src="/js/libs/bootstrap.min.js"></script>
  <script src="/bower_components/jquery.serializeJSON/jquery.serializejson.min.js"></script>
@@ -46,6 +47,8 @@
   <script src="/js/categories.js"></script>
   <script src="/js/lawyers.js"></script>
   <script src="/js/router.js"></script>
-
+  <script>
+    app.lang = <%= I18n.locale %>
+  </script>
 </body>
 </html>
