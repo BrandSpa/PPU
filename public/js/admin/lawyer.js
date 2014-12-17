@@ -376,6 +376,7 @@ $(function() {
       $(this.el).html(t(this.model.toJSON()));
       $("#lawyer-finish").removeClass("hidden");
       this.$el.append('<a href="#" class="btn btn-info open-edit-lawyer"><i class="fa fa-pencil-square"></i></a>');
+      console.log(this.model.toJSON());
       return this.getRelationships(this.model.get('id'));
     };
 

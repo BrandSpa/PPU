@@ -8,7 +8,7 @@ $ ->
       'editar-abogado/:id': 'editLawyer'
       'crear-noticia': 'createPost'
       ':lang/crear-noticia': 'createPost'
-    url: Backbone.history.location.href
+
 
     dashboard: ->
       ppu.lawyers = new ppu.Lawyers
@@ -16,15 +16,7 @@ $ ->
       ppu.admin.lawyers= new ppu.admin.LawyersView collection: ppu.lawyers
 
     createLawyer: (lang) ->
-      if lang == "en"
-        window.lang = 'en'
-        $.ajaxSetup
-          data: lang: "en"
-      else
-        window.lang = 'es'
-        $.ajaxSetup
-          data: lang: "es"
-
+  
       ppu.lawyer =  new ppu.Lawyer
       ppu.lawyerCreateForm = new ppu.LawyerCreateForm model: ppu.lawyer
 
@@ -54,10 +46,10 @@ $ ->
 
       ppu.lawyerCreate = new ppu.LawyerCreateView
 
-    editLawyer: (id) ->
+    editLawyer: (slug) ->
       $("#lawyer-create").remove()
-      ppu.lawyer = new ppu.Lawyer id: id
-      ppu.lawyer.fetch()
+      ppu.lawyer = new ppu.Lawyer
+      ppu.lawyer.fetchBySlug(slug)
       view = new ppu.LawyerEditView model: ppu.lawyer
 
     createPost: (lang) ->

@@ -11,6 +11,14 @@ $(function() {
 
     Lawyer.prototype.urlRoot = "/api/lawyers";
 
+    Lawyer.prototype.fetchBySlug = function(slug) {
+      return this.fetch({
+        data: $.param({
+          slug: slug
+        })
+      });
+    };
+
     return Lawyer;
 
   })(Backbone.Model);

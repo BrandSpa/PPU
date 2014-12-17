@@ -19,8 +19,6 @@ $(function() {
       ':lang/crear-noticia': 'createPost'
     };
 
-    Router.prototype.url = Backbone.history.location.href;
-
     Router.prototype.dashboard = function() {
       ppu.lawyers = new ppu.Lawyers;
       ppu.lawyers.fetch({
@@ -32,21 +30,6 @@ $(function() {
     };
 
     Router.prototype.createLawyer = function(lang) {
-      if (lang === "en") {
-        window.lang = 'en';
-        $.ajaxSetup({
-          data: {
-            lang: "en"
-          }
-        });
-      } else {
-        window.lang = 'es';
-        $.ajaxSetup({
-          data: {
-            lang: "es"
-          }
-        });
-      }
       ppu.lawyer = new ppu.Lawyer;
       ppu.lawyerCreateForm = new ppu.LawyerCreateForm({
         model: ppu.lawyer
@@ -86,13 +69,11 @@ $(function() {
       return ppu.lawyerCreate = new ppu.LawyerCreateView;
     };
 
-    Router.prototype.editLawyer = function(id) {
+    Router.prototype.editLawyer = function(slug) {
       var view;
       $("#lawyer-create").remove();
-      ppu.lawyer = new ppu.Lawyer({
-        id: id
-      });
-      ppu.lawyer.fetch();
+      ppu.lawyer = new ppu.Lawyer;
+      ppu.lawyer.fetchBySlug(slug);
       return view = new ppu.LawyerEditView({
         model: ppu.lawyer
       });

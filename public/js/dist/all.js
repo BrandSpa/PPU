@@ -206,10 +206,10 @@ $(function() {
 
     AppView.prototype.changeLangPage = function(e) {
       e.preventDefault();
-      if (lang === 'en') {
-        return window.location = "" + app.hostname + app.pathname;
+      if (app.lang === 'en') {
+        return window.location = "http://ppulegal.com" + app.pathname;
       } else {
-        return window.location = "en." + app.hostname + app.pathname;
+        return window.location = "http://en.ppulegal.com" + app.pathname;
       }
     };
 

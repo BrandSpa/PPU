@@ -227,6 +227,7 @@
       $(@el).html t( @model.toJSON() )
       $("#lawyer-finish").removeClass("hidden")
       @$el.append   '<a href="#" class="btn btn-info open-edit-lawyer"><i class="fa fa-pencil-square"></i></a>'
+      console.log @model.toJSON()
       @getRelationships(@model.get('id'))
 
     getRelationships: (id) ->
