@@ -20,7 +20,7 @@ $(function() {
       if (lang === 'en') {
         return window.location = "http://" + app.hostname + app.pathname;
       } else {
-        return window.location = "//en." + app.hostname + app.pathname;
+        return window.location = "http://en." + app.hostname + app.pathname;
       }
     };
 
