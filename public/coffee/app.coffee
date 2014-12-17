@@ -7,7 +7,7 @@ $ ->
     changeLangPage: (e) ->
       e.preventDefault()
 
-      if ppu.lang == 'en'
+      if app.lang == 'en'
         window.location = "http://ppulegal.com#{app.pathname}"
       else
         window.location = "http://en.ppulegal.com#{app.pathname}"
