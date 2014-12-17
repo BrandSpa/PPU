@@ -25,9 +25,10 @@ class Api::LawyersController < ApplicationController
     collection = collection.by_country(country) if country.present?
     collection = collection.search(keyword) if keyword.present? 
     collection = collection.by_name(name) if name.present?
+
     if slug.present?
       collection = entity.includes(:categories).by_slug(slug).lang(lang).first 
-      unless collection
+      if collection.nil?
         model = entity.includes(:categories).by_slug(slug).lang(:es).first
         duplicate(model)
       end
