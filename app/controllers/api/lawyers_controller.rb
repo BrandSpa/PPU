@@ -15,7 +15,7 @@ class Api::LawyersController < ApplicationController
     update = params[:update]
     slug = params[:slug]
 
-    collection = entity.includes(:categories).where(nil)
+    collection = entity.includes(:categories).where(nil).lang(lang)
     collection = collection.by_position(position) if position.present?
     collection = entity.by_category(category) if category.present?
     collection = collection.by_trade(trade) if trade.present?
@@ -66,7 +66,7 @@ class Api::LawyersController < ApplicationController
     model.update(lawyer_params)
     model.save
     if model.valid?
-      render json: model
+      render json: model.to_json(:include => [:categories])
     else
       render_errors(model)
     end

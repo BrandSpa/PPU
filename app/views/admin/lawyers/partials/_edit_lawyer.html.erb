@@ -6,6 +6,11 @@
   </div>
   <div class="col-lg-6 lawyer-left">
   <h3><i class="fa fa-briefcase"></i> <%= t('general_information') %></h3>
+    <div id="lawyer-category-edit">
+    <h4><%= t('practice_areas') %></h4>
+    <ul> </ul>
+    </div>
+
     <%= render "admin/lawyers/partials/section_edit", :model => "education", :title => "education" %>
     <%= render "admin/lawyers/partials/section_edit", :model => "job", :title => "professional_experience" %>
     <%= render "admin/lawyers/partials/section_edit", :model => "recognition", :title => "conferences_recognitions" %>
@@ -22,6 +27,7 @@
 </div>
 
 <%= render 'lawyers/lawyer' %>
+<%= render 'lawyers/category' %>
 <%= render 'educations/education' %>
 <%= render 'jobs/job' %>
 <%= render 'recognitions/recognition' %>

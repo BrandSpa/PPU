@@ -328,6 +328,9 @@ $(function() {
       source = this.template.html();
       t = Handlebars.compile(source);
       $(this.el).find('.modal-body').html(t(this.model.toJSON()));
+      if (this.model.get('level') >= 6) {
+        $('.lawyer-description').removeClass('hidden');
+      }
       return $(this.el).modal({
         backdrop: 'static'
       });
@@ -372,7 +375,8 @@ $(function() {
     };
 
     LawyerEditView.prototype.initialize = function() {
-      return this.listenTo(this.model, 'change', this.render);
+      this.listenTo(this.model, 'change', this.render);
+      return this.listenTo(this.model, 'change', this.renderCategories);
     };
 
     LawyerEditView.prototype.render = function() {
@@ -385,6 +389,13 @@ $(function() {
       ppu.currentLawyerId = id;
       this.appendButtons();
       return this.getRelationships(id);
+    };
+
+    LawyerEditView.prototype.renderCategories = function() {
+      var source, t;
+      source = $("#lawyer-category-template").html();
+      t = Handlebars.compile(source);
+      return $("#lawyer-category-edit").find('ul').html(t(this.model.toJSON()));
     };
 
     LawyerEditView.prototype.appendButtons = function() {
