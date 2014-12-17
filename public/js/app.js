@@ -17,7 +17,7 @@ $(function() {
 
     AppView.prototype.changeLangPage = function(e) {
       e.preventDefault();
-      if (lang === 'en') {
+      if (ppu.lang === 'en') {
         return window.location = "http://ppulegal.com" + app.pathname;
       } else {
         return window.location = "http://en.ppulegal.com" + app.pathname;
