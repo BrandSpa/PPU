@@ -7,7 +7,7 @@ $ ->
     changeLangPage: (e) ->
       e.preventDefault()
       if lang == 'en'
-        window.location = "#{app.hostname}#{app.pathname}"
+        window.location = "//#{app.hostname}#{app.pathname}"
       else
-        window.location = "en.#{app.hostname}#{app.pathname}"
+        window.location = "//en.#{app.hostname}#{app.pathname}"
       
