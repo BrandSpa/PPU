@@ -2,7 +2,8 @@ body {
   background: #e4e6eb;
   font-size: 14px;
   padding: 0 0 30px 0;
-  font-family: "Roboto"; }
+  font-family: "Roboto";
+  padding-top: 30px; }
 
 .modal-backdrop {
   background: #002855; }
@@ -81,11 +82,18 @@ ul {
   position: fixed;
   color: white;
   background: #002855;
-  margin-top: 60px;
-  height: 500px;
-  width: 180px; }
+  width: 180px;
+  padding: 0; }
   .nav-main li {
-    list-style: none; }
+    list-style: none;
+    padding: 0 15px 15px; }
+    .nav-main li a {
+      color: white; }
+  .nav-main .link-main {
+    background: white;
+    display: block;
+    padding: 0;
+    margin-bottom: 15px; }
 
 .lawyer-list {
   background: white;
@@ -115,20 +123,27 @@ ul {
   height: 50px; }
   #lawyers-filters select, #lawyers-filters input {
     width: 25%;
-    float: left;
     background: #002855;
     color: white;
     border: none;
-    padding-top: 15px; }
+    padding-top: 15px;
+    border-left: 1px solid white; }
   #lawyers-filters .radio-inline {
     color: white; }
+  #lawyers-filters .search {
+    float: right;
+    width: 25%;
+    border-left: 1px solid white; }
+    #lawyers-filters .search input {
+      width: 100%; }
   #lawyers-filters select {
     padding: 0;
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
     display: inline-block;
-    outline: none; }
+    outline: none;
+    cursor: pointer; }
 
 #lawyer-finish {
   background: white;
