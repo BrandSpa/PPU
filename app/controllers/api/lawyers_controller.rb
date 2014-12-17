@@ -15,7 +15,7 @@ class Api::LawyersController < ApplicationController
     update = params[:update]
     slug = params[:slug]
 
-    collection = entity.select(:id, :lang, :name, :lastname, :country, :position, :phone, :email, :img_name).all.order('name ASC')
+    collection = entity.includes(:categories).all.order('name ASC')
     
     collection = collection.lang(lang) if lang.present?
     collection = collection.by_position(position) if position.present?
@@ -25,7 +25,13 @@ class Api::LawyersController < ApplicationController
     collection = collection.by_country(country) if country.present?
     collection = collection.search(keyword) if keyword.present? 
     collection = collection.by_name(name) if name.present?
-    collection = entity.by_slug(slug).lang(lang).first if slug.present?
+    if slug.present?
+      collection = entity.includes(:categories).by_slug(slug).lang(lang).first 
+      unless collection
+        model = entity.includes(:categories).by_slug(slug).lang(:es).first
+        duplicate(model)
+      end
+    end
 
     if update.present?
       collection.each do |m|
@@ -64,6 +70,20 @@ class Api::LawyersController < ApplicationController
     else
       render_errors(model)
     end
+  end
+
+  def duplicate(model)
+    model_new = model.dup
+    model_new.lang = "en"
+    model_new.position = translate_position(model.position)
+    model_new.save
+  end
+
+  def translate_position(position)
+    "Lawyer" if position == "Abogado" 
+    "Partner" if position == "Socio" 
+    "Specialist" if position == "Especialista" 
+    "Senior Counsel" if position == "Senior Counsel" 
   end
 
   def render_errors(model)

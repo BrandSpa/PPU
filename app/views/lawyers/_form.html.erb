@@ -1,19 +1,7 @@
 <script type="text/x-handlebars-template" id="lawyer-form-template">
   <form action=""  enctype="multipart/form-data">   
     <div class="row">
-      <div class="form-group col-lg-3">
-       <select name="fields[lang]" class="form-control lawyer-lang">
-       {{#if lang}}
-        <option value="{{lang}}">{{lang}}</option>
-        {{else}}
-         <option value="">Seleccionar Idioma</option>
-       {{/if}}
-        <option value="es">Es</option>
-        <option value="en">En</option>
-      </select>
-    </div>
-
-    <div class="form-group col-lg-3">
+    <div class="form-group col-lg-6">
       <select name="fields[country]" class="form-control" id="">
        {{#if country}}
         <option value="{{country}}">{{country}}</option>

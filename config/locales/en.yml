@@ -17,3 +17,18 @@ en:
   save: Save
   cancel: Cancel
   page_lang: "Español"
+  categories:
+    corporate_and_M&A: "Corporate and M&A"
+    competition: "Competition"
+    banking_&_finance: "Banking & Finance"
+    transport: "Transport"
+    private_clients_&_family: "Private Clients & Family"
+    real_estate: "Real Estate"
+    intellectual_property: "Intellectual Property / Life Sciences"
+    tax_&_international_trade: "Tax & International Trade"
+    Labor: "Labor"
+    public_law: "Public Law"
+    energy: "Energy, Mining & Natural Resources"
+    telecommunications: "Telecommunications"
+    infrastructure_&_projects: "Infrastructure & Projects"
+    litigations: "Litigations"
