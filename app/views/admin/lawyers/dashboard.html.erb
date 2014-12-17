@@ -8,13 +8,6 @@
 				
 			</div>	
 			<div class="col-lg-3">
-				<select class="form-control lawyer-filter-lang">
-					<option>Idioma</option>
-					<option value="es">Español</option>
-					<option value="en">English</option>
-				</select>
-			</div>	
-			<div class="col-lg-3">
 				<select class="form-control lawyer-filter-country">
 					<option>País</option>
 					<option value="Chile">Chile</option>
@@ -58,5 +51,6 @@
 	<td>{{ email }}</td>
 	<td>{{ position }}</td>
 	<td>{{ country }}</td>
-	<td><a href="/editar-abogado/{{id}}" class="btn btn-info lawyer-edit">Editar</a>
+	<td><a href="/editar-abogado/{{ slug }}" class="btn btn-info lawyer-edit">Editar</a>
+	<a href="http://en.<%= request.host_with_port %>/editar-abogado/{{ slug }}" class="btn btn-info lawyer-edit">Traducción</a>
 </script>
