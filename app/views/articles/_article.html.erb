@@ -1,4 +1,8 @@
 <script type="text/x-handlebars-template" id="lawyer-article-template">
-  <a href="{{ file_name.url }}">{{ title }}</a>
+  {{#if file_name.url}}
+    <a href="{{ file_name.url }}" target="_new">{{ title }}</a>
+  {{else}}
+    {{ title }}
+  {{/if}}  
 </script>
 

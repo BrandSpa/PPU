@@ -20,6 +20,7 @@
       'submit .lawyer-search' : 'search'
       'change .lawyer-filter-lang' : 'filterLang'
       'change .lawyer-filter-country' : 'filterCountry'
+      'change .lawyer-filter-category' : 'filterCategory'
       'change .lawyer-filter-position' : 'filterPosition'
 
     initialize: ->
@@ -65,8 +66,11 @@
       @byFilter({country: val})
 
     filterPosition: (e) ->
-      val = @getSelectVal(e)
-      @byFilter({position: val})
+      @byFilter position: @getSelectVal(e)
+
+    filterCategory: (e) ->
+      val = $(e.currentTarget).val()
+      ppu.lawyers.fetch reset: true, data: category: val
   
   class ppu.LawyerCreateForm extends Backbone.View
     el: $ "#lawyer-form-create"
@@ -129,6 +133,7 @@
       ppu.lawyerJobCreate.store(id)
       ppu.lawyerRecognitionCreate.store(id)
       ppu.lawyerInstitutionCreate.store(id)
+      ppu.lawyerAcademicCreate.store(id)
       ppu.lawyerAwardCreate.store(id)
       ppu.lawyerArticleCreate.store(id)
       ppu.lawyerPharaseCreate.store(id)
@@ -216,17 +221,21 @@
       @listenTo(@model, 'change', @render)
 
     render: ->
+      id = @model.get('id')
       source = @template.html()
       t = Handlebars.compile(source)
       $(@el).html t( @model.toJSON() )
       $("#lawyer-finish").removeClass("hidden")
+      ppu.currentLawyerId = id
+      @appendButtons()
+      @getRelationships(id)
+
+    appendButtons: ->
       @$el.append   '<a href="#" class="btn btn-info open-edit-lawyer"><i class="fa fa-pencil-square"></i></a>'
       if @model.get("lang") == "es"
         @$el.append   " <a href='/en/editar-abogado/#{@model.get("slug")}' class='btn btn-info lawyer-edit'>Ingles</a>"
       else
         @$el.append   " <a href='/editar-abogado/#{@model.get("slug")}' class='btn btn-info lawyer-edit'>español</a>"
-
-      @getRelationships(@model.get('id'))
 
     getRelationships: (id) ->
       mixins.renderCollection(ppu.LawyerEducations, ppu.LawyerEducationsEdit, lawyer_id: id)
@@ -237,6 +246,7 @@
       mixins.renderCollection(ppu.LawyerLanguages, ppu.LawyerLanguagesEdit, lawyer_id: id)
       mixins.renderCollection(ppu.LawyerPharases, ppu.LawyerPharasesEdit, lawyer_id: id)
       mixins.renderCollection(ppu.LawyerAwards, ppu.LawyerAwardsEdit, lawyer_id: id)
+      mixins.renderCollection(ppu.LawyerAcademics, ppu.LawyerAcademicsEdit, lawyer_id: id)
 
     openEdit: (e) ->
       e.preventDefault()

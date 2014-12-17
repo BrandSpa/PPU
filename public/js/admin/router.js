@@ -34,6 +34,10 @@ $(function() {
       ppu.lawyerCreateForm = new ppu.LawyerCreateForm({
         model: ppu.lawyer
       });
+      ppu.lawyerAcademic = new ppu.LawyerAcademic;
+      ppu.lawyerAcademicCreate = new ppu.LawyerAcademicCreate({
+        model: ppu.lawyerAcademic
+      });
       ppu.lawyerArticle = new ppu.LawyerArticle;
       ppu.lawyerArticleCreate = new ppu.LawyerArticleCreate({
         model: ppu.lawyerArticle

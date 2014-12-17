@@ -23,11 +23,13 @@ es:
   memberships: "Membresías"
   languages: "Idiomas"
   phrases: "Frases"
+  Academic Activities: "Actividades Académicas"
   save: "Guardar"
   cancel: "Cancelar"
   page_lang: "English"
   Download: "Descargar"
   general_information: "Información general"
+
   categories:
     corporate_and_M&A: "Corporativo & MA"
     competition: "Competencia"
@@ -37,7 +39,7 @@ es:
     real_estate: "Inmobiliario"
     intellectual_property: "Propiedad Intelectual / Life Sciences"
     tax_&_international_trade: "Impuestos y Comercio Internacional"
-    Labor: "Laboral"
+    labor: "Laboral"
     public_law: "Derecho Público"
     energy: "Energía, Minería y Recursos Naturales"
     telecommunications: "Telecomunicaciones"

@@ -2,6 +2,7 @@ class Lawyer < ActiveRecord::Base
   has_and_belongs_to_many :categories
   has_and_belongs_to_many :trades
   has_many :awards
+  has_many :academic
   has_many :educations
   has_many :jobs
   has_many :languages
@@ -23,8 +24,7 @@ class Lawyer < ActiveRecord::Base
   scope :by_position, -> (position){ where(position: position) }
   scope :by_slug, -> (slug){ where(slug: slug) }
   scope :by_country, -> (country){ where(country: country) }
-  scope :by_category, -> (category){ joins(:categories).where('categories.name' => category ) }
-  scope :by_category_id, -> (category){ joins(:categories).where('categories.id' => category ) }
+  scope :by_category, -> (category){ includes(:categories).where(categories: {name: category}) }
   scope :by_trade, -> (trade){ joins(:trades).where('trades.title' => trade ) }
   scope :by_trade_id, -> (trade){ joins(:trades).where('trades.id' => trade ) }
   scope :search, -> (keyword){ where("keywords LIKE ?", "%#{keyword}%") }

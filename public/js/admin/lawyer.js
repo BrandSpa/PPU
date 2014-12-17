@@ -43,6 +43,7 @@ $(function() {
       'submit .lawyer-search': 'search',
       'change .lawyer-filter-lang': 'filterLang',
       'change .lawyer-filter-country': 'filterCountry',
+      'change .lawyer-filter-category': 'filterCategory',
       'change .lawyer-filter-position': 'filterPosition'
     };
 
@@ -124,10 +125,19 @@ $(function() {
     };
 
     LawyersView.prototype.filterPosition = function(e) {
-      var val;
-      val = this.getSelectVal(e);
       return this.byFilter({
-        position: val
+        position: this.getSelectVal(e)
+      });
+    };
+
+    LawyersView.prototype.filterCategory = function(e) {
+      var val;
+      val = $(e.currentTarget).val();
+      return ppu.lawyers.fetch({
+        reset: true,
+        data: {
+          category: val
+        }
       });
     };
 
@@ -220,6 +230,7 @@ $(function() {
       ppu.lawyerJobCreate.store(id);
       ppu.lawyerRecognitionCreate.store(id);
       ppu.lawyerInstitutionCreate.store(id);
+      ppu.lawyerAcademicCreate.store(id);
       ppu.lawyerAwardCreate.store(id);
       ppu.lawyerArticleCreate.store(id);
       ppu.lawyerPharaseCreate.store(id);
@@ -365,18 +376,24 @@ $(function() {
     };
 
     LawyerEditView.prototype.render = function() {
-      var source, t;
+      var id, source, t;
+      id = this.model.get('id');
       source = this.template.html();
       t = Handlebars.compile(source);
       $(this.el).html(t(this.model.toJSON()));
       $("#lawyer-finish").removeClass("hidden");
+      ppu.currentLawyerId = id;
+      this.appendButtons();
+      return this.getRelationships(id);
+    };
+
+    LawyerEditView.prototype.appendButtons = function() {
       this.$el.append('<a href="#" class="btn btn-info open-edit-lawyer"><i class="fa fa-pencil-square"></i></a>');
       if (this.model.get("lang") === "es") {
-        this.$el.append(" <a href='/en/editar-abogado/" + (this.model.get("slug")) + "' class='btn btn-info lawyer-edit'>Ingles</a>");
+        return this.$el.append(" <a href='/en/editar-abogado/" + (this.model.get("slug")) + "' class='btn btn-info lawyer-edit'>Ingles</a>");
       } else {
-        this.$el.append(" <a href='/editar-abogado/" + (this.model.get("slug")) + "' class='btn btn-info lawyer-edit'>español</a>");
+        return this.$el.append(" <a href='/editar-abogado/" + (this.model.get("slug")) + "' class='btn btn-info lawyer-edit'>español</a>");
       }
-      return this.getRelationships(this.model.get('id'));
     };
 
     LawyerEditView.prototype.getRelationships = function(id) {
@@ -401,7 +418,10 @@ $(function() {
       mixins.renderCollection(ppu.LawyerPharases, ppu.LawyerPharasesEdit, {
         lawyer_id: id
       });
-      return mixins.renderCollection(ppu.LawyerAwards, ppu.LawyerAwardsEdit, {
+      mixins.renderCollection(ppu.LawyerAwards, ppu.LawyerAwardsEdit, {
+        lawyer_id: id
+      });
+      return mixins.renderCollection(ppu.LawyerAcademics, ppu.LawyerAcademicsEdit, {
         lawyer_id: id
       });
     };

@@ -15,9 +15,7 @@ default: &default
   host: 127.0.0.1
   pool: 5
   username: root
-  password: root
  
-
 development:
   <<: *default
   database: ppu_development

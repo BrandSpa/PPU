@@ -13,7 +13,7 @@ module BelongsToLawyer
 
 	def create
 		model = entity.create(model_params)
-    	render json: model, status: 200
+    render json: model, status: 200
 	end
 
 	def update
