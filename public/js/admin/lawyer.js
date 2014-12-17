@@ -390,7 +390,7 @@ $(function() {
     LawyerEditView.prototype.appendButtons = function() {
       this.$el.append('<a href="#" class="btn btn-info open-edit-lawyer"><i class="fa fa-pencil-square"></i></a>');
       if (this.model.get("lang") === "es") {
-        return this.$el.append(" <a href='/en/editar-abogado/" + (this.model.get("slug")) + "' class='btn btn-info lawyer-edit'>Ingles</a>");
+        return this.$el.append(" <a href='/en/editar-abogado/" + (this.model.get("slug")) + "' class='btn btn-info lawyer-edit'>Inglés</a>");
       } else {
         return this.$el.append(" <a href='/editar-abogado/" + (this.model.get("slug")) + "' class='btn btn-info lawyer-edit'>español</a>");
       }

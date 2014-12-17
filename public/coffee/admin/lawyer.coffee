@@ -233,7 +233,7 @@
     appendButtons: ->
       @$el.append   '<a href="#" class="btn btn-info open-edit-lawyer"><i class="fa fa-pencil-square"></i></a>'
       if @model.get("lang") == "es"
-        @$el.append   " <a href='/en/editar-abogado/#{@model.get("slug")}' class='btn btn-info lawyer-edit'>Ingles</a>"
+        @$el.append   " <a href='/en/editar-abogado/#{@model.get("slug")}' class='btn btn-info lawyer-edit'>Inglés</a>"
       else
         @$el.append   " <a href='/editar-abogado/#{@model.get("slug")}' class='btn btn-info lawyer-edit'>español</a>"
 
