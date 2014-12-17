@@ -1,9 +1,11 @@
 <div class="panel panel-default col-lg-9 hidden" id="lawyer-finish">
   <div class="panel-body">
   <div class="container-lawyer"></div>
+  <br>
+ <hr>
   </div>
   <div class="col-lg-6 lawyer-left">
-  <h3><i class="fa fa-briefcase"></i> Información general</h3>
+  <h3><i class="fa fa-briefcase"></i> <%= t('general_information') %></h3>
     <%= render "admin/lawyers/partials/section_edit", :model => "education", :title => "education" %>
     <%= render "admin/lawyers/partials/section_edit", :model => "job", :title => "professional_experience" %>
     <%= render "admin/lawyers/partials/section_edit", :model => "recognition", :title => "conferences_recognitions" %>

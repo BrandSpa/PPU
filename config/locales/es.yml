@@ -26,6 +26,8 @@ es:
   save: "Guardar"
   cancel: "Cancelar"
   page_lang: "English"
+  Download: "Descargar"
+  general_information: "Información general"
   categories:
     corporate_and_M&A: "Corporativo & MA"
     competition: "Competencia"

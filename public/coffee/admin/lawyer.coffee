@@ -81,7 +81,6 @@
       @listenTo @model, "sync", @stored, @
       @render()
       @getCategories()
-      @changeLang()
 
     render: ->
       source = @template.html()
@@ -111,12 +110,6 @@
       else
         $('.lawyer-description').fadeOut()
       
-    changeLang: ->
-      if lang == 'en'
-        $('.lawyer-lang option:eq(2)').prop('selected', true)
-      else
-        $('.lawyer-lang option:eq(1)').prop('selected', true)
-
     store: (e) ->
       if e
         e.preventDefault()
@@ -139,7 +132,7 @@
       ppu.lawyerAwardCreate.store(id)
       ppu.lawyerArticleCreate.store(id)
       ppu.lawyerPharaseCreate.store(id)
-      ppu.admin.router.navigate("editar-abogado/#{id}", {trigger: true})
+      ppu.admin.router.navigate("editar-abogado/#{model.get('slug')}", {trigger: true})
 
   class ppu.LawyerCreateView extends Backbone.View
     el: $ "#lawyer-create"
@@ -181,12 +174,13 @@
       ppu.categories = new ppu.Categories
       el = $(@el)
       categories = @model.get('categories')
-      ppu.categories.fetch().done (collection) ->
+      ppu.categories.fetch(data: locale: app.lang).done (collection) ->
         source = $('#lawyer-categories-template').html()
         template = Handlebars.compile(source)
         $(el).find('#lawyer-list-categories').html template( collection )
         _.each categories, (category) ->
           $(el).find("#lawyer-list-categories input[value='#{category.id}']").attr("checked", "checked")
+
 
     render: ->
       source = @template.html()
@@ -227,7 +221,8 @@
       $(@el).html t( @model.toJSON() )
       $("#lawyer-finish").removeClass("hidden")
       @$el.append   '<a href="#" class="btn btn-info open-edit-lawyer"><i class="fa fa-pencil-square"></i></a>'
-      console.log @model.toJSON()
+      @$el.append   " <a href='/en/editar-abogado/#{@model.get("slug")}' class='btn btn-info lawyer-edit'>Traducción</a>"
+
       @getRelationships(@model.get('id'))
 
     getRelationships: (id) ->

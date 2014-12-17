@@ -12,13 +12,7 @@ ppu.pathUrl = window.location.pathname.split('/');
 
 lang = ppu.pathUrl[1];
 
-if (lang === "en") {
-  $.ajaxSetup({
-    data: {
-      lang: "en"
-    }
-  });
-}
+$.ajaxSetup;
 
 app.compileTemplate = function(source) {
   source = $(source).html();

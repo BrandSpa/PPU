@@ -155,8 +155,7 @@ $(function() {
       this.listenTo(this.model, "error", this.toErrors, this);
       this.listenTo(this.model, "sync", this.stored, this);
       this.render();
-      this.getCategories();
-      return this.changeLang();
+      return this.getCategories();
     };
 
     LawyerCreateForm.prototype.render = function() {
@@ -198,14 +197,6 @@ $(function() {
       }
     };
 
-    LawyerCreateForm.prototype.changeLang = function() {
-      if (lang === 'en') {
-        return $('.lawyer-lang option:eq(2)').prop('selected', true);
-      } else {
-        return $('.lawyer-lang option:eq(1)').prop('selected', true);
-      }
-    };
-
     LawyerCreateForm.prototype.store = function(e) {
       var $forms, datas, options;
       if (e) {
@@ -232,7 +223,7 @@ $(function() {
       ppu.lawyerAwardCreate.store(id);
       ppu.lawyerArticleCreate.store(id);
       ppu.lawyerPharaseCreate.store(id);
-      return ppu.admin.router.navigate("editar-abogado/" + id, {
+      return ppu.admin.router.navigate("editar-abogado/" + (model.get('slug')), {
         trigger: true
       });
     };
@@ -306,7 +297,11 @@ $(function() {
       ppu.categories = new ppu.Categories;
       el = $(this.el);
       categories = this.model.get('categories');
-      return ppu.categories.fetch().done(function(collection) {
+      return ppu.categories.fetch({
+        data: {
+          locale: app.lang
+        }
+      }).done(function(collection) {
         var source, template;
         source = $('#lawyer-categories-template').html();
         template = Handlebars.compile(source);
@@ -376,7 +371,7 @@ $(function() {
       $(this.el).html(t(this.model.toJSON()));
       $("#lawyer-finish").removeClass("hidden");
       this.$el.append('<a href="#" class="btn btn-info open-edit-lawyer"><i class="fa fa-pencil-square"></i></a>');
-      console.log(this.model.toJSON());
+      this.$el.append(" <a href='/en/editar-abogado/" + (this.model.get("slug")) + "' class='btn btn-info lawyer-edit'>Traducción</a>");
       return this.getRelationships(this.model.get('id'));
     };
 

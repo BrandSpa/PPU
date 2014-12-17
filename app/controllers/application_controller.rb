@@ -6,10 +6,8 @@ class ApplicationController < ActionController::Base
     if  request.subdomain == 'en'
       I18n.locale = request.subdomain
     else
-      I18n.locale = I18n.default_locale   
+      I18n.locale = params[:locale] || I18n.default_locale
     end
-
-    
   end
 
   protect_from_forgery with: :exception

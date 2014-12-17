@@ -7,9 +7,10 @@ window.app = {}
 ppu.pathUrl = window.location.pathname.split( '/' )
 
 lang = ppu.pathUrl[1]
-if lang == "en"
-  $.ajaxSetup
-    data: lang: "en"
+
+
+$.ajaxSetup
+
 
 app.compileTemplate = (source) ->
   source = $(source).html()
