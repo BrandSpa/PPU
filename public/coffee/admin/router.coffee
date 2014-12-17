@@ -9,7 +9,6 @@ $ ->
       'crear-noticia': 'createPost'
       ':lang/crear-noticia': 'createPost'
 
-
     dashboard: ->
       ppu.lawyers = new ppu.Lawyers
       ppu.lawyers.fetch reset: true
@@ -19,6 +18,9 @@ $ ->
   
       ppu.lawyer =  new ppu.Lawyer
       ppu.lawyerCreateForm = new ppu.LawyerCreateForm model: ppu.lawyer
+
+      ppu.lawyerAcademic = new ppu.LawyerAcademic
+      ppu.lawyerAcademicCreate = new ppu.LawyerAcademicCreate model: ppu.lawyerAcademic
 
       ppu.lawyerArticle = new ppu.LawyerArticle
       ppu.lawyerArticleCreate = new ppu.LawyerArticleCreate model: ppu.lawyerArticle

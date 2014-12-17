@@ -98,29 +98,40 @@ $(function() {
     LawyersFilters.prototype.events = {
       'change .position': 'byPosition',
       'change .country': 'byCountry',
+      'change .category': 'byCategory',
       'submit .search': 'byQuery'
     };
 
     LawyersFilters.prototype.byPosition = function(e) {
-      var el, position;
-      el = $(e.currentTarget);
+      var position, val;
+      val = $(e.currentTarget).val();
       position = el.val();
       return ppu.lawyers.fetch({
         reset: true,
         data: {
-          position: position
+          position: val
         }
       });
     };
 
     LawyersFilters.prototype.byCountry = function(e) {
-      var country, el;
-      el = $(e.currentTarget);
-      country = el.val();
+      var val;
+      val = $(e.currentTarget).val();
       return ppu.lawyers.fetch({
         reset: true,
         data: {
-          country: country
+          country: val
+        }
+      });
+    };
+
+    LawyersFilters.prototype.byCategory = function(e) {
+      var val;
+      val = $(e.currentTarget).val();
+      return ppu.lawyers.fetch({
+        reset: true,
+        data: {
+          category: val
         }
       });
     };

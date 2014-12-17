@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   namespace :api do 
     resources :lawyers
+    resources :academics
     resources :articles
     resources :awards
     resources :categories

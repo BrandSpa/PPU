@@ -15,11 +15,10 @@ class Api::LawyersController < ApplicationController
     update = params[:update]
     slug = params[:slug]
 
-    collection = entity.includes(:categories).all.lang(lang).order('name ASC')
+    collection = entity.includes(:categories).where(nil)
     collection = collection.by_position(position) if position.present?
-    collection = collection.by_category(category) if category.present?
+    collection = entity.by_category(category) if category.present?
     collection = collection.by_trade(trade) if trade.present?
-    collection = collection.by_category_id(category_id) if category.present?
     collection = collection.by_country(country) if country.present?
     collection = collection.search(keyword) if keyword.present? 
     collection = collection.by_name(name) if name.present?

@@ -38,17 +38,21 @@ $ ->
     events:
       'change .position': 'byPosition'
       'change .country': 'byCountry'
+      'change .category': 'byCategory'
       'submit .search': 'byQuery'
 
     byPosition: (e) ->
-      el = $(e.currentTarget)
+      val = $(e.currentTarget).val()
       position = el.val()
-      ppu.lawyers.fetch reset: true, data: position: position
+      ppu.lawyers.fetch reset: true, data: position: val
       
     byCountry: (e) ->
-      el = $(e.currentTarget)
-      country = el.val()
-      ppu.lawyers.fetch reset: true, data: country: country
+      val = $(e.currentTarget).val()
+      ppu.lawyers.fetch reset: true, data: country: val
+
+    byCategory: (e) ->
+      val = $(e.currentTarget).val()
+      ppu.lawyers.fetch reset: true, data: category: val
 
   class ppu.LawyerDetailView extends Backbone.View
     el: $ '#lawyer-detail'
@@ -61,10 +65,3 @@ $ ->
       source = @template.html()
       compile = Handlebars.compile(source)
       $(@el).html t( @model.toJSON() )
-
-
-
-
-  
-
-  

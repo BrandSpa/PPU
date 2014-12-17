@@ -11,7 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141215160207) do
+ActiveRecord::Schema.define(version: 20141217211536) do
+
+  create_table "academics", force: true do |t|
+    t.integer  "lawyer_id"
+    t.string   "title"
+    t.string   "institution"
+    t.string   "from"
+    t.string   "until"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "academics", ["lawyer_id"], name: "index_academics_on_lawyer_id", using: :btree
 
   create_table "articles", force: true do |t|
     t.integer  "lawyer_id"
@@ -27,6 +39,12 @@ ActiveRecord::Schema.define(version: 20141215160207) do
     t.string   "img_name"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "awards_lawyers", id: false, force: true do |t|
+    t.integer "award_id"
+    t.integer "lawyer_id"
+    t.string  "subtitle"
   end
 
   create_table "categories", force: true do |t|
@@ -59,6 +77,8 @@ ActiveRecord::Schema.define(version: 20141215160207) do
     t.integer  "lawyer_id"
     t.string   "title"
     t.string   "country"
+    t.string   "from",       limit: 20
+    t.string   "until",      limit: 20
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -86,8 +106,8 @@ ActiveRecord::Schema.define(version: 20141215160207) do
   end
 
   create_table "lawyers", force: true do |t|
-    t.string   "lang",        default: "es"
-    t.string   "country",     default: "Colombia"
+    t.string   "lang",                   default: "es"
+    t.string   "country",                default: "Colombia"
     t.string   "name"
     t.string   "lastname"
     t.string   "position"
@@ -96,6 +116,7 @@ ActiveRecord::Schema.define(version: 20141215160207) do
     t.string   "email"
     t.text     "description"
     t.text     "keywords"
+    t.string   "slug",        limit: 50
     t.string   "img_name"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -115,20 +136,20 @@ ActiveRecord::Schema.define(version: 20141215160207) do
   end
 
   create_table "post_images", force: true do |t|
-    t.integer  "post_id"
     t.string   "img_name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "posts", force: true do |t|
-    t.string   "lang",       default: "es"
-    t.string   "country",    default: "Colombia"
+    t.string   "lang",                   default: "es"
+    t.string   "country",                default: "Colombia"
     t.datetime "date"
     t.string   "title"
-    t.string   "topic"
     t.string   "author"
-    t.text     "content"
+    t.string   "content"
+    t.string   "img_name",   limit: 250
+    t.string   "img_url",    limit: 250
     t.string   "slug"
     t.text     "keywords"
     t.integer  "featured"
