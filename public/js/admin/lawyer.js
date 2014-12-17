@@ -371,7 +371,11 @@ $(function() {
       $(this.el).html(t(this.model.toJSON()));
       $("#lawyer-finish").removeClass("hidden");
       this.$el.append('<a href="#" class="btn btn-info open-edit-lawyer"><i class="fa fa-pencil-square"></i></a>');
-      this.$el.append(" <a href='/en/editar-abogado/" + (this.model.get("slug")) + "' class='btn btn-info lawyer-edit'>Traducción</a>");
+      if (this.model.get("lang") === "es") {
+        this.$el.append(" <a href='/en/editar-abogado/" + (this.model.get("slug")) + "' class='btn btn-info lawyer-edit'>Ingles</a>");
+      } else {
+        this.$el.append(" <a href='/editar-abogado/" + (this.model.get("slug")) + "' class='btn btn-info lawyer-edit'>español</a>");
+      }
       return this.getRelationships(this.model.get('id'));
     };
 
