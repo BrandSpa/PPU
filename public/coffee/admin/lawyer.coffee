@@ -191,6 +191,9 @@
       source = @template.html()
       t = Handlebars.compile(source)
       $(@el).find('.modal-body').html t( @model.toJSON() )
+      if @model.get('level') >= 6 
+        $('.lawyer-description').removeClass('hidden')
+      
       $(@el).modal({backdrop: 'static'})
 
     update: (e) ->
@@ -199,13 +202,11 @@
       data = new FormData($forms[0])
       #data.append("fields[lawyer_id]", lawyer_id)
       @model.save data, $.extend({}, ppu.ajaxOptions("PUT", data))
-      
 
     updated: (model) ->
       if model.id
         @closeModal()
       
-
     close: (e) ->
       e.preventDefault()
       @closeModal()
@@ -219,6 +220,7 @@
     
     initialize: ->
       @listenTo(@model, 'change', @render)
+      @listenTo(@model, 'change', @renderCategories)
 
     render: ->
       id = @model.get('id')
@@ -229,6 +231,11 @@
       ppu.currentLawyerId = id
       @appendButtons()
       @getRelationships(id)
+    
+    renderCategories: ->
+      source = $("#lawyer-category-template").html()
+      t = Handlebars.compile(source)
+      $("#lawyer-category-edit").find('ul').html t( @model.toJSON() )
 
     appendButtons: ->
       @$el.append   '<a href="#" class="btn btn-info open-edit-lawyer"><i class="fa fa-pencil-square"></i></a>'
