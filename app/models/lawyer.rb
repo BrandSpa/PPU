@@ -12,12 +12,12 @@ class Lawyer < ActiveRecord::Base
 
   validates :name, presence: true
   validates :lastname, presence: true
-  validates :lang, presence: true
   validates :position, presence: true
 
   mount_uploader :img_name, LawyerImgUploader
 
   after_create :add_keywords
+  after_create :add_slug
 
   scope :lang, -> (lang){ where(lang: lang) }
   scope :by_position, -> (position){ where(position: position) }

@@ -14,7 +14,8 @@ $(function() {
     Lawyer.prototype.fetchBySlug = function(slug) {
       return this.fetch({
         data: $.param({
-          slug: slug
+          slug: slug,
+          locale: app.lang
         })
       });
     };

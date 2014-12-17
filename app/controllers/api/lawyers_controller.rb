@@ -15,9 +15,7 @@ class Api::LawyersController < ApplicationController
     update = params[:update]
     slug = params[:slug]
 
-    collection = entity.includes(:categories).all.order('name ASC')
-    
-    collection = collection.lang(lang) if lang.present?
+    collection = entity.includes(:categories).all.lang(lang).order('name ASC')
     collection = collection.by_position(position) if position.present?
     collection = collection.by_category(category) if category.present?
     collection = collection.by_trade(trade) if trade.present?
@@ -27,10 +25,12 @@ class Api::LawyersController < ApplicationController
     collection = collection.by_name(name) if name.present?
 
     if slug.present?
-      collection = entity.includes(:categories).by_slug(slug).lang(lang).first 
+      collection = entity.includes(:categories).by_slug(slug).lang(I18n.locale).first 
+      
       if collection.nil?
+        
         model = entity.includes(:categories).by_slug(slug).lang(:es).first
-        duplicate(model)
+        collection = duplicate(model)
       end
     end
 
@@ -74,17 +74,25 @@ class Api::LawyersController < ApplicationController
   end
 
   def duplicate(model)
+
     model_new = model.dup
-    model_new.lang = "en"
     model_new.position = translate_position(model.position)
-    model_new.save
+    model_new.lang = "en"
+    model_new.img_name = File.open(model.img_name.path)
+    model_new if model_new.save
+
   end
 
   def translate_position(position)
-    "Lawyer" if position == "Abogado" 
-    "Partner" if position == "Socio" 
-    "Specialist" if position == "Especialista" 
-    "Senior Counsel" if position == "Senior Counsel" 
+    if position == "Abogado"
+      "Lawyer" 
+    elsif position == "Socio" 
+      "Partner"
+    elsif position == "Especialista"
+      "Specialist"
+    else
+      "Senior Counsel"
+    end
   end
 
   def render_errors(model)
@@ -93,7 +101,7 @@ class Api::LawyersController < ApplicationController
 
   private
     def lawyer_params
-      params.require(:fields).permit(:lang, :country, :img_name, :name , :lastname, :phone, :position, :level, :email, :description, :category_ids => []) 
+      params.require(:fields).permit(:lang, :country, :img_name, :name , :lastname, :phone, :position, :level, :email, :description, :keywords, :slug, :category_ids => []) 
     end
 
     def entity

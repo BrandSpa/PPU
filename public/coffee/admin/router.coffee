@@ -5,7 +5,7 @@ $ ->
       'crear-abogado': 'createLawyer'
       ':lang/crear-abogado': 'createLawyer'
       'editar-abogado/:id': 'editLawyer'
-      'editar-abogado/:id': 'editLawyer'
+      'en/editar-abogado/:id': 'editLawyer'
       'crear-noticia': 'createPost'
       ':lang/crear-noticia': 'createPost'
 

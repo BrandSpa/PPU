@@ -4,7 +4,7 @@ $ ->
 
 
     fetchBySlug: (slug)->
-      @fetch data: $.param slug: slug
+      @fetch data: $.param slug: slug, locale: app.lang
 
   class ppu.Lawyers extends Backbone.Collection
     url: "/api/lawyers"
