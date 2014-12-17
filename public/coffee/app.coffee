@@ -8,7 +8,7 @@ $ ->
       e.preventDefault()
 
       if lang == 'en'
-        window.location = "http://#{app.hostname}#{app.pathname}"
+        window.location = "http://ppulegal.com#{app.pathname}"
       else
-        window.location = "http://en.#{app.hostname}#{app.pathname}"
+        window.location = "http://en.ppulegal.com#{app.pathname}"
       
