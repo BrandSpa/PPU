@@ -12,8 +12,11 @@ class Api::LawyersController < ApplicationController
     trade_id = params[:trade_id]
     country = params[:country]
     offset = params[:offset]
+    update = params[:update]
+    slug = params[:slug]
 
     collection = entity.select(:id, :lang, :name, :lastname, :country, :position, :phone, :email, :img_name).all.order('name ASC')
+    
     collection = collection.lang(lang) if lang.present?
     collection = collection.by_position(position) if position.present?
     collection = collection.by_category(category) if category.present?
@@ -22,19 +25,25 @@ class Api::LawyersController < ApplicationController
     collection = collection.by_country(country) if country.present?
     collection = collection.search(keyword) if keyword.present? 
     collection = collection.by_name(name) if name.present?
+    collection = entity.by_slug(slug).lang(lang).first if slug.present?
+
+    if update.present?
+      collection.each do |m|
+        slug = m.email.split('@')[0]
+        m.update({slug: slug})
+      end
+    end
+
     render json: collection.to_json(:include => [:categories])
   end
 
   def show
     id = params[:id]
-    lang = params[:lang] || "es"
-
-    if id.present?
-      model = entity.find(id)
-      render json: model.to_json(:include => [:categories])
-    else
-      render json: "id don't finded", status: 400
-    end
+    slug = params[:slug]
+    lang = I18n.locale
+    model = entity.find(id) if id.present?
+    model = entity.by_slug(slug).lang(lang) if slug.present?
+    render json: model.to_json(:include => [:categories])
   end
 
   def create

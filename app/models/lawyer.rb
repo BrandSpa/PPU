@@ -21,6 +21,7 @@ class Lawyer < ActiveRecord::Base
 
   scope :lang, -> (lang){ where(lang: lang) }
   scope :by_position, -> (position){ where(position: position) }
+  scope :by_slug, -> (slug){ where(slug: slug) }
   scope :by_country, -> (country){ where(country: country) }
   scope :by_category, -> (category){ joins(:categories).where('categories.name' => category ) }
   scope :by_category_id, -> (category){ joins(:categories).where('categories.id' => category ) }
@@ -28,8 +29,6 @@ class Lawyer < ActiveRecord::Base
   scope :by_trade_id, -> (trade){ joins(:trades).where('trades.id' => trade ) }
   scope :search, -> (keyword){ where("keywords LIKE ?", "%#{keyword}%") }
   scope :by_name, -> (firstname, lastname){  where("name LIKE ? AND lastname LIKE ?", "%#{firstname}%", "%#{lastname}%") }
-
- 
 
   def self.attach_categories(model, collection)
     if collection.present?
@@ -64,5 +63,13 @@ class Lawyer < ActiveRecord::Base
       model = self
       model.keywords = [self.name, self.lastname, self.position, self.email, self.phone, self.description].join(" ")
       model.save
+    end
+
+    def add_slug
+      model = self
+      if self.email
+        model.slug = self.email.split('@')[0]
+        model.save
+      end
     end
 end
