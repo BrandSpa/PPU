@@ -126,10 +126,20 @@ ul {
     background: #002855;
     color: white;
     border: none;
-    padding-top: 15px;
-    border-left: 1px solid white; }
+    padding-top: 15px; }
   #lawyers-filters .radio-inline {
     color: white; }
+  #lawyers-filters .position {
+    float: left;
+    width: 25%; }
+  #lawyers-filters .category {
+    float: left;
+    width: 25%;
+    border-left: 1px solid white; }
+  #lawyers-filters .countries {
+    float: left;
+    width: 25%;
+    border-left: 1px solid white; }
   #lawyers-filters .search {
     float: right;
     width: 25%;
