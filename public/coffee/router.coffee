@@ -8,7 +8,9 @@ $ ->
       ":lang/editar-abogado/:id": 'finishLawyer'
       ":lang/crear-abogado": 'adminLawyer'
       "dashboard": 'dashboard'
-    
+    initialize: ->
+      new ppu.AppView
+      
     lawyers: (lang) ->
       ppu.lawyers =  new ppu.Lawyers
       ppu.lawyers.fetch reset: true

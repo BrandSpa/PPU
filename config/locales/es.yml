@@ -25,6 +25,7 @@ es:
   phrases: "Frases"
   save: "Guardar"
   cancel: "Cancelar"
+  page_lang: "English"
   date:
     abbr_day_names:
     - dom

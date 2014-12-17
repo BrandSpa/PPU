@@ -19,6 +19,10 @@ $(function() {
       "dashboard": 'dashboard'
     };
 
+    Workspace.prototype.initialize = function() {
+      return new ppu.AppView;
+    };
+
     Workspace.prototype.lawyers = function(lang) {
       ppu.lawyers = new ppu.Lawyers;
       ppu.lawyers.fetch({
