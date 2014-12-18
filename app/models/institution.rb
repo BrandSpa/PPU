@@ -1,4 +1,4 @@
 class Institution < ActiveRecord::Base
   include Lawyerable
-  validates :title, length: { minimum: 3 }
+  validates :title, presence: true
 end
