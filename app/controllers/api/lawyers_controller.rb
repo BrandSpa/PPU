@@ -78,9 +78,45 @@ class Api::LawyersController < ApplicationController
     model_new.position = translate_position(model.position)
     model_new.lang = "en"
     model_new.img_name = File.open(model.img_name.path) if model.img_name.path
-    model_new if model_new.save
-
+    model_new.save
+    id = model_new.id
+    duplicate_relationship(model.educations, id)
+    duplicate_relationship(model.jobs, id)
+    duplicate_relationship(model.recognitions, id)
+    duplicate_relationship(model.academics, id)
+    duplicate_relationship(model.institutions, id)
+    duplicate_relationship(model.phrases, id)
+    duplicate_with_image(model.awards, id)
+    duplicate_with_file(model.articles, id)
+    model_new
   end
+
+  def duplicate_relationship(collection, id)
+    collection.each do |model|
+      model_new = model.dup
+      model_new.lawyer_id = id
+      model_new.save
+    end
+  end
+
+  def duplicate_with_image(collection, id)
+    collection.each do |model|
+      model_new = model.dup
+      model_new.lawyer_id = id
+      model_new.img_name = File.open(model.img_name.path) if model.img_name.path
+      model_new.save
+    end
+  end
+
+  def duplicate_with_file(collection, id)
+    collection.each do |model|
+      model_new = model.dup
+      model_new.lawyer_id = id
+      model_new.file_name = File.open(model.file_name.path) if model.file_name.path
+      model_new.save
+    end
+  end
+
 
   def translate_position(position)
     if position == "Abogado"
