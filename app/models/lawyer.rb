@@ -14,6 +14,7 @@ class Lawyer < ActiveRecord::Base
   validates :name, presence: true
   validates :lastname, presence: true
   validates :position, presence: true
+  validates :email, presence: true
 
   mount_uploader :img_name, LawyerImgUploader
 

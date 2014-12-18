@@ -1,4 +1,4 @@
 class Phrase < ActiveRecord::Base
   include Lawyerable
-  validates :content, length: { minimum: 3 }
+  validates :author, presence: true, unless: :content?
 end

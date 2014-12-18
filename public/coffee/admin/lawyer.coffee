@@ -137,6 +137,7 @@
       ppu.lawyerAwardCreate.store(id)
       ppu.lawyerArticleCreate.store(id)
       ppu.lawyerPharaseCreate.store(id)
+      
       ppu.admin.router.navigate("editar-abogado/#{model.get('slug')}", {trigger: true})
 
   class ppu.LawyerCreateView extends Backbone.View
