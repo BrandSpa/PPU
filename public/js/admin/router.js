@@ -84,12 +84,18 @@ $(function() {
     };
 
     Router.prototype.createPost = function(lang) {
-      var model;
-      model = new ppu.admin.Post;
+      ppu.admin.post = new ppu.admin.Post;
       ppu.admin.postCreate = new ppu.admin.PostCreate({
-        model: model
+        model: ppu.admin.post
       });
-      return ppu.admin.postCreate.render();
+      ppu.admin.postCreate.render();
+      ppu.admin.galleries = new ppu.admin.Galleries;
+      return ppu.admin.galleries.fetch({
+        reset: true,
+        data: {
+          name: "post_header"
+        }
+      });
     };
 
     return Router;

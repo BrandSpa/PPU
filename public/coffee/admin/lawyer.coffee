@@ -1,4 +1,4 @@
- $ ->
+$ ->
   class ppu.admin.LawyerView extends Backbone.View
     tagName: 'tr'
     template: $ '#lawyer-dashbord-template'

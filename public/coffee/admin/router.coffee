@@ -55,10 +55,12 @@ $ ->
       view = new ppu.LawyerEditView model: ppu.lawyer
 
     createPost: (lang) ->
-      model = new ppu.admin.Post
-      ppu.admin.postCreate = new ppu.admin.PostCreate model: model
+      ppu.admin.post = new ppu.admin.Post
+      ppu.admin.postCreate = new ppu.admin.PostCreate model: ppu.admin.post
       ppu.admin.postCreate.render()
 
-
+      ppu.admin.galleries = new  ppu.admin.Galleries
+      ppu.admin.galleries.fetch reset: true, data: name: "post_header"
+      
   ppu.admin.router = new ppu.admin.Router
   Backbone.history.start pushState: true 

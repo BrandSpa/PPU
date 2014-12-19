@@ -60,7 +60,7 @@ class Lawyer < ActiveRecord::Base
   end
 
   private
-    def add_keywords
+    def add_keywords()
       model = self
       model.keywords = [self.name, self.lastname, self.position, self.email, self.phone, self.description].join(" ")
       model.save

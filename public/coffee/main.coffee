@@ -55,8 +55,8 @@ Backbone.View::removeError = (e) ->
 
 Backbone.View::closeModal = ->
   $('.modal-backdrop').remove()
-  @remove()
   $('body').removeClass 'modal-open'
+  @remove()
 
 ppu.appendDatePickerYear = (el) ->
   $(el).find('.datepicker-year').datepicker
@@ -79,17 +79,15 @@ ppu.appendSummernote = (el) ->
 
 app.uploadPhotoSummernote = (file, editor, welEditable) ->
   data = new FormData()
-  data.append("postimage[img_name]", file)
-  console.log welEditable
+  data.append("gallery[name]", "post_header")
+  data.append("gallery[img_name]", file)
   $.ajax
     data: data,
     type: "POST",
-    url: "/api/post_images",
-    cache: false,
-    contentType: false,
-    processData: false,
-    error: (res, mo) ->
-      console.log mo
+    url: "/api/galleries"
+    cache: false
+    contentType: false
+    processData: false
     success: (url) ->
       console.log url
       editor.insertImage(welEditable, url)

@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     resources :trades
     resources :posts
     resources :post_images
+    resources :galleries
   end
   
   get "", to: 'posts#index'

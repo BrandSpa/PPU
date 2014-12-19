@@ -11,12 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141217211536) do
+ActiveRecord::Schema.define(version: 20141218213749) do
 
   create_table "academics", force: true do |t|
     t.integer  "lawyer_id"
     t.string   "title"
     t.string   "institution"
+    t.string   "country",     limit: 100
     t.string   "from"
     t.string   "until"
     t.datetime "created_at"
@@ -73,12 +74,19 @@ ActiveRecord::Schema.define(version: 20141217211536) do
 
   add_index "educations", ["lawyer_id"], name: "index_educations_on_lawyer_id", using: :btree
 
+  create_table "galleries", force: true do |t|
+    t.string   "name"
+    t.string   "img_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "institutions", force: true do |t|
     t.integer  "lawyer_id"
     t.string   "title"
     t.string   "country"
-    t.string   "from",       limit: 20
-    t.string   "until",      limit: 20
+    t.string   "from",       limit: 10
+    t.string   "until",      limit: 10
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -115,9 +123,9 @@ ActiveRecord::Schema.define(version: 20141217211536) do
     t.string   "phone"
     t.string   "email"
     t.text     "description"
+    t.string   "img_name"
     t.text     "keywords"
     t.string   "slug",        limit: 50
-    t.string   "img_name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

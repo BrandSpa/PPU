@@ -12,13 +12,7 @@ ppu.pathUrl = window.location.pathname.split('/');
 
 lang = ppu.pathUrl[1];
 
-if (lang === "en") {
-  $.ajaxSetup({
-    data: {
-      lang: "en"
-    }
-  });
-}
+$.ajaxSetup;
 
 app.compileTemplate = function(source) {
   source = $(source).html();
@@ -78,8 +72,8 @@ Backbone.View.prototype.removeError = function(e) {
 
 Backbone.View.prototype.closeModal = function() {
   $('.modal-backdrop').remove();
-  this.remove();
-  return $('body').removeClass('modal-open');
+  $('body').removeClass('modal-open');
+  return this.remove();
 };
 
 ppu.appendDatePickerYear = function(el) {
@@ -111,18 +105,15 @@ ppu.appendSummernote = function(el) {
 app.uploadPhotoSummernote = function(file, editor, welEditable) {
   var data;
   data = new FormData();
-  data.append("postimage[img_name]", file);
-  console.log(welEditable);
+  data.append("gallery[name]", "post_header");
+  data.append("gallery[img_name]", file);
   return $.ajax({
     data: data,
     type: "POST",
-    url: "/api/post_images",
+    url: "/api/galleries",
     cache: false,
     contentType: false,
     processData: false,
-    error: function(res, mo) {
-      return console.log(mo);
-    },
     success: function(url) {
       console.log(url);
       return editor.insertImage(welEditable, url);

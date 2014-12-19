@@ -68,7 +68,8 @@ $(function() {
     PostCreate.prototype.template = $("#post-create-template");
 
     PostCreate.prototype.events = {
-      "click button.store": "store"
+      "click button.store": "store",
+      "click .open-gallery": "openGallery"
     };
 
     PostCreate.prototype.render = function() {
@@ -82,13 +83,25 @@ $(function() {
 
     PostCreate.prototype.store = function() {
       var $form, content, data, options;
-      console.log(this.model);
       $form = this.$el.find('form');
       content = $(this.el).find('.summernote').code();
       data = new FormData($form[0]);
       data.append("post[content]", content);
       options = ppu.ajaxOptions("POST", data);
       return this.model.save(data, $.extend({}, options));
+    };
+
+    PostCreate.prototype.openGallery = function(e) {
+      var modal;
+      e.preventDefault();
+      modal = new ppu.admin.GalleryPostModal({
+        collection: ppu.admin.galleries
+      });
+      return modal.render();
+    };
+
+    PostCreate.prototype.appendImageHeader = function(id) {
+      return this.$el.find('form').append("<input type='hidden' name='post[gallery_id]'' value='" + id + "'>");
     };
 
     return PostCreate;

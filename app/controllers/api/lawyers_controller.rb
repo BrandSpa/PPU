@@ -73,7 +73,6 @@ class Api::LawyersController < ApplicationController
   end
 
   def duplicate(model)
-
     model_new = model.dup
     model_new.position = translate_position(model.position)
     model_new.lang = "en"
@@ -116,7 +115,6 @@ class Api::LawyersController < ApplicationController
       model_new.save
     end
   end
-
 
   def translate_position(position)
     if position == "Abogado"

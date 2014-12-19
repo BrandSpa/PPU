@@ -21,6 +21,7 @@ $ ->
     template: $ "#post-create-template"
     events: 
       "click button.store": "store"
+      "click .open-gallery": "openGallery"
 
     render: ->
       source = @template.html()
@@ -30,13 +31,20 @@ $ ->
       ppu.appendSummernote(@el)
 
     store: ->
-      console.log @model
       $form = @$el.find('form')
       content = $(@el).find('.summernote').code()
       data = new FormData($form[0])
       data.append("post[content]", content)
       options = ppu.ajaxOptions("POST", data)
       @model.save data, $.extend({}, options)
+
+    openGallery: (e) ->
+      e.preventDefault()
+      modal = new ppu.admin.GalleryPostModal collection: ppu.admin.galleries
+      modal.render()
+
+    appendImageHeader: (id) ->
+      @$el.find('form').append "<input type='hidden' name='post[gallery_id]'' value='#{id}'>"
 
   class ppu.admin.PostEdit extends Backbone.View
     el: $ "#"
