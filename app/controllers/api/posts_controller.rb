@@ -13,7 +13,12 @@ class Api::PostsController < ApplicationController
 
   def create
     model = entity.create(post_params)
-    render json: model, status: 200
+    if model.valid?
+      render json: model, status: 200
+    else
+      render json: model.errors, status: 400
+    end
+    
   end
 
   private 

@@ -69,7 +69,13 @@ $(function() {
 
     PostCreate.prototype.events = {
       "click button.store": "store",
-      "click .open-gallery": "openGallery"
+      "click .open-gallery": "openGallery",
+      "change .form-control": "removeError",
+      "keydown .form-control": "removeError"
+    };
+
+    PostCreate.prototype.initialize = function() {
+      return this.listenTo(this.model, 'error', this.renderPostErrors, this);
     };
 
     PostCreate.prototype.render = function() {

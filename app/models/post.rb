@@ -6,27 +6,38 @@ class Post < ActiveRecord::Base
 
   scope :by_lang, -> (lang){ where(lang: lang) }
   scope :by_country, -> (country){ where(country: country) }
-  scope :by_slug, -> (slug){ where(slug: slug) }
 
+  validates :date , presence: true
+  validates :title, presence: true
+  validates :content, presence: true
+  validates :title, uniqueness: true
+  
   after_create :add_keywords
-  after_create :add_slug
+  before_create :check_slug
+
+  def self.by_slug(slug)
+    where(slug: slug) 
+  end
 
   private
+
+     def check_slug
+      
+    end
+
     def add_keywords
       model = self
       model.keywords = [self.title, self.content, self.author].join(" ")
       model.save
     end
 
+   
     def add_slug
-      slug = self.title.replace(/\s+/g, '-').toLowerCase()
-      self.by_slug(slug).count
-
-      if slug > 0
-        model = self
-        model.slug = slug
-        model.save
-      end
+      title = self.title
+      slug = title.gsub(/[ ]/, '-')
+      model = self
+      model.slug = slug.toLowerCase()
+      model.save
     end
   
 end

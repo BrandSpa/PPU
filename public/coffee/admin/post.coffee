@@ -22,6 +22,11 @@ $ ->
     events: 
       "click button.store": "store"
       "click .open-gallery": "openGallery"
+      "change .form-control": "removeError"
+      "keydown .form-control": "removeError"
+
+    initialize: ->
+      @listenTo(@model, 'error', @renderPostErrors, @)
 
     render: ->
       source = @template.html()

@@ -14,6 +14,19 @@ lang = ppu.pathUrl[1];
 
 $.ajaxSetup;
 
+Backbone.View.prototype.renderPostErrors = function(model, response) {
+  var $form, errors;
+  model = model;
+  $form = this.$el.find('form');
+  errors = JSON.parse(response.responseText);
+  return _.each(errors, function(message, field) {
+    var input;
+    input = $form.find("[name='post[" + field + "]' ]");
+    input.addClass("error");
+    return input.after("<div class='error-message'>" + message + "</div>");
+  });
+};
+
 app.compileTemplate = function(source) {
   source = $(source).html();
   return Handlebars.compile(source);
@@ -105,7 +118,7 @@ ppu.appendSummernote = function(el) {
 app.uploadPhotoSummernote = function(file, editor, welEditable) {
   var data;
   data = new FormData();
-  data.append("gallery[name]", "post_header");
+  data.append("gallery[name]", "post_content");
   data.append("gallery[img_name]", file);
   return $.ajax({
     data: data,

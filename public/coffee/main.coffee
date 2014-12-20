@@ -11,6 +11,14 @@ lang = ppu.pathUrl[1]
 
 $.ajaxSetup
 
+Backbone.View::renderPostErrors = (model, response) ->
+  model = model
+  $form = @$el.find('form')
+  errors = JSON.parse(response.responseText)
+  _.each errors, (message, field) ->
+    input = $form.find("[name='post[#{field}]' ]")
+    input.addClass "error"
+    input.after "<div class='error-message'>#{message}</div>"
 
 app.compileTemplate = (source) ->
   source = $(source).html()
@@ -79,7 +87,7 @@ ppu.appendSummernote = (el) ->
 
 app.uploadPhotoSummernote = (file, editor, welEditable) ->
   data = new FormData()
-  data.append("gallery[name]", "post_header")
+  data.append("gallery[name]", "post_content")
   data.append("gallery[img_name]", file)
   $.ajax
     data: data,
