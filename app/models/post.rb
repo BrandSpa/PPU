@@ -1,13 +1,13 @@
 class Post < ActiveRecord::Base
-
+  has_and_belongs_to_many :lawyers
+  has_and_belongs_to_many :categories
   belongs_to :gallery
-
+  
   mount_uploader :img_name, PostImageUploader
 
   scope :by_lang, -> (lang){ where(lang: lang) }
   scope :by_country, -> (country){ where(country: country) }
 
-  validates :date , presence: true
   validates :title, presence: true
   validates :content, presence: true
   validates :title, uniqueness: true

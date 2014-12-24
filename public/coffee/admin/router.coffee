@@ -6,13 +6,20 @@ $ ->
       ':lang/crear-abogado': 'createLawyer'
       'editar-abogado/:id': 'editLawyer'
       'en/editar-abogado/:id': 'editLawyer'
-      'crear-noticia': 'createPost'
+      'admin/posts/new': 'createPost'
+      'en/admin/posts/new': 'createPost'
+      'admin/posts/:id/edit': 'editPost'
+      'en/admin/posts/:id/edit': 'editPost'
       ':lang/crear-noticia': 'createPost'
 
     dashboard: ->
       ppu.lawyers = new ppu.Lawyers
       ppu.lawyers.fetch reset: true
       ppu.admin.lawyers= new ppu.admin.LawyersView collection: ppu.lawyers
+
+      ppu.posts = new ppu.Posts
+      ppu.posts.fetch reset: true
+      ppu.admin.posts = new ppu.admin.PostsView collection: ppu.posts
 
     createLawyer: (lang) ->
   
@@ -55,9 +62,17 @@ $ ->
       view = new ppu.LawyerEditView model: ppu.lawyer
 
     createPost: (lang) ->
-      ppu.admin.post = new ppu.admin.Post
+      ppu.admin.post = new ppu.Post
       ppu.admin.postCreate = new ppu.admin.PostCreate model: ppu.admin.post
       ppu.admin.postCreate.render()
+
+      ppu.admin.galleries = new  ppu.admin.Galleries
+      ppu.admin.galleries.fetch reset: true, data: name: "post_header"
+
+    editPost: (id) ->
+      ppu.admin.post = new ppu.Post id: id
+      ppu.admin.post.fetch()
+      ppu.admin.postEdit = new ppu.admin.PostEdit model: ppu.admin.post
 
       ppu.admin.galleries = new  ppu.admin.Galleries
       ppu.admin.galleries.fetch reset: true, data: name: "post_header"

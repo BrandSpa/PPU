@@ -187,7 +187,6 @@ $ ->
         _.each categories, (category) ->
           $(el).find("#lawyer-list-categories input[value='#{category.id}']").attr("checked", "checked")
 
-
     render: ->
       source = @template.html()
       t = Handlebars.compile(source)

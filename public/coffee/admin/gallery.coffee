@@ -20,8 +20,9 @@ $ ->
 
     selectImage: (e) ->
       e.preventDefault()
-      img =  @model.get('id')
-      ppu.admin.postCreate.appendImageHeader(img)
+      img = @model.get('id')
+      $(document).find('.gallery_id').val(img)
+      ppu.admin.galleryPostModal.closeModal()
       
   class ppu.admin.GalleryPostModal extends Backbone.View
     el: $ "#gallery-post-modal"

@@ -6,8 +6,7 @@ CarrierWave.configure do |config|
     :region                 => 'us-east-1',                  # optional, defaults to 'us-east-1'
   }
   config.fog_directory  = 'ppu-web'                          # required
-  config.fog_public     = false                                        # optional, defaults to true
-  config.fog_attributes = {'Cache-Control'=>"max-age=#{365.day.to_i}"} # optional, defaults to {}
+  config.fog_public     = true                                       # optional, defaults to true
 end
 
 module CarrierWave

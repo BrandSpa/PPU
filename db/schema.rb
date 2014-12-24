@@ -62,6 +62,11 @@ ActiveRecord::Schema.define(version: 20141218213749) do
     t.integer "lawyer_id"
   end
 
+  create_table "categories_posts", id: false, force: true do |t|
+    t.integer "post_id"
+    t.integer "category_id"
+  end
+
   create_table "educations", force: true do |t|
     t.integer  "lawyer_id"
     t.string   "title"
@@ -130,6 +135,11 @@ ActiveRecord::Schema.define(version: 20141218213749) do
     t.datetime "updated_at"
   end
 
+  create_table "lawyers_posts", id: false, force: true do |t|
+    t.integer "post_id"
+    t.integer "lawyer_id"
+  end
+
   create_table "lawyers_trades", id: false, force: true do |t|
     t.integer "lawyer_id"
     t.integer "trade_id"
@@ -149,30 +159,33 @@ ActiveRecord::Schema.define(version: 20141218213749) do
     t.datetime "updated_at"
   end
 
+  create_table "post_translations", force: true do |t|
+    t.integer  "post_id",    null: false
+    t.string   "locale",     null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "title"
+    t.text     "content"
+    t.text     "keywords"
+  end
+
+  add_index "post_translations", ["locale"], name: "index_post_translations_on_locale", using: :btree
+  add_index "post_translations", ["post_id"], name: "index_post_translations_on_post_id", using: :btree
+
   create_table "posts", force: true do |t|
+    t.integer  "gallery_id"
     t.string   "lang",                   default: "es"
     t.string   "country",                default: "Colombia"
-    t.datetime "date"
+    t.date     "date"
     t.string   "title"
     t.string   "author"
-    t.string   "content"
+    t.text     "content"
     t.string   "img_name",   limit: 250
-    t.string   "img_url",    limit: 250
-    t.string   "slug"
+    t.text     "slug"
     t.text     "keywords"
     t.integer  "featured"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "posts_categories", id: false, force: true do |t|
-    t.integer "post_id"
-    t.integer "category_id"
-  end
-
-  create_table "posts_lawyers", id: false, force: true do |t|
-    t.integer "post_id"
-    t.integer "lawyer_id"
   end
 
   create_table "recognitions", force: true do |t|

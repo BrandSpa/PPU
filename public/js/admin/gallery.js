@@ -55,7 +55,8 @@ $(function() {
       var img;
       e.preventDefault();
       img = this.model.get('id');
-      return ppu.admin.postCreate.appendImageHeader(img);
+      $(document).find('.gallery_id').val(img);
+      return ppu.admin.galleryPostModal.closeModal();
     };
 
     return GalleryView;

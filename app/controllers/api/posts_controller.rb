@@ -18,12 +18,28 @@ class Api::PostsController < ApplicationController
     else
       render json: model.errors, status: 400
     end
-    
+  end
+
+   def update
+    id = params[:id]
+    model = entity.includes(:categories, :lawyers, :gallery).find(id)
+    model.update(post_params)
+    if model.valid?
+      render json: model, status: 200
+    else
+      render json: model.errors, status: 400
+    end
+  end
+
+  def show
+    id = params[:id]
+    model = entity.includes(:categories, :lawyers, :gallery).find(id)
+    render json: model.to_json(:include => [:categories, :lawyers, :gallery])
   end
 
   private 
     def post_params
-      params.require(:post).permit(:lang, :country, :date, :author, :title, :content, :img_name, :gallery_id)
+      params.require(:post).permit(:lang, :country, :date, :author, :title, :content, :img_name, :gallery_id, :lawyer_ids => [], :category_ids => [])
     end
     
 end

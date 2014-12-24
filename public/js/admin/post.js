@@ -2,7 +2,7 @@ var __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
 $(function() {
-  ppu.admin.Post = (function(_super) {
+  ppu.Post = (function(_super) {
     __extends(Post, _super);
 
     function Post() {
@@ -14,7 +14,7 @@ $(function() {
     return Post;
 
   })(Backbone.Model);
-  ppu.admin.Posts = (function(_super) {
+  ppu.Posts = (function(_super) {
     __extends(Posts, _super);
 
     function Posts() {
@@ -23,7 +23,7 @@ $(function() {
 
     Posts.prototype.url = '/api/posts';
 
-    Posts.prototype.model = ppu.admin.Post;
+    Posts.prototype.model = ppu.Post;
 
     return Posts;
 
@@ -35,9 +35,17 @@ $(function() {
       return PostView.__super__.constructor.apply(this, arguments);
     }
 
-    PostView.prototype.template = $("#");
+    PostView.prototype.template = $('#post-admin-template');
 
-    PostView.prototype.render = function() {};
+    PostView.prototype.tagName = 'tr';
+
+    PostView.prototype.render = function() {
+      var source, t;
+      source = this.template.html();
+      t = Handlebars.compile(source);
+      $(this.el).html(t(this.model.toJSON()));
+      return this;
+    };
 
     return PostView;
 
@@ -49,9 +57,31 @@ $(function() {
       return PostsView.__super__.constructor.apply(this, arguments);
     }
 
-    PostsView.prototype.el = $("#");
+    PostsView.prototype.el = $("#posts-dasboard");
 
-    PostsView.prototype.render = function() {};
+    PostsView.prototype.initialize = function() {
+      this.listenTo(this.collection, 'reset', this.render);
+      return this.listenTo(this.collection, 'add', this.addOne, this);
+    };
+
+    PostsView.prototype.addOne = function(model) {
+      var view;
+      view = new ppu.admin.PostView({
+        model: model
+      });
+      return $(this.el).find('thead').append(view.render().el);
+    };
+
+    PostsView.prototype.render = function() {
+      $(this.el).find('tbody').html('');
+      return this.collection.each(function(model) {
+        var view;
+        view = new ppu.admin.PostView({
+          model: model
+        });
+        return $(this.el).find('tbody').append(view.render().el);
+      }, this);
+    };
 
     return PostsView;
 
@@ -70,6 +100,7 @@ $(function() {
     PostCreate.prototype.events = {
       "click button.store": "store",
       "click .open-gallery": "openGallery",
+      "keydown input[name='query']": "searchLawyer",
       "change .form-control": "removeError",
       "keydown .form-control": "removeError"
     };
@@ -84,7 +115,8 @@ $(function() {
       template = Handlebars.compile(source);
       this.$el.find('.panel-body').html(template());
       ppu.appendDatePicker(this.el);
-      return ppu.appendSummernote(this.el);
+      ppu.appendSummernote(this.el);
+      return this.getCategories();
     };
 
     PostCreate.prototype.store = function() {
@@ -97,17 +129,38 @@ $(function() {
       return this.model.save(data, $.extend({}, options));
     };
 
+    PostCreate.prototype.getCategories = function() {
+      ppu.categories = new ppu.Categories;
+      return ppu.categories.fetch().done(function(collection) {
+        var source, template;
+        source = $('#lawyer-categories-template').html();
+        template = Handlebars.compile(source);
+        return $('#categories-checkboxes').html(template(collection));
+      });
+    };
+
     PostCreate.prototype.openGallery = function(e) {
-      var modal;
       e.preventDefault();
-      modal = new ppu.admin.GalleryPostModal({
+      ppu.admin.galleryPostModal = new ppu.admin.GalleryPostModal({
         collection: ppu.admin.galleries
       });
-      return modal.render();
+      return ppu.admin.galleryPostModal.render();
     };
 
     PostCreate.prototype.appendImageHeader = function(id) {
-      return this.$el.find('form').append("<input type='hidden' name='post[gallery_id]'' value='" + id + "'>");
+      return this.$el.find('.gallery_id').val(id);
+    };
+
+    PostCreate.prototype.searchLawyer = function(e) {
+      var collection, query;
+      query = $(e.currentTarget).val();
+      if (query.length > 3) {
+        collection = new ppu.Lawyers;
+        ppu.admin.postLawyersSelect = new ppu.admin.PostLawyersSelect({
+          collection: collection
+        });
+        return ppu.admin.postLawyersSelect.search(query);
+      }
     };
 
     return PostCreate;
@@ -120,33 +173,124 @@ $(function() {
       return PostEdit.__super__.constructor.apply(this, arguments);
     }
 
-    PostEdit.prototype.el = $("#");
+    PostEdit.prototype.el = $("#post-edit");
+
+    PostEdit.prototype.template = $("#post-create-template");
+
+    PostEdit.prototype.events = {
+      "click button.update": "update",
+      "click .open-gallery": "openGallery",
+      "keydown input[name='query']": "searchLawyer",
+      "change .form-control": "removeError",
+      "keydown .form-control": "removeError"
+    };
+
+    PostEdit.prototype.initialize = function() {
+      this.listenTo(this.model, 'change', this.render);
+      return this.listenTo(this.model, 'error', this.renderPostErrors, this);
+    };
+
+    PostEdit.prototype.render = function() {
+      var source, template;
+      source = this.template.html();
+      template = Handlebars.compile(source);
+      this.$el.find('.panel-body').html(template(this.model.toJSON()));
+      ppu.appendDatePicker(this.el);
+      ppu.appendSummernote(this.el);
+      this.getCategories();
+      return this.showLawyers();
+    };
+
+    PostEdit.prototype.update = function(e) {
+      var $form, content, data, options;
+      e.preventDefault();
+      $form = this.$el.find('form');
+      content = $(this.el).find('.summernote').code();
+      data = new FormData($form[0]);
+      data.append("post[content]", content);
+      options = ppu.ajaxOptions("PUT", data);
+      return this.model.save(data, $.extend({}, options));
+    };
+
+    PostEdit.prototype.getCategories = function() {
+      var categories, el;
+      ppu.categories = new ppu.Categories;
+      el = this.$el;
+      categories = this.model.get('categories');
+      return ppu.categories.fetch({
+        data: {
+          locale: app.lang
+        }
+      }).done(function(collection) {
+        var source, template;
+        source = $('#lawyer-categories-template').html();
+        template = Handlebars.compile(source);
+        $('#categories-checkboxes').html(template(collection));
+        return _.each(categories, function(category) {
+          return $(el).find("#categories-checkboxes input[value='" + category.id + "']").attr("checked", "checked");
+        });
+      });
+    };
+
+    PostEdit.prototype.showLawyers = function() {
+      var lawyers;
+      lawyers = this.model.get('lawyers');
+      return _.each(lawyers, function(lawyer) {
+        var view;
+        view = new ppu.admin.PostLawyersSelected;
+        return view.renderObject(lawyer);
+      });
+    };
+
+    PostEdit.prototype.openGallery = function(e) {
+      e.preventDefault();
+      ppu.admin.galleryPostModal = new ppu.admin.GalleryPostModal({
+        collection: ppu.admin.galleries
+      });
+      return ppu.admin.galleryPostModal.render();
+    };
+
+    PostEdit.prototype.appendImageHeader = function(id) {
+      return this.$el.find('.gallery_id').val(id);
+    };
+
+    PostEdit.prototype.searchLawyer = function(e) {
+      var collection, query;
+      query = $(e.currentTarget).val();
+      if (query.length > 3) {
+        collection = new ppu.Lawyers;
+        ppu.admin.postLawyersSelect = new ppu.admin.PostLawyersSelect({
+          collection: collection
+        });
+        return ppu.admin.postLawyersSelect.search(query);
+      }
+    };
 
     return PostEdit;
 
   })(Backbone.View);
-  ppu.admin.SelectLawyersModal = (function(_super) {
-    __extends(SelectLawyersModal, _super);
+  ppu.admin.PostSelectLawyers = (function(_super) {
+    __extends(PostSelectLawyers, _super);
 
-    function SelectLawyersModal() {
-      return SelectLawyersModal.__super__.constructor.apply(this, arguments);
+    function PostSelectLawyers() {
+      return PostSelectLawyers.__super__.constructor.apply(this, arguments);
     }
 
-    SelectLawyersModal.prototype.el = $("#");
+    PostSelectLawyers.prototype.el = $("#");
 
-    SelectLawyersModal.prototype.template = "#lawyer-select";
+    PostSelectLawyers.prototype.template = "#lawyer-select";
 
-    SelectLawyersModal.prototype.events = {
+    PostSelectLawyers.prototype.events = {
       "submit .search": "search"
     };
 
-    SelectLawyersModal.prototype.render = function() {
+    PostSelectLawyers.prototype.render = function() {
       this.$el.find('.modal-body').html(app.compileTemplate(this.template));
       this.$el.modal();
       return this;
     };
 
-    SelectLawyersModal.prototype.search = function(e) {
+    PostSelectLawyers.prototype.search = function(e) {
       var query;
       query = $(e.currentTarget).val();
       return this.collection.fetch({
@@ -156,27 +300,118 @@ $(function() {
       });
     };
 
-    return SelectLawyersModal;
+    return PostSelectLawyers;
 
   })(Backbone.View);
-  return ppu.admin.galleryModal = (function(_super) {
-    __extends(galleryModal, _super);
+  ppu.admin.PostLawyerSelect = (function(_super) {
+    __extends(PostLawyerSelect, _super);
 
-    function galleryModal() {
-      return galleryModal.__super__.constructor.apply(this, arguments);
+    function PostLawyerSelect() {
+      return PostLawyerSelect.__super__.constructor.apply(this, arguments);
     }
 
-    galleryModal.prototype.el = $("#gallery-modal");
+    PostLawyerSelect.prototype.tagName = 'tr';
 
-    galleryModal.prototype.template = "#gallery-template";
+    PostLawyerSelect.prototype.template = $('#post-lawyer-select-template');
 
-    galleryModal.prototype.render = function() {
-      this.$el.find('.modal-body').html(app.compileTemplate(this.template));
-      this.$el.modal();
+    PostLawyerSelect.prototype.events = {
+      "click .append": "append"
+    };
+
+    PostLawyerSelect.prototype.render = function() {
+      var source, template;
+      source = this.template.html();
+      template = Handlebars.compile(source);
+      this.$el.html(template(this.model.toJSON()));
       return this;
     };
 
-    return galleryModal;
+    PostLawyerSelect.prototype.append = function(e) {
+      e.preventDefault();
+      ppu.admin.postLawyersSelected = new ppu.admin.PostLawyersSelected({
+        model: this.model
+      });
+      return ppu.admin.postLawyersSelected.render();
+    };
+
+    return PostLawyerSelect;
+
+  })(Backbone.View);
+  ppu.admin.PostLawyersSelect = (function(_super) {
+    __extends(PostLawyersSelect, _super);
+
+    function PostLawyersSelect() {
+      return PostLawyersSelect.__super__.constructor.apply(this, arguments);
+    }
+
+    PostLawyersSelect.prototype.el = $("#lawyers-result");
+
+    PostLawyersSelect.prototype.events = {
+      "": ""
+    };
+
+    PostLawyersSelect.prototype.initialize = function() {
+      return this.listenTo(this.collection, 'reset', this.render);
+    };
+
+    PostLawyersSelect.prototype.render = function() {
+      $("#lawyers-result").html('');
+      return this.collection.each(function(model) {
+        var view;
+        view = new ppu.admin.PostLawyerSelect({
+          model: model
+        });
+        return $("#lawyers-result").prepend(view.render().el);
+      }, this);
+    };
+
+    PostLawyersSelect.prototype.search = function(query) {
+      return this.collection.fetch({
+        reset: true,
+        data: {
+          keyword: query
+        }
+      });
+    };
+
+    return PostLawyersSelect;
+
+  })(Backbone.View);
+  return ppu.admin.PostLawyersSelected = (function(_super) {
+    __extends(PostLawyersSelected, _super);
+
+    function PostLawyersSelected() {
+      return PostLawyersSelected.__super__.constructor.apply(this, arguments);
+    }
+
+    PostLawyersSelected.prototype.template = $('#post-lawyer-selected-template');
+
+    PostLawyersSelected.prototype.tagName = 'tr';
+
+    PostLawyersSelected.prototype.events = {
+      "click .remove": "destroy"
+    };
+
+    PostLawyersSelected.prototype.render = function() {
+      var source, template;
+      source = this.template.html();
+      template = Handlebars.compile(source);
+      return $('#lawyers-selected tbody').append(this.$el.html(template(this.model.toJSON())));
+    };
+
+    PostLawyersSelected.prototype.renderObject = function(model) {
+      var source, template;
+      source = this.template.html();
+      template = Handlebars.compile(source);
+      return $('#lawyers-selected tbody').append(this.$el.html(template(model)));
+    };
+
+    PostLawyersSelected.prototype.destroy = function(e) {
+      e.preventDefault();
+      return this.$el.remove();
+    };
+
+    return PostLawyersSelected;
 
   })(Backbone.View);
 });
