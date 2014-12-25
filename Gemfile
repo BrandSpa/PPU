@@ -8,8 +8,6 @@ gem 'mysql2'
 
 gem 'devise'
 
-gem 'globalize', '~> 4.0.2'
-
 gem 'carrierwave'
 
 gem "mini_magick"

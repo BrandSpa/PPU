@@ -15,7 +15,7 @@ class Api::LawyersController < ApplicationController
     update = params[:update]
     slug = params[:slug]
 
-    collection = entity.includes(:categories).where(nil).lang(lang)
+    collection = entity.includes(:categories).where(nil).lang(lang).order(position: :desc, name: :asc)
     collection = collection.by_position(position) if position.present?
     collection = entity.by_category(category) if category.present?
     collection = collection.by_trade(trade) if trade.present?
@@ -24,7 +24,7 @@ class Api::LawyersController < ApplicationController
     collection = collection.by_name(name) if name.present?
 
     if slug.present?
-      collection = entity.includes(:categories).by_slug(slug).lang(I18n.locale).first 
+      collection = entity.relationships.by_slug(slug).lang(I18n.locale).first 
       
       if collection.nil?
         
@@ -40,16 +40,16 @@ class Api::LawyersController < ApplicationController
       end
     end
 
-    render json: collection.to_json(:include => [:categories])
+    render json: collection.to_json(:include => [:academics, :articles, :awards, :educations, :institutions, :jobs, :languages, :phrases, :recognitions, :categories])
   end
 
   def show
     id = params[:id]
     slug = params[:slug]
     lang = I18n.locale
-    model = entity.find(id) if id.present?
+    model = entity.includes(:educations).find(id) if id.present?
     model = entity.by_slug(slug).lang(lang) if slug.present?
-    render json: model.to_json(:include => [:categories])
+    render json: model.to_json(:include => [:categories, :educations])
   end
 
   def create

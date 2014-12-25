@@ -3,37 +3,53 @@
 <head>
   <title>Ppu</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,500,700' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="/css/libs/bootstrap.min.css">
   <link rel="stylesheet" href="/css/theme.css">
   <%= csrf_meta_tags %>
 </head>
 <body id="ppu-app">
 
-<div class="container">
+<div class="container app-container">
   <div class="row">
 
-    <div id="nav-main-container" class="col-lg-2">
+    <div id="nav-main-container" class="col-lg-2 visible-lg">
       <ul class="nav-main col-lg-1">
         <li class="link-main">
           <a href="/"><img src="/img/Logo@2x.png" alt="" class="img-responsive"></a>
         </li>
+         <li><a href="/abogados">Abogados</a></li>
+         <li><a href="">Áreas de Práctica</a></li>
         <li><a href="">Nosotros</a></li>
-        <li><a href="">Noticias</a></li>
-        <li><a href="">Áreas de Práctica</a></li>
         <li><a href="">Transacciones</a></li>
-        <li><a href="">Abogados</a></li>
         <li><a href="">Trabaje con Nosotros</a></li>
         <li><a href="">Pro bono</a></li>
       </ul>
   </div>
-<div class="col-lg-10">
-  
+  <div class="col-lg-10 col-md-12">
+    
+    <div class="col-lg-10 col-lg-12 top-bar-container">
+      <div id="top-bar"></div>
+     </div>
+
+    <div class="col-lg-2 visible-lg" id="change-lang">
+      <a href="#" class="change-lang-page"><%= t('page_lang') %></a>
+    </div>
+    
     <%= yield %>
+
   </div>
 </div>
 </div>
-  
+
+
+<div id="footer-container">
+  <div id="footer">
+    <a href="#" class="open-contact">Contacto ></a>
+    <a href="#" class="policy">Política de tratamiento de datos <br>Copyright 2014</a>
+  </div>
+</div>
+ 
 
   <%= render "lawyers/partials/lawyers" %>
   <%= render "partials/select_categories" %>

@@ -21,7 +21,7 @@ class Lawyer < ActiveRecord::Base
 
   after_create :add_keywords
   after_create :add_slug
-
+  scope :relationships, -> { includes(:academics, :articles, :awards, :educations, :institutions, :jobs, :languages, :phrases, :recognitions, :categories) }
   scope :lang, -> (lang){ where(lang: lang) }
   scope :by_position, -> (position){ where(position: position) }
   scope :by_slug, -> (slug){ where(slug: slug) }

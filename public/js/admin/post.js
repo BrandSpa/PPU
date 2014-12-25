@@ -106,7 +106,8 @@ $(function() {
     };
 
     PostCreate.prototype.initialize = function() {
-      return this.listenTo(this.model, 'error', this.renderPostErrors, this);
+      this.listenTo(this.model, 'error', this.renderPostErrors, this);
+      return this.listenTo(this.model, 'sync', this.stored);
     };
 
     PostCreate.prototype.render = function() {
@@ -127,6 +128,10 @@ $(function() {
       data.append("post[content]", content);
       options = ppu.ajaxOptions("POST", data);
       return this.model.save(data, $.extend({}, options));
+    };
+
+    PostCreate.prototype.stored = function() {
+      return window.location = "/dashboard";
     };
 
     PostCreate.prototype.getCategories = function() {

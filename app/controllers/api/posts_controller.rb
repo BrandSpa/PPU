@@ -4,11 +4,11 @@ class Api::PostsController < ApplicationController
   end
 
   def index
-    lang = params[:lang] || :es
+    lang = params[:lang] || I18n.locale
     country = params[:country]
-    collection = entity.by_lang(lang).all
+    collection = entity.get_relationships().by_lang(lang).all
     collection = collection.by_country(country) if country.present?
-    render json: collection.to_json(:include => [:gallery])
+    render json: collection.to_json(:include => [:translations, :gallery])
   end
 
   def create
@@ -22,7 +22,7 @@ class Api::PostsController < ApplicationController
 
    def update
     id = params[:id]
-    model = entity.includes(:categories, :lawyers, :gallery).find(id)
+    model = entity.get_relationships().find(id)
     model.update(post_params)
     if model.valid?
       render json: model, status: 200
@@ -33,8 +33,24 @@ class Api::PostsController < ApplicationController
 
   def show
     id = params[:id]
-    model = entity.includes(:categories, :lawyers, :gallery).find(id)
-    render json: model.to_json(:include => [:categories, :lawyers, :gallery])
+    lang = params[:lang] || I18n.locale
+    model = entity.get_relationships().by_lang(lang).find_by(id: id)
+
+    unless model.present?
+      m = entity.find(id)
+      render json: duplicate(m)
+    else
+      render json: model.to_json(:include => [:translation, :categories, :lawyers, :gallery])
+    end
+    
+  end
+
+  def duplicate(model)
+    model_new = model.dup
+    model_new.lang = "en"
+    model_new.translation_id = model.id
+    model_new.title = "#{model.title} en"
+    model_new.save!
   end
 
   private 

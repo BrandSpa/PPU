@@ -1,7 +1,11 @@
 <script id="post-admin-template" type="text/x-handlebars-template">
   <td> {{ title }} </td>
   <td>
-    <a href="/editar-noticia/{{ id }}" class="btn btn-primary edit">Editar</a>
-    <a href="/en/editar-noticia/{{ id }}" class="btn btn-primary translate">Traducir</a>
+    <a href="/admin/posts/{{ id }}/edit" class="btn btn-primary edit">Editar</a>
+    {{#if translations}}
+    	<a href="/en/admin/posts/{{ translations.id }}/edit" class="btn btn-primary translate">Traducir</a>
+    {{else}}
+    <a href="/en/admin/posts/{{ id }}/edit" class="btn btn-primary translate">Traducir</a>
+    {{/if}}
   </td>
 </script>

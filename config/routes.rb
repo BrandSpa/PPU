@@ -19,11 +19,11 @@ Rails.application.routes.draw do
     resources :galleries
   end
   
-  get "", to: 'posts#index'
+  get "", to: 'pages#landing'
 
-  scope "(:locale)", locale: /en/ do
+  scope "(:locale)", locale: /en|es/ do
     get "abogados/", to: 'lawyers#index'
-    get "abogados/:name", to: 'lawyers#show'
+    get "abogados/:slug", to: 'lawyers#show'
     get "abogados/:id/vcard", to: 'lawyers#vcard'
     get "lawyers", to: 'lawyers#index'
     get "crear-abogado", to: 'admin/lawyers#index'

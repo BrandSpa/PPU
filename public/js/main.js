@@ -12,7 +12,9 @@ ppu.pathUrl = window.location.pathname.split('/');
 
 lang = ppu.pathUrl[1];
 
-$.ajaxSetup;
+app.compile = function(template) {
+  return Handlebars.compile($(template).html());
+};
 
 Backbone.View.prototype.renderPostErrors = function(model, response) {
   var $form, errors;

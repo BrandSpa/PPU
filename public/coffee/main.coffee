@@ -8,8 +8,8 @@ ppu.pathUrl = window.location.pathname.split( '/' )
 
 lang = ppu.pathUrl[1]
 
-
-$.ajaxSetup
+app.compile = (template) ->
+  Handlebars.compile($(template).html())
 
 Backbone.View::renderPostErrors = (model, response) ->
   model = model
@@ -140,3 +140,4 @@ $(document).find('.datepicker').datepicker
   format: 'yyyy'
   language: 'es'
   autoclose: true
+

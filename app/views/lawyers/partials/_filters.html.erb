@@ -1,0 +1,38 @@
+<script id="lawyers-filter" type="text/x-handlebars-template">  
+  <h1>Abogados</h1>
+  <div class="col-md-2">
+  <select class="form-control position">
+    <option value="">Tipo abogado</option>
+    <option value="Abogado">Abogado</option>
+    <option value="Especialista">Especialista</option>
+    <option value="Socio">Socio</option>
+    <option value="Senior Counsel">Senior Counsel</option>
+  </select>
+  </div>
+  <div class="col-md-2 category">
+   <select class="form-control ">
+    <option value="">Área</option>
+    <%= render "partials/categories_option" %>
+  </select>
+  </div>
+<div class="col-md-3 countries">
+  <div class="checkbox-inline">
+  <label>
+    <input type="checkbox" class="country" value="Colombia">
+    Colombia
+  </label>
+</div>
+  <div class="checkbox-inline">
+  <label>
+    <input type="checkbox" class="country" value="Chile">
+    Chile
+  </label>
+</div>
+</div>
+
+<form class="form-group search">
+  <input type="text" class="form-control query" placeholder="Buscar">
+</form>
+
+</script>
+

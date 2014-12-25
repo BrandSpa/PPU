@@ -71,7 +71,7 @@ $ ->
 
     editPost: (id) ->
       ppu.admin.post = new ppu.Post id: id
-      ppu.admin.post.fetch()
+      ppu.admin.post.fetch data: lang: app.lang
       ppu.admin.postEdit = new ppu.admin.PostEdit model: ppu.admin.post
 
       ppu.admin.galleries = new  ppu.admin.Galleries

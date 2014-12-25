@@ -12,7 +12,9 @@ ppu.pathUrl = window.location.pathname.split('/');
 
 lang = ppu.pathUrl[1];
 
-$.ajaxSetup;
+app.compile = function(template) {
+  return Handlebars.compile($(template).html());
+};
 
 Backbone.View.prototype.renderPostErrors = function(model, response) {
   var $form, errors;
@@ -236,7 +238,7 @@ $(function() {
     Workspace.prototype.routes = {
       "abogados": "lawyers",
       ":lang/abogados": "lawyers",
-      "abogados/:id": "lawyer",
+      "abogados/:slug": "lawyer",
       "editar-abogado/:name": 'finishLawyer',
       ":lang/editar-abogado/:id": 'finishLawyer',
       ":lang/crear-abogado": 'adminLawyer',
@@ -253,12 +255,25 @@ $(function() {
         reset: true
       });
       ppu.lawyersFilters = new ppu.LawyersFilters;
+      ppu.lawyersFilters.render();
       return ppu.lawyersView = new ppu.LawyersView({
         collection: ppu.lawyers
       });
     };
 
-    Workspace.prototype.lawyer = function(name) {};
+    Workspace.prototype.lawyer = function(slug) {
+      ppu.lawyers = new ppu.Lawyers;
+      ppu.lawyers.fetch({
+        reset: true,
+        data: {
+          lang: app.lang,
+          slug: slug
+        }
+      });
+      return ppu.LawyerDetailView = new ppu.LawyerDetailView({
+        collection: ppu.lawyers
+      });
+    };
 
     return Workspace;
 

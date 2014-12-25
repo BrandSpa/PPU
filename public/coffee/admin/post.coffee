@@ -46,6 +46,7 @@ $ ->
 
     initialize: ->
       @listenTo(@model, 'error', @renderPostErrors, @)
+      @listenTo(@model, 'sync', @stored)
 
     render: ->
       source = @template.html()
@@ -62,6 +63,9 @@ $ ->
       data.append("post[content]", content)
       options = ppu.ajaxOptions("POST", data)
       @model.save data, $.extend({}, options)
+    
+    stored: ->
+      window.location = "/dashboard"
 
     getCategories: ->
       ppu.categories = new ppu.Categories
