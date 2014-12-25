@@ -46,7 +46,7 @@ $(function() {
 
     LawyerView.prototype.template = $('#lawyer-template');
 
-    LawyerView.prototype.className = 'lawyer-list';
+    LawyerView.prototype.className = 'col-md-6 lawyer-item';
 
     LawyerView.prototype.render = function() {
       var compile, source;
@@ -93,19 +93,26 @@ $(function() {
       return LawyersFilters.__super__.constructor.apply(this, arguments);
     }
 
-    LawyersFilters.prototype.el = $('#lawyers-filters');
+    LawyersFilters.prototype.el = $('#top-bar');
+
+    LawyersFilters.prototype.template = $("#lawyers-filter");
 
     LawyersFilters.prototype.events = {
       'change .position': 'byPosition',
       'change .country': 'byCountry',
       'change .category': 'byCategory',
-      'submit .search': 'byQuery'
+      'keydown .query': 'byQuery'
+    };
+
+    LawyersFilters.prototype.render = function() {
+      var template;
+      template = app.compile(this.template);
+      return this.$el.html(template);
     };
 
     LawyersFilters.prototype.byPosition = function(e) {
-      var position, val;
+      var val;
       val = $(e.currentTarget).val();
-      position = el.val();
       return ppu.lawyers.fetch({
         reset: true,
         data: {
@@ -136,6 +143,19 @@ $(function() {
       });
     };
 
+    LawyersFilters.prototype.byQuery = function(e) {
+      var val;
+      val = $(e.currentTarget).val();
+      if (val.length > 3) {
+        return ppu.lawyers.fetch({
+          reset: true,
+          data: {
+            keyword: val
+          }
+        });
+      }
+    };
+
     return LawyersFilters;
 
   })(Backbone.View);
@@ -146,19 +166,20 @@ $(function() {
       return LawyerDetailView.__super__.constructor.apply(this, arguments);
     }
 
-    LawyerDetailView.prototype.el = $('#lawyer-detail');
+    LawyerDetailView.prototype.el = $('#lawyer');
 
-    LawyerDetailView.prototype.template = $('#lawyer-show-template');
+    LawyerDetailView.prototype.template = $('#lawyer-template');
 
     LawyerDetailView.prototype.initialize = function() {
-      return this.listenTo(this.model, 'change', this.render);
+      return this.listenTo(this.collection, 'reset', this.render);
     };
 
     LawyerDetailView.prototype.render = function() {
-      var compile, source;
-      source = this.template.html();
-      compile = Handlebars.compile(source);
-      return $(this.el).html(t(this.model.toJSON()));
+      return this.collection.each(function(model) {
+        var template;
+        template = app.compile(this.template);
+        return $(this.el).html(template(model.toJSON()));
+      }, this);
     };
 
     return LawyerDetailView;

@@ -1,0 +1,9 @@
+ <script type="text/x-handlebars-template" id="lawyer-categories-template">
+  {{#each []}} 
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" name="post[category_ids][]" value="{{ id }}"> {{ name }}
+      </label>
+    </div>
+  {{/each}}
+</script>

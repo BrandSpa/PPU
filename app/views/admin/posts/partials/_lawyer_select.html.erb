@@ -1,0 +1,8 @@
+<script id="post-lawyer-select-template" type="text/x-handlebars-template">
+  <td>{{ name }} {{ lastname }}</td> <td><a href="#" class="append btn btn-primary btn-xs">agregar</a></td>
+</script>
+
+<script id="post-lawyer-selected-template" type="text/x-handlebars-template">
+  <td>{{ name }} {{ lastname }}</td> <td><a href="#" class="remove btn btn-danger btn-xs">quitar</a></td>
+  <input type="hidden" name="post[lawyer_ids][]" value="{{ id }}">
+</script>

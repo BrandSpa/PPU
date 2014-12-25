@@ -1,6 +1,7 @@
 class Lawyer < ActiveRecord::Base
   has_and_belongs_to_many :categories
   has_and_belongs_to_many :trades
+  has_and_belongs_to_many :posts
   has_many :awards
   has_many :academics
   has_many :educations
@@ -20,7 +21,7 @@ class Lawyer < ActiveRecord::Base
 
   after_create :add_keywords
   after_create :add_slug
-
+  scope :relationships, -> { includes(:academics, :articles, :awards, :educations, :institutions, :jobs, :languages, :phrases, :recognitions, :categories) }
   scope :lang, -> (lang){ where(lang: lang) }
   scope :by_position, -> (position){ where(position: position) }
   scope :by_slug, -> (slug){ where(slug: slug) }
@@ -60,7 +61,7 @@ class Lawyer < ActiveRecord::Base
   end
 
   private
-    def add_keywords
+    def add_keywords()
       model = self
       model.keywords = [self.name, self.lastname, self.position, self.email, self.phone, self.description].join(" ")
       model.save

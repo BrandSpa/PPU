@@ -10,7 +10,7 @@ class Api::PostImagesController < ApplicationController
 
   def create
     model = entity.create(post_image_params)
-    render plain: "http://localhost:3000#{model.img_name.url}"
+    render plain: model.img_name.url
   end
 
   private 

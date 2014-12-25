@@ -12,13 +12,22 @@ ppu.pathUrl = window.location.pathname.split('/');
 
 lang = ppu.pathUrl[1];
 
-if (lang === "en") {
-  $.ajaxSetup({
-    data: {
-      lang: "en"
-    }
+app.compile = function(template) {
+  return Handlebars.compile($(template).html());
+};
+
+Backbone.View.prototype.renderPostErrors = function(model, response) {
+  var $form, errors;
+  model = model;
+  $form = this.$el.find('form');
+  errors = JSON.parse(response.responseText);
+  return _.each(errors, function(message, field) {
+    var input;
+    input = $form.find("[name='post[" + field + "]' ]");
+    input.addClass("error");
+    return input.after("<div class='error-message'>" + message + "</div>");
   });
-}
+};
 
 app.compileTemplate = function(source) {
   source = $(source).html();
@@ -78,8 +87,8 @@ Backbone.View.prototype.removeError = function(e) {
 
 Backbone.View.prototype.closeModal = function() {
   $('.modal-backdrop').remove();
-  this.remove();
-  return $('body').removeClass('modal-open');
+  $('body').removeClass('modal-open');
+  return this.remove();
 };
 
 ppu.appendDatePickerYear = function(el) {
@@ -111,18 +120,15 @@ ppu.appendSummernote = function(el) {
 app.uploadPhotoSummernote = function(file, editor, welEditable) {
   var data;
   data = new FormData();
-  data.append("postimage[img_name]", file);
-  console.log(welEditable);
+  data.append("gallery[name]", "post_content");
+  data.append("gallery[img_name]", file);
   return $.ajax({
     data: data,
     type: "POST",
-    url: "/api/post_images",
+    url: "/api/galleries",
     cache: false,
     contentType: false,
     processData: false,
-    error: function(res, mo) {
-      return console.log(mo);
-    },
     success: function(url) {
       console.log(url);
       return editor.insertImage(welEditable, url);
@@ -232,7 +238,7 @@ $(function() {
     Workspace.prototype.routes = {
       "abogados": "lawyers",
       ":lang/abogados": "lawyers",
-      "abogados/:id": "lawyer",
+      "abogados/:slug": "lawyer",
       "editar-abogado/:name": 'finishLawyer',
       ":lang/editar-abogado/:id": 'finishLawyer',
       ":lang/crear-abogado": 'adminLawyer',
@@ -249,12 +255,25 @@ $(function() {
         reset: true
       });
       ppu.lawyersFilters = new ppu.LawyersFilters;
+      ppu.lawyersFilters.render();
       return ppu.lawyersView = new ppu.LawyersView({
         collection: ppu.lawyers
       });
     };
 
-    Workspace.prototype.lawyer = function(name) {};
+    Workspace.prototype.lawyer = function(slug) {
+      ppu.lawyers = new ppu.Lawyers;
+      ppu.lawyers.fetch({
+        reset: true,
+        data: {
+          lang: app.lang,
+          slug: slug
+        }
+      });
+      return ppu.LawyerDetailView = new ppu.LawyerDetailView({
+        collection: ppu.lawyers
+      });
+    };
 
     return Workspace;
 

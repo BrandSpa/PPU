@@ -15,7 +15,10 @@ $(function() {
       ':lang/crear-abogado': 'createLawyer',
       'editar-abogado/:id': 'editLawyer',
       'en/editar-abogado/:id': 'editLawyer',
-      'crear-noticia': 'createPost',
+      'admin/posts/new': 'createPost',
+      'en/admin/posts/new': 'createPost',
+      'admin/posts/:id/edit': 'editPost',
+      'en/admin/posts/:id/edit': 'editPost',
       ':lang/crear-noticia': 'createPost'
     };
 
@@ -24,8 +27,15 @@ $(function() {
       ppu.lawyers.fetch({
         reset: true
       });
-      return ppu.admin.lawyers = new ppu.admin.LawyersView({
+      ppu.admin.lawyers = new ppu.admin.LawyersView({
         collection: ppu.lawyers
+      });
+      ppu.posts = new ppu.Posts;
+      ppu.posts.fetch({
+        reset: true
+      });
+      return ppu.admin.posts = new ppu.admin.PostsView({
+        collection: ppu.posts
       });
     };
 
@@ -84,12 +94,39 @@ $(function() {
     };
 
     Router.prototype.createPost = function(lang) {
-      var model;
-      model = new ppu.admin.Post;
+      ppu.admin.post = new ppu.Post;
       ppu.admin.postCreate = new ppu.admin.PostCreate({
-        model: model
+        model: ppu.admin.post
       });
-      return ppu.admin.postCreate.render();
+      ppu.admin.postCreate.render();
+      ppu.admin.galleries = new ppu.admin.Galleries;
+      return ppu.admin.galleries.fetch({
+        reset: true,
+        data: {
+          name: "post_header"
+        }
+      });
+    };
+
+    Router.prototype.editPost = function(id) {
+      ppu.admin.post = new ppu.Post({
+        id: id
+      });
+      ppu.admin.post.fetch({
+        data: {
+          lang: app.lang
+        }
+      });
+      ppu.admin.postEdit = new ppu.admin.PostEdit({
+        model: ppu.admin.post
+      });
+      ppu.admin.galleries = new ppu.admin.Galleries;
+      return ppu.admin.galleries.fetch({
+        reset: true,
+        data: {
+          name: "post_header"
+        }
+      });
     };
 
     return Router;

@@ -16,21 +16,24 @@ Rails.application.routes.draw do
     resources :trades
     resources :posts
     resources :post_images
+    resources :galleries
   end
   
-  get "", to: 'posts#index'
+  get "", to: 'pages#landing'
 
-  scope "(:locale)", locale: /en/ do
+  scope "(:locale)", locale: /en|es/ do
     get "abogados/", to: 'lawyers#index'
-    get "abogados/:name", to: 'lawyers#show'
+    get "abogados/:slug", to: 'lawyers#show'
     get "abogados/:id/vcard", to: 'lawyers#vcard'
     get "lawyers", to: 'lawyers#index'
     get "crear-abogado", to: 'admin/lawyers#index'
     get "editar-abogado/:slug", to: 'admin/lawyers#index'
     get "edit-lawyer/:username", to: 'admin/lawyers#index'
-    get "crear-noticia", to: 'admin/posts#index'
-    get "editar-noticia", to: 'admin/posts#index'
+    namespace :admin do 
+      resources :posts
+    end
   end
 
   get "dashboard", to: 'admin/lawyers#dashboard'
+
 end

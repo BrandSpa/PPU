@@ -1,4 +1,4 @@
- $ ->
+$ ->
   class ppu.admin.LawyerView extends Backbone.View
     tagName: 'tr'
     template: $ '#lawyer-dashbord-template'
@@ -186,7 +186,6 @@
         $(el).find('#lawyer-list-categories').html template( collection )
         _.each categories, (category) ->
           $(el).find("#lawyer-list-categories input[value='#{category.id}']").attr("checked", "checked")
-
 
     render: ->
       source = @template.html()

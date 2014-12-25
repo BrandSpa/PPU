@@ -2,7 +2,6 @@ $ ->
   class ppu.Lawyer extends Backbone.Model
     urlRoot: "/api/lawyers"
 
-
     fetchBySlug: (slug)->
       @fetch data: $.param slug: slug, locale: app.lang
 
@@ -12,7 +11,7 @@ $ ->
 
   class ppu.LawyerView extends Backbone.View
     template: $ '#lawyer-template'
-    className: 'lawyer-list'
+    className: 'col-md-6 lawyer-item'
       
     render: ->
       source = @template.html()
@@ -34,16 +33,21 @@ $ ->
       , @
       
   class ppu.LawyersFilters extends Backbone.View
-    el: $ '#lawyers-filters'
+    el: $ '#top-bar'
+    template: $ "#lawyers-filter"
+
     events:
       'change .position': 'byPosition'
       'change .country': 'byCountry'
       'change .category': 'byCategory'
-      'submit .search': 'byQuery'
+      'keydown .query': 'byQuery'
+
+    render: ->
+      template = app.compile(@template)
+      @$el.html(template)
 
     byPosition: (e) ->
       val = $(e.currentTarget).val()
-      position = el.val()
       ppu.lawyers.fetch reset: true, data: position: val
       
     byCountry: (e) ->
@@ -54,14 +58,21 @@ $ ->
       val = $(e.currentTarget).val()
       ppu.lawyers.fetch reset: true, data: category: val
 
+    byQuery: (e) ->
+      val = $(e.currentTarget).val()
+      if val.length > 3
+        ppu.lawyers.fetch reset: true, data: keyword: val
+        
+
   class ppu.LawyerDetailView extends Backbone.View
-    el: $ '#lawyer-detail'
-    template: $ '#lawyer-show-template'
+    el: $ '#lawyer'
+    template: $ '#lawyer-template'
     
     initialize: ->
-      @listenTo(@model, 'change', @render)
+      @listenTo(@collection, 'reset', @render)
 
     render: ->
-      source = @template.html()
-      compile = Handlebars.compile(source)
-      $(@el).html t( @model.toJSON() )
+      @collection.each (model) ->
+        template = app.compile(@template)
+        $(@el).html template( model.toJSON() )
+      , @
