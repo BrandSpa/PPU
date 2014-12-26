@@ -47,15 +47,6 @@
   #lawyer h4 {
     padding-left: 30px;
     font-size: 1.1em; }
-  #lawyer .lawyer-award {
-    width: 100%;
-    float: left; }
-    #lawyer .lawyer-award img {
-      float: left; }
-    #lawyer .lawyer-award h5 {
-      display: block;
-      float: left;
-      padding: 15px; }
   #lawyer li {
     font-size: 0.9em;
     margin-bottom: 15px; }
@@ -92,8 +83,7 @@
     padding: 0 90px; }
   #lawyer .award {
     text-align: center; }
-    #lawyer .award .img-container {
-      width: 80%;
+    #lawyer .award img {
       margin: 0 auto; }
     #lawyer .award h5 {
       font-size: 1em; }
