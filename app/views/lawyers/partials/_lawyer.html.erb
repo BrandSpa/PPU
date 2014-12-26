@@ -48,15 +48,6 @@
      </ul>
     {{/if}}
 
-    {{#if recognitions}}
-    <h4><%= t('Conferences') %></h4>
-     <ul>
-      {{#each recognitions}}
-        <li>{{ title }}, {{ country }} {{ year }}</li>
-      {{/each}}
-     </ul>
-    {{/if}}
-
     {{#if institutions}}
     <h4><%= t('memberships') %></h4>
      <ul>
@@ -107,6 +98,7 @@
      
       {{/each}}
     {{/if}}
+
     {{#if articles}}
     <h3><i class="fa fa-file-text-o"></i> <%= t('Articles') %></h3>
       {{#each articles}}
