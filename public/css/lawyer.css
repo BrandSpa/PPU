@@ -81,11 +81,17 @@
       font-size: 0.9em; }
   #lawyer .separator {
     padding: 0 90px; }
+  #lawyer .lawyer-right {
+    padding: 0 30px; }
   #lawyer .award {
     text-align: center; }
     #lawyer .award img {
       margin: 0 auto; }
     #lawyer .award h5 {
       font-size: 1em; }
+  #lawyer .article-container a {
+    font-size: 0.9em; }
+  #lawyer .article-container p {
+    font-size: 0.9em; }
 
 /*# sourceMappingURL=lawyer.css.map */
