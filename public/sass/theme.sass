@@ -142,60 +142,14 @@ ul
     padding: 0
     margin-bottom: 15px
 
-.lawyer-item
-  overflow: hidden
-  font-size: 1em
-  margin-bottom: 15px
 
-  img
-    -webkit-filter: grayscale(100%)
-    -moz-filter: grayscale(100%)
-    filter: grayscale(100%)
-
-  .content
-    padding: 30px 0 0 0
-    background: #fff
-    min-height: 150px
-    .position
-      color: #5F5F5F
-    h3
-      margin: 0 0 15px 0
-      font-size: 1em
-      a
-        color: #5F5F5F
-
-  &:first-child, &:nth-child(2)
-    margin-top: 15px
-
-  &:first-child, &:nth-child(2n+3)
-    padding-left: 0
-
-  &:nth-child(2n+2)
-    padding-right: 0
-  
-  .phone, .email
-    color: #00A1B1
-    display: block
-    width: 100%
-
-  .phone
-    font-weight: bold
-
-  img
-    float: left
-    width: 150px
-    height: 150px
-    margin: 0
-    padding: 0
-    overflow: hidden
-    position: relative
-    margin-right: 15px
 
 .top-bar-container
-  margin-bottom: 15px
   padding: 0 !important
+  margin-bottom: 15px
+  height: 50px
   @media #{$desktop-lg}
-    padding-right: 15px !important
+    padding: 0 15px 0 0 !important
 
 #top-bar
   background: #002855
@@ -211,7 +165,9 @@ ul
     color: #00A1B1
     float: left
     font-weight: 400
-    padding-right: 60px
+    padding-right: 15px
+    @media #{$desktop-lg}, #{$desktop}
+      padding-right: 60px
 
   select, input
     background: #002855
@@ -346,5 +302,6 @@ ul
   padding: 5px 15px
   font-size: 0.9em
   margin-top: -5px
-
+  
+@import menu
 @import lawyer

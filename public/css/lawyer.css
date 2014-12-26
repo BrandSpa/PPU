@@ -3,7 +3,47 @@
 /* Portrait tablets and small desktops */
 /* Landscape phones and portrait tablets */
 /* Landscape phones and smaller */
+.lawyer-item {
+  overflow: hidden;
+  font-size: 1em;
+  margin-bottom: 15px; }
+  .lawyer-item img {
+    -webkit-filter: grayscale(100%);
+    -moz-filter: grayscale(100%);
+    filter: grayscale(100%); }
+  .lawyer-item .content {
+    padding: 30px 0 0 0;
+    background: #fff;
+    min-height: 150px; }
+    .lawyer-item .content .position {
+      color: #5F5F5F; }
+    .lawyer-item .content h3 {
+      margin: 0 0 15px 0;
+      font-size: 1em; }
+      .lawyer-item .content h3 a {
+        color: #5F5F5F; }
+  .lawyer-item:first-child, .lawyer-item:nth-child(2n+3) {
+    padding-left: 0; }
+  .lawyer-item:nth-child(2n+2) {
+    padding-right: 0; }
+  .lawyer-item .phone, .lawyer-item .email {
+    color: #00A1B1;
+    display: block;
+    width: 100%; }
+  .lawyer-item .phone {
+    font-weight: bold; }
+  .lawyer-item img {
+    float: left;
+    width: 150px;
+    height: 150px;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    position: relative;
+    margin-right: 15px; }
+
 #lawyer {
+  margin: 15px 0 0 0;
   padding: 0;
   background: #fff;
   color: #5F5F5F; }
