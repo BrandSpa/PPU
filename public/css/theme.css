@@ -322,7 +322,15 @@ ul {
     color: #fff;
     width: 100%;
     height: 170px; }
-    #lawyer .lawyer-header .btn-vcard {
+  #lawyer img {
+    width: 20%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    -webkit-filter: grayscale(100%);
+    -moz-filter: grayscale(100%);
+    filter: grayscale(100%); }
+    #lawyer img .btn-vcard {
       width: 120px;
       font-size: 0.9em;
       font-weight: bold;
@@ -339,14 +347,6 @@ ul {
     font-weight: bold; }
   #lawyer .lawyer-email {
     color: #00A1B1; }
-  #lawyer img {
-    width: 20%;
-    position: absolute;
-    top: 0;
-    right: 0;
-    -webkit-filter: grayscale(100%);
-    -moz-filter: grayscale(100%);
-    filter: grayscale(100%); }
   #lawyer ul {
     padding-left: 45px; }
   #lawyer h4 {
