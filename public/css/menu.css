@@ -1,0 +1,20 @@
+.navbar-default {
+  background: #fff; }
+  .navbar-default img {
+    width: 20%; }
+
+.navbar-toggle {
+  background: #fff;
+  border: none;
+  float: right;
+  color: #002855;
+  font-size: 1.4em;
+  margin: 60px; }
+  .navbar-toggle i {
+    padding: 15px 0 0 15px;
+    font-size: 1.5em; }
+
+.navbar-collapse {
+  background: #002855; }
+
+/*# sourceMappingURL=menu.css.map */
