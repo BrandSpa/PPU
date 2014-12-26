@@ -177,8 +177,11 @@ ul {
     margin-right: 15px; }
 
 .top-bar-container {
-  padding-left: 0 !important;
-  margin-bottom: 15px; }
+  margin-bottom: 15px;
+  padding: 0 !important; }
+  @media (min-width: 1200px) {
+    .top-bar-container {
+      padding-right: 15px !important; } }
 
 #top-bar {
   background: #002855;
@@ -299,10 +302,11 @@ ul {
   font-size: 0.9em;
   margin-top: -5px; }
 
-.btn-vcard {
-  float: right;
-  margin: -60px 260px; }
-
+/* Large desktops and laptops */
+/* Portrait tablets and medium desktops */
+/* Portrait tablets and small desktops */
+/* Landscape phones and portrait tablets */
+/* Landscape phones and smaller */
 #lawyer {
   padding: 0;
   background: #fff;
@@ -322,6 +326,9 @@ ul {
     color: #fff;
     width: 100%;
     height: 170px; }
+    @media (max-width: 480px) {
+      #lawyer .lawyer-header {
+        height: auto; } }
     #lawyer .lawyer-header img {
       width: 20%;
       position: absolute;
@@ -330,11 +337,28 @@ ul {
       -webkit-filter: grayscale(100%);
       -moz-filter: grayscale(100%);
       filter: grayscale(100%); }
+      @media (min-width: 768px) and (max-width: 991px) {
+        #lawyer .lawyer-header img {
+          width: 25%; } }
+      @media (max-width: 767px), (max-width: 480px) {
+        #lawyer .lawyer-header img {
+          display: none; } }
     #lawyer .lawyer-header .btn-vcard {
       width: 120px;
       font-size: 0.9em;
       font-weight: bold;
-      margin: -30px 23%; }
+      margin: -30px 23%;
+      float: right; }
+      @media (min-width: 768px) and (max-width: 991px) {
+        #lawyer .lawyer-header .btn-vcard {
+          margin: -30px 25%; } }
+      @media (max-width: 767px) {
+        #lawyer .lawyer-header .btn-vcard {
+          margin: -30px 15px; } }
+      @media (max-width: 480px) {
+        #lawyer .lawyer-header .btn-vcard {
+          width: 100%;
+          margin: 15px 0; } }
   #lawyer p {
     margin: 0; }
   #lawyer h1 {
