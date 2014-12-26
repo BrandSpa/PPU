@@ -89,9 +89,9 @@
       margin: 0 auto; }
     #lawyer .award h5 {
       font-size: 1em; }
-  #lawyer .article-container a {
-    font-size: 0.9em; }
-  #lawyer .article-container p {
-    font-size: 0.9em; }
+  #lawyer .article-container a, #lawyer .article-container p {
+    font-size: 0.9em;
+    float: left;
+    margin-bottom: 15px; }
 
 /*# sourceMappingURL=lawyer.css.map */
