@@ -29,6 +29,14 @@ es:
   page_lang: "English"
   Download: "Descargar"
   general_information: "Información general"
+  Experience: "Experencia"
+  Lawyers: "Abogados"
+  Search: "Buscar"
+  Lawyer type: "Tipo abogado"
+  Areas: "Áreas"
+  Practice Areas: "Áreas de Práctica" 
+  Us: "Nosotros"
+  Work with Us: "Trabaje con Nosotros"
 
   categories:
     corporate_and_M&A: "Corporativo & MA"
