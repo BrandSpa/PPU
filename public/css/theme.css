@@ -10,6 +10,9 @@ body {
   font-family: "Lato", sans-serif;
   font-weight: normal;
   padding-top: 30px; }
+  @media (min-width: 768px) and (max-width: 991px) {
+    body {
+      font-size: 12px; } }
 
 .app-container {
   padding-bottom: 70px; }
@@ -185,8 +188,14 @@ ul {
 
 #top-bar {
   background: #002855;
-  height: 50px;
-  padding-left: 15px; }
+  padding-left: 15px;
+  height: auto; }
+  @media (min-width: 1200px), (min-width: 992px) and (max-width: 1199px) {
+    #top-bar {
+      height: 50px; } }
+  @media (min-width: 768px) and (max-width: 991px) {
+    #top-bar {
+      height: 50px; } }
   #top-bar h1 {
     font-size: 1.3em;
     color: #00A1B1;

@@ -1,6 +1,6 @@
 <script id="lawyers-filter" type="text/x-handlebars-template">  
   <h1><%= t("Lawyers") %></h1>
-  <div class="col-md-2">
+  <div class="col-md-2 col-sm-2">
   <select class="form-control position">
     <option value=""><%= t("Lawyer type") %></option>
     <option value="Abogado">Abogado</option>
@@ -9,13 +9,13 @@
     <option value="Senior Counsel">Senior Counsel</option>
   </select>
   </div>
-  <div class="col-md-2 category">
+  <div class="col-md-2 col-sm-2 category">
    <select class="form-control ">
     <option value=""><%= t("Areas") %></option>
     <%= render "partials/categories_option" %>
   </select>
   </div>
-<div class="col-md-3 countries">
+<div class="col-md-3 col-sm-2 countries">
   <div class="checkbox-inline">
   <label>
     <input type="checkbox" class="country" value="Colombia">

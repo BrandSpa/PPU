@@ -8,6 +8,9 @@ body
   font-weight: normal
   padding-top: 30px
 
+  @media #{$tablet}
+    font-size: 12px
+
 
 .app-container
   padding-bottom: 70px
@@ -196,8 +199,12 @@ ul
 
 #top-bar
   background: #002855
-  height: 50px
   padding-left: 15px
+  height: auto
+  @media #{$desktop-lg}, #{$desktop}
+    height: 50px
+  @media #{$tablet}
+    height: 50px
 
   h1
     font-size: 1.3em
@@ -322,8 +329,6 @@ ul
       -moz-filter: grayscale(100%)
       filter: grayscale(100%)
 
-  
-      
 #lawyer-award-edit
   li
     list-style: none
@@ -341,7 +346,5 @@ ul
   padding: 5px 15px
   font-size: 0.9em
   margin-top: -5px
-
-
 
 @import lawyer

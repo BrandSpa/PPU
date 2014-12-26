@@ -11,7 +11,7 @@ $ ->
 
   class ppu.LawyerView extends Backbone.View
     template: $ '#lawyer-template'
-    className: 'col-md-6 lawyer-item'
+    className: 'col-md-6 col-sm-6 col-xs-12 lawyer-item'
       
     render: ->
       source = @template.html()
