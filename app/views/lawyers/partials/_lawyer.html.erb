@@ -94,15 +94,17 @@
     {{#if awards}}
       <h3><i class="fa fa-bookmark-o"></i> <%= t('awards') %></h3>
       {{#each awards}}
-      {{#if img_name.url}}
+      
       <div class="award">
+      {{#if img_name.url}}
         <div class="img-container">
           <img src="{{ img_name.url }}" alt="{{ title }}" class="img-responsive">
         </div>
+         {{/if}}
         <h5>{{ title }}</h5>
 
       </div>
-      {{/if}}
+     
       {{/each}}
     {{/if}}
   </div>
