@@ -1,8 +1,11 @@
+@import responsive
+@import variables
+
 body
   background: #E4E6EB
   font-size: 14px
   padding: 0 0 30px 0
-  font-family: 'Lato', sans-serif
+  font-family: $lato
   font-weight: normal
   padding-top: 30px
 
@@ -188,6 +191,7 @@ ul
 
 .top-bar-container
   padding-left: 0 !important
+  margin-bottom: 15px
 
 #top-bar
   background: #002855
@@ -290,7 +294,6 @@ ul
     overflow: hidden
     color: #fff
 
-
     h1
       font-size: 1.4em
       margin-top: 0
@@ -317,6 +320,8 @@ ul
       -webkit-filter: grayscale(100%)
       -moz-filter: grayscale(100%)
       filter: grayscale(100%)
+
+  
       
 #lawyer-award-edit
   li
@@ -340,61 +345,4 @@ ul
   float: right
   margin: -60px 260px
 
-
-#lawyer
-  background: #002855
-  padding: 30px
-  position: relative
-  overflow: hidden
-  color: #fff
-  .lawyer-award
-    width: 100%
-    float: left
-
-    img
-      float: left
-
-    h5
-      display: block
-      float: left
-      padding: 15px
-
-  li
-    list-style-position: inside
-    margin-bottom: 15px
-
-  h4
-    margin-top: 30px
-    margin-bottom: 30px
-
-  .lawyer-description
-    text-align: left
-    padding: 15px
-
-
-    h1
-      font-size: 1.4em
-      margin-top: 0
-      margin-bottom: 30px
-
-    p
-      margin: 0
-      font-size: 1.1em
-
-    .lawyer-phone, .lawyer-email
-      color: #00A1B1
-      font-size: 1.1em
-      display: block
-      width: 100%
-
-    .lawyer-email
-      font-size: 1em
-      margin-bottom: 15px
-
-    img
-      position: absolute
-      top: 0
-      right: 0 
-      -webkit-filter: grayscale(100%)
-      -moz-filter: grayscale(100%)
-      filter: grayscale(100%)
+@import lawyer
