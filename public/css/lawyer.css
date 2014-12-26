@@ -1,0 +1,101 @@
+#lawyer {
+  padding: 0;
+  background: #fff;
+  color: #5F5F5F; }
+  #lawyer h3 {
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: 400;
+    padding: 0 30px; }
+    #lawyer h3 i {
+      padding: 0 15px 0 0; }
+  #lawyer .lawyer-header {
+    background: #002855;
+    padding: 30px;
+    position: relative;
+    overflow: hidden;
+    color: #fff;
+    width: 100%;
+    height: 170px; }
+    #lawyer .lawyer-header .btn-vcard {
+      width: 120px;
+      font-size: 0.9em;
+      font-weight: bold;
+      margin: -30px 23%; }
+  #lawyer p {
+    margin: 0; }
+  #lawyer h1 {
+    font-size: 1.2em;
+    margin: 0 0 30px 0; }
+  #lawyer .lawyer-phone {
+    width: 100%;
+    display: block;
+    color: #00A1B1;
+    font-weight: bold; }
+  #lawyer .lawyer-email {
+    color: #00A1B1; }
+  #lawyer img {
+    width: 20%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    -webkit-filter: grayscale(100%);
+    -moz-filter: grayscale(100%);
+    filter: grayscale(100%); }
+  #lawyer ul {
+    padding-left: 45px; }
+  #lawyer h4 {
+    padding-left: 30px;
+    font-size: 1.1em; }
+  #lawyer .lawyer-award {
+    width: 100%;
+    float: left; }
+    #lawyer .lawyer-award img {
+      float: left; }
+    #lawyer .lawyer-award h5 {
+      display: block;
+      float: left;
+      padding: 15px; }
+  #lawyer li {
+    font-size: 0.9em;
+    margin-bottom: 15px; }
+  #lawyer h4 {
+    margin-top: 30px;
+    margin-bottom: 30px; }
+  #lawyer .lawyer-description {
+    text-align: left;
+    padding: 30px; }
+    #lawyer .lawyer-description h1 {
+      font-size: 1.4em;
+      margin-top: 0;
+      margin-bottom: 30px; }
+    #lawyer .lawyer-description p {
+      margin: 0;
+      font-size: 1.1em; }
+    #lawyer .lawyer-description .lawyer-phone, #lawyer .lawyer-description .lawyer-email {
+      color: #00A1B1;
+      font-size: 1.1em;
+      display: block;
+      width: 100%; }
+    #lawyer .lawyer-description .lawyer-email {
+      font-size: 1em;
+      margin-bottom: 15px; }
+  #lawyer .phrase {
+    padding: 0 30px 0 30px;
+    text-align: center; }
+    #lawyer .phrase p {
+      font-size: 1em;
+      font-style: italic; }
+    #lawyer .phrase h5 {
+      font-size: 0.9em; }
+  #lawyer .separator {
+    padding: 0 90px; }
+  #lawyer .award {
+    text-align: center; }
+    #lawyer .award .img-container {
+      width: 80%;
+      margin: 0 auto; }
+    #lawyer .award h5 {
+      font-size: 1em; }
+
+/*# sourceMappingURL=lawyer.css.map */

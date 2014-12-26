@@ -1,4 +1,4 @@
- <script id="lawyer-show-template" type="text/x-handlebars-template"> 
+ <script id="lawyer-template" type="text/x-handlebars-template"> 
   <div class="lawyer-header">
     <p>{{ position }}</p>
     <h1>{{ name }} {{ lastname }}</h1>
@@ -6,9 +6,111 @@
     <a href="mailto:{{ email }}" class="lawyer-email">{{ email }}</a>
     <a href="/abogados/{{ id }}/vcard" class="btn btn-primary btn-vcard" target="_new"><%= t('Download')%> </br>VCard</a>
     {{#if img_name.url}}
-    <img src="{{img_name.url}}" width="250" class="pull-right">
+    <img src="{{img_name.url}}" >
     {{/if}}
   </div>
   <p class="lawyer-description">{{ description }}</p>
+  <div class="row">
+  <div class="col-lg-6 lawyer-left">
+    <h3><i class="fa fa-briefcase"></i> <%= t('general_information') %></h3>
+    {{#if categories}}
+      <h4><%= t('practice_areas') %></h4>
+      <ul>
+        {{#each categories}}
+          <li>{{ name }}</li>
+        {{/each}}
+      </ul>
+    {{/if}}
+    {{#if educations}}
+    <h4><%= t('education') %></h4>
+    <ul>
+      {{#each educations}}
+        <li>{{ title }}, {{ institution }} {{ year }}</li>
+      {{/each}}
+    </ul>
+    {{/if}}
+
+    {{#if jobs}}
+     <h4><%= t('professional_experience') %></h4>
+     <ul>
+      {{#each jobs}}
+        <li>{{ title }}, {{ company }} {{ from }} {{ until }}</li>
+      {{/each}}
+     </ul>
+    {{/if}}
+
+    {{#if recognitions}}
+    <h4><%= t('Conferences') %></h4>
+     <ul>
+      {{#each recognitions}}
+        <li>{{ title }}, {{ country }} {{ year }}</li>
+      {{/each}}
+     </ul>
+    {{/if}}
+
+    {{#if recognitions}}
+    <h4><%= t('Conferences') %></h4>
+     <ul>
+      {{#each recognitions}}
+        <li>{{ title }}, {{ country }} {{ year }}</li>
+      {{/each}}
+     </ul>
+    {{/if}}
+
+    {{#if institutions}}
+    <h4><%= t('memberships') %></h4>
+     <ul>
+      {{#each institutions}}
+        <li>{{ title }}, {{ country }} {{ from }} {{ until }}</li>
+      {{/each}}
+     </ul>
+    {{/if}}
+
+    {{#if languages}}
+    <h4><%= t('languages') %></h4>
+     <ul>
+      {{#each languages}}
+        <li>{{ name }}</li>
+      {{/each}}
+     </ul>
+    {{/if}}
+
+    {{#if phrases}}
+    <div class="separator">
+      <hr>
+    </div>
+      {{#each phrases}}
+      <div class="phrase">
+        <p>{{ content }}</p>
+        <h5>{{ author }}</h5>
+      </div>
+      {{/each}}
+   
+    {{/if}}
+     
+
+  </div>
+  <div class="col-lg-6 lawyer-right">
+    {{#if awards}}
+      <h3><i class="fa fa-bookmark-o"></i> <%= t('awards') %></h3>
+      {{#each awards}}
+      {{#if img_name.url}}
+      <div class="award">
+        <div class="img-container">
+          <img src="{{ img_name.url }}" alt="{{ title }}" class="img-responsive">
+        </div>
+        <h5>{{ title }}</h5>
+
+      </div>
+      {{/if}}
+      {{/each}}
+    {{/if}}
+  </div>
+
+</div>
+
+
 </script>
+
+
 
