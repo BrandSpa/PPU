@@ -23,16 +23,6 @@ class Api::LawyersController < ApplicationController
     collection = collection.search(keyword) if keyword.present? 
     collection = collection.by_name(name) if name.present?
 
-    if slug.present?
-      collection = entity.relationships.by_slug(slug).lang(I18n.locale).first 
-      
-      if collection.nil?
-        
-        model = entity.includes(:categories).by_slug(slug).lang(:es).first
-        collection = duplicate(model)
-      end
-    end
-
     if update.present?
       collection.each do |m|
         slug = m.email.split('@')[0]
@@ -40,7 +30,21 @@ class Api::LawyersController < ApplicationController
       end
     end
 
-    render json: collection.to_json(:include => [:academics, :articles, :awards, :educations, :institutions, :jobs, :languages, :phrases, :recognitions, :categories])
+    if slug.present?
+      collection = entity.relationships.by_slug(slug).lang(I18n.locale).first 
+      render json: collection.to_json(:include => [:academics, :articles, :awards, :educations, :institutions, :jobs, :languages, :phrases, :recognitions, :categories])
+
+      if collection.nil?
+        
+        model = entity.includes(:categories).by_slug(slug).lang(:es).first
+        collection = duplicate(model)
+
+      end
+
+    else
+      render json: collection.to_json(:include => [:categories])
+    end
+
   end
 
   def show

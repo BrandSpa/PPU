@@ -46,7 +46,7 @@ $(function() {
 
     LawyerView.prototype.template = $('#lawyer-template');
 
-    LawyerView.prototype.className = 'col-md-6 lawyer-item';
+    LawyerView.prototype.className = 'col-md-6 col-sm-6 col-xs-12 lawyer-item';
 
     LawyerView.prototype.render = function() {
       var compile, source;
