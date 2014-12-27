@@ -55,12 +55,12 @@ $ ->
       ppu.lawyers.fetch reset: true, data: country: val
 
     byCategory: (e) ->
-      val = $(e.currentTarget).val()
+      val = $(e.currentTarget).find('select').val()
       ppu.lawyers.fetch reset: true, data: category: val
 
     byQuery: (e) ->
       val = $(e.currentTarget).val()
-      if val.length > 3
+      if val.length >= 3
         ppu.lawyers.fetch reset: true, data: keyword: val
         
 

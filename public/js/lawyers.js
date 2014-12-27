@@ -134,7 +134,7 @@ $(function() {
 
     LawyersFilters.prototype.byCategory = function(e) {
       var val;
-      val = $(e.currentTarget).val();
+      val = $(e.currentTarget).find('select').val();
       return ppu.lawyers.fetch({
         reset: true,
         data: {
@@ -146,7 +146,7 @@ $(function() {
     LawyersFilters.prototype.byQuery = function(e) {
       var val;
       val = $(e.currentTarget).val();
-      if (val.length > 3) {
+      if (val.length >= 3) {
         return ppu.lawyers.fetch({
           reset: true,
           data: {
