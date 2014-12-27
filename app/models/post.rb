@@ -1,42 +1,44 @@
 class Post < ActiveRecord::Base
+
   has_and_belongs_to_many :lawyers
   has_and_belongs_to_many :categories
   has_one :translations, class_name: "Post", foreign_key: "translation_id"
   belongs_to :translation, class_name: "Post"
   belongs_to :gallery
-  
-  mount_uploader :img_name, PostImageUploader
-
-  scope :by_lang, -> (lang){ where(lang: lang) }
-  scope :featured, ->{ where.not(featured: nil) }
-  scope :not_featured, ->{ where(featured: nil) }
-  scope :by_country, -> (country){ where(country: country) }
-  scope :get_relationships, -> { includes(:translation, :categories, :lawyers, :gallery) }
 
   validates :title, presence: true
   validates :content, presence: true
   validates :title, uniqueness: true
   
-  after_create :add_keywords
-  after_create :add_slug
+  scope :by_lang, -> (lang){ where(lang: lang) }
+  scope :by_slug, -> (slug){ where(slug: slug) }
+  scope :featured, ->{ where.not(featured: nil) }
+  scope :published, ->{ where(published: true) }
+  scope :not_featured, ->{ where(featured: nil) }
+  scope :by_country, -> (country){ where(country: country) }
+  scope :get_relationships, -> { includes(:translation, :categories, :lawyers, :gallery) }
+  scope :order_featured, -> { order(featured: :asc) }
+  scope :order_by_date, -> { order(date: :desc) }
 
-  def self.by_slug(slug)
-    where(slug: slug) 
+  mount_uploader :img_name, PostImageUploader
+
+  def self.duplicate(model)
+    model_new = model.dup
+    model_new.lang = "en"
+    model_new.translation_id = model.id
+    model_new.title = "#{model.title} to translate"
+    model_new.save
+    model_new
   end
+  
+  after_create :add_keywords
 
   private
     def add_keywords
       model = self
-      model.excerpt = self.content
+      model.excerpt = Sanitize.fragment(self.content)
       model.keywords = [self.title, self.content, self.author].join(" ")
-      
-      model.save
-    end
-
-    def add_slug
-      model = self
-      t = self.title.gsub(/[ ]/, '-')
-      model.slug = t.downcase
+      model.slug = self.title.gsub(/[ ]/, '-').downcase
       model.save
     end
 

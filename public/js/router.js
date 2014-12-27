@@ -58,7 +58,11 @@ $(function() {
       ppu.postsFilters.render();
       ppu.posts = new ppu.Posts;
       ppu.posts.fetch({
-        reset: true
+        reset: true,
+        data: {
+          published: true,
+          not_featured: true
+        }
       });
       ppu.postsFeaturedView = new ppu.PostsFeaturedView({
         collection: ppu.postsFeatured

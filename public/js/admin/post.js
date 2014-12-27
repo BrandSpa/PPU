@@ -39,12 +39,45 @@ $(function() {
 
     PostView.prototype.tagName = 'tr';
 
+    PostView.prototype.events = {
+      "click .publish": "publish",
+      "click .unpublish": "unpublish",
+      "click .translate": "translate"
+    };
+
+    PostView.prototype.initialize = function() {
+      return this.listenTo(this.model, "change", this.render);
+    };
+
     PostView.prototype.render = function() {
       var source, t;
       source = this.template.html();
       t = Handlebars.compile(source);
       $(this.el).html(t(this.model.toJSON()));
       return this;
+    };
+
+    PostView.prototype.publish = function(e) {
+      e.preventDefault();
+      return this.model.save({
+        published: true
+      });
+    };
+
+    PostView.prototype.unpublish = function(e) {
+      e.preventDefault();
+      return this.model.save({
+        published: false
+      });
+    };
+
+    PostView.prototype.translate = function(e) {
+      e.preventDefault();
+      return this.model.save({
+        duplicate: true
+      }).done(function(model) {
+        return window.location = "en/admin/posts/" + model.id + "/edit";
+      });
     };
 
     return PostView;
@@ -223,9 +256,7 @@ $(function() {
       return this.model.save(data, $.extend({}, options));
     };
 
-    PostEdit.prototype.updated = function() {
-      return window.location = "/posts";
-    };
+    PostEdit.prototype.updated = function() {};
 
     PostEdit.prototype.getCategories = function() {
       var categories, el;
