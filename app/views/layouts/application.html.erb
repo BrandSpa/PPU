@@ -11,31 +11,31 @@
 </head>
 <body id="ppu-app">
 
-<div class="container app-container">
-  <nav class="navbar navbar-default hidden-lg" role="navigation">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
-         Menú <i class="fa fa-bars"></i>
-      </button>
-      <a href="/"><img src="/img/Logo@2x.png" alt="" class="img-responsive"></a>
-    </div>
+  <div class="container app-container">
+    <nav class="navbar navbar-default hidden-lg" role="navigation">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
+           Menú <i class="fa fa-bars"></i>
+         </button>
+         <a href="/"><img src="/img/Logo@2x.png" alt="" class="img-responsive"></a>
+       </div>
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li><a href="/abogados"><%= t("Lawyers") %></a></li>
-         <li><a href="/areas-de-practica"><%= t("Practice Areas") %></a></li>
-        <li><a href="/nosotros"><%= t("Us") %></a></li>
-        <li><a href="/experiencia"><%= t("Experience") %></a></li>
-        <li><a href="/trabaje-con-nosotros"><%= t("Work with Us") %></a></li>
-        <li><a href="/pro-bono">Pro bono</a></li>
-      </ul>
-   
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
+       <!-- Collect the nav links, forms, and other content for toggling -->
+       <div class="collapse navbar-collapse" id="navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li><a href="/abogados"><%= t("Lawyers") %></a></li>
+          <li><a href="/areas-de-practica"><%= t("Practice Areas") %></a></li>
+          <li><a href="/nosotros"><%= t("Us") %></a></li>
+          <li><a href="/experiencia"><%= t("Experience") %></a></li>
+          <li><a href="/trabaje-con-nosotros"><%= t("Work with Us") %></a></li>
+          <li><a href="/pro-bono">Pro bono</a></li>
+        </ul>
+
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
   <div class="row">
 
     <div id="nav-main-container" class="col-lg-2 visible-lg">
@@ -43,60 +43,74 @@
         <li class="link-main">
           <a href="/"><img src="/img/Logo@2x.png" alt="" class="img-responsive"></a>
         </li>
-         <li><a href="/abogados"><%= t("Lawyers") %></a></li>
-         <li><a href="/areas-de-practica"><%= t("Practice Areas") %></a></li>
+        <li><a href="/abogados"><%= t("Lawyers") %></a></li>
+        <li><a href="/areas-de-practica"><%= t("Practice Areas") %></a></li>
         <li><a href="/nosotros"><%= t("Us") %></a></li>
         <li><a href="/experiencia"><%= t("Experience") %></a></li>
         <li><a href="/trabaje-con-nosotros"><%= t("Work with Us") %></a></li>
         <li><a href="/pro-bono">Pro bono</a></li>
       </ul>
+    </div>
+
+    <div class="top-bar-container">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-2"></div>
+          <div class="col-lg-8">
+            <div id="top-bar"></div>
+          </div>
+          <div class="col-lg-2 visible-lg change-lang-container">
+             <div id="change-lang">
+               <a href="#" class="change-lang-page"><%= t('page_lang') %></a>
+             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-10 col-md-12" id="yield-container">
+      <%= yield %>
+    </div>
+
+    <div class="footer-container">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-2"></div>
+          <div class="col-lg-10">
+            <div id="footer">
+              <a href="#" class="open-contact">Contacto <i class="fa fa-chevron-up"></i></a>
+              <a href="#" class="policy">Política de tratamiento de datos <br>Copyright 2014</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
   </div>
-
-  <div class="col-lg-10 col-md-12">
-    
-    <div class="col-lg-10 col-lg-12 top-bar-container">
-      <div id="top-bar"></div>
-     </div>
-
-    <div class="col-lg-2 visible-lg" id="change-lang">
-      <a href="#" class="change-lang-page"><%= t('page_lang') %></a>
-    </div>
-    
-    <%= yield %>
-  <div id="footer-container">
-    <div id="footer">
-      <a href="#" class="open-contact">Contacto ></a>
-      <a href="#" class="policy">Política de tratamiento de datos <br>Copyright 2014</a>
-    </div>
-  </div>
-    </div>
 </div>
+  
 
- 
-</div>
+<%= render "lawyers/partials/lawyers" %>
+<%= render "partials/select_categories" %>
 
+<script src="/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="/js/libs/bootstrap.min.js"></script>
+<script src="/bower_components/jquery.serializeJSON/jquery.serializejson.min.js"></script>
+<script src="/bower_components/handlebars/handlebars.min.js"></script>
+<script src="/bower_components/underscore/underscore-min.js"></script>
+<script src="/bower_components/backbone/backbone.js"></script>
+<script src="/bower_components/moment/min/moment.min.js"></script>
 
-
-
-  <%= render "lawyers/partials/lawyers" %>
-  <%= render "partials/select_categories" %>
-
-   <script src="/bower_components/jquery/dist/jquery.min.js"></script>
-  <script src="/js/libs/bootstrap.min.js"></script>
- <script src="/bower_components/jquery.serializeJSON/jquery.serializejson.min.js"></script>
-  <script src="/bower_components/handlebars/handlebars.min.js"></script>
-  <script src="/bower_components/underscore/underscore-min.js"></script>
-  <script src="/bower_components/backbone/backbone.js"></script>
-
-  <script src="/js/main.js"></script>
-  <script src="/js/app.js"></script>
-  <script src="/js/categories.js"></script>
-  <script src="/js/lawyers.js"></script>
-  <script src="/js/router.js"></script>
-  <script>
-    app.lang = "<%= I18n.locale %>";
-    app.hostname = window.location.hostname;
-    app.pathname = window.location.pathname;
-  </script>
+<script src="/js/main.js"></script>
+<script src="/js/app.js"></script>
+<script src="/js/categories.js"></script>
+<script src="/js/lawyers.js"></script>
+<script src="/js/posts.js"></script>
+<script src="/js/router.js"></script>
+<script>
+  app.lang = "<%= I18n.locale %>";
+  app.hostname = window.location.hostname;
+  app.pathname = window.location.pathname;
+</script>
 </body>
 </html>

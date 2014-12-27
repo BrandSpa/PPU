@@ -6,8 +6,18 @@ class Api::PostsController < ApplicationController
   def index
     lang = params[:lang] || I18n.locale
     country = params[:country]
+    featured = params[:featured]
+    published = params[:published]
+    not_featured = params[:not_featured]
+    not_published = params[:not_published]
+    
     collection = entity.get_relationships().by_lang(lang).all
+    collection = collection.featured.order_featured if featured.present?
+    collection = collection.published if published.present?
+    collection = collection.not_featured if not_featured.present?
+    collection = collection.not_published if not_published.present?
     collection = collection.by_country(country) if country.present?
+
     render json: collection.to_json(:include => [:translations, :gallery])
   end
 
@@ -20,42 +30,40 @@ class Api::PostsController < ApplicationController
     end
   end
 
-   def update
+  def update
     id = params[:id]
-    model = entity.get_relationships().find(id)
-    model.update(post_params)
-    if model.valid?
-      render json: model, status: 200
+    duplicate = params[:duplicate]
+
+    model = entity.get_relationships().find_by(id: id)
+
+    if duplicate.present?
+      new_model = entity.duplicate(model)
+      render json: new_model, status: 200
     else
-      render json: model.errors, status: 400
+      model.update(post_params)
+
+      if model.valid?
+        render json: model, status: 200
+      else
+        render json: model.errors, status: 400
+      end
     end
+    
   end
 
   def show
     id = params[:id]
     lang = params[:lang] || I18n.locale
+
     model = entity.get_relationships().by_lang(lang).find_by(id: id)
 
-    unless model.present?
-      m = entity.find(id)
-      render json: duplicate(m)
-    else
-      render json: model.to_json(:include => [:translation, :categories, :lawyers, :gallery])
-    end
-    
+    render json: model.to_json(:include => [:translation, :categories, :lawyers, :gallery])  
   end
 
-  def duplicate(model)
-    model_new = model.dup
-    model_new.lang = "en"
-    model_new.translation_id = model.id
-    model_new.title = "#{model.title} en"
-    model_new.save!
-  end
 
   private 
     def post_params
-      params.require(:post).permit(:lang, :country, :date, :author, :title, :content, :img_name, :gallery_id, :lawyer_ids => [], :category_ids => [])
+      params.require(:post).permit(:lang, :country, :date, :author, :title, :content, :content_plain, :img_name, :gallery_id, :published, :featured, :lawyer_ids => [], :category_ids => [])
     end
     
 end

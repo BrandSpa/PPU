@@ -39,12 +39,45 @@ $(function() {
 
     PostView.prototype.tagName = 'tr';
 
+    PostView.prototype.events = {
+      "click .publish": "publish",
+      "click .unpublish": "unpublish",
+      "click .translate": "translate"
+    };
+
+    PostView.prototype.initialize = function() {
+      return this.listenTo(this.model, "change", this.render);
+    };
+
     PostView.prototype.render = function() {
       var source, t;
       source = this.template.html();
       t = Handlebars.compile(source);
       $(this.el).html(t(this.model.toJSON()));
       return this;
+    };
+
+    PostView.prototype.publish = function(e) {
+      e.preventDefault();
+      return this.model.save({
+        published: true
+      });
+    };
+
+    PostView.prototype.unpublish = function(e) {
+      e.preventDefault();
+      return this.model.save({
+        published: false
+      });
+    };
+
+    PostView.prototype.translate = function(e) {
+      e.preventDefault();
+      return this.model.save({
+        duplicate: true
+      }).done(function(model) {
+        return window.location = "en/admin/posts/" + model.id + "/edit";
+      });
     };
 
     return PostView;
@@ -126,6 +159,7 @@ $(function() {
       content = $(this.el).find('.summernote').code();
       data = new FormData($form[0]);
       data.append("post[content]", content);
+      data.append("post[lang]", app.lang);
       options = ppu.ajaxOptions("POST", data);
       return this.model.save(data, $.extend({}, options));
     };
@@ -136,7 +170,11 @@ $(function() {
 
     PostCreate.prototype.getCategories = function() {
       ppu.categories = new ppu.Categories;
-      return ppu.categories.fetch().done(function(collection) {
+      return ppu.categories.fetch({
+        data: {
+          lang: app.lang
+        }
+      }).done(function(collection) {
         var source, template;
         source = $('#lawyer-categories-template').html();
         template = Handlebars.compile(source);
@@ -192,7 +230,8 @@ $(function() {
 
     PostEdit.prototype.initialize = function() {
       this.listenTo(this.model, 'change', this.render);
-      return this.listenTo(this.model, 'error', this.renderPostErrors, this);
+      this.listenTo(this.model, 'error', this.renderPostErrors, this);
+      return this.listenTo(this.model, 'sync', this.updated, this);
     };
 
     PostEdit.prototype.render = function() {
@@ -216,6 +255,8 @@ $(function() {
       options = ppu.ajaxOptions("PUT", data);
       return this.model.save(data, $.extend({}, options));
     };
+
+    PostEdit.prototype.updated = function() {};
 
     PostEdit.prototype.getCategories = function() {
       var categories, el;

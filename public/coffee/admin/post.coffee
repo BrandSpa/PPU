@@ -9,12 +9,34 @@ $ ->
   class ppu.admin.PostView extends Backbone.View
     template: $ '#post-admin-template'
     tagName: 'tr'
-    
+    events: 
+      "click .publish": "publish"
+      "click .unpublish": "unpublish"
+      "click .translate": "translate"
+
+    initialize: ->
+      @listenTo(@model, "change", @render)
+      
     render: ->
       source = @template.html()
       t = Handlebars.compile(source)
       $(@el).html t( @model.toJSON() )
       @
+
+    publish: (e) ->
+      e.preventDefault()
+      @model.save published: true
+
+    unpublish: (e) ->
+      e.preventDefault()
+      @model.save published: false
+
+    translate: (e) ->
+      e.preventDefault()
+      @model.save duplicate: true 
+        .done (model) ->
+          window.location = "en/admin/posts/#{model.id}/edit"
+
 
   class ppu.admin.PostsView extends Backbone.View
     el: $ "#posts-dasboard"
@@ -61,6 +83,7 @@ $ ->
       content = $(@el).find('.summernote').code()
       data = new FormData($form[0])
       data.append("post[content]", content)
+      data.append("post[lang]", app.lang)
       options = ppu.ajaxOptions("POST", data)
       @model.save data, $.extend({}, options)
     
@@ -69,7 +92,7 @@ $ ->
 
     getCategories: ->
       ppu.categories = new ppu.Categories
-      ppu.categories.fetch().done (collection) ->
+      ppu.categories.fetch(data: lang: app.lang).done (collection) ->
         source = $('#lawyer-categories-template').html()
         template = Handlebars.compile(source)
         $('#categories-checkboxes').html template( collection )
@@ -102,11 +125,12 @@ $ ->
     initialize: ->
       @listenTo(@model, 'change', @render)
       @listenTo(@model, 'error', @renderPostErrors, @)
+      @listenTo(@model, 'sync', @updated, @)
 
     render: ->
       source = @template.html()
       template = Handlebars.compile(source)
-      @$el.find('.panel-body').html template(@model.toJSON())
+      @$el.find('.panel-body').html template( @model.toJSON() )
       ppu.appendDatePicker(@el)
       ppu.appendSummernote(@el)
       @getCategories()
@@ -120,6 +144,8 @@ $ ->
       data.append("post[content]", content)
       options = ppu.ajaxOptions("PUT", data)
       @model.save data, $.extend({}, options)
+
+    updated: ->
 
     getCategories: ->
       ppu.categories = new ppu.Categories
