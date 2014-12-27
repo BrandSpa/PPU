@@ -8,10 +8,10 @@ class Post < ActiveRecord::Base
   mount_uploader :img_name, PostImageUploader
 
   scope :by_lang, -> (lang){ where(lang: lang) }
+  scope :featured, ->{ where.not(featured: nil) }
+  scope :not_featured, ->{ where(featured: nil) }
   scope :by_country, -> (country){ where(country: country) }
   scope :get_relationships, -> { includes(:translation, :categories, :lawyers, :gallery) }
-
-
 
   validates :title, presence: true
   validates :content, presence: true
@@ -27,7 +27,9 @@ class Post < ActiveRecord::Base
   private
     def add_keywords
       model = self
+      model.excerpt = self.content
       model.keywords = [self.title, self.content, self.author].join(" ")
+      
       model.save
     end
 
@@ -37,5 +39,5 @@ class Post < ActiveRecord::Base
       model.slug = t.downcase
       model.save
     end
-  
+
 end

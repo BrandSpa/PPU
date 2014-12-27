@@ -11,12 +11,9 @@ $(function() {
 
     Workspace.prototype.routes = {
       "abogados": "lawyers",
-      ":lang/abogados": "lawyers",
       "abogados/:slug": "lawyer",
-      "editar-abogado/:name": 'finishLawyer',
-      ":lang/editar-abogado/:id": 'finishLawyer',
-      ":lang/crear-abogado": 'adminLawyer',
-      "dashboard": 'dashboard'
+      "posts": "posts",
+      "post/:slug": "post"
     };
 
     Workspace.prototype.initialize = function() {
@@ -48,6 +45,30 @@ $(function() {
         collection: ppu.lawyers
       });
     };
+
+    Workspace.prototype.posts = function() {
+      ppu.postsFeatured = new ppu.Posts;
+      ppu.postsFeatured.fetch({
+        reset: true,
+        data: {
+          featured: true
+        }
+      });
+      ppu.postsFilters = new ppu.PostsFilters;
+      ppu.postsFilters.render();
+      ppu.posts = new ppu.Posts;
+      ppu.posts.fetch({
+        reset: true
+      });
+      ppu.postsFeaturedView = new ppu.PostsFeaturedView({
+        collection: ppu.postsFeatured
+      });
+      return ppu.postsView = new ppu.PostsView({
+        collection: ppu.posts
+      });
+    };
+
+    Workspace.prototype.post = function(slug) {};
 
     return Workspace;
 

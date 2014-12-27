@@ -173,6 +173,24 @@ Handlebars.registerHelper('checked', function(val1, val2) {
   };
 });
 
+Handlebars.registerHelper('shortenText', function(text, block) {
+  return text.substring(0, 120) + " ...";
+});
+
+Handlebars.registerHelper('shortenText2', function(text, block) {
+  return text.substring(0, 90);
+});
+
+Handlebars.registerHelper('dateFormat', function(context, block) {
+  var f;
+  if (window.moment) {
+    f = block.hash.format || "MMM Do, YYYY";
+    return moment(Date(context)).format(f);
+  } else {
+    return context;
+  }
+});
+
 $(document).ajaxSend(function(e, xhr, options) {
   var token;
   token = $("meta[name='csrf-token']").attr("content");

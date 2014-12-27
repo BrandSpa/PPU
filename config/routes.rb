@@ -29,6 +29,7 @@ Rails.application.routes.draw do
     get "crear-abogado", to: 'admin/lawyers#index'
     get "editar-abogado/:slug", to: 'admin/lawyers#index'
     get "edit-lawyer/:username", to: 'admin/lawyers#index'
+    resources :posts
     namespace :admin do 
       resources :posts
     end

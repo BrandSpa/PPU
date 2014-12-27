@@ -126,6 +126,7 @@ $(function() {
       content = $(this.el).find('.summernote').code();
       data = new FormData($form[0]);
       data.append("post[content]", content);
+      data.append("post[lang]", app.lang);
       options = ppu.ajaxOptions("POST", data);
       return this.model.save(data, $.extend({}, options));
     };
@@ -136,7 +137,11 @@ $(function() {
 
     PostCreate.prototype.getCategories = function() {
       ppu.categories = new ppu.Categories;
-      return ppu.categories.fetch().done(function(collection) {
+      return ppu.categories.fetch({
+        data: {
+          lang: app.lang
+        }
+      }).done(function(collection) {
         var source, template;
         source = $('#lawyer-categories-template').html();
         template = Handlebars.compile(source);
@@ -192,7 +197,8 @@ $(function() {
 
     PostEdit.prototype.initialize = function() {
       this.listenTo(this.model, 'change', this.render);
-      return this.listenTo(this.model, 'error', this.renderPostErrors, this);
+      this.listenTo(this.model, 'error', this.renderPostErrors, this);
+      return this.listenTo(this.model, 'sync', this.updated, this);
     };
 
     PostEdit.prototype.render = function() {
@@ -215,6 +221,10 @@ $(function() {
       data.append("post[content]", content);
       options = ppu.ajaxOptions("PUT", data);
       return this.model.save(data, $.extend({}, options));
+    };
+
+    PostEdit.prototype.updated = function() {
+      return window.location = "/posts";
     };
 
     PostEdit.prototype.getCategories = function() {

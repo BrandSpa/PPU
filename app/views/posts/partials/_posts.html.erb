@@ -1,0 +1,37 @@
+<script id="post-template" type="text/x-handlebars-template">
+<div class="img-container">
+ {{#if gallery}}
+  <img src="{{ gallery.img_name.url }}" alt="{{ title }}" class="hidden-xs">
+  {{else}}
+   <img src="{{ img_name.url }}" alt="{{ title }}" class="hidden-xs">
+ {{/if}}
+</div>
+
+<div class="content">
+	<h3><a href="posts/{{ slug }}">{{ title }}</a></h3>
+	  <p> {{shortenText2 excerpt }}</p>
+	  <span class="date">{{dateFormat date format="D - M - YYYY"}}</span>
+	  <a href="#" class="share"><i class="fa fa-share-alt-square"></i> Compartir</a>
+</div>
+</script>
+
+
+<script id="post-main-featured-template" type="text/x-handlebars-template">
+<div class="img-container">
+ {{#if gallery}}
+  <img src="{{ gallery.img_name.url }}" alt="{{ title }}" class="hidden-xs img-responsive">
+  {{else}}
+   <img src="{{ img_name.url }}" alt="{{ title }}" class="hidden-xs img-responsive">
+ {{/if}}
+</div>
+
+  <div class="content">
+	  <h3><a href="posts/{{ slug }}">{{ title }}</a></h3>
+	  <p> {{shortenText excerpt }}</p>
+	  <span class="date">{{dateFormat date format="D - M - YYYY"}}</span>
+	  <a href="#" class="share"> Compartir <i class="fa fa-share-alt"></i></a>
+  </div>
+</script>
+
+
+

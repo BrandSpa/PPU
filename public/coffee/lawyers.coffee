@@ -47,7 +47,7 @@ $ ->
       @$el.html(template)
 
     byPosition: (e) ->
-      val = $(e.currentTarget).val()
+      val = $(e.currentTarget).find('select').val()
       ppu.lawyers.fetch reset: true, data: position: val
       
     byCountry: (e) ->

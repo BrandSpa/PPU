@@ -1,38 +1,42 @@
 <script id="lawyers-filter" type="text/x-handlebars-template">  
   <h1><%= t("Lawyers") %></h1>
-  <div class="col-md-2 col-sm-2">
-  <select class="form-control position">
-    <option value=""><%= t("Lawyer type") %></option>
-    <option value="Abogado">Abogado</option>
-    <option value="Especialista">Especialista</option>
-    <option value="Socio">Socio</option>
-    <option value="Senior Counsel">Senior Counsel</option>
-  </select>
-  </div>
-  <div class="col-md-2 col-sm-2 category">
-   <select class="form-control ">
-    <option value=""><%= t("Areas") %></option>
-    <%= render "partials/categories_option" %>
-  </select>
-  </div>
-<div class="col-md-3 col-sm-3 countries">
-  <div class="checkbox-inline">
-  <label>
-    <input type="checkbox" class="country" value="Colombia">
-    Colombia
-  </label>
-</div>
-  <div class="checkbox-inline">
-  <label>
-    <input type="checkbox" class="country" value="Chile">
-    Chile
-  </label>
-</div>
-</div>
+   <form class="form-group search">
+    <input type="text" class="form-control query" placeholder="<%= t("Search") %>">
+  </form>
 
-<form class="form-group search">
-  <input type="text" class="form-control query" placeholder="<%= t("Search") %>">
-</form>
+ 
+  <div class="col-md-3 col-sm-3 countries">
+    <div class="checkbox-inline">
+      <label>
+        <input type="checkbox" class="country" value="Colombia">
+        Colombia
+      </label>
+    </div>
+
+    <div class="checkbox-inline">
+      <label>
+        <input type="checkbox" class="country" value="Chile">
+        Chile
+      </label>
+    </div>
+  </div>
+
+   <div class="col-md-2 col-sm-2 category">
+    <select class="form-control ">
+      <option value=""><%= t("Areas") %></option>
+      <%= render "partials/categories_option" %>
+    </select>
+  </div>
+
+
+   <div class="col-md-2 col-sm-2 position">
+    <select class="form-control">
+      <option value=""><%= t("Lawyer type") %></option>
+      <option value="Abogado">Abogado</option>
+      <option value="Especialista">Especialista</option>
+      <option value="Socio">Socio</option>
+      <option value="Senior Counsel">Senior Counsel</option>
+    </select>
+  </div>
 
 </script>
-

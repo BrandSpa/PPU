@@ -11,33 +11,23 @@ body
   @media #{$tablet}
     font-size: 12px
 
-
 .app-container
   padding-bottom: 70px
 
+#yield-container
+  margin-top: 65px
+  
+.change-lang-container
+  padding-left: 0
+
 #change-lang
+  z-index: 1
   background: #00A1B1
   height: 50px
   padding: 15px 0 0 15px
 
   a
     color: #fff
-
-#footer-container
-  position: fixed
-  bottom: 0
-  right: 0
-  width: 80%
-  height: 100px
-  padding-left: 10px
-  a
-    color: #fff
-
-  #footer
-    background: #002855
-    width: 100%
-    height: 100%
-    padding: 30px
 
 .policy
   float: right
@@ -114,6 +104,7 @@ ul
       &>a
         background: #00A1B1
         color: #fff
+
 #nav-main-container
   position: relative
 
@@ -127,7 +118,7 @@ ul
 
   li
     list-style: none
-    padding: 0 0 25px 15px
+    padding: 0 30px 25px 30px
     &:nth-child(2)
       padding-top: 15px !important
 
@@ -148,6 +139,8 @@ ul
   padding: 0 !important
   margin-bottom: 15px
   height: 50px
+  z-index: 1
+  position: fixed
   @media #{$desktop-lg}
     padding: 0 15px 0 0 !important
 
@@ -155,8 +148,13 @@ ul
   background: #002855
   padding-left: 15px
   height: auto
-  @media #{$desktop-lg}, #{$desktop}
+
+  @media #{$desktop-lg}
     height: 50px
+
+  @media #{$desktop}
+    height: 50px
+
   @media #{$tablet}
     height: 50px
 
@@ -167,7 +165,7 @@ ul
     font-weight: 400
     padding-right: 15px
     @media #{$desktop-lg}, #{$desktop}
-      padding-right: 60px
+      padding-right: 30px
 
   select, input
     background: #002855
@@ -176,6 +174,9 @@ ul
     padding-top: 15px
     font-weight: 400
     font-size: 0.9em
+
+  select::-ms-expand
+    display: none
     
   .checkbox-inline
     color: #fff
@@ -184,12 +185,33 @@ ul
     font-size: 0.9em
 
   .position
+    float: right
+    position: relative
+    &:before
+      font-family: 'FontAwesome'
+      content: "\f078"
+      position: absolute
+      top: 15px
+      color: #fff
+      right: 15px
+      font-weight: normal
  
   .category
+    float: right
     height: 50px
     border-left: 1px solid #fff
+    position: relative
+    &:before
+      font-family: 'FontAwesome'
+      content: "\f078"
+      position: absolute
+      top: 15px
+      color: #fff
+      right: 15px
+      font-weight: normal
   
   .countries
+    float: right
     height: 50px
     padding: 15px 0 0 15px
     border-left: 1px solid #fff
@@ -197,7 +219,16 @@ ul
   .search
     height: 50px
     float: right
+    position: relative
     border-left: 1px solid #fff
+    &:before
+      font-family: 'FontAwesome'
+      content: "\f002"
+      position: absolute
+      top: 15px
+      color: #fff
+      right: 15px
+      font-weight: normal
 
     input
       width: 100%
@@ -205,11 +236,32 @@ ul
   select
     padding: 10px 0 0 0
     -webkit-appearance: none
-    -moz-appearance: none
+    -moz-appearance: window
     appearance: none
-    display: inline-block
+    display: block
     outline: none
     cursor: pointer
+    text-indent: 0.01px
+    text-overflow: ''
+
+.footer-container
+  padding: 0 !important
+  height: 70px
+  z-index: 1
+  position: fixed
+  bottom: 0
+
+  @media #{$desktop-lg}
+    padding: 0 15px 0 0 !important
+
+#footer
+  height: 70px
+  background: #002855
+  padding-left: 15px
+  height: 70px
+  padding: 15px
+  a
+    color: #fff
 
 #lawyer-finish
   background: #fff
@@ -302,6 +354,7 @@ ul
   padding: 5px 15px
   font-size: 0.9em
   margin-top: -5px
-  
+
 @import menu
 @import lawyer
+@import post

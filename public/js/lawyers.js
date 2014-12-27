@@ -112,7 +112,7 @@ $(function() {
 
     LawyersFilters.prototype.byPosition = function(e) {
       var val;
-      val = $(e.currentTarget).val();
+      val = $(e.currentTarget).find('select').val();
       return ppu.lawyers.fetch({
         reset: true,
         data: {
