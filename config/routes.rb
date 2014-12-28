@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   end
   
   get "", to: 'pages#landing'
+  
 
   scope "(:locale)", locale: /en|es/ do
     get "abogados/", to: 'lawyers#index'
@@ -29,9 +30,14 @@ Rails.application.routes.draw do
     get "crear-abogado", to: 'admin/lawyers#index'
     get "editar-abogado/:slug", to: 'admin/lawyers#index'
     get "edit-lawyer/:username", to: 'admin/lawyers#index'
+
     resources :posts
+
     get "areas", to: 'categories#index'
     get "areas/:name", to: 'categories#show'
+
+    get "/nosotros", to: 'pages#us'
+
     namespace :admin do 
       resources :posts
     end

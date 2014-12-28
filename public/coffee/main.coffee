@@ -66,6 +66,7 @@ Backbone.View::closeModal = ->
   $('body').removeClass 'modal-open'
   @remove()
 
+
 ppu.appendDatePickerYear = (el) ->
   $(el).find('.datepicker-year').datepicker
     format: 'yyyy'
@@ -137,6 +138,8 @@ Handlebars.registerHelper 'dateFormat', (context, block) ->
     moment(Date(context)).format(f)
   else
     context
+    
+$('.carousel').carousel()
 
 $(document).ajaxSend (e, xhr, options) ->
   token = $("meta[name='csrf-token']").attr("content")
@@ -153,4 +156,6 @@ $(document).find('.datepicker').datepicker
   format: 'yyyy'
   language: 'es'
   autoclose: true
+
+
 
