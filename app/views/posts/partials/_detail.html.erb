@@ -1,0 +1,26 @@
+<script id="post-detail-template" type="text/x-handlebars-template">
+<div class="post-header">
+{{#if gallery }}
+	<img src="{{ gallery.img_name.url }}" alt="">
+{{/if}}
+	<h1>{{ title }}</h1>
+	<div class="categories">
+		{{#each categories }}
+		<span>{{ name }}</span>
+		{{/each}}
+	</div>
+	<a href="#" class="share">Compartir</a>
+</div>
+<div class="content">
+{{ country }} - {{ date }}
+
+{{{ content }}}
+</div>
+</script>
+
+	
+
+
+<script id="post-detail-title" type="text/x-handlebars-template">
+	<h1><a href="/posts"><%= t("News") %></a></h1>
+</script>

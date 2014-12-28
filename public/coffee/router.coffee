@@ -4,7 +4,7 @@ $ ->
       "abogados" : "lawyers"
       "abogados/:slug" : "lawyer"
       "posts" : "posts"
-      "post/:slug" : "post"
+      "posts/:slug" : "post"
 
     initialize: ->
       new ppu.AppView
@@ -33,6 +33,10 @@ $ ->
       ppu.postsView = new ppu.PostsView collection: ppu.posts
 
     post: (slug)->
+      ppu.posts = new ppu.Posts
+      ppu.posts.fetch reset: true, data: slug: slug
+      ppu.postDetailView = new ppu.PostDetailView collection: ppu.posts
+
       
   new ppu.Workspace
   Backbone.history.start pushState: true 

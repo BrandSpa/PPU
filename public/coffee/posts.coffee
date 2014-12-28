@@ -93,6 +93,25 @@ $ ->
         ppu.lawyers.fetch reset: true, data: keyword: val
 
 
+  class ppu.PostDetailView extends Backbone.View
+    el: $ "#post-detail"
+    template: $ "#post-detail-template"
+
+    initialize: ->
+      @listenTo(@collection, "reset", @render)
+
+    getTitle: ->
+      $("#top-bar").html $("#post-detail-title").html()
+
+    render: ->
+      @collection.each (model) ->
+        template = app.compile(@template)
+        @$el.html(template( model.toJSON() ))
+      , @
+      @getTitle()
+
+    
+
 
 
 
