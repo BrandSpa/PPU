@@ -14,7 +14,7 @@ $(function() {
     return Category;
 
   })(Backbone.Model);
-  return ppu.Categories = (function(_super) {
+  ppu.Categories = (function(_super) {
     __extends(Categories, _super);
 
     function Categories() {
@@ -28,4 +28,59 @@ $(function() {
     return Categories;
 
   })(Backbone.Collection);
+  ppu.CategoryView = (function(_super) {
+    __extends(CategoryView, _super);
+
+    function CategoryView() {
+      return CategoryView.__super__.constructor.apply(this, arguments);
+    }
+
+    CategoryView.prototype.template = $("#category-template");
+
+    CategoryView.prototype.className = "col-md-6 col-sm-6 col-xs-12 category-item";
+
+    CategoryView.prototype.render = function() {
+      var template;
+      template = app.compile(this.template);
+      $(this.el).html(template(this.model.toJSON()));
+      return this;
+    };
+
+    return CategoryView;
+
+  })(Backbone.View);
+  return ppu.CategoriesView = (function(_super) {
+    __extends(CategoriesView, _super);
+
+    function CategoriesView() {
+      return CategoriesView.__super__.constructor.apply(this, arguments);
+    }
+
+    CategoriesView.prototype.el = $("#categories");
+
+    CategoriesView.prototype.initialize = function() {
+      this.listenTo(this.collection, 'reset', this.render);
+      return this.getTitle();
+    };
+
+    CategoriesView.prototype.getTitle = function() {
+      return $("#top-bar").html($("#category-title").html());
+    };
+
+    CategoriesView.prototype.renderOne = function(model) {
+      ppu.categoryView = new ppu.CategoryView({
+        model: model
+      });
+      return this.$el.append(ppu.categoryView.render().el);
+    };
+
+    CategoriesView.prototype.render = function() {
+      return this.collection.each(function(model) {
+        return this.renderOne(model);
+      }, this);
+    };
+
+    return CategoriesView;
+
+  })(Backbone.View);
 });
