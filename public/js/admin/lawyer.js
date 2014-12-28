@@ -369,7 +369,7 @@ $(function() {
 
     LawyerEditView.prototype.el = $('.container-lawyer');
 
-    LawyerEditView.prototype.template = $('#lawyer-show-template');
+    LawyerEditView.prototype.template = $('#lawyer-template');
 
     LawyerEditView.prototype.events = {
       'click .open-edit-lawyer': 'openEdit',

@@ -214,7 +214,7 @@ $ ->
  
   class ppu.LawyerEditView extends Backbone.View
     el: $ '.container-lawyer'
-    template: $ '#lawyer-show-template'
+    template: $ '#lawyer-template'
     events: 
       'click .open-edit-lawyer': 'openEdit'
       'click .open-share': 'openShare'
