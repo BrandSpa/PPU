@@ -80,7 +80,6 @@ class Api::LawyersController < ApplicationController
     model_new = model.dup
     model_new.position = translate_position(model.position)
     model_new.lang = "en"
-    model_new.img_name = File.open(model.img_name.path) if model.img_name.path
     model_new.save
     id = model_new.id
     duplicate_relationship(model.educations, id)
