@@ -139,7 +139,7 @@ $(function() {
     return PostsFeaturedView;
 
   })(Backbone.View);
-  return ppu.PostsFilters = (function(_super) {
+  ppu.PostsFilters = (function(_super) {
     __extends(PostsFilters, _super);
 
     function PostsFilters() {
@@ -210,6 +210,37 @@ $(function() {
     };
 
     return PostsFilters;
+
+  })(Backbone.View);
+  return ppu.PostDetailView = (function(_super) {
+    __extends(PostDetailView, _super);
+
+    function PostDetailView() {
+      return PostDetailView.__super__.constructor.apply(this, arguments);
+    }
+
+    PostDetailView.prototype.el = $("#post-detail");
+
+    PostDetailView.prototype.template = $("#post-detail-template");
+
+    PostDetailView.prototype.initialize = function() {
+      return this.listenTo(this.collection, "reset", this.render);
+    };
+
+    PostDetailView.prototype.getTitle = function() {
+      return $("#top-bar").html($("#post-detail-title").html());
+    };
+
+    PostDetailView.prototype.render = function() {
+      this.collection.each(function(model) {
+        var template;
+        template = app.compile(this.template);
+        return this.$el.html(template(model.toJSON()));
+      }, this);
+      return this.getTitle();
+    };
+
+    return PostDetailView;
 
   })(Backbone.View);
 });

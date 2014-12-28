@@ -178,7 +178,7 @@ Handlebars.registerHelper('shortenText', function(text, block) {
 });
 
 Handlebars.registerHelper('shortenText2', function(text, block) {
-  return text.substring(0, 50) + " ...";
+  return text.substring(0, 90);
 });
 
 Handlebars.registerHelper('dateFormat', function(context, block) {
@@ -257,7 +257,7 @@ $(function() {
       "abogados": "lawyers",
       "abogados/:slug": "lawyer",
       "posts": "posts",
-      "post/:slug": "post"
+      "posts/:slug": "post"
     };
 
     Workspace.prototype.initialize = function() {
@@ -298,9 +298,15 @@ $(function() {
           featured: true
         }
       });
+      ppu.postsFilters = new ppu.PostsFilters;
+      ppu.postsFilters.render();
       ppu.posts = new ppu.Posts;
       ppu.posts.fetch({
-        reset: true
+        reset: true,
+        data: {
+          published: true,
+          not_featured: true
+        }
       });
       ppu.postsFeaturedView = new ppu.PostsFeaturedView({
         collection: ppu.postsFeatured
@@ -310,7 +316,18 @@ $(function() {
       });
     };
 
-    Workspace.prototype.post = function(slug) {};
+    Workspace.prototype.post = function(slug) {
+      ppu.posts = new ppu.Posts;
+      ppu.posts.fetch({
+        reset: true,
+        data: {
+          slug: slug
+        }
+      });
+      return ppu.postDetailView = new ppu.PostDetailView({
+        collection: ppu.posts
+      });
+    };
 
     return Workspace;
 

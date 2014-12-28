@@ -40,7 +40,7 @@ $(function() {
 
     LawyersView.prototype.events = {
       'click .lawyer-see-more': 'seeMore',
-      'submit .lawyer-search': 'search',
+      'keyup .query': 'search',
       'change .lawyer-filter-lang': 'filterLang',
       'change .lawyer-filter-country': 'filterCountry',
       'change .lawyer-filter-category': 'filterCategory',
@@ -88,13 +88,15 @@ $(function() {
     LawyersView.prototype.search = function(e) {
       var query;
       e.preventDefault();
-      query = $('input[name="query"]').val();
-      return this.collection.fetch({
-        reset: true,
-        data: {
-          keyword: query
-        }
-      });
+      query = $(e.currentTarget).val();
+      if (query.length >= 3) {
+        return this.collection.fetch({
+          reset: true,
+          data: {
+            keyword: query
+          }
+        });
+      }
     };
 
     LawyersView.prototype.getSelectVal = function(e) {

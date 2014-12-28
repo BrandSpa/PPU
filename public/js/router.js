@@ -13,7 +13,7 @@ $(function() {
       "abogados": "lawyers",
       "abogados/:slug": "lawyer",
       "posts": "posts",
-      "post/:slug": "post"
+      "posts/:slug": "post"
     };
 
     Workspace.prototype.initialize = function() {
@@ -72,7 +72,18 @@ $(function() {
       });
     };
 
-    Workspace.prototype.post = function(slug) {};
+    Workspace.prototype.post = function(slug) {
+      ppu.posts = new ppu.Posts;
+      ppu.posts.fetch({
+        reset: true,
+        data: {
+          slug: slug
+        }
+      });
+      return ppu.postDetailView = new ppu.PostDetailView({
+        collection: ppu.posts
+      });
+    };
 
     return Workspace;
 

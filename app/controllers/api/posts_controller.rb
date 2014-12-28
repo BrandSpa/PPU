@@ -10,9 +10,11 @@ class Api::PostsController < ApplicationController
     published = params[:published]
     not_featured = params[:not_featured]
     not_published = params[:not_published]
+    slug = params[:slug]
     
     collection = entity.get_relationships().by_lang(lang).all
     collection = collection.featured.order_featured if featured.present?
+    collection = collection.by_slug(slug) if slug.present?
     collection = collection.published if published.present?
     collection = collection.not_featured if not_featured.present?
     collection = collection.not_published if not_published.present?
