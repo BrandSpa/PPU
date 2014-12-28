@@ -7,4 +7,8 @@ class PagesController < ApplicationController
 	def us
 		
 	end
+
+	def pro_bono
+		
+	end
 end

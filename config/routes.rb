@@ -37,6 +37,7 @@ Rails.application.routes.draw do
     get "areas/:name", to: 'categories#show'
 
     get "/nosotros", to: 'pages#us'
+    get "/probono", to: 'pages#pro_bono'
 
     namespace :admin do 
       resources :posts
