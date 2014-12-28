@@ -13,7 +13,9 @@ $(function() {
       "abogados": "lawyers",
       "abogados/:slug": "lawyer",
       "posts": "posts",
-      "posts/:slug": "post"
+      "posts/:slug": "post",
+      "areas": "areas",
+      "areas/:name": "area"
     };
 
     Workspace.prototype.initialize = function() {
@@ -82,6 +84,16 @@ $(function() {
       });
       return ppu.postDetailView = new ppu.PostDetailView({
         collection: ppu.posts
+      });
+    };
+
+    Workspace.prototype.areas = function() {
+      ppu.categories = new ppu.Categories;
+      ppu.categories.fetch({
+        reset: true
+      });
+      return ppu.categoriesView = new ppu.CategoriesView({
+        collection: ppu.categories
       });
     };
 

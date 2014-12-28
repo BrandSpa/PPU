@@ -1,0 +1,43 @@
+/* Large desktops and laptops */
+/* Portrait tablets and medium desktops */
+/* Portrait tablets and small desktops */
+/* Landscape phones and portrait tablets */
+/* Landscape phones and smaller */
+.category-item {
+  height: 155px;
+  margin-bottom: 15px;
+  overflow: hidden; }
+  .category-item:first-child {
+    padding-left: 0; }
+  .category-item:first-child, .category-item:nth-child(2n+3) {
+    padding-left: 0; }
+  .category-item:nth-child(2n+2) {
+    padding-right: 0; }
+  .category-item .img-container {
+    width: 155px;
+    float: left;
+    overflow: hidden;
+    margin-right: 15px; }
+    .category-item .img-container img {
+      width: 155px; }
+  .category-item .content {
+    background: #fff;
+    padding: 7px;
+    height: 155px; }
+    .category-item .content h3 {
+      font-size: 1.1em; }
+      .category-item .content h3 a {
+        color: #5F5F5F; }
+    .category-item .content p {
+      color: #5F5F5F;
+      font-size: 0.9em;
+      padding: 0 15px 0 0; }
+    .category-item .content .date {
+      font-size: 0.8em;
+      color: #5F5F5F; }
+    .category-item .content .share {
+      font-size: 0.8em;
+      float: right;
+      padding-right: 15px; }
+
+/*# sourceMappingURL=category.css.map */

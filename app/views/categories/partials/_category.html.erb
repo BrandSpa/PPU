@@ -1,0 +1,16 @@
+<script id="category-template" type="text/x-handlebars-template">
+<div class="img-container">
+ {{#if gallery}}
+  <img src="{{ gallery.img_name.url }}" alt="{{ name }}" class="hidden-xs">
+ {{/if}}
+</div>
+
+<div class="content">
+	<h3><a href="areas/{{ name }}">{{ name }}</a></h3>
+	<p> {{shortenText description }}</p>
+</div>
+</script>
+
+<script id="category-title" type="text/x-handlebars-template">
+	<h1><a href="/areas"><%= t("practice_areas") %></a></h1>
+</script>

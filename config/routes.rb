@@ -30,6 +30,8 @@ Rails.application.routes.draw do
     get "editar-abogado/:slug", to: 'admin/lawyers#index'
     get "edit-lawyer/:username", to: 'admin/lawyers#index'
     resources :posts
+    get "areas", to: 'categories#index'
+    get "areas/:name", to: 'categories#show'
     namespace :admin do 
       resources :posts
     end
