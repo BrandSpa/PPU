@@ -13,6 +13,7 @@ $(function() {
       'dashboard': 'dashboard',
       "admin/lawyers/new": "createLawyer",
       'admin/posts/new': 'createPost',
+      'admin/experiences/new': 'createExperience',
       "en/admin/lawyers/new": "createLawyer",
       'en/admin/posts/new': 'createPost',
       'admin/lawyers/:id/edit': 'editLawyer',
@@ -113,6 +114,21 @@ $(function() {
         reset: true,
         data: {
           name: "post_header"
+        }
+      });
+    };
+
+    Router.prototype.createExperience = function(lang) {
+      ppu.admin.experience = new ppu.Experience;
+      ppu.admin.experienceCreate = new ppu.admin.ExperienceCreate({
+        model: ppu.admin.experience
+      });
+      ppu.admin.experienceCreate.render();
+      ppu.admin.galleries = new ppu.admin.Galleries;
+      return ppu.admin.galleries.fetch({
+        reset: true,
+        data: {
+          name: "experience_logo"
         }
       });
     };

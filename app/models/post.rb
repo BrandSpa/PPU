@@ -32,6 +32,7 @@ class Post < ActiveRecord::Base
   end
   
   after_create :add_keywords
+  before_create :add_date
 
   private
     def add_keywords
@@ -40,6 +41,10 @@ class Post < ActiveRecord::Base
       model.keywords = [self.title, self.content, self.author].join(" ")
       model.slug = self.title.gsub(/[ ]/, '-').downcase
       model.save
+    end
+
+    def add_date
+      self.date = Time.now if self.date.blank?
     end
 
 end

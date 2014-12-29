@@ -110,9 +110,18 @@ ppu.appendDatePicker = function(el) {
 
 ppu.appendSummernote = function(el) {
   return $(el).find('.summernote').summernote({
-    fontNames: ['Arial', 'Helvetica', 'Roboto'],
+    fontname: ['Lato'],
     onImageUpload: function(files, editor, welEditable) {
       return app.uploadPhotoSummernote(files[0], editor, welEditable);
+    }
+  });
+};
+
+ppu.appendSummernoteExperience = function(el) {
+  return $(el).find('.summernote').summernote({
+    fontNames: ['Lato'],
+    onImageUpload: function(files, editor, welEditable) {
+      return app.uploadPhotoSummernoteExperience(files[0], editor, welEditable);
     }
   });
 };
@@ -121,6 +130,24 @@ app.uploadPhotoSummernote = function(file, editor, welEditable) {
   var data;
   data = new FormData();
   data.append("gallery[name]", "post_content");
+  data.append("gallery[img_name]", file);
+  return $.ajax({
+    data: data,
+    type: "POST",
+    url: "/api/galleries",
+    cache: false,
+    contentType: false,
+    processData: false,
+    success: function(url) {
+      return editor.insertImage(welEditable, url);
+    }
+  });
+};
+
+app.uploadPhotoSummernoteExperience = function(file, editor, welEditable) {
+  var data;
+  data = new FormData();
+  data.append("gallery[name]", "company_logo");
   data.append("gallery[img_name]", file);
   return $.ajax({
     data: data,

@@ -11,6 +11,8 @@ class Api::GalleriesController < ApplicationController
     model = entity.create(params_gallery)
     if model.name == "post_content"
       render plain: model.img_name.url
+    elsif model.name == "experience_content"
+      render plain: model.img_name.url
     else
       render json: model
     end
