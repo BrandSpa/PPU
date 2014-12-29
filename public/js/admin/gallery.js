@@ -62,7 +62,7 @@ $(function() {
     return GalleryView;
 
   })(Backbone.View);
-  return ppu.admin.GalleryPostModal = (function(_super) {
+  ppu.admin.GalleryPostModal = (function(_super) {
     __extends(GalleryPostModal, _super);
 
     function GalleryPostModal() {
@@ -97,6 +97,43 @@ $(function() {
     };
 
     return GalleryPostModal;
+
+  })(Backbone.View);
+  return ppu.admin.GalleryExperienceModal = (function(_super) {
+    __extends(GalleryExperienceModal, _super);
+
+    function GalleryExperienceModal() {
+      return GalleryExperienceModal.__super__.constructor.apply(this, arguments);
+    }
+
+    GalleryExperienceModal.prototype.el = $("#gallery-post-modal");
+
+    GalleryExperienceModal.prototype.events = {
+      "click .modal-close": "close"
+    };
+
+    GalleryExperienceModal.prototype.renderOne = function(model) {
+      var view;
+      view = new ppu.admin.GalleryView({
+        model: model
+      });
+      return this.$el.find('.modal-body .row').append(view.render().el);
+    };
+
+    GalleryExperienceModal.prototype.render = function() {
+      this.$el.find('.modal-body .row').html('');
+      this.collection.each(function(model) {
+        return this.renderOne(model);
+      }, this);
+      return this.$el.modal();
+    };
+
+    GalleryExperienceModal.prototype.close = function(e) {
+      e.preventDefault();
+      return this.closeModal();
+    };
+
+    return GalleryExperienceModal;
 
   })(Backbone.View);
 });

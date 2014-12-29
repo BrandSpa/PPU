@@ -5,6 +5,7 @@ $ ->
 
       "admin/lawyers/new": "createLawyer"
       'admin/posts/new': 'createPost'
+      'admin/experiences/new': 'createExperience'
 
       "en/admin/lawyers/new": "createLawyer"
       'en/admin/posts/new': 'createPost'
@@ -77,6 +78,14 @@ $ ->
 
       ppu.admin.galleries = new  ppu.admin.Galleries
       ppu.admin.galleries.fetch reset: true, data: name: "post_header"
+
+    createExperience: (lang) ->
+      ppu.admin.experience = new ppu.Experience
+      ppu.admin.experienceCreate = new ppu.admin.ExperienceCreate model: ppu.admin.experience
+      ppu.admin.experienceCreate.render()
+
+      ppu.admin.galleries = new  ppu.admin.Galleries
+      ppu.admin.galleries.fetch reset: true, data: name: "experience_logo"
 
     editPost: (id) ->
       ppu.admin.post = new ppu.Post id: id

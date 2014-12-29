@@ -82,13 +82,33 @@ ppu.appendDatePicker = (el) ->
 
 ppu.appendSummernote = (el) ->
    $(el).find('.summernote').summernote
-    fontNames: ['Arial', 'Helvetica', 'Roboto'],
+    fontname: ['Lato'],
     onImageUpload: (files, editor, welEditable) ->
       app.uploadPhotoSummernote(files[0], editor, welEditable)
+
+ppu.appendSummernoteExperience = (el) ->
+  $(el).find('.summernote').summernote
+    fontNames: ['Lato'],
+    onImageUpload: (files, editor, welEditable) ->
+      app.uploadPhotoSummernoteExperience(files[0], editor, welEditable)
 
 app.uploadPhotoSummernote = (file, editor, welEditable) ->
   data = new FormData()
   data.append("gallery[name]", "post_content")
+  data.append("gallery[img_name]", file)
+  $.ajax
+    data: data,
+    type: "POST",
+    url: "/api/galleries"
+    cache: false
+    contentType: false
+    processData: false
+    success: (url) ->
+      editor.insertImage(welEditable, url)
+
+app.uploadPhotoSummernoteExperience = (file, editor, welEditable) ->
+  data = new FormData()
+  data.append("gallery[name]", "company_logo")
   data.append("gallery[img_name]", file)
   $.ajax
     data: data,

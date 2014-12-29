@@ -44,6 +44,7 @@ Rails.application.routes.draw do
     namespace :admin do 
       resources :posts
       resources :lawyers
+      resources :experiences
     end
   end
 
