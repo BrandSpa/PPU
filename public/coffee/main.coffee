@@ -139,6 +139,9 @@ Handlebars.registerHelper 'dateFormat', (context, block) ->
   else
     context
     
+Handlebars.registerHelper 'toUpperCase',(str) ->
+  str.toUpperCase()
+
 $('.carousel').carousel()
 
 $(document).ajaxSend (e, xhr, options) ->

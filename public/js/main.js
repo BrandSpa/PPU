@@ -191,6 +191,10 @@ Handlebars.registerHelper('dateFormat', function(context, block) {
   }
 });
 
+Handlebars.registerHelper('toUpperCase', function(str) {
+  return str.toUpperCase();
+});
+
 $('.carousel').carousel();
 
 $(document).ajaxSend(function(e, xhr, options) {

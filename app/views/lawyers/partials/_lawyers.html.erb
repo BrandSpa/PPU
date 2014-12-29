@@ -2,7 +2,7 @@
   <img src="{{ img_name.url }}" alt="{{ name }} {{ lastname }}" class="hidden-xs">
   <div class="content">
 	  <span class="position">{{ position }}</span>
-	  <h3><a href="abogados/{{ slug }}">{{ name }} {{ lastname }}</a></h3>
+	  <h3><a href="abogados/{{ slug }}">{{toUpperCase name }} {{toUpperCase lastname }}</a></h3>
 	  <a href="tel:{{ phone }}" class="phone">{{ phone }}</a>
 	  <a href="mailto:{{ email }}" class="email">{{ email }}</a>
   </div>
