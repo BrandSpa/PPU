@@ -11,8 +11,8 @@ mixins.lawyerRelationshipView = {
     source = $(this.template).html();
     template = Handlebars.compile(source);
     this.$el.html(template(this.model.toJSON()));
-    this.$el.append('<a href="#" class="btn btn-info btn-xs open-edit" ><i class="fa fa-pencil-square"></i></a> ');
-    this.$el.append('<a href="#" class="btn btn-danger btn-xs remove" ><i class="fa fa-times"></i></a>');
+    this.$el.append('<a href="#" class="btn btn-warning btn-xs open-edit" >editar</a> ');
+    this.$el.append('<a href="#" class="btn btn-danger btn-xs remove" >eliminar</a>');
     return this;
   },
   openEdit: function(e) {

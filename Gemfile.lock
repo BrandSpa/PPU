@@ -28,6 +28,8 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
+    amoeba (2.1.0)
+      activerecord (>= 3.2.6, < 5)
     arel (5.0.1.20140414130214)
     bcrypt (3.1.9)
     bugsnag (2.6.1)
@@ -205,6 +207,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  amoeba
   bugsnag
   carrierwave
   devise

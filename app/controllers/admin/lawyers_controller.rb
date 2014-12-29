@@ -8,4 +8,11 @@ class Admin::LawyersController < ApplicationController
    def dashboard
   	
   end
+  def new
+  	
+  end
+
+  def edit
+    
+  end
 end

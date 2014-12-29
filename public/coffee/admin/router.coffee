@@ -2,15 +2,24 @@ $ ->
   class ppu.admin.Router extends Backbone.Router
     routes: 
       'dashboard': 'dashboard'
+
+      "admin/lawyers/new": "createLawyer"
+      'admin/posts/new': 'createPost'
+
+      "en/admin/lawyers/new": "createLawyer"
+      'en/admin/posts/new': 'createPost'
+
+      'admin/lawyers/:id/edit': 'editLawyer'
+      'admin/posts/:id/edit': 'editPost'
+
+      "en/admin/lawyers/:id/edit": "editLawyer"
+      'en/admin/posts/:id/edit': 'editPost'
+
       'crear-abogado': 'createLawyer'
       ':lang/crear-abogado': 'createLawyer'
       'editar-abogado/:id': 'editLawyer'
       'en/editar-abogado/:id': 'editLawyer'
-      'admin/posts/new': 'createPost'
-      'en/admin/posts/new': 'createPost'
-      'admin/posts/:id/edit': 'editPost'
-      'en/admin/posts/:id/edit': 'editPost'
-      ':lang/crear-noticia': 'createPost'
+
 
     dashboard: ->
       ppu.lawyers = new ppu.Lawyers
@@ -55,10 +64,10 @@ $ ->
 
       ppu.lawyerCreate = new ppu.LawyerCreateView
 
-    editLawyer: (slug) ->
+    editLawyer: (id) ->
       $("#lawyer-create").remove()
-      ppu.lawyer = new ppu.Lawyer
-      ppu.lawyer.fetchBySlug(slug)
+      ppu.lawyer = new ppu.Lawyer id: id
+      ppu.lawyer.fetch data: lang: app.lang
       view = new ppu.LawyerEditView model: ppu.lawyer
 
     createPost: (lang) ->

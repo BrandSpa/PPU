@@ -88,10 +88,12 @@
 		<table class="table table-condensed">
 			<thead>
 				<tr>
+					<th>Imagen</th>
 					<th>Nombre</th>
 					<th>Email</th>
 					<th>Cargo</th>
 					<th>País</th>
+					<th>Traducción</th>
 					<th>Opciones</th>
 				</tr>
 			</thead>
@@ -104,14 +106,6 @@
 
 
 <%= render "admin/posts/partials/post" %>
+<%= render "admin/lawyers/partials/lawyer" %>
 
-<script type="text/x-handlebars-template" id="lawyer-dashbord-template">
-	<td>{{ name }} {{ lastname }}</td>
-	<td>{{ email }}</td>
-	<td>{{ position }}</td>
-	<td>{{ country }}</td>
-	<td>
-		<a href="/editar-abogado/{{ slug }}" class="btn btn-info lawyer-edit">Editar</a>
-		<a href="/en/editar-abogado/{{ slug }}" class="btn btn-info lawyer-edit">Traducción</a>
-	</td>
-</script>
+

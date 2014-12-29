@@ -2,6 +2,8 @@ $ ->
   class ppu.admin.LawyerView extends Backbone.View
     tagName: 'tr'
     template: $ '#lawyer-dashbord-template'
+    events: 
+      "click .translate": "translate"
 
     initialize: ->
       @listenTo(@model, 'change', @render)
@@ -12,6 +14,12 @@ $ ->
       t = Handlebars.compile(source)
       $(@el).html t( @model.toJSON() )
       @
+
+    translate: (e) ->
+      e.preventDefault()
+      @model.save duplicate: true
+        .done (mod) ->
+          window.location = "en/admin/lawyers/#{mod.id}/edit"
 
   class ppu.admin.LawyersView extends Backbone.View
     el: $ '#lawyers-dashboard'
@@ -118,7 +126,6 @@ $ ->
     store: (e) ->
       if e
         e.preventDefault()
-      
       $forms = $("#lawyer-form-create").find('form')
       datas = new FormData($forms[0])
       options = ppu.ajaxOptions("POST", datas)
@@ -139,10 +146,11 @@ $ ->
       ppu.lawyerArticleCreate.store(id)
       ppu.lawyerPharaseCreate.store(id)
       
-      ppu.admin.router.navigate("editar-abogado/#{model.get('slug')}", {trigger: true})
+      window.location = "/admin/lawyers/#{id}/edit"
 
   class ppu.LawyerCreateView extends Backbone.View
     el: $ "#lawyer-create"
+
     events:
       'click .lawyer-store': 'store'
       'change .lawyer-lang': 'changeLang'
@@ -151,13 +159,6 @@ $ ->
 
     initialize: ->
       ppu.appendDatePickerYear(@el)
-
-    changeLang: (e) ->
-      val = $(e.currentTarget).val()
-      if val == 'en'
-        window.location = "/en/crear-abogado"
-      else
-        window.location = "/crear-abogado"
 
     store: (e) ->
       e.preventDefault()
@@ -189,6 +190,7 @@ $ ->
           $(el).find("#lawyer-list-categories input[value='#{category.id}']").attr("checked", "checked")
 
     render: ->
+      el = $ "#lawyer-edit-modal"
       source = @template.html()
       t = Handlebars.compile(source)
       $(@el).find('.modal-body').html t( @model.toJSON() )
@@ -239,11 +241,7 @@ $ ->
       $("#lawyer-category-edit").find('ul').html t( @model.toJSON() )
 
     appendButtons: ->
-      @$el.append   '<a href="#" class="btn btn-info open-edit-lawyer"><i class="fa fa-pencil-square"></i></a>'
-      if @model.get("lang") == "es"
-        @$el.append   " <a href='/en/editar-abogado/#{@model.get("slug")}' class='btn btn-info lawyer-edit'>Inglés</a>"
-      else
-        @$el.append   " <a href='/editar-abogado/#{@model.get("slug")}' class='btn btn-info lawyer-edit'>español</a>"
+      @$el.append   '<a href="#" class="btn btn-info open-edit-lawyer">Editar información & áreas</a>'
 
     getRelationships: (id) ->
       mixins.renderCollection(ppu.LawyerEducations, ppu.LawyerEducationsEdit, lawyer_id: id)
