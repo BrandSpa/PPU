@@ -326,9 +326,9 @@ ul {
   font-size: 0.9em;
   margin-top: -5px; }
 
-.navbar-default {
+.navbar-app {
   background: #fff; }
-  .navbar-default img {
+  .navbar-app img {
     width: 20%; }
 
 .navbar-toggle {

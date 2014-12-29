@@ -13,6 +13,10 @@ $(function() {
 
     LawyerView.prototype.template = $('#lawyer-dashbord-template');
 
+    LawyerView.prototype.events = {
+      "click .translate": "translate"
+    };
+
     LawyerView.prototype.initialize = function() {
       this.listenTo(this.model, 'change', this.render);
       return this.listenTo(this.model, 'error', this.showErrors);
@@ -24,6 +28,15 @@ $(function() {
       t = Handlebars.compile(source);
       $(this.el).html(t(this.model.toJSON()));
       return this;
+    };
+
+    LawyerView.prototype.translate = function(e) {
+      e.preventDefault();
+      return this.model.save({
+        duplicate: true
+      }).done(function(mod) {
+        return window.location = "en/admin/lawyers/" + mod.id + "/edit";
+      });
     };
 
     return LawyerView;
@@ -236,9 +249,7 @@ $(function() {
       ppu.lawyerAwardCreate.store(id);
       ppu.lawyerArticleCreate.store(id);
       ppu.lawyerPharaseCreate.store(id);
-      return ppu.admin.router.navigate("editar-abogado/" + (model.get('slug')), {
-        trigger: true
-      });
+      return window.location = "/admin/lawyers/" + id + "/edit";
     };
 
     return LawyerCreateForm;
@@ -262,16 +273,6 @@ $(function() {
 
     LawyerCreateView.prototype.initialize = function() {
       return ppu.appendDatePickerYear(this.el);
-    };
-
-    LawyerCreateView.prototype.changeLang = function(e) {
-      var val;
-      val = $(e.currentTarget).val();
-      if (val === 'en') {
-        return window.location = "/en/crear-abogado";
-      } else {
-        return window.location = "/crear-abogado";
-      }
     };
 
     LawyerCreateView.prototype.store = function(e) {
@@ -326,7 +327,8 @@ $(function() {
     };
 
     lawyerEdit.prototype.render = function() {
-      var source, t;
+      var el, source, t;
+      el = $("#lawyer-edit-modal");
       source = this.template.html();
       t = Handlebars.compile(source);
       $(this.el).find('.modal-body').html(t(this.model.toJSON()));
@@ -401,12 +403,7 @@ $(function() {
     };
 
     LawyerEditView.prototype.appendButtons = function() {
-      this.$el.append('<a href="#" class="btn btn-info open-edit-lawyer"><i class="fa fa-pencil-square"></i></a>');
-      if (this.model.get("lang") === "es") {
-        return this.$el.append(" <a href='/en/editar-abogado/" + (this.model.get("slug")) + "' class='btn btn-info lawyer-edit'>Inglés</a>");
-      } else {
-        return this.$el.append(" <a href='/editar-abogado/" + (this.model.get("slug")) + "' class='btn btn-info lawyer-edit'>español</a>");
-      }
+      return this.$el.append('<a href="#" class="btn btn-info open-edit-lawyer">Editar información & áreas</a>');
     };
 
     LawyerEditView.prototype.getRelationships = function(id) {

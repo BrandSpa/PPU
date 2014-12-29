@@ -1,9 +1,9 @@
 $ ->
   class ppu.LawyerJob extends Backbone.Model
-    urlRoot: "/api/jobs"
+    urlRoot: "/api/lawyrs/jobs"
 
   class ppu.LawyerJobs extends Backbone.Collection
-    url: "/api/jobs"
+    url: "/api/lawyrs/jobs"
     model: ppu.LawyerJob
 
   class ppu.LawyerJobCreate extends Backbone.View

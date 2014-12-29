@@ -1,10 +1,10 @@
-class Api::AcademicsController < ApplicationController
+class Api::Lawyrs::AwardsController < ApplicationController
   include BelongsToLawyer
-  
+
   def entity
-    Academic
+    Award
   end
-  
+
   def index
     lawyer_id = params[:lawyer_id]
     collection = entity.all

@@ -1,9 +1,9 @@
 $ ->
   class ppu.LawyerLanguage extends Backbone.Model
-    urlRoot: "/api/languages"
+    urlRoot: "/api/lawyrs/languages"
 
   class ppu.LawyerLanguages extends Backbone.Collection
-    url: "/api/languages"
+    url: "/api/lawyrs/languages"
     model: ppu.LawyerLanguage
 
   class ppu.LawyerLanguageCreate extends Backbone.View

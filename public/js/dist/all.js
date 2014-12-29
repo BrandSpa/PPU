@@ -191,6 +191,8 @@ Handlebars.registerHelper('dateFormat', function(context, block) {
   }
 });
 
+$('.carousel').carousel();
+
 $(document).ajaxSend(function(e, xhr, options) {
   var token;
   token = $("meta[name='csrf-token']").attr("content");

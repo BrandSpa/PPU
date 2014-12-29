@@ -10,8 +10,8 @@ mixins.lawyerRelationshipView =
     source = $(@template).html()
     template = Handlebars.compile(source)
     @$el.html template( @model.toJSON() )
-    @$el.append '<a href="#" class="btn btn-info btn-xs open-edit" ><i class="fa fa-pencil-square"></i></a> '
-    @$el.append '<a href="#" class="btn btn-danger btn-xs remove" ><i class="fa fa-times"></i></a>'
+    @$el.append '<a href="#" class="btn btn-warning btn-xs open-edit" >editar</a> '
+    @$el.append '<a href="#" class="btn btn-danger btn-xs remove" >eliminar</a>'
     @
 
   openEdit: (e) ->

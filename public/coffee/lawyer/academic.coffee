@@ -1,9 +1,9 @@
 $ ->
   class ppu.LawyerAcademic extends Backbone.Model
-    urlRoot: "/api/academics"
+    urlRoot: "/api/lawyrs/academics"
 
   class ppu.LawyerAcademics extends Backbone.Collection
-    url: "/api/academics"
+    url: "/api/lawyrs/academics"
     model: ppu.LawyerAcademic
 
   class ppu.LawyerAcademicCreate extends Backbone.View

@@ -1,4 +1,4 @@
-class Api::LanguagesController < ApplicationController
+class Api::Lawyrs::LanguagesController < ApplicationController
   include BelongsToLawyer
 
   def entity

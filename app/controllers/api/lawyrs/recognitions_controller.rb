@@ -1,8 +1,8 @@
-class Api::PharasesController < ApplicationController
+class Api::Lawyrs::RecognitionsController < ApplicationController
   include BelongsToLawyer
 
   def entity
-    Phrase
+    Recognition
   end
 
   def index
@@ -11,5 +11,5 @@ class Api::PharasesController < ApplicationController
     collection = collection.by_lawyer(lawyer_id) if lawyer_id.present?
     render json: collection, status: 200
   end
-  
+
 end

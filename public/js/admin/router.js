@@ -11,15 +11,18 @@ $(function() {
 
     Router.prototype.routes = {
       'dashboard': 'dashboard',
+      "admin/lawyers/new": "createLawyer",
+      'admin/posts/new': 'createPost',
+      "en/admin/lawyers/new": "createLawyer",
+      'en/admin/posts/new': 'createPost',
+      'admin/lawyers/:id/edit': 'editLawyer',
+      'admin/posts/:id/edit': 'editPost',
+      "en/admin/lawyers/:id/edit": "editLawyer",
+      'en/admin/posts/:id/edit': 'editPost',
       'crear-abogado': 'createLawyer',
       ':lang/crear-abogado': 'createLawyer',
       'editar-abogado/:id': 'editLawyer',
-      'en/editar-abogado/:id': 'editLawyer',
-      'admin/posts/new': 'createPost',
-      'en/admin/posts/new': 'createPost',
-      'admin/posts/:id/edit': 'editPost',
-      'en/admin/posts/:id/edit': 'editPost',
-      ':lang/crear-noticia': 'createPost'
+      'en/editar-abogado/:id': 'editLawyer'
     };
 
     Router.prototype.dashboard = function() {
@@ -83,11 +86,17 @@ $(function() {
       return ppu.lawyerCreate = new ppu.LawyerCreateView;
     };
 
-    Router.prototype.editLawyer = function(slug) {
+    Router.prototype.editLawyer = function(id) {
       var view;
       $("#lawyer-create").remove();
-      ppu.lawyer = new ppu.Lawyer;
-      ppu.lawyer.fetchBySlug(slug);
+      ppu.lawyer = new ppu.Lawyer({
+        id: id
+      });
+      ppu.lawyer.fetch({
+        data: {
+          lang: app.lang
+        }
+      });
       return view = new ppu.LawyerEditView({
         model: ppu.lawyer
       });

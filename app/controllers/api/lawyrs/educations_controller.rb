@@ -1,8 +1,8 @@
-class Api::JobsController < ApplicationController
+class Api::Lawyrs::EducationsController < ApplicationController
   include BelongsToLawyer
-
+  
   def entity
-    Job
+    Education
   end
 
   def index
@@ -11,5 +11,5 @@ class Api::JobsController < ApplicationController
     collection = collection.by_lawyer(lawyer_id) if lawyer_id.present?
     render json: collection, status: 200
   end
-  
+
 end

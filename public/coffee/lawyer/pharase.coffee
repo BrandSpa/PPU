@@ -1,9 +1,9 @@
 $ ->
   class ppu.LawyerPharase extends Backbone.Model
-    urlRoot: "/api/pharases"
+    urlRoot: "/api/lawyrs/pharases"
 
   class ppu.LawyerPharases extends Backbone.Collection
-    url: "/api/pharases"
+    url: "/api/lawyrs/pharases"
     model: ppu.LawyerPharase
 
   class ppu.LawyerPharaseCreate extends Backbone.View

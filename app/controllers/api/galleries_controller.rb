@@ -14,7 +14,6 @@ class Api::GalleriesController < ApplicationController
     else
       render json: model
     end
-    
   end
 
   private

@@ -1,10 +1,10 @@
-class Api::ArticlesController < ApplicationController
+class Api::Lawyrs::InstitutionsController < ApplicationController
   include BelongsToLawyer
   
   def entity
-    Article
+    Institution
   end
-  
+
   def index
     lawyer_id = params[:lawyer_id]
     collection = entity.all

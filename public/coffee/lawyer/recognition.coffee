@@ -1,9 +1,9 @@
 $ ->
   class ppu.LawyerRecognition extends Backbone.Model
-    urlRoot: "/api/recognitions"
+    urlRoot: "/api/lawyrs/recognitions"
 
   class ppu.LawyerRecognitions extends Backbone.Collection
-    url: "/api/recognitions"
+    url: "/api/lawyrs/recognitions"
     model: ppu.LawyerRecognition
 
   class ppu.LawyerRecognitionCreate extends Backbone.View
