@@ -4,12 +4,12 @@
 		<img src="{{ img_name.url }}" alt="" width="30">
 	{{/if}}
 	</td>
-	<td>{{ name }} {{ lastname }}</td>
+	<td>{{toUpperCase name }} {{toUpperCase lastname }}</td>
 	<td>{{ email }}</td>
 	<td>{{ position }}</td>
 	<td>{{ country }}</td>
 	 <td>  {{#if translations}}
-   <a href="en/admin/lawyers/{{ translations.id }}/edit" class="btn btn-warning btn-sm">Editar</a>
+   <a href="en/admin/lawyers/{{ translations.id }}/edit" class="btn btn-warning btn-sm">Editar Traducción</a>
    {{else}}
    <a href="#" class="btn btn-primary btn-sm translate">Traducir</a> 
    {{/if}} </td>

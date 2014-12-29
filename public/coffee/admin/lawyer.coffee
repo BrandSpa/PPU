@@ -87,6 +87,7 @@ $ ->
     events:
       "change .change-level": 'toggleDescriptionByLevel'
       "change .change-position": 'toggleDescriptionByPosition'
+      "change .change-position": 'toggleDescriptionByPosition'
 
     initialize: ->
       @listenTo @model, "error", @renderErrors, @
@@ -118,7 +119,7 @@ $ ->
     toggleDescriptionByPosition: (e) ->
       el = $(e.currentTarget)
       val = el.val()
-      if val == "Senior Counsel" || val == "Especialista" 
+      if val == "Senior Counsel" || val == "Especialista" || val == "Socio"
         $('.lawyer-description').removeClass('hidden').hide().slideDown()
       else
         $('.lawyer-description').fadeOut()
@@ -192,10 +193,26 @@ $ ->
     render: ->
       el = $ "#lawyer-edit-modal"
       source = @template.html()
+      position = @model.get('position')
+      level = @model.get('level')
       t = Handlebars.compile(source)
       $(@el).find('.modal-body').html t( @model.toJSON() )
-      if @model.get('level') >= 6 
+
+      if level >= 6  
         $('.lawyer-description').removeClass('hidden')
+
+      if  position == "Senior Counsel"
+        $('.lawyer-description').removeClass('hidden')
+
+      if position == "Especialista" || position == "Specialist"
+        $('.lawyer-description').removeClass('hidden')
+
+      if position == "Socio" || position == "Partner"
+        $('.lawyer-description').removeClass('hidden')
+      
+
+
+
       
       $(@el).modal({backdrop: 'static'})
 
