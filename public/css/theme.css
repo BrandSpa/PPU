@@ -511,8 +511,11 @@ ul {
 /* Portrait tablets and small desktops */
 /* Landscape phones and portrait tablets */
 /* Landscape phones and smaller */
+#posts-featured {
+  margin-bottom: 15px; }
+
 #posts {
-  margin-top: 5px; }
+  margin-top: 15px; }
 
 .post-main-featured-item {
   padding-left: 0; }
@@ -533,6 +536,7 @@ ul {
     .post-main-featured-item .content p {
       color: #5F5F5F;
       font-size: 0.9em;
+      line-height: 150%;
       margin: 15px 0 15px 0; }
     .post-main-featured-item .content .date {
       font-size: 0.8em; }
@@ -546,8 +550,10 @@ ul {
   overflow: hidden; }
   .post-item:first-child {
     padding-left: 0; }
-  .post-item:nth-child(2), .post-item:nth-child(3) {
-    padding: 0; }
+  .post-item:first-child, .post-item:nth-child(2n+3) {
+    padding-left: 0; }
+  .post-item:nth-child(2n+2) {
+    padding-right: 0; }
   .post-item .img-container {
     width: 155px;
     float: left;
@@ -558,12 +564,15 @@ ul {
     padding: 7px;
     height: 155px; }
     .post-item .content h3 {
-      font-size: 1.1em; }
+      font-size: 1.1em;
+      padding-right: 15px;
+      line-height: 1.4em; }
       .post-item .content h3 a {
         color: #5F5F5F; }
     .post-item .content p {
       color: #5F5F5F;
       font-size: 0.9em;
+      line-height: 150%;
       padding: 0 15px 0 0; }
     .post-item .content .date {
       font-size: 0.8em;
