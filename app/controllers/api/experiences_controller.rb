@@ -8,7 +8,7 @@ class Api::ExperiencesController < ApplicationController
 
 	def show
 		model = entity.with_relationships.find_by(id: params[:id])
-		render json: model.to_json(include: {:lawyers, :categories})
+		render json: model
 	end
 
 	def create
