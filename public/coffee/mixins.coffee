@@ -52,7 +52,7 @@ mixins.lawyerRelationshipViews =
 mixins.renderCollection = (collection_name, view_name, data) ->
   collection = new collection_name
   collection.fetch reset: true, data: data
-  view =  new view_name collection: collection
+  view = new view_name collection: collection
 
 mixins.lawyerRelationshipModalCreate =
   events:

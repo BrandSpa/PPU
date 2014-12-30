@@ -26,6 +26,7 @@ class Post < ActiveRecord::Base
     model_new = model.dup
     model_new.lang = "en"
     model_new.translation_id = model.id
+    model_new.remote_img_name_url = model.img_name.url if model.img_name.present?
     model_new.title = "#{model.title} to translate"
     model_new.save
     model_new

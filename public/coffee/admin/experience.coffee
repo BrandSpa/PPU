@@ -1,9 +1,9 @@
 $ ->
   class ppu.Experience extends Backbone.Model
-    urlRoot: '/api/Experiences'
+    urlRoot: '/api/experiences'
 
   class ppu.Experiences extends Backbone.Collection
-    url: '/api/Experiences'
+    url: '/api/experiences'
     model: ppu.Experience
 
   class ppu.admin.ExperienceView extends Backbone.View
@@ -76,27 +76,21 @@ $ ->
       @$el.find('.panel-body').html template()
       ppu.appendDatePicker(@el)
       ppu.appendSummernoteExperience(@el)
-      @getCategories()
 
     store: ->
       $form = @$el.find('form')
       content = $(@el).find('.summernote').code()
       data = new FormData($form[0])
-      data.append("experience[content]", content)
-      data.append("experience[lang]", app.lang)
+      data.append("fields[content]", content)
+      data.append("fields[lang]", app.lang)
       options = ppu.ajaxOptions("Post", data)
       @model.save data, $.extend({}, options)
     
-    stored: ->
-      window.location = "/dashboard"
+    stored: (model) ->
+      console.log model
+      #window.location = "/dashboard"
 
-    getCategories: ->
-      ppu.categories = new ppu.Categories
-      ppu.categories.fetch(data: lang: app.lang).done (collection) ->
-        source = $('#lawyer-categories-template').html()
-        template = Handlebars.compile(source)
-        $('#categories-checkboxes').html template( collection )
-
+  
     openGallery: (e) ->
       e.preventDefault()
       ppu.admin.galleryExperienceModal = new ppu.admin.GalleryExperienceModal collection: ppu.admin.galleries
@@ -109,8 +103,8 @@ $ ->
       query = $(e.currentTarget).val()
       if query.length > 3
         collection = new ppu.Lawyers
-        ppu.admin.ExperienceLawyersSelect = new ppu.admin.ExperienceLawyersSelect collection: collection
-        ppu.admin.ExperienceLawyersSelect.search(query)
+        ppu.admin.experienceLawyersSelect = new ppu.admin.ExperienceLawyersSelect collection: collection
+        ppu.admin.experienceLawyersSelect.search(query)
       
   class ppu.admin.ExperienceEdit extends Backbone.View
     el: $ "#experience-edit"
@@ -141,11 +135,12 @@ $ ->
       $form = @$el.find('form')
       content = $(@el).find('.summernote').code()
       data = new FormData($form[0])
-      data.append("Experience[content]", content)
+      data.append("fields[content]", content)
       options = ppu.ajaxOptions("PUT", data)
       @model.save data, $.extend({}, options)
-
-    updated: ->
+        .done (model) ->
+          if model
+            window.location = "/dashboard"
 
     getCategories: ->
       ppu.categories = new ppu.Categories
@@ -154,9 +149,9 @@ $ ->
       ppu.categories.fetch(data: locale: app.lang).done (collection) ->
         source = $('#lawyer-categories-template').html()
         template = Handlebars.compile(source)
-        $('#categories-checkboxes').html template( collection )
+        $('#categories-checkbox').html template( collection )
         _.each categories, (category) ->
-          $(el).find("#categories-checkboxes input[value='#{category.id}']").attr("checked", "checked")
+          $(el).find("#categories-checkbox input[value='#{category.id}']").attr("checked", "checked")
 
     showLawyers: ->
       lawyers = @model.get('lawyers')
@@ -196,7 +191,7 @@ $ ->
 
   class ppu.admin.ExperienceLawyerSelect extends Backbone.View
     tagName: 'tr'
-    template: $ '#experience-lawyer-select-template'
+    template: $ '#lawyer-select-template'
     events: 
       "click .append": "append"
 
@@ -208,8 +203,8 @@ $ ->
 
     append: (e) ->
       e.preventDefault()
-      ppu.admin.ExperienceLawyersSelected =  new ppu.admin.ExperienceLawyersSelected model: @model
-      ppu.admin.ExperienceLawyersSelected.render()
+      ppu.admin.experienceLawyersSelected =  new ppu.admin.ExperienceLawyersSelected model: @model
+      ppu.admin.experienceLawyersSelected.render()
 
   class ppu.admin.ExperienceLawyersSelect extends Backbone.View
     el: $ "#lawyers-result"
@@ -231,7 +226,7 @@ $ ->
       @collection.fetch reset: true, data: keyword: query
 
   class ppu.admin.ExperienceLawyersSelected extends Backbone.View
-    template: $ '#experience-lawyer-selected-template'
+    template: $ '#lawyer-selected-template'
     tagName: 'tr'
     events:
       "click .remove": "destroy"

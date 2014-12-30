@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141229225426) do
+ActiveRecord::Schema.define(version: 20141230073737) do
 
   create_table "academics", force: true do |t|
     t.integer  "lawyer_id"
@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 20141229225426) do
 
   create_table "awards", force: true do |t|
     t.integer  "lawyer_id"
-    t.text     "title"
+    t.string   "title"
     t.string   "img_name"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -56,6 +56,14 @@ ActiveRecord::Schema.define(version: 20141229225426) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "categories_experiences", force: true do |t|
+    t.integer "category_id"
+    t.integer "experience_id"
+  end
+
+  add_index "categories_experiences", ["category_id"], name: "index_categories_experiences_on_category_id", using: :btree
+  add_index "categories_experiences", ["experience_id"], name: "index_categories_experiences_on_experience_id", using: :btree
 
   create_table "categories_lawyers", id: false, force: true do |t|
     t.integer "category_id"
@@ -92,9 +100,21 @@ ActiveRecord::Schema.define(version: 20141229225426) do
     t.string   "lang",           default: "es"
     t.string   "country"
     t.string   "img_name"
+    t.text     "excerpt"
+    t.text     "keywords"
+    t.boolean  "published"
+    t.string   "slug"
   end
 
   add_index "experiences", ["translation_id"], name: "index_experiences_on_translation_id", using: :btree
+
+  create_table "experiences_lawyers", force: true do |t|
+    t.integer "experience_id"
+    t.integer "lawyer_id"
+  end
+
+  add_index "experiences_lawyers", ["experience_id"], name: "index_experiences_lawyers_on_experience_id", using: :btree
+  add_index "experiences_lawyers", ["lawyer_id"], name: "index_experiences_lawyers_on_lawyer_id", using: :btree
 
   create_table "galleries", force: true do |t|
     t.string   "name"
@@ -117,8 +137,8 @@ ActiveRecord::Schema.define(version: 20141229225426) do
 
   create_table "jobs", force: true do |t|
     t.integer  "lawyer_id"
-    t.string   "company",    limit: 150
-    t.string   "title",      limit: 100
+    t.string   "company",    limit: 250
+    t.text     "title"
     t.string   "country",    limit: 100
     t.string   "from",       limit: 50
     t.string   "until",      limit: 50
@@ -177,7 +197,7 @@ ActiveRecord::Schema.define(version: 20141229225426) do
     t.string   "lang",                       default: "es",       null: false
     t.string   "country",                    default: "Colombia", null: false
     t.date     "date"
-    t.text     "title"
+    t.string   "title"
     t.string   "author"
     t.text     "content"
     t.text     "excerpt"

@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     resources :trades
     resources :posts
     resources :galleries
+    resources :experiences
     
     namespace :lawyrs do 
       resources :academics

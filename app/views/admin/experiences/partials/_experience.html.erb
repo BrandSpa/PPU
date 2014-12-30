@@ -1,0 +1,18 @@
+<script id="experience-admin-template" type="text/x-handlebars-template">
+  <td> {{ company_name }} </td>
+  <td> {{ title }} </td>
+  <td>  {{#if translations}}
+   <a href="en/admin/experiences/{{ translations.id }}/edit" class="btn btn-warning btn-sm">Editar Traducción</a>
+   {{else}}
+   <a href="#" class="btn btn-primary btn-sm translate">Traducir</a> 
+   {{/if}} </td>
+  <td>
+   <a href="/admin/experiences/{{ id }}/edit" class="btn btn-warning btn-sm edit">Editar</a>
+  {{#if published}}
+ 	<a href="/admin/experiences/{{ id }}/edit" class="btn btn-success btn-sm unpublish">Publicado</a>
+ 	{{else}}
+ 	<a href="#" class="btn btn-success btn-sm publish">Publicar</a>
+ {{/if}}	
+  </td>
+</script>
+

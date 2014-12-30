@@ -40,12 +40,12 @@ class Api::PostsController < ApplicationController
 
     if duplicate.present?
       new_model = entity.duplicate(model)
-      render json: new_model, status: 200
+      render json: new_model.to_json(:include => [:translations, :gallery]), status: 200
     else
       model.update(post_params)
 
       if model.valid?
-        render json: model, status: 200
+        render json: model.to_json(:include => [:translations, :gallery]), status: 200
       else
         render json: model.errors, status: 400
       end
@@ -65,7 +65,7 @@ class Api::PostsController < ApplicationController
 
   private 
     def post_params
-      params.require(:post).permit(:lang, :country, :date, :author, :title, :content, :content_plain, :img_name, :gallery_id, :published, :featured, :lawyer_ids => [], :category_ids => [])
+      params.require(:fields).permit(:lang, :country, :date, :author, :title, :content, :content_plain, :img_name, :gallery_id, :published, :featured, :lawyer_ids => [], :category_ids => [])
     end
     
 end

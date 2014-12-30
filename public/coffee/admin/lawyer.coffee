@@ -19,7 +19,7 @@ $ ->
       e.preventDefault()
       @model.save duplicate: true
         .done (mod) ->
-          window.location = "en/admin/lawyers/#{mod.id}/edit"
+          window.location = "/en/admin/lawyers/#{mod.id}/edit"
 
   class ppu.admin.LawyersView extends Backbone.View
     el: $ '#lawyers-dashboard'
@@ -93,21 +93,12 @@ $ ->
       @listenTo @model, "error", @renderErrors, @
       @listenTo @model, "error", @toErrors, @
       @listenTo @model, "sync", @stored, @
-      @render()
-      @getCategories()
 
     render: ->
       source = @template.html()
       template = Handlebars.compile(source)
       $(@el).find('.panel-body').html template()
 
-    getCategories: ->
-      ppu.categories = new ppu.Categories
-      ppu.categories.fetch().done (collection) ->
-        source = $('#lawyer-categories-template').html()
-        template = Handlebars.compile(source)
-        $('#lawyer-list-categories').html template( collection )
-    
     toggleDescriptionByLevel: (e) ->
       el = $(e.currentTarget)
       val = el.val()
@@ -136,18 +127,9 @@ $ ->
       window.location = '#lawyer-form-create'
 
     stored: (model)->
-      id = model.id
-      ppu.lawyerLanguageCreate.store(id)
-      ppu.lawyerEducationCreate.store(id)
-      ppu.lawyerJobCreate.store(id)
-      ppu.lawyerRecognitionCreate.store(id)
-      ppu.lawyerInstitutionCreate.store(id)
-      ppu.lawyerAcademicCreate.store(id)
-      ppu.lawyerAwardCreate.store(id)
-      ppu.lawyerArticleCreate.store(id)
-      ppu.lawyerPharaseCreate.store(id)
-      
-      window.location = "/admin/lawyers/#{id}/edit"
+      app.pubsub.trigger('lawyer:stored', model)
+      window.location = "/admin/lawyers/#{model.id}/edit"
+
 
   class ppu.LawyerCreateView extends Backbone.View
     el: $ "#lawyer-create"
@@ -209,18 +191,13 @@ $ ->
 
       if position == "Socio" || position == "Partner"
         $('.lawyer-description').removeClass('hidden')
-      
-
-
-
-      
+ 
       $(@el).modal({backdrop: 'static'})
 
     update: (e) ->
       e.preventDefault()
       $forms = $(@el).find("form")
       data = new FormData($forms[0])
-      #data.append("fields[lawyer_id]", lawyer_id)
       @model.save data, $.extend({}, ppu.ajaxOptions("PUT", data))
 
     updated: (model) ->
@@ -237,6 +214,7 @@ $ ->
     events: 
       'click .open-edit-lawyer': 'openEdit'
       'click .open-share': 'openShare'
+      "click .translate": "translate"
     
     initialize: ->
       @listenTo(@model, 'change', @render)
@@ -249,32 +227,23 @@ $ ->
       $(@el).html t( @model.toJSON() )
       $("#lawyer-finish").removeClass("hidden")
       ppu.currentLawyerId = id
-      @appendButtons()
-      @getRelationships(id)
-    
+
+        
     renderCategories: ->
       source = $("#lawyer-category-template").html()
       t = Handlebars.compile(source)
       $("#lawyer-category-edit").find('ul').html t( @model.toJSON() )
 
-    appendButtons: ->
-      @$el.append   '<a href="#" class="btn btn-info open-edit-lawyer">Editar información & áreas</a>'
-
-    getRelationships: (id) ->
-      mixins.renderCollection(ppu.LawyerEducations, ppu.LawyerEducationsEdit, lawyer_id: id)
-      mixins.renderCollection(ppu.LawyerArticles, ppu.LawyerArticlesEdit, lawyer_id: id)
-      mixins.renderCollection(ppu.LawyerJobs, ppu.LawyerJobsEdit, lawyer_id: id)
-      mixins.renderCollection(ppu.LawyerRecognitions, ppu.LawyerRecognitionsEdit, lawyer_id: id)
-      mixins.renderCollection(ppu.LawyerInstitutions, ppu.LawyerInstitutionsEdit, lawyer_id: id)
-      mixins.renderCollection(ppu.LawyerLanguages, ppu.LawyerLanguagesEdit, lawyer_id: id)
-      mixins.renderCollection(ppu.LawyerPharases, ppu.LawyerPharasesEdit, lawyer_id: id)
-      mixins.renderCollection(ppu.LawyerAwards, ppu.LawyerAwardsEdit, lawyer_id: id)
-      mixins.renderCollection(ppu.LawyerAcademics, ppu.LawyerAcademicsEdit, lawyer_id: id)
-
     openEdit: (e) ->
       e.preventDefault()
       view = new ppu.lawyerEdit model: @model
       view.render()
+
+    translate: (e) ->
+      e.preventDefault()
+      @model.save duplicate: true
+        .done (mod) ->
+          window.location = "/en/admin/lawyers/#{mod.id}/edit"
 
     openShare: (e) ->
       $('#share-modal').modal()
