@@ -8,11 +8,17 @@
 	<td>{{ email }}</td>
 	<td>{{ position }}</td>
 	<td>{{ country }}</td>
-	 <td>  {{#if translations}}
-   <a href="en/admin/lawyers/{{ translations.id }}/edit" class="btn btn-warning btn-sm">Editar Traducción</a>
+	 <td>  
+	 {{#if translations}}
+   	<a href="en/admin/lawyers/{{ translations.id }}/edit" class="btn btn-warning btn-sm">Editar Traducción</a>
    {{else}}
-   <a href="#" class="btn btn-primary btn-sm translate">Traducir</a> 
-   {{/if}} </td>
+   		{{#if translation_id }}
+   			<a href="en/admin/lawyers/{{ translation_id }}/edit" class="btn btn-warning btn-sm">Editar Traducción</a>
+   		{{else}}
+   		<a href="#" class="btn btn-primary btn-sm translate">Traducir</a> 
+   		{{/if}}
+   {{/if}} 
+   </td>
 	<td>
 
 		<a href="/admin/lawyers/{{ id }}/edit" class="btn btn-warning btn-sm lawyer-edit">Editar</a>

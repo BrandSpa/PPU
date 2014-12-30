@@ -49,9 +49,9 @@ class Api::LawyersController < ApplicationController
     id = params[:id]
     slug = params[:slug]
     lang = I18n.locale
-    model = entity.includes(:educations).find(id) if id.present?
+    model = entity.includes(:translations, :educations, :categories).find(id) if id.present?
     model = entity.by_slug(slug).lang(lang) if slug.present?
-    render json: model.to_json(:include => [:categories, :educations])
+    render json: model.to_json(:include => [:translations, :categories, :educations])
   end
 
   def create

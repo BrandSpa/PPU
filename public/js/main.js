@@ -16,79 +16,23 @@ app.compile = function(template) {
   return Handlebars.compile($(template).html());
 };
 
-Backbone.View.prototype.renderPostErrors = function(model, response) {
-  var $form, errors;
-  model = model;
-  $form = this.$el.find('form');
-  errors = JSON.parse(response.responseText);
-  return _.each(errors, function(message, field) {
-    var input;
-    input = $form.find("[name='post[" + field + "]' ]");
-    input.addClass("error");
-    return input.after("<div class='error-message'>" + message + "</div>");
-  });
-};
+app.pubsub = {};
+
+_.extend(app.pubsub, Backbone.Events);
+
+$(document).ajaxStart(function(t) {
+  NProgress.start();
+  return $("*").css("cursor", "progress");
+});
+
+$(document).ajaxStop(function() {
+  NProgress.done();
+  return $("*").css("cursor", "default");
+});
 
 app.compileTemplate = function(source) {
   source = $(source).html();
   return Handlebars.compile(source);
-};
-
-Backbone.View.prototype.en = function() {
-  lang = ppu.pathUrl[1];
-  if (lang === "en") {
-    return true;
-  } else {
-    return false;
-  }
-};
-
-Backbone.View.prototype.renderModel = function() {
-  var source, template;
-  source = $(this.template).html();
-  template = Handlebars.compile(source);
-  this.container.html(template(this.model.toJSON()));
-  return this;
-};
-
-Backbone.View.prototype.renderCollection = function() {
-  return this.collection.each(function(model) {
-    return this.renderOne(model);
-  }, this);
-};
-
-Backbone.View.prototype.notifyError = function(model, response) {
-  var errors;
-  errors = JSON.parse(response.responseText);
-  if (errors && lang === 'es') {
-    return toastr.error("Tiene errores");
-  }
-};
-
-Backbone.View.prototype.renderErrors = function(model, response) {
-  var $form, errors;
-  model = model;
-  $form = this.$el.find('form');
-  errors = JSON.parse(response.responseText);
-  return _.each(errors, function(message, field) {
-    var input;
-    input = $form.find("[name='fields[" + field + "]' ]");
-    input.addClass("error");
-    return input.after("<div class='error-message'>" + message + "</div>");
-  });
-};
-
-Backbone.View.prototype.removeError = function(e) {
-  var el;
-  el = $(e.currentTarget);
-  el.removeClass("error");
-  return el.parent().find('.error-message').remove();
-};
-
-Backbone.View.prototype.closeModal = function() {
-  $('.modal-backdrop').remove();
-  $('body').removeClass('modal-open');
-  return this.remove();
 };
 
 ppu.appendDatePickerYear = function(el) {
@@ -164,9 +108,8 @@ app.uploadPhotoSummernoteExperience = function(file, editor, welEditable) {
 };
 
 ppu.appendForm = function(el, template) {
-  var source, temp;
-  source = $(template).html();
-  temp = Handlebars.compile(source);
+  var temp;
+  temp = app.compile(template);
   $(temp()).appendTo($(el).find('.fields')).hide().slideDown();
   return ppu.appendDatePickerYear(el);
 };
@@ -192,35 +135,6 @@ ppu.saveMultipeForms = function(el, model, lawyer_id) {
     return model.save(data, $.extend({}, ppu.ajaxOptions("POST", data)));
   });
 };
-
-Handlebars.registerHelper('checked', function(val1, val2) {
-  var _ref;
-  return (_ref = val1 === val2) != null ? _ref : {
-    ' checked="checked"': ''
-  };
-});
-
-Handlebars.registerHelper('shortenText', function(text, block) {
-  return text.substring(0, 120) + " ...";
-});
-
-Handlebars.registerHelper('shortenText2', function(text, block) {
-  return text.substring(0, 90);
-});
-
-Handlebars.registerHelper('dateFormat', function(context, block) {
-  var f;
-  if (window.moment) {
-    f = block.hash.format || "MMM Do, YYYY";
-    return moment(Date(context)).format(f);
-  } else {
-    return context;
-  }
-});
-
-Handlebars.registerHelper('toUpperCase', function(str) {
-  return str.toUpperCase();
-});
 
 $('.carousel').carousel();
 

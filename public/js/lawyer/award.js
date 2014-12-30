@@ -44,7 +44,8 @@ $(function() {
     };
 
     LawyerAwardCreate.prototype.initialize = function() {
-      return this.appendForm();
+      this.appendForm();
+      return app.pubsub.bind('lawyer:stored', this.store, this);
     };
 
     LawyerAwardCreate.prototype.appendForm = function() {
@@ -56,8 +57,8 @@ $(function() {
       return this.appendForm();
     };
 
-    LawyerAwardCreate.prototype.store = function(lawyer_id) {
-      return ppu.saveMultipeForms(this.el, this.model, lawyer_id);
+    LawyerAwardCreate.prototype.store = function(data) {
+      return ppu.saveMultipeForms(this.el, this.model, data.id);
     };
 
     return LawyerAwardCreate;

@@ -44,7 +44,8 @@ $(function() {
     };
 
     LawyerAcademicCreate.prototype.initialize = function() {
-      return this.appendForm();
+      this.appendForm();
+      return app.pubsub.bind('lawyer:stored', this.store, this);
     };
 
     LawyerAcademicCreate.prototype.appendForm = function() {
@@ -56,8 +57,8 @@ $(function() {
       return this.appendForm();
     };
 
-    LawyerAcademicCreate.prototype.store = function(lawyer_id) {
-      return ppu.saveMultipeForms(this.el, this.model, lawyer_id);
+    LawyerAcademicCreate.prototype.store = function(data) {
+      return ppu.saveMultipeForms(this.el, this.model, data.id);
     };
 
     return LawyerAcademicCreate;

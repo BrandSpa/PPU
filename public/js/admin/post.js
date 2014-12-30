@@ -149,8 +149,7 @@ $(function() {
       template = Handlebars.compile(source);
       this.$el.find('.panel-body').html(template());
       ppu.appendDatePicker(this.el);
-      ppu.appendSummernote(this.el);
-      return this.getCategories();
+      return ppu.appendSummernote(this.el);
     };
 
     PostCreate.prototype.store = function() {
@@ -158,8 +157,8 @@ $(function() {
       $form = this.$el.find('form');
       content = $(this.el).find('.summernote').code();
       data = new FormData($form[0]);
-      data.append("post[content]", content);
-      data.append("post[lang]", app.lang);
+      data.append("fields[content]", content);
+      data.append("fields[lang]", app.lang);
       options = ppu.ajaxOptions("POST", data);
       return this.model.save(data, $.extend({}, options));
     };
@@ -235,9 +234,8 @@ $(function() {
     };
 
     PostEdit.prototype.render = function() {
-      var source, template;
-      source = this.template.html();
-      template = Handlebars.compile(source);
+      var template;
+      template = app.compile(this.template);
       this.$el.find('.panel-body').html(template(this.model.toJSON()));
       ppu.appendDatePicker(this.el);
       ppu.appendSummernote(this.el);
@@ -251,18 +249,20 @@ $(function() {
       $form = this.$el.find('form');
       content = $(this.el).find('.summernote').code();
       data = new FormData($form[0]);
-      data.append("post[content]", content);
+      data.append("fields[content]", content);
       options = ppu.ajaxOptions("PUT", data);
-      return this.model.save(data, $.extend({}, options));
+      return this.model.save(data, $.extend({}, options)).done(function(model) {
+        if (model) {
+          return window.location = "/dashboard";
+        }
+      });
     };
 
-    PostEdit.prototype.updated = function() {};
-
     PostEdit.prototype.getCategories = function() {
-      var categories, el;
+      var el, modelCategories;
       ppu.categories = new ppu.Categories;
       el = this.$el;
-      categories = this.model.get('categories');
+      modelCategories = this.model.get('categories');
       return ppu.categories.fetch({
         data: {
           locale: app.lang
@@ -271,9 +271,9 @@ $(function() {
         var source, template;
         source = $('#lawyer-categories-template').html();
         template = Handlebars.compile(source);
-        $('#categories-checkboxes').html(template(collection));
-        return _.each(categories, function(category) {
-          return $(el).find("#categories-checkboxes input[value='" + category.id + "']").attr("checked", "checked");
+        $('#categories-checkbox').html(template(collection));
+        return _.each(modelCategories, function(category) {
+          return $(el).find("#categories-checkbox input[value='" + category.id + "']").attr("checked", "checked");
         });
       });
     };
@@ -358,7 +358,7 @@ $(function() {
 
     PostLawyerSelect.prototype.tagName = 'tr';
 
-    PostLawyerSelect.prototype.template = $('#post-lawyer-select-template');
+    PostLawyerSelect.prototype.template = $('#lawyer-select-template');
 
     PostLawyerSelect.prototype.events = {
       "click .append": "append"
@@ -430,7 +430,7 @@ $(function() {
       return PostLawyersSelected.__super__.constructor.apply(this, arguments);
     }
 
-    PostLawyersSelected.prototype.template = $('#post-lawyer-selected-template');
+    PostLawyersSelected.prototype.template = $('#lawyer-selected-template');
 
     PostLawyersSelected.prototype.tagName = 'tr';
 

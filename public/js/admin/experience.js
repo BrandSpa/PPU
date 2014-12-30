@@ -9,7 +9,7 @@ $(function() {
       return Experience.__super__.constructor.apply(this, arguments);
     }
 
-    Experience.prototype.urlRoot = '/api/Experiences';
+    Experience.prototype.urlRoot = '/api/experiences';
 
     return Experience;
 
@@ -21,7 +21,7 @@ $(function() {
       return Experiences.__super__.constructor.apply(this, arguments);
     }
 
-    Experiences.prototype.url = '/api/Experiences';
+    Experiences.prototype.url = '/api/experiences';
 
     Experiences.prototype.model = ppu.Experience;
 
@@ -149,8 +149,7 @@ $(function() {
       template = Handlebars.compile(source);
       this.$el.find('.panel-body').html(template());
       ppu.appendDatePicker(this.el);
-      ppu.appendSummernoteExperience(this.el);
-      return this.getCategories();
+      return ppu.appendSummernoteExperience(this.el);
     };
 
     ExperienceCreate.prototype.store = function() {
@@ -158,28 +157,14 @@ $(function() {
       $form = this.$el.find('form');
       content = $(this.el).find('.summernote').code();
       data = new FormData($form[0]);
-      data.append("experience[content]", content);
-      data.append("experience[lang]", app.lang);
+      data.append("fields[content]", content);
+      data.append("fields[lang]", app.lang);
       options = ppu.ajaxOptions("Post", data);
       return this.model.save(data, $.extend({}, options));
     };
 
-    ExperienceCreate.prototype.stored = function() {
-      return window.location = "/dashboard";
-    };
-
-    ExperienceCreate.prototype.getCategories = function() {
-      ppu.categories = new ppu.Categories;
-      return ppu.categories.fetch({
-        data: {
-          lang: app.lang
-        }
-      }).done(function(collection) {
-        var source, template;
-        source = $('#lawyer-categories-template').html();
-        template = Handlebars.compile(source);
-        return $('#categories-checkboxes').html(template(collection));
-      });
+    ExperienceCreate.prototype.stored = function(model) {
+      return console.log(model);
     };
 
     ExperienceCreate.prototype.openGallery = function(e) {
@@ -199,10 +184,10 @@ $(function() {
       query = $(e.currentTarget).val();
       if (query.length > 3) {
         collection = new ppu.Lawyers;
-        ppu.admin.ExperienceLawyersSelect = new ppu.admin.ExperienceLawyersSelect({
+        ppu.admin.experienceLawyersSelect = new ppu.admin.ExperienceLawyersSelect({
           collection: collection
         });
-        return ppu.admin.ExperienceLawyersSelect.search(query);
+        return ppu.admin.experienceLawyersSelect.search(query);
       }
     };
 
@@ -251,12 +236,14 @@ $(function() {
       $form = this.$el.find('form');
       content = $(this.el).find('.summernote').code();
       data = new FormData($form[0]);
-      data.append("Experience[content]", content);
+      data.append("fields[content]", content);
       options = ppu.ajaxOptions("PUT", data);
-      return this.model.save(data, $.extend({}, options));
+      return this.model.save(data, $.extend({}, options)).done(function(model) {
+        if (model) {
+          return window.location = "/dashboard";
+        }
+      });
     };
-
-    ExperienceEdit.prototype.updated = function() {};
 
     ExperienceEdit.prototype.getCategories = function() {
       var categories, el;
@@ -271,9 +258,9 @@ $(function() {
         var source, template;
         source = $('#lawyer-categories-template').html();
         template = Handlebars.compile(source);
-        $('#categories-checkboxes').html(template(collection));
+        $('#categories-checkbox').html(template(collection));
         return _.each(categories, function(category) {
-          return $(el).find("#categories-checkboxes input[value='" + category.id + "']").attr("checked", "checked");
+          return $(el).find("#categories-checkbox input[value='" + category.id + "']").attr("checked", "checked");
         });
       });
     };
@@ -358,7 +345,7 @@ $(function() {
 
     ExperienceLawyerSelect.prototype.tagName = 'tr';
 
-    ExperienceLawyerSelect.prototype.template = $('#experience-lawyer-select-template');
+    ExperienceLawyerSelect.prototype.template = $('#lawyer-select-template');
 
     ExperienceLawyerSelect.prototype.events = {
       "click .append": "append"
@@ -374,10 +361,10 @@ $(function() {
 
     ExperienceLawyerSelect.prototype.append = function(e) {
       e.preventDefault();
-      ppu.admin.ExperienceLawyersSelected = new ppu.admin.ExperienceLawyersSelected({
+      ppu.admin.experienceLawyersSelected = new ppu.admin.ExperienceLawyersSelected({
         model: this.model
       });
-      return ppu.admin.ExperienceLawyersSelected.render();
+      return ppu.admin.experienceLawyersSelected.render();
     };
 
     return ExperienceLawyerSelect;
@@ -430,7 +417,7 @@ $(function() {
       return ExperienceLawyersSelected.__super__.constructor.apply(this, arguments);
     }
 
-    ExperienceLawyersSelected.prototype.template = $('#experience-lawyer-selected-template');
+    ExperienceLawyersSelected.prototype.template = $('#lawyer-selected-template');
 
     ExperienceLawyersSelected.prototype.tagName = 'tr';
 

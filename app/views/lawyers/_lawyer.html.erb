@@ -10,5 +10,15 @@
     {{/if}}
   </div>
   <p class="lawyer-description">{{ description }}</p>
+  <a href="#" class="btn btn-info open-edit-lawyer">Editar información & áreas</a>
+  {{#if translations}}
+    <a href="/en/admin/lawyers/{{ translations.id }}/edit" class="btn btn-warning ">Editar Traducción</a>
+   {{else}}
+      {{#if translation_id }}
+        <a href="/admin/lawyers/{{ translation_id }}/edit" class="btn btn-warning ">Editar Traducción</a>
+      {{else}}
+        <a href="#" class="btn btn-primary translate">Traducir</a> 
+      {{/if}}
+   {{/if}}  
 </script>
 

@@ -35,7 +35,7 @@ $(function() {
       return this.model.save({
         duplicate: true
       }).done(function(mod) {
-        return window.location = "en/admin/lawyers/" + mod.id + "/edit";
+        return window.location = "/en/admin/lawyers/" + mod.id + "/edit";
       });
     };
 
@@ -179,9 +179,7 @@ $(function() {
     LawyerCreateForm.prototype.initialize = function() {
       this.listenTo(this.model, "error", this.renderErrors, this);
       this.listenTo(this.model, "error", this.toErrors, this);
-      this.listenTo(this.model, "sync", this.stored, this);
-      this.render();
-      return this.getCategories();
+      return this.listenTo(this.model, "sync", this.stored, this);
     };
 
     LawyerCreateForm.prototype.render = function() {
@@ -189,16 +187,6 @@ $(function() {
       source = this.template.html();
       template = Handlebars.compile(source);
       return $(this.el).find('.panel-body').html(template());
-    };
-
-    LawyerCreateForm.prototype.getCategories = function() {
-      ppu.categories = new ppu.Categories;
-      return ppu.categories.fetch().done(function(collection) {
-        var source, template;
-        source = $('#lawyer-categories-template').html();
-        template = Handlebars.compile(source);
-        return $('#lawyer-list-categories').html(template(collection));
-      });
     };
 
     LawyerCreateForm.prototype.toggleDescriptionByLevel = function(e) {
@@ -239,18 +227,8 @@ $(function() {
     };
 
     LawyerCreateForm.prototype.stored = function(model) {
-      var id;
-      id = model.id;
-      ppu.lawyerLanguageCreate.store(id);
-      ppu.lawyerEducationCreate.store(id);
-      ppu.lawyerJobCreate.store(id);
-      ppu.lawyerRecognitionCreate.store(id);
-      ppu.lawyerInstitutionCreate.store(id);
-      ppu.lawyerAcademicCreate.store(id);
-      ppu.lawyerAwardCreate.store(id);
-      ppu.lawyerArticleCreate.store(id);
-      ppu.lawyerPharaseCreate.store(id);
-      return window.location = "/admin/lawyers/" + id + "/edit";
+      app.pubsub.trigger('lawyer:stored', model);
+      return window.location = "/admin/lawyers/" + model.id + "/edit";
     };
 
     return LawyerCreateForm;
@@ -387,7 +365,8 @@ $(function() {
 
     LawyerEditView.prototype.events = {
       'click .open-edit-lawyer': 'openEdit',
-      'click .open-share': 'openShare'
+      'click .open-share': 'openShare',
+      "click .translate": "translate"
     };
 
     LawyerEditView.prototype.initialize = function() {
@@ -402,9 +381,7 @@ $(function() {
       t = Handlebars.compile(source);
       $(this.el).html(t(this.model.toJSON()));
       $("#lawyer-finish").removeClass("hidden");
-      ppu.currentLawyerId = id;
-      this.appendButtons();
-      return this.getRelationships(id);
+      return ppu.currentLawyerId = id;
     };
 
     LawyerEditView.prototype.renderCategories = function() {
@@ -414,40 +391,6 @@ $(function() {
       return $("#lawyer-category-edit").find('ul').html(t(this.model.toJSON()));
     };
 
-    LawyerEditView.prototype.appendButtons = function() {
-      return this.$el.append('<a href="#" class="btn btn-info open-edit-lawyer">Editar información & áreas</a>');
-    };
-
-    LawyerEditView.prototype.getRelationships = function(id) {
-      mixins.renderCollection(ppu.LawyerEducations, ppu.LawyerEducationsEdit, {
-        lawyer_id: id
-      });
-      mixins.renderCollection(ppu.LawyerArticles, ppu.LawyerArticlesEdit, {
-        lawyer_id: id
-      });
-      mixins.renderCollection(ppu.LawyerJobs, ppu.LawyerJobsEdit, {
-        lawyer_id: id
-      });
-      mixins.renderCollection(ppu.LawyerRecognitions, ppu.LawyerRecognitionsEdit, {
-        lawyer_id: id
-      });
-      mixins.renderCollection(ppu.LawyerInstitutions, ppu.LawyerInstitutionsEdit, {
-        lawyer_id: id
-      });
-      mixins.renderCollection(ppu.LawyerLanguages, ppu.LawyerLanguagesEdit, {
-        lawyer_id: id
-      });
-      mixins.renderCollection(ppu.LawyerPharases, ppu.LawyerPharasesEdit, {
-        lawyer_id: id
-      });
-      mixins.renderCollection(ppu.LawyerAwards, ppu.LawyerAwardsEdit, {
-        lawyer_id: id
-      });
-      return mixins.renderCollection(ppu.LawyerAcademics, ppu.LawyerAcademicsEdit, {
-        lawyer_id: id
-      });
-    };
-
     LawyerEditView.prototype.openEdit = function(e) {
       var view;
       e.preventDefault();
@@ -455,6 +398,15 @@ $(function() {
         model: this.model
       });
       return view.render();
+    };
+
+    LawyerEditView.prototype.translate = function(e) {
+      e.preventDefault();
+      return this.model.save({
+        duplicate: true
+      }).done(function(mod) {
+        return window.location = "/en/admin/lawyers/" + mod.id + "/edit";
+      });
     };
 
     LawyerEditView.prototype.openShare = function(e) {

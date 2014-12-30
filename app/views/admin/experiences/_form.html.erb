@@ -3,7 +3,7 @@
     <div class="row">
 
     <div class="form-group col-lg-6">
-      <select name="experience[country]" class="form-control" id="">
+      <select name="fields[country]" class="form-control" id="">
        {{#if country}}
         <option value="{{country}}">{{country}}</option>
         {{else}}
@@ -16,22 +16,22 @@
       </select>
     </div>
      <div class="form-group col-lg-6">
-        <input type="text" name="experience[date]" placeholder="Fecha" value="{{dateFormat date format="MM/DD/YYYY"}}" class="form-control datepicker">
+        <input type="text" name="fields[date]" placeholder="Fecha" value="{{dateFormat date format="MM/DD/YYYY"}}" class="form-control datepicker">
     </div>
   </div>
 
   <div class="row">
     <div class="form-group col-lg-6">
-        <input type="text" name="experience[company_name]" placeholder="Empresa" value="{{ company_name }}" class="form-control">
+        <input type="text" name="fields[company_name]" placeholder="Empresa" value="{{ company_name }}" class="form-control">
     </div>
     <div class="form-group col-lg-6">
-        <input type="text" name="experience[company_web]" placeholder="Empresa web" value="{{ company_name }}" class="form-control">
+        <input type="text" name="fields[company_web]" placeholder="Empresa web" value="{{ company_name }}" class="form-control">
     </div>
   </div>
 
    <div class="row">
     <div class="form-group col-lg-12">
-        <input type="text" name="experience[title]" placeholder="Título" value="{{ title }}" class="form-control">
+        <input type="text" name="fields[title]" placeholder="Título" value="{{ title }}" class="form-control">
     </div>
     <div class="col-lg-12 form-group">
       <textarea class="summernote">{{ content }}</textarea>
@@ -42,7 +42,7 @@
  
     <div class="form-group col-lg-3">
       <a href="#" class="btn btn-info btn-xl open-gallery">Seleccionar imagen</a>
-      <input type="hidden" name="experience[gallery_id]" class="gallery_id" value="{{ gallery_id }}">
+      <input type="hidden" name="fields[gallery_id]" class="gallery_id" value="{{ gallery_id }}">
     </div>
 
     {{#if gallery.img_name }}
@@ -52,7 +52,7 @@
     {{/if}}
 
     <div class="form-group col-lg-6">
-      <input type="file" class="form-control" name="experience[img_name]" >
+      <input type="file" class="form-control" name="fields[img_name]" >
     </div>
   {{#if img_name }}
     <div class="col-lg-3">
@@ -62,11 +62,10 @@
 
   </div>
       <div class="row">
-      <div id="categories-checkboxes">
+      <div id="categories-checkbox">
         
       </div>
     </div>
-
 
   <div class="row" >
   <div class="col-lg-12">

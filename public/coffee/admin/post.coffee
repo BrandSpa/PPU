@@ -76,14 +76,13 @@ $ ->
       @$el.find('.panel-body').html template()
       ppu.appendDatePicker(@el)
       ppu.appendSummernote(@el)
-      @getCategories()
 
     store: ->
       $form = @$el.find('form')
       content = $(@el).find('.summernote').code()
       data = new FormData($form[0])
-      data.append("post[content]", content)
-      data.append("post[lang]", app.lang)
+      data.append("fields[content]", content)
+      data.append("fields[lang]", app.lang)
       options = ppu.ajaxOptions("POST", data)
       @model.save data, $.extend({}, options)
     
@@ -128,8 +127,7 @@ $ ->
       @listenTo(@model, 'sync', @updated, @)
 
     render: ->
-      source = @template.html()
-      template = Handlebars.compile(source)
+      template = app.compile(@template)
       @$el.find('.panel-body').html template( @model.toJSON() )
       ppu.appendDatePicker(@el)
       ppu.appendSummernote(@el)
@@ -141,22 +139,23 @@ $ ->
       $form = @$el.find('form')
       content = $(@el).find('.summernote').code()
       data = new FormData($form[0])
-      data.append("post[content]", content)
+      data.append("fields[content]", content)
       options = ppu.ajaxOptions("PUT", data)
       @model.save data, $.extend({}, options)
-
-    updated: ->
-
+        .done (model) ->
+          if model
+            window.location = "/dashboard"
+          
     getCategories: ->
       ppu.categories = new ppu.Categories
       el = @$el
-      categories = @model.get('categories')
+      modelCategories = @model.get('categories')
       ppu.categories.fetch(data: locale: app.lang).done (collection) ->
         source = $('#lawyer-categories-template').html()
         template = Handlebars.compile(source)
-        $('#categories-checkboxes').html template( collection )
-        _.each categories, (category) ->
-          $(el).find("#categories-checkboxes input[value='#{category.id}']").attr("checked", "checked")
+        $('#categories-checkbox').html template( collection )
+        _.each modelCategories, (category) ->
+          $(el).find("#categories-checkbox input[value='#{category.id}']").attr("checked", "checked")
 
     showLawyers: ->
       lawyers = @model.get('lawyers')
@@ -196,7 +195,7 @@ $ ->
 
   class ppu.admin.PostLawyerSelect extends Backbone.View
     tagName: 'tr'
-    template: $ '#post-lawyer-select-template'
+    template: $ '#lawyer-select-template'
     events: 
       "click .append": "append"
 
@@ -231,7 +230,7 @@ $ ->
       @collection.fetch reset: true, data: keyword: query
 
   class ppu.admin.PostLawyersSelected extends Backbone.View
-    template: $ '#post-lawyer-selected-template'
+    template: $ '#lawyer-selected-template'
     tagName: 'tr'
     events:
       "click .remove": "destroy"

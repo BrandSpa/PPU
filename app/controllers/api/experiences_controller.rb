@@ -8,15 +8,15 @@ class Api::ExperiencesController < ApplicationController
 
 	def show
 		model = entity.with_relationships.find_by(id: params[:id])
-		render json: model
+		render json: model.to_json(:include => [:translation, :categories, :lawyers, :gallery])
 	end
 
 	def create
 		model = entity.create(experience_params)
 		if model.valid?
-			render json: entity
+			render json: model
 		else
-			render json: entity.errors, status: 400
+			render json: model.errors, status: 400
 		end
 	end
 
@@ -26,10 +26,8 @@ class Api::ExperiencesController < ApplicationController
 		if model.valid?
 			render json: model
 		else
-			render json: entity.errors, status: 400
+			render json: model.errors, status: 400
 		end
-		
-
 	end
 
 	def destroy
@@ -44,7 +42,7 @@ class Api::ExperiencesController < ApplicationController
 		end
 
 		def experience_params
-			params.require(:experience).permit(:gallery_id, :company_name, :company_web, :date, :title, :content, :category_ids => [], :lawyer_ids => [])
+			params.require(:fields).permit(:gallery_id, :company_name, :company_web, :date, :title, :content, :category_ids => [], :lawyer_ids => [])
 		end
 
 end

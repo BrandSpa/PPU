@@ -17,13 +17,12 @@ $ ->
 
   class ppu.CategoriesView extends Backbone.View
   	el: $ "#categories"
-
   	initialize: ->
   		@listenTo(@collection, 'reset', @render)
   		@getTitle()
+
   	getTitle: ->
       $("#top-bar").html $("#category-title").html()
-
 
   	renderOne: (model) ->
   		ppu.categoryView = new ppu.CategoryView model: model

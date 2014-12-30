@@ -14,6 +14,7 @@ $ ->
 
     initialize: ->
       @appendForm()
+      app.pubsub.bind('lawyer:stored', @store, @)
 
     appendForm: ->
       ppu.appendForm(@el, @template)
@@ -22,8 +23,8 @@ $ ->
       e.preventDefault()
       @appendForm()
 
-    store: (lawyer_id) ->
-      ppu.saveMultipeForms(@el, @model, lawyer_id)
+    store: (data) ->
+      ppu.saveMultipeForms(@el, @model, data.id)
 
   class ppu.LawyerAcademicsEditModal extends Backbone.View
     el: $ "#lawyer-academic-edit-modal"
