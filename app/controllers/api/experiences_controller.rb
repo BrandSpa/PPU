@@ -2,13 +2,13 @@ class Api::ExperiencesController < ApplicationController
 
 	def index
 		lang = params[:lang] || I18n.locale 
-		collection = entity.by_lang(lang).all
-		render json: collection
+		collection = entity.with_relationships.by_lang(lang).all
+		render json: collection.to_json(:include => [:translations, :categories, :lawyers, :gallery])
 	end
 
 	def show
 		model = entity.with_relationships.find_by(id: params[:id])
-		render json: model.to_json(:include => [:translation, :categories, :lawyers, :gallery])
+		render json: model.to_json(:include => [:translations, :categories, :lawyers, :gallery])
 	end
 
 	def create
