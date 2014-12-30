@@ -298,9 +298,9 @@ $(function() {
         var source, template;
         source = $('#lawyer-categories-template').html();
         template = Handlebars.compile(source);
-        $(el).find('#lawyer-list-categories').html(template(collection));
+        $(el).find('#categories-checkbox').html(template(collection));
         return _.each(categories, function(category) {
-          return $(el).find("#lawyer-list-categories input[value='" + category.id + "']").attr("checked", "checked");
+          return $(el).find("#categories-checkbox input[value='" + category.id + "']").attr("checked", "checked");
         });
       });
     };

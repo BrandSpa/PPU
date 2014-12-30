@@ -168,9 +168,9 @@ $ ->
       ppu.categories.fetch(data: locale: app.lang).done (collection) ->
         source = $('#lawyer-categories-template').html()
         template = Handlebars.compile(source)
-        $(el).find('#lawyer-list-categories').html template( collection )
+        $(el).find('#categories-checkbox').html template( collection )
         _.each categories, (category) ->
-          $(el).find("#lawyer-list-categories input[value='#{category.id}']").attr("checked", "checked")
+          $(el).find("#categories-checkbox input[value='#{category.id}']").attr("checked", "checked")
 
     render: ->
       el = $ "#lawyer-edit-modal"
