@@ -40,8 +40,9 @@ class Api::PostsController < ApplicationController
 
     if duplicate.present?
       new_model = entity.duplicate(model)
-      render json: new_model.to_json(:include => [:translations, :gallery]), status: 200
+      render json: new_model, status: 200
     else
+
       model.update(post_params)
 
       if model.valid?

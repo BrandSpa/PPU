@@ -52,11 +52,10 @@ $(function() {
     };
 
     GalleryView.prototype.selectImage = function(e) {
-      var img;
+      var galleryId;
       e.preventDefault();
-      img = this.model.get('id');
-      $(document).find('.gallery_id').val(img);
-      return ppu.admin.galleryPostModal.closeModal();
+      galleryId = this.model.get('id');
+      return app.pubsub.trigger('gallery:selected', galleryId);
     };
 
     return GalleryView;

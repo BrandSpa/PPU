@@ -18,22 +18,35 @@ class Experience < ActiveRecord::Base
     model_new.remote_img_name_url = model.img_name.url if model.img_name.present?
     model_new.title = "#{model.title} to translate"
     model_new.save
+    duplicate_lawyers(model_new, model.lawyers) unless model.lawyers.blank?
     model_new
   end
-  
-  after_create :add_keywords
-  before_create :add_date
+
+  def self.duplicate_lawyers(model, collection)
+    collection.each do |mdl|
+      model.lawyers << mdl
+    end
+  end
+
+  before_save :add_date
+  before_save :add_excerpt
+  before_save :add_slug
+  before_save :add_keywords
 
   private
-    def add_keywords
-      model = self
-      model.excerpt = Sanitize.fragment(self.content)
-      model.keywords = [self.title, self.content, self.company_name].join(" ")
-      model.slug = self.title.gsub(/[ ]/, '-').downcase
-      model.save
+    def add_excerpt
+      self.excerpt = Sanitize.fragment(self.content)
+    end
+
+    def add_slug
+      self.slug = self.title.downcase.gsub(/[ ]/, '-')
     end
 
     def add_date
       self.date = Time.now if self.date.blank?
+    end
+
+    def add_keywords
+      self.keywords = [self.title, self.content, self.company_name].join(" ")
     end
 end

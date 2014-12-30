@@ -21,6 +21,7 @@ $(function() {
       'admin/experiences/:id/edit': 'editExperience',
       "en/admin/lawyers/:id/edit": "editLawyer",
       'en/admin/posts/:id/edit': 'editPost',
+      'en/admin/experiences/:id/edit': 'editExperience',
       'crear-abogado': 'createLawyer',
       ':lang/crear-abogado': 'createLawyer',
       'editar-abogado/:id': 'editLawyer',

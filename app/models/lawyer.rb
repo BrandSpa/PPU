@@ -122,8 +122,6 @@ class Lawyer < ActiveRecord::Base
     end
   end
 
-  
-
   private
     def add_keywords()
       model = self
