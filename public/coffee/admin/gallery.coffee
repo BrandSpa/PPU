@@ -20,9 +20,8 @@ $ ->
 
     selectImage: (e) ->
       e.preventDefault()
-      img = @model.get('id')
-      $(document).find('.gallery_id').val(img)
-      ppu.admin.galleryPostModal.closeModal()
+      galleryId = @model.get('id')
+      app.pubsub.trigger('gallery:selected', galleryId)
       
   class ppu.admin.GalleryPostModal extends Backbone.View
     el: $ "#gallery-post-modal"

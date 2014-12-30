@@ -35,8 +35,7 @@ $ ->
       e.preventDefault()
       @model.save duplicate: true 
         .done (model) ->
-          window.location = "en/admin/Experiences/#{model.id}/edit"
-
+          window.location = "en/admin/experiences/#{model.id}/edit"
 
   class ppu.admin.ExperiencesView extends Backbone.View
     el: $ "#experiences-dasboard"
@@ -69,6 +68,7 @@ $ ->
     initialize: ->
       @listenTo(@model, 'error', @renderExperienceErrors, @)
       @listenTo(@model, 'sync', @stored)
+      app.pubsub.bind('gallery:selected', @appendSelectedGallery, @)
 
     render: ->
       source = @template.html()
@@ -87,17 +87,21 @@ $ ->
       @model.save data, $.extend({}, options)
     
     stored: (model) ->
-      console.log model
-      #window.location = "/dashboard"
+      window.location = "/dashboard" if model
 
-  
     openGallery: (e) ->
       e.preventDefault()
-      ppu.admin.galleryExperienceModal = new ppu.admin.GalleryExperienceModal collection: ppu.admin.galleries
-      ppu.admin.galleryExperienceModal.render()
+      ppu.admin.galleryPostModal = new ppu.admin.GalleryExperienceModal collection: ppu.admin.galleries
+      ppu.admin.galleryPostModal.render()
 
     appendImageHeader: (id) ->
       @$el.find('.gallery_id').val(id)
+
+    appendSelectedGallery: (gallery_id) ->
+      console.log gallery_id
+      $(@el).find('.gallery_id').val(gallery_id)
+      ppu.admin.galleryPostModal.closeModal()
+
 
     searchLawyer: (e) ->
       query = $(e.currentTarget).val()

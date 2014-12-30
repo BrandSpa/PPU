@@ -76,7 +76,7 @@ $(function() {
       return this.model.save({
         duplicate: true
       }).done(function(model) {
-        return window.location = "en/admin/Experiences/" + model.id + "/edit";
+        return window.location = "en/admin/experiences/" + model.id + "/edit";
       });
     };
 
@@ -140,7 +140,8 @@ $(function() {
 
     ExperienceCreate.prototype.initialize = function() {
       this.listenTo(this.model, 'error', this.renderExperienceErrors, this);
-      return this.listenTo(this.model, 'sync', this.stored);
+      this.listenTo(this.model, 'sync', this.stored);
+      return app.pubsub.bind('gallery:selected', this.appendSelectedGallery, this);
     };
 
     ExperienceCreate.prototype.render = function() {
@@ -164,19 +165,27 @@ $(function() {
     };
 
     ExperienceCreate.prototype.stored = function(model) {
-      return console.log(model);
+      if (model) {
+        return window.location = "/dashboard";
+      }
     };
 
     ExperienceCreate.prototype.openGallery = function(e) {
       e.preventDefault();
-      ppu.admin.galleryExperienceModal = new ppu.admin.GalleryExperienceModal({
+      ppu.admin.galleryPostModal = new ppu.admin.GalleryExperienceModal({
         collection: ppu.admin.galleries
       });
-      return ppu.admin.galleryExperienceModal.render();
+      return ppu.admin.galleryPostModal.render();
     };
 
     ExperienceCreate.prototype.appendImageHeader = function(id) {
       return this.$el.find('.gallery_id').val(id);
+    };
+
+    ExperienceCreate.prototype.appendSelectedGallery = function(gallery_id) {
+      console.log(gallery_id);
+      $(this.el).find('.gallery_id').val(gallery_id);
+      return ppu.admin.galleryPostModal.closeModal();
     };
 
     ExperienceCreate.prototype.searchLawyer = function(e) {

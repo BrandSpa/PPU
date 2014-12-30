@@ -21,12 +21,19 @@ class Api::ExperiencesController < ApplicationController
 	end
 
 	def update
+		duplicate = params[:duplicate]
+
 		model = entity.with_relationships.find_by(id: params[:id])
-		model.update(experience_params)
-		if model.valid?
-			render json: model
-		else
-			render json: model.errors, status: 400
+		if duplicate.present?
+      new_model = entity.duplicate(model)
+      render json: new_model.to_json(:include => [:translations, :gallery]), status: 200
+    else
+			model.update(experience_params)
+			if model.valid?
+				render json: model
+			else
+				render json: model.errors, status: 400
+			end
 		end
 	end
 
@@ -42,7 +49,7 @@ class Api::ExperiencesController < ApplicationController
 		end
 
 		def experience_params
-			params.require(:fields).permit(:gallery_id, :company_name, :company_web, :date, :title, :content, :category_ids => [], :lawyer_ids => [])
+			params.require(:fields).permit(:gallery_id, :country, :img_name, :company_name, :company_web, :date, :title, :content, :category_ids => [], :lawyer_ids => [])
 		end
 
 end

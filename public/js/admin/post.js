@@ -140,7 +140,8 @@ $(function() {
 
     PostCreate.prototype.initialize = function() {
       this.listenTo(this.model, 'error', this.renderPostErrors, this);
-      return this.listenTo(this.model, 'sync', this.stored);
+      this.listenTo(this.model, 'sync', this.stored);
+      return app.pubsub.bind('gallery:selected', this.appendSelectedGallery, this);
     };
 
     PostCreate.prototype.render = function() {
@@ -189,8 +190,9 @@ $(function() {
       return ppu.admin.galleryPostModal.render();
     };
 
-    PostCreate.prototype.appendImageHeader = function(id) {
-      return this.$el.find('.gallery_id').val(id);
+    PostCreate.prototype.appendSelectedGallery = function(gallery_id) {
+      $(this.el).find('.gallery_id').val(gallery_id);
+      return ppu.admin.galleryPostModal.closeModal();
     };
 
     PostCreate.prototype.searchLawyer = function(e) {
