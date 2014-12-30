@@ -28,6 +28,10 @@ Rails.application.routes.draw do
   scope "(:locale)", locale: /en|es/ do
     get "abogados/", to: 'lawyers#index'
     get "abogados/:slug", to: 'lawyers#show'
+
+    get "experiencias", to: 'experiences#index'
+    get "experiencias/:slug", to: 'experiences#show'
+
     get "abogados/:id/vcard", to: 'lawyers#vcard'
     get "lawyers", to: 'lawyers#index'
     get "crear-abogado", to: redirect('/admin/lawyers/new')

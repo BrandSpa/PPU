@@ -16,3 +16,10 @@ Handlebars.registerHelper 'dateFormat', (context, block) ->
     
 Handlebars.registerHelper 'toUpperCase',(str) ->
   str.toUpperCase()
+
+Handlebars.registerHelper 'getYear', (context, block) ->
+  if window.moment
+    f = block.hash.format || "YYYY";
+    moment(Date(context)).format(f)
+  else
+    context

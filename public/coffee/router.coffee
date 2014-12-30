@@ -3,6 +3,8 @@ $ ->
     routes:
       "abogados" : "lawyers"
       "abogados/:slug" : "lawyer"
+      "experiencias" : "experiences"
+      "experiencias/:slug" : "experience"
       "posts" : "posts"
       "posts/:slug" : "post"
       "areas": "areas"
@@ -44,7 +46,17 @@ $ ->
       ppu.categories.fetch reset: true
       ppu.categoriesView = new ppu.CategoriesView collection: ppu.categories
 
+    experience: (slug) ->
+      ppu.experience = new ppu.Experience id: slug
+      ppu.experience.fetch()
+      ppu.experienceDetailView = new ppu.ExperienceDetailView model: ppu.experience
 
+    experiences: () ->
+      ppu.experiencesFilters = new ppu.ExperiencesFilters
+      ppu.experiencesFilters.render()
+      ppu.experiences = new ppu.Experiences
+      ppu.experiences.fetch reset: true, data: published: true, not_featured: true
+      ppu.experiencesView = new ppu.ExperiencesView collection: ppu.experiences
 
   new ppu.Workspace
   Backbone.history.start pushState: true 

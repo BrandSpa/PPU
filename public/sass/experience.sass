@@ -1,0 +1,75 @@
+@import variables
+
+#experiences
+	margin-top: 15px
+
+.experience-item
+	height: 155px
+	margin-bottom: 15px
+	overflow: hidden
+	&:first-child
+		padding-left: 0
+	&:first-child, &:nth-child(2n+3)
+		padding-left: 0
+
+	&:nth-child(2n+2)
+		padding-right: 0
+
+	.img-container
+		width: 155px
+		float: left
+		overflow: hidden
+		margin-right: 15px
+			
+	.content
+		background: #fff
+		padding: 7px
+		height: 155px
+		
+		h3
+			font-size: 1.1em
+			padding-right: 15px
+			line-height: 1.4em 
+			a
+				color: $color-gray
+		p
+			color: $color-gray
+			font-size: 0.9em
+			line-height: 150%
+			padding: 0 15px 0 0
+
+		.date
+			font-size: 0.8em
+			color: $color-gray
+
+		.share
+			font-size: 0.8em
+			float: right
+			padding-right: 15px
+
+.experience-header
+	background: $color-darkBlue
+	color: #fff
+	float: left
+	width: 100%
+	margin-bottom: 30px
+
+	img
+		float: left
+		height: 150px
+		margin-right: 30px
+		
+	h1
+		padding: 30px
+		margin: 0
+		font-size: 1.2em
+		font-weight: 400
+
+.content
+	background: #fff
+	padding: 30px
+	color: $color-gray
+	font-size: 1em
+	line-height: 1.7em
+
+

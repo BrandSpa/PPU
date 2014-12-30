@@ -26,3 +26,13 @@ Handlebars.registerHelper('dateFormat', function(context, block) {
 Handlebars.registerHelper('toUpperCase', function(str) {
   return str.toUpperCase();
 });
+
+Handlebars.registerHelper('getYear', function(context, block) {
+  var f;
+  if (window.moment) {
+    f = block.hash.format || "YYYY";
+    return moment(Date(context)).format(f);
+  } else {
+    return context;
+  }
+});

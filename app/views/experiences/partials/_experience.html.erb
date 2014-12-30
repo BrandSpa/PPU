@@ -1,0 +1,39 @@
+<script id="experience-detail-template" type="text/x-handlebars-template">
+	<div class="experience-header">
+		{{#if gallery }}
+		<img src="{{ gallery.img_name.url }}" alt="">
+		{{/if}}
+		<h1>{{ title }}</h1>
+
+	</div>
+	<div class="content">
+		{{ country }} - {{ date }}
+
+		{{{ content }}}
+	</div>
+	{{#if lawyers}}
+	<div class="relationship-title">
+		<h3><%= t("Lawyers") %></h3>
+	</div>		
+	<div class="col-lg-12">
+
+		{{#each lawyers}}
+		<div class="col-md-6 col-sm-6 col-xs-12 lawyer-item">
+			<img src="{{ img_name.url }}" alt="{{ name }} {{ lastname }}" class="hidden-xs">
+			<div class="content">
+				<span class="position">{{ position }}</span>
+				<h3><a href="abogados/{{ slug }}">{{toUpperCase name }} {{toUpperCase lastname }}</a></h3>
+				<a href="tel:{{ phone }}" class="phone">{{ phone }}</a>
+				<a href="mailto:{{ email }}" class="email">{{ email }}</a>
+			</div>
+		</div>
+		{{/each}}
+	</div>
+	{{/if}}
+</script>
+
+<script id="experience-detail-title" type="text/x-handlebars-template">
+	<h1><a href="/experiencias"><%= t("Experience") %></a></h1>
+</script>
+
+
