@@ -1,0 +1,30 @@
+<script id="experiences-filter" type="text/x-handlebars-template">  
+  <h1><%= t("Experience") %></h1>
+
+  <form class="form-group search">
+    <input type="text" class="form-control query" placeholder="<%= t("Search") %>">
+  </form>
+
+  <div class="col-md-3 col-sm-3 countries">
+    <div class="checkbox-inline">
+      <label>
+        <input type="checkbox" class="country" value="Colombia">
+        Colombia
+      </label>
+    </div>
+
+    <div class="checkbox-inline">
+      <label>
+        <input type="checkbox" class="country" value="Chile">
+        Chile
+      </label>
+    </div>
+  </div>
+
+  <div class="col-md-2 col-sm-2 category">
+    <select class="form-control ">
+      <option value=""><%= t("Areas") %></option>
+      <%= render "partials/categories_option" %>
+    </select>
+  </div>
+</script>

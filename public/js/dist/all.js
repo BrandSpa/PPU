@@ -203,6 +203,8 @@ $(function() {
     Workspace.prototype.routes = {
       "abogados": "lawyers",
       "abogados/:slug": "lawyer",
+      "experiencias": "lawyers",
+      "experiencias/:slug": "lawyer",
       "posts": "posts",
       "posts/:slug": "post",
       "areas": "areas",

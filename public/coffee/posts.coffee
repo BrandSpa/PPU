@@ -92,7 +92,6 @@ $ ->
       if val.length >= 3
         ppu.lawyers.fetch reset: true, data: keyword: val
 
-
   class ppu.PostDetailView extends Backbone.View
     el: $ "#post-detail"
     template: $ "#post-detail-template"
@@ -109,9 +108,3 @@ $ ->
         @$el.html(template( model.toJSON() ))
       , @
       @getTitle()
-
-    
-
-
-
-
