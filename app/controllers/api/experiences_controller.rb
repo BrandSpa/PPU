@@ -24,7 +24,7 @@ class Api::ExperiencesController < ApplicationController
 		model = entity.with_relationships.find_by(id: params[:id])
 		model.update(experience_params)
 		if model.valid?
-			render json: model.to_json(include: {:lawyers, :categories})
+			render json: model
 		else
 			render json: entity.errors, status: 400
 		end
