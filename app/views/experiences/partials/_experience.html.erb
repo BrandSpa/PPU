@@ -15,14 +15,13 @@
 	<div class="relationship-title">
 		<h3><%= t("Lawyers") %></h3>
 	</div>		
-	<div class="col-lg-12">
-
-		{{#each lawyers}}
+	<div class="col-lg-12 associated">
+	{{#each lawyers}}
 		<div class="col-md-6 col-sm-6 col-xs-12 lawyer-item">
 			<img src="{{ img_name.url }}" alt="{{ name }} {{ lastname }}" class="hidden-xs">
 			<div class="content">
 				<span class="position">{{ position }}</span>
-				<h3><a href="abogados/{{ slug }}">{{toUpperCase name }} {{toUpperCase lastname }}</a></h3>
+				<h3><a href="/abogados/{{ slug }}">{{toUpperCase name }} {{toUpperCase lastname }}</a></h3>
 				<a href="tel:{{ phone }}" class="phone">{{ phone }}</a>
 				<a href="mailto:{{ email }}" class="email">{{ email }}</a>
 			</div>

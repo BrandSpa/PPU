@@ -21,6 +21,8 @@
     float: left;
     overflow: hidden;
     margin-right: 15px; }
+    .experience-item .img-container img {
+      width: 100%; }
   .experience-item .content {
     background: #fff;
     padding: 7px;

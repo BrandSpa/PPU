@@ -203,8 +203,8 @@ $(function() {
     Workspace.prototype.routes = {
       "abogados": "lawyers",
       "abogados/:slug": "lawyer",
-      "experiencias": "lawyers",
-      "experiencias/:slug": "lawyer",
+      "experiencias": "experiences",
+      "experiencias/:slug": "experience",
       "posts": "posts",
       "posts/:slug": "post",
       "areas": "areas",
@@ -287,6 +287,32 @@ $(function() {
       });
       return ppu.categoriesView = new ppu.CategoriesView({
         collection: ppu.categories
+      });
+    };
+
+    Workspace.prototype.experience = function(slug) {
+      ppu.experience = new ppu.Experience({
+        id: slug
+      });
+      ppu.experience.fetch();
+      return ppu.experienceDetailView = new ppu.ExperienceDetailView({
+        model: ppu.experience
+      });
+    };
+
+    Workspace.prototype.experiences = function() {
+      ppu.experiencesFilters = new ppu.ExperiencesFilters;
+      ppu.experiencesFilters.render();
+      ppu.experiences = new ppu.Experiences;
+      ppu.experiences.fetch({
+        reset: true,
+        data: {
+          published: true,
+          not_featured: true
+        }
+      });
+      return ppu.experiencesView = new ppu.ExperiencesView({
+        collection: ppu.experiences
       });
     };
 
