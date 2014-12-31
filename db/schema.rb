@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141230073737) do
+ActiveRecord::Schema.define(version: 20141231044153) do
 
   create_table "academics", force: true do |t|
     t.integer  "lawyer_id"
@@ -75,6 +75,14 @@ ActiveRecord::Schema.define(version: 20141230073737) do
     t.integer "category_id"
   end
 
+  create_table "curriculums", force: true do |t|
+    t.string   "country"
+    t.string   "name"
+    t.string   "file_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "educations", force: true do |t|
     t.integer  "lawyer_id"
     t.string   "title"
@@ -102,7 +110,7 @@ ActiveRecord::Schema.define(version: 20141230073737) do
     t.string   "img_name"
     t.text     "excerpt"
     t.text     "keywords"
-    t.boolean  "published"
+    t.boolean  "published",      default: false
     t.string   "slug"
   end
 

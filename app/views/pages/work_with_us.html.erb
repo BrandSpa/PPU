@@ -1,0 +1,66 @@
+<div id="work-with-us">
+		<div class="top row">
+			<div class="video col-lg-7">
+				<iframe src="//player.vimeo.com/video/114951438?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;color=d9d9d9" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> 
+			</div>
+			<div class=" col-lg-5">
+				<h3><%= t("work_with_us.top_title") %></h3>
+				<p><%= t("work_with_us.top_text") %></p>
+			</div>
+		</div>
+	<div class="content">
+
+		<div class="row">
+			<div class="col-lg-6">
+				<h5> <%= t("work_with_us.form_title") %> </h5>
+
+				<p>
+					Chile: <a href="mailto:seleccioncl@ppulegal.com">seleccioncl@ppulegal.com</a>
+				</p>
+				<p>
+					Colombia: <a href="mailto:seleccionco@ppulegal.com">seleccionco@ppulegal.com</a>
+				</p>
+
+
+			</div>
+			<div class="col-lg-6">
+				<form action="#" class="form">
+					<div class="form-group">
+						<select name="fields[country]" id="" class="form-control" >
+							<option value=""><%= t("work_with_us.country") %></option>
+         <option value="Chile">Chile</option>
+         <option value="Colombia">Colombia</option> 
+						</select>
+					</div>
+					<div class="form-group">
+						<input type="text" name="fields[name]" class="form-control" placeholder='<%= t("work_with_us.full_name") %>'>
+					</div>
+					<div class="form-group">
+						<input type="file" name="fields[file_name]" class="form-control" placeholder='<%= t("work_with_us.attach_you_cv") %>'>
+					</div>
+					<a href="#" class="btn btn-info send-cv pull-right"><%= t("send") %></a>
+				</form>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-12">
+			<h4><%= t("work_with_us.What_do_we_offer") %></h4>	
+			<ul>
+				<li><%= t("work_with_us.An_attractive_career_plan") %></li>
+				<li><%= t("work_with_us.We_are_an_international") %></li>
+				<li><%= t("work_with_us.Integrating_first_level") %></li>
+				<li><%= t("work_with_us.Relations_with_clients") %></li>
+				<li><%= t("work_with_us.Excellent_work_environment") %></li>
+			</ul>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-12">
+				<h4><%= t("work_with_us.carreer_plan") %></h4>
+				<p>
+					<%= t("work_with_us.carreer_plan_text") %>
+				</p>
+			</div>
+		</div>
+	</div>
+</div>

@@ -11,4 +11,8 @@ class PagesController < ApplicationController
 	def pro_bono
 		
 	end
+
+	def work_with_us
+		
+	end
 end
