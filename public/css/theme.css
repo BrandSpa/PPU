@@ -542,7 +542,8 @@ ul {
     color: #5F5F5F; }
     .post-main-featured-item .content h3 {
       font-size: 1.1em;
-      margin: 0; }
+      margin: 0;
+      font-weight: bold; }
       .post-main-featured-item .content h3 a {
         color: #5F5F5F; }
     .post-main-featured-item .content p {
@@ -571,21 +572,27 @@ ul {
     float: left;
     overflow: hidden;
     margin-right: 15px; }
+    .post-item .img-container img {
+      margin: 0 auto;
+      width: 280px; }
   .post-item .content {
     background: #fff;
     padding: 7px;
     height: 155px; }
     .post-item .content h3 {
       font-size: 1.1em;
-      padding-right: 15px;
-      line-height: 1.4em; }
+      padding-right: 7px;
+      line-height: 1.4em;
+      font-weight: bold;
+      margin: 7px 0 7px 0; }
       .post-item .content h3 a {
         color: #5F5F5F; }
     .post-item .content p {
       color: #5F5F5F;
       font-size: 0.9em;
       line-height: 150%;
-      padding: 0 15px 0 0; }
+      padding: 0 15px 0 0;
+      color: #7F7F7F; }
     .post-item .content .date {
       font-size: 0.8em;
       color: #5F5F5F; }
@@ -696,7 +703,8 @@ ul {
     width: 155px;
     float: left;
     overflow: hidden;
-    margin-right: 15px; }
+    margin-right: 15px;
+    min-height: 100%; }
     .experience-item .img-container img {
       width: 100%; }
   .experience-item .content {
