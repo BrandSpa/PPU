@@ -3,7 +3,7 @@ class Api::ExperiencesController < ApplicationController
 	def index
 		lang = params[:lang] || I18n.locale 
 		collection = entity.with_relationships.by_lang(lang).all
-		render json: collection.to_json(:include => [:translations, :categories, :lawyers, :gallery])
+		render json: collection.to_json(:include => [:translations,:translation, :categories, :lawyers, :gallery])
 	end
 
 	def show
