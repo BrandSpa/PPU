@@ -824,9 +824,9 @@ ul {
   width: 100%;
   margin-bottom: 30px; }
   .experience-header img {
-    float: left;
+    float: right;
     height: 150px;
-    margin-right: 30px; }
+    margin-left: 30px; }
   .experience-header h1 {
     padding: 30px;
     margin: 0;
