@@ -7,7 +7,14 @@ class Api::ExperiencesController < ApplicationController
 	end
 
 	def show
-		model = entity.with_relationships.find_by(slug: params[:id])
+		id = params[:id]
+		if id
+			model = entity.with_relationships.find(params[:id])
+		else
+			model = entity.with_relationships.find_by(slug: params[:id])
+		end
+
+		
 		render json: model.to_json(:include => [:translations, :categories, :lawyers, :gallery])
 	end
 
