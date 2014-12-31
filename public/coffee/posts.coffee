@@ -15,6 +15,15 @@ $ ->
   		$(@el).html template( @model.toJSON() )
   		@
 
+  class ppu.PostFeaturedView extends Backbone.View
+    template: $ "#post-template"
+    className: "col-md-6 col-sm-6 col-xs-12 post-featured-item"
+
+    render: ->
+      template = app.compile(@template)
+      $(@el).html template( @model.toJSON() )
+      @
+
   class ppu.PostsView extends Backbone.View
   	el: $ "#posts"
 
@@ -29,6 +38,8 @@ $ ->
   		@collection.each (model) ->
   			@renderOne(model)
   		, @
+
+
 
   class ppu.PostMainFeaturedView extends Backbone.View
   	template: $ "#post-main-featured-template"
@@ -50,7 +61,7 @@ $ ->
   		@$el.append ppu.postMainFeaturedView.render().el
 
   	renderOne: (model) ->
-      ppu.postView = new ppu.PostView model: model
+      ppu.postView = new ppu.PostFeaturedView model: model
       @$el.append ppu.postView.render().el
 
   	render: ->

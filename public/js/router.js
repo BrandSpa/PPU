@@ -17,7 +17,7 @@ $(function() {
       "posts": "posts",
       "posts/:slug": "post",
       "areas": "areas",
-      "areas/:name": "area",
+      "areas/:slug": "area",
       "trabaje-con-nosotros": "curriculum"
     };
 
@@ -97,6 +97,16 @@ $(function() {
       });
       return ppu.categoriesView = new ppu.CategoriesView({
         collection: ppu.categories
+      });
+    };
+
+    Workspace.prototype.area = function(slug) {
+      ppu.category = new ppu.Category({
+        id: slug
+      });
+      ppu.category.fetch();
+      return ppu.categoryDetail = new ppu.CategoryDetail({
+        model: ppu.category
       });
     };
 

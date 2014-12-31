@@ -1,15 +1,18 @@
 <script id="post-detail-template" type="text/x-handlebars-template">
 <div class="post-header">
-{{#if gallery }}
-	<img src="{{ gallery.img_name.url }}" alt="">
-{{/if}}
+{{#if gallery}}
+  <img src="{{ gallery.img_name.url }}" alt="{{ title }}" class="hidden-xs">
+  {{else}}
+   <img src="{{ img_name.url }}" alt="{{ title }}" class="hidden-xs">
+ {{/if}}
+
 	<h1>{{ title }}</h1>
 	<div class="categories">
 		{{#each categories }}
 		<span>{{ name }}</span>
 		{{/each}}
 	</div>
-	<a href="#" class="share">Compartir</a>
+	<a href="#" class="share">Compartir <i class="fa fa-share-alt-square"></i></a>
 </div>
 <div class="content">
 {{ country }} - {{ date }}

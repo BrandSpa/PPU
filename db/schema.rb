@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141231044153) do
+ActiveRecord::Schema.define(version: 20141231062152) do
 
   create_table "academics", force: true do |t|
     t.integer  "lawyer_id"
@@ -49,12 +49,14 @@ ActiveRecord::Schema.define(version: 20141231044153) do
   end
 
   create_table "categories", force: true do |t|
-    t.string   "lang",        default: "es"
-    t.string   "name"
+    t.integer  "translation_id"
     t.string   "gallery_id"
+    t.string   "lang",           default: "es"
+    t.string   "name"
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "slug"
   end
 
   create_table "categories_experiences", force: true do |t|
@@ -96,7 +98,9 @@ ActiveRecord::Schema.define(version: 20141231044153) do
   add_index "educations", ["lawyer_id"], name: "index_educations_on_lawyer_id", using: :btree
 
   create_table "experiences", force: true do |t|
+    t.string   "lang",           default: "es"
     t.integer  "gallery_id"
+    t.integer  "translation_id"
     t.string   "company_name"
     t.string   "company_web"
     t.date     "date"
@@ -104,8 +108,6 @@ ActiveRecord::Schema.define(version: 20141231044153) do
     t.text     "content"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "translation_id"
-    t.string   "lang",           default: "es"
     t.string   "country"
     t.string   "img_name"
     t.text     "excerpt"

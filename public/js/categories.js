@@ -49,7 +49,7 @@ $(function() {
     return CategoryView;
 
   })(Backbone.View);
-  return ppu.CategoriesView = (function(_super) {
+  ppu.CategoriesView = (function(_super) {
     __extends(CategoriesView, _super);
 
     function CategoriesView() {
@@ -81,6 +81,35 @@ $(function() {
     };
 
     return CategoriesView;
+
+  })(Backbone.View);
+  return ppu.CategoryDetail = (function(_super) {
+    __extends(CategoryDetail, _super);
+
+    function CategoryDetail() {
+      return CategoryDetail.__super__.constructor.apply(this, arguments);
+    }
+
+    CategoryDetail.prototype.el = $("#category");
+
+    CategoryDetail.prototype.template = $("#category-detail-template");
+
+    CategoryDetail.prototype.initialize = function() {
+      this.listenTo(this.model, "change", this.render);
+      return this.getTitle();
+    };
+
+    CategoryDetail.prototype.getTitle = function() {
+      return $("#top-bar").html($("#category-detail-title").html());
+    };
+
+    CategoryDetail.prototype.render = function() {
+      var template;
+      template = app.compile(this.template);
+      return this.$el.html(template(this.model.toJSON()));
+    };
+
+    return CategoryDetail;
 
   })(Backbone.View);
 });
