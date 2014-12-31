@@ -1,5 +1,6 @@
 class PagesController < ApplicationController
-	layout "minimal" 
+	#layout "minimal" 
+	
 	def landing
 		
 	end
