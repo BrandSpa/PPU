@@ -8,13 +8,13 @@ class Api::ExperiencesController < ApplicationController
 
 	def show
 		id = params[:id]
-		if id.kind_of? String
+
+		if is_a_number?(id)
+			model = entity.with_relationships.find_by(id: params[:id])
+		else
 			model = entity.with_relationships.find_by(slug: params[:id])
 			
-		else
-			model = entity.with_relationships.find(params[:id])
 		end
-
 		render json: model.to_json(:include => [:translations, :categories, :lawyers, :gallery])
 	end
 
@@ -48,6 +48,10 @@ class Api::ExperiencesController < ApplicationController
 		model = entity.find_by(id: params[:id])
 		model.destroy
 		render json: "destroyed", status: 200
+	end
+
+	def is_a_number?(s)
+  	s.to_s.match(/\A[+-]?\d+?(\.\d+)?\Z/) == nil ? false : true 
 	end
 
 	private
