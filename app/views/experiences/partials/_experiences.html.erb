@@ -1,6 +1,6 @@
 <script id="experience-template" type="text/x-handlebars-template">
 <div class="img-container">
- {{#if gallery}}
+ {{#if gallery.img_name.url }}
   <img src="{{ gallery.img_name.url }}" alt="{{ title }}" class="hidden-xs">
   {{else}}
    <img src="{{ img_name.url }}" alt="{{ title }}" class="hidden-xs">
