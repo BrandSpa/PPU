@@ -19,6 +19,7 @@ class Post < ActiveRecord::Base
   scope :get_relationships, -> { includes(:translation, :categories, :lawyers, :gallery) }
   scope :order_featured, -> { order(featured: :asc) }
   scope :order_by_date, -> { order(date: :desc) }
+  scope :by_category, -> (category){ includes(:categories).where(categories: {name: category}) }
 
   mount_uploader :img_name, PostImageUploader
 

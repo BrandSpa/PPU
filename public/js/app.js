@@ -16,11 +16,21 @@ $(function() {
     };
 
     AppView.prototype.changeLangPage = function(e) {
+      var urlTranslation;
       e.preventDefault();
+      urlTranslation = window.urlTranslation;
       if (app.lang === 'en') {
-        return window.location = "http://ppulegal.com" + app.pathname;
+        if (urlTranslation === "") {
+          return window.location = "http://ppulegal.com" + app.pathname;
+        } else {
+          return window.location = "http://ppulegal.com/" + ppu.pathUrl[1] + "/" + urlTranslation;
+        }
       } else {
-        return window.location = "http://en.ppulegal.com" + app.pathname;
+        if (urlTranslation === "") {
+          return window.location = "http://en.ppulegal.com" + app.pathname;
+        } else {
+          return window.location = "http://en.ppulegal.com/" + ppu.pathUrl[1] + "/" + urlTranslation;
+        }
       }
     };
 

@@ -172,7 +172,6 @@ $(function() {
     PostsFilters.prototype.template = $("#posts-filter");
 
     PostsFilters.prototype.events = {
-      'change .position': 'byPosition',
       'change .country': 'byCountry',
       'change .category': 'byCategory',
       'keydown .query': 'byQuery'
@@ -184,21 +183,10 @@ $(function() {
       return this.$el.html(template);
     };
 
-    PostsFilters.prototype.byPosition = function(e) {
-      var val;
-      val = $(e.currentTarget).find('select').val();
-      return ppu.lawyers.fetch({
-        reset: true,
-        data: {
-          position: val
-        }
-      });
-    };
-
     PostsFilters.prototype.byCountry = function(e) {
       var val;
       val = $(e.currentTarget).val();
-      return ppu.lawyers.fetch({
+      return ppu.posts.fetch({
         reset: true,
         data: {
           country: val
@@ -209,7 +197,7 @@ $(function() {
     PostsFilters.prototype.byCategory = function(e) {
       var val;
       val = $(e.currentTarget).find('select').val();
-      return ppu.lawyers.fetch({
+      return ppu.posts.fetch({
         reset: true,
         data: {
           category: val
@@ -221,7 +209,7 @@ $(function() {
       var val;
       val = $(e.currentTarget).val();
       if (val.length >= 3) {
-        return ppu.lawyers.fetch({
+        return ppu.posts.fetch({
           reset: true,
           data: {
             keyword: val
@@ -245,7 +233,8 @@ $(function() {
     PostDetailView.prototype.template = $("#post-detail-template");
 
     PostDetailView.prototype.initialize = function() {
-      return this.listenTo(this.collection, "reset", this.render);
+      this.listenTo(this.model, "change", this.render);
+      return this.getTitle();
     };
 
     PostDetailView.prototype.getTitle = function() {
@@ -253,12 +242,10 @@ $(function() {
     };
 
     PostDetailView.prototype.render = function() {
-      this.collection.each(function(model) {
-        var template;
-        template = app.compile(this.template);
-        return this.$el.html(template(model.toJSON()));
-      }, this);
-      return this.getTitle();
+      var template;
+      template = app.compile(this.template);
+      this.$el.html(template(this.model.toJSON()));
+      return window.urlTranslation = this.model.get("translations").slug;
     };
 
     return PostDetailView;
