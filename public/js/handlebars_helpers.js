@@ -16,10 +16,8 @@ Handlebars.registerHelper('shortenText2', function(text, block) {
 Handlebars.registerHelper('dateFormat', function(context, block) {
   var f;
   if (window.moment) {
-    f = block.hash.format || "MMM Do, YYYY";
-    return moment(Date(context)).format(f);
-  } else {
-    return context;
+    f = block.hash.format || "DD/MM/YYYY";
+    return moment(context).format(f);
   }
 });
 

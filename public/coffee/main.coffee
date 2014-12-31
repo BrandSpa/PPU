@@ -36,6 +36,7 @@ ppu.appendDatePickerYear = (el) ->
 
 ppu.appendDatePicker = (el) ->
   $(el).find('.datepicker').datepicker
+    format: 'dd/mm/yyyy'
     language: 'es'
     autoclose: true
 

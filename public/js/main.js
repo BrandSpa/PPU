@@ -45,6 +45,7 @@ ppu.appendDatePickerYear = function(el) {
 
 ppu.appendDatePicker = function(el) {
   return $(el).find('.datepicker').datepicker({
+    format: 'dd/mm/yyyy',
     language: 'es',
     autoclose: true
   });
