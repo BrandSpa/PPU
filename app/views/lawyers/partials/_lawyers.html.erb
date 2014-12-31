@@ -1,5 +1,10 @@
 <script id="lawyer-template" type="text/x-handlebars-template">
-  <img src="{{ img_name.url }}" alt="{{ name }} {{ lastname }}" class="hidden-xs">
+{{#if img_name.url}}
+  <img src="{{ img_name.url }}" alt="{{ name }} {{ lastname }}">
+  {{else}}
+   <img src="/img/lawyer_placeholder.jpg" alt="{{ name }} {{ lastname }}">
+{{/if}}
+
   <div class="content">
 	  <span class="position">{{ position }}</span>
 	  <h3><a href="abogados/{{ slug }}">{{toUpperCase name }} {{toUpperCase lastname }}</a></h3>

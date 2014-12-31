@@ -24,12 +24,22 @@ $ ->
 
     initialize: ->
       @listenTo(@collection, 'reset', @render)
+      @listenTo(@collection, 'add', @renderOne)
+      app.pubsub.bind("general:scroll", @paginate, @)
+
+    paginate: ->
+      offset = $(@el).data('offset') || 0
+      @collection.fetch data: offset: (offset+15)
+      $(@el).data('offset', (offset+15))
+
+    renderOne: (model) ->
+      view = new ppu.LawyerView model: model
+      $(@el).append view.render().el
 
     render: ->
       $(@el).html('')
       @collection.each (model) ->
-        view = new ppu.LawyerView model: model
-        $(@el).append(view.render().el).hide().fadeIn('slow')
+        @renderOne(model)
       , @
       
   class ppu.LawyersFilters extends Backbone.View
@@ -51,8 +61,13 @@ $ ->
       ppu.lawyers.fetch reset: true, data: position: val
       
     byCountry: (e) ->
-      val = $(e.currentTarget).val()
-      ppu.lawyers.fetch reset: true, data: country: val
+      if $(".countries").find('input[type="checkbox"]:checked').length == 2
+        ppu.lawyers.fetch reset: true
+      else
+        val = $(e.currentTarget).val()
+        if $(e.currentTarget).is(":checked")
+          ppu.lawyers.fetch reset: true, data: country: val
+        
 
     byCategory: (e) ->
       val = $(e.currentTarget).find('select').val()

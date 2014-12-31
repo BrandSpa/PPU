@@ -102,7 +102,9 @@ ppu.saveMultipeForms = (el, model, lawyer_id) ->
     data.append("fields[lawyer_id]", lawyer_id)
     model.save data, $.extend({}, ppu.ajaxOptions("POST", data))
 
-
+$(window).scroll () ->
+  if($(window).scrollTop() + $(window).height() > $(document).height() - 150)
+    app.pubsub.trigger("general:scroll")
 
 $('.carousel').carousel()
 

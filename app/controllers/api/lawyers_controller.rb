@@ -19,8 +19,9 @@ class Api::LawyersController < ApplicationController
     update = params[:update]
     slug = params[:slug]
     has_translation = params[:has_translation]
-
-    collection = Lawyer.where(nil).includes(:categories, :translations).lang(lang).order({name: :asc, position: :asc})
+    offset = params[:offset]
+    
+    collection = Lawyer.where(nil).includes(:categories, :translations).lang(lang).paginate(offset).order({name: :asc, position: :asc})
     collection = collection.by_position(position) if position.present?
     collection = entity.by_category(category) if category.present?
     collection = collection.by_trade(trade) if trade.present?

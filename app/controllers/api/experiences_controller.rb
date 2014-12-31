@@ -8,10 +8,11 @@ class Api::ExperiencesController < ApplicationController
 
 	def show
 		id = params[:id]
-		if id
-			model = entity.with_relationships.find(params[:id])
-		else
+		if id.kind_of? String
 			model = entity.with_relationships.find_by(slug: params[:id])
+			
+		else
+			model = entity.with_relationships.find(params[:id])
 		end
 
 		render json: model.to_json(:include => [:translations, :categories, :lawyers, :gallery])
