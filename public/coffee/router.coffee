@@ -13,6 +13,7 @@ $ ->
 
     initialize: ->
       new ppu.AppView
+      window.urlTranslation = ""
       
     lawyers: (lang) ->
       ppu.lawyers =  new ppu.Lawyers
@@ -38,9 +39,9 @@ $ ->
       ppu.postsView = new ppu.PostsView collection: ppu.posts
 
     post: (slug)->
-      ppu.posts = new ppu.Posts
-      ppu.posts.fetch reset: true, data: slug: slug
-      ppu.postDetailView = new ppu.PostDetailView collection: ppu.posts
+      ppu.post = new ppu.Post id: slug
+      ppu.post.fetch()
+      ppu.postDetailView = new ppu.PostDetailView model: ppu.post
 
     areas: ->
       ppu.categories = new ppu.Categories

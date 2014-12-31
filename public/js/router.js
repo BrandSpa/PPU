@@ -22,7 +22,8 @@ $(function() {
     };
 
     Workspace.prototype.initialize = function() {
-      return new ppu.AppView;
+      new ppu.AppView;
+      return window.urlTranslation = "";
     };
 
     Workspace.prototype.lawyers = function(lang) {
@@ -78,15 +79,12 @@ $(function() {
     };
 
     Workspace.prototype.post = function(slug) {
-      ppu.posts = new ppu.Posts;
-      ppu.posts.fetch({
-        reset: true,
-        data: {
-          slug: slug
-        }
+      ppu.post = new ppu.Post({
+        id: slug
       });
+      ppu.post.fetch();
       return ppu.postDetailView = new ppu.PostDetailView({
-        collection: ppu.posts
+        model: ppu.post
       });
     };
 

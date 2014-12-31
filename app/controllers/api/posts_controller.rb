@@ -6,6 +6,7 @@ class Api::PostsController < ApplicationController
   def index
     lang = params[:lang] || I18n.locale
     country = params[:country]
+    category = params[:category]
     featured = params[:featured]
     published = params[:published]
     not_featured = params[:not_featured]
@@ -19,6 +20,7 @@ class Api::PostsController < ApplicationController
     collection = collection.not_featured if not_featured.present?
     collection = collection.not_published if not_published.present?
     collection = collection.by_country(country) if country.present?
+    collection = collection.by_category(country) if category.present?
 
     render json: collection.to_json(:include => [:translations, :gallery])
   end
@@ -58,11 +60,18 @@ class Api::PostsController < ApplicationController
     id = params[:id]
     lang = params[:lang] || I18n.locale
 
-    model = entity.get_relationships().by_lang(lang).find_by(id: id)
+    if is_a_number?(id)
+      model = entity.get_relationships().find_by(id: id)
+    else
+      model = entity.get_relationships().find_by(slug: id)
+    end
 
-    render json: model.to_json(:include => [:translation, :categories, :lawyers, :gallery])  
+    render json: model.to_json(:include => [:translations, :categories, :lawyers, :gallery])  
   end
 
+  def is_a_number?(s)
+    s.to_s.match(/\A[+-]?\d+?(\.\d+)?\Z/) == nil ? false : true 
+  end
 
   private 
     def post_params

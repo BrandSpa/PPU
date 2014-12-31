@@ -77,7 +77,6 @@ $ ->
     template: $ "#posts-filter"
 
     events:
-      'change .position': 'byPosition'
       'change .country': 'byCountry'
       'change .category': 'byCategory'
       'keydown .query': 'byQuery'
@@ -86,36 +85,35 @@ $ ->
       template = app.compile(@template)
       @$el.html(template)
 
-    byPosition: (e) ->
-      val = $(e.currentTarget).find('select').val()
-      ppu.lawyers.fetch reset: true, data: position: val
-      
+
     byCountry: (e) ->
       val = $(e.currentTarget).val()
-      ppu.lawyers.fetch reset: true, data: country: val
+      ppu.posts.fetch reset: true, data: country: val
 
     byCategory: (e) ->
       val = $(e.currentTarget).find('select').val()
-      ppu.lawyers.fetch reset: true, data: category: val
+      ppu.posts.fetch reset: true, data: category: val
 
     byQuery: (e) ->
       val = $(e.currentTarget).val()
       if val.length >= 3
-        ppu.lawyers.fetch reset: true, data: keyword: val
+        ppu.posts.fetch reset: true, data: keyword: val
 
   class ppu.PostDetailView extends Backbone.View
     el: $ "#post-detail"
     template: $ "#post-detail-template"
 
     initialize: ->
-      @listenTo(@collection, "reset", @render)
+      @listenTo(@model, "change", @render)
+      @getTitle()
+      
 
     getTitle: ->
       $("#top-bar").html $("#post-detail-title").html()
 
     render: ->
-      @collection.each (model) ->
-        template = app.compile(@template)
-        @$el.html(template( model.toJSON() ))
-      , @
-      @getTitle()
+      template = app.compile(@template)
+      @$el.html(template( @model.toJSON() ))
+      window.urlTranslation = @model.get("translations").slug
+
+      
