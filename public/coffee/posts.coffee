@@ -106,8 +106,7 @@ $ ->
     initialize: ->
       @listenTo(@model, "change", @render)
       @getTitle()
-      
-
+    
     getTitle: ->
       $("#top-bar").html $("#post-detail-title").html()
 

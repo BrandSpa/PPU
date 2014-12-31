@@ -106,6 +106,12 @@ $(window).scroll () ->
   if($(window).scrollTop() + $(window).height() > $(document).height() - 150)
     app.pubsub.trigger("general:scroll")
 
+$(window).scroll () ->
+  if $(window).scrollTop() > 35
+    $(".top-bar-container").addClass("to-top")
+  else
+    $(".top-bar-container").removeClass("to-top")
+
 $('.carousel').carousel()
 
 $(document).ajaxSend (e, xhr, options) ->

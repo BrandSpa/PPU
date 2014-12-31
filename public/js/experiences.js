@@ -174,7 +174,8 @@ $(function() {
     ExperienceDetailView.prototype.render = function() {
       var template;
       template = app.compile(this.template);
-      return this.$el.html(template(this.model.toJSON()));
+      this.$el.html(template(this.model.toJSON()));
+      return window.urlTranslation = this.model.get("translations").slug;
     };
 
     return ExperienceDetailView;
