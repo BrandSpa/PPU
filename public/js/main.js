@@ -21,13 +21,11 @@ app.pubsub = {};
 _.extend(app.pubsub, Backbone.Events);
 
 $(document).ajaxStart(function(t) {
-  NProgress.start();
-  return $("*").css("cursor", "progress");
+  return NProgress.start();
 });
 
 $(document).ajaxStop(function() {
-  NProgress.done();
-  return $("*").css("cursor", "default");
+  return NProgress.done();
 });
 
 app.compileTemplate = function(source) {

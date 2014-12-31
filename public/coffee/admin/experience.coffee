@@ -91,17 +91,12 @@ $ ->
 
     openGallery: (e) ->
       e.preventDefault()
-      ppu.admin.galleryPostModal = new ppu.admin.GalleryExperienceModal collection: ppu.admin.galleries
-      ppu.admin.galleryPostModal.render()
-
-    appendImageHeader: (id) ->
-      @$el.find('.gallery_id').val(id)
+      ppu.admin.galleryExperienceModal = new ppu.admin.GalleryExperienceModal collection: ppu.admin.galleries
+      ppu.admin.galleryExperienceModal.render()
 
     appendSelectedGallery: (gallery_id) ->
-      console.log gallery_id
       $(@el).find('.gallery_id').val(gallery_id)
-      ppu.admin.galleryPostModal.closeModal()
-
+      ppu.admin.galleryExperienceModal.closeModal()
 
     searchLawyer: (e) ->
       query = $(e.currentTarget).val()
@@ -124,6 +119,7 @@ $ ->
       @listenTo(@model, 'change', @render)
       @listenTo(@model, 'error', @renderExperienceErrors, @)
       @listenTo(@model, 'sync', @updated, @)
+      app.pubsub.bind('gallery:selected', @appendSelectedGallery, @)
 
     render: ->
       source = @template.html()
@@ -168,8 +164,9 @@ $ ->
       ppu.admin.galleryExperienceModal = new ppu.admin.GalleryExperienceModal collection: ppu.admin.galleries
       ppu.admin.galleryExperienceModal.render()
 
-    appendImageHeader: (id) ->
-      @$el.find('.gallery_id').val(id)
+    appendSelectedGallery: (gallery_id) ->
+      $(@el).find('.gallery_id').val(gallery_id)
+      ppu.admin.galleryExperienceModal.closeModal()
 
     searchLawyer: (e) ->
       query = $(e.currentTarget).val()

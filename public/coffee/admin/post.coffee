@@ -127,6 +127,7 @@ $ ->
       @listenTo(@model, 'change', @render)
       @listenTo(@model, 'error', @renderPostErrors, @)
       @listenTo(@model, 'sync', @updated, @)
+      app.pubsub.bind('gallery:selected', @appendSelectedGallery, @)
 
     render: ->
       template = app.compile(@template)
@@ -170,8 +171,10 @@ $ ->
       ppu.admin.galleryPostModal = new ppu.admin.GalleryPostModal collection: ppu.admin.galleries
       ppu.admin.galleryPostModal.render()
 
-    appendImageHeader: (id) ->
-      @$el.find('.gallery_id').val(id)
+    appendSelectedGallery: (gallery_id) ->
+      $(@el).find('.gallery_id').val(gallery_id)
+      ppu.admin.galleryPostModal.closeModal()
+
 
     searchLawyer: (e) ->
       query = $(e.currentTarget).val()
