@@ -9,6 +9,7 @@ $ ->
       "posts/:slug" : "post"
       "areas": "areas"
       "areas/:name": "area"
+      "trabaje-con-nosotros": "curriculum"
 
     initialize: ->
       new ppu.AppView
@@ -57,6 +58,11 @@ $ ->
       ppu.experiences = new ppu.Experiences
       ppu.experiences.fetch reset: true, data: published: true, not_featured: true
       ppu.experiencesView = new ppu.ExperiencesView collection: ppu.experiences
+
+    curriculum: ->
+      ppu.curriculum = new ppu.Curriculum
+      ppu.curriculumCreate = new ppu.CurriculumCreate model: ppu.curriculum
+
 
   new ppu.Workspace
   Backbone.history.start pushState: true 

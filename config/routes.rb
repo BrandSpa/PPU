@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     resources :posts
     resources :galleries
     resources :experiences
+    resources :curriculums
     
     namespace :lawyrs do 
       resources :academics
@@ -44,6 +45,7 @@ Rails.application.routes.draw do
     get "areas/:name", to: 'categories#show'
 
     get "/nosotros", to: 'pages#us'
+    get "/trabaje-con-nosotros", to: 'pages#work_with_us'
     get "/probono", to: 'pages#pro_bono'
 
     namespace :admin do 

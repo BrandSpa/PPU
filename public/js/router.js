@@ -17,7 +17,8 @@ $(function() {
       "posts": "posts",
       "posts/:slug": "post",
       "areas": "areas",
-      "areas/:name": "area"
+      "areas/:name": "area",
+      "trabaje-con-nosotros": "curriculum"
     };
 
     Workspace.prototype.initialize = function() {
@@ -122,6 +123,13 @@ $(function() {
       });
       return ppu.experiencesView = new ppu.ExperiencesView({
         collection: ppu.experiences
+      });
+    };
+
+    Workspace.prototype.curriculum = function() {
+      ppu.curriculum = new ppu.Curriculum;
+      return ppu.curriculumCreate = new ppu.CurriculumCreate({
+        model: ppu.curriculum
       });
     };
 

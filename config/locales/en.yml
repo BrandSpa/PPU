@@ -24,6 +24,7 @@ en:
   Practice Areas: "Practice Areas" 
   Us: "Us"
   Download: "Download"
+  send: "Enviar"
   general_information: "General Information"
   Experience: "Experience"
   general_information: "General Information"
@@ -42,3 +43,23 @@ en:
     telecommunications: "Telecommunications"
     infrastructure_&_projects: "Infrastructure & Projects"
     litigations: "Litigations"
+
+  work_with_us:
+    top_title: Who are we looking for?
+    top_text: "We look for young lawyers combining talent, discipline, and solid legal knowledge. People who are committed to their profession, willing to learn, with high capacity for teamwork, who are visionary, and have enough motivation to become outstanding, recognized and respected lawyers in the legal market."
+    form_title: "Please fill the form or contact us at:"
+    carreer_plan: "Carreer plan"
+    carreer_plan_text: "Our Career Plan has been pioneer in the legal market. It has been developed in order to provide clarity about how our lawyers can be projected inside the Firm. Based on this plan are defined a series of policies on professional formation, postgraduate studies, internships abroad, and performance measurement. It is a constant concern of the partners of the Firm that associates develop the necessary skills to enable them to progress in the career plan, for which there are clear criteria for measuring and providing timely feedback on the performance obtained on legal knowledge, excellence in work, professional management of client relations, search for creative solutions, and teamwork ability. All of these are key elements to ensure success of lawyers in our Firm."
+    What_do_we_offer: "What do we offer"
+    An_attractive_career_plan: " An attractive career plan."
+    We_are_an_international: " We are an international firm with opportunities to work in multiple jurisdictions."
+    Integrating_first_level: "Integrating first level work teams, both legally and personally."
+    Relations_with_clients: "Relations with clients who are leaders in their industries."
+    Excellent_work_environment: "Excellent work environment, recognized by our lawyers."
+    city: "City"
+    full_name: "Full name"
+    attach_you_cv: "Attach you CV"
+
+
+
+

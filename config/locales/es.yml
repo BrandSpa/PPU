@@ -40,7 +40,7 @@ es:
   Practice Areas: "Áreas de Práctica" 
   Us: "Nosotros"
   Work with Us: "Trabaje con Nosotros"
-
+  send: "Enviar"
   categories:
     corporate_and_M&A: "Corporativo & MA"
     competition: "Competencia"
@@ -248,3 +248,19 @@ es:
       long: ! '%d de %B de %Y %H:%M'
       short: ! '%d de %b %H:%M'
     pm: pm
+
+  work_with_us:
+    top_title: ¿A quién estamos buscando?
+    top_text: "Buscamos profesionales que combinen el talento con la disciplina, personas que estén comprometidas con su profesión, con ganas de aprender y hacerse una carrera junto a los mejores abogados del país."
+    form_title: "Diligencie el formulario o contáctenos en:"
+    carreer_plan: "Conozca nuestro plan de carrera"
+    carreer_plan_text: "El Plan de Carrera busca premiar los méritos de las personas que conforman nuestro equipo con un programa que les permite avanzar por niveles. La integridad, la experiencia, los conocimientos jurídicos, la excelencia en el trabajo, el manejo profesional de la relación con el cliente, la búsqueda creativa de soluciones y la capacidad de trabajar bien en equipo, son elementos básicos para asegurar el éxito de un abogado en nuestra Firma. Queremos enseñar y formar a los mejores abogados, profundizando en sus áreas de conocimiento, y ayudándolos a fortalecer las competencias necesarias para ser los mejores asesores jurídicos de las empresas. Nuestro Plan de Carrera ha sido pionero en el mercado legal colombiano."
+    What_do_we_offer: "¿Qué ofrecemos?"
+    An_attractive_career_plan: "Un atractivo plan de carrera."
+    We_are_an_international: "Somos un estudio internacional con oportunidades de trabajar en múltiples jurisdicciones. "
+    Integrating_first_level: "Integrar equipos de trabajos de primer nivel, tanto en lo jurídico como en lo personal. "
+    Relations_with_clients: "Relaciones con clientes líderes en sus industrias."
+    Excellent_work_environment: "Excelente ambiente laboral, reconocido por nuestros abogados."
+    country: "Pais"
+    full_name: "Nombre Apellido"
+    attach_you_cv: "Adjunte su Hoja de vida"

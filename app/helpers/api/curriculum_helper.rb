@@ -1,0 +1,2 @@
+module Api::CurriculumHelper
+end
