@@ -75,6 +75,7 @@ $ ->
       template = Handlebars.compile(source)
       @$el.find('.panel-body').html template()
       ppu.appendDatePicker(@el)
+      
       ppu.appendSummernoteExperience(@el)
 
     store: ->

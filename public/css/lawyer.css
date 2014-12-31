@@ -23,9 +23,11 @@
       .lawyer-item .content h3 a {
         color: #5F5F5F; }
   .lawyer-item:first-child, .lawyer-item:nth-child(2n+3) {
-    padding-left: 0; }
+    padding-left: 0;
+    padding-right: 7px; }
   .lawyer-item:nth-child(2n+2) {
-    padding-right: 0; }
+    padding-right: 0;
+    padding-left: 7px; }
   .lawyer-item .phone, .lawyer-item .email {
     color: #00A1B1;
     display: block;

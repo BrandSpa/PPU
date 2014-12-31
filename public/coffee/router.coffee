@@ -8,7 +8,7 @@ $ ->
       "posts" : "posts"
       "posts/:slug" : "post"
       "areas": "areas"
-      "areas/:name": "area"
+      "areas/:slug": "area"
       "trabaje-con-nosotros": "curriculum"
 
     initialize: ->
@@ -46,6 +46,11 @@ $ ->
       ppu.categories = new ppu.Categories
       ppu.categories.fetch reset: true
       ppu.categoriesView = new ppu.CategoriesView collection: ppu.categories
+
+    area: (slug)->
+      ppu.category = new ppu.Category id: slug
+      ppu.category.fetch()
+      ppu.categoryDetail = new ppu.CategoryDetail model: ppu.category
 
     experience: (slug) ->
       ppu.experience = new ppu.Experience id: slug

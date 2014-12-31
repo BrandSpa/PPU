@@ -3,9 +3,6 @@
 /* Portrait tablets and small desktops */
 /* Landscape phones and portrait tablets */
 /* Landscape phones and smaller */
-#experiences {
-  margin-top: 15px; }
-
 .experience-item {
   height: 155px;
   margin-bottom: 15px;
@@ -13,9 +10,11 @@
   .experience-item:first-child {
     padding-left: 0; }
   .experience-item:first-child, .experience-item:nth-child(2n+3) {
-    padding-left: 0; }
+    padding-left: 0;
+    padding-right: 7px; }
   .experience-item:nth-child(2n+2) {
-    padding-right: 0; }
+    padding-right: 0;
+    padding-left: 7px; }
   .experience-item .img-container {
     width: 155px;
     float: left;

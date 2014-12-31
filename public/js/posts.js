@@ -49,6 +49,27 @@ $(function() {
     return PostView;
 
   })(Backbone.View);
+  ppu.PostFeaturedView = (function(_super) {
+    __extends(PostFeaturedView, _super);
+
+    function PostFeaturedView() {
+      return PostFeaturedView.__super__.constructor.apply(this, arguments);
+    }
+
+    PostFeaturedView.prototype.template = $("#post-template");
+
+    PostFeaturedView.prototype.className = "col-md-6 col-sm-6 col-xs-12 post-featured-item";
+
+    PostFeaturedView.prototype.render = function() {
+      var template;
+      template = app.compile(this.template);
+      $(this.el).html(template(this.model.toJSON()));
+      return this;
+    };
+
+    return PostFeaturedView;
+
+  })(Backbone.View);
   ppu.PostsView = (function(_super) {
     __extends(PostsView, _super);
 
@@ -120,7 +141,7 @@ $(function() {
     };
 
     PostsFeaturedView.prototype.renderOne = function(model) {
-      ppu.postView = new ppu.PostView({
+      ppu.postView = new ppu.PostFeaturedView({
         model: model
       });
       return this.$el.append(ppu.postView.render().el);
