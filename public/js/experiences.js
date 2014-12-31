@@ -175,12 +175,12 @@ $(function() {
       var template, translation, translations;
       template = app.compile(this.template);
       this.$el.html(template(this.model.toJSON()));
-      translations = this.model.get("translations").slug;
-      translation = this.model.get("translation").slug;
+      translations = this.model.get("translations");
+      translation = this.model.get("translation");
       if (translations) {
-        return window.urlTranslation = translations;
+        return window.urlTranslation = translations.slug;
       } else {
-        return window.urlTranslation = translation;
+        return window.urlTranslation = translation.slug;
       }
     };
 
