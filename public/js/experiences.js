@@ -172,10 +172,16 @@ $(function() {
     };
 
     ExperienceDetailView.prototype.render = function() {
-      var template;
+      var template, translation, translations;
       template = app.compile(this.template);
       this.$el.html(template(this.model.toJSON()));
-      return window.urlTranslation = this.model.get("translations").slug || this.model.get("translation").slug;
+      translations = this.model.get("translations").slug;
+      translation = this.model.get("translation").slug;
+      if (translations) {
+        return window.urlTranslation = translations;
+      } else {
+        return window.urlTranslation = translation;
+      }
     };
 
     return ExperienceDetailView;
