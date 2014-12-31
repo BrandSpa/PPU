@@ -141,6 +141,14 @@ $(window).scroll(function() {
   }
 });
 
+$(window).scroll(function() {
+  if ($(window).scrollTop() > 35) {
+    return $(".top-bar-container").addClass("to-top");
+  } else {
+    return $(".top-bar-container").removeClass("to-top");
+  }
+});
+
 $('.carousel').carousel();
 
 $(document).ajaxSend(function(e, xhr, options) {
