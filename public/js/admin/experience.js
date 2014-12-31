@@ -172,20 +172,15 @@ $(function() {
 
     ExperienceCreate.prototype.openGallery = function(e) {
       e.preventDefault();
-      ppu.admin.galleryPostModal = new ppu.admin.GalleryExperienceModal({
+      ppu.admin.galleryExperienceModal = new ppu.admin.GalleryExperienceModal({
         collection: ppu.admin.galleries
       });
-      return ppu.admin.galleryPostModal.render();
-    };
-
-    ExperienceCreate.prototype.appendImageHeader = function(id) {
-      return this.$el.find('.gallery_id').val(id);
+      return ppu.admin.galleryExperienceModal.render();
     };
 
     ExperienceCreate.prototype.appendSelectedGallery = function(gallery_id) {
-      console.log(gallery_id);
       $(this.el).find('.gallery_id').val(gallery_id);
-      return ppu.admin.galleryPostModal.closeModal();
+      return ppu.admin.galleryExperienceModal.closeModal();
     };
 
     ExperienceCreate.prototype.searchLawyer = function(e) {
@@ -225,7 +220,8 @@ $(function() {
     ExperienceEdit.prototype.initialize = function() {
       this.listenTo(this.model, 'change', this.render);
       this.listenTo(this.model, 'error', this.renderExperienceErrors, this);
-      return this.listenTo(this.model, 'sync', this.updated, this);
+      this.listenTo(this.model, 'sync', this.updated, this);
+      return app.pubsub.bind('gallery:selected', this.appendSelectedGallery, this);
     };
 
     ExperienceEdit.prototype.render = function() {
@@ -292,8 +288,9 @@ $(function() {
       return ppu.admin.galleryExperienceModal.render();
     };
 
-    ExperienceEdit.prototype.appendImageHeader = function(id) {
-      return this.$el.find('.gallery_id').val(id);
+    ExperienceEdit.prototype.appendSelectedGallery = function(gallery_id) {
+      $(this.el).find('.gallery_id').val(gallery_id);
+      return ppu.admin.galleryExperienceModal.closeModal();
     };
 
     ExperienceEdit.prototype.searchLawyer = function(e) {

@@ -14,7 +14,6 @@ class Api::ExperiencesController < ApplicationController
 			model = entity.with_relationships.find_by(slug: params[:id])
 		end
 
-		
 		render json: model.to_json(:include => [:translations, :categories, :lawyers, :gallery])
 	end
 

@@ -232,7 +232,8 @@ $(function() {
     PostEdit.prototype.initialize = function() {
       this.listenTo(this.model, 'change', this.render);
       this.listenTo(this.model, 'error', this.renderPostErrors, this);
-      return this.listenTo(this.model, 'sync', this.updated, this);
+      this.listenTo(this.model, 'sync', this.updated, this);
+      return app.pubsub.bind('gallery:selected', this.appendSelectedGallery, this);
     };
 
     PostEdit.prototype.render = function() {
@@ -298,8 +299,9 @@ $(function() {
       return ppu.admin.galleryPostModal.render();
     };
 
-    PostEdit.prototype.appendImageHeader = function(id) {
-      return this.$el.find('.gallery_id').val(id);
+    PostEdit.prototype.appendSelectedGallery = function(gallery_id) {
+      $(this.el).find('.gallery_id').val(gallery_id);
+      return ppu.admin.galleryPostModal.closeModal();
     };
 
     PostEdit.prototype.searchLawyer = function(e) {

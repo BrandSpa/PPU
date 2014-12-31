@@ -18,11 +18,9 @@ _.extend(app.pubsub, Backbone.Events)
 
 $(document).ajaxStart (t) ->
   NProgress.start()
-  $("*").css("cursor", "progress")
 
 $(document).ajaxStop () ->
   NProgress.done()
-  $("*").css("cursor", "default")
 
 app.compileTemplate = (source) ->
   source = $(source).html()
