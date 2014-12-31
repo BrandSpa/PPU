@@ -22,7 +22,7 @@ class Api::PostsController < ApplicationController
     collection = collection.by_country(country) if country.present?
     collection = collection.by_category(country) if category.present?
 
-    render json: collection.to_json(:include => [:translations,:translation, :gallery])
+    render json: collection.to_json(:include => [:gallery])
   end
 
   def create
@@ -66,7 +66,7 @@ class Api::PostsController < ApplicationController
       model = entity.get_relationships().find_by(slug: id)
     end
 
-    render json: model.to_json(:include => [:translations, :categories, :lawyers, :gallery])  
+    render json: model.to_json(:include => [:translations, :translation, :categories, :lawyers, :gallery])  
   end
 
   def is_a_number?(s)
