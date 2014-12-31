@@ -9,11 +9,9 @@ Handlebars.registerHelper 'shortenText2', (text, block) ->
 
 Handlebars.registerHelper 'dateFormat', (context, block) ->
   if window.moment
-    f = block.hash.format || "MMM Do, YYYY";
-    moment(Date(context)).format(f)
-  else
-    context
-    
+    f = block.hash.format || "DD/MM/YYYY"
+    moment(context).format(f)
+
 Handlebars.registerHelper 'toUpperCase',(str) ->
   str.toUpperCase()
 
