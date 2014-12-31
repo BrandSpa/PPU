@@ -75,6 +75,13 @@ $ ->
     render: ->
       template = app.compile(@template)
       @$el.html(template( @model.toJSON() ))
-      window.urlTranslation = @model.get("translations").slug || @model.get("translation").slug
+      translations = @model.get("translations").slug
+      translation = @model.get("translation").slug
+      
+      if translations
+        window.urlTranslation = translations
+      else
+        window.urlTranslation = translation
+       
       
   		
