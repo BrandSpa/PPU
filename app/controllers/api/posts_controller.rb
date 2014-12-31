@@ -22,7 +22,7 @@ class Api::PostsController < ApplicationController
     collection = collection.by_country(country) if country.present?
     collection = collection.by_category(country) if category.present?
 
-    render json: collection.to_json(:include => [:translations, :gallery])
+    render json: collection.to_json(:include => [:translations,:translation, :gallery])
   end
 
   def create
