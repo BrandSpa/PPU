@@ -33,6 +33,14 @@ $(".select-cities li a").click(function() {
   return $("#city-info .collapse").removeClass("in");
 });
 
+$('#footer-content').on('shown.bs.collapse', function() {
+  return $(".open-contact-footer").css("color", "#002855");
+});
+
+$('#footer-content').on('hidden.bs.collapse', function() {
+  return $(".open-contact-footer").css("color", "#fff");
+});
+
 app.compileTemplate = function(source) {
   source = $(source).html();
   return Handlebars.compile(source);

@@ -32,8 +32,8 @@ body {
   #change-lang a {
     color: #fff; }
 
-.policy {
-  float: right;
+.policy, .copyright {
+  display: block;
   text-align: right; }
 
 .modal-backdrop {
@@ -259,14 +259,14 @@ ul {
   padding: 20px; }
   #footer a {
     color: #fff;
-    font-size: 1.1em;
-    font-weight: 400; }
+    font-size: 1.1em; }
   #footer .open-contact {
     font-size: 1.3em; }
   #footer .policy {
+    font-size: 0.9em;
+    font-weight: 200; }
+  #footer .copyright {
     font-size: 0.9em; }
-    #footer .policy span {
-      font-weight: 400; }
 
 #lawyer-finish {
   background: #fff;
@@ -365,18 +365,23 @@ ul {
     #footer .close-footer i {
       font-size: 1.3em; }
   #footer h3 {
-    font-size: 1.2em; }
+    font-size: 1.3em; }
   #footer form input.form-control {
     background: transparent;
     height: 35px;
     border: 1px solid #fff !important;
     opacity: 0.7;
-    color: #fff !important; }
+    color: #fff !important;
+    border-radius: 0; }
   #footer form textarea.form-control {
     background: transparent;
     border: 1px solid #fff !important;
     opacity: 0.7;
-    color: #fff !important; }
+    color: #fff !important;
+    border-radius: 0; }
+  #footer form .btn {
+    background: #00A1B1;
+    margin-right: 15px; }
   #footer form label {
     font-weight: 200; }
 
@@ -388,7 +393,8 @@ ul {
   margin: 0 0 10px 0;
   color: #00A1B1; }
 #city-info span {
-  font-weight: 200; }
+  font-weight: 200;
+  font-size: 0.9em; }
 
 .social {
   margin-top: -30px; }
@@ -986,5 +992,24 @@ ul {
   background: #fff; }
   #work-with-us .top {
     padding: 0; }
+
+/* Large desktops and laptops */
+/* Portrait tablets and medium desktops */
+/* Portrait tablets and small desktops */
+/* Landscape phones and portrait tablets */
+/* Landscape phones and smaller */
+#work-with-us h3, #work-with-us h4, #work-with-us h5 {
+  color: #002855; }
+#work-with-us h3 {
+  font-size: 1.4em; }
+#work-with-us p {
+  font-size: 1em;
+  color: #5F5F5F;
+  font-weight: 200;
+  padding-right: 30px; }
+#work-with-us ul {
+  padding-left: 15px; }
+#work-with-us .send-cv {
+  background: #00A1B1; }
 
 /*# sourceMappingURL=theme.css.map */

@@ -25,6 +25,12 @@ $(".select-cities li a").click () ->
   console.log "click"
   $("#city-info .collapse").removeClass("in")
 
+$('#footer-content').on 'shown.bs.collapse', () ->
+  $(".open-contact-footer").css("color", "#002855")
+
+$('#footer-content').on 'hidden.bs.collapse', () ->
+  $(".open-contact-footer").css("color", "#fff")
+
 app.compileTemplate = (source) ->
   source = $(source).html()
   Handlebars.compile source
