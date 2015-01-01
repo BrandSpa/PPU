@@ -21,7 +21,8 @@
       margin: 0 0 15px 0;
       font-size: 1em; }
       .lawyer-item .content h3 a {
-        color: #5F5F5F; }
+        color: #5F5F5F;
+        font-weight: bold; }
   .lawyer-item:first-child, .lawyer-item:nth-child(2n+3) {
     padding-left: 0;
     padding-right: 7px; }
