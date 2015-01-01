@@ -34,7 +34,7 @@
 	<h3><a href="/experiencias/{{ slug }}">{{ title }}</a></h3>
 	  <p> {{shortenText2 excerpt }}</p>
 	  <span class="date">{{dateFormat date format="D - M - YYYY"}}</span>
-	  <a href="#" class="share"><i class="fa fa-share-alt-square"></i> Compartir</a>
+	  <a href="#" class="share"><%= t("share") %>  <i class="fa fa-share-alt"></i></a>
 </div>
 
 </div>
@@ -43,5 +43,5 @@
 
 
 <script id="category-detail-title" type="text/x-handlebars-template">
-	<h1><a href="/posts"><%= t("Areas") %></a></h1>
+	<h1><a href="/areas"><%= t("Practice Areas") %></a></h1>
 </script>
