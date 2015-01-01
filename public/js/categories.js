@@ -107,7 +107,8 @@ $(function() {
       var template;
       template = app.compile(this.template);
       this.$el.html(template(this.model.toJSON()));
-      return this.setUrlTranslation(this.model);
+      this.setUrlTranslation(this.model);
+      return app.pubsub.trigger("categories:list");
     };
 
     return CategoryDetail;
@@ -125,7 +126,14 @@ $(function() {
     CategoriesList.prototype.template = $("#categories-list-template");
 
     CategoriesList.prototype.initialize = function() {
-      return this.listenTo(this.collection, "reset", this.render);
+      this.listenTo(this.collection, "reset", this.render);
+      return app.pubsub.bind("categories:list", this.getAll, this);
+    };
+
+    CategoriesList.prototype.getAll = function() {
+      return ppu.categories.fetch({
+        reset: true
+      });
     };
 
     CategoriesList.prototype.render = function() {

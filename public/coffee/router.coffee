@@ -55,7 +55,6 @@ $ ->
       ppu.categoryDetail = new ppu.CategoryDetail model: ppu.category
 
       ppu.categories = new ppu.Categories
-      ppu.categories.fetch reset: true
       ppu.categoriesList = new ppu.CategoriesList collection: ppu.categories
 
     experience: (slug) ->
