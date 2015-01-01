@@ -29,7 +29,7 @@ Handlebars.registerHelper('getYear', function(context, block) {
   var f;
   if (window.moment) {
     f = block.hash.format || "YYYY";
-    return moment(Date(context)).format(f);
+    return moment(context).format(f);
   } else {
     return context;
   }
