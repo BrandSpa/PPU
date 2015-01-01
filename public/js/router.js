@@ -19,7 +19,9 @@ $(function() {
       "posts/:slug": "post",
       "areas": "areas",
       "areas/:slug": "area",
-      "trabaje-con-nosotros": "curriculum"
+      "trabaje-con-nosotros": "curriculum",
+      "nosotros": "us",
+      "probono": "probono"
     };
 
     Workspace.prototype.initialize = function() {
@@ -140,10 +142,25 @@ $(function() {
     };
 
     Workspace.prototype.curriculum = function() {
+      var title;
       ppu.curriculum = new ppu.Curriculum;
-      return ppu.curriculumCreate = new ppu.CurriculumCreate({
+      ppu.curriculumCreate = new ppu.CurriculumCreate({
         model: ppu.curriculum
       });
+      title = $("#work-with-title-template").html();
+      return $("#top-bar").html(title);
+    };
+
+    Workspace.prototype.us = function() {
+      var title;
+      title = $("#us-title-template").html();
+      return $("#top-bar").html(title);
+    };
+
+    Workspace.prototype.probono = function() {
+      var title;
+      title = $("#probono-title-template").html();
+      return $("#top-bar").html(title);
     };
 
     return Workspace;

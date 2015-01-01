@@ -11,6 +11,8 @@ $ ->
       "areas": "areas"
       "areas/:slug": "area"
       "trabaje-con-nosotros": "curriculum"
+      "nosotros": "us"
+      "probono": "probono"
 
     initialize: ->
       new ppu.AppView
@@ -72,7 +74,17 @@ $ ->
     curriculum: ->
       ppu.curriculum = new ppu.Curriculum
       ppu.curriculumCreate = new ppu.CurriculumCreate model: ppu.curriculum
+      
+      title = $("#work-with-title-template").html()
+      $("#top-bar").html title
 
+    us: ->
+      title = $("#us-title-template").html()
+      $("#top-bar").html title
+
+    probono: ->
+      title = $("#probono-title-template").html()
+      $("#top-bar").html title
 
   new ppu.Workspace
   Backbone.history.start pushState: true 
