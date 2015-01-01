@@ -21,13 +21,11 @@ app.pubsub = {};
 _.extend(app.pubsub, Backbone.Events);
 
 $(document).ajaxStart(function(t) {
-  NProgress.start();
-  return $("*").css("cursor", "progress");
+  return NProgress.start();
 });
 
 $(document).ajaxStop(function() {
-  NProgress.done();
-  return $("*").css("cursor", "default");
+  return NProgress.done();
 });
 
 app.compileTemplate = function(source) {
@@ -47,6 +45,7 @@ ppu.appendDatePickerYear = function(el) {
 
 ppu.appendDatePicker = function(el) {
   return $(el).find('.datepicker').datepicker({
+    format: 'dd/mm/yyyy',
     language: 'es',
     autoclose: true
   });
@@ -136,6 +135,20 @@ ppu.saveMultipeForms = function(el, model, lawyer_id) {
   });
 };
 
+$(window).scroll(function() {
+  if ($(window).scrollTop() + $(window).height() > $(document).height() - 150) {
+    return app.pubsub.trigger("general:scroll");
+  }
+});
+
+$(window).scroll(function() {
+  if ($(window).scrollTop() > 35) {
+    return $(".top-bar-container").addClass("to-top");
+  } else {
+    return $(".top-bar-container").removeClass("to-top");
+  }
+});
+
 $('.carousel').carousel();
 
 $(document).ajaxSend(function(e, xhr, options) {
@@ -176,11 +189,21 @@ $(function() {
     };
 
     AppView.prototype.changeLangPage = function(e) {
+      var urlTranslation;
       e.preventDefault();
+      urlTranslation = window.urlTranslation;
       if (app.lang === 'en') {
-        return window.location = "http://ppulegal.com" + app.pathname;
+        if (urlTranslation === "") {
+          return window.location = "http://ppulegal.com" + app.pathname;
+        } else {
+          return window.location = "http://ppulegal.com/" + ppu.pathUrl[1] + "/" + urlTranslation;
+        }
       } else {
-        return window.location = "http://en.ppulegal.com" + app.pathname;
+        if (urlTranslation === "") {
+          return window.location = "http://en.ppulegal.com" + app.pathname;
+        } else {
+          return window.location = "http://en.ppulegal.com/" + ppu.pathUrl[1] + "/" + urlTranslation;
+        }
       }
     };
 
@@ -205,14 +228,16 @@ $(function() {
       "abogados/:slug": "lawyer",
       "experiencias": "experiences",
       "experiencias/:slug": "experience",
-      "posts": "posts",
+      "": "posts",
       "posts/:slug": "post",
       "areas": "areas",
-      "areas/:name": "area"
+      "areas/:slug": "area",
+      "trabaje-con-nosotros": "curriculum"
     };
 
     Workspace.prototype.initialize = function() {
-      return new ppu.AppView;
+      new ppu.AppView;
+      return window.urlTranslation = "";
     };
 
     Workspace.prototype.lawyers = function(lang) {
@@ -268,15 +293,12 @@ $(function() {
     };
 
     Workspace.prototype.post = function(slug) {
-      ppu.posts = new ppu.Posts;
-      ppu.posts.fetch({
-        reset: true,
-        data: {
-          slug: slug
-        }
+      ppu.post = new ppu.Post({
+        id: slug
       });
+      ppu.post.fetch();
       return ppu.postDetailView = new ppu.PostDetailView({
-        collection: ppu.posts
+        model: ppu.post
       });
     };
 
@@ -287,6 +309,16 @@ $(function() {
       });
       return ppu.categoriesView = new ppu.CategoriesView({
         collection: ppu.categories
+      });
+    };
+
+    Workspace.prototype.area = function(slug) {
+      ppu.category = new ppu.Category({
+        id: slug
+      });
+      ppu.category.fetch();
+      return ppu.categoryDetail = new ppu.CategoryDetail({
+        model: ppu.category
       });
     };
 
@@ -313,6 +345,13 @@ $(function() {
       });
       return ppu.experiencesView = new ppu.ExperiencesView({
         collection: ppu.experiences
+      });
+    };
+
+    Workspace.prototype.curriculum = function() {
+      ppu.curriculum = new ppu.Curriculum;
+      return ppu.curriculumCreate = new ppu.CurriculumCreate({
+        model: ppu.curriculum
       });
     };
 

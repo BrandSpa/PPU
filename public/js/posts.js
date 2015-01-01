@@ -91,6 +91,7 @@ $(function() {
     };
 
     PostsView.prototype.render = function() {
+      this.$el.html("");
       return this.collection.each(function(model) {
         return this.renderOne(model);
       }, this);
