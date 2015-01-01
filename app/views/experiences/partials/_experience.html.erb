@@ -3,8 +3,10 @@
 		{{#if gallery }}
 		<img src="{{ gallery.img_name.url }}" alt="">
 		{{/if}}
+		<span class="year">{{getYear date}}</span>	
 		<h1>{{ title }}</h1>
-
+		<span>{{ company_name }}</span>
+		<span>{{ company_web }}</span>
 	</div>
 	<div class="content">
 		{{ country }} - {{ date }}
@@ -15,7 +17,7 @@
 	<div class="relationship-title">
 		<h3><%= t("Lawyers") %></h3>
 	</div>		
-	<div class="col-lg-12 associated">
+	<div class="lawyers-related">
 	{{#each lawyers}}
 		<div class="col-md-6 col-sm-6 col-xs-12 lawyer-item">
 			<img src="{{ img_name.url }}" alt="{{ name }} {{ lastname }}" class="hidden-xs">

@@ -48,4 +48,16 @@ $ ->
       template = app.compile(@template)
       @$el.html(template( @model.toJSON() ))
       @setUrlTranslation(@model)
-      
+
+  class ppu.CategoriesList extends Backbone.View
+    el: $ "#categories-list"
+    template: $ "#categories-list-template"
+
+    initialize: ->
+      @listenTo(@collection, "reset", @render)
+
+    render: ->
+      template = app.compile(@template)
+      $("#categories-list").html template( @collection.toJSON() )
+      console.log $("#categories-list").html()
+

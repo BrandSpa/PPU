@@ -104,8 +104,15 @@ $(function() {
         id: slug
       });
       ppu.category.fetch();
-      return ppu.categoryDetail = new ppu.CategoryDetail({
+      ppu.categoryDetail = new ppu.CategoryDetail({
         model: ppu.category
+      });
+      ppu.categories = new ppu.Categories;
+      ppu.categories.fetch({
+        reset: true
+      });
+      return ppu.categoriesList = new ppu.CategoriesList({
+        collection: ppu.categories
       });
     };
 

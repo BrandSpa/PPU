@@ -1,54 +1,58 @@
 <script id="category-detail-template" type="text/x-handlebars-template">
-<div class="category-header">
-{{#if gallery }}
-	<img src="{{ gallery.img_name.url }}" alt="">
-{{/if}}
+	<div class="category-header">
+		{{#if gallery }}
+		<img src="{{ gallery.img_name.url }}" alt="">
+		{{/if}}
 
-	<h1>{{ name }}</h1>
+		<h1>{{ name }}</h1>
 
-	<a href="#" class="share">Compartir <i class="fa fa-share-alt-square"></i></a>
-</div>
-<div class="content">
-	<div class="row">
-		<div class="col-lg-6">
-			{{{ description }}}
-		</div>
-		<div class="col-lg-6">
-			<ul class="categories">
-			<li><a href="#">Corporativo y Fusiones y Adquisiciones</a></li>
-			<li>Corporativo y Fusiones y Adquisiciones</li>
-			<li>Corporativo y Fusiones y Adquisiciones</li>
-			<li>Corporativo y Fusiones y Adquisiciones</li>
-			<li>Corporativo y Fusiones y Adquisiciones</li>
-			<li>Corporativo y Fusiones y Adquisiciones</li>
-			</ul>
+		<a href="#" class="share">Compartir <i class="fa fa-share-alt"></i></a>
+	</div>
+	<div class="content">
+		<div class="row">
+			<div class="col-lg-6">
+				{{{ description }}}
+			</div>
+			<div class="col-lg-6">
+				<ul id="categories-list"></ul>
+			</div>
 		</div>
 	</div>
-</div>
-<div class="relationship-title">
-	<h3><%= t("Lawyers") %></h3>
-</div>	
+	{{#if experiences}}
+	<div class="relationship-title">
+		<h3><%= t("Experience") %></h3>
+	</div>	
 
-{{#each experiences}}
+	<div class="experiences-related">
+		{{#each experiences}}
+		<div class="col-md-6 col-sm-6 col-xs-12 experience-item">
+			<div class="img-container">
+				{{#if gallery.img_name.url }}
+				<img src="{{ gallery.img_name.url }}" alt="{{ title }}" class="hidden-xs">
+				{{else}}
+				<img src="{{ img_name.url }}" alt="{{ title }}" class="hidden-xs">
+				{{/if}}
+			</div>
 
-<div class="col-md-6 col-sm-6 col-xs-12 experience-item">
-<div class="img-container">
- {{#if gallery.img_name.url }}
-  <img src="{{ gallery.img_name.url }}" alt="{{ title }}" class="hidden-xs">
-  {{else}}
-   <img src="{{ img_name.url }}" alt="{{ title }}" class="hidden-xs">
- {{/if}}
-</div>
+			<div class="content">
+				<h3><a href="/experiencias/{{ slug }}">{{ title }}</a></h3>
+				<p> {{shortenText2 excerpt }}</p>
+				<span class="date">{{dateFormat date format="D - M - YYYY"}}</span>
+				<a href="#" class="share"><%= t("share") %>  <i class="fa fa-share-alt"></i></a>
+			</div>
 
-<div class="content">
-	<h3><a href="/experiencias/{{ slug }}">{{ title }}</a></h3>
-	  <p> {{shortenText2 excerpt }}</p>
-	  <span class="date">{{dateFormat date format="D - M - YYYY"}}</span>
-	  <a href="#" class="share"><%= t("share") %>  <i class="fa fa-share-alt"></i></a>
-</div>
+		</div>
+		{{/each}}
+		{{/if}}
+	</div>
 
-</div>
-{{/each}}
+</script>
+
+
+<script id="categories-list-template" type="text/x-handlebars-template">
+	{{#each []}}
+		<li><a href="{{slug}}">{{ name }}</a></li>
+	{{/each}}
 </script>
 
 
