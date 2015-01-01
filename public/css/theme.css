@@ -173,7 +173,8 @@ ul {
     border: none;
     padding-top: 15px;
     font-weight: 400;
-    font-size: 0.9em; }
+    font-size: 0.9em;
+    padding-right: 20px; }
   #top-bar select::-ms-expand {
     display: none; }
   #top-bar .checkbox-inline {
@@ -196,7 +197,8 @@ ul {
     float: right;
     height: 50px;
     border-left: 1px solid #fff;
-    position: relative; }
+    position: relative;
+    padding-right: 20px; }
     #top-bar .category:before {
       font-family: "FontAwesome";
       content: "";
@@ -226,7 +228,7 @@ ul {
     #top-bar .search input {
       width: 100%; }
   #top-bar select {
-    padding: 10px 0 0 0;
+    padding: 10px 20px 0 0;
     -webkit-appearance: none;
     -moz-appearance: window;
     appearance: none;
