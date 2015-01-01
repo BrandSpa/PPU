@@ -81,7 +81,6 @@ app.uploadPhotoSummernoteExperience = (file, editor, welEditable) ->
       console.log url
       editor.insertImage(welEditable, url)
 
-
 ppu.appendForm = (el, template)->
   temp = app.compile(template)
   $(temp()).appendTo($(el).find('.fields')).hide().slideDown()

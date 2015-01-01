@@ -48,3 +48,13 @@ Backbone.View::closeModal = ->
   $('.modal-backdrop').remove()
   $('body').removeClass 'modal-open'
   @remove()
+
+Backbone.View::setUrlTranslation = (model) ->
+
+  translations = model.get("translations")
+  translation = model.get("translation")
+
+  if translations
+    window.urlTranslation = translations.slug
+  else
+    window.urlTranslation = translation.slug
