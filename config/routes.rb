@@ -23,9 +23,9 @@ Rails.application.routes.draw do
     end
   end
   
-  get "", to: 'pages#landing'
+  get "", to: 'posts#index'
+  get "/:id", to: 'posts#show'
   
-
   scope "(:locale)", locale: /en|es/ do
     get "abogados/", to: 'lawyers#index'
     get "abogados/:slug", to: 'lawyers#show'

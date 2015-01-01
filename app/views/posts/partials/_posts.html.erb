@@ -10,11 +10,12 @@
 <div class="content">
 	<h3><a href="posts/{{ slug }}">{{ title }}</a></h3>
 	  <p> {{shortenText2 excerpt }}</p>
-	  <span class="date">{{dateFormat date format="D - M - YYYY"}}</span>
-	  <a href="#" class="share"><i class="fa fa-share-alt-square"></i> Compartir</a>
+	  <div class="footer">
+	  	<span class="date">{{dateFormat date format="D - M - YYYY"}}</span>
+	  	<a href="#" class="share">Compartir <i class="fa fa-share-alt"></i></a>
+	  </div>
 </div>
 </script>
-
 
 <script id="post-main-featured-template" type="text/x-handlebars-template">
 <div class="img-container">
@@ -28,10 +29,14 @@
   <div class="content">
 	  <h3><a href="posts/{{ slug }}">{{ title }}</a></h3>
 	  <p> {{shortenText excerpt }}</p>
+	  <div class="footer">
 	  <span class="date">{{dateFormat date format="D - M - YYYY"}}</span>
 	  <a href="#" class="share"> Compartir <i class="fa fa-share-alt"></i></a>
+	  </div>
   </div>
 </script>
 
+
+	
 
 
