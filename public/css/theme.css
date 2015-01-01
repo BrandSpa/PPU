@@ -568,6 +568,8 @@ ul {
       font-size: 0.9em;
       float: right;
       color: #002855; }
+      .post-main-featured-item .content .share i {
+        padding-left: 5px; }
 
 .post-item, .post-featured-item {
   height: 155px;
@@ -617,6 +619,8 @@ ul {
       font-size: 0.8em;
       float: right;
       padding-right: 15px; }
+      .post-item .content .share i, .post-featured-item .content .share i {
+        padding-left: 5px; }
 
 .post-header {
   background: #002855;
@@ -639,6 +643,8 @@ ul {
     color: #fff;
     font-size: 0.9em;
     float: right; }
+    .post-header .share i {
+      padding-left: 5px; }
 
 .content {
   background: #fff;

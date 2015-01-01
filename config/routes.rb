@@ -23,10 +23,10 @@ Rails.application.routes.draw do
     end
   end
   
-  get "", to: 'posts#index'
-  get "/:id", to: 'posts#show'
+
   
   scope "(:locale)", locale: /en|es/ do
+    get "", to: 'posts#index'
     get "abogados/", to: 'lawyers#index'
     get "abogados/:slug", to: 'lawyers#show'
 
