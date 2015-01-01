@@ -25,7 +25,8 @@
   .category-item .content {
     background: #fff;
     padding: 7px;
-    height: 155px; }
+    height: 155px;
+    line-height: 200%; }
     .category-item .content h3 {
       font-size: 1.1em; }
       .category-item .content h3 a {
@@ -69,6 +70,12 @@
   padding: 30px;
   color: #5F5F5F;
   font-size: 1em;
-  line-height: 1.7em; }
+  line-height: 200%; }
+  .content .categories li {
+    list-style: none;
+    border-bottom: 1px solid #f5f5f5;
+    padding: 15px; }
+    .content .categories li a {
+      color: #5F5F5F; }
 
 /*# sourceMappingURL=category.css.map */
