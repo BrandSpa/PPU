@@ -79,3 +79,7 @@ Backbone.View.prototype.setUrlTranslation = function(model) {
     return window.urlTranslation = translation.slug;
   }
 };
+
+Backbone.View.prototype.openShare = function() {
+  return $("#share-modal").modal();
+};

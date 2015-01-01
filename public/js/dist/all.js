@@ -28,6 +28,19 @@ $(document).ajaxStop(function() {
   return NProgress.done();
 });
 
+$(".select-cities li a").click(function() {
+  console.log("click");
+  return $("#city-info .collapse").removeClass("in");
+});
+
+$('#footer-content').on('shown.bs.collapse', function() {
+  return $(".open-contact-footer").css("color", "#002855");
+});
+
+$('#footer-content').on('hidden.bs.collapse', function() {
+  return $(".open-contact-footer").css("color", "#fff");
+});
+
 app.compileTemplate = function(source) {
   source = $(source).html();
   return Handlebars.compile(source);
@@ -233,7 +246,9 @@ $(function() {
       "posts/:slug": "post",
       "areas": "areas",
       "areas/:slug": "area",
-      "trabaje-con-nosotros": "curriculum"
+      "trabaje-con-nosotros": "curriculum",
+      "nosotros": "us",
+      "probono": "probono"
     };
 
     Workspace.prototype.initialize = function() {
@@ -318,8 +333,12 @@ $(function() {
         id: slug
       });
       ppu.category.fetch();
-      return ppu.categoryDetail = new ppu.CategoryDetail({
+      ppu.categoryDetail = new ppu.CategoryDetail({
         model: ppu.category
+      });
+      ppu.categories = new ppu.Categories;
+      return ppu.categoriesList = new ppu.CategoriesList({
+        collection: ppu.categories
       });
     };
 
@@ -350,10 +369,25 @@ $(function() {
     };
 
     Workspace.prototype.curriculum = function() {
+      var title;
       ppu.curriculum = new ppu.Curriculum;
-      return ppu.curriculumCreate = new ppu.CurriculumCreate({
+      ppu.curriculumCreate = new ppu.CurriculumCreate({
         model: ppu.curriculum
       });
+      title = $("#work-with-title-template").html();
+      return $("#top-bar").html(title);
+    };
+
+    Workspace.prototype.us = function() {
+      var title;
+      title = $("#us-title-template").html();
+      return $("#top-bar").html(title);
+    };
+
+    Workspace.prototype.probono = function() {
+      var title;
+      title = $("#probono-title-template").html();
+      return $("#top-bar").html(title);
     };
 
     return Workspace;

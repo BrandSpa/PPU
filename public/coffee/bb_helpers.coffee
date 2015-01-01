@@ -58,3 +58,7 @@ Backbone.View::setUrlTranslation = (model) ->
     window.urlTranslation = translations.slug
   else
     window.urlTranslation = translation.slug
+
+Backbone.View::openShare = ->
+  $("#share-modal").modal()
+
