@@ -68,3 +68,14 @@ Backbone.View.prototype.closeModal = function() {
   $('body').removeClass('modal-open');
   return this.remove();
 };
+
+Backbone.View.prototype.setUrlTranslation = function(model) {
+  var translation, translations;
+  translations = model.get("translations");
+  translation = model.get("translation");
+  if (translations) {
+    return window.urlTranslation = translations.slug;
+  } else {
+    return window.urlTranslation = translation.slug;
+  }
+};
