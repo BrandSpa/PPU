@@ -172,7 +172,7 @@ ul {
     color: #fff;
     border: none;
     padding-top: 15px;
-    font-weight: 400;
+    font-weight: 200;
     font-size: 0.9em;
     padding-right: 20px; }
   #top-bar select::-ms-expand {
@@ -180,8 +180,10 @@ ul {
   #top-bar .checkbox-inline {
     color: #fff;
     padding-left: 30px;
-    font-weight: 400;
+    font-weight: 200;
     font-size: 0.9em; }
+  #top-bar label {
+    font-weight: 200; }
   #top-bar .position {
     float: right;
     position: relative; }
@@ -210,7 +212,7 @@ ul {
   #top-bar .countries {
     float: right;
     height: 50px;
-    padding: 15px 0 0 15px;
+    padding: 17px 0 0 10px;
     border-left: 1px solid #fff; }
   #top-bar .search {
     height: 50px;
@@ -255,7 +257,9 @@ ul {
   height: 70px;
   padding: 15px; }
   #footer a {
-    color: #fff; }
+    color: #fff;
+    font-size: 1.1em;
+    font-weight: 200; }
 
 #lawyer-finish {
   background: #fff;
@@ -696,7 +700,8 @@ ul {
   .category-item .content {
     background: #fff;
     padding: 7px;
-    height: 155px; }
+    height: 155px;
+    line-height: 200%; }
     .category-item .content h3 {
       font-size: 1.1em; }
       .category-item .content h3 a {
@@ -740,7 +745,13 @@ ul {
   padding: 30px;
   color: #5F5F5F;
   font-size: 1em;
-  line-height: 1.7em; }
+  line-height: 200%; }
+  .content .categories li {
+    list-style: none;
+    border-bottom: 1px solid #f5f5f5;
+    padding: 15px; }
+    .content .categories li a {
+      color: #5F5F5F; }
 
 /* Large desktops and laptops */
 /* Portrait tablets and medium desktops */
