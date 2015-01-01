@@ -266,3 +266,10 @@ es:
     country: "Pais"
     full_name: "Nombre Apellido"
     attach_you_cv: "Adjunte su Hoja de vida"
+
+  awards:
+    cl_chambers_2014: "Serivicio al Cliente, Chambers and Partners, 2014"
+    cl_chambers_2013: "Firma del Año Chile, Chambers and Partner, 2013"
+    co_chambers_2013: "Clasificados como firma Top 2013"
+    co_chambers_2012: "Mejor firma del año en Colombia 2012 y 2013"
+

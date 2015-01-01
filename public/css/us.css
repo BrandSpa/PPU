@@ -6,6 +6,53 @@
 #us {
   background: #fff; }
   #us .content {
-    padding: 30px; }
+    padding: 30px;
+    font-weight: 200; }
+  #us h2 {
+    font-size: 1.4em;
+    color: #002855;
+    margin-bottom: 30px; }
+  #us h3 {
+    text-align: center;
+    font-size: 1.1em;
+    padding: 15px 0;
+    border-bottom: 1px solid #ccc;
+    margin: 60px 350px;
+    font-weight: bold; }
+
+#carousel-us-quotes {
+  margin: 60px 0; }
+  #carousel-us-quotes .item p {
+    font-size: 1.1em;
+    text-align: center;
+    font-weight: 400;
+    color: #002855;
+    padding: 0 85px; }
+  #carousel-us-quotes .item span {
+    font-size: 1.1em;
+    text-align: center;
+    font-weight: bold;
+    display: block;
+    color: #002855; }
+
+#carousel-us-awards ul {
+  padding-left: 80px; }
+  #carousel-us-awards ul li {
+    display: inline-block;
+    width: 30%; }
+    #carousel-us-awards ul li img {
+      margin: 0 auto;
+      display: block; }
+    #carousel-us-awards ul li span {
+      width: 100%;
+      display: block;
+      text-align: center;
+      padding: 30px;
+      font-size: 0.9em; }
+
+.carousel-text .carousel-control.left, .carousel-text .carousel-control.right {
+  background-image: none; }
+.carousel-text .carousel-control .glyphicon-chevron-right, .carousel-text .carousel-control .glyphicon-chevron-left {
+  color: #444; }
 
 /*# sourceMappingURL=us.css.map */
