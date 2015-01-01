@@ -254,24 +254,30 @@ ul
 
 .footer-container
   padding: 0 !important
-  height: 70px
+  height: auto
   z-index: 1
   position: fixed
   bottom: 0
-
+  color: #fff
+  
   @media #{$desktop-lg}
     padding: 0 15px 0 0 !important
 
 #footer
-  height: 70px
   background: #002855
   padding-left: 15px
-  height: 70px
-  padding: 15px
+  padding: 20px
   a
     color: #fff
     font-size: 1.1em
-    font-weight: 200
+    font-weight: 400
+  .open-contact
+    font-size: 1.3em
+  .policy
+    font-size: 0.9em
+    span
+      font-weight: 400
+      
 
 #lawyer-finish
   background: #fff
@@ -378,6 +384,53 @@ ul
 
 .lawyers-associated
   padding: 0
+
+#footer
+  position: relative
+  .close-footer
+    position: absolute
+    right: 30px
+    top: 30px
+    i
+      font-size: 1.3em
+  h3
+    font-size: 1.2em
+
+  form
+    input.form-control
+      background: transparent
+      height: 35px
+      border: 1px solid #fff !important
+      opacity: .7
+      color: #fff !important
+
+    textarea.form-control
+      background: transparent
+      border: 1px solid #fff !important
+      opacity: .7
+      color: #fff !important
+
+    label
+      font-weight: 200
+
+.select-cities
+  li
+    font-size: 0.9em
+    list-style: none
+
+#city-info
+  h4
+    margin: 0 0 10px 0
+    color: #00A1B1
+
+  span
+    font-weight: 200
+
+.social
+  margin-top: -30px
+  li
+    display: inline-block
+    margin-left: 15px
 
 @import menu
 @import lawyer

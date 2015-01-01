@@ -15,12 +15,15 @@ app.pubsub = {}
 
 _.extend(app.pubsub, Backbone.Events)
 
-
 $(document).ajaxStart (t) ->
   NProgress.start()
 
 $(document).ajaxStop () ->
   NProgress.done()
+
+$(".select-cities li a").click () ->
+  console.log "click"
+  $("#city-info .collapse").removeClass("in")
 
 app.compileTemplate = (source) ->
   source = $(source).html()

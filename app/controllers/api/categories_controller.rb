@@ -5,7 +5,7 @@ class Api::CategoriesController < ApplicationController
 		else
 			lawyer_position = "Socio"
 		end
-		model = Category.includes(:gallery, :translation, :experiences, :lawyers).joins(:lawyers).where("lawyers.position = ?", lawyer_position).find_by(slug: params[:id])
+		model = Category.includes(:gallery, :translation, :experiences, :lawyers).joins(:lawyers).where("lawyers.position = ?", "").find_by(slug: params[:id])
 		render json: model.to_json(:include => [:gallery, :translation, :translations, :lawyers, :experiences => {:include => :gallery} ])
 	end
 
