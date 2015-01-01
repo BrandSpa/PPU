@@ -19,22 +19,24 @@
     width: 155px;
     float: left;
     overflow: hidden;
-    margin-right: 15px; }
+    margin-right: 30px; }
     .category-item .img-container img {
       width: 155px; }
   .category-item .content {
     background: #fff;
-    padding: 7px;
+    padding: 15px;
     height: 155px;
     line-height: 200%; }
     .category-item .content h3 {
-      font-size: 1.1em; }
+      font-size: 1.1em;
+      font-weight: bold; }
       .category-item .content h3 a {
-        color: #5F5F5F; }
+        color: #002855; }
     .category-item .content p {
-      color: #5F5F5F;
+      color: #7F7F7F;
       font-size: 0.9em;
-      padding: 0 15px 0 0; }
+      padding: 0 15px 0 0;
+      line-height: 150%; }
     .category-item .content .date {
       font-size: 0.8em;
       color: #5F5F5F; }
