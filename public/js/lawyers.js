@@ -195,6 +195,10 @@ $(function() {
 
     LawyerDetailView.prototype.template = $('#lawyer-template');
 
+    LawyerDetailView.prototype.events = {
+      "click .share": "openShare"
+    };
+
     LawyerDetailView.prototype.initialize = function() {
       return this.listenTo(this.collection, 'reset', this.render);
     };

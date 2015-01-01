@@ -59,7 +59,6 @@
       padding: 0 15px 0 0; }
   #lawyer .lawyer-header {
     background: #002855;
-    padding: 30px;
     position: relative;
     overflow: hidden;
     color: #fff;
@@ -68,36 +67,32 @@
     @media (max-width: 480px) {
       #lawyer .lawyer-header {
         height: auto; } }
+    #lawyer .lawyer-header .content-left {
+      float: left;
+      padding: 30px; }
+    #lawyer .lawyer-header .content-right {
+      width: 50%;
+      float: right; }
     #lawyer .lawyer-header img {
-      width: 20%;
-      position: absolute;
-      top: 0;
-      right: 0;
+      width: 170px;
+      float: right;
       -webkit-filter: grayscale(100%);
       -moz-filter: grayscale(100%);
       filter: grayscale(100%); }
-      @media (min-width: 768px) and (max-width: 991px) {
-        #lawyer .lawyer-header img {
-          width: 25%; } }
-      @media (max-width: 767px), (max-width: 480px) {
-        #lawyer .lawyer-header img {
-          display: none; } }
     #lawyer .lawyer-header .btn-vcard {
-      width: 120px;
       font-size: 0.9em;
       font-weight: bold;
-      margin: -30px 23%;
-      float: right; }
-      @media (min-width: 768px) and (max-width: 991px) {
-        #lawyer .lawyer-header .btn-vcard {
-          margin: -30px 25%; } }
-      @media (max-width: 767px) {
-        #lawyer .lawyer-header .btn-vcard {
-          margin: -30px 15px; } }
-      @media (max-width: 480px) {
-        #lawyer .lawyer-header .btn-vcard {
-          width: 100%;
-          margin: 15px 0; } }
+      float: right;
+      margin: 80px -95px 0 0;
+      width: 120px; }
+    #lawyer .lawyer-header .share {
+      color: #fff;
+      float: right;
+      display: block;
+      margin: 30px 30px 0 0;
+      font-size: 1.1em; }
+      #lawyer .lawyer-header .share i {
+        padding-left: 5px; }
   #lawyer p {
     margin: 0; }
   #lawyer h1 {

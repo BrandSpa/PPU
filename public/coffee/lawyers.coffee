@@ -82,6 +82,8 @@ $ ->
   class ppu.LawyerDetailView extends Backbone.View
     el: $ '#lawyer'
     template: $ '#lawyer-template'
+    events:
+      "click .share": "openShare"
     
     initialize: ->
       @listenTo(@collection, 'reset', @render)
