@@ -108,9 +108,6 @@ $(function() {
         model: ppu.category
       });
       ppu.categories = new ppu.Categories;
-      ppu.categories.fetch({
-        reset: true
-      });
       return ppu.categoriesList = new ppu.CategoriesList({
         collection: ppu.categories
       });

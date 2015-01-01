@@ -48,6 +48,7 @@ $ ->
       template = app.compile(@template)
       @$el.html(template( @model.toJSON() ))
       @setUrlTranslation(@model)
+      app.pubsub.trigger("categories:list")
 
   class ppu.CategoriesList extends Backbone.View
     el: $ "#categories-list"
@@ -55,6 +56,10 @@ $ ->
 
     initialize: ->
       @listenTo(@collection, "reset", @render)
+      app.pubsub.bind("categories:list", @getAll, @)
+
+    getAll: ->
+      ppu.categories.fetch reset: true
 
     render: ->
       template = app.compile(@template)
