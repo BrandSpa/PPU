@@ -43,6 +43,8 @@ es:
   send: "Enviar"
   contact: "Contacto"
   share: "Compartir"
+  us: "Nosotros"
+  work_with: "Trabaje con nosotros"
 
   categories:
     corporate_and_M&A: "Corporativo & MA"
