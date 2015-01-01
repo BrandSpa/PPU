@@ -228,6 +228,7 @@ $(function() {
       "abogados/:slug": "lawyer",
       "experiencias": "experiences",
       "experiencias/:slug": "experience",
+      "posts": "posts",
       "": "posts",
       "posts/:slug": "post",
       "areas": "areas",

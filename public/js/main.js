@@ -28,6 +28,11 @@ $(document).ajaxStop(function() {
   return NProgress.done();
 });
 
+$(".select-cities li a").click(function() {
+  console.log("click");
+  return $("#city-info .collapse").removeClass("in");
+});
+
 app.compileTemplate = function(source) {
   source = $(source).html();
   return Handlebars.compile(source);
