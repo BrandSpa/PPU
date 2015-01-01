@@ -29,9 +29,10 @@ body
   a
     color: #fff
 
-.policy
-  float: right
+.policy, .copyright
+  display: block
   text-align: right
+
 
 .modal-backdrop
   background: #002855
@@ -272,13 +273,15 @@ ul
   a
     color: #fff
     font-size: 1.1em
-    font-weight: 400
+
   .open-contact
     font-size: 1.3em
+
   .policy
     font-size: 0.9em
-    span
-      font-weight: 400
+    font-weight: 200
+  .copyright
+    font-size: .9em
       
 
 #lawyer-finish
@@ -396,7 +399,7 @@ ul
     i
       font-size: 1.3em
   h3
-    font-size: 1.2em
+    font-size: 1.3em
 
   form
     input.form-control
@@ -405,12 +408,18 @@ ul
       border: 1px solid #fff !important
       opacity: .7
       color: #fff !important
+      border-radius: 0
 
     textarea.form-control
       background: transparent
       border: 1px solid #fff !important
       opacity: .7
       color: #fff !important
+      border-radius: 0
+
+    .btn
+      background: #00A1B1
+      margin-right: 15px
 
     label
       font-weight: 200
@@ -427,6 +436,7 @@ ul
 
   span
     font-weight: 200
+    font-size: .9em
 
 .social
   margin-top: -30px
@@ -442,4 +452,5 @@ ul
 @import probono
 @import experience
 @import curriculum
+@import work_with_us
 
