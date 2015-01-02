@@ -24,6 +24,9 @@ body {
 .change-lang-container {
   padding-left: 0; }
 
+.navbar-app .container-fluid {
+  padding: 0; }
+
 #change-lang {
   z-index: 1;
   background: #00A1B1;
