@@ -17,12 +17,12 @@ en:
   save: Save
   cancel: Cancel
   page_lang: "Español"
-  Work with Us: "Work with Us"
+  Work with Us: "Recruitment"
   Search: "Search"
   Lawyer type: "Lawyer type"
   Areas: "Areas"
   Practice Areas: "Practice Areas" 
-  Us: "Us"
+  Us: "About us"
   Download: "Download"
   send: "Enviar"
   general_information: "General Information"
@@ -79,5 +79,12 @@ en:
     content_p4: "With this merger is expected to efficiently respond to the new demands for professional services involving the growing economic relationship between the countries of the Pacific Alliance (Chile, Colombia, Mexico, and Peru), added to the growing interest of companies from Europe, Asia, and North America in the Latin American region. Therefore, the firm’s future plans include deploying its presence into other markets such as Peru and Mexico."
     content_p5: "The experience gained by the three firms, along with technical and professional quality, and geographic diversity, will allow Philippi, Prietocarrizosa & Uría provide counseling with increased direct presence in a region that has attracted interest from both local and multinational companies."
 
-
-
+  probono:
+    title: "Philippi, Prietocarrizosa & Uría is part of the Pro Bono Declaration for the Americas."
+    content_p1: "Our lawyers have undertaken with the Pro Bono Foundation in Chile and Colombia to each work 20 hours per year, providing legal counseling free of charge to non-profit institutions dedicated to education, housing, health, extreme poverty, culture and heritage, entrepreneurship, and environment."
+    content_p2: "In Colombia we have achieved that children and elderly people with serious diseases may access comprehensive health services, provided by their health insurance services."
+    content_p3: "We have helped The Halo Trust, an organization that develops demining programs since its establishment and commencement of operations in Colombia, regarding management of their employees, and in general on legal matters inherent to their operations."
+    content_p4: "In collaboration with the Compartamos con Colmbia Foundation we have made part of programs for institutional strengthening, corporate governance and sustainability of NGOs, and for foundations and associations."
+    content_p5: "We have also worked in research of the Cyrus R. Vance Center for International Justice."
+    content_p6: "In Chile we advise on necessary legal requirements of Hogar de Cristo, María Ayuda, Corporación Chileno-Alemana de Beneficencia, People Help People, Economy Council of the Catholic Church, Evangelical Church, and other social and charitable institutions."
+    content_p7: "Moreover, in order to contribute to the legal protection of civil and social rights and human rights, members of our firm have integrated the High Level Advisor Council for Sustainable Development of the UN, the Truth and Reconciliation Commission, the National Advisor Council for Small Grants Program for the UNDP Global Environment Council, the Trust for the Americas, PARTICIPA Corporation, and PRO-HUMANA Foundation."
