@@ -184,7 +184,7 @@ $(function() {
     return LawyersFilters;
 
   })(Backbone.View);
-  return ppu.LawyerDetailView = (function(_super) {
+  ppu.LawyerDetailView = (function(_super) {
     __extends(LawyerDetailView, _super);
 
     function LawyerDetailView() {
@@ -212,6 +212,47 @@ $(function() {
     };
 
     return LawyerDetailView;
+
+  })(Backbone.View);
+  return ppu.lawyersRelatedCategory = (function(_super) {
+    __extends(lawyersRelatedCategory, _super);
+
+    function lawyersRelatedCategory() {
+      return lawyersRelatedCategory.__super__.constructor.apply(this, arguments);
+    }
+
+    lawyersRelatedCategory.prototype.el = $("#lawyers-related");
+
+    lawyersRelatedCategory.prototype.template = $("#lawyer-related-template");
+
+    lawyersRelatedCategory.prototype.initialize = function() {
+      this.listenTo(this.collection, "reset", this.render);
+      return app.pubsub.bind("lawyers:related", this.getRelated, this);
+    };
+
+    lawyersRelatedCategory.prototype.getRelated = function(category) {
+      var position;
+      if (app.lang === "en") {
+        position = "Partner";
+      } else {
+        position = "Socio";
+      }
+      return this.collection.fetch({
+        reset: true,
+        data: {
+          category: category,
+          position: position
+        }
+      });
+    };
+
+    lawyersRelatedCategory.prototype.render = function() {
+      var template;
+      template = app.compile(this.template);
+      return $("#lawyers-related").html(template(this.collection.toJSON()));
+    };
+
+    return lawyersRelatedCategory;
 
   })(Backbone.View);
 });
