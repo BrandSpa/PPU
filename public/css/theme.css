@@ -369,16 +369,18 @@ ul {
   #footer form input.form-control {
     background: transparent;
     height: 35px;
-    border: 1px solid #fff !important;
+    border: 1px solid #00A1B1 !important;
     opacity: 0.7;
     color: #fff !important;
-    border-radius: 0; }
+    border-radius: 0;
+    font-weight: 200; }
   #footer form textarea.form-control {
     background: transparent;
-    border: 1px solid #fff !important;
+    border: 1px solid #00A1B1 !important;
     opacity: 0.7;
     color: #fff !important;
-    border-radius: 0; }
+    border-radius: 0;
+    font-weight: 200; }
   #footer form .btn {
     background: #00A1B1;
     margin-right: 15px; }
