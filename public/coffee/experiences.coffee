@@ -26,9 +26,12 @@ $ ->
   		@$el.append ppu.experienceView.render().el
 
   	render: ->
-  		@collection.each (model) ->
-  			@renderOne(model)
-  		, @
+      $(@el).html('')
+      console.log @collection
+      @collection.each (model) ->
+        ppu.experienceView = new ppu.ExperienceView model: model
+        @$el.append ppu.experienceView.render().el
+      , @
 
   class ppu.ExperiencesFilters extends Backbone.View
     el: $ '#top-bar'
@@ -46,20 +49,20 @@ $ ->
 
     byPosition: (e) ->
       val = $(e.currentTarget).find('select').val()
-      ppu.lawyers.fetch reset: true, data: position: val
+      ppu.experiences.fetch reset: true, data: position: val
       
     byCountry: (e) ->
       val = $(e.currentTarget).val()
-      ppu.lawyers.fetch reset: true, data: country: val
+      ppu.experiences.fetch reset: true, data: country: val
 
     byCategory: (e) ->
       val = $(e.currentTarget).find('select').val()
-      ppu.lawyers.fetch reset: true, data: category: val
+      ppu.experiences.fetch reset: true, data: category: val
 
     byQuery: (e) ->
       val = $(e.currentTarget).val()
       if val.length >= 3
-        ppu.lawyers.fetch reset: true, data: keyword: val
+        ppu.experiences.fetch reset: true, data: keyword: val
 
   class ppu.ExperienceDetailView extends Backbone.View
     el: $ "#experience"

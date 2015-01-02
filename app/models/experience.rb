@@ -9,6 +9,9 @@ class Experience < ActiveRecord::Base
 
   scope :by_lang, -> (lang){ where(lang: lang) }
   scope :by_slug, -> (slug){ where(slug: slug) }
+  scope :by_country, -> (country){ where(country: country) }
+  scope :search, -> (keyword){ where("keywords LIKE ?", "%#{keyword}%") }
+  scope :by_category, -> (category){ includes(:categories).where(categories: {name: category}) }
   scope :with_relationships, ->{ includes(:gallery, :translations, :categories, :lawyers) }
 
 	def self.duplicate(model)

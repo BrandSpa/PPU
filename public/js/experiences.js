@@ -70,8 +70,13 @@ $(function() {
     };
 
     ExperiencesView.prototype.render = function() {
+      $(this.el).html('');
+      console.log(this.collection);
       return this.collection.each(function(model) {
-        return this.renderOne(model);
+        ppu.experienceView = new ppu.ExperienceView({
+          model: model
+        });
+        return this.$el.append(ppu.experienceView.render().el);
       }, this);
     };
 
@@ -105,7 +110,7 @@ $(function() {
     ExperiencesFilters.prototype.byPosition = function(e) {
       var val;
       val = $(e.currentTarget).find('select').val();
-      return ppu.lawyers.fetch({
+      return ppu.experiences.fetch({
         reset: true,
         data: {
           position: val
@@ -116,7 +121,7 @@ $(function() {
     ExperiencesFilters.prototype.byCountry = function(e) {
       var val;
       val = $(e.currentTarget).val();
-      return ppu.lawyers.fetch({
+      return ppu.experiences.fetch({
         reset: true,
         data: {
           country: val
@@ -127,7 +132,7 @@ $(function() {
     ExperiencesFilters.prototype.byCategory = function(e) {
       var val;
       val = $(e.currentTarget).find('select').val();
-      return ppu.lawyers.fetch({
+      return ppu.experiences.fetch({
         reset: true,
         data: {
           category: val
@@ -139,7 +144,7 @@ $(function() {
       var val;
       val = $(e.currentTarget).val();
       if (val.length >= 3) {
-        return ppu.lawyers.fetch({
+        return ppu.experiences.fetch({
           reset: true,
           data: {
             keyword: val
