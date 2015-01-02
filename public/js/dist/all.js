@@ -337,8 +337,12 @@ $(function() {
         model: ppu.category
       });
       ppu.categories = new ppu.Categories;
-      return ppu.categoriesList = new ppu.CategoriesList({
+      ppu.categoriesList = new ppu.CategoriesList({
         collection: ppu.categories
+      });
+      ppu.lawyers = new ppu.Lawyers;
+      return ppu.lawyersRelated = new ppu.lawyersRelatedCategory({
+        collection: ppu.lawyers
       });
     };
 

@@ -49,6 +49,7 @@ $ ->
       @$el.html(template( @model.toJSON() ))
       @setUrlTranslation(@model)
       app.pubsub.trigger("categories:list")
+      app.pubsub.trigger("lawyers:related", @model.get("name"))
 
   class ppu.CategoriesList extends Backbone.View
     el: $ "#categories-list"

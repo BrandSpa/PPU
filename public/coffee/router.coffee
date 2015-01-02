@@ -59,6 +59,9 @@ $ ->
       ppu.categories = new ppu.Categories
       ppu.categoriesList = new ppu.CategoriesList collection: ppu.categories
 
+      ppu.lawyers = new ppu.Lawyers
+      ppu.lawyersRelated = new ppu.lawyersRelatedCategory collection: ppu.lawyers
+
     experience: (slug) ->
       ppu.experience = new ppu.Experience id: slug
       ppu.experience.fetch()

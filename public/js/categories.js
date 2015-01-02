@@ -108,7 +108,8 @@ $(function() {
       template = app.compile(this.template);
       this.$el.html(template(this.model.toJSON()));
       this.setUrlTranslation(this.model);
-      return app.pubsub.trigger("categories:list");
+      app.pubsub.trigger("categories:list");
+      return app.pubsub.trigger("lawyers:related", this.model.get("name"));
     };
 
     return CategoryDetail;
