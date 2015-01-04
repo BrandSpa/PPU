@@ -25,13 +25,7 @@ $ ->
     initialize: ->
       @listenTo(@collection, 'reset', @render)
       @listenTo(@collection, 'add', @renderOne)
-      app.pubsub.bind("general:scroll", @paginate, @)
-
-    paginate: ->
-      offset = $(@el).data('offset') || 0
-      @collection.fetch data: offset: (offset+15)
-      $(@el).data('offset', (offset+15))
-
+    
     renderOne: (model) ->
       view = new ppu.LawyerView model: model
       $(@el).append view.render().el
@@ -52,13 +46,26 @@ $ ->
       'change .category': 'byCategory'
       'keydown .query': 'byQuery'
 
+    initialize: ->
+      @filtersAplied = {}
+      @$el.data("filtersAplied", @filtersAplied)
+      app.pubsub.bind("general:scroll", @paginate, @)
+
     render: ->
       template = app.compile(@template)
       @$el.html(template)
 
+    paginate: ->
+      offset = $(@el).data('offset') || 0
+      data = _.extend(@filtersAplied, offset: (offset+15))
+      ppu.lawyers.fetch data: data
+      $(@el).data('offset', (offset+15))
+      console.log data
+
     byPosition: (e) ->
       val = $(e.currentTarget).find('select').val()
-      ppu.lawyers.fetch reset: true, data: position: val
+      data = _.extend(@filtersAplied, position: val)
+      ppu.lawyers.fetch reset: true, data: data
       
     byCountry: (e) ->
       if $(".countries").find('input[type="checkbox"]:checked').length == 2
@@ -66,17 +73,19 @@ $ ->
       else
         val = $(e.currentTarget).val()
         if $(e.currentTarget).is(":checked")
-          ppu.lawyers.fetch reset: true, data: country: val
-        
-
+          data =  _.extend(@filtersAplied,  country: val)
+          ppu.lawyers.fetch reset: true, data: data
+         
     byCategory: (e) ->
       val = $(e.currentTarget).find('select').val()
-      ppu.lawyers.fetch reset: true, data: category: val
-
+      data = _.extend(@filtersAplied, category: val)
+      ppu.lawyers.fetch reset: true, data: data
+      
     byQuery: (e) ->
       val = $(e.currentTarget).val()
       if val.length >= 3
-        ppu.lawyers.fetch reset: true, data: keyword: val
+        data = _.extend(@filtersAplied, keyword: val)
+        ppu.lawyers.fetch reset: true, data: data
         
 
   class ppu.LawyerDetailView extends Backbone.View

@@ -26,6 +26,8 @@ class Lawyer < ActiveRecord::Base
   after_create :add_slug
   
   scope :relationships, -> { includes( :academics, :articles, :awards, :educations, :institutions, :jobs, :languages, :phrases, :recognitions, :categories) }
+  scope :relationships_for_list, -> { includes(:categories, :translations) }
+  scope :order_list, -> { order({lastname: :asc, position: :asc}) }
   scope :lang, -> (lang){ where(lang: lang) }
   scope :by_position, -> (position){ where(position: position) }
   scope :by_slug, -> (slug){ where(slug: slug) }
@@ -36,7 +38,7 @@ class Lawyer < ActiveRecord::Base
   scope :search, -> (keyword){ where("keywords LIKE ?", "%#{keyword}%") }
   scope :by_name, -> (firstname, lastname){  where("name LIKE ? AND lastname LIKE ?", "%#{firstname}%", "%#{lastname}%") }
   scope :has_translation, -> (slug) { where(slug: slug).count }
-  scope 'paginate', -> (offset) { limit(16).offset(offset).order('position DESC') }
+  scope 'paginate', -> (offset) { limit(20).offset(offset).order('position DESC') }
 
   def self.attach_categories(model, collection)
     if collection.present?

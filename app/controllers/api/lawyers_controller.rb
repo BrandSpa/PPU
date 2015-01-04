@@ -21,22 +21,14 @@ class Api::LawyersController < ApplicationController
     has_translation = params[:has_translation]
     offset = params[:offset]
     
-    collection = Lawyer.where(nil).includes(:categories, :translations).lang(lang).paginate(offset).order({lastname: :asc, position: :asc})
+    collection = Lawyer.all.relationships_for_list.lang(lang).order_list.paginate(offset)
     collection = entity.by_category(category) if category.present?
     collection = collection.by_position(position) if position.present?
-    
     collection = collection.by_trade(trade) if trade.present?
     collection = collection.by_country(country) if country.present?
     collection = collection.search(keyword) if keyword.present? 
     collection = collection.by_name(name) if name.present?
     collection = entity.has_translation(has_translation) if has_translation.present?
-
-    if update.present?
-      collection.each do |m|
-        slug = m.email.split('@')[0]
-        m.update({slug: slug})
-      end
-    end
 
     if slug.present?
       collection = entity.relationships.by_slug(slug).lang(I18n.locale).first

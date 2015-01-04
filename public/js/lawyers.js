@@ -70,19 +70,7 @@ $(function() {
 
     LawyersView.prototype.initialize = function() {
       this.listenTo(this.collection, 'reset', this.render);
-      this.listenTo(this.collection, 'add', this.renderOne);
-      return app.pubsub.bind("general:scroll", this.paginate, this);
-    };
-
-    LawyersView.prototype.paginate = function() {
-      var offset;
-      offset = $(this.el).data('offset') || 0;
-      this.collection.fetch({
-        data: {
-          offset: offset + 15
-        }
-      });
-      return $(this.el).data('offset', offset + 15);
+      return this.listenTo(this.collection, 'add', this.renderOne);
     };
 
     LawyersView.prototype.renderOne = function(model) {
@@ -121,25 +109,45 @@ $(function() {
       'keydown .query': 'byQuery'
     };
 
+    LawyersFilters.prototype.initialize = function() {
+      this.filtersAplied = {};
+      this.$el.data("filtersAplied", this.filtersAplied);
+      return app.pubsub.bind("general:scroll", this.paginate, this);
+    };
+
     LawyersFilters.prototype.render = function() {
       var template;
       template = app.compile(this.template);
       return this.$el.html(template);
     };
 
+    LawyersFilters.prototype.paginate = function() {
+      var data, offset;
+      offset = $(this.el).data('offset') || 0;
+      data = _.extend(this.filtersAplied, {
+        offset: offset + 15
+      });
+      ppu.lawyers.fetch({
+        data: data
+      });
+      $(this.el).data('offset', offset + 15);
+      return console.log(data);
+    };
+
     LawyersFilters.prototype.byPosition = function(e) {
-      var val;
+      var data, val;
       val = $(e.currentTarget).find('select').val();
+      data = _.extend(this.filtersAplied, {
+        position: val
+      });
       return ppu.lawyers.fetch({
         reset: true,
-        data: {
-          position: val
-        }
+        data: data
       });
     };
 
     LawyersFilters.prototype.byCountry = function(e) {
-      var val;
+      var data, val;
       if ($(".countries").find('input[type="checkbox"]:checked').length === 2) {
         return ppu.lawyers.fetch({
           reset: true
@@ -147,36 +155,39 @@ $(function() {
       } else {
         val = $(e.currentTarget).val();
         if ($(e.currentTarget).is(":checked")) {
+          data = _.extend(this.filtersAplied, {
+            country: val
+          });
           return ppu.lawyers.fetch({
             reset: true,
-            data: {
-              country: val
-            }
+            data: data
           });
         }
       }
     };
 
     LawyersFilters.prototype.byCategory = function(e) {
-      var val;
+      var data, val;
       val = $(e.currentTarget).find('select').val();
+      data = _.extend(this.filtersAplied, {
+        category: val
+      });
       return ppu.lawyers.fetch({
         reset: true,
-        data: {
-          category: val
-        }
+        data: data
       });
     };
 
     LawyersFilters.prototype.byQuery = function(e) {
-      var val;
+      var data, val;
       val = $(e.currentTarget).val();
       if (val.length >= 3) {
+        data = _.extend(this.filtersAplied, {
+          keyword: val
+        });
         return ppu.lawyers.fetch({
           reset: true,
-          data: {
-            keyword: val
-          }
+          data: data
         });
       }
     };

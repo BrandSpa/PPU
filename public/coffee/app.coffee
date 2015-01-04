@@ -4,6 +4,12 @@ $ ->
     events: 
       "click .change-lang-page": 'changeLangPage'
 
+    initialize: ->
+      app.pubsub.bind("filter:aplied", @paginateOff, @)
+
+    paginateOff: ->
+      @$el.data("paginate")
+
     changeLangPage: (e) ->
       e.preventDefault()
       urlTranslation = window.urlTranslation
