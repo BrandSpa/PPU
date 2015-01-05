@@ -1,26 +1,22 @@
 class Api::PostsController < ApplicationController
-  def entity
-     Post
-  end
-
+  
   def index
     lang = params[:lang] || I18n.locale
-    country = params[:country]
-    category = params[:category]
     featured = params[:featured]
     published = params[:published]
     not_featured = params[:not_featured]
     not_published = params[:not_published]
-    slug = params[:slug]
+    filters = params.slice(:by_category, :by_country, :by_keyword)
     
     collection = entity.get_relationships().by_lang(lang).all.order(date: :desc)
     collection = collection.featured.order_featured if featured.present?
-    collection = collection.by_slug(slug) if slug.present?
     collection = collection.published if published.present?
     collection = collection.not_featured if not_featured.present?
     collection = collection.not_published if not_published.present?
-    collection = collection.by_country(country) if country.present?
-    collection = collection.by_category(country) if category.present?
+
+    filters.each do |key, val|
+      collection = collection.public_send(key, val) if val.present?
+    end
 
     render json: collection.to_json(:include => [:translations, :translation, :gallery])
   end
@@ -74,6 +70,10 @@ class Api::PostsController < ApplicationController
   end
 
   private 
+    def entity
+      Post
+    end
+
     def post_params
       params.require(:fields).permit(:lang, :country, :date, :author, :title, :content, :content_plain, :img_name, :gallery_id, :published, :featured, :lawyer_ids => [], :category_ids => [])
     end

@@ -80,8 +80,11 @@ $(function() {
     PostsView.prototype.el = $("#posts");
 
     PostsView.prototype.initialize = function() {
-      return this.listenTo(this.collection, 'reset', this.render);
+      this.listenTo(this.collection, 'reset', this.render);
+      return app.pubsub("posts:filter", this.FilterCollection, this);
     };
+
+    PostsView.prototype.FilterCollection = function(filters) {};
 
     PostsView.prototype.renderOne = function(model) {
       ppu.postView = new ppu.PostView({
@@ -175,7 +178,11 @@ $(function() {
     PostsFilters.prototype.events = {
       'change .country': 'byCountry',
       'change .category': 'byCategory',
-      'keydown .query': 'byQuery'
+      'keydown .query': 'byKeyword'
+    };
+
+    PostsFilters.prototype.initialize = function() {
+      return this.filtersAplied = {};
     };
 
     PostsFilters.prototype.render = function() {
@@ -185,36 +192,40 @@ $(function() {
     };
 
     PostsFilters.prototype.byCountry = function(e) {
-      var val;
+      var data, val;
+      ppu.postsFeaturedView.fadeOut();
       val = $(e.currentTarget).val();
+      data = _.extend(this.filtersAplied, {
+        by_country: val
+      });
       return ppu.posts.fetch({
         reset: true,
-        data: {
-          country: val
-        }
+        data: data
       });
     };
 
     PostsFilters.prototype.byCategory = function(e) {
-      var val;
+      var data, val;
       val = $(e.currentTarget).find('select').val();
+      data = _.extend(this.filtersAplied, {
+        by_category: val
+      });
       return ppu.posts.fetch({
         reset: true,
-        data: {
-          category: val
-        }
+        data: data
       });
     };
 
-    PostsFilters.prototype.byQuery = function(e) {
-      var val;
+    PostsFilters.prototype.byKeyword = function(e) {
+      var data, val;
       val = $(e.currentTarget).val();
+      data = _.extend(this.filtersAplied, {
+        by_keyword: val
+      });
       if (val.length >= 3) {
         return ppu.posts.fetch({
           reset: true,
-          data: {
-            keyword: val
-          }
+          data: data
         });
       }
     };

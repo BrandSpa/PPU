@@ -29,6 +29,10 @@ $ ->
 
     initialize: ->
       @listenTo(@collection, 'reset', @render)
+      app.pubsub("posts:filter", @FilterCollection, @)
+
+    FilterCollection: (filters) ->
+
 
     renderOne: (model) ->
       ppu.postView = new ppu.PostView model: model
@@ -39,8 +43,6 @@ $ ->
       @collection.each (model) ->
         @renderOne(model)
       , @
-
-
 
   class ppu.PostMainFeaturedView extends Backbone.View
     template: $ "#post-main-featured-template"
@@ -80,25 +82,32 @@ $ ->
     events:
       'change .country': 'byCountry'
       'change .category': 'byCategory'
-      'keydown .query': 'byQuery'
+      'keydown .query': 'byKeyword'
+
+    initialize: ->
+      @filtersAplied = {}
 
     render: ->
       template = app.compile(@template)
       @$el.html(template)
 
-
     byCountry: (e) ->
+      ppu.postsFeaturedView.fadeOut()
       val = $(e.currentTarget).val()
-      ppu.posts.fetch reset: true, data: country: val
+      data = _.extend(@filtersAplied, by_country: val)
+      ppu.posts.fetch reset: true, data: data
 
     byCategory: (e) ->
       val = $(e.currentTarget).find('select').val()
-      ppu.posts.fetch reset: true, data: category: val
+      data = _.extend(@filtersAplied, by_category: val)
+      ppu.posts.fetch reset: true, data: data
 
-    byQuery: (e) ->
+    byKeyword: (e) ->
+     
       val = $(e.currentTarget).val()
+      data = _.extend(@filtersAplied, by_keyword: val)
       if val.length >= 3
-        ppu.posts.fetch reset: true, data: keyword: val
+        ppu.posts.fetch reset: true, data: data
 
   class ppu.PostDetailView extends Backbone.View
     el: $ "#post-detail"

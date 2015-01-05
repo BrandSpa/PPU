@@ -3,7 +3,7 @@ class Api::LawyersController < ApplicationController
   def index
     lang = I18n.locale
     filters = params.slice(:position, :country, :category, :search)
-    paginate = params[:paginate] || 0 
+    paginate = params[:paginate] || 0
     slug = params[:slug]
     collection = entity.where(nil).lang(lang).includes(:translations, :translation).order(position: :desc, lastname: :asc).paginate(paginate)
 
@@ -17,6 +17,10 @@ class Api::LawyersController < ApplicationController
     else
       render json: collection.to_json(:include => [:translations, :translation])
     end
+  end
+
+  def filter_collectionsby
+    
   end
 
   def show

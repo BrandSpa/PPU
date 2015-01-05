@@ -58,7 +58,7 @@ $ ->
       e.preventDefault()
       query = $(e.currentTarget).val()
       if query.length >= 3
-        @collection.fetch reset: true, data: keyword: query
+        @collection.fetch reset: true, data: search: query
 
     getSelectVal: (e) ->
       $(e.currentTarget).val()

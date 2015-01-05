@@ -16,10 +16,13 @@ class Post < ActiveRecord::Base
   scope :published, ->{ where(published: true) }
   scope :not_featured, ->{ where(featured: nil) }
   scope :by_country, -> (country){ where(country: country) }
+  scope :by_category, -> (category){ includes(:categories).where(categories: {name: category}) }
+  scope :by_keyword, -> (keyword){ where("keywords LIKE ?", "%#{keyword}%") }
   scope :get_relationships, -> { includes(:translation,:translations, :categories, :lawyers, :gallery) }
   scope :order_featured, -> { order(featured: :asc) }
   scope :order_by_date, -> { order(date: :desc) }
-  scope :by_category, -> (category){ includes(:categories).where(categories: {name: category}) }
+  
+  
 
   mount_uploader :img_name, PostImageUploader
 
