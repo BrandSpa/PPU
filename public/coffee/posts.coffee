@@ -102,16 +102,15 @@ $ ->
         data = _.extend(@filtersAplied,  by_country: "")
       else
         if el.find(":not(:checked)")
-           value = el.val()
-          if value == "Colombia"
-            val = "Chile"
-          else
-            val = "Colombia"
-
-          $(".countries").find("input[value='#{val}']").prop('checked', true)
+          val = @CountryNotChecked(el)
           data = _.extend(@filtersAplied,  by_country: val)
 
       app.pubsub.trigger("posts:filter", data)
+
+    CountryNotChecked: (el) ->
+      val = if el.val() == "Colombia" then "Chile" else "Colombia"
+      $(".countries").find("input[value='#{val}']").prop('checked', true)
+      val
 
     byCategory: (e) ->
       val = $(e.currentTarget).find('select').val()

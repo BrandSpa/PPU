@@ -12,16 +12,15 @@ class Post < ActiveRecord::Base
   
   scope :by_lang, -> (lang){ where(lang: lang) }
   scope :by_slug, -> (slug){ where(slug: slug) }
-  scope :featured, ->{ where.not(featured: nil) }
-  scope :published, ->{ where(published: true) }
-  scope :not_featured, ->{ where(featured: nil) }
-  scope :by_country, -> (country){ where(country: country) }
+  scope :featured, -> { where.not(featured: nil) }
+  scope :published, -> { where(published: true) }
+  scope :not_featured, -> { where(featured: nil) }
+  scope :by_country, -> (country){ where("country = ? OR country = 'Global'", country) }
   scope :by_category, -> (category){ includes(:categories).where(categories: {name: category}) }
   scope :by_keyword, -> (keyword){ where("keywords LIKE ?", "%#{keyword}%") }
   scope :get_relationships, -> { includes(:translation,:translations, :categories, :lawyers, :gallery) }
   scope :order_featured, -> { order(featured: :asc) }
   scope :order_by_date, -> { order(date: :desc) }
-  
   
 
   mount_uploader :img_name, PostImageUploader

@@ -203,7 +203,7 @@ $(function() {
     };
 
     PostsFilters.prototype.byCountry = function(e) {
-      var data, el, val, value;
+      var data, el, val;
       el = $(e.currentTarget);
       if ($(".countries").find('input[type="checkbox"]:checked').length === 2) {
         data = _.extend(this.filtersAplied, {
@@ -211,19 +211,20 @@ $(function() {
         });
       } else {
         if (el.find(":not(:checked)")) {
-          value = el.val();
+          val = this.CountryNotChecked(el);
+          data = _.extend(this.filtersAplied, {
+            by_country: val
+          });
         }
-        if (value === "Colombia") {
-          val = "Chile";
-        } else {
-          val = "Colombia";
-        }
-        $(".countries").find("input[value='" + val + "']").prop('checked', true);
-        data = _.extend(this.filtersAplied, {
-          by_country: val
-        });
       }
       return app.pubsub.trigger("posts:filter", data);
+    };
+
+    PostsFilters.prototype.CountryNotChecked = function(el) {
+      var val;
+      val = el.val() === "Colombia" ? "Chile" : "Colombia";
+      $(".countries").find("input[value='" + val + "']").prop('checked', true);
+      return val;
     };
 
     PostsFilters.prototype.byCategory = function(e) {

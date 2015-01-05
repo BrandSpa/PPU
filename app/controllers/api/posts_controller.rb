@@ -2,23 +2,33 @@ class Api::PostsController < ApplicationController
   
   def index
     lang = params[:lang] || I18n.locale
-    featured = params[:featured]
-    published = params[:published]
-    not_featured = params[:not_featured]
-    not_published = params[:not_published]
+
     filters = params.slice(:by_category, :by_country, :by_keyword)
+    filters_not_params = params.slice(:featured, :published, :not_featured, :not_published)
     
     collection = entity.get_relationships().by_lang(lang).all.order(date: :desc)
-    collection = collection.featured.order_featured if featured.present?
-    collection = collection.published if published.present?
-    collection = collection.not_featured if not_featured.present?
-    collection = collection.not_published if not_published.present?
+    collection = filters_without_params(filters_not_params, collection)
+    collection = filters_with_params(filters, collection)
 
-    filters.each do |key, val|
-      collection = collection.public_send(key, val) if val.present?
+    
+    render json: collection.to_json(:include => [:translations, :translation, :gallery])
+  end
+
+
+  def filters_without_params(filters, collection)
+    filters.each do |scope_name, scope_param|
+      collection = collection.public_send(scope_name) if scope_param.present?
     end
 
-    render json: collection.to_json(:include => [:translations, :translation, :gallery])
+    collection
+  end
+
+  def filters_with_params(filters, collection)
+    filters.each do |scope_name, scope_param|
+      collection = collection.public_send(scope_name, scope_param) if scope_param.present?
+    end
+
+    collection
   end
 
   def create

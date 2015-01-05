@@ -19,9 +19,6 @@ class Api::LawyersController < ApplicationController
     end
   end
 
-  def filter_collectionsby
-    
-  end
 
   def show
     id = params[:id]
