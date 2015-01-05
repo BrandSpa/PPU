@@ -125,19 +125,19 @@ $(function() {
       var data, offset;
       offset = $(this.el).data('offset') || 0;
       data = _.extend(this.filtersAplied, {
-        offset: offset + 15
+        paginate: offset
       });
       ppu.lawyers.fetch({
         data: data
       });
-      $(this.el).data('offset', offset + 15);
-      return console.log(data);
+      return $(this.el).data('offset', offset + 20);
     };
 
     LawyersFilters.prototype.byPosition = function(e) {
       var data, val;
       val = $(e.currentTarget).find('select').val();
       data = _.extend(this.filtersAplied, {
+        paginate: 0,
         position: val
       });
       return ppu.lawyers.fetch({
@@ -147,22 +147,35 @@ $(function() {
     };
 
     LawyersFilters.prototype.byCountry = function(e) {
-      var data, val;
+      var data, el, val, value;
+      el = $(e.currentTarget);
       if ($(".countries").find('input[type="checkbox"]:checked').length === 2) {
+        data = _.extend(this.filtersAplied, {
+          paginate: 0,
+          country: ""
+        });
         return ppu.lawyers.fetch({
-          reset: true
+          reset: true,
+          data: data
         });
       } else {
-        val = $(e.currentTarget).val();
-        if ($(e.currentTarget).is(":checked")) {
-          data = _.extend(this.filtersAplied, {
-            country: val
-          });
-          return ppu.lawyers.fetch({
-            reset: true,
-            data: data
-          });
+        if (el.find(":not(:checked)")) {
+          value = el.val();
         }
+        if (value === "Colombia") {
+          val = "Chile";
+        } else {
+          val = "Colombia";
+        }
+        $(".countries").find("input[value='" + val + "']").prop('checked', true);
+        data = _.extend(this.filtersAplied, {
+          paginate: 0,
+          country: val
+        });
+        return ppu.lawyers.fetch({
+          reset: true,
+          data: data
+        });
       }
     };
 
@@ -170,6 +183,7 @@ $(function() {
       var data, val;
       val = $(e.currentTarget).find('select').val();
       data = _.extend(this.filtersAplied, {
+        paginate: 0,
         category: val
       });
       return ppu.lawyers.fetch({
@@ -183,7 +197,8 @@ $(function() {
       val = $(e.currentTarget).val();
       if (val.length >= 3) {
         data = _.extend(this.filtersAplied, {
-          keyword: val
+          paginate: 0,
+          search: val
         });
         return ppu.lawyers.fetch({
           reset: true,

@@ -78,7 +78,8 @@
   font-size: 1em;
   line-height: 200%; }
   .content h4 {
-    color: #002855; }
+    color: #002855;
+    margin: 30px 0 30px 0; }
   .content #categories-list li {
     list-style: none;
     border-bottom: 1px solid #f5f5f5;
@@ -86,11 +87,15 @@
     font-size: 1.1em; }
     .content #categories-list li a {
       color: #5F5F5F; }
+    .content #categories-list li:first-child {
+      padding-top: 0; }
 
 #lawyers-related .lawyer-item {
   padding: 0; }
   #lawyers-related .lawyer-item .content {
     padding: 0;
     min-height: 50px; }
+    #lawyers-related .lawyer-item .content h3 {
+      margin: 0; }
 
 /*# sourceMappingURL=category.css.map */

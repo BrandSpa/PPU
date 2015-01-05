@@ -57,34 +57,42 @@ $ ->
 
     paginate: ->
       offset = $(@el).data('offset') || 0
-      data = _.extend(@filtersAplied, offset: (offset+15))
+      data = _.extend(@filtersAplied, paginate: offset)
       ppu.lawyers.fetch data: data
-      $(@el).data('offset', (offset+15))
-      console.log data
+      $(@el).data('offset', (offset+20))
 
     byPosition: (e) ->
       val = $(e.currentTarget).find('select').val()
-      data = _.extend(@filtersAplied, position: val)
+      data = _.extend(@filtersAplied,paginate: 0, position: val)
       ppu.lawyers.fetch reset: true, data: data
       
     byCountry: (e) ->
+      el = $(e.currentTarget)
+
       if $(".countries").find('input[type="checkbox"]:checked').length == 2
-        ppu.lawyers.fetch reset: true
+        data = _.extend(@filtersAplied,paginate: 0,  country: "")
+        ppu.lawyers.fetch reset: true, data: data
       else
-        val = $(e.currentTarget).val()
-        if $(e.currentTarget).is(":checked")
-          data =  _.extend(@filtersAplied,  country: val)
-          ppu.lawyers.fetch reset: true, data: data
+        if el.find(":not(:checked)")
+           value = el.val()
+          if value == "Colombia"
+            val = "Chile"
+          else
+            val = "Colombia"
+            
+          $(".countries").find("input[value='#{val}']").prop('checked', true)
+          data = _.extend(@filtersAplied,paginate: 0,  country: val)
+          ppu.lawyers.fetch reset: true, data: data          
          
     byCategory: (e) ->
       val = $(e.currentTarget).find('select').val()
-      data = _.extend(@filtersAplied, category: val)
+      data = _.extend(@filtersAplied,paginate: 0, category: val)
       ppu.lawyers.fetch reset: true, data: data
       
     byQuery: (e) ->
       val = $(e.currentTarget).val()
       if val.length >= 3
-        data = _.extend(@filtersAplied, keyword: val)
+        data = _.extend(@filtersAplied,paginate: 0, search: val)
         ppu.lawyers.fetch reset: true, data: data
         
 

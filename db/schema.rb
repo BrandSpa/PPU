@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141231062152) do
+ActiveRecord::Schema.define(version: 20150105040130) do
 
   create_table "academics", force: true do |t|
     t.integer  "lawyer_id"
@@ -75,6 +75,15 @@ ActiveRecord::Schema.define(version: 20141231062152) do
   create_table "categories_posts", id: false, force: true do |t|
     t.integer "post_id"
     t.integer "category_id"
+  end
+
+  create_table "contacts", force: true do |t|
+    t.string   "name"
+    t.string   "lastname"
+    t.string   "email"
+    t.text     "message"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "curriculums", force: true do |t|

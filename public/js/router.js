@@ -26,7 +26,11 @@ $(function() {
 
     Workspace.prototype.initialize = function() {
       new ppu.AppView;
-      return window.urlTranslation = "";
+      window.urlTranslation = "";
+      ppu.contact = new ppu.Contact;
+      return ppu.FooterContactCreate = new ppu.FooterContactCreate({
+        model: ppu.contact
+      });
     };
 
     Workspace.prototype.lawyers = function(lang) {
@@ -42,16 +46,15 @@ $(function() {
     };
 
     Workspace.prototype.lawyer = function(slug) {
-      ppu.lawyers = new ppu.Lawyers;
-      ppu.lawyers.fetch({
+      ppu.lawyer = new ppu.Lawyers;
+      ppu.lawyer.fetch({
         reset: true,
         data: {
-          lang: app.lang,
           slug: slug
         }
       });
       return ppu.LawyerDetailView = new ppu.LawyerDetailView({
-        collection: ppu.lawyers
+        collection: ppu.lawyer
       });
     };
 

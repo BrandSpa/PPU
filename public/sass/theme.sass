@@ -10,9 +10,12 @@ body
 
   @media #{$tablet}
     font-size: 12px
+a
+  &:hover
+    text-decoration: none
 
 .app-container
-  padding-bottom: 70px
+  padding-bottom: 50px
 
 #yield-container
   margin-top: 65px
@@ -173,11 +176,10 @@ ul
     margin: 0
     a
       color: #00A1B1
-    @media #{$desktop-lg}, #{$desktop}
-      padding-right: 30px
+
 
   select, input
-    background: #002855
+    background: transparent
     color: #fff
     border: none
     padding-top: 15px
@@ -199,6 +201,7 @@ ul
   .position
     float: right
     position: relative
+
     &:before
       font-family: 'FontAwesome'
       content: "\f078"
@@ -207,13 +210,15 @@ ul
       color: #fff
       right: 15px
       font-weight: normal
+      z-index: 1
  
   .category
     float: right
     height: 50px
     border-left: 1px solid #fff
     position: relative
-    padding-right: 20px
+
+    overflow: hidden
     &:before
       font-family: 'FontAwesome'
       content: "\f078"
@@ -222,6 +227,7 @@ ul
       color: #fff
       right: 15px
       font-weight: normal
+      z-index: 1
   
   .countries
     float: right
@@ -242,12 +248,13 @@ ul
       color: #fff
       right: 15px
       font-weight: normal
+      z-index: 1
 
     input
       width: 100%
 
   select
-    padding: 10px 20px 0 0
+    padding: 10px 0 0 0
     -webkit-appearance: none
     -moz-appearance: window
     appearance: none
@@ -256,6 +263,8 @@ ul
     cursor: pointer
     text-indent: 0.01px
     text-overflow: ''
+    position: absolute
+    z-index: 2
 
 .footer-container
   padding: 0 !important
@@ -270,8 +279,9 @@ ul
 
 #footer
   background: #002855
-  padding-left: 15px
-  padding: 20px
+  padding-left: 30px
+  padding: 30px
+
   a
     color: #fff
     font-size: 1.1em
@@ -376,7 +386,7 @@ ul
   color: #fff
   padding: 5px 15px
   font-size: 0.9em
-  margin-top: -5px
+  margin-top: 0
 
 .relationship-title
   width: 100%
@@ -432,6 +442,9 @@ ul
   li
     font-size: 0.9em
     list-style: none
+    a
+      &.active
+        color: #00A1B1 !important
 
 #city-info
   h4
@@ -475,7 +488,7 @@ ul
       content: "\f09a"
       color: #fff
       font-size: 30px
-      f099
+
 
   .at15t_twitter
     &:before
@@ -492,10 +505,13 @@ ul
   .at15t_email
     &:before
       content: "\f003"
-      
+    
   .at15t_whatsapp
     &:before
-      content: "\f0e5"
+      content: ""
+    @media #{$mobile}
+      &:before
+        content: "\f0e5"
      
 
 @import menu

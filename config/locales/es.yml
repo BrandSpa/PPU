@@ -14,7 +14,7 @@ es:
   associated: "Asociado"
   lawyer: "Abogado"
   specialist: "Especialista"
-  practice_areas: "Áreas de practica"
+  practice_areas: "Áreas de práctica"
   article: "Publicaciones"
   Articles: "Publicaciones"
   award: "Premios"
@@ -45,6 +45,12 @@ es:
   share: "Compartir"
   us: "Nosotros"
   work_with: "Trabaje con nosotros"
+  form_footer:
+    name: "Nombre"
+    lastname: "Apellido"
+    message: "Mensaje"
+
+  form_thanks: "Gracias por comunicarse con nostros, pronto nos pondremos en contacto con usted."  
 
   categories:
     corporate_and_M&A: "Corporativo & MA"

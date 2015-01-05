@@ -21,8 +21,9 @@ $(document).ajaxStart (t) ->
 $(document).ajaxStop () ->
   NProgress.done()
 
-$(".select-cities li a").click () ->
-  console.log "click"
+$(".select-cities li a").click (e) ->
+  $(".select-cities li a").removeClass('active')
+  $(e.currentTarget).addClass('active')
   $("#city-info .collapse").removeClass("in")
 
 $('#footer-content').on 'shown.bs.collapse', () ->

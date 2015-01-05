@@ -13,6 +13,7 @@ $ ->
 
 		initialize: ->
 			@listenTo(@model, "sync", @stored)
+			@listenTo @model, "error", @renderErrors, @
 
 		saveCV: (e) ->
 			e.preventDefault()
@@ -23,7 +24,8 @@ $ ->
 
 		stored: (model)->
 			if model
-				$forms = $(@el).find('form')
-				$forms.fadeOut()
+				$forms = $(@el).find('form').fadeOut()
+				$(@el).find(".form_thanks").removeClass("hidden")
+
 				
 			

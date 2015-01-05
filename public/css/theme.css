@@ -15,8 +15,11 @@ body {
     body {
       font-size: 12px; } }
 
+a:hover {
+  text-decoration: none; }
+
 .app-container {
-  padding-bottom: 70px; }
+  padding-bottom: 50px; }
 
 #yield-container {
   margin-top: 65px; }
@@ -169,11 +172,8 @@ ul {
     margin: 0; }
     #top-bar h1 a {
       color: #00A1B1; }
-    @media (min-width: 1200px), (min-width: 992px) and (max-width: 1199px) {
-      #top-bar h1 {
-        padding-right: 30px; } }
   #top-bar select, #top-bar input {
-    background: #002855;
+    background: transparent;
     color: #fff;
     border: none;
     padding-top: 15px;
@@ -199,13 +199,14 @@ ul {
       top: 15px;
       color: #fff;
       right: 15px;
-      font-weight: normal; }
+      font-weight: normal;
+      z-index: 1; }
   #top-bar .category {
     float: right;
     height: 50px;
     border-left: 1px solid #fff;
     position: relative;
-    padding-right: 20px; }
+    overflow: hidden; }
     #top-bar .category:before {
       font-family: "FontAwesome";
       content: "";
@@ -213,7 +214,8 @@ ul {
       top: 15px;
       color: #fff;
       right: 15px;
-      font-weight: normal; }
+      font-weight: normal;
+      z-index: 1; }
   #top-bar .countries {
     float: right;
     height: 50px;
@@ -231,11 +233,12 @@ ul {
       top: 15px;
       color: #fff;
       right: 15px;
-      font-weight: normal; }
+      font-weight: normal;
+      z-index: 1; }
     #top-bar .search input {
       width: 100%; }
   #top-bar select {
-    padding: 10px 20px 0 0;
+    padding: 10px 0 0 0;
     -webkit-appearance: none;
     -moz-appearance: window;
     appearance: none;
@@ -243,7 +246,9 @@ ul {
     outline: none;
     cursor: pointer;
     text-indent: 0.01px;
-    text-overflow: ""; }
+    text-overflow: "";
+    position: absolute;
+    z-index: 2; }
 
 .footer-container {
   padding: 0 !important;
@@ -258,8 +263,8 @@ ul {
 
 #footer {
   background: #002855;
-  padding-left: 15px;
-  padding: 20px; }
+  padding-left: 30px;
+  padding: 30px; }
   #footer a {
     color: #fff;
     font-size: 1.1em; }
@@ -344,7 +349,7 @@ ul {
   color: #fff;
   padding: 5px 15px;
   font-size: 0.9em;
-  margin-top: -5px; }
+  margin-top: 0; }
 
 .relationship-title {
   width: 100%;
@@ -393,6 +398,8 @@ ul {
 .select-cities li {
   font-size: 0.9em;
   list-style: none; }
+  .select-cities li a.active {
+    color: #00A1B1 !important; }
 
 #city-info h4 {
   margin: 0 0 10px 0;
@@ -439,7 +446,10 @@ ul {
 #share-modal .at15t_email:before {
   content: ""; }
 #share-modal .at15t_whatsapp:before {
-  content: ""; }
+  content: ""; }
+@media (max-width: 767px) {
+  #share-modal .at15t_whatsapp:before {
+    content: ""; } }
 
 .navbar-app {
   background: #fff; }
@@ -509,16 +519,23 @@ ul {
 
 #lawyer {
   margin: 15px 0 0 0;
-  padding: 0;
+  padding: 0 0 15px 0;
   background: #fff;
   color: #5F5F5F; }
+  #lawyer .row {
+    padding-bottom: 30px; }
   #lawyer h3 {
-    text-align: center;
     font-size: 1.5em;
     font-weight: 400;
-    padding: 0 30px; }
+    padding: 0 30px;
+    color: #002855; }
     #lawyer h3 i {
       padding: 0 15px 0 0; }
+  #lawyer .lawyer-left {
+    border-right: 1px solid #ddd; }
+  #lawyer .lawyer-right h3 {
+    padding: 0;
+    margin-bottom: 30px; }
   #lawyer .lawyer-header {
     background: #002855;
     position: relative;
@@ -598,7 +615,8 @@ ul {
       margin-bottom: 15px; }
   #lawyer .phrase {
     padding: 0 30px 0 30px;
-    text-align: center; }
+    text-align: center;
+    color: #002855; }
     #lawyer .phrase p {
       font-size: 1em;
       font-style: italic; }
@@ -608,12 +626,9 @@ ul {
     padding: 0 90px; }
   #lawyer .lawyer-right {
     padding: 0 30px; }
-  #lawyer .award {
-    text-align: center; }
-    #lawyer .award img {
-      margin: 0 auto; }
-    #lawyer .award h5 {
-      font-size: 1em; }
+  #lawyer .award h5 {
+    font-size: 1em;
+    margin-bottom: 15px; }
   #lawyer .article-container a, #lawyer .article-container p {
     font-size: 0.9em;
     float: left;
@@ -840,7 +855,8 @@ ul {
   font-size: 1em;
   line-height: 200%; }
   .content h4 {
-    color: #002855; }
+    color: #002855;
+    margin: 30px 0 30px 0; }
   .content #categories-list li {
     list-style: none;
     border-bottom: 1px solid #f5f5f5;
@@ -848,12 +864,16 @@ ul {
     font-size: 1.1em; }
     .content #categories-list li a {
       color: #5F5F5F; }
+    .content #categories-list li:first-child {
+      padding-top: 0; }
 
 #lawyers-related .lawyer-item {
   padding: 0; }
   #lawyers-related .lawyer-item .content {
     padding: 0;
     min-height: 50px; }
+    #lawyers-related .lawyer-item .content h3 {
+      margin: 0; }
 
 /* Large desktops and laptops */
 /* Portrait tablets and medium desktops */
@@ -1017,6 +1037,8 @@ ul {
     font-size: 0.9em;
     display: block;
     color: #00A1B1; }
+    .experience-header .company-web a {
+      color: #00A1B1; }
 
 .content {
   background: #fff;
@@ -1051,6 +1073,8 @@ ul {
   padding-right: 30px; }
 #work-with-us ul {
   padding-left: 15px; }
+  #work-with-us ul li {
+    font-weight: 200; }
 #work-with-us .send-cv {
   background: #00A1B1; }
 

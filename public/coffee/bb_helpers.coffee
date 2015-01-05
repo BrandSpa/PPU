@@ -34,6 +34,7 @@ Backbone.View::renderErrors = (model, response) ->
     model = model
     $form = @$el.find('form')
     errors = JSON.parse(response.responseText)
+    $form.find('.error-message').remove()
     _.each errors, (message, field) ->
       input = $form.find("[name='fields[#{field}]' ]")
       input.addClass "error"

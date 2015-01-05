@@ -17,6 +17,8 @@ $ ->
     initialize: ->
       new ppu.AppView
       window.urlTranslation = ""
+      ppu.contact = new ppu.Contact
+      ppu.FooterContactCreate = new ppu.FooterContactCreate model: ppu.contact
       
     lawyers: (lang) ->
       ppu.lawyers =  new ppu.Lawyers
@@ -26,9 +28,9 @@ $ ->
       ppu.lawyersView =  new ppu.LawyersView collection: ppu.lawyers
 
     lawyer: (slug) ->
-      ppu.lawyers =  new ppu.Lawyers
-      ppu.lawyers.fetch reset: true, data: lang: app.lang, slug: slug
-      ppu.LawyerDetailView = new ppu.LawyerDetailView collection: ppu.lawyers
+      ppu.lawyer = new ppu.Lawyers 
+      ppu.lawyer.fetch reset: true, data: slug: slug
+      ppu.LawyerDetailView = new ppu.LawyerDetailView collection: ppu.lawyer
 
     posts: ->
       ppu.postsFeatured = new ppu.Posts

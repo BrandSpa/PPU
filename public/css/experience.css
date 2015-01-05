@@ -79,6 +79,8 @@
     font-size: 0.9em;
     display: block;
     color: #00A1B1; }
+    .experience-header .company-web a {
+      color: #00A1B1; }
 
 .content {
   background: #fff;

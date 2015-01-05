@@ -26,19 +26,14 @@ class Lawyer < ActiveRecord::Base
   after_create :add_slug
   
   scope :relationships, -> { includes( :academics, :articles, :awards, :educations, :institutions, :jobs, :languages, :phrases, :recognitions, :categories) }
-  scope :relationships_for_list, -> { includes(:categories, :translations) }
-  scope :order_list, -> { order({lastname: :asc, position: :asc}) }
   scope :lang, -> (lang){ where(lang: lang) }
-  scope :by_position, -> (position){ where(position: position) }
-  scope :by_slug, -> (slug){ where(slug: slug) }
-  scope :by_country, -> (country){ where(country: country) }
-  scope :by_category, -> (category){ includes(:categories).where(categories: {name: category}) }
-  scope :by_trade, -> (trade){ joins(:trades).where('trades.title' => trade ) }
-  scope :by_trade_id, -> (trade){ joins(:trades).where('trades.id' => trade ) }
+  scope :position, -> (position){ where(position: position) }
+  scope :slug, -> (slug){ where(slug: slug) }
+  scope :country, -> (country){ where(country: country) }
+  scope :category, -> (category){ includes(:categories).where(categories: {name: category}) }
   scope :search, -> (keyword){ where("keywords LIKE ?", "%#{keyword}%") }
-  scope :by_name, -> (firstname, lastname){  where("name LIKE ? AND lastname LIKE ?", "%#{firstname}%", "%#{lastname}%") }
   scope :has_translation, -> (slug) { where(slug: slug).count }
-  scope 'paginate', -> (offset) { limit(20).offset(offset).order('position DESC') }
+  scope :paginate, -> (paginate) { limit(20).offset(paginate) }
 
   def self.attach_categories(model, collection)
     if collection.present?

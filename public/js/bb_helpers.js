@@ -48,6 +48,7 @@ Backbone.View.prototype.renderErrors = function(model, response) {
   model = model;
   $form = this.$el.find('form');
   errors = JSON.parse(response.responseText);
+  $form.find('.error-message').remove();
   return _.each(errors, function(message, field) {
     var input;
     input = $form.find("[name='fields[" + field + "]' ]");

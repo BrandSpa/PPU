@@ -12,8 +12,6 @@ gem 'carrierwave'
 
 gem "mini_magick"
 
-gem 'will_paginate'
-
 gem "sanitize"
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder

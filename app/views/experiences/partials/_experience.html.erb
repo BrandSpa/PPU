@@ -6,7 +6,7 @@
 		<span class="year">{{getYear date}}</span>	
 		<h1>{{ title }}</h1>
 		<span class="company-name">{{ company_name }}</span>
-		<span class="company-web">{{ company_web }}</span>
+		<span class="company-web"><a href="http://{{ company_web }}" target="_blank">{{ company_web }}</a></span>
 	</div>
 	<div class="content">
 		{{ country }} - {{ date }}
@@ -36,5 +36,7 @@
 <script id="experience-detail-title" type="text/x-handlebars-template">
 	<h1><a href="/experiencias"><%= t("Experience") %></a></h1>
 </script>
+
+
 
 

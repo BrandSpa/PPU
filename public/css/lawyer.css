@@ -47,16 +47,23 @@
 
 #lawyer {
   margin: 15px 0 0 0;
-  padding: 0;
+  padding: 0 0 15px 0;
   background: #fff;
   color: #5F5F5F; }
+  #lawyer .row {
+    padding-bottom: 30px; }
   #lawyer h3 {
-    text-align: center;
     font-size: 1.5em;
     font-weight: 400;
-    padding: 0 30px; }
+    padding: 0 30px;
+    color: #002855; }
     #lawyer h3 i {
       padding: 0 15px 0 0; }
+  #lawyer .lawyer-left {
+    border-right: 1px solid #ddd; }
+  #lawyer .lawyer-right h3 {
+    padding: 0;
+    margin-bottom: 30px; }
   #lawyer .lawyer-header {
     background: #002855;
     position: relative;
@@ -136,7 +143,8 @@
       margin-bottom: 15px; }
   #lawyer .phrase {
     padding: 0 30px 0 30px;
-    text-align: center; }
+    text-align: center;
+    color: #002855; }
     #lawyer .phrase p {
       font-size: 1em;
       font-style: italic; }
@@ -146,12 +154,9 @@
     padding: 0 90px; }
   #lawyer .lawyer-right {
     padding: 0 30px; }
-  #lawyer .award {
-    text-align: center; }
-    #lawyer .award img {
-      margin: 0 auto; }
-    #lawyer .award h5 {
-      font-size: 1em; }
+  #lawyer .award h5 {
+    font-size: 1em;
+    margin-bottom: 15px; }
   #lawyer .article-container a, #lawyer .article-container p {
     font-size: 0.9em;
     float: left;

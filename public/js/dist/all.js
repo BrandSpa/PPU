@@ -201,6 +201,14 @@ $(function() {
       "click .change-lang-page": 'changeLangPage'
     };
 
+    AppView.prototype.initialize = function() {
+      return app.pubsub.bind("filter:aplied", this.paginateOff, this);
+    };
+
+    AppView.prototype.paginateOff = function() {
+      return this.$el.data("paginate");
+    };
+
     AppView.prototype.changeLangPage = function(e) {
       var urlTranslation;
       e.preventDefault();
@@ -269,16 +277,15 @@ $(function() {
     };
 
     Workspace.prototype.lawyer = function(slug) {
-      ppu.lawyers = new ppu.Lawyers;
-      ppu.lawyers.fetch({
+      ppu.lawyer = new ppu.Lawyers;
+      ppu.lawyer.fetch({
         reset: true,
         data: {
-          lang: app.lang,
           slug: slug
         }
       });
       return ppu.LawyerDetailView = new ppu.LawyerDetailView({
-        collection: ppu.lawyers
+        collection: ppu.lawyer
       });
     };
 

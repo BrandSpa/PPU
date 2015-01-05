@@ -3,7 +3,7 @@
   <div class="lawyer-header">
     <div class="content-left">
       <p>{{ position }}</p>
-      <h1>{{ name }} {{ lastname }}</h1>
+      <h1>{{toUpperCase name }} {{toUpperCase lastname }}</h1>
       <a href="tel:{{ phone }}" class="lawyer-phone">{{ phone }}</a>
       <a href="mailto:{{ email }}" class="lawyer-email">{{ email }}</a>
     </div>
@@ -24,6 +24,7 @@
   <p class="lawyer-description">{{ description }}</p>
   <div class="row">
     <div class="col-lg-6 lawyer-left">
+    
       <h3><i class="fa fa-briefcase"></i> <%= t('general_information') %></h3>
       {{#if categories}}
       <h4><%= t('practice_areas') %></h4>

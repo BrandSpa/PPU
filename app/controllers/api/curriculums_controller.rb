@@ -1,5 +1,5 @@
 class Api::CurriculumsController < ApplicationController
-	before_action :authenticate_user!, except: [:index, :show]
+	before_action :authenticate_user!, except: [:index, :show, :create]
 
 	def create
 		model = entity.create(curriculum_params)

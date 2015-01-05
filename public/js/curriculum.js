@@ -42,7 +42,8 @@ $(function() {
     };
 
     CurriculumCreate.prototype.initialize = function() {
-      return this.listenTo(this.model, "sync", this.stored);
+      this.listenTo(this.model, "sync", this.stored);
+      return this.listenTo(this.model, "error", this.renderErrors, this);
     };
 
     CurriculumCreate.prototype.saveCV = function(e) {
@@ -57,8 +58,8 @@ $(function() {
     CurriculumCreate.prototype.stored = function(model) {
       var $forms;
       if (model) {
-        $forms = $(this.el).find('form');
-        return $forms.fadeOut();
+        $forms = $(this.el).find('form').fadeOut();
+        return $(this.el).find(".form_thanks").removeClass("hidden");
       }
     };
 

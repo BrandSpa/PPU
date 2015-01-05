@@ -53,17 +53,28 @@
 
 #lawyer
   margin: 15px 0 0 0
-  padding: 0
+  padding: 0 0 15px 0
   background: #fff
   color: #5F5F5F
+  .row
+    padding-bottom: 30px
+
   h3
-    text-align: center
     font-size: 1.5em
     font-weight: 400
     padding: 0 30px
+    color: $color-darkBlue
 
     i
       padding: 0 15px 0 0
+
+  .lawyer-left
+    border-right: 1px solid #ddd
+
+  .lawyer-right
+    h3
+      padding: 0
+      margin-bottom: 30px
 
   .lawyer-header
     background: #002855
@@ -91,7 +102,6 @@
       -webkit-filter: grayscale(100%)
       -moz-filter: grayscale(100%)
       filter: grayscale(100%)
-
 
     .btn-vcard
       font-size: 0.9em
@@ -124,8 +134,6 @@
 
   .lawyer-email
     color: #00A1B1
-
-  
   
   ul
     padding-left: 45px
@@ -169,6 +177,7 @@
   .phrase
     padding: 0 30px 0 30px
     text-align: center
+    color: $color-darkBlue
     p
       font-size: 1em
       font-style: italic
@@ -182,11 +191,10 @@
     padding: 0 30px
 
   .award
-    text-align: center
-    img
-      margin: 0 auto
+
     h5
       font-size: 1em
+      margin-bottom: 15px
 
   .article-container
     a, p
