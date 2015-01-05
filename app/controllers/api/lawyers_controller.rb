@@ -1,6 +1,5 @@
 class Api::LawyersController < ApplicationController
   
-
   def index
     lang = I18n.locale
     filters = params.slice(:position, :country, :category, :search)
@@ -18,16 +17,13 @@ class Api::LawyersController < ApplicationController
     else
       render json: collection.to_json(:include => [:translations, :translation])
     end
-    
-    
-
   end
 
   def show
     id = params[:id]
     lang = params[:lang] || I18n.locale
-
-    render
+    model = entity.find_by(id: id)
+    render json: model.to_json(:include => [:translations,:categories, :translation])
   end
 
   def create
