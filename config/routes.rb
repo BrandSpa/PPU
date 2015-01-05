@@ -35,6 +35,7 @@ Rails.application.routes.draw do
     get "experiencias/:slug", to: 'experiences#show'
 
     get "abogados/:id/vcard", to: 'lawyers#vcard'
+    
     get "lawyers", to: 'lawyers#index'
     get "crear-abogado", to: redirect('/admin/lawyers/new')
     get "editar-abogado/:slug", to: 'admin/lawyers#index'

@@ -27,7 +27,6 @@ class LawyersController < ApplicationController
   end
 
   def by_id
-    lang = params[:lang] || "es"
-    Lawyer.lang(lang).find(params[:id])
+    Lawyer.find(params[:id])
   end
 end
