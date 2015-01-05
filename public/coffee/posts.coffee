@@ -29,10 +29,10 @@ $ ->
 
     initialize: ->
       @listenTo(@collection, 'reset', @render)
-      app.pubsub("posts:filter", @FilterCollection, @)
+      app.pubsub.bind("posts:filter", @filterCollection, @)
 
-    FilterCollection: (filters) ->
-
+    filterCollection: (filters) ->
+      @collection.fetch reset: true, lang: app.lang, data: filters
 
     renderOne: (model) ->
       ppu.postView = new ppu.PostView model: model
@@ -58,6 +58,10 @@ $ ->
     
     initialize: ->
       @listenTo(@collection, "reset", @render)
+      app.pubsub.bind("posts:filter", @hide, @)
+
+    hide: ->
+      @$el.fadeOut()
 
     renderMain: (model) ->
       ppu.postMainFeaturedView = new ppu.PostMainFeaturedView model: model
@@ -92,22 +96,34 @@ $ ->
       @$el.html(template)
 
     byCountry: (e) ->
-      ppu.postsFeaturedView.fadeOut()
-      val = $(e.currentTarget).val()
-      data = _.extend(@filtersAplied, by_country: val)
-      ppu.posts.fetch reset: true, data: data
+      el = $(e.currentTarget)
+
+      if $(".countries").find('input[type="checkbox"]:checked').length == 2
+        data = _.extend(@filtersAplied,  by_country: "")
+      else
+        if el.find(":not(:checked)")
+           value = el.val()
+          if value == "Colombia"
+            val = "Chile"
+          else
+            val = "Colombia"
+
+          $(".countries").find("input[value='#{val}']").prop('checked', true)
+          data = _.extend(@filtersAplied,  by_country: val)
+
+      app.pubsub.trigger("posts:filter", data)
 
     byCategory: (e) ->
       val = $(e.currentTarget).find('select').val()
       data = _.extend(@filtersAplied, by_category: val)
-      ppu.posts.fetch reset: true, data: data
+      app.pubsub.trigger("posts:filter", data)
 
     byKeyword: (e) ->
      
       val = $(e.currentTarget).val()
       data = _.extend(@filtersAplied, by_keyword: val)
       if val.length >= 3
-        ppu.posts.fetch reset: true, data: data
+        app.pubsub.trigger("posts:filter", data)
 
   class ppu.PostDetailView extends Backbone.View
     el: $ "#post-detail"

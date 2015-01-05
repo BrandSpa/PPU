@@ -81,10 +81,16 @@ $(function() {
 
     PostsView.prototype.initialize = function() {
       this.listenTo(this.collection, 'reset', this.render);
-      return app.pubsub("posts:filter", this.FilterCollection, this);
+      return app.pubsub.bind("posts:filter", this.filterCollection, this);
     };
 
-    PostsView.prototype.FilterCollection = function(filters) {};
+    PostsView.prototype.filterCollection = function(filters) {
+      return this.collection.fetch({
+        reset: true,
+        lang: app.lang,
+        data: filters
+      });
+    };
 
     PostsView.prototype.renderOne = function(model) {
       ppu.postView = new ppu.PostView({
@@ -134,7 +140,12 @@ $(function() {
     PostsFeaturedView.prototype.el = $("#posts-featured");
 
     PostsFeaturedView.prototype.initialize = function() {
-      return this.listenTo(this.collection, "reset", this.render);
+      this.listenTo(this.collection, "reset", this.render);
+      return app.pubsub.bind("posts:filter", this.hide, this);
+    };
+
+    PostsFeaturedView.prototype.hide = function() {
+      return this.$el.fadeOut();
     };
 
     PostsFeaturedView.prototype.renderMain = function(model) {
@@ -192,16 +203,27 @@ $(function() {
     };
 
     PostsFilters.prototype.byCountry = function(e) {
-      var data, val;
-      ppu.postsFeaturedView.fadeOut();
-      val = $(e.currentTarget).val();
-      data = _.extend(this.filtersAplied, {
-        by_country: val
-      });
-      return ppu.posts.fetch({
-        reset: true,
-        data: data
-      });
+      var data, el, val, value;
+      el = $(e.currentTarget);
+      if ($(".countries").find('input[type="checkbox"]:checked').length === 2) {
+        data = _.extend(this.filtersAplied, {
+          by_country: ""
+        });
+      } else {
+        if (el.find(":not(:checked)")) {
+          value = el.val();
+        }
+        if (value === "Colombia") {
+          val = "Chile";
+        } else {
+          val = "Colombia";
+        }
+        $(".countries").find("input[value='" + val + "']").prop('checked', true);
+        data = _.extend(this.filtersAplied, {
+          by_country: val
+        });
+      }
+      return app.pubsub.trigger("posts:filter", data);
     };
 
     PostsFilters.prototype.byCategory = function(e) {
@@ -210,10 +232,7 @@ $(function() {
       data = _.extend(this.filtersAplied, {
         by_category: val
       });
-      return ppu.posts.fetch({
-        reset: true,
-        data: data
-      });
+      return app.pubsub.trigger("posts:filter", data);
     };
 
     PostsFilters.prototype.byKeyword = function(e) {
@@ -223,10 +242,7 @@ $(function() {
         by_keyword: val
       });
       if (val.length >= 3) {
-        return ppu.posts.fetch({
-          reset: true,
-          data: data
-        });
+        return app.pubsub.trigger("posts:filter", data);
       }
     };
 
