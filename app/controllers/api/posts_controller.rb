@@ -1,5 +1,6 @@
 class Api::PostsController < ApplicationController
-  
+  include Filterable
+
   def index
     lang = params[:lang] || I18n.locale
 
@@ -10,25 +11,7 @@ class Api::PostsController < ApplicationController
     collection = filters_without_params(filters_not_params, collection)
     collection = filters_with_params(filters, collection)
 
-    
     render json: collection.to_json(:include => [:translations, :translation, :gallery])
-  end
-
-
-  def filters_without_params(filters, collection)
-    filters.each do |scope_name, scope_param|
-      collection = collection.public_send(scope_name) if scope_param.present?
-    end
-
-    collection
-  end
-
-  def filters_with_params(filters, collection)
-    filters.each do |scope_name, scope_param|
-      collection = collection.public_send(scope_name, scope_param) if scope_param.present?
-    end
-
-    collection
   end
 
   def create

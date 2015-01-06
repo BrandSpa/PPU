@@ -1,14 +1,12 @@
 class Api::ExperiencesController < ApplicationController
+	include Filterable
 
 	def index
 		lang = params[:lang] || I18n.locale 
-		category = params[:category]
-		country = params[:country]
-		keyword = params[:keyword]
+		filters = params.slice(:by_category, :by_country, :by_keyword)
 		collection = entity.with_relationships.by_lang(lang).all
-		collection = entity.by_category(category) if category.present?
-		collection = collection.by_country(country) if country.present?
-		collection = collection.search(keyword) if keyword.present? 
+    collection = filters_with_params(filters, collection)
+
 		render json: collection.to_json(:include => [:translations,:translation, :categories, :lawyers, :gallery])
 	end
 

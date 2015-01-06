@@ -1,3 +1,59 @@
+<div class="panel panel-default" id="lawyers-dashboard">
+<div class="panel-heading">
+        <h4 >Abogados</h4>
+      </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-lg-3">
+        <input name="query" class="form-control query" placeholder="Buscar">
+      </div>  
+      <div class="col-lg-3">
+        <select class="form-control lawyer-filter-country">
+          <option>País</option>
+          <option value="Chile">Chile</option>
+          <option value="Colombia">Colombia</option>
+        </select>
+      </div>
+      <div class="col-lg-3">
+        <select class="form-control lawyer-filter-position">
+          <option>Cargo</option>
+          <option value="<%= t('lawyer')%>"><%= t('lawyer')%></option>
+          <option value="<%= t('specialist')%>"><%= t('specialist')%></option>
+          <option value="<%= t('partner')%>"><%= t('partner')%></option>
+          <option value="<%= t('senior_counsel')%>"><%= t('senior_counsel')%></option>
+        </select>
+          </div>
+        <div class="col-lg-3">
+        <select class="form-control lawyer-filter-category">
+          <option>Áreas</option>
+          <%= render "partials/categories_option" %>
+        </select>
+      </div>
+    </div>
+    <hr>
+
+    <hr>
+    <div class="table-responsive">
+    <table class="table table-condensed">
+      <thead>
+        <tr>
+          <th>Imagen</th>
+          <th>Nombre</th>
+          <th>Email</th>
+          <th>Cargo</th>
+          <th>País</th>
+          <th>Traducción</th>
+          <th>Opciones</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+    <hr>
+    <a href="#" class="btn btn-info see-more" data-offset="0">Mostrar más</a>
+    </div>
+  </div>
+</div>
+
 <div class="panel panel-default" id="posts-dasboard">
 <div class="panel-heading">
 				<h4 >Noticias</h4>
@@ -116,58 +172,7 @@
 </div>
 
 
-<div class="panel panel-default" id="lawyers-dashboard">
-<div class="panel-heading">
-				<h4 >Abogados</h4>
-			</div>
-	<div class="panel-body">
-		<div class="row">
-			<div class="col-lg-3">
-				<input name="query" class="form-control query" placeholder="Buscar">
-			</div>	
-			<div class="col-lg-3">
-				<select class="form-control lawyer-filter-country">
-					<option>País</option>
-					<option value="Chile">Chile</option>
-					<option value="Colombia">Colombia</option>
-				</select>
-			</div>
-			<div class="col-lg-3">
-				<select class="form-control lawyer-filter-position">
-					<option>Cargo</option>
-					<option value="<%= t('lawyer')%>"><%= t('lawyer')%></option>
-					<option value="<%= t('specialist')%>"><%= t('specialist')%></option>
-					<option value="<%= t('partner')%>"><%= t('partner')%></option>
-					<option value="<%= t('senior_counsel')%>"><%= t('senior_counsel')%></option>
-				</select>
-					</div>
-				<div class="col-lg-3">
-				<select class="form-control lawyer-filter-category">
-					<option>Áreas</option>
-					<%= render "partials/categories_option" %>
-				</select>
-			</div>
-		</div>
-		<hr>
 
-		<div class="table-responsive">
-		<table class="table table-condensed">
-			<thead>
-				<tr>
-					<th>Imagen</th>
-					<th>Nombre</th>
-					<th>Email</th>
-					<th>Cargo</th>
-					<th>País</th>
-					<th>Traducción</th>
-					<th>Opciones</th>
-				</tr>
-			</thead>
-			<tbody></tbody>
-		</table>
-		</div>
-	</div>
-</div>
 
 
 

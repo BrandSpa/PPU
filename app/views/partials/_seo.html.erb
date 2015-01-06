@@ -1,0 +1,18 @@
+<script id="seo-template" type="text/x-handlebars-template">
+	<title>Philippi Prietocarrizosa &Uría - {{ subtitle }}</title>
+	<meta name="description" content="{{ description }}">
+	<meta property="og:title" content="{{ subtitle }}" />
+	<meta property="og:description" content="{{ description }}" />  
+
+	{{#if gallery.img_name.url}}
+		<meta property="og:image" content="{{ gallery.img_name.url }}" />
+	{{else}}
+		<meta property="og:image" content="http://ppulegal.com/img/Logo@2x.png" />
+	{{/if}}
+
+	{{#if img_name.url}}
+		<meta property="og:image" content="{{ img_name.url }}" />
+	{{else}}
+		<meta property="og:image" content="http://ppulegal.com/img/Logo@2x.png" />
+	{{/if}}
+</script>
