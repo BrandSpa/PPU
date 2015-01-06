@@ -25,11 +25,11 @@ $ ->
 
     publish: (e) ->
       e.preventDefault()
-      @model.save published: true
+      @model.save fields: published: true
 
     unpublish: (e) ->
       e.preventDefault()
-      @model.save published: false
+      @model.save fields: published: false
 
     translate: (e) ->
       e.preventDefault()
@@ -44,6 +44,10 @@ $ ->
     initialize: ->
       @listenTo(@collection, 'reset', @render)
       @listenTo(@collection, 'add', @addOne, @)
+      app.pubsub.bind("posts:filter", @filterCollection, @)
+
+    filterCollection: (filters) ->
+      @collection.fetch reset: true, lang: app.lang, data: filters
 
     addOne: (model) ->
       view = new ppu.admin.PostView model: model
@@ -55,6 +59,44 @@ $ ->
         view = new ppu.admin.PostView model: model
         $(@el).find('tbody').append view.render().el
       , @
+
+  class ppu.admin.PostsFilters extends Backbone.View
+    el: $ '.post-filter'
+  
+    events:
+      'change .country': 'byCountry'
+      'change .category': 'byCategory'
+      'keydown .query': 'byKeyword'
+
+    initialize: ->
+      @filtersAplied = {lang: "es"}
+
+    render: ->
+      template = app.compile(@template)
+      @$el.html(template)
+
+    byCountry: (e) ->
+      el = $(e.currentTarget)
+      val = el.val()
+      data = _.extend(@filtersAplied,  by_country: val)
+      app.pubsub.trigger("posts:filter", data)
+
+    CountryNotChecked: (el) ->
+      val = if el.val() == "Colombia" then "Chile" else "Colombia"
+      $(".countries").find("input[value='#{val}']").prop('checked', true)
+      val
+
+    byCategory: (e) ->
+      val = $(e.currentTarget).find('select').val()
+      data = _.extend(@filtersAplied, by_category: val)
+      app.pubsub.trigger("posts:filter", data)
+
+    byKeyword: (e) ->
+     
+      val = $(e.currentTarget).val()
+      data = _.extend(@filtersAplied, by_keyword: val)
+      if val.length >= 3
+        app.pubsub.trigger("posts:filter", data)
 
   class ppu.admin.PostCreate extends Backbone.View
     el: $ "#post-create"

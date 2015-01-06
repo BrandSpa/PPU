@@ -33,6 +33,7 @@ $ ->
       ppu.posts = new ppu.Posts
       ppu.posts.fetch reset: true
       ppu.admin.posts = new ppu.admin.PostsView collection: ppu.posts
+      ppu.admin.postsFilters = new ppu.admin.PostsFilters
 
       ppu.experiences = new ppu.Experiences
       ppu.experiences.fetch reset: true

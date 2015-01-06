@@ -60,14 +60,18 @@ $(function() {
     PostView.prototype.publish = function(e) {
       e.preventDefault();
       return this.model.save({
-        published: true
+        fields: {
+          published: true
+        }
       });
     };
 
     PostView.prototype.unpublish = function(e) {
       e.preventDefault();
       return this.model.save({
-        published: false
+        fields: {
+          published: false
+        }
       });
     };
 
@@ -94,7 +98,16 @@ $(function() {
 
     PostsView.prototype.initialize = function() {
       this.listenTo(this.collection, 'reset', this.render);
-      return this.listenTo(this.collection, 'add', this.addOne, this);
+      this.listenTo(this.collection, 'add', this.addOne, this);
+      return app.pubsub.bind("posts:filter", this.filterCollection, this);
+    };
+
+    PostsView.prototype.filterCollection = function(filters) {
+      return this.collection.fetch({
+        reset: true,
+        lang: app.lang,
+        data: filters
+      });
     };
 
     PostsView.prototype.addOne = function(model) {
@@ -117,6 +130,73 @@ $(function() {
     };
 
     return PostsView;
+
+  })(Backbone.View);
+  ppu.admin.PostsFilters = (function(_super) {
+    __extends(PostsFilters, _super);
+
+    function PostsFilters() {
+      return PostsFilters.__super__.constructor.apply(this, arguments);
+    }
+
+    PostsFilters.prototype.el = $('.post-filter');
+
+    PostsFilters.prototype.events = {
+      'change .country': 'byCountry',
+      'change .category': 'byCategory',
+      'keydown .query': 'byKeyword'
+    };
+
+    PostsFilters.prototype.initialize = function() {
+      return this.filtersAplied = {
+        lang: "es"
+      };
+    };
+
+    PostsFilters.prototype.render = function() {
+      var template;
+      template = app.compile(this.template);
+      return this.$el.html(template);
+    };
+
+    PostsFilters.prototype.byCountry = function(e) {
+      var data, el, val;
+      el = $(e.currentTarget);
+      val = el.val();
+      data = _.extend(this.filtersAplied, {
+        by_country: val
+      });
+      return app.pubsub.trigger("posts:filter", data);
+    };
+
+    PostsFilters.prototype.CountryNotChecked = function(el) {
+      var val;
+      val = el.val() === "Colombia" ? "Chile" : "Colombia";
+      $(".countries").find("input[value='" + val + "']").prop('checked', true);
+      return val;
+    };
+
+    PostsFilters.prototype.byCategory = function(e) {
+      var data, val;
+      val = $(e.currentTarget).find('select').val();
+      data = _.extend(this.filtersAplied, {
+        by_category: val
+      });
+      return app.pubsub.trigger("posts:filter", data);
+    };
+
+    PostsFilters.prototype.byKeyword = function(e) {
+      var data, val;
+      val = $(e.currentTarget).val();
+      data = _.extend(this.filtersAplied, {
+        by_keyword: val
+      });
+      if (val.length >= 3) {
+        return app.pubsub.trigger("posts:filter", data);
+      }
+    };
+
+    return PostsFilters;
 
   })(Backbone.View);
   ppu.admin.PostCreate = (function(_super) {

@@ -1,7 +1,7 @@
 <div class="panel panel-default" id="lawyers-dashboard">
 <div class="panel-heading">
-        <h4 >Abogados</h4>
-      </div>
+  <h4 >Abogados</h4>
+</div>
 
   <div class="panel-body">
     <div class="row lawyers-filters" >
@@ -59,21 +59,21 @@
 		<h4 >Noticias</h4>
 			</div>
 	<div class="panel-body">
-		<div class="row">
+		<div class="row post-filter">
 			<div class="col-lg-3">
 				<form class="search">
-					<input name="query" class="form-control" placeholder="Buscar">
+					<input name="query" class="form-control query" placeholder="Buscar">
 				</form>
 			</div>
 				<div class="col-lg-3">
-				<select class="form-control lawyer-filter-country">
+				<select class="form-control country">
 					<option>País</option>
 					<option value="Chile">Chile</option>
 					<option value="Colombia">Colombia</option>
 				</select>
 			</div>
-			<div class="col-lg-3">
-				<select class="form-control lawyer-filter-category">
+			<div class="col-lg-3 category">
+				<select class="form-control ">
 					<option>Áreas</option>
 					<option value="<%= t('categories.corporate_and_M&A')%>"><%= t('categories.corporate_and_M&A')%></option>
 					<option value="<%= t('categories.competition')%>"><%= t('categories.competition')%></option>
