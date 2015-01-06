@@ -49,9 +49,10 @@ $(function() {
       ppu.experiences.fetch({
         reset: true
       });
-      return ppu.admin.experiences = new ppu.admin.ExperiencesView({
+      ppu.admin.experiences = new ppu.admin.ExperiencesView({
         collection: ppu.experiences
       });
+      return ppu.admin.experiencesFilters = new ppu.admin.ExperiencesFilters;
     };
 
     Router.prototype.createLawyer = function(lang) {

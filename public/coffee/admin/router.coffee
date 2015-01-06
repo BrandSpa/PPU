@@ -38,6 +38,7 @@ $ ->
       ppu.experiences = new ppu.Experiences
       ppu.experiences.fetch reset: true
       ppu.admin.experiences = new ppu.admin.ExperiencesView collection: ppu.experiences
+      ppu.admin.experiencesFilters = new ppu.admin.ExperiencesFilters
 
     createLawyer: (lang) ->
       ppu.lawyer =  new ppu.Lawyer

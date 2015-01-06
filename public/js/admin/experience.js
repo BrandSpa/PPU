@@ -119,6 +119,83 @@ $(function() {
     return ExperiencesView;
 
   })(Backbone.View);
+  ppu.admin.ExperiencesFilters = (function(_super) {
+    __extends(ExperiencesFilters, _super);
+
+    function ExperiencesFilters() {
+      return ExperiencesFilters.__super__.constructor.apply(this, arguments);
+    }
+
+    ExperiencesFilters.prototype.el = $('.experience-filter');
+
+    ExperiencesFilters.prototype.events = {
+      'change .position': 'byPosition',
+      'change .country': 'byCountry',
+      'change .category': 'byCategory',
+      'keydown .query': 'byQuery'
+    };
+
+    ExperiencesFilters.prototype.initialize = function() {
+      return this.filtersAplied = {};
+    };
+
+    ExperiencesFilters.prototype.render = function() {
+      var template;
+      template = app.compile(this.template);
+      return this.$el.html(template);
+    };
+
+    ExperiencesFilters.prototype.filterBy = function(field, val) {
+      var data;
+      data = _.extend(this.filtersAplied, {
+        field: val
+      });
+      return app.pubsub.trigger("experiences:filter", data);
+    };
+
+    ExperiencesFilters.prototype.byPosition = function(e) {
+      var val;
+      val = $(e.currentTarget).find('select').val();
+      return this.filterBy('by_position', val);
+    };
+
+    ExperiencesFilters.prototype.byCountry = function(e) {
+      var val;
+      val = $(e.currentTarget).val();
+      if ($(".countries").find('input[type="checkbox"]:checked').length === 2) {
+        return this.filterBy('by_country', "");
+      } else {
+        if (el.find(":not(:checked)")) {
+          val = this.CountryNotChecked(el);
+          return this.filterBy('by_country', val);
+        }
+      }
+    };
+
+    ExperiencesFilters.prototype.CountryNotChecked = function(el) {
+      var val;
+      val = el.val() === "Colombia" ? "Chile" : "Colombia";
+      $(".countries").find("input[value='" + val + "']").prop('checked', true);
+      return val;
+    };
+
+    ExperiencesFilters.prototype.byCategory = function(e) {
+      var val;
+      val = $(e.currentTarget).find('select').val();
+      return this.filterBy('by_category', val);
+    };
+
+    ExperiencesFilters.prototype.byQuery = function(e) {
+      var val;
+      val = $(e.currentTarget).val();
+      if (val.length >= 3) {
+        return this.filterBy('by_keyword', val);
+      }
+    };
+
+    return ExperiencesFilters;
+
+  })(Backbone.View);
   ppu.admin.ExperienceCreate = (function(_super) {
     __extends(ExperienceCreate, _super);
 

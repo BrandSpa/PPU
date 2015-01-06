@@ -61,7 +61,7 @@ $(function() {
     };
 
     LawyersView.prototype.filterCollection = function(data) {
-      console.log(data);
+      $(".lawyers-filters").data('offset', 0);
       return this.collection.fetch({
         reset: true,
         data: data
@@ -81,19 +81,6 @@ $(function() {
       return this.collection.each(function(model) {
         return this.addOne(model);
       }, this);
-    };
-
-    LawyersView.prototype.seeMore = function(e) {
-      var data, offset;
-      e.preventDefault();
-      offset = $(this.el).data('offset') || 0;
-      data = _.extend(this.filtersAplied, {
-        paginate: offset
-      });
-      this.collection.fetch({
-        data: data
-      });
-      return $(this.el).data('offset', offset + 20);
     };
 
     return LawyersView;
@@ -121,6 +108,19 @@ $(function() {
       return this.filtersAplied = {
         lang: app.lang
       };
+    };
+
+    LawyersFilters.prototype.seeMore = function(e) {
+      var data, offset;
+      e.preventDefault();
+      offset = $(this.el).data('offset') || 20;
+      data = _.extend(this.filtersAplied, {
+        paginate: offset
+      });
+      ppu.lawyers.fetch({
+        data: data
+      });
+      return $(this.el).data('offset', offset + 20);
     };
 
     LawyersFilters.prototype.search = function(e) {

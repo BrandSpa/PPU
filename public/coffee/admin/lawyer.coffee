@@ -22,7 +22,8 @@ $ ->
           window.location = "/en/admin/lawyers/#{mod.id}/edit"
 
   class ppu.admin.LawyersView extends Backbone.View
-    el: $ '#lawyers-dashboard'      
+    el: $ '#lawyers-dashboard'
+      
     
     initialize: ->
       @listenTo(@collection, 'reset', @render)
@@ -31,7 +32,7 @@ $ ->
       app.pubsub.bind("lawyers:filter", @filterCollection, @)
 
     filterCollection: (data) ->
-      console.log data
+      $(".lawyers-filters").data('offset', 0)
       @collection.fetch reset: true, data: data
 
     addOne: (model) ->
@@ -44,12 +45,6 @@ $ ->
         @addOne(model)
       , @
 
-    seeMore: (e) ->
-      e.preventDefault()
-      offset = $(@el).data('offset') || 0
-      data = _.extend(@filtersAplied, paginate: offset)
-      @collection.fetch data: data
-      $(@el).data('offset', (offset+20))
 
   class ppu.admin.LawyersFilters extends Backbone.View
     el: $ '.lawyers-filters'
@@ -64,7 +59,12 @@ $ ->
     initialize: ->
       @filtersAplied = {lang: app.lang}
 
-    
+    seeMore: (e) ->
+      e.preventDefault()
+      offset = $(@el).data('offset') || 20
+      data = _.extend(@filtersAplied, paginate: offset)
+      ppu.lawyers.fetch data: data
+      $(@el).data('offset', (offset+20))
 
     search: (e) ->
       e.preventDefault()

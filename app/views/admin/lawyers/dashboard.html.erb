@@ -49,7 +49,10 @@
       <tbody></tbody>
     </table>
   <hr>
-  <a href="#" class="btn btn-info see-more" data-offset="0">Mostrar Más</a>
+  <div class="lawyers-filters">
+    <a href="#" class="btn btn-info see-more" data-offset="0">Mostrar Más</a>
+  </div>
+  
     </div>
   </div>
 </div>
@@ -117,21 +120,23 @@
 				<h4 >Experiencias</h4>
 			</div>
 	<div class="panel-body">
-		<div class="row">
+		<div class="row experience-filter">
 			<div class="col-lg-3">
 				<form class="search">
-					<input name="query" class="form-control" placeholder="Buscar">
+					<input name="query" class="form-control query" placeholder="Buscar">
 				</form>
 			</div>
-				<div class="col-lg-3">
-				<select class="form-control lawyer-filter-country">
+
+				<div class="col-lg-3 country">
+				<select class="form-control ">
 					<option>País</option>
 					<option value="Chile">Chile</option>
 					<option value="Colombia">Colombia</option>
 				</select>
 			</div>
-			<div class="col-lg-3">
-				<select class="form-control lawyer-filter-category">
+
+			<div class="col-lg-3 category">
+				<select class="form-control">
 					<option>Áreas</option>
 					<option value="<%= t('categories.corporate_and_M&A')%>"><%= t('categories.corporate_and_M&A')%></option>
 					<option value="<%= t('categories.competition')%>"><%= t('categories.competition')%></option>
