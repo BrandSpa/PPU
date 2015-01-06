@@ -52,7 +52,7 @@ $(function() {
     LawyersView.prototype.el = $('#lawyers-dashboard');
 
     LawyersView.prototype.events = {
-      'click .lawyer-see-more': 'seeMore',
+      'click .see-more': 'seeMore',
       'keyup .query': 'search',
       'change .lawyer-filter-lang': 'filterLang',
       'change .lawyer-filter-country': 'filterCountry',
@@ -89,13 +89,21 @@ $(function() {
       e.preventDefault();
       el = e.currentTarget;
       offset = $(el).data('offset');
-      more = offset + 10;
+      more = offset + 20;
       this.collection.fetch({
         data: {
-          offset: more
+          paginate: more
         }
       });
       return $(el).data('offset', more);
+    };
+
+    LawyersView.prototype.filterCollection = function(filters) {
+      return this.collection.fetch({
+        reset: true,
+        lang: app.lang,
+        data: filters
+      });
     };
 
     LawyersView.prototype.search = function(e) {
@@ -103,29 +111,15 @@ $(function() {
       e.preventDefault();
       query = $(e.currentTarget).val();
       if (query.length >= 3) {
-        return this.collection.fetch({
-          reset: true,
-          data: {
-            search: query
-          }
+        return this.filterCollection({
+          search: query
         });
       }
     };
 
-    LawyersView.prototype.getSelectVal = function(e) {
-      return $(e.currentTarget).val();
-    };
-
-    LawyersView.prototype.byFilter = function(data) {
-      return this.collection.fetch({
-        reset: true,
-        data: data
-      });
-    };
-
     LawyersView.prototype.filterLang = function(e) {
       var val;
-      val = this.getSelectVal(e);
+      val = $(e.currentTarget).val();
       return this.byFilter({
         lang: val
       });
@@ -133,26 +127,25 @@ $(function() {
 
     LawyersView.prototype.filterCountry = function(e) {
       var val;
-      val = this.getSelectVal(e);
-      return this.byFilter({
+      val = $(e.currentTarget).val();
+      return this.filterCollection({
         country: val
       });
     };
 
     LawyersView.prototype.filterPosition = function(e) {
-      return this.byFilter({
-        position: this.getSelectVal(e)
+      var val;
+      val = $(e.currentTarget).val();
+      return this.filterCollection({
+        position: val
       });
     };
 
     LawyersView.prototype.filterCategory = function(e) {
       var val;
       val = $(e.currentTarget).val();
-      return ppu.lawyers.fetch({
-        reset: true,
-        data: {
-          category: val
-        }
+      return this.filterCollection({
+        category: val
       });
     };
 

@@ -26,6 +26,7 @@ $(function() {
 
     Workspace.prototype.initialize = function() {
       new ppu.AppView;
+      new ppu.Seo;
       window.urlTranslation = "";
       ppu.contact = new ppu.Contact;
       return ppu.FooterContactCreate = new ppu.FooterContactCreate({

@@ -100,6 +100,7 @@ $(function() {
     };
 
     PostsView.prototype.render = function() {
+      app.pubsub.trigger("seo:render", this.collection);
       this.$el.html("");
       return this.collection.each(function(model) {
         return this.renderOne(model);

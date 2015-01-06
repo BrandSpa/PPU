@@ -24,7 +24,7 @@ $ ->
   class ppu.admin.LawyersView extends Backbone.View
     el: $ '#lawyers-dashboard'
     events:
-      'click .lawyer-see-more' : 'seeMore'
+      'click .see-more' : 'seeMore'
       'keyup .query' : 'search'
       'change .lawyer-filter-lang' : 'filterLang'
       'change .lawyer-filter-country' : 'filterCountry'
@@ -50,36 +50,35 @@ $ ->
       e.preventDefault()
       el = e.currentTarget
       offset = $(el).data('offset')
-      more = (offset + 10)
-      @collection.fetch data: offset: more
+      more = (offset + 20)
+      @collection.fetch data: paginate: more
       $(el).data('offset', more)
+
+    filterCollection: (filters) ->
+      @collection.fetch reset: true, lang: app.lang, data: filters
 
     search: (e) ->
       e.preventDefault()
       query = $(e.currentTarget).val()
       if query.length >= 3
-        @collection.fetch reset: true, data: search: query
+        @filterCollection({search: query})
 
-    getSelectVal: (e) ->
-      $(e.currentTarget).val()
-
-    byFilter: (data) ->
-      @collection.fetch reset: true, data: data
 
     filterLang: (e) ->
-      val = @getSelectVal(e)
+      val = $(e.currentTarget).val()
       @byFilter({lang: val})
 
     filterCountry: (e) ->
-      val = @getSelectVal(e)
-      @byFilter({country: val})
+      val = $(e.currentTarget).val()
+      @filterCollection({country: val})
 
     filterPosition: (e) ->
-      @byFilter position: @getSelectVal(e)
+      val = $(e.currentTarget).val()
+      @filterCollection({position: val})
 
     filterCategory: (e) ->
       val = $(e.currentTarget).val()
-      ppu.lawyers.fetch reset: true, data: category: val
+      @filterCollection({category: val})
   
   class ppu.LawyerCreateForm extends Backbone.View
     el: $ "#lawyer-form-create"

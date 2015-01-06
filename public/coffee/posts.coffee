@@ -39,6 +39,7 @@ $ ->
       @$el.append ppu.postView.render().el
 
     render: ->
+      app.pubsub.trigger("seo:render", @collection)
       @$el.html("")
       @collection.each (model) ->
         @renderOne(model)

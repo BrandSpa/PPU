@@ -19,7 +19,11 @@ $ ->
   	el: $ "#experiences"
 
   	initialize: ->
-  		@listenTo(@collection, 'reset', @render)
+      @listenTo(@collection, 'reset', @render)
+      app.pubsub.bind("experiences:filter", @filterCollection, @)
+
+    filterCollection: (filters) ->
+      @collection.fetch reset: true, lang: app.lang, data: filters
 
   	renderOne: (model) ->
   		ppu.experienceView = new ppu.ExperienceView model: model
@@ -27,7 +31,6 @@ $ ->
 
   	render: ->
       $(@el).html('')
-      console.log @collection
       @collection.each (model) ->
         ppu.experienceView = new ppu.ExperienceView model: model
         @$el.append ppu.experienceView.render().el
@@ -43,26 +46,43 @@ $ ->
       'change .category': 'byCategory'
       'keydown .query': 'byQuery'
 
+    initialize: ->
+      @filtersAplied = {}
+
     render: ->
       template = app.compile(@template)
       @$el.html(template)
 
+    filterBy: (field, val) ->
+      data = _.extend(@filtersAplied,  field: val)
+      app.pubsub.trigger("experiences:filter", data)
+      
     byPosition: (e) ->
       val = $(e.currentTarget).find('select').val()
-      ppu.experiences.fetch reset: true, data: position: val
+      @filterBy('by_position', val)
       
     byCountry: (e) ->
       val = $(e.currentTarget).val()
-      ppu.experiences.fetch reset: true, data: country: val
+      if $(".countries").find('input[type="checkbox"]:checked').length == 2
+        @filterBy('by_country', "")
+      else
+        if el.find(":not(:checked)")
+          val = @CountryNotChecked(el)
+          @filterBy('by_country', val)
+
+    CountryNotChecked: (el) ->
+      val = if el.val() == "Colombia" then "Chile" else "Colombia"
+      $(".countries").find("input[value='#{val}']").prop('checked', true)
+      val
 
     byCategory: (e) ->
       val = $(e.currentTarget).find('select').val()
-      ppu.experiences.fetch reset: true, data: category: val
+      @filterBy('by_category', val)
 
     byQuery: (e) ->
       val = $(e.currentTarget).val()
       if val.length >= 3
-        ppu.experiences.fetch reset: true, data: keyword: val
+        @filterBy('by_keyword', val)
 
   class ppu.ExperienceDetailView extends Backbone.View
     el: $ "#experience"

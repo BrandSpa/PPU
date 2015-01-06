@@ -16,6 +16,7 @@ $ ->
 
     initialize: ->
       new ppu.AppView
+      new ppu.Seo
       window.urlTranslation = ""
       ppu.contact = new ppu.Contact
       ppu.FooterContactCreate = new ppu.FooterContactCreate model: ppu.contact
@@ -39,7 +40,6 @@ $ ->
       ppu.postsFilters.render()
       ppu.posts = new ppu.Posts
       ppu.posts.fetch reset: true, data: published: true, not_featured: true
-
       ppu.postsFeaturedView = new ppu.PostsFeaturedView collection: ppu.postsFeatured
       ppu.postsView = new ppu.PostsView collection: ppu.posts
 

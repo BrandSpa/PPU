@@ -59,7 +59,16 @@ $(function() {
     ExperiencesView.prototype.el = $("#experiences");
 
     ExperiencesView.prototype.initialize = function() {
-      return this.listenTo(this.collection, 'reset', this.render);
+      this.listenTo(this.collection, 'reset', this.render);
+      return app.pubsub.bind("experiences:filter", this.filterCollection, this);
+    };
+
+    ExperiencesView.prototype.filterCollection = function(filters) {
+      return this.collection.fetch({
+        reset: true,
+        lang: app.lang,
+        data: filters
+      });
     };
 
     ExperiencesView.prototype.renderOne = function(model) {
@@ -71,7 +80,6 @@ $(function() {
 
     ExperiencesView.prototype.render = function() {
       $(this.el).html('');
-      console.log(this.collection);
       return this.collection.each(function(model) {
         ppu.experienceView = new ppu.ExperienceView({
           model: model
@@ -101,55 +109,61 @@ $(function() {
       'keydown .query': 'byQuery'
     };
 
+    ExperiencesFilters.prototype.initialize = function() {
+      return this.filtersAplied = {};
+    };
+
     ExperiencesFilters.prototype.render = function() {
       var template;
       template = app.compile(this.template);
       return this.$el.html(template);
     };
 
+    ExperiencesFilters.prototype.filterBy = function(field, val) {
+      var data;
+      data = _.extend(this.filtersAplied, {
+        field: val
+      });
+      return app.pubsub.trigger("experiences:filter", data);
+    };
+
     ExperiencesFilters.prototype.byPosition = function(e) {
       var val;
       val = $(e.currentTarget).find('select').val();
-      return ppu.experiences.fetch({
-        reset: true,
-        data: {
-          position: val
-        }
-      });
+      return this.filterBy('by_position', val);
     };
 
     ExperiencesFilters.prototype.byCountry = function(e) {
       var val;
       val = $(e.currentTarget).val();
-      return ppu.experiences.fetch({
-        reset: true,
-        data: {
-          country: val
+      if ($(".countries").find('input[type="checkbox"]:checked').length === 2) {
+        return this.filterBy('by_country', "");
+      } else {
+        if (el.find(":not(:checked)")) {
+          val = this.CountryNotChecked(el);
+          return this.filterBy('by_country', val);
         }
-      });
+      }
+    };
+
+    ExperiencesFilters.prototype.CountryNotChecked = function(el) {
+      var val;
+      val = el.val() === "Colombia" ? "Chile" : "Colombia";
+      $(".countries").find("input[value='" + val + "']").prop('checked', true);
+      return val;
     };
 
     ExperiencesFilters.prototype.byCategory = function(e) {
       var val;
       val = $(e.currentTarget).find('select').val();
-      return ppu.experiences.fetch({
-        reset: true,
-        data: {
-          category: val
-        }
-      });
+      return this.filterBy('by_category', val);
     };
 
     ExperiencesFilters.prototype.byQuery = function(e) {
       var val;
       val = $(e.currentTarget).val();
       if (val.length >= 3) {
-        return ppu.experiences.fetch({
-          reset: true,
-          data: {
-            keyword: val
-          }
-        });
+        return this.filterBy('by_keyword', val);
       }
     };
 

@@ -28,8 +28,9 @@ $(document).ajaxStop(function() {
   return NProgress.done();
 });
 
-$(".select-cities li a").click(function() {
-  console.log("click");
+$(".select-cities li a").click(function(e) {
+  $(".select-cities li a").removeClass('active');
+  $(e.currentTarget).addClass('active');
   return $("#city-info .collapse").removeClass("in");
 });
 
@@ -261,7 +262,12 @@ $(function() {
 
     Workspace.prototype.initialize = function() {
       new ppu.AppView;
-      return window.urlTranslation = "";
+      new ppu.Seo;
+      window.urlTranslation = "";
+      ppu.contact = new ppu.Contact;
+      return ppu.FooterContactCreate = new ppu.FooterContactCreate({
+        model: ppu.contact
+      });
     };
 
     Workspace.prototype.lawyers = function(lang) {

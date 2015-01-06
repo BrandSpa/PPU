@@ -21,6 +21,8 @@ $(document).ajaxStart (t) ->
 $(document).ajaxStop () ->
   NProgress.done()
 
+
+
 $(".select-cities li a").click (e) ->
   $(".select-cities li a").removeClass('active')
   $(e.currentTarget).addClass('active')
@@ -138,6 +140,4 @@ $(document).find('.datepicker').datepicker
   format: 'yyyy'
   language: 'es'
   autoclose: true
-
-
 
