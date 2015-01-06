@@ -36,6 +36,7 @@ $(function() {
       ppu.admin.lawyers = new ppu.admin.LawyersView({
         collection: ppu.lawyers
       });
+      ppu.admin.lawyersFilters = new ppu.admin.LawyersFilters;
       ppu.posts = new ppu.Posts;
       ppu.posts.fetch({
         reset: true

@@ -121,8 +121,6 @@ $(function() {
       return this.$el.html(template);
     };
 
-    LawyersFilters.prototype.Byfiter = function() {};
-
     LawyersFilters.prototype.paginate = function() {
       var data, offset;
       offset = $(this.el).data('offset') || 0;

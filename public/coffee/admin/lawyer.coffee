@@ -22,7 +22,37 @@ $ ->
           window.location = "/en/admin/lawyers/#{mod.id}/edit"
 
   class ppu.admin.LawyersView extends Backbone.View
-    el: $ '#lawyers-dashboard'
+    el: $ '#lawyers-dashboard'      
+    
+    initialize: ->
+      @listenTo(@collection, 'reset', @render)
+      @listenTo(@collection, 'add', @addOne)
+      @filtersAplied = {lang: app.lang}
+      app.pubsub.bind("lawyers:filter", @filterCollection, @)
+
+    filterCollection: (data) ->
+      console.log data
+      @collection.fetch reset: true, data: data
+
+    addOne: (model) ->
+      view = new ppu.admin.LawyerView model: model
+      $(@el).find('tbody').append view.render().el
+
+    render: ->
+      $(@el).find('tbody').empty()
+      @collection.each (model) ->
+        @addOne(model)
+      , @
+
+    seeMore: (e) ->
+      e.preventDefault()
+      offset = $(@el).data('offset') || 0
+      data = _.extend(@filtersAplied, paginate: offset)
+      @collection.fetch data: data
+      $(@el).data('offset', (offset+20))
+
+  class ppu.admin.LawyersFilters extends Backbone.View
+    el: $ '.lawyers-filters'
     events:
       'click .see-more' : 'seeMore'
       'keyup .query' : 'search'
@@ -32,53 +62,38 @@ $ ->
       'change .lawyer-filter-position' : 'filterPosition'
 
     initialize: ->
-      @listenTo(@collection, 'reset', @render)
-      @listenTo(@collection, 'add', @addOne, @)
+      @filtersAplied = {lang: app.lang}
 
-    addOne: (model) ->
-      view = new ppu.admin.LawyerView model: model
-      $(@el).find('thead').append view.render().el
-
-    render: ->
-      $(@el).find('tbody').html('')
-      @collection.each (model) ->
-        view = new ppu.admin.LawyerView model: model
-        $(@el).find('tbody').append view.render().el
-      , @
-
-    seeMore: (e) ->
-      e.preventDefault()
-      el = e.currentTarget
-      offset = $(el).data('offset')
-      more = (offset + 20)
-      @collection.fetch data: paginate: more
-      $(el).data('offset', more)
-
-    filterCollection: (filters) ->
-      @collection.fetch reset: true, lang: app.lang, data: filters
+    
 
     search: (e) ->
       e.preventDefault()
       query = $(e.currentTarget).val()
       if query.length >= 3
-        @filterCollection({search: query})
-
+        data = _.extend(@filtersAplied, paginate: 0, search: query)
+        app.pubsub.trigger("lawyers:filter", data)
 
     filterLang: (e) ->
       val = $(e.currentTarget).val()
-      @byFilter({lang: val})
+      data = _.extend(@filtersAplied, paginate: 0, lang: val)
+      console.log data
+      app.pubsub.trigger("lawyers:filter", data)
 
     filterCountry: (e) ->
       val = $(e.currentTarget).val()
-      @filterCollection({country: val})
+      data = _.extend(@filtersAplied, paginate: 0, country: val)
+      console.log _.extend(@filtersAplied, paginate: 0, country: val)
+      app.pubsub.trigger("lawyers:filter", data)
 
     filterPosition: (e) ->
       val = $(e.currentTarget).val()
-      @filterCollection({position: val})
+      data = _.extend(@filtersAplied, paginate: 0, position: val)
+      app.pubsub.trigger("lawyers:filter",data)
 
     filterCategory: (e) ->
       val = $(e.currentTarget).val()
-      @filterCollection({category: val})
+      data = _.extend(@filtersAplied, paginate: 0, category: val)
+      app.pubsub.trigger("lawyers:filter",data)
   
   class ppu.LawyerCreateForm extends Backbone.View
     el: $ "#lawyer-form-create"

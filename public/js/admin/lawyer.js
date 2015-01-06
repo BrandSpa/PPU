@@ -51,7 +51,64 @@ $(function() {
 
     LawyersView.prototype.el = $('#lawyers-dashboard');
 
-    LawyersView.prototype.events = {
+    LawyersView.prototype.initialize = function() {
+      this.listenTo(this.collection, 'reset', this.render);
+      this.listenTo(this.collection, 'add', this.addOne);
+      this.filtersAplied = {
+        lang: app.lang
+      };
+      return app.pubsub.bind("lawyers:filter", this.filterCollection, this);
+    };
+
+    LawyersView.prototype.filterCollection = function(data) {
+      console.log(data);
+      return this.collection.fetch({
+        reset: true,
+        data: data
+      });
+    };
+
+    LawyersView.prototype.addOne = function(model) {
+      var view;
+      view = new ppu.admin.LawyerView({
+        model: model
+      });
+      return $(this.el).find('tbody').append(view.render().el);
+    };
+
+    LawyersView.prototype.render = function() {
+      $(this.el).find('tbody').empty();
+      return this.collection.each(function(model) {
+        return this.addOne(model);
+      }, this);
+    };
+
+    LawyersView.prototype.seeMore = function(e) {
+      var data, offset;
+      e.preventDefault();
+      offset = $(this.el).data('offset') || 0;
+      data = _.extend(this.filtersAplied, {
+        paginate: offset
+      });
+      this.collection.fetch({
+        data: data
+      });
+      return $(this.el).data('offset', offset + 20);
+    };
+
+    return LawyersView;
+
+  })(Backbone.View);
+  ppu.admin.LawyersFilters = (function(_super) {
+    __extends(LawyersFilters, _super);
+
+    function LawyersFilters() {
+      return LawyersFilters.__super__.constructor.apply(this, arguments);
+    }
+
+    LawyersFilters.prototype.el = $('.lawyers-filters');
+
+    LawyersFilters.prototype.events = {
       'click .see-more': 'seeMore',
       'keyup .query': 'search',
       'change .lawyer-filter-lang': 'filterLang',
@@ -60,96 +117,71 @@ $(function() {
       'change .lawyer-filter-position': 'filterPosition'
     };
 
-    LawyersView.prototype.initialize = function() {
-      this.listenTo(this.collection, 'reset', this.render);
-      return this.listenTo(this.collection, 'add', this.addOne, this);
+    LawyersFilters.prototype.initialize = function() {
+      return this.filtersAplied = {
+        lang: app.lang
+      };
     };
 
-    LawyersView.prototype.addOne = function(model) {
-      var view;
-      view = new ppu.admin.LawyerView({
-        model: model
-      });
-      return $(this.el).find('thead').append(view.render().el);
-    };
-
-    LawyersView.prototype.render = function() {
-      $(this.el).find('tbody').html('');
-      return this.collection.each(function(model) {
-        var view;
-        view = new ppu.admin.LawyerView({
-          model: model
-        });
-        return $(this.el).find('tbody').append(view.render().el);
-      }, this);
-    };
-
-    LawyersView.prototype.seeMore = function(e) {
-      var el, more, offset;
-      e.preventDefault();
-      el = e.currentTarget;
-      offset = $(el).data('offset');
-      more = offset + 20;
-      this.collection.fetch({
-        data: {
-          paginate: more
-        }
-      });
-      return $(el).data('offset', more);
-    };
-
-    LawyersView.prototype.filterCollection = function(filters) {
-      return this.collection.fetch({
-        reset: true,
-        lang: app.lang,
-        data: filters
-      });
-    };
-
-    LawyersView.prototype.search = function(e) {
-      var query;
+    LawyersFilters.prototype.search = function(e) {
+      var data, query;
       e.preventDefault();
       query = $(e.currentTarget).val();
       if (query.length >= 3) {
-        return this.filterCollection({
+        data = _.extend(this.filtersAplied, {
+          paginate: 0,
           search: query
         });
+        return app.pubsub.trigger("lawyers:filter", data);
       }
     };
 
-    LawyersView.prototype.filterLang = function(e) {
-      var val;
+    LawyersFilters.prototype.filterLang = function(e) {
+      var data, val;
       val = $(e.currentTarget).val();
-      return this.byFilter({
+      data = _.extend(this.filtersAplied, {
+        paginate: 0,
         lang: val
       });
+      console.log(data);
+      return app.pubsub.trigger("lawyers:filter", data);
     };
 
-    LawyersView.prototype.filterCountry = function(e) {
-      var val;
+    LawyersFilters.prototype.filterCountry = function(e) {
+      var data, val;
       val = $(e.currentTarget).val();
-      return this.filterCollection({
+      data = _.extend(this.filtersAplied, {
+        paginate: 0,
         country: val
       });
+      console.log(_.extend(this.filtersAplied, {
+        paginate: 0,
+        country: val
+      }));
+      return app.pubsub.trigger("lawyers:filter", data);
     };
 
-    LawyersView.prototype.filterPosition = function(e) {
-      var val;
+    LawyersFilters.prototype.filterPosition = function(e) {
+      var data, val;
       val = $(e.currentTarget).val();
-      return this.filterCollection({
+      data = _.extend(this.filtersAplied, {
+        paginate: 0,
         position: val
       });
+      return app.pubsub.trigger("lawyers:filter", data);
     };
 
-    LawyersView.prototype.filterCategory = function(e) {
-      var val;
+    LawyersFilters.prototype.filterCategory = function(e) {
+      var data, val;
       val = $(e.currentTarget).val();
-      return this.filterCollection({
+      data = _.extend(this.filtersAplied, {
+        paginate: 0,
         category: val
       });
+      return app.pubsub.trigger("lawyers:filter", data);
     };
 
-    return LawyersView;
+    return LawyersFilters;
 
   })(Backbone.View);
   ppu.LawyerCreateForm = (function(_super) {

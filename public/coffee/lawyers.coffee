@@ -55,10 +55,6 @@ $ ->
       template = app.compile(@template)
       @$el.html(template)
 
-
-    Byfiter: () ->
-
-
     paginate: ->
       offset = $(@el).data('offset') || 0
       data = _.extend(@filtersAplied, paginate: offset)

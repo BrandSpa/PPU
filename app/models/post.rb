@@ -53,7 +53,7 @@ class Post < ActiveRecord::Base
     end
 
     def add_slug
-      self.slug = self.title.downcase.gsub(/[ ]/, '-')
+      self.slug = I18n.transliterate(self.title.downcase.gsub(/[ ]/, '-'))
     end
 
     def add_date
