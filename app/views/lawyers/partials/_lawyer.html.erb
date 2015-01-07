@@ -1,5 +1,4 @@
- 
-<script id="lawyer-template" type="text/x-handlebars-template"> 
+ <script id="lawyer-template" type="text/x-handlebars-template"> 
   <div class="lawyer-header">
     <div class="content-left">
       <p>{{ position }}</p>
@@ -8,16 +7,21 @@
       <a href="mailto:{{ email }}" class="lawyer-email">{{ email }}</a>
     </div>
 
-
     <div class="content-right">
-      {{#if img_name.url}}
-      <img src="{{img_name.url}}" >
+      {{#if translation.img_name.url}}
+        <img src="{{ translation.img_name.url }}" alt="{{ name }} {{ lastname }}">
       {{else}}
-      <img src="/img/lawyer_placeholder.jpg" alt="{{ name }} {{ lastname }}">
+
+        {{#if img_name.url}}
+        <img src="{{ img_name.url }}" alt="{{ name }} {{ lastname }}">
+        {{else}}
+        <img src="/img/lawyer_placeholder.jpg" alt="{{ name }} {{ lastname }}">
+        {{/if}}
+
       {{/if}}
+
       <a href="#" class="share"> <%= t("share") %> <i class="fa fa-share-alt"></i></a>
       <a href="/abogados/{{ id }}/vcard" class="btn btn-primary btn-vcard" target="_new"><%= t('Download')%> </br>VCard</a>
-      
     </div>
   </div>
 
