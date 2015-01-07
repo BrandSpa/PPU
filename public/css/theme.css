@@ -534,6 +534,13 @@ ul {
     #lawyer .lawyer-header .content-right {
       width: 50%;
       float: right; }
+    #lawyer .lawyer-header .share-container {
+      float: right;
+      width: 150px;
+      padding: 60px 0 0 0; }
+      #lawyer .lawyer-header .share-container a {
+        float: left;
+        margin-bottom: 15px; }
     #lawyer .lawyer-header img {
       width: 170px;
       float: right;
@@ -543,14 +550,11 @@ ul {
     #lawyer .lawyer-header .btn-vcard {
       font-size: 0.9em;
       font-weight: bold;
-      float: right;
-      margin: 80px -95px 0 0;
       width: 120px; }
     #lawyer .lawyer-header .share {
       color: #fff;
       float: right;
       display: block;
-      margin: 30px 30px 0 0;
       font-size: 1.1em; }
       #lawyer .lawyer-header .share i {
         padding-left: 5px; }

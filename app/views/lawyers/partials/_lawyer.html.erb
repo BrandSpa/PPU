@@ -13,15 +13,17 @@
       {{else}}
 
         {{#if img_name.url}}
-        <img src="{{ img_name.url }}" alt="{{ name }} {{ lastname }}">
+          <img src="{{ img_name.url }}" alt="{{ name }} {{ lastname }}">
         {{else}}
-        <img src="/img/lawyer_placeholder.jpg" alt="{{ name }} {{ lastname }}">
+          <img src="/img/lawyer_placeholder.jpg" alt="{{ name }} {{ lastname }}">
         {{/if}}
 
       {{/if}}
-
-      <a href="#" class="share"> <%= t("share") %> <i class="fa fa-share-alt"></i></a>
-      <a href="/abogados/{{ id }}/vcard" class="btn btn-primary btn-vcard" target="_new"><%= t('Download')%> </br>VCard</a>
+      <div class="share-container">
+        <a href="#" class="share"> <%= t("share") %> <i class="fa fa-share-alt"></i></a>
+        <a href="/abogados/{{ id }}/vcard" class="btn btn-primary btn-vcard" target="_new"><%= t('Download')%> </br>VCard</a>
+      </div>
+      
     </div>
   </div>
 
@@ -133,7 +135,6 @@
 
 
   </script>
-
 
 
 </div>
