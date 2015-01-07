@@ -44,7 +44,8 @@ $(function() {
 
     FooterContactCreate.prototype.initialize = function() {
       this.listenTo(this.model, "sync", this.stored);
-      return this.listenTo(this.model, "error", this.renderErrors, this);
+      this.listenTo(this.model, "error", this.renderErrors, this);
+      return ppu.appendSelect(this.el);
     };
 
     FooterContactCreate.prototype.store = function(e) {

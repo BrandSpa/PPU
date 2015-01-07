@@ -66,12 +66,6 @@ ppu.appendDatePicker = function(el) {
 };
 
 ppu.appendSelect = function(el) {
-  var defaultText;
-  if (app.lang === "en") {
-    defaultText = "Area";
-  } else {
-    defaultText = "Área";
-  }
   return $(el).find("select").selectBoxIt({
     autoWidth: false
   });

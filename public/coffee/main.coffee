@@ -52,11 +52,6 @@ ppu.appendDatePicker = (el) ->
 
 
 ppu.appendSelect = (el) ->
-  if app.lang == "en"
-    defaultText = "Area"
-  else
-    defaultText = "Área"
-
   $(el).find("select").selectBoxIt autoWidth: false
 
 ppu.appendSummernote = (el) ->

@@ -15,6 +15,7 @@ $ ->
 		initialize: ->
 			@listenTo(@model, "sync", @stored)
 			@listenTo @model, "error", @renderErrors, @
+			ppu.appendSelect(@el)
 
 		store: (e) ->
 			e.preventDefault()

@@ -433,6 +433,21 @@ ul {
   #share-modal .at15t_whatsapp:before {
     content: ""; } }
 
+.country-container .selectboxit-text {
+  border: 1px solid #00A1B1;
+  opacity: 0.7;
+  padding: 3px 0 0 5px; }
+.country-container .selectboxit-container span {
+  height: 35px;
+  margin: 0 0 0 -1px; }
+.country-container .selectboxit-container .selectboxit {
+  border-radius: 0; }
+.country-container .selectboxit-arrow-container {
+  right: 15px;
+  top: 0; }
+.country-container .selectboxit-option {
+  font-size: 0.9em; }
+
 .navbar-app {
   background: #fff; }
   .navbar-app img {
