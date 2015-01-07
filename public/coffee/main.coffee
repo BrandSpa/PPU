@@ -21,8 +21,6 @@ $(document).ajaxStart (t) ->
 $(document).ajaxStop () ->
   NProgress.done()
 
-
-
 $(".select-cities li a").click (e) ->
   $(".select-cities li a").removeClass('active')
   $(e.currentTarget).addClass('active')
@@ -52,7 +50,13 @@ ppu.appendDatePicker = (el) ->
     language: 'es'
     autoclose: true
 
+
 ppu.appendSelect = (el) ->
+  if app.lang == "en"
+    defaultText = "Area"
+  else
+    defaultText = "Área"
+
   $(el).find("select").selectBoxIt autoWidth: false
 
 ppu.appendSummernote = (el) ->

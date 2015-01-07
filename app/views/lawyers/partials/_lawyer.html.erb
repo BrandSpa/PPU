@@ -44,7 +44,7 @@
       <h4><%= t('education') %></h4>
       <ul>
         {{#each educations}}
-        <li>{{ title }}, {{ institution }} {{ year }}</li>
+        <li>{{ title }}{{#if title}},{{/if}} {{ institution }} {{ year }}</li>
         {{/each}}
       </ul>
       {{/if}}
@@ -53,7 +53,7 @@
       <h4><%= t('professional_experience') %></h4>
       <ul>
         {{#each jobs}}
-        <li>{{ title }}, {{ company }} {{ from }} {{ until }}</li>
+        <li>{{ title }}{{#if title}},{{/if}} {{ company }} {{ from }} {{ until }}</li>
         {{/each}}
       </ul>
       {{/if}}
@@ -62,7 +62,7 @@
       <h4><%= t('Conferences') %></h4>
       <ul>
         {{#each recognitions}}
-        <li>{{ title }}, {{ country }} {{ year }}</li>
+        <li>{{ title }}{{#if title}},{{/if}} {{ country }} {{ year }}</li>
         {{/each}}
       </ul>
       {{/if}}
@@ -71,7 +71,7 @@
       <h4><%= t('memberships') %></h4>
       <ul>
         {{#each institutions}}
-        <li>{{ title }}, {{ country }} {{ from }} {{ until }}</li>
+        <li>{{ title }}{{#if title}},{{/if}} {{ country }} {{ from }} {{ until }}</li>
         {{/each}}
       </ul>
       {{/if}}
@@ -112,7 +112,6 @@
         </div>
         {{/if}}
         <h5>{{ title }}</h5>
-
       </div>
 
       {{/each}}
@@ -121,7 +120,7 @@
       {{#if articles}}
       <h3><i class="fa fa-file-text-o"></i> <%= t('Articles') %></h3>
       {{#each articles}}
-      <div class="article-container">
+        <div class="article-container">
         {{#if file_name.url}}
         <a href="{{ file_name.url }}">{{ title }}</a>
         {{else}}
