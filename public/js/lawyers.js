@@ -106,7 +106,8 @@ $(function() {
       'change .position': 'byPosition',
       'change .country': 'byCountry',
       'change .category': 'byCategory',
-      'keydown .query': 'byQuery'
+      'keydown .query': 'byQuery',
+      'submit .search': 'bySearch'
     };
 
     LawyersFilters.prototype.initialize = function() {
@@ -196,7 +197,7 @@ $(function() {
     LawyersFilters.prototype.byQuery = function(e) {
       var data, val;
       val = $(e.currentTarget).val();
-      if (val.length >= 3) {
+      if (val.length >= 2) {
         data = _.extend(this.filtersAplied, {
           paginate: 0,
           search: val
@@ -206,6 +207,20 @@ $(function() {
           data: data
         });
       }
+    };
+
+    LawyersFilters.prototype.bySearch = function(e) {
+      var data, val;
+      e.preventDefault();
+      val = $(e.currentTarget).find(".query").val();
+      data = _.extend(this.filtersAplied, {
+        paginate: 0,
+        search: val
+      });
+      return ppu.lawyers.fetch({
+        reset: true,
+        data: data
+      });
     };
 
     return LawyersFilters;

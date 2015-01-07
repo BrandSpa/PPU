@@ -45,6 +45,7 @@ $ ->
       'change .country': 'byCountry'
       'change .category': 'byCategory'
       'keydown .query': 'byQuery'
+      'submit .search': 'bySearch'
 
     initialize: ->
       @filtersAplied = {}
@@ -92,10 +93,16 @@ $ ->
       
     byQuery: (e) ->
       val = $(e.currentTarget).val()
-      if val.length >= 3
+      if val.length >= 2
         data = _.extend(@filtersAplied,paginate: 0, search: val)
         ppu.lawyers.fetch reset: true, data: data
-        
+    
+    bySearch: (e) ->
+      e.preventDefault()
+      val = $(e.currentTarget).find(".query").val()
+      data = _.extend(@filtersAplied, paginate: 0, search: val)
+      ppu.lawyers.fetch reset: true, data: data
+
 
   class ppu.LawyerDetailView extends Backbone.View
     el: $ '#lawyer'

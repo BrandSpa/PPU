@@ -6,13 +6,12 @@ class Api::LawyersController < ApplicationController
     paginate = params[:paginate] || 0
     slug = params[:slug]
 
-    if lang.equal?(:en)
+    if lang.equal?(:entity)
       collection = entity.where(nil).lang(lang).includes(:translations, :translation).order("FIELD(position,'Partner') DESC", lastname: :asc).paginate(paginate)
     else
       collection = entity.where(nil).lang(lang).includes(:translations, :translation).order(position: :desc, lastname: :asc).paginate(paginate)
     end
     
-
     filters.each do |key, val|
       collection = collection.public_send(key, val) if val.present?
     end
@@ -58,7 +57,6 @@ class Api::LawyersController < ApplicationController
     end
     
   end
-
 
   def render_errors(model)
     render json: model.errors.messages, status: 400
