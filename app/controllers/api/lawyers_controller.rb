@@ -18,7 +18,7 @@ class Api::LawyersController < ApplicationController
 
     if slug.present?
       model = entity.lang(lang).relationships.find_by(slug: slug)
-      render json: model.to_json(:include => [:academics, :articles, :awards, :educations, :institutions, :jobs, :languages, :phrases, :recognitions, :categories])
+      render json: model.to_json(:include => [:translations, :translation, :academics, :articles, :awards, :educations, :institutions, :jobs, :languages, :phrases, :recognitions, :categories])
     else
       render json: collection.to_json(:include => [:translations, :translation])
     end
