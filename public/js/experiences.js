@@ -106,11 +106,14 @@ $(function() {
       'change .position': 'byPosition',
       'change .country': 'byCountry',
       'change .category': 'byCategory',
-      'keydown .query': 'byQuery'
+      'keydown .query': 'byQuery',
+      'submit .search': 'bySearch'
     };
 
     ExperiencesFilters.prototype.initialize = function() {
-      return this.filtersAplied = {};
+      return this.filtersAplied = {
+        lang: app.lang
+      };
     };
 
     ExperiencesFilters.prototype.render = function() {
@@ -120,29 +123,32 @@ $(function() {
       return ppu.appendSelect(this.el);
     };
 
-    ExperiencesFilters.prototype.filterBy = function(field, val) {
-      var data;
-      data = _.extend(this.filtersAplied, {
-        field: val
-      });
+    ExperiencesFilters.prototype.filterBy = function(data) {
+      data = _.extend(this.filtersAplied, data);
       return app.pubsub.trigger("experiences:filter", data);
     };
 
     ExperiencesFilters.prototype.byPosition = function(e) {
       var val;
       val = $(e.currentTarget).find('select').val();
-      return this.filterBy('by_position', val);
+      return this.filterBy({
+        by_position: val
+      });
     };
 
     ExperiencesFilters.prototype.byCountry = function(e) {
-      var val;
-      val = $(e.currentTarget).val();
+      var el, val;
+      el = $(e.currentTarget);
       if ($(".countries").find('input[type="checkbox"]:checked').length === 2) {
-        return this.filterBy('by_country', "");
+        return this.filterBy({
+          by_country: ""
+        });
       } else {
         if (el.find(":not(:checked)")) {
           val = this.CountryNotChecked(el);
-          return this.filterBy('by_country', val);
+          return this.filterBy({
+            by_country: val
+          });
         }
       }
     };
@@ -157,15 +163,32 @@ $(function() {
     ExperiencesFilters.prototype.byCategory = function(e) {
       var val;
       val = $(e.currentTarget).find('select').val();
-      return this.filterBy('by_category', val);
+      return this.filterBy({
+        by_category: val
+      });
     };
 
     ExperiencesFilters.prototype.byQuery = function(e) {
       var val;
       val = $(e.currentTarget).val();
-      if (val.length >= 3) {
-        return this.filterBy('by_keyword', val);
+      if (val.length >= 1) {
+        return this.filterBy({
+          by_keyword: val
+        });
+      } else {
+        return this.filterBy({
+          by_keyword: ""
+        });
       }
+    };
+
+    ExperiencesFilters.prototype.bySearch = function(e) {
+      var val;
+      e.preventDefault();
+      val = $(e.currentTarget).find(".query").val();
+      return this.filterBy({
+        by_keyword: val
+      });
     };
 
     return ExperiencesFilters;

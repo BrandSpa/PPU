@@ -44,7 +44,7 @@ $ ->
       'change .position': 'byPosition'
       'change .country': 'byCountry'
       'change .category': 'byCategory'
-      'keydown .query': 'byQuery'
+      'keyup .query': 'byQuery'
       'submit .search': 'bySearch'
 
     initialize: ->
@@ -93,7 +93,7 @@ $ ->
       
     byQuery: (e) ->
       val = $(e.currentTarget).val()
-      if val.length >= 2
+      if val.length >= 1
         data = _.extend(@filtersAplied,paginate: 0, search: val)
         ppu.lawyers.fetch reset: true, data: data
     

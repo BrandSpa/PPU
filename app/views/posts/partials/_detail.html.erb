@@ -7,6 +7,8 @@
  {{/if}}
 
 	<h1>{{ title }}</h1>
+  <h5>{{ author }}</h5>
+  
 	<div class="categories">
 		{{#each categories }}
 		<span>{{ name }}</span>
@@ -18,10 +20,11 @@
 {{ country }} - {{ date }}
 <br>
 {{{ content }}}
+
 </div>
 </script>
 
-	
+
 <script id="post-detail-title" type="text/x-handlebars-template">
 	<h1><a href="/"><%= t("News") %></a></h1>
 </script>

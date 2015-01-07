@@ -45,32 +45,33 @@ $ ->
       'change .country': 'byCountry'
       'change .category': 'byCategory'
       'keydown .query': 'byQuery'
+      'submit .search': 'bySearch'
 
     initialize: ->
-      @filtersAplied = {}
+      @filtersAplied = {lang: app.lang}
 
     render: ->
       template = app.compile(@template)
       @$el.html(template)
       ppu.appendSelect(@el)
 
-
-    filterBy: (field, val) ->
-      data = _.extend(@filtersAplied,  field: val)
+    filterBy: (data) ->
+      data = _.extend(@filtersAplied,  data)
       app.pubsub.trigger("experiences:filter", data)
       
     byPosition: (e) ->
       val = $(e.currentTarget).find('select').val()
-      @filterBy('by_position', val)
+      @filterBy(by_position: val)
       
     byCountry: (e) ->
-      val = $(e.currentTarget).val()
+      el = $(e.currentTarget)
+
       if $(".countries").find('input[type="checkbox"]:checked').length == 2
-        @filterBy('by_country', "")
+        @filterBy(by_country: "")
       else
         if el.find(":not(:checked)")
           val = @CountryNotChecked(el)
-          @filterBy('by_country', val)
+          @filterBy(by_country: val)
 
     CountryNotChecked: (el) ->
       val = if el.val() == "Colombia" then "Chile" else "Colombia"
@@ -79,12 +80,19 @@ $ ->
 
     byCategory: (e) ->
       val = $(e.currentTarget).find('select').val()
-      @filterBy('by_category', val)
+      @filterBy(by_category: val)
 
     byQuery: (e) ->
       val = $(e.currentTarget).val()
-      if val.length >= 3
-        @filterBy('by_keyword', val)
+      if val.length >= 1
+        @filterBy(by_keyword: val)
+      else
+        @filterBy(by_keyword: "")
+
+    bySearch: (e) ->
+      e.preventDefault()
+      val = $(e.currentTarget).find(".query").val()
+      @filterBy(by_keyword: val)
 
   class ppu.ExperienceDetailView extends Backbone.View
     el: $ "#experience"

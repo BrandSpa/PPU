@@ -14,7 +14,6 @@ class Lawyer < ActiveRecord::Base
   has_many :institutions
   has_many :recognitions
 
-
   validates :name, presence: true
   validates :lastname, presence: true
   validates :position, presence: true
@@ -27,11 +26,11 @@ class Lawyer < ActiveRecord::Base
   
   scope :relationships, -> { includes( :academics, :articles, :awards, :educations, :institutions, :jobs, :languages, :phrases, :recognitions, :categories) }
   scope :lang, -> (lang){ where(lang: lang) }
-  scope :position, -> (position){ where(position: position) }
+  scope :position, -> (position){ where("lawyers.position = ?", position) }
   scope :slug, -> (slug){ where(slug: slug) }
-  scope :country, -> (country){ where(country: country) }
+  scope :country, -> (country){ where("lawyers.country = ?", country) }
   scope :category, -> (category){ includes(:categories).where(categories: {name: category}) }
-  scope :search, -> (keyword){ where("keywords LIKE ?", "%#{keyword}%") }
+  scope :search, -> (keyword){ where("lawyers.keywords LIKE ?", "%#{keyword}%") }
   scope :has_translation, -> (slug) { where(slug: slug).count }
   scope :paginate, -> (paginate) { limit(20).offset(paginate) }
 

@@ -190,11 +190,14 @@ $(function() {
     PostsFilters.prototype.events = {
       'change .country': 'byCountry',
       'change .category': 'byCategory',
-      'keydown .query': 'byKeyword'
+      'keydown .query': 'byKeyword',
+      'submit .search': 'bySearch'
     };
 
     PostsFilters.prototype.initialize = function() {
-      return this.filtersAplied = {};
+      return this.filtersAplied = {
+        lang: app.lang
+      };
     };
 
     PostsFilters.prototype.render = function() {
@@ -204,22 +207,26 @@ $(function() {
       return ppu.appendSelect(this.el);
     };
 
+    PostsFilters.prototype.filterBy = function(data) {
+      data = _.extend(this.filtersAplied, data);
+      return app.pubsub.trigger("posts:filter", data);
+    };
+
     PostsFilters.prototype.byCountry = function(e) {
-      var data, el, val;
+      var el, val;
       el = $(e.currentTarget);
       if ($(".countries").find('input[type="checkbox"]:checked').length === 2) {
-        data = _.extend(this.filtersAplied, {
+        return this.filterBy({
           by_country: ""
         });
       } else {
         if (el.find(":not(:checked)")) {
           val = this.CountryNotChecked(el);
-          data = _.extend(this.filtersAplied, {
+          return this.filterBy({
             by_country: val
           });
         }
       }
-      return app.pubsub.trigger("posts:filter", data);
     };
 
     PostsFilters.prototype.CountryNotChecked = function(el) {
@@ -230,23 +237,30 @@ $(function() {
     };
 
     PostsFilters.prototype.byCategory = function(e) {
-      var data, val;
+      var val;
       val = $(e.currentTarget).find('select').val();
-      data = _.extend(this.filtersAplied, {
+      return this.filterBy({
         by_category: val
       });
-      return app.pubsub.trigger("posts:filter", data);
     };
 
     PostsFilters.prototype.byKeyword = function(e) {
-      var data, val;
+      var val;
       val = $(e.currentTarget).val();
-      data = _.extend(this.filtersAplied, {
+      if (val.length >= 1) {
+        return this.filterBy({
+          by_keyword: val
+        });
+      }
+    };
+
+    PostsFilters.prototype.bySearch = function(e) {
+      var val;
+      e.preventDefault();
+      val = $(e.currentTarget).find(".query").val();
+      return this.filterBy({
         by_keyword: val
       });
-      if (val.length >= 3) {
-        return app.pubsub.trigger("posts:filter", data);
-      }
     };
 
     return PostsFilters;

@@ -106,7 +106,7 @@ $(function() {
       'change .position': 'byPosition',
       'change .country': 'byCountry',
       'change .category': 'byCategory',
-      'keydown .query': 'byQuery',
+      'keyup .query': 'byQuery',
       'submit .search': 'bySearch'
     };
 
@@ -197,7 +197,7 @@ $(function() {
     LawyersFilters.prototype.byQuery = function(e) {
       var data, val;
       val = $(e.currentTarget).val();
-      if (val.length >= 2) {
+      if (val.length >= 1) {
         data = _.extend(this.filtersAplied, {
           paginate: 0,
           search: val

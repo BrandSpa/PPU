@@ -88,27 +88,29 @@ $ ->
       'change .country': 'byCountry'
       'change .category': 'byCategory'
       'keydown .query': 'byKeyword'
+      'submit .search': 'bySearch'
 
     initialize: ->
-      @filtersAplied = {}
-
+      @filtersAplied = {lang: app.lang}
 
     render: ->
       template = app.compile(@template)
       @$el.html(template)
       ppu.appendSelect(@el)
 
+    filterBy: (data) ->
+      data = _.extend(@filtersAplied,  data)
+      app.pubsub.trigger("posts:filter", data)
+
     byCountry: (e) ->
       el = $(e.currentTarget)
 
       if $(".countries").find('input[type="checkbox"]:checked').length == 2
-        data = _.extend(@filtersAplied,  by_country: "")
+        @filterBy(by_country: "")
       else
         if el.find(":not(:checked)")
           val = @CountryNotChecked(el)
-          data = _.extend(@filtersAplied,  by_country: val)
-
-      app.pubsub.trigger("posts:filter", data)
+          @filterBy(by_country: val)
 
     CountryNotChecked: (el) ->
       val = if el.val() == "Colombia" then "Chile" else "Colombia"
@@ -117,15 +119,18 @@ $ ->
 
     byCategory: (e) ->
       val = $(e.currentTarget).find('select').val()
-      data = _.extend(@filtersAplied, by_category: val)
-      app.pubsub.trigger("posts:filter", data)
+      @filterBy(by_category: val)
 
     byKeyword: (e) ->
-     
       val = $(e.currentTarget).val()
-      data = _.extend(@filtersAplied, by_keyword: val)
-      if val.length >= 3
-        app.pubsub.trigger("posts:filter", data)
+      if val.length >= 1
+        @filterBy(by_keyword: val)
+
+    bySearch: (e) ->
+      e.preventDefault()
+      val = $(e.currentTarget).find(".query").val()
+      @filterBy(by_keyword: val)
+
 
   class ppu.PostDetailView extends Backbone.View
     el: $ "#post-detail"

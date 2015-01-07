@@ -15,13 +15,12 @@ class Post < ActiveRecord::Base
   scope :featured, -> { where.not(featured: nil) }
   scope :published, -> { where(published: true) }
   scope :not_featured, -> { where(featured: nil) }
-  scope :by_country, -> (country){ where("country = ? OR country = 'Global'", country) }
+  scope :by_country, -> (country){ where("posts.country = ? OR posts.country = 'Global'", country) }
   scope :by_category, -> (category){ includes(:categories).where(categories: {name: category}) }
-  scope :by_keyword, -> (keyword){ where("keywords LIKE ?", "%#{keyword}%") }
+  scope :by_keyword, -> (keyword){ where("posts.keywords LIKE ?", "%#{keyword}%") }
   scope :get_relationships, -> { includes(:translation,:translations, :categories, :lawyers, :gallery) }
   scope :order_featured, -> { order(featured: :asc) }
   scope :order_by_date, -> { order(date: :desc) }
-  
 
   mount_uploader :img_name, PostImageUploader
 
