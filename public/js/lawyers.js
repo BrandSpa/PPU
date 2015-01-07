@@ -242,7 +242,12 @@ $(function() {
     };
 
     LawyerDetailView.prototype.initialize = function() {
-      return this.listenTo(this.collection, 'reset', this.render);
+      this.listenTo(this.collection, 'reset', this.render);
+      return this.getTitle();
+    };
+
+    LawyerDetailView.prototype.getTitle = function() {
+      return $("#top-bar").html($("#lawyer-detail-title").html());
     };
 
     LawyerDetailView.prototype.render = function() {

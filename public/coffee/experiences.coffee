@@ -105,7 +105,6 @@ $ ->
     getTitle: ->
       $("#top-bar").html $("#experience-detail-title").html()
 
-
     render: ->
       template = app.compile(@template)
       @$el.html(template( @model.toJSON() ))

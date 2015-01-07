@@ -19,6 +19,8 @@ $ ->
       $(@el).html(compile( @model.toJSON() ))
       @
 
+
+
   class ppu.LawyersView extends Backbone.View
     el: $ '#lawyers'
 
@@ -112,6 +114,10 @@ $ ->
     
     initialize: ->
       @listenTo(@collection, 'reset', @render)
+      @getTitle()
+
+    getTitle: ->
+      $("#top-bar").html $("#lawyer-detail-title").html()
 
     render: ->
       @collection.each (model) ->
