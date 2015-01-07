@@ -5,7 +5,7 @@ class Api::LawyersController < ApplicationController
     filters = params.slice(:position, :country, :category, :search)
     paginate = params[:paginate] || 0
     slug = params[:slug]
-    collection = entity.where(nil).lang(lang).includes(:translations, :translation).order(position: :desc, lastname: :asc).paginate(paginate)
+    collection = entity.where(nil).lang(lang).includes(:translations, :translation).order(position: :asc, lastname: :asc).paginate(paginate)
 
     filters.each do |key, val|
       collection = collection.public_send(key, val) if val.present?
