@@ -118,7 +118,8 @@ $(function() {
     LawyersFilters.prototype.render = function() {
       var template;
       template = app.compile(this.template);
-      return this.$el.html(template);
+      this.$el.html(template);
+      return ppu.appendSelect(this.el);
     };
 
     LawyersFilters.prototype.paginate = function() {

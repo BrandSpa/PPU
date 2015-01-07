@@ -65,6 +65,10 @@ ppu.appendDatePicker = function(el) {
   });
 };
 
+ppu.appendSelect = function(el) {
+  return $(el).find("select").selectBoxIt();
+};
+
 ppu.appendSummernote = function(el) {
   return $(el).find('.summernote').summernote({
     fontname: ['Lato'],

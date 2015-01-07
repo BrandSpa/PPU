@@ -49,6 +49,7 @@ es:
     name: "Nombre"
     lastname: "Apellido"
     message: "Mensaje"
+    country: "País"
 
   form_thanks: "Gracias por comunicarse con nostros, pronto nos pondremos en contacto con usted."  
 

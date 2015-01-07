@@ -97,5 +97,7 @@
     min-height: 50px; }
     #lawyers-related .lawyer-item .content h3 {
       margin: 0; }
+    #lawyers-related .lawyer-item .content .country {
+      font-size: 0.9em; }
 
 /*# sourceMappingURL=category.css.map */

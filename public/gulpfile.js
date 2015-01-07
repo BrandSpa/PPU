@@ -42,8 +42,7 @@ gulp.task('dependencies-scripts', function() {
     'bower_components/backbone/backbone.js',
     'bower_components/jquery.serializeJSON/jquery.serializejson.min.js',
     'bower_components/moment/min/moment.min.js',
-    'bower_components/nprogress/nprogress.js',
-    'js/libs/jquery.selectBoxIt.min.js'
+    'bower_components/nprogress/nprogress.js'
     
     ])
     .pipe(concat('dependencies.js'))

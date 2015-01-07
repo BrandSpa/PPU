@@ -14,10 +14,11 @@
 
   <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <link type="text/css" rel="stylesheet" href="/css/libs/selectBoxIt.css" />
   <link rel="stylesheet" href="/css/theme.css">
   <link rel="stylesheet" href="/bower_components/fontawesome/css/font-awesome.min.css" />
   <link rel="stylesheet" href="/bower_components/nprogress/nprogress.css">
-  <link href="/css/libs/selectBoxIt.css" />
+  
   
   <%= csrf_meta_tags %>
 </head>
@@ -144,6 +145,16 @@
               <div class="col-lg-5">
                 <h5 class="form_thanks hidden"><%= t("form_thanks") %></h5>
                  <form action="#" class="form-horizontal">
+                  <div class="form-group">
+                  <label for="fields[country]" class="col-sm-2 control-label"><%= t("form_footer.country") %></label>
+                  <div class="col-sm-10">
+                    <select name="fields[country]" class="form-control">
+                      <option value="">Seleccionar País</option>
+                      <option value="Chile">Chile</option>
+                      <option value="Colombia">Colombia</option>
+                    </select>
+                  </div>
+                </div>
                 <div class="form-group">
                   <label for="fields[name]" class="col-sm-2 control-label"><%= t("form_footer.name") %></label>
                   <div class="col-sm-10">
@@ -204,8 +215,9 @@
 <%= render "partials/select_categories" %>
 <%= render "partials/share_modal" %>
 <%= render "partials/seo" %>
-<script src=""></script>
+
 <script src="/js/dist/dependencies.js"></script>
+<script src="/js/libs/jquery.selectBoxIt.min.js"></script>
 <script src="/js/main.js"></script>
 <script src="/js/handlebars_helpers.js"></script>
 <script src="/js/bb_helpers.js"></script>
@@ -219,6 +231,7 @@
 <script src="/js/contact.js"></script>
 <script src="/js/seo.js"></script>
 <script src="/js/router.js"></script>
+
 <script>
   app.lang = "<%= I18n.locale %>";
   app.hostname = window.location.hostname;

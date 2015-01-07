@@ -53,6 +53,7 @@ en:
     name: "Name"
     lastname: "lastname"
     message: "Message"
+    country: "Country"
 
   work_with_us:
     top_title: Who are we looking for?

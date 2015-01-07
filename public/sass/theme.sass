@@ -25,6 +25,7 @@ a
 .navbar-app
   .container-fluid
     padding: 0
+
 #change-lang
   z-index: 1
   background: #00A1B1
@@ -38,11 +39,11 @@ a
   display: block
   text-align: right
 
-
 .modal-backdrop
   background: #002855
   &.in
     opacity: .9 !important
+
 .modal-content
   background: #EEE
 
@@ -51,6 +52,7 @@ a
   
 ul
   padding: 0
+
 .form-control
   box-shadow: none
   border: 2px solid #ddd
@@ -172,13 +174,13 @@ ul
     color: #00A1B1
     float: left
     font-weight: 400
-    padding: 15px 15px 0 0
+    padding: 15px 5px 0 0
     margin: 0
     a
       color: #00A1B1
 
 
-  select, input
+  input
     background: transparent
     color: #fff
     border: none
@@ -186,9 +188,12 @@ ul
     font-weight: 200
     font-size: 0.9em
     padding-right: 20px
-  
-  select::-ms-expand
-    display: none
+
+  select
+    border: none
+    background: $color-darkBlue
+
+
     
   .checkbox-inline
     color: #fff
@@ -201,33 +206,13 @@ ul
   .position
     float: right
     position: relative
+    padding-left: 0
 
-    &:before
-      font-family: 'FontAwesome'
-      content: "\f078"
-      position: absolute
-      top: 15px
-      color: #fff
-      right: 15px
-      font-weight: normal
-      z-index: 1
  
   .category
     float: right
     height: 50px
     border-left: 1px solid #fff
-    position: relative
-
-    overflow: hidden
-    &:before
-      font-family: 'FontAwesome'
-      content: "\f078"
-      position: absolute
-      top: 15px
-      color: #fff
-      right: 15px
-      font-weight: normal
-      z-index: 1
   
   .countries
     float: right
@@ -423,7 +408,7 @@ ul
       border-radius: 0
       font-weight: 200
 
-    textarea.form-control
+    textarea.form-control, select.form-control
       background: transparent
       border: 1px solid #00A1B1 !important
       opacity: .7

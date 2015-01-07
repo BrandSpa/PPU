@@ -92,9 +92,11 @@ $ ->
     initialize: ->
       @filtersAplied = {}
 
+
     render: ->
       template = app.compile(@template)
       @$el.html(template)
+      ppu.appendSelect(@el)
 
     byCountry: (e) ->
       el = $(e.currentTarget)

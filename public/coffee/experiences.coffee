@@ -52,6 +52,8 @@ $ ->
     render: ->
       template = app.compile(@template)
       @$el.html(template)
+      ppu.appendSelect(@el)
+
 
     filterBy: (field, val) ->
       data = _.extend(@filtersAplied,  field: val)

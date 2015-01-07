@@ -54,6 +54,7 @@ $ ->
     render: ->
       template = app.compile(@template)
       @$el.html(template)
+      ppu.appendSelect(@el)
 
     paginate: ->
       offset = $(@el).data('offset') || 0

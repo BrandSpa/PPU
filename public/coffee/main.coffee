@@ -52,6 +52,9 @@ ppu.appendDatePicker = (el) ->
     language: 'es'
     autoclose: true
 
+ppu.appendSelect = (el) ->
+  $(el).find("select").selectBoxIt autoWidth: false
+
 ppu.appendSummernote = (el) ->
    $(el).find('.summernote').summernote
     fontname: ['Lato'],
@@ -140,4 +143,4 @@ $(document).find('.datepicker').datepicker
   format: 'yyyy'
   language: 'es'
   autoclose: true
-
+  
