@@ -27,7 +27,9 @@ $ ->
 		stored: (model) ->
 			if model
 				$(@el).find('form').fadeOut("fast")
+				$(@el).find('.social').css("margin", 0)
 				$(@el).find('.form_thanks').removeClass("hidden")
+
 
 
 

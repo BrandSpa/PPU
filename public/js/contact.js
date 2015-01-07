@@ -60,6 +60,7 @@ $(function() {
     FooterContactCreate.prototype.stored = function(model) {
       if (model) {
         $(this.el).find('form').fadeOut("fast");
+        $(this.el).find('.social').css("margin", 0);
         return $(this.el).find('.form_thanks').removeClass("hidden");
       }
     };

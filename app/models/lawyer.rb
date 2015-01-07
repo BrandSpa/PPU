@@ -1,14 +1,14 @@
 class Lawyer < ActiveRecord::Base
   has_one :translations, class_name: "Lawyer", foreign_key: "translation_id"
   belongs_to :translation, class_name: "Lawyer"
-  has_and_belongs_to_many :categories
+  has_and_belongs_to_many :categories, -> { order "name ASC" }
   has_and_belongs_to_many :trades
   has_and_belongs_to_many :posts
   has_many :awards
   has_many :academics
   has_many :educations
   has_many :jobs
-  has_many :languages
+  has_many :languages, -> { order "name ASC" }
   has_many :articles
   has_many :phrases
   has_many :institutions

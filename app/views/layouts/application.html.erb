@@ -25,46 +25,10 @@
 <body id="ppu-app" data-paginate="true">
 
   <div class="container app-container">
-    <nav class="navbar navbar-default navbar-app hidden-lg" role="navigation">
-      <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
-           Menú <i class="fa fa-bars"></i>
-         </button>
-         <a href="/"><img src="/img/Logo@2x.png" alt="" class="img-responsive"></a>
-       </div>
-
-       <!-- Collect the nav links, forms, and other content for toggling -->
-       <div class="collapse navbar-collapse" id="navbar-collapse-1">
-        <ul class="nav navbar-nav">
-          <li><a href="/abogados"><%= t("Lawyers") %></a></li>
-          <li><a href="/areas"><%= t("Practice Areas") %></a></li>
-          <li><a href="/nosotros"><%= t("Us") %></a></li>
-          <li><a href="/experiencias"><%= t("Experience") %></a></li>
-          <li><a href="/trabaje-con-nosotros"><%= t("Work with Us") %></a></li>
-          <li><a href="/probono">Pro bono</a></li>
-        </ul>
-
-      </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
-  </nav>
+ <%= render("layouts/partials/menu_responsive") %>
   <div class="row">
-
-    <div id="nav-main-container" class="col-lg-2 visible-lg">
-      <ul class="nav-main col-lg-1">
-        <li class="link-main">
-          <a href="/"><img src="/img/Logo@2x.png" alt="" class="img-responsive"></a>
-        </li>
-        <li><a href="/abogados"><%= t("Lawyers") %></a></li>
-        <li><a href="/areas"><%= t("Practice Areas") %></a></li>
-        <li><a href="/nosotros"><%= t("Us") %></a></li>
-        <li><a href="/experiencias"><%= t("Experience") %></a></li>
-        <li><a href="/trabaje-con-nosotros"><%= t("Work with Us") %></a></li>
-        <li><a href="/probono">Pro bono</a></li>
-      </ul>
-    </div>
-
+   
+  <%= render("layouts/partials/menu") %>
     <div class="top-bar-container hidden-xs">
       <div class="container">
         <div class="row">

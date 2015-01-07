@@ -1,517 +1,568 @@
 @import variables
 
 body
-  background: #E4E6EB
-  font-size: 14px
-  padding: 0 0 30px 0
-  font-family: $lato
-  font-weight: normal
-  padding-top: 30px
+	background: #E4E6EB
+	font-size: 14px
+	padding: 0 0 30px 0
+	font-family: $lato
+	font-weight: normal
+	padding-top: 30px
 
-  @media #{$tablet}
-    font-size: 12px
+	@media #{$desktop}
+		padding-top: 0
+
+	@media #{$tablet}
+		font-size: 11px
 a
-  &:hover
-    text-decoration: none
+	&:hover
+		text-decoration: none
 
 .app-container
-  padding-bottom: 50px
+	padding-bottom: 50px
+	
 
 #yield-container
-  margin-top: 65px
-  
+	margin-top: 65px
+	
 .change-lang-container
-  padding-left: 0
+	padding-left: 0
+
 .navbar-app
-  .container-fluid
-    padding: 0
+
+	.container-fluid
+		padding: 0
 
 #change-lang
-  z-index: 1
-  background: #00A1B1
-  height: 50px
-  padding: 15px 0 0 15px
+	z-index: 1
+	background: #00A1B1
+	height: 50px
+	padding: 15px 0 0 15px
 
-  a
-    color: #fff
+	a
+		color: #fff
+.navbar-app
+	img
+		width: 65% !important
+
+	.navbar-toggle
+		background: transparent
+	.navbar-toggle:hover, .navbar-default .navbar-toggle:focus
+		background: transparent
+
+	.navbar-header 
+		float: none
+		background: url("../img/linea-tablet@2x.png") no-repeat top left
+		background-size: contain
+
+
+	.navbar-left,.navbar-right 
+		float: none !important
+			
+	.navbar-toggle 
+		display: block
+			
+	.navbar-collapse 
+		border-top: 1px solid transparent
+		box-shadow: inset 0 1px 0 rgba(255,255,255,0.1)
+			
+	.navbar-fixed-top 
+		top: 0
+		border-width: 0 0 1px
+			
+	.navbar-collapse.collapse 
+		display: none!important
+			
+	.navbar-nav 
+		float: none !important
+		margin-top: 7.5px
+			
+	.navbar-nav>li
+		float: none
+			
+	.navbar-nav>li>a 
+		padding-top: 10px
+		padding-bottom: 10px
+			
+	.collapse.in
+		display: block !important
+			
 
 .policy, .copyright
-  display: block
-  text-align: right
+	display: block
+	text-align: right
 
 .modal-backdrop
-  background: #002855
-  &.in
-    opacity: .9 !important
+	background: #002855
+	&.in
+		opacity: .9 !important
 
 .modal-content
-  background: #EEE
+	background: #EEE
 
 .modal-lg
-  width: 900px !important
-  
+	width: 900px !important
+	
 ul
-  padding: 0
+	padding: 0
 
 .form-control
-  box-shadow: none
-  border: 2px solid #ddd
-  text-indent: 3px
-  height: 42px
-  &:focus
-    border: 2px solid #ccc
-    box-shadow: none
-  
+	box-shadow: none
+	border: 2px solid #ddd
+	text-indent: 3px
+	height: 42px
+	&:focus
+		border: 2px solid #ccc
+		box-shadow: none
+	
 .btn
-  border: none
+	border: none
 .btn-xl
-  height: 42px
-  padding: 11px 15px
-  font-size: 1em
+	height: 42px
+	padding: 11px 15px
+	font-size: 1em
 .btn-store
-  background: #002855
-  color: #fff
-  box-shadow: 0 1px 1px rgba(0,0,0,.05)
-  border: 1px solid transparent
-  &:hover
-    color: #00A1B1
+	background: #002855
+	color: #fff
+	box-shadow: 0 1px 1px rgba(0,0,0,.05)
+	border: 1px solid transparent
+	&:hover
+		color: #00A1B1
 
 .btn-inverse
-  background: #34495e
-  color: #fff
+	background: #34495e
+	color: #fff
 .btn-info
-  background: #3498db
-  color: #fff
+	background: #3498db
+	color: #fff
 
 .panel-default
-  background: #f8f8f8
+	background: #f8f8f8
 
-  .panel-body
-    color: #5F5F5F
+	.panel-body
+		color: #5F5F5F
 
-    .btn-info 
-      background: #00A1B1
-      &:hover
-        background: #002855
-        color: #00A1B1
+		.btn-info 
+			background: #00A1B1
+			&:hover
+				background: #002855
+				color: #00A1B1
 
 .navbar-default
-  background: #002855
-  color: #fff
+	background: #002855
+	color: #fff
 
-  .navbar-brand
-    color: #fff
+	.navbar-brand
+		color: #fff
 
-  .navbar-nav
-    &>li>a
-      color: #fff
-      &:hover
-        color: #00a1b1
-    &>.active
-      &>a
-        background: #00A1B1
-        color: #fff
+	.navbar-nav
+		&>li>a
+			color: #fff
+			&:hover
+				color: #00a1b1
+		&>.active
+			&>a
+				background: #00A1B1
+				color: #fff
 
 #nav-main-container
-  position: relative
+	position: relative
 
 .nav-main
-  position: fixed
-  color: #fff
-  background: #002855
-  width: 180px
-  padding: 0
-  margin: 0
+	position: fixed
+	color: #fff
+	background: #002855
+	width: 180px
+	padding: 0
+	margin: 0
 
-  li
-    list-style: none
-    padding: 0 30px 25px 30px
-    &:nth-child(2)
-      padding-top: 15px !important
+	li
+		list-style: none
+		padding: 0 30px 25px 30px
+		&:nth-child(2)
+			padding-top: 15px !important
 
-    a
-      color: #fff
-      font-size: 14px
-      font-weight: 300
+		a
+			color: #fff
+			font-size: 14px
+			font-weight: 300
 
-  .link-main
-    background: #fff
-    display: block
-    padding: 0
-    margin-bottom: 15px
+	.link-main
+		background: #fff
+		display: block
+		padding: 0
+		margin-bottom: 15px
 
 
 
 .top-bar-container
-  padding: 0 !important
-  margin-bottom: 15px
-  height: 50px
-  z-index: 1
-  position: fixed
-  @media #{$desktop-lg}
-    padding: 0 15px 0 0 !important
+	padding: 0 !important
+	margin-bottom: 15px
+	height: 50px
+	z-index: 1
+	position: fixed
+	@media #{$desktop-lg}
+		padding: 0 15px 0 0 !important
 
 .to-top
-  top: 0
+	top: 0
 
 #top-bar
-  background: #002855
-  padding-left: 15px
-  height: auto
+	background: #002855
+	padding-left: 15px
+	height: auto
 
-  @media #{$desktop-lg}
-    height: 50px
+	@media #{$desktop-lg}
+		height: 50px
 
-  @media #{$desktop}
-    height: 50px
+	@media #{$desktop}
+		height: 50px
 
-  @media #{$tablet}
-    height: 50px
+	@media #{$tablet}
+		height: 50px
 
-  h1
-    font-size: 1.3em
-    color: #00A1B1
-    float: left
-    font-weight: 400
-    padding: 15px 5px 0 0
-    margin: 0
-    a
-      color: #00A1B1
-
-
-  input
-    background: transparent
-    color: #fff
-    border: none
-    padding-top: 15px
-    font-weight: 200
-    font-size: 0.9em
-    padding-right: 20px
-
-  select
-    border: none
-    background: $color-darkBlue
+	h1
+		font-size: 1.3em
+		color: #00A1B1
+		float: left
+		font-weight: 400
+		padding: 15px 5px 0 0
+		margin: 0
+		a
+			color: #00A1B1
 
 
-    
-  .checkbox-inline
-    color: #fff
-    padding-left: 30px
-    font-weight: 200
-    font-size: 0.9em
-  label
-    font-weight: 200
+	input
+		background: transparent
+		color: #fff
+		border: none
+		padding-top: 15px
+		font-weight: 200
+		font-size: 0.9em
+		padding-right: 20px
 
-  .position
-    float: right
-    position: relative
-    padding-left: 0
+	select
+		border: none
+		background: $color-darkBlue
+
+
+		
+	.checkbox-inline
+		color: #fff
+		padding-left: 30px
+		font-weight: 200
+		font-size: 0.9em
+	label
+		font-weight: 200
+
+	.position
+		float: right
+		position: relative
+		padding-left: 0
 
  
-  .category
-    float: right
-    height: 50px
-    border-left: 1px solid #fff
-  
-  .countries
-    float: right
-    height: 50px
-    padding: 17px 0 0 10px
-    border-left: 1px solid #fff
+	.category
+		float: right
+		height: 50px
+		border-left: 1px solid #fff
+	
+	.countries
+		float: right
+		height: 50px
+		padding: 17px 0 0 10px
+		border-left: 1px solid #fff
 
-  .search
-    height: 50px
-    float: right
-    position: relative
-    border-left: 1px solid #fff
-    &:before
-      font-family: 'FontAwesome'
-      content: "\f002"
-      position: absolute
-      top: 15px
-      color: #fff
-      right: 15px
-      font-weight: normal
-      z-index: 1
+	.search
+		height: 50px
+		float: right
+		position: relative
+		border-left: 1px solid #fff
+		&:before
+			font-family: 'FontAwesome'
+			content: "\f002"
+			position: absolute
+			top: 15px
+			color: #fff
+			right: 15px
+			font-weight: normal
+			z-index: 1
 
-    input
-      width: 100%
+		input
+			width: 100%
 
-  select
-    padding: 10px 0 0 0
-    -webkit-appearance: none
-    -moz-appearance: window
-    appearance: none
-    display: block
-    outline: none
-    cursor: pointer
-    text-indent: 0.01px
-    text-overflow: ''
-    position: absolute
-    z-index: 2
+	select
+		padding: 10px 0 0 0
+		-webkit-appearance: none
+		-moz-appearance: window
+		appearance: none
+		display: block
+		outline: none
+		cursor: pointer
+		text-indent: 0.01px
+		text-overflow: ''
+		position: absolute
+		z-index: 2
 
 .footer-container
-  padding: 0 !important
-  height: auto
-  z-index: 1
-  position: fixed
-  bottom: 0
-  color: #fff
-  
-  @media #{$desktop-lg}
-    padding: 0 15px 0 0 !important
-
+	padding: 0 !important
+	height: auto
+	z-index: 1
+	position: fixed
+	bottom: 0
+	color: #fff
+	
+	@media #{$desktop-lg}
+		padding: 0 15px 0 0 !important
+	
 #footer
-  background: #002855
-  padding-left: 30px
-  padding: 30px
+	background: #002855
+	padding: 30px
 
-  a
-    color: #fff
-    font-size: 1.1em
+	a
+		color: #fff
+		font-size: 1.1em
 
-  .open-contact
-    font-size: 1.3em
+	.open-contact
+		font-size: 1.3em
 
-  .policy
-    font-size: 0.9em
-    font-weight: 200
-  .copyright
-    font-size: .9em
-      
+	.policy
+		font-size: 0.9em
+		font-weight: 200
+	.copyright
+		font-size: .9em
+			
 
 #lawyer-finish
-  background: #fff
-  padding: 0
-  border: none
-  color: #5F5F5F
-  padding-bottom: 30px
+	background: #fff
+	padding: 0
+	border: none
+	color: #5F5F5F
+	padding-bottom: 30px
 
-  .open-edit-lawyer
-    margin: 0 0 0 15px
+	.open-edit-lawyer
+		margin: 0 0 0 15px
 
-  .panel-body
-    padding: 0 0 30px 0
+	.panel-body
+		padding: 0 0 30px 0
 
-  .btn-info 
-    background: #002855
+	.btn-info 
+		background: #002855
 
-  .lawyer-award
-    width: 100%
-    float: left
+	.lawyer-award
+		width: 100%
+		float: left
 
-    img
-      float: left
+		img
+			float: left
 
-    h5
-      display: block
-      float: left
-      padding: 15px
+		h5
+			display: block
+			float: left
+			padding: 15px
 
-  li
-    list-style-position: inside
-    margin-bottom: 15px
+	li
+		list-style-position: inside
+		margin-bottom: 15px
 
-  h4
-    margin-top: 30px
-    margin-bottom: 30px
+	h4
+		margin-top: 30px
+		margin-bottom: 30px
 
-  .lawyer-description
-    text-align: left
-    padding: 15px
+	.lawyer-description
+		text-align: left
+		padding: 15px
 
-  .lawyer-header
-    background: #002855
-    padding: 30px
-    position: relative
-    overflow: hidden
-    color: #fff
+	.lawyer-header
+		background: #002855
+		padding: 30px
+		position: relative
+		overflow: hidden
+		color: #fff
 
-    h1
-      font-size: 1.4em
-      margin-top: 0
-      margin-bottom: 30px
+		h1
+			font-size: 1.4em
+			margin-top: 0
+			margin-bottom: 30px
 
-    p
-      margin: 0
-      font-size: 1.1em
+		p
+			margin: 0
+			font-size: 1.1em
 
-    .lawyer-phone, .lawyer-email
-      color: #00A1B1
-      font-size: 1.1em
-      display: block
-      width: 100%
+		.lawyer-phone, .lawyer-email
+			color: #00A1B1
+			font-size: 1.1em
+			display: block
+			width: 100%
 
-    .lawyer-email
-      font-size: 1em
-      margin-bottom: 15px
+		.lawyer-email
+			font-size: 1em
+			margin-bottom: 15px
 
-    img
-      position: absolute
-      top: 0
-      right: 0 
-      -webkit-filter: grayscale(100%)
-      -moz-filter: grayscale(100%)
-      filter: grayscale(100%)
+		img
+			position: absolute
+			top: 0
+			right: 0 
+			-webkit-filter: grayscale(100%)
+			-moz-filter: grayscale(100%)
+			filter: grayscale(100%)
 
 #lawyer-award-edit
-  li
-    list-style: none
-    
+	li
+		list-style: none
+		
 .form-control
-  &.error
-    border-color: red !important
-  &:focus 
-    border-color: #dddddd !important
+	&.error
+		border-color: red !important
+	&:focus 
+		border-color: #dddddd !important
 
 .error-message
-  width: 100%
-  background: red
-  color: #fff
-  padding: 5px 15px
-  font-size: 0.9em
-  margin-top: 0
+	width: 100%
+	background: red
+	color: #fff
+	padding: 5px 15px
+	font-size: 0.9em
+	margin-top: 0
 
 .relationship-title
-  width: 100%
-  text-align: center
-  
-  background: #fff
-  h3
-    padding: 15px
-    font-size: 1.2em
-    color: $color-darkBlue
-    margin: 15px
+	width: 100%
+	text-align: center
+	
+	background: #fff
+	h3
+		padding: 15px
+		font-size: 1.2em
+		color: $color-darkBlue
+		margin: 15px
 
 .lawyers-associated
-  padding: 0
+	padding: 0
 
 #footer
-  position: relative
-  .close-footer
-    position: absolute
-    right: 30px
-    top: 30px
-    i
-      font-size: 1.3em
-  h3
-    font-size: 1.3em
+	position: relative
+	.close-footer
+		position: absolute
+		right: 30px
+		top: 30px
+		i
+			font-size: 1.3em
+	h3
+		font-size: 1.3em
 
-  form
-    input.form-control
-      background: transparent
-      height: 35px
-      border: 1px solid #00A1B1 !important
-      opacity: .7
-      color: #fff !important
-      border-radius: 0
-      font-weight: 200
+	form
+		input.form-control
+			background: transparent
+			height: 35px
+			border: 1px solid #00A1B1 !important
+			opacity: .7
+			color: #fff !important
+			border-radius: 0
+			font-weight: 200
 
-    textarea.form-control, select.form-control
-      background: transparent
-      border: 1px solid #00A1B1 !important
-      opacity: .7
-      color: #fff !important
-      border-radius: 0
-      font-weight: 200
+		textarea.form-control, select.form-control
+			background: transparent
+			border: 1px solid #00A1B1 !important
+			opacity: .7
+			color: #fff !important
+			border-radius: 0
+			font-weight: 200
 
-    .btn
-      background: #00A1B1
-      margin-right: 15px
+		.btn
+			background: #00A1B1
+			margin-right: 15px
 
-    label
-      font-weight: 200
+		label
+			font-weight: 200
 
 .select-cities
-  li
-    font-size: 0.9em
-    list-style: none
-    a
-      &.active
-        color: #00A1B1 !important
+	li
+		font-size: 0.9em
+		list-style: none
+		a
+			&.active
+				color: #00A1B1 !important
 
 #city-info
-  h4
-    margin: 0 0 10px 0
-    color: #00A1B1
+	h4
+		margin: 0 0 10px 0
+		color: #00A1B1
 
-  span
-    font-weight: 200
-    font-size: .9em
+	span
+		font-weight: 200
+		font-size: .9em
 
 .social
-  margin-top: -30px
-  li
-    display: inline-block
-    margin-left: 15px
+	margin-top: -30px
+	li
+		display: inline-block
+		margin-left: 15px
 
 #share-modal
-  .modal-header
-    border-bottom: 1px solid #00A1B1
-    h4
-      color: #fff
-  .modal-content
-    background: transparent
-    box-shadow: none
-    border: none
+	.modal-header
+		border-bottom: 1px solid #00A1B1
+		h4
+			color: #fff
+	.modal-content
+		background: transparent
+		box-shadow: none
+		border: none
 
-  .close
-    color: #00A1B1
-    font-size: 40px
-    margin-top: -10px
-    opacity: 1
-    text-shadow: none
+	.close
+		color: #00A1B1
+		font-size: 40px
+		margin-top: -10px
+		opacity: 1
+		text-shadow: none
 
-  .at-share-tbx-element .at-share-btn .at300bs
-    margin-right: 10% 
-    font-family: "FontAwesome"
+	.at-share-tbx-element .at-share-btn .at300bs
+		margin-right: 10% 
+		font-family: "FontAwesome"
 
-  .addthis_32x32_style .at15t_facebook, .at15t_twitter, .at15t_linkedin, .at15t_google_plusone_share, .at15t_email, .at15t_whatsapp
-    background: transparent
-    &:before
-      content: "\f09a"
-      color: #fff
-      font-size: 30px
+	.addthis_32x32_style .at15t_facebook, .at15t_twitter, .at15t_linkedin, .at15t_google_plusone_share, .at15t_email, .at15t_whatsapp
+		background: transparent
+		&:before
+			content: "\f09a"
+			color: #fff
+			font-size: 30px
 
 
-  .at15t_twitter
-    &:before
-      content: "\f099"
+	.at15t_twitter
+		&:before
+			content: "\f099"
 
-  .at15t_linkedin
-    &:before
-      content: "\f0e1"
+	.at15t_linkedin
+		&:before
+			content: "\f0e1"
 
-  .at15t_google_plusone_share
-    &:before
-      content: "\f0d5"
+	.at15t_google_plusone_share
+		&:before
+			content: "\f0d5"
 
-  .at15t_email
-    &:before
-      content: "\f003"
-    
-  .at15t_whatsapp
-    &:before
-      content: ""
-    @media #{$mobile}
-      &:before
-        content: "\f0e5"
-     
+	.at15t_email
+		&:before
+			content: "\f003"
+		
+	.at15t_whatsapp
+		&:before
+			content: ""
+		@media #{$mobile}
+			&:before
+				content: "\f0e5"
+		 
 .country-container
-  .selectboxit-text
-    border: 1px solid #00A1B1
-    opacity: .7
-    padding: 3px 0 0 5px
-  .selectboxit-container span
-    height: 35px
-    margin: 0 0 0 -1px
-  .selectboxit-container .selectboxit
-    border-radius: 0
-  .selectboxit-arrow-container
-    right: 15px
-    top: 0
-  .selectboxit-option
-    font-size: .9em
+	.selectboxit-text
+		border: 1px solid #00A1B1
+		opacity: .7
+		padding: 3px 0 0 5px
+	.selectboxit-container span
+		height: 35px
+		margin: 0 0 0 -1px
+	.selectboxit-container .selectboxit
+		border-radius: 0
+	.selectboxit-arrow-container
+		right: 15px
+		top: 0
+	.selectboxit-option
+		font-size: .9em
 
 
 @import menu

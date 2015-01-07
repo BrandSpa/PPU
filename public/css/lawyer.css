@@ -85,7 +85,8 @@
       width: 150px;
       padding: 60px 0 0 0; }
       #lawyer .lawyer-header .share-container a {
-        float: left;
+        float: right;
+        margin-right: 30px;
         margin-bottom: 15px; }
     #lawyer .lawyer-header img {
       width: 170px;

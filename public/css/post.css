@@ -14,6 +14,9 @@
     overflow: hidden; }
     .post-main-featured-item .img-container img {
       margin-top: -75px; }
+      @media (min-width: 768px) and (max-width: 991px) {
+        .post-main-featured-item .img-container img {
+          margin-top: -30px; } }
   .post-main-featured-item .content {
     padding: 20px;
     background: #fff;

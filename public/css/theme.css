@@ -11,9 +11,12 @@ body {
   font-family: "Lato", sans-serif;
   font-weight: normal;
   padding-top: 30px; }
+  @media (min-width: 992px) and (max-width: 1199px) {
+    body {
+      padding-top: 0; } }
   @media (min-width: 768px) and (max-width: 991px) {
     body {
-      font-size: 12px; } }
+      font-size: 11px; } }
 
 a:hover {
   text-decoration: none; }
@@ -37,6 +40,39 @@ a:hover {
   padding: 15px 0 0 15px; }
   #change-lang a {
     color: #fff; }
+
+.navbar-app img {
+  width: 65% !important; }
+.navbar-app .navbar-toggle {
+  background: transparent; }
+.navbar-app .navbar-toggle:hover, .navbar-app .navbar-default .navbar-toggle:focus {
+  background: transparent; }
+.navbar-app .navbar-header {
+  float: none;
+  background: url("../img/linea-tablet@2x.png") no-repeat top left;
+  background-size: contain; }
+.navbar-app .navbar-left, .navbar-app .navbar-right {
+  float: none !important; }
+.navbar-app .navbar-toggle {
+  display: block; }
+.navbar-app .navbar-collapse {
+  border-top: 1px solid transparent;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1); }
+.navbar-app .navbar-fixed-top {
+  top: 0;
+  border-width: 0 0 1px; }
+.navbar-app .navbar-collapse.collapse {
+  display: none !important; }
+.navbar-app .navbar-nav {
+  float: none !important;
+  margin-top: 7.5px; }
+.navbar-app .navbar-nav > li {
+  float: none; }
+.navbar-app .navbar-nav > li > a {
+  padding-top: 10px;
+  padding-bottom: 10px; }
+.navbar-app .collapse.in {
+  display: block !important; }
 
 .policy, .copyright {
   display: block;
@@ -245,7 +281,6 @@ ul {
 
 #footer {
   background: #002855;
-  padding-left: 30px;
   padding: 30px; }
   #footer a {
     color: #fff;
@@ -554,7 +589,8 @@ ul {
       width: 150px;
       padding: 60px 0 0 0; }
       #lawyer .lawyer-header .share-container a {
-        float: left;
+        float: right;
+        margin-right: 30px;
         margin-bottom: 15px; }
     #lawyer .lawyer-header img {
       width: 170px;
@@ -651,6 +687,9 @@ ul {
     overflow: hidden; }
     .post-main-featured-item .img-container img {
       margin-top: -75px; }
+      @media (min-width: 768px) and (max-width: 991px) {
+        .post-main-featured-item .img-container img {
+          margin-top: -30px; } }
   .post-main-featured-item .content {
     padding: 20px;
     background: #fff;
