@@ -124,7 +124,7 @@ $(function() {
 
     LawyersFilters.prototype.paginate = function() {
       var data, offset;
-      offset = $(this.el).data('offset') || 0;
+      offset = $(this.el).data('offset') || 20;
       data = _.extend(this.filtersAplied, {
         paginate: offset
       });

@@ -57,7 +57,7 @@ $ ->
       ppu.appendSelect(@el)
 
     paginate: ->
-      offset = $(@el).data('offset') || 0
+      offset = $(@el).data('offset') || 20
       data = _.extend(@filtersAplied, paginate: offset)
       ppu.lawyers.fetch data: data
       $(@el).data('offset', (offset+20))

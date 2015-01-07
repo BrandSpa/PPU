@@ -235,10 +235,13 @@ ul[aria-hidden=false]{
 .selectboxit-btn .selectboxit-text{
   padding: 0;
 }
-.selectboxit-container .selectboxit-options,
 .selectboxit-container .selectboxit,
 .selectboxit-container {
     width: 100%;
+}
+
+.selectboxit-container .selectboxit-options {
+  width: 250px;
 }
 .selectboxit-btn.form-control{
   border: none;
