@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150106223014) do
+ActiveRecord::Schema.define(version: 20150107042855) do
 
   create_table "academics", force: true do |t|
     t.integer  "lawyer_id"
@@ -88,11 +88,9 @@ ActiveRecord::Schema.define(version: 20150106223014) do
   end
 
   create_table "curriculums", force: true do |t|
-    t.string   "country"
-    t.string   "name"
-    t.string   "file_name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string "country"
+    t.string "name"
+    t.string "file_name"
   end
 
   create_table "educations", force: true do |t|
