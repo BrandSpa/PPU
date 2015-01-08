@@ -252,7 +252,7 @@ $(function() {
     }
 
     Workspace.prototype.routes = {
-      "abogados": "lawyers",
+      "abogados-beta": "lawyers",
       "abogados/:slug": "lawyer",
       "experiencias": "experiences",
       "experiencias/:slug": "experience",
