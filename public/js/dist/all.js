@@ -303,12 +303,6 @@ $(function() {
 
     Workspace.prototype.posts = function() {
       ppu.postsFeatured = new ppu.Posts;
-      ppu.postsFeatured.fetch({
-        reset: true,
-        data: {
-          featured: true
-        }
-      });
       ppu.postsFilters = new ppu.PostsFilters;
       ppu.postsFilters.render();
       ppu.posts = new ppu.Posts;
@@ -319,11 +313,17 @@ $(function() {
           not_featured: true
         }
       });
-      ppu.postsFeaturedView = new ppu.PostsFeaturedView({
-        collection: ppu.postsFeatured
+      ppu.postsFeatured.fetch({
+        reset: true,
+        data: {
+          featured: true
+        }
       });
-      return ppu.postsView = new ppu.PostsView({
+      ppu.postsView = new ppu.PostsView({
         collection: ppu.posts
+      });
+      return ppu.postsFeaturedView = new ppu.PostsFeaturedView({
+        collection: ppu.postsFeatured
       });
     };
 
