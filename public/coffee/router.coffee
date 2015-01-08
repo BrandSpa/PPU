@@ -34,14 +34,16 @@ $ ->
       ppu.LawyerDetailView = new ppu.LawyerDetailView collection: ppu.lawyer
 
     posts: ->
-      ppu.postsFeatured = new ppu.Posts
+     
       
       ppu.postsFilters = new ppu.PostsFilters
       ppu.postsFilters.render()
+
       ppu.posts = new ppu.Posts
-      
       ppu.posts.fetch reset: true, data: published: true, not_featured: true
       ppu.postsView = new ppu.PostsView collection: ppu.posts
+
+      ppu.postsFeatured = new ppu.Posts
       ppu.postsFeatured.fetch reset: true, data: featured: true
       ppu.postsFeaturedView = new ppu.PostsFeaturedView collection: ppu.postsFeatured
 

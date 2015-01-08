@@ -60,7 +60,6 @@ $(function() {
     };
 
     Workspace.prototype.posts = function() {
-      ppu.postsFeatured = new ppu.Posts;
       ppu.postsFilters = new ppu.PostsFilters;
       ppu.postsFilters.render();
       ppu.posts = new ppu.Posts;
@@ -74,6 +73,7 @@ $(function() {
       ppu.postsView = new ppu.PostsView({
         collection: ppu.posts
       });
+      ppu.postsFeatured = new ppu.Posts;
       ppu.postsFeatured.fetch({
         reset: true,
         data: {
