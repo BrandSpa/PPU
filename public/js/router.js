@@ -71,14 +71,14 @@ $(function() {
           not_featured: true
         }
       });
+      ppu.postsView = new ppu.PostsView({
+        collection: ppu.posts
+      });
       ppu.postsFeatured.fetch({
         reset: true,
         data: {
           featured: true
         }
-      });
-      ppu.postsView = new ppu.PostsView({
-        collection: ppu.posts
       });
       return ppu.postsFeaturedView = new ppu.PostsFeaturedView({
         collection: ppu.postsFeatured

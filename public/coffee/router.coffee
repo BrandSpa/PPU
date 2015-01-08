@@ -39,9 +39,10 @@ $ ->
       ppu.postsFilters = new ppu.PostsFilters
       ppu.postsFilters.render()
       ppu.posts = new ppu.Posts
+      
       ppu.posts.fetch reset: true, data: published: true, not_featured: true
-      ppu.postsFeatured.fetch reset: true, data: featured: true
       ppu.postsView = new ppu.PostsView collection: ppu.posts
+      ppu.postsFeatured.fetch reset: true, data: featured: true
       ppu.postsFeaturedView = new ppu.PostsFeaturedView collection: ppu.postsFeatured
 
     post: (slug)->
