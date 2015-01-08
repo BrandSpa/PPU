@@ -102,9 +102,10 @@ $(function() {
     PostsView.prototype.render = function() {
       app.pubsub.trigger("seo:render", this.collection);
       this.$el.html("");
-      return this.collection.each(function(model) {
+      this.collection.each(function(model) {
         return this.renderOne(model);
       }, this);
+      return app.pubsub.trigger("posts:rendered");
     };
 
     return PostsView;
@@ -142,11 +143,21 @@ $(function() {
 
     PostsFeaturedView.prototype.initialize = function() {
       this.listenTo(this.collection, "reset", this.render);
-      return app.pubsub.bind("posts:filter", this.hide, this);
+      app.pubsub.bind("posts:filter", this.hide, this);
+      return app.pubsub.bind("posts:rendered", this.getFeatured, this);
     };
 
     PostsFeaturedView.prototype.hide = function() {
       return this.$el.fadeOut();
+    };
+
+    PostsFeaturedView.prototype.getFeatured = function() {
+      return this.collection.fetch({
+        reset: true,
+        data: {
+          featured: true
+        }
+      });
     };
 
     PostsFeaturedView.prototype.renderMain = function(model) {

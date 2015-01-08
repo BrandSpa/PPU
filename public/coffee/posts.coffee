@@ -44,6 +44,7 @@ $ ->
       @collection.each (model) ->
           @renderOne(model)
       , @
+      app.pubsub.trigger("posts:rendered")
 
   class ppu.PostMainFeaturedView extends Backbone.View
     template: $ "#post-main-featured-template"
@@ -60,9 +61,13 @@ $ ->
     initialize: ->
       @listenTo(@collection, "reset", @render)
       app.pubsub.bind("posts:filter", @hide, @)
+      app.pubsub.bind("posts:rendered", @getFeatured, @)
 
     hide: ->
       @$el.fadeOut()
+
+    getFeatured: ->
+      @collection.fetch reset: true, data: featured: true
 
     renderMain: (model) ->
       ppu.postMainFeaturedView = new ppu.PostMainFeaturedView model: model

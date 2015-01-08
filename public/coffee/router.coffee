@@ -42,11 +42,9 @@ $ ->
       ppu.postsView = new ppu.PostsView collection: ppu.posts
 
       ppu.postsFeatured = new ppu.Posts
-      ppu.postsFeatured.fetch reset: true, data: featured: true
       ppu.postsFeaturedView = new ppu.PostsFeaturedView collection: ppu.postsFeatured
 
       
-
     post: (slug)->
       ppu.post = new ppu.Post id: slug
       ppu.post.fetch()
