@@ -40,9 +40,7 @@
             <div id="top-bar"></div>
           </div>
           <div class="col-lg-2 visible-lg change-lang-container">
-             <div id="change-lang">
-               <a href="#" class="change-lang-page"><%= t('page_lang') %></a>
-             </div>
+            <a href="#" class="change-lang-page"><%= t('page_lang') %></a>
           </div>
         </div>
       </div>
@@ -63,67 +61,72 @@
               <a href="#footer-content" class="close-footer" data-toggle="collapse"><i class="fa fa-times"></i></a>
          
               <hr>
-              <div class="row" >
-         
-                 <div class="col-lg-3">
-                  <ul class="select-cities">
-                <li><a data-toggle="collapse" data-parent="#footer-content" href="#collapseBarranquilla">Barranquilla</a></li>
-                <li><a data-toggle="collapse" data-parent="#footer-content" href="#collapseBogota">Bogotá</a></li>
-                <li><a data-toggle="collapse" data-parent="#footer-content" href="#collapseSantiago">Santiago de Chile</a></li>
-              </ul>
-              </div>
-            
-              
-              <div class="col-lg-3">
-              <div id="city-info">
-              <div class="barranquilla collapse in" id="collapseBarranquilla">
-                <span>Calle 77B # 59-61 Oficina 1202</span>
-                <br>
-                <span>Centro Empresarial Las Américas II</span>
-                <br>
-                <span>Tel.: +576 3694040</span>
-                <br>
-                <span>infoCO@ppulegal.com</span>
-              </div>
-                <div class="bogota collapse" id="collapseBogota">
-                <span>Carrera 9 # 74-08 Oficina 105</span>
-                <br>
-                <span>Tel.: +571 3268600</span>
-                <br>
-                <span>infoCO@ppulegal.com</span>
-              </div>
-              
+              <div class="row">
+                <div class="col-lg-6">
+                  
+                  <div id="city-info">
+                    <div class="row">
+                      <div class="col-lg-3">
+                        <h4>Barranquilla</h4>
+                      </div>
+                      <div class="col-lg-8">
+                        <span>Calle 77B # 59-61 Oficina 1202</span>
 
-              <div class="santiago collapse" id="collapseSantiago">
-                <span>El Golf 40 Piso 20</span>
-                <br>
-                <span>Las Condes C.P. 7550107</span>
-                <br>
-                <span>Tel: +562 23643700</span>
-                <br>
-                <span>Fax: +562 23643796</span>
-                <br>
-                <span>infoCL@ppulegal.com</span>
-              </div>
-              </div>
-        
-              </div>
-      
-              <div class="col-lg-5">
-                <h5 class="form_thanks hidden"><%= t("form_thanks") %></h5>
-                 <form action="#" class="form-horizontal">
-                  <div class="form-group">
-                  <label for="fields[country]" class="col-sm-2 control-label"><%= t("form_footer.country") %></label>
+                        <span>Centro Empresarial Las Américas II</span>
 
-                  <div class="col-sm-10 country-container">
-                    <select name="fields[country]" class="form-control">
-                      <option value="">Seleccionar País</option>
-                      <option value="Chile">Chile</option>
-                      <option value="Colombia">Colombia</option>
-                    </select>
+                        <span>Tel.: +576 3694040</span>
+
+                        <span>infoCO@ppulegal.com</span>
+                      </div>
+                    </div>
+                  
+
+                    <div class="row">
+                      <div class="col-lg-3">
+                        <h4>Bogotá</h4>
+                      </div>
+                      <div class="col-lg-8">
+                        <span>Carrera 9 # 74-08 Oficina 105</span>
+                        
+                        <span>Tel.: +571 3268600</span>
+                        
+                        <span>infoCO@ppulegal.com</span>
+                      </div>
+                    </div>
+                      <div class="row">
+                      <div class="col-lg-3">
+                        <h4>Santiago de Chile</h4>
+                      </div>
+                      <div class="col-lg-8">
+                        <span>El Golf 40 Piso 20</span>
+                        
+                        <span>Las Condes C.P. 7550107</span>
+                        
+                        <span>Tel: +562 23643700</span>
+                        
+                        <span>Fax: +562 23643796</span>
+                        
+                        <span>infoCL@ppulegal.com</span>
+                      </div>
+                    </div>
                   </div>
-
                 </div>
+
+              <div class="col-lg-6">
+                <h5 class="form_thanks hidden"><%= t("form_thanks") %></h5>
+                <form action="#" class="form-horizontal">
+                  <div class="form-group">
+                    <label for="fields[country]" class="col-sm-2 control-label"><%= t("form_footer.country") %></label>
+
+                    <div class="col-sm-10 country-container">
+                      <select name="fields[country]" class="form-control">
+                        <option value="">Seleccionar País</option>
+                        <option value="Chile">Chile</option>
+                        <option value="Colombia">Colombia</option>
+                      </select>
+                    </div>
+
+                  </div>
                 <div class="form-group">
                   <label for="fields[name]" class="col-sm-2 control-label"><%= t("form_footer.name") %></label>
                   <div class="col-sm-10">
@@ -215,7 +218,6 @@
 
   ga('create', 'UA-56938300-2', 'auto');
   ga('send', 'pageview');
-
 </script>
 
 <!-- Go to www.addthis.com/dashboard to customize your tools -->

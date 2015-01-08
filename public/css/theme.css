@@ -392,6 +392,8 @@ ul {
       font-size: 1.3em; }
   #footer h3 {
     font-size: 1.3em; }
+  #footer hr {
+    border-color: #00A1B1 !important; }
   #footer form input.form-control {
     background: transparent;
     height: 35px;
@@ -419,6 +421,25 @@ ul {
   .select-cities li a.active {
     color: #00A1B1 !important; }
 
+#city-info .row {
+  border-bottom: 1px solid #00A1B1 !important;
+  margin: 0 15px 15px 0 !important; }
+  #city-info .row h4 {
+    font-size: 1em;
+    font-weight: 200; }
+  #city-info .row span {
+    font-size: 0.9em;
+    font-weight: 200;
+    opacity: 0.7;
+    line-height: 0.9em;
+    margin: 0;
+    padding: 0 0 5px 0;
+    display: block;
+    width: 100%; }
+  #city-info .row .col-lg-3 {
+    padding-left: 0 !important; }
+  #city-info .row .col-lg-8 {
+    margin-bottom: 15px; }
 #city-info h4 {
   margin: 0 0 10px 0;
   color: #00A1B1; }
