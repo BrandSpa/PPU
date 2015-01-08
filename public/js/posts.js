@@ -138,7 +138,7 @@ $(function() {
       return PostsFeaturedView.__super__.constructor.apply(this, arguments);
     }
 
-    PostsFeaturedView.prototype.el = $("#posts-featured");
+    PostsFeaturedView.prototype.el = $("#posts");
 
     PostsFeaturedView.prototype.initialize = function() {
       this.listenTo(this.collection, "reset", this.render);
@@ -153,7 +153,7 @@ $(function() {
       ppu.postMainFeaturedView = new ppu.PostMainFeaturedView({
         model: model
       });
-      return this.$el.append(ppu.postMainFeaturedView.render().el);
+      return this.$el.prepend(ppu.postMainFeaturedView.render().el);
     };
 
     PostsFeaturedView.prototype.renderOne = function(model) {
@@ -165,11 +165,7 @@ $(function() {
 
     PostsFeaturedView.prototype.render = function() {
       return this.collection.each(function(model) {
-        if (model.get('featured') === 1) {
-          return this.renderMain(model);
-        } else {
-          return this.renderOne(model);
-        }
+        return this.renderMain(model);
       }, this);
     };
 

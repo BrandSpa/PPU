@@ -42,7 +42,7 @@ $ ->
       app.pubsub.trigger("seo:render", @collection)
       @$el.html("")
       @collection.each (model) ->
-        @renderOne(model)
+          @renderOne(model)
       , @
 
   class ppu.PostMainFeaturedView extends Backbone.View
@@ -55,7 +55,7 @@ $ ->
       @
 
   class ppu.PostsFeaturedView extends Backbone.View
-    el: $ "#posts-featured"
+    el: $ "#posts"
     
     initialize: ->
       @listenTo(@collection, "reset", @render)
@@ -66,7 +66,7 @@ $ ->
 
     renderMain: (model) ->
       ppu.postMainFeaturedView = new ppu.PostMainFeaturedView model: model
-      @$el.append ppu.postMainFeaturedView.render().el
+      @$el.prepend ppu.postMainFeaturedView.render().el
 
     renderOne: (model) ->
       ppu.postView = new ppu.PostFeaturedView model: model
@@ -74,10 +74,7 @@ $ ->
 
     render: ->
       @collection.each (model) ->
-        if model.get('featured') == 1
           @renderMain(model)
-        else
-          @renderOne(model)
       , @
         
   class ppu.PostsFilters extends Backbone.View

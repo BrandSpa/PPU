@@ -52,10 +52,6 @@ a:hover {
   background: transparent; }
 .navbar-app .navbar-toggle:hover, .navbar-app .navbar-default .navbar-toggle:focus {
   background: transparent; }
-.navbar-app .navbar-header {
-  float: none;
-  background: url("../img/linea-tablet@2x.png") no-repeat top left;
-  background-size: contain; }
 .navbar-app .navbar-left, .navbar-app .navbar-right {
   float: none !important; }
 .navbar-app .navbar-toggle {
@@ -509,6 +505,12 @@ ul {
 .country-container .selectboxit-option {
   font-size: 0.9em; }
 
+.form-group span {
+  display: block;
+  font-size: 0.9em; }
+.form-group .form-control {
+  font-size: 1em; }
+
 /* Large desktops and laptops */
 /* Portrait tablets and medium desktops */
 /* Portrait tablets and small desktops */
@@ -765,18 +767,18 @@ ul {
   padding-left: 0;
   padding-right: 7px; }
   .post-main-featured-item .img-container {
-    height: 160px;
+    height: 195px;
     overflow: hidden; }
     .post-main-featured-item .img-container img {
-      margin-top: -75px; }
+      margin-top: -35px; }
       @media (min-width: 768px) and (max-width: 991px) {
         .post-main-featured-item .img-container img {
-          margin-top: -30px; } }
+          margin-top: 0px; } }
   .post-main-featured-item .content {
     padding: 20px;
     background: #fff;
     color: #5F5F5F;
-    height: 165px; }
+    height: 180px; }
     .post-main-featured-item .content h3 {
       font-size: 1em;
       margin: 0;
@@ -787,7 +789,7 @@ ul {
         line-height: 150%; }
     .post-main-featured-item .content p {
       color: #7F7F7F;
-      font-size: 0.9em;
+      font-size: 1em;
       line-height: 170%;
       margin: 10px 0 10px 0; }
     .post-main-featured-item .content .date {
@@ -795,39 +797,43 @@ ul {
       font-style: italic;
       color: #7F7F7F; }
     .post-main-featured-item .content .share {
-      font-size: 0.9em;
+      font-size: 1em;
       float: right;
       color: #002855; }
       .post-main-featured-item .content .share i {
         padding-left: 5px; }
 
 .post-item, .post-featured-item {
-  height: 155px;
+  height: 180px;
   margin-bottom: 15px;
   overflow: hidden;
   position: relative; }
   .post-item:first-child, .post-featured-item:first-child {
-    padding-left: 0; }
+    padding-left: 7px;
+    padding-right: 0; }
+  .post-item:nth-child(2), .post-featured-item:nth-child(2) {
+    padding-left: 7px !important;
+    padding-right: 0 !important; }
   .post-item:first-child, .post-item:nth-child(2n+3), .post-featured-item:first-child, .post-featured-item:nth-child(2n+3) {
-    padding-left: 0;
-    padding-right: 7px; }
+    padding-left: 7px;
+    padding-right: 0; }
   .post-item:nth-child(2n+2), .post-featured-item:nth-child(2n+2) {
-    padding-right: 0;
-    padding-left: 7px; }
+    padding-right: 7px;
+    padding-left: 0; }
   .post-item .img-container, .post-featured-item .img-container {
-    width: 155px;
+    width: 180px;
     float: left;
     overflow: hidden;
     margin-right: 20px; }
     .post-item .img-container img, .post-featured-item .img-container img {
-      margin: 0 auto;
-      width: 280px; }
+      margin: 0 0 0 -80px;
+      height: 180px; }
   .post-item .content, .post-featured-item .content {
     background: #fff;
     padding: 15px 20px 20px 20px;
-    height: 155px; }
+    height: 180px; }
     .post-item .content h3, .post-featured-item .content h3 {
-      font-size: 0.9em;
+      font-size: 1em;
       padding-right: 7px;
       line-height: 1.4em;
       font-weight: bold;
@@ -835,7 +841,7 @@ ul {
       .post-item .content h3 a, .post-featured-item .content h3 a {
         color: #002855; }
     .post-item .content p, .post-featured-item .content p {
-      font-size: 0.9em;
+      font-size: 1em;
       line-height: 150%;
       padding: 7px 0 7px 0;
       margin: 0;
@@ -871,7 +877,7 @@ ul {
     font-weight: 200; }
   .post-header .share {
     color: #fff;
-    font-size: 0.9em;
+    font-size: 1em;
     float: right;
     margin-top: -30px; }
     .post-header .share i {
@@ -885,7 +891,7 @@ ul {
   line-height: 1.7em; }
 
 .post-featured-item {
-  height: 155px;
+  height: 180px;
   margin-bottom: 15px;
   overflow: hidden; }
   .post-featured-item:first-child {
@@ -991,7 +997,8 @@ ul {
       padding-top: 0; }
 
 #lawyers-related .lawyer-item {
-  padding: 0; }
+  padding: 0;
+  height: auto; }
   #lawyers-related .lawyer-item .content {
     padding: 0;
     min-height: 50px; }

@@ -6,11 +6,11 @@ Handlebars.registerHelper('checked', function(val1, val2) {
 });
 
 Handlebars.registerHelper('shortenText', function(text, block) {
-  return text.substring(0, 120) + " ...";
+  return text.substring(0, 95) + " ...";
 });
 
 Handlebars.registerHelper('shortenText2', function(text, block) {
-  return text.substring(0, 90);
+  return text.substring(0, 60) + " ...";
 });
 
 Handlebars.registerHelper('dateFormat', function(context, block) {

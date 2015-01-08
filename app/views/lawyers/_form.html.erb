@@ -1,14 +1,13 @@
 <script type="text/x-handlebars-template" id="lawyer-form-template">
-  <form action=""  enctype="multipart/form-data">   
+  <form action=""  class="col-lg-6" enctype="multipart/form-data">   
     <div class="row">
-    <div class="form-group col-lg-6">
+    <div class="form-group col-lg-12">
       <select name="fields[country]" class="form-control" id="">
        {{#if country}}
         <option value="{{country}}">{{country}}</option>
         {{else}}
          <option value="">Seleccionar País</option>
        {{/if}}
-        
         <option value="Chile">Chile</option>
         <option value="Colombia">Colombia</option>
         <option value="Chile">España</option>
@@ -17,30 +16,37 @@
   </div>
 
   <div class="row">
-    <div class="form-group col-lg-6">
+    <div class="form-group col-lg-12">
       <label for="file">Adjuntar Foto de perfil</label>
       <input type="file" name="fields[img_name]" class='form-control'>
     </div>
   </div>
 
   <div class="row">
-    <div class="form-group col-lg-6">
-      <input type="text" name="fields[name]" class="form-control" placeholder="Nombre" value="{{ name }}">
+    <div class="form-group col-lg-12">
+    <label>Nombre</label>
+      <input type="text" name="fields[name]" class="form-control"  value="{{ name }}">
     </div>
 
-    <div class="form-group col-lg-6">
-      <input type="text" name="fields[lastname]" class="form-control" placeholder="Apellidos" value="{{ lastname }}">
+    <div class="form-group col-lg-12">
+      <label>Apellidos</label>
+      <input type="text" name="fields[lastname]" class="form-control" value="{{ lastname }}">
     </div>
 
-    <div class="form-group col-lg-6">
-      <input type="text" name="fields[email]" class="form-control" placeholder="Email" value="{{ email }}">
+    <div class="form-group col-lg-12">
+    <label>Email</label>
+    <span>nombre.apellido@ppulegal.com / Nombre compuesto: nombrenombre.apellido@ppulegal.com</span>
+      <input type="text" name="fields[email]" class="form-control" placeholder="ej: marcela.salazar@ppulegal.com / joseluis.lara@ppulegal.com" value="{{ email }}">
     </div>
 
-    <div class="form-group col-lg-6">
-      <input type="text" name="fields[phone]" class="form-control" placeholder="Teléfono" value="{{ phone }}">
+    <div class="form-group col-lg-12">
+    <label for="">Teléfono</label>
+      <span>
+      Incluir indicativo +571 para Bogotá,  +575 para Barranquilla y +562 para Santiago, seguido por su número directo. </span>
+      <input type="text" name="fields[phone]" class="form-control" placeholder="ej: +571 3268606" value="{{ phone }}">
     </div>
 
-    <div class="form-group col-lg-6">
+    <div class="form-group col-lg-12">
       <select name="fields[position]" class="form-control change-position">
        {{#if position}}
         <option value="{{position}}">{{position}}</option>
@@ -54,7 +60,7 @@
       </select>
     </div>
 
-    <div class="form-group col-lg-6">
+    <div class="form-group col-lg-12">
       <select name="fields[level]" class="form-control change-level" id="">
       {{#if level}}
         <option value="{{level}}">{{level}}</option>
@@ -83,11 +89,15 @@
 
    <div class="col-lg-12">
      <h4><%= t('practice_areas') %></h4>
+     <div class="form-group">  
+     <span>
+      seleccione las casillas de las áreas a las cuales está Vinculado. Evite poner más de 3 prácticas. </span>
+      </div>
    </div>
     <div class="form-group col-lg-12" id="categories-checkbox"> </div>
   </div>
 </form>
-
+ 
 </script>
 
 <script type="text/x-handlebars-template" id="lawyer-categories-template">

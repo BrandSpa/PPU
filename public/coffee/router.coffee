@@ -35,13 +35,14 @@ $ ->
 
     posts: ->
       ppu.postsFeatured = new ppu.Posts
-      ppu.postsFeatured.fetch reset: true, data: featured: true
+      
       ppu.postsFilters = new ppu.PostsFilters
       ppu.postsFilters.render()
       ppu.posts = new ppu.Posts
       ppu.posts.fetch reset: true, data: published: true, not_featured: true
-      ppu.postsFeaturedView = new ppu.PostsFeaturedView collection: ppu.postsFeatured
+      ppu.postsFeatured.fetch reset: true, data: featured: true
       ppu.postsView = new ppu.PostsView collection: ppu.posts
+      ppu.postsFeaturedView = new ppu.PostsFeaturedView collection: ppu.postsFeatured
 
     post: (slug)->
       ppu.post = new ppu.Post id: slug

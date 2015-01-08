@@ -2,10 +2,10 @@ Handlebars.registerHelper 'checked', (val1, val2) ->
     return val1 == val2 ? ' checked="checked"' : ''
 
 Handlebars.registerHelper 'shortenText', (text, block) ->
-  text.substring(0, 120) + " ..."
+  text.substring(0, 95) + " ..."
 
 Handlebars.registerHelper 'shortenText2', (text, block) ->
-  text.substring(0, 90)
+  text.substring(0, 60) + " ..."
 
 Handlebars.registerHelper 'dateFormat', (context, block) ->
   if window.moment
