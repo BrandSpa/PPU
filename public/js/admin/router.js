@@ -68,42 +68,6 @@ $(function() {
       ppu.admin.categoriesCheckboxnew = new ppu.admin.CategoriesCheckbox({
         collection: ppu.categories
       });
-      ppu.lawyerAcademic = new ppu.LawyerAcademic;
-      ppu.lawyerAcademicCreate = new ppu.LawyerAcademicCreate({
-        model: ppu.lawyerAcademic
-      });
-      ppu.lawyerArticle = new ppu.LawyerArticle;
-      ppu.lawyerArticleCreate = new ppu.LawyerArticleCreate({
-        model: ppu.lawyerArticle
-      });
-      ppu.lawyerAward = new ppu.LawyerAward;
-      ppu.lawyerAwardCreate = new ppu.LawyerAwardCreate({
-        model: ppu.lawyerAward
-      });
-      ppu.lawyerEducation = new ppu.LawyerEducation;
-      ppu.lawyerEducationCreate = new ppu.LawyerEducationCreate({
-        model: ppu.lawyerEducation
-      });
-      ppu.lawyerInstitution = new ppu.LawyerInstitution;
-      ppu.lawyerInstitutionCreate = new ppu.LawyerInstitutionCreate({
-        model: ppu.lawyerInstitution
-      });
-      ppu.lawyerJob = new ppu.LawyerJob;
-      ppu.lawyerJobCreate = new ppu.LawyerJobCreate({
-        model: ppu.lawyerJob
-      });
-      ppu.lawyerLanguage = new ppu.LawyerLanguage;
-      ppu.lawyerLanguageCreate = new ppu.LawyerLanguageCreate({
-        model: ppu.lawyerLanguage
-      });
-      ppu.lawyerPharase = new ppu.LawyerPharase;
-      ppu.lawyerPharaseCreate = new ppu.LawyerPharaseCreate({
-        model: ppu.lawyerPharase
-      });
-      ppu.lawyerRecognition = new ppu.LawyerRecognition;
-      ppu.lawyerRecognitionCreate = new ppu.LawyerRecognitionCreate({
-        model: ppu.lawyerRecognition
-      });
       return ppu.lawyerCreate = new ppu.LawyerCreateView;
     };
 

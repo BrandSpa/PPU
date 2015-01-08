@@ -18,7 +18,6 @@ module BelongsToLawyer
     else
       render json: model.errors, status: 400
     end
-    
 	end
 
 	def update

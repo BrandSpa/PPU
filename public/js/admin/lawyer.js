@@ -252,7 +252,6 @@ $(function() {
     };
 
     LawyerCreateForm.prototype.stored = function(model) {
-      app.pubsub.trigger('lawyer:stored', model);
       return window.location = "/admin/lawyers/" + model.id + "/edit";
     };
 

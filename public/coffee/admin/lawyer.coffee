@@ -24,7 +24,6 @@ $ ->
   class ppu.admin.LawyersView extends Backbone.View
     el: $ '#lawyers-dashboard'
       
-    
     initialize: ->
       @listenTo(@collection, 'reset', @render)
       @listenTo(@collection, 'add', @addOne)
@@ -44,7 +43,6 @@ $ ->
       @collection.each (model) ->
         @addOne(model)
       , @
-
 
   class ppu.admin.LawyersFilters extends Backbone.View
     el: $ '.lawyers-filters'
@@ -141,7 +139,6 @@ $ ->
       window.location = '#lawyer-form-create'
 
     stored: (model)->
-      app.pubsub.trigger('lawyer:stored', model)
       window.location = "/admin/lawyers/#{model.id}/edit"
 
 

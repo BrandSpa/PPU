@@ -20,7 +20,6 @@ $ ->
       @
 
 
-
   class ppu.LawyersView extends Backbone.View
     el: $ '#lawyers'
 

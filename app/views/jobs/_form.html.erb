@@ -1,11 +1,12 @@
 <script type="text/x-handlebars-template" id="lawyer-form-job-template"> 
+
   <form>
    <div class="row">
        <input type="hidden" name="fields[lawyer_id]" value="{{ lawyer_id }}">
-   <div class="form-group col-lg-6">
-      <input type="text" name="fields[title]" class="form-control" placeholder="Título" value="{{ title }}">
+   <div class="form-group col-lg-12">
+      <textarea name="fields[title]" class="form-control" rows="2" placeholder="Título">{{ title }}</textarea>
     </div>
-   <div class="form-group col-lg-6">
+   <div class="form-group col-lg-12">
       <input type="text" name="fields[company]" class="form-control" placeholder="Empresa" value="{{ company }}">
     </div>
     
@@ -30,3 +31,4 @@
   </div>
   </form>
 </script>
+
