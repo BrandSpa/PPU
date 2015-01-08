@@ -1,7 +1,31 @@
+/* Large desktops and laptops */
+/* Portrait tablets and medium desktops */
+/* Portrait tablets and small desktops */
+/* Landscape phones and portrait tablets */
+/* Landscape phones and smaller */
 .navbar-app {
   background: #fff; }
   .navbar-app img {
-    width: 20%; }
+    max-width: 100%; }
+    @media (max-width: 767px) {
+      .navbar-app img {
+        max-width: 100%; } }
+  .navbar-app .navbar-brand {
+    width: 28%;
+    display: block;
+    height: auto;
+    padding: 0 15px !important; }
+    @media (max-width: 767px) {
+      .navbar-app .navbar-brand {
+        width: 50%; } }
+  .navbar-app .navbar-header {
+    margin: 0;
+    float: none;
+    background: url("../img/linea-tablet@2x.png") no-repeat top left;
+    background-size: contain; }
+    @media (max-width: 767px) {
+      .navbar-app .navbar-header {
+        background-size: 100%; } }
 
 .navbar-toggle {
   background: #fff;
@@ -10,6 +34,13 @@
   color: #002855;
   font-size: 1.4em;
   margin: 60px; }
+  @media (min-width: 768px) and (max-width: 991px) {
+    .navbar-toggle {
+      margin: 40px; } }
+  @media (max-width: 767px) {
+    .navbar-toggle {
+      margin: 20px;
+      font-size: 1.1em; } }
   .navbar-toggle i {
     padding: 15px 0 0 15px;
     font-size: 1.5em; }

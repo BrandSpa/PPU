@@ -1,7 +1,27 @@
+@import variables
+
 .navbar-app
 	background: #fff
 	img
-		width: 20%
+		max-width: 100%
+		@media #{$mobile}
+			max-width: 100%
+
+	.navbar-brand
+		width: 28%
+		display: block
+		height: auto
+		padding: 0 15px !important
+		@media #{$mobile}
+			width: 50%
+	
+	.navbar-header 
+		margin: 0
+		float: none
+		background: url("../img/linea-tablet@2x.png") no-repeat top left
+		background-size: contain
+		@media #{$mobile}
+			background-size: 100%
 
 .navbar-toggle
 	background: #fff
@@ -10,6 +30,11 @@
 	color: #002855
 	font-size: 1.4em
 	margin: 60px
+	@media #{$tablet}
+		margin: 40px
+	@media #{$mobile}
+		margin: 20px
+		font-size: 1.1em
 	i
 		padding: 15px 0 0 15px
 		font-size: 1.5em
