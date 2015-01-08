@@ -30,7 +30,8 @@
 .lawyer-item {
   overflow: hidden;
   font-size: 1em;
-  margin-bottom: 15px; }
+  margin-bottom: 15px;
+  height: 150px; }
   .lawyer-item img {
     -webkit-filter: grayscale(100%);
     filter: grayscale(100%);
