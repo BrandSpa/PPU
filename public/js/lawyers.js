@@ -287,6 +287,7 @@ $(function() {
       return this.collection.fetch({
         reset: true,
         data: {
+          lang: app.lang,
           category: category,
           position: position
         }

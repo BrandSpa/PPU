@@ -138,7 +138,7 @@ $ ->
       else
         position = "Socio"
 
-      @collection.fetch reset: true, data: category: category, position: position
+      @collection.fetch reset: true, data: lang: app.lang, category: category, position: position
 
     render: ->
       template = app.compile(@template)

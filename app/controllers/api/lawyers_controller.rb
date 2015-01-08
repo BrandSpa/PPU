@@ -1,7 +1,7 @@
 class Api::LawyersController < ApplicationController
   
   def index
-    lang = I18n.locale
+    lang = params[:lang] || I18n.locale
     filters = params.slice(:position, :country, :category, :search)
     paginate = params[:paginate] || 0
     slug = params[:slug]

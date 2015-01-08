@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150108010027) do
+ActiveRecord::Schema.define(version: 20150108061922) do
 
   create_table "academics", force: true do |t|
     t.integer  "lawyer_id"
@@ -96,6 +96,7 @@ ActiveRecord::Schema.define(version: 20150108010027) do
     t.string   "year"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "position"
   end
 
   add_index "educations", ["lawyer_id"], name: "index_educations_on_lawyer_id", using: :btree
