@@ -33,6 +33,9 @@ a:hover {
 #yield-container {
   margin-top: 65px; }
 
+.panel {
+  border-radius: 0; }
+
 .change-lang-container {
   padding-left: 0; }
 
@@ -75,6 +78,20 @@ a:hover {
 .navbar-app .collapse.in {
   display: block !important; }
 
+.navbar-default {
+  background: #fff !important;
+  color: #002855; }
+  .navbar-default .navbar-header {
+    background: #fff; }
+  .navbar-default .navbar-collapse {
+    background: #fff !important; }
+    .navbar-default .navbar-collapse li > a {
+      color: #002855 !important; }
+  .navbar-default .navbar-brand {
+    color: #002855 !important; }
+    .navbar-default .navbar-brand img {
+      float: left; }
+
 .policy, .copyright {
   display: block;
   text-align: right; }
@@ -93,11 +110,14 @@ a:hover {
 ul {
   padding: 0; }
 
+select.form-control {
+  border-radius: 0; }
+
 .form-control {
   box-shadow: none;
-  border: 2px solid #ddd;
+  border: 1px solid #ddd;
   text-indent: 3px;
-  height: 42px; }
+  border-radius: 0; }
   .form-control:focus {
     border: 2px solid #ccc;
     box-shadow: none; }
@@ -507,9 +527,12 @@ ul {
 
 .form-group span {
   display: block;
-  font-size: 0.9em; }
+  font-size: 0.7em;
+  margin-top: 5px;
+  color: #888; }
 .form-group .form-control {
-  font-size: 1em; }
+  font-size: 0.9em;
+  font-weight: 200; }
 
 /* Large desktops and laptops */
 /* Portrait tablets and medium desktops */
@@ -566,6 +589,31 @@ ul {
 /* Portrait tablets and small desktops */
 /* Landscape phones and portrait tablets */
 /* Landscape phones and smaller */
+.panel-heading h5 {
+  color: #002855;
+  font-weight: bold; }
+
+#lawyer-create .panel-heading h5 {
+  color: #002855;
+  font-weight: bold; }
+#lawyer-create hr {
+  margin: 5px 0 10px 0; }
+#lawyer-create label {
+  font-size: 0.9em; }
+
+.modal-header h5 {
+  font-weight: bold;
+  color: #002855; }
+
+.modal-content {
+  background: #f8f8f8 !important;
+  border-radius: 0; }
+  .modal-content .modal-header {
+    background: #f5f5f5;
+    border-radius: 0; }
+  .modal-content .modal-body {
+    border-radius: 0; }
+
 #placeholder-lawyers {
   position: relative; }
   #placeholder-lawyers img {

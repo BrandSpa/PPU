@@ -302,7 +302,6 @@ $(function() {
     };
 
     Workspace.prototype.posts = function() {
-      ppu.postsFeatured = new ppu.Posts;
       ppu.postsFilters = new ppu.PostsFilters;
       ppu.postsFilters.render();
       ppu.posts = new ppu.Posts;
@@ -313,15 +312,10 @@ $(function() {
           not_featured: true
         }
       });
-      ppu.postsFeatured.fetch({
-        reset: true,
-        data: {
-          featured: true
-        }
-      });
       ppu.postsView = new ppu.PostsView({
         collection: ppu.posts
       });
+      ppu.postsFeatured = new ppu.Posts;
       return ppu.postsFeaturedView = new ppu.PostsFeaturedView({
         collection: ppu.postsFeatured
       });

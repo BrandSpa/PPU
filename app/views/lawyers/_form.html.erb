@@ -1,5 +1,5 @@
 <script type="text/x-handlebars-template" id="lawyer-form-template">
-  <form action=""  class="col-lg-6" enctype="multipart/form-data">   
+  <form action=""   enctype="multipart/form-data">   
     <div class="row">
     <div class="form-group col-lg-12">
       <select name="fields[country]" class="form-control" id="">
@@ -14,39 +14,48 @@
       </select>
     </div>
   </div>
-
+  <hr>
   <div class="row">
     <div class="form-group col-lg-12">
       <label for="file">Adjuntar Foto de perfil</label>
+
       <input type="file" name="fields[img_name]" class='form-control'>
+      <span>El formato de la fotografía debe ser cuadradro y de mínimo 500 x 500 pixeles</span>
     </div>
   </div>
-
+<hr>
   <div class="row">
-    <div class="form-group col-lg-12">
+    <div class="form-group col-lg-6">
     <label>Nombre</label>
       <input type="text" name="fields[name]" class="form-control"  value="{{ name }}">
     </div>
 
-    <div class="form-group col-lg-12">
+    <div class="form-group col-lg-6">
       <label>Apellidos</label>
       <input type="text" name="fields[lastname]" class="form-control" value="{{ lastname }}">
     </div>
-
+    </div>
+    <hr>
+<div class="row">
     <div class="form-group col-lg-12">
     <label>Email</label>
-    <span>nombre.apellido@ppulegal.com / Nombre compuesto: nombrenombre.apellido@ppulegal.com</span>
-      <input type="text" name="fields[email]" class="form-control" placeholder="ej: marcela.salazar@ppulegal.com / joseluis.lara@ppulegal.com" value="{{ email }}">
-    </div>
 
+      <input type="text" name="fields[email]" class="form-control" placeholder="ej: marcela.salazar@ppulegal.com / joseluis.lara@ppulegal.com" value="{{ email }}">
+       <span>nombre.apellido@ppulegal.com / Nombre compuesto: nombrenombre.apellido@ppulegal.com</span>
+    </div>
+    </div>
+    <hr>
+    <div class="row">
     <div class="form-group col-lg-12">
     <label for="">Teléfono</label>
+      <input type="text" name="fields[phone]" class="form-control" placeholder="ej: +571 3268606" value="{{ phone }}">
       <span>
       Incluir indicativo +571 para Bogotá,  +575 para Barranquilla y +562 para Santiago, seguido por su número directo. </span>
-      <input type="text" name="fields[phone]" class="form-control" placeholder="ej: +571 3268606" value="{{ phone }}">
     </div>
-
-    <div class="form-group col-lg-12">
+    </div>
+    <hr>
+    <div class="row">
+    <div class="form-group col-lg-6">
       <select name="fields[position]" class="form-control change-position">
        {{#if position}}
         <option value="{{position}}">{{position}}</option>
@@ -60,7 +69,7 @@
       </select>
     </div>
 
-    <div class="form-group col-lg-12">
+    <div class="form-group col-lg-6">
       <select name="fields[level]" class="form-control change-level" id="">
       {{#if level}}
         <option value="{{level}}">{{level}}</option>
@@ -86,12 +95,14 @@
     <div class="form-group col-lg-12 lawyer-description {{#unless description}} hidden {{/unless}}">
       <textarea name="fields[description]" class="form-control" rows="3" placeholder="Descripción">{{ description }}</textarea>
     </div>
-
+    </div>
+<hr>
+  <div class="row">
    <div class="col-lg-12">
      <h4><%= t('practice_areas') %></h4>
      <div class="form-group">  
      <span>
-      seleccione las casillas de las áreas a las cuales está Vinculado. Evite poner más de 3 prácticas. </span>
+      Seleccione las casillas de las áreas a las cuales está Vinculado. Evite marcar más de 3 prácticas. </span>
       </div>
    </div>
     <div class="form-group col-lg-12" id="categories-checkbox"> </div>

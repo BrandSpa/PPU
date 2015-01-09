@@ -3,6 +3,31 @@
 /* Portrait tablets and small desktops */
 /* Landscape phones and portrait tablets */
 /* Landscape phones and smaller */
+.panel-heading h5 {
+  color: #002855;
+  font-weight: bold; }
+
+#lawyer-create .panel-heading h5 {
+  color: #002855;
+  font-weight: bold; }
+#lawyer-create hr {
+  margin: 5px 0 10px 0; }
+#lawyer-create label {
+  font-size: 0.9em; }
+
+.modal-header h5 {
+  font-weight: bold;
+  color: #002855; }
+
+.modal-content {
+  background: #f8f8f8 !important;
+  border-radius: 0; }
+  .modal-content .modal-header {
+    background: #f5f5f5;
+    border-radius: 0; }
+  .modal-content .modal-body {
+    border-radius: 0; }
+
 #placeholder-lawyers {
   position: relative; }
   #placeholder-lawyers img {

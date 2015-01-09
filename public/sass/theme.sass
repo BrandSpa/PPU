@@ -32,6 +32,9 @@ a
 #yield-container
 	margin-top: 65px
 	
+.panel
+	border-radius: 0
+
 .change-lang-container
 	padding-left: 0
 
@@ -90,7 +93,23 @@ a
 			
 	.collapse.in
 		display: block !important
-			
+
+.navbar-default
+	background: #fff !important
+	color: $color-darkBlue
+
+	.navbar-header
+		background: #fff
+
+	.navbar-collapse
+		background: #fff !important
+		li>a
+			color: $color-darkBlue !important
+	.navbar-brand
+		color: $color-darkBlue !important
+
+		img
+			float: left
 
 .policy, .copyright
 	display: block
@@ -110,11 +129,14 @@ a
 ul
 	padding: 0
 
+select.form-control
+	border-radius: 0
+	
 .form-control
 	box-shadow: none
-	border: 2px solid #ddd
+	border: 1px solid #ddd
 	text-indent: 3px
-	height: 42px
+	border-radius: 0
 	&:focus
 		border: 2px solid #ccc
 		box-shadow: none
@@ -586,18 +608,23 @@ ul
 		margin: 0 0 0 -1px
 	.selectboxit-container .selectboxit
 		border-radius: 0
+
 	.selectboxit-arrow-container
 		right: 15px
 		top: 0
+
 	.selectboxit-option
 		font-size: .9em
 
 .form-group
 	span
 		display: block 
-		font-size: .9em
+		font-size: .7em
+		margin-top: 5px
+		color: #888
 	.form-control
-		font-size: 1em
+		font-size: .9em
+		font-weight: 200
 @import menu
 @import lawyer
 @import post
