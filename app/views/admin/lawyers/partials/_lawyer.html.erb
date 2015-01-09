@@ -15,7 +15,7 @@
    		{{#if translation_id }}
    			<a href="en/admin/lawyers/{{ translation_id }}/edit" class="btn btn-warning btn-sm">Editar Traducción</a>
    		{{else}}
-   		<a href="#" class="btn btn-primary btn-sm translate">Traducir</a> 
+   	
    		{{/if}}
    {{/if}} 
    </td>
@@ -25,3 +25,23 @@
 	</td>
 </script>
 
+
+<div class="modal fade" id="confirm-translate-modal">
+  <div class="modal-dialog">
+    <div class="modal-content"> 
+    <div class="modal-header">
+      <h5>Crear perfil en Inglés</h5>
+    </div>
+    <div class="modal-body"> 
+    <p>
+        Es recomendable que su perfil en español esté completamente terminado antes de generar el perfil en inglés, pues éste duplicará la información en español para su posterior traducción.
+      </p>
+      <b >¿Desea continuar?</b>
+    </div>
+    <div class="modal-footer">
+    <a href="#" class="btn btn-default cancel">Cancelar</a>
+    <a href="#" class="btn btn-info continue">Aceptar</a>
+    </div>
+    </div>
+  </div>
+</div>

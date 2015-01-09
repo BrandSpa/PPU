@@ -14,12 +14,13 @@ $(function() {
     LawyerView.prototype.template = $('#lawyer-dashbord-template');
 
     LawyerView.prototype.events = {
-      "click .translate": "translate"
+      "click .confirm-translate": "confirmTranslate"
     };
 
     LawyerView.prototype.initialize = function() {
       this.listenTo(this.model, 'change', this.render);
-      return this.listenTo(this.model, 'error', this.showErrors);
+      this.listenTo(this.model, 'error', this.showErrors);
+      return app.pubsub.bind("lawyer:translate", this.translate, this);
     };
 
     LawyerView.prototype.render = function() {
@@ -30,8 +31,15 @@ $(function() {
       return this;
     };
 
-    LawyerView.prototype.translate = function(e) {
+    LawyerView.prototype.confirmTranslate = function(e) {
+      var v;
       e.preventDefault();
+      console.log(v);
+      v = new ppu.lawyerConfirmTranslate;
+      return v.render();
+    };
+
+    LawyerView.prototype.translate = function(e) {
       return this.model.save({
         duplicate: true
       }).done(function(mod) {
@@ -376,7 +384,7 @@ $(function() {
     return lawyerEdit;
 
   })(Backbone.View);
-  return ppu.LawyerEditView = (function(_super) {
+  ppu.LawyerEditView = (function(_super) {
     __extends(LawyerEditView, _super);
 
     function LawyerEditView() {
@@ -390,12 +398,14 @@ $(function() {
     LawyerEditView.prototype.events = {
       'click .open-edit-lawyer': 'openEdit',
       'click .open-share': 'openShare',
+      "click .confirm-translate": "confirmTranslate",
       "click .translate": "translate"
     };
 
     LawyerEditView.prototype.initialize = function() {
       this.listenTo(this.model, 'change', this.render);
-      return this.listenTo(this.model, 'change', this.renderCategories);
+      this.listenTo(this.model, 'change', this.renderCategories);
+      return app.pubsub.bind("lawyer:translate", this.translate, this);
     };
 
     LawyerEditView.prototype.render = function() {
@@ -424,8 +434,14 @@ $(function() {
       return view.render();
     };
 
-    LawyerEditView.prototype.translate = function(e) {
+    LawyerEditView.prototype.confirmTranslate = function(e) {
+      var v;
       e.preventDefault();
+      v = new ppu.lawyerConfirmTranslate;
+      return v.render();
+    };
+
+    LawyerEditView.prototype.translate = function(e) {
       return this.model.save({
         duplicate: true
       }).done(function(mod) {
@@ -438,6 +454,35 @@ $(function() {
     };
 
     return LawyerEditView;
+
+  })(Backbone.View);
+  return ppu.lawyerConfirmTranslate = (function(_super) {
+    __extends(lawyerConfirmTranslate, _super);
+
+    function lawyerConfirmTranslate() {
+      return lawyerConfirmTranslate.__super__.constructor.apply(this, arguments);
+    }
+
+    lawyerConfirmTranslate.prototype.el = $("#confirm-translate-modal");
+
+    lawyerConfirmTranslate.prototype.events = {
+      "click .continue": "continue",
+      "click .cancel": "closeModal"
+    };
+
+    lawyerConfirmTranslate.prototype.render = function() {
+      return $(this.el).modal({
+        backdrop: "static"
+      });
+    };
+
+    lawyerConfirmTranslate.prototype["continue"] = function(e) {
+      e.preventDefault();
+      $(e.currentTarget).addClass("disabled").text("Guardando");
+      return app.pubsub.trigger("lawyer:translate");
+    };
+
+    return lawyerConfirmTranslate;
 
   })(Backbone.View);
 });

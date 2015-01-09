@@ -3,11 +3,12 @@ $ ->
     tagName: 'tr'
     template: $ '#lawyer-dashbord-template'
     events: 
-      "click .translate": "translate"
+      "click .confirm-translate": "confirmTranslate"
 
     initialize: ->
       @listenTo(@model, 'change', @render)
       @listenTo(@model, 'error', @showErrors)
+      app.pubsub.bind("lawyer:translate", @translate, @)
 
     render: ->
       source = @template.html()
@@ -15,8 +16,14 @@ $ ->
       $(@el).html t( @model.toJSON() )
       @
 
-    translate: (e) ->
+    confirmTranslate: (e)->
       e.preventDefault()
+      console.log v
+      v = new ppu.lawyerConfirmTranslate
+      v.render()
+
+
+    translate: (e) ->
       @model.save duplicate: true
         .done (mod) ->
           window.location = "/en/admin/lawyers/#{mod.id}/edit"
@@ -225,11 +232,13 @@ $ ->
     events: 
       'click .open-edit-lawyer': 'openEdit'
       'click .open-share': 'openShare'
+      "click .confirm-translate": "confirmTranslate"
       "click .translate": "translate"
     
     initialize: ->
       @listenTo(@model, 'change', @render)
       @listenTo(@model, 'change', @renderCategories)
+      app.pubsub.bind("lawyer:translate", @translate, @)
 
     render: ->
       id = @model.get('id')
@@ -250,11 +259,32 @@ $ ->
       view = new ppu.lawyerEdit model: @model
       view.render()
 
-    translate: (e) ->
+    confirmTranslate: (e)->
       e.preventDefault()
+      v = new ppu.lawyerConfirmTranslate
+      v.render()
+
+    translate: (e) ->
       @model.save duplicate: true
         .done (mod) ->
           window.location = "/en/admin/lawyers/#{mod.id}/edit"
 
     openShare: (e) ->
       $('#share-modal').modal()
+
+  class ppu.lawyerConfirmTranslate extends Backbone.View
+    el: $ "#confirm-translate-modal"
+    events:
+      "click .continue": "continue"
+      "click .cancel": "closeModal"
+
+    render: ->
+      $(@el).modal backdrop: "static"
+
+    continue: (e) ->
+      e.preventDefault()
+      $(e.currentTarget).addClass("disabled").text("Guardando")
+      app.pubsub.trigger("lawyer:translate")
+
+
+
