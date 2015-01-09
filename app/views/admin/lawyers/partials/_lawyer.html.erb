@@ -10,10 +10,10 @@
 	<td>{{ country }}</td>
 	 <td>  
 	 {{#if translations}}
-   	<a href="en/admin/lawyers/{{ translations.id }}/edit" class="btn btn-warning btn-sm">Editar Traducción</a>
+   	<a href="en/admin/lawyers/{{ translations.id }}/edit" class="btn btn-warning btn-sm">Editar Inglés</a>
    {{else}}
    		{{#if translation_id }}
-   			<a href="en/admin/lawyers/{{ translation_id }}/edit" class="btn btn-warning btn-sm">Editar Traducción</a>
+   			<a href="en/admin/lawyers/{{ translation_id }}/edit" class="btn btn-warning btn-sm">Editar Ingles</a>
    		{{else}}
    	
    		{{/if}}
@@ -21,10 +21,9 @@
    </td>
 	<td>
 
-		<a href="/admin/lawyers/{{ id }}/edit" class="btn btn-warning btn-sm lawyer-edit">Editar</a>
+		<a href="/admin/lawyers/{{ id }}/edit" class="btn btn-warning btn-sm lawyer-edit">Editar Español</a>
 	</td>
 </script>
-
 
 <div class="modal fade" id="confirm-translate-modal">
   <div class="modal-dialog">

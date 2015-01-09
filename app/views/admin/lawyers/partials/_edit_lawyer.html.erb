@@ -1,4 +1,4 @@
-<div class="panel panel-default col-lg-12 hidden" id="lawyer-finish">
+<div class="panel panel-default col-lg-6 hidden" id="lawyer-finish">
   <div class="panel-heading">
     <h5>Editar Perfil</h5>
   </div>
@@ -7,25 +7,35 @@
   <br>
  <hr>
   </div>
-  <div class="col-lg-6 lawyer-left">
+
+  <div class="col-lg-12 lawyer-left">
   <h3><i class="fa fa-briefcase"></i> <%= t('general_information') %></h3>
     <div id="lawyer-category-edit">
     <h4><%= t('practice_areas') %></h4>
     <ul> </ul>
     </div>
+    <hr>
+    <%= render "admin/lawyers/partials/section_edit", :model => "education", :title => "education", :message => "Por favor enumerar desde la más reciente a la más antigua" %>
 
-    <%= render "admin/lawyers/partials/section_edit", :model => "education", :title => "education" %>
-    <%= render "admin/lawyers/partials/section_edit", :model => "job", :title => "professional_experience" %>
-    <%= render "admin/lawyers/partials/section_edit", :model => "recognition", :title => "conferences_recognitions" %>
-    <%= render "admin/lawyers/partials/section_edit", :model => "academic", :title => "Academic Activities" %>
-    <%= render "admin/lawyers/partials/section_edit", :model => "institution", :title => "memberships" %>
-    <%= render "admin/lawyers/partials/section_edit", :model => "language", :title => "languages" %>
-    <%= render "admin/lawyers/partials/section_edit", :model => "phrase", :title => "phrases" %>
+    <hr>
+    <%= render "admin/lawyers/partials/section_edit", :model => "job", :title => "professional_experience", :message => "Por favor enumerar desde la más reciente a la más antigua"  %>
+    <hr>
+    <%= render "admin/lawyers/partials/section_edit", :model => "recognition", :title => "conferences_recognitions", :message => "Conferencias o cátedras dictadas sobre algún tema puntual"%>
+    <hr>
+    <%= render "admin/lawyers/partials/section_edit", :model => "academic", :title => "Academic Activities", :message => "especifique si es o ha sido docente, monitor o si dirige cualquier tipo de actividad académica." %>
+    <hr>
+    <%= render "admin/lawyers/partials/section_edit", :model => "institution", :title => "memberships", :message => "Instituciones a las que esté afiliado (cámaras, fundaciones, agremiaciones, juntas directivas, etc.)" %>
+    <hr>
+    <%= render "admin/lawyers/partials/section_edit", :model => "language", :title => "languages", :message => "Su lengua materna primero" %>
+    <hr>
+    <%= render "admin/lawyers/partials/section_edit", :model => "phrase", :title => "phrases", :message => "Si ha sido mencionado y calificado en alguna publicación (Chambers and Partners, Legal 500). Incluya la frase textual en español entre comillas" %>
   </div>
-  <div class="col-lg-6 lawyer-right">
+  <div class="col-lg-12 lawyer-right">
+<hr>
+<%= render "admin/lawyers/partials/section_edit", :model => "award", :title => "award", :message => "Indique el título del premio o reconocimiento que recibió. Adjunte el logo correspondiente. Para premios en inglés es necesario traducir el título del mismo en la hoja de vida en español. Deben
 
-<%= render "admin/lawyers/partials/section_edit", :model => "award", :title => "award" %>
-<%= render "admin/lawyers/partials/section_edit", :model => "article", :title => "article" %>
+publicarse en orden del más reciente al más antiguo." %> <hr>
+<%= render "admin/lawyers/partials/section_edit", :model => "article", :title => "article", :message => "Adjunte en formato PDF o Word los artículos que haya escrito, también puede usar un link. Asegúrese de contar con el permiso del medio que lo publicó." %>
   </div>
 </div>
 

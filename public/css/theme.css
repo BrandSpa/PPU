@@ -320,6 +320,11 @@ select.form-control {
   border: none;
   color: #5F5F5F;
   padding-bottom: 30px; }
+  #lawyer-finish span {
+    font-size: 0.8em;
+    color: #888;
+    display: block;
+    margin-bottom: 0; }
   #lawyer-finish .open-edit-lawyer {
     margin: 0 0 0 15px; }
   #lawyer-finish .panel-body {
@@ -340,7 +345,7 @@ select.form-control {
     margin-bottom: 15px; }
   #lawyer-finish h4 {
     margin-top: 30px;
-    margin-bottom: 30px; }
+    margin-bottom: 15px; }
   #lawyer-finish .lawyer-description {
     text-align: left;
     padding: 15px; }
