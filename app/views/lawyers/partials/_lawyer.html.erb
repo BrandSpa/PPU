@@ -76,6 +76,16 @@
       </ul>
       {{/if}}
 
+      {{#if institutions}}
+      <h4><%= t('Academic Activities') %></h4>
+      <ul>
+        {{#each academics}}
+        <li>{{ title }}{{#if title}},{{/if}} {{ institution }} {{ from }} {{ until }}</li>
+        {{/each}}
+      </ul>
+      {{/if}}
+
+
       {{#if languages}}
       <h4><%= t('languages') %></h4>
       <ul>
@@ -97,9 +107,8 @@
       {{/each}}
 
       {{/if}}
-
-
     </div>
+
     <div class="col-lg-6 lawyer-right">
       {{#if awards}}
       <h3><i class="fa fa-bookmark-o"></i> <%= t('award') %></h3>
@@ -117,7 +126,7 @@
       {{/each}}
       {{/if}}
 
-      {{#if articles}}
+    {{#if articles}}
       <h3><i class="fa fa-file-text-o"></i> <%= t('Articles') %></h3>
       {{#each articles}}
       <div class="article-container">
