@@ -24,8 +24,8 @@ Rails.application.routes.draw do
     end
   end
   
+  get "editar-abogado", to: 'api/lawyers#update_description'
 
-  
   scope "(:locale)", locale: /en|es/ do
     get "", to: 'posts#index'
     get "abogados-beta", to: 'lawyers#index'

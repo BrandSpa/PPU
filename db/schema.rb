@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150108061922) do
+ActiveRecord::Schema.define(version: 20150109235959) do
 
   create_table "academics", force: true do |t|
     t.integer  "lawyer_id"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20150108061922) do
     t.string   "until"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "locale"
   end
 
   add_index "academics", ["lawyer_id"], name: "index_academics_on_lawyer_id", using: :btree
@@ -29,18 +30,20 @@ ActiveRecord::Schema.define(version: 20150108061922) do
   create_table "articles", force: true do |t|
     t.integer  "lawyer_id"
     t.string   "file_name"
+    t.string   "link"
     t.text     "title"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "link"
+    t.string   "locale"
   end
 
   create_table "awards", force: true do |t|
     t.integer  "lawyer_id"
-    t.string   "title"
+    t.text     "title"
     t.string   "img_name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "locale"
   end
 
   create_table "awards_lawyers", id: false, force: true do |t|
@@ -88,6 +91,25 @@ ActiveRecord::Schema.define(version: 20150108061922) do
     t.string   "country"
   end
 
+  create_table "curriculums", force: true do |t|
+    t.string   "country"
+    t.string   "name"
+    t.string   "file_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "education_translations", force: true do |t|
+    t.integer  "education_id", null: false
+    t.string   "locale",       null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text     "title"
+  end
+
+  add_index "education_translations", ["education_id"], name: "index_education_translations_on_education_id", using: :btree
+  add_index "education_translations", ["locale"], name: "index_education_translations_on_locale", using: :btree
+
   create_table "educations", force: true do |t|
     t.integer  "lawyer_id"
     t.string   "title"
@@ -97,6 +119,7 @@ ActiveRecord::Schema.define(version: 20150108061922) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "position"
+    t.string   "locale"
   end
 
   add_index "educations", ["lawyer_id"], name: "index_educations_on_lawyer_id", using: :btree
@@ -145,6 +168,7 @@ ActiveRecord::Schema.define(version: 20150108061922) do
     t.string   "until",      limit: 10
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "locale"
   end
 
   add_index "institutions", ["lawyer_id"], name: "index_institutions_on_lawyer_id", using: :btree
@@ -158,6 +182,7 @@ ActiveRecord::Schema.define(version: 20150108061922) do
     t.string   "until",      limit: 50
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "locale"
   end
 
   add_index "jobs", ["lawyer_id"], name: "index_jobs_on_lawyer_id", using: :btree
@@ -167,6 +192,7 @@ ActiveRecord::Schema.define(version: 20150108061922) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "locale"
   end
 
   create_table "lawyers", force: true do |t|
@@ -185,6 +211,7 @@ ActiveRecord::Schema.define(version: 20150108061922) do
     t.string   "slug",           limit: 50
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "description_en"
   end
 
   create_table "lawyers_posts", id: false, force: true do |t|
@@ -203,6 +230,7 @@ ActiveRecord::Schema.define(version: 20150108061922) do
     t.string   "author"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "locale"
   end
 
   create_table "posts", force: true do |t|
@@ -241,6 +269,7 @@ ActiveRecord::Schema.define(version: 20150108061922) do
     t.string   "year"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "locale"
   end
 
   add_index "recognitions", ["lawyer_id"], name: "index_recognitions_on_lawyer_id", using: :btree

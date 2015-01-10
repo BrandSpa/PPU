@@ -17,13 +17,58 @@ class Api::LawyersController < ApplicationController
     end
 
     if slug.present?
-      model = entity.lang(lang).relationships.find_by(slug: slug)
+      model = entity.lang(lang).relationships.where(slug: slug)
       render json: model.to_json(:include => [:translations, :translation, :academics, :articles, :awards, :educations, :institutions, :jobs, :languages, :phrases, :recognitions, :categories])
     else
       render json: collection.to_json(:include => [:translations, :translation])
     end
   end
 
+  def update_description
+    collection = entity.all.relationships
+    collection.each do |model|
+      
+      if model.lang == "es" && model.translations
+        des = model.translations.description
+        model.update(description_en: des)
+      end
+    end
+  end
+
+  def update_locale
+    slug = params[:slug]
+    collection = entity.all.relationships
+    collection.each do |model|
+      p = model.translation_id
+      update_relationship(model.educations, p)
+      update_relationship(model.jobs, p)
+      update_relationship(model.recognitions, p)
+      update_relationship(model.academics, p)
+      update_relationship(model.institutions, p)
+      update_relationship(model.phrases, p)
+      update_relationship(model.recognitions, p)
+      update_relationship(model.articles, p)
+      update_relationship(model.awards, p)
+      update_relationship(model.languages, p)
+    end
+    render json: slug
+  end
+
+   def update_relationship(collection_relationship, param)
+    collection_relationship.each do |model|
+      if param.present?
+        model.update(lawyer_id: param)
+      end
+    end
+  end
+
+  def update_relationship_lawyer_id(collection, id)
+    collection.each do |model|
+      model.update(lawyer_id: id)
+    end
+  end
+
+ 
 
   def show
     id = params[:id]

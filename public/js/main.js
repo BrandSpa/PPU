@@ -171,6 +171,8 @@ $(window).scroll(function() {
 
 $('.carousel').carousel();
 
+$('.popver').popover();
+
 $(document).ajaxSend(function(e, xhr, options) {
   var token;
   token = $("meta[name='csrf-token']").attr("content");

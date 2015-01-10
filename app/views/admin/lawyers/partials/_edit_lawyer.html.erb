@@ -34,8 +34,37 @@
 <hr>
 <%= render "admin/lawyers/partials/section_edit", :model => "award", :title => "award", :message => "Indique el título del premio o reconocimiento que recibió. Adjunte el logo correspondiente. Para premios en inglés es necesario traducir el título del mismo en la hoja de vida en español. Deben
 
-publicarse en orden del más reciente al más antiguo." %> <hr>
-<%= render "admin/lawyers/partials/section_edit", :model => "article", :title => "article", :message => "Adjunte en formato PDF o Word los artículos que haya escrito, también puede usar un link. Asegúrese de contar con el permiso del medio que lo publicó." %>
+publicarse en orden del más reciente al más antiguo." %> 
+<hr>
+
+
+
+<div id="lawyer-article-edit">
+  <h4><%= t("article") %></h4>
+  <span>Adjunte en formato PDF o Word los artículos que haya escrito, también puede usar un link. Asegúrese de contar con el permiso del medio que lo publicó.</span>
+    <button type="button" class="btn btn-primary btn-xs popver" data-container="body" data-toggle="popover" data-placement="right" data-content="A partir de 2015 sus publicaciones de la República las montará como noticia Mercadeo y se vincularán automáticamente a su perfil. Usted es responsable de montar las anteriores a esta fecha."> Nota Colombia
+</button>
+  <br>
+
+
+  <ul> </ul>
+  <a href="#" class="btn btn-info btn-sm open-modal-create">Agregar</a>
+</div>
+
+<div class="modal fade" id="lawyer-article-edit-modal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content"> 
+    <div class="modal-body"> </div>
+    <div class="modal-footer">
+    <a href="#" class="btn btn-default modal-close">Cancelar</a>
+    <a href="#" class="btn btn-info update">Guardar</a>
+    </div>
+    </div>
+  </div>
+</div>
+
+
+
   </div>
 </div>
 
