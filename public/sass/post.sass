@@ -7,6 +7,10 @@
 	padding-left: 0
 	padding-right: 7px
 
+	@media #{$mobile}
+		padding: 0
+		margin-bottom: 15px
+
 	.img-container
 		height: 195px
 		overflow: hidden
@@ -150,6 +154,9 @@
 	margin-bottom: 30px
 	padding-right: 30px
 
+	@media #{$mobile}
+		padding: 30px
+
 	img
 		float: left
 		height: 150px
@@ -161,6 +168,8 @@
 		font-size: 1.4em
 		line-height: 1.5em
 		font-weight: 200
+		@media #{$mobile}
+			padding: 0
 
 	.share
 		color: #fff
@@ -176,7 +185,6 @@
 	color: $color-gray
 	font-size: 1em
 	line-height: 1.7em
-
 
 .post-featured-item
 	height: 180px

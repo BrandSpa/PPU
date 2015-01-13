@@ -12,16 +12,24 @@
 		display: block
 		height: auto
 		padding: 0 15px !important
+
 		@media #{$mobile}
-			width: 50%
-	
+			width: 40%
+
+		@media #{$mobile-xs}
+			width: 55%
+
 	.navbar-header 
 		margin: 0
 		float: none
 		background: url("../img/linea-tablet@2x.png") no-repeat top left
 		background-size: contain
+
 		@media #{$mobile}
 			background-size: 100%
+
+		@media #{$mobile-xs}
+			background-size: 150%
 
 .navbar-toggle
 	background: #fff

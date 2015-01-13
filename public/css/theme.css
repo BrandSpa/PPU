@@ -573,7 +573,10 @@ select.form-control {
     padding: 0 15px !important; }
     @media (max-width: 767px) {
       .navbar-app .navbar-brand {
-        width: 50%; } }
+        width: 40%; } }
+    @media (max-width: 480px) {
+      .navbar-app .navbar-brand {
+        width: 55%; } }
   .navbar-app .navbar-header {
     margin: 0;
     float: none;
@@ -582,6 +585,9 @@ select.form-control {
     @media (max-width: 767px) {
       .navbar-app .navbar-header {
         background-size: 100%; } }
+    @media (max-width: 480px) {
+      .navbar-app .navbar-header {
+        background-size: 150%; } }
 
 .navbar-toggle {
   background: #fff;
@@ -834,6 +840,10 @@ select.form-control {
 .post-main-featured-item {
   padding-left: 0;
   padding-right: 7px; }
+  @media (max-width: 767px) {
+    .post-main-featured-item {
+      padding: 0;
+      margin-bottom: 15px; } }
   .post-main-featured-item .img-container {
     height: 195px;
     overflow: hidden; }
@@ -956,6 +966,9 @@ select.form-control {
   width: 100%;
   margin-bottom: 30px;
   padding-right: 30px; }
+  @media (max-width: 767px) {
+    .post-header {
+      padding: 30px; } }
   .post-header img {
     float: left;
     height: 150px;
@@ -966,6 +979,9 @@ select.form-control {
     font-size: 1.4em;
     line-height: 1.5em;
     font-weight: 200; }
+    @media (max-width: 767px) {
+      .post-header h1 {
+        padding: 0; } }
   .post-header .share {
     color: #fff;
     font-size: 1em;

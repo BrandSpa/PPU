@@ -11,11 +11,10 @@ class LawyersController < ApplicationController
     vcard = VCardigan.create
     vcard.name model.lastname, model.name
     vcard.fullname "#{model.name} #{model.lastname}"
-    vcard.org "Philipi Prietocarrizosa &Uria"
+    vcard.org "Philipi Prietocarrizosa &Uría"
     vcard.tel model.phone, :type => 'work'
     vcard.email model.email, :type => ['work', 'internet'], :preferred => 1
-    #render plain: vcard
-    send_data vcard, :filename => "#{model.name} #{model.lastname}.vcf", :type => 'text/x-vcard'
+    send_data vcard.to_s.encode("iso-8859-1"), :filename => "#{model.name}-#{model.lastname}.vcf", :type => 'text/csv; charset=iso-8859-1'
   end
 
   def by_name
