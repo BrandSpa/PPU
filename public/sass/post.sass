@@ -10,11 +10,16 @@
 	.img-container
 		height: 195px
 		overflow: hidden
+
 		img
-			w
 			margin-top: -35px
+
 			@media #{$tablet}
 				margin-top: 0px
+
+		@media #{$mobile}
+			height: auto
+			padding: 0
 
 	.content
 		padding: 20px
@@ -56,35 +61,50 @@
 	overflow: hidden
 	position: relative
 
-	&:first-child
-		padding-left: 7px
-		padding-right: 0
+	@media #{$mobile}
+		height: 105px
+		padding: 0
 
-	&:nth-child(2)
-		padding-left: 7px !important
-		padding-right: 0 !important
-	
-	&:first-child, &:nth-child(2n+3)
-		padding-left: 7px
-		padding-right: 0
+	@media #{$tablet}, #{$desktop}, #{$desktop-lg}
+		&:first-child
+			padding-left: 7px
+			padding-right: 0
 
-	&:nth-child(2n+2)
-		padding-right: 7px
-		padding-left: 0
+		&:nth-child(2)
+			padding-left: 7px !important
+			padding-right: 0 !important
+		
+		&:first-child, &:nth-child(2n+3)
+			padding-left: 7px
+			padding-right: 0
+
+		&:nth-child(2n+2)
+			padding-right: 7px
+			padding-left: 0
 
 	.img-container
 		width: 180px
 		float: left
 		overflow: hidden
 		margin-right: 20px
+
 		img
 			margin: 0 0 0 -80px
 			height: 180px
+
+		@media #{$mobile}
+			width: 120px
+			img
+				height: 105px
+
 			
 	.content
 		background: #fff
 		padding: 15px 20px 20px 20px
 		height: 180px
+
+		@media #{$mobile}
+			height: 105px
 		
 		h3
 			font-size: 1em
@@ -95,12 +115,19 @@
 
 			a
 				color: $color-darkBlue
+
+			@media #{$mobile}
+				font-size: .9em
+
 		p
 			font-size: 1em
 			line-height: 150%
 			padding: 7px 0 7px 0 
 			margin: 0
 			color: #7F7F7F
+
+			@media #{$mobile}
+				display: none
 		
 		.date
 			font-size: 0.8em

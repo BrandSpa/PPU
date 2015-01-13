@@ -1,9 +1,9 @@
 <script id="post-template" type="text/x-handlebars-template">
 <div class="img-container">
  {{#if gallery}}
-  <img src="{{ gallery.img_name.url }}" alt="{{ title }}" class="hidden-xs">
+  <img src="{{ gallery.img_name.url }}" alt="{{ title }}" >
   {{else}}
-   <img src="{{ img_name.url }}" alt="{{ title }}" class="hidden-xs">
+   <img src="{{ img_name.url }}" alt="{{ title }}" >
  {{/if}}
 </div>
 
@@ -20,9 +20,9 @@
 <script id="post-main-featured-template" type="text/x-handlebars-template">
 <div class="img-container">
  {{#if gallery}}
-  <img src="{{ gallery.img_name.url }}" alt="{{ title }}" class="hidden-xs img-responsive">
+  <img src="{{ gallery.img_name.url }}" alt="{{ title }}" class="img-responsive">
   {{else}}
-   <img src="{{ img_name.url }}" alt="{{ title }}" class="hidden-xs img-responsive">
+   <img src="{{ img_name.url }}" alt="{{ title }}" class="img-responsive">
  {{/if}}
 </div>
 

@@ -31,6 +31,8 @@ a
 
 #yield-container
 	margin-top: 65px
+	@media #{$mobile}
+		margin-top: 0
 	
 .panel
 	border-radius: 0
@@ -53,14 +55,12 @@ a
 	font-weight: 200
 
 .navbar-app
-	
 
 	.navbar-toggle
 		background: transparent
+
 	.navbar-toggle:hover, .navbar-default .navbar-toggle:focus
 		background: transparent
-
-
 
 
 	.navbar-left,.navbar-right 
@@ -125,6 +125,12 @@ a
 
 .modal-lg
 	width: 900px !important
+
+#share-modal
+	.modal-header
+		background: transparent !important
+	.modal-content
+		background: transparent !important
 	
 ul
 	padding: 0
@@ -303,6 +309,8 @@ select.form-control
 		float: right
 		position: relative
 		border-left: 1px solid #fff
+		padding-top: 5px
+
 		&:before
 			font-family: 'FontAwesome'
 			content: "\f002"
@@ -315,6 +323,14 @@ select.form-control
 
 		input
 			width: 100%
+		::-webkit-input-placeholder
+			color: #fff
+		:-moz-placeholder
+			color: #fff
+		::-moz-placeholder
+			color: #fff
+		:-ms-input-placeholder
+			color: #fff
 
 	select
 		padding: 10px 0 0 0
