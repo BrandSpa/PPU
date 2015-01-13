@@ -121,14 +121,14 @@ a:hover {
 ul {
   padding: 0; }
 
-select.form-control {
-  border-radius: 0; }
+select .form-control {
+  border-radius: 0 !important; }
 
 .form-control {
   box-shadow: none;
   border: 1px solid #ddd;
   text-indent: 3px;
-  border-radius: 0; }
+  border-radius: 0 !important; }
   .form-control:focus {
     border: 2px solid #ccc;
     box-shadow: none; }
@@ -1345,20 +1345,36 @@ select.form-control {
 /* Portrait tablets and small desktops */
 /* Landscape phones and portrait tablets */
 /* Landscape phones and smaller */
-#work-with-us h3, #work-with-us h4, #work-with-us h5 {
-  color: #002855; }
-#work-with-us h3 {
-  font-size: 1.4em; }
-#work-with-us p {
-  font-size: 1em;
-  color: #5F5F5F;
-  font-weight: 200;
-  padding-right: 30px; }
-#work-with-us ul {
-  padding-left: 15px; }
-  #work-with-us ul li {
-    font-weight: 200; }
-#work-with-us .send-cv {
-  background: #00A1B1; }
+#work-with-us {
+  text-align: center; }
+  #work-with-us .video {
+    padding-top: 15px;
+    width: 70%;
+    margin: 0 auto; }
+  #work-with-us h3, #work-with-us h4 {
+    color: #002855;
+    border-bottom: 1px solid #ccc;
+    padding: 15px 0;
+    margin: 30px 300px; }
+  #work-with-us h5 {
+    color: #002855; }
+  #work-with-us h3 {
+    font-size: 1.4em;
+    padding: 15px 0;
+    border-bottom: 1px solid #ccc;
+    margin: 30px 300px; }
+  #work-with-us p {
+    font-size: 1em;
+    color: #5F5F5F;
+    font-weight: 200;
+    padding-right: 30px;
+    margin-bottom: 15px; }
+  #work-with-us ul {
+    padding-left: 15px; }
+    #work-with-us ul li {
+      font-weight: 200;
+      list-style: none; }
+  #work-with-us .send-cv {
+    background: #00A1B1; }
 
 /*# sourceMappingURL=theme.css.map */
