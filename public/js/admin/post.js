@@ -119,6 +119,7 @@ $(function() {
     };
 
     PostsView.prototype.render = function() {
+      console.log("render posts");
       $(this.el).find('tbody').html('');
       return this.collection.each(function(model) {
         var view;

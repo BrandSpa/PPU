@@ -39,10 +39,9 @@ $ ->
       @$el.append ppu.postView.render().el
 
     render: ->
-      app.pubsub.trigger("seo:render", @collection)
       @$el.html("")
       @collection.each (model) ->
-          @renderOne(model)
+        @renderOne(model)
       , @
       app.pubsub.trigger("posts:rendered")
 
@@ -60,11 +59,7 @@ $ ->
     
     initialize: ->
       @listenTo(@collection, "reset", @render)
-      app.pubsub.bind("posts:filter", @hide, @)
       app.pubsub.bind("posts:rendered", @getFeatured, @)
-
-    hide: ->
-      @$el.fadeOut()
 
     getFeatured: ->
       @collection.fetch reset: true, data: featured: true
@@ -79,7 +74,7 @@ $ ->
 
     render: ->
       @collection.each (model) ->
-          @renderMain(model)
+        @renderMain(model)
       , @
         
   class ppu.PostsFilters extends Backbone.View
@@ -93,7 +88,7 @@ $ ->
       'submit .search': 'bySearch'
 
     initialize: ->
-      @filtersAplied = {lang: app.lang}
+      @filtersAplied = {lang: app.lang, not_featured: true}
 
     render: ->
       template = app.compile(@template)

@@ -227,7 +227,13 @@ select.form-control {
       height: 50px; } }
   @media (min-width: 768px) and (max-width: 991px) {
     #top-bar {
-      height: 50px; } }
+      height: 50px;
+      background: #002855; } }
+  @media (max-width: 767px) {
+    #top-bar {
+      height: 50px;
+      width: 100%;
+      background: #002855; } }
   #top-bar h1 {
     font-size: 1.3em;
     color: #00A1B1;
@@ -314,6 +320,10 @@ select.form-control {
   @media (min-width: 1200px) {
     .footer-container {
       padding: 0 15px 0 0 !important; } }
+  @media (max-width: 767px) {
+    .footer-container {
+      position: initial !important;
+      width: 100%; } }
 
 #footer {
   background: #002855;
@@ -771,7 +781,7 @@ select.form-control {
     margin: 0; }
   #lawyer h1 {
     font-size: 1.2em;
-    margin: 0 0 30px 0; }
+    margin: 0 0 15px 0; }
   #lawyer .lawyer-phone {
     width: 100%;
     display: block;

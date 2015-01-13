@@ -19,7 +19,6 @@ $ ->
       $(@el).html(compile( @model.toJSON() ))
       @
 
-
   class ppu.LawyersView extends Backbone.View
     el: $ '#lawyers'
 

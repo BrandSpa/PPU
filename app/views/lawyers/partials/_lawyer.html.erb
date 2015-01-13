@@ -3,6 +3,7 @@
     <div class="content-left">
       <p>{{ position }}</p>
       <h1>{{toUpperCase name }} {{toUpperCase lastname }}</h1>
+      <span>{{ country }}</span>
       <a href="tel:{{ phone }}" class="lawyer-phone">{{ phone }}</a>
       <a href="mailto:{{ email }}" class="lawyer-email">{{ email }}</a>
     </div>
@@ -151,7 +152,6 @@
   </script>
 
 
-</div>
 
 <script id="lawyer-detail-title" type="text/x-handlebars-template">
   <h1><a href="/abogados"><%= t("Lawyers") %></a></h1>

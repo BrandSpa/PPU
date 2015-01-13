@@ -54,6 +54,7 @@ $ ->
       $(@el).find('thead').append view.render().el
 
     render: ->
+      console.log "render posts"
       $(@el).find('tbody').html('')
       @collection.each (model) ->
         view = new ppu.admin.PostView model: model

@@ -252,6 +252,12 @@ select.form-control
 
 	@media #{$tablet}
 		height: 50px
+		background: #002855
+
+	@media #{$mobile}
+		height: 50px
+		width: 100%
+		background: #002855
 
 	h1
 		font-size: 1.3em
@@ -355,6 +361,10 @@ select.form-control
 	
 	@media #{$desktop-lg}
 		padding: 0 15px 0 0 !important
+
+	@media #{$mobile}
+		position: initial !important
+		width: 100%
 	
 #footer
 	background: #002855
