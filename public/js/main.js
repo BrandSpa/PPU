@@ -71,6 +71,14 @@ ppu.appendSelect = function(el) {
   });
 };
 
+ppu.appendCheck = function(el) {
+  return $(el).find("input").iCheck({
+    labelHover: false,
+    cursor: true,
+    checkboxClass: 'icheckbox_square-blue'
+  });
+};
+
 ppu.appendSummernote = function(el) {
   return $(el).find('.summernote').summernote({
     fontname: ['Lato'],
@@ -192,3 +200,13 @@ $(document).find('.datepicker').datepicker({
   language: 'es',
   autoclose: true
 });
+
+if ($(window).width() < 768) {
+  console.log("768");
+} else if ($(window).width() > 768 && $(window).width() <= 992) {
+  console.log("992");
+} else if ($(window).width() > 992 && $(window).width() <= 1200) {
+  console.log("1200");
+} else {
+
+}

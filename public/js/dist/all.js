@@ -71,6 +71,14 @@ ppu.appendSelect = function(el) {
   });
 };
 
+ppu.appendCheck = function(el) {
+  return $(el).find("input").iCheck({
+    labelHover: false,
+    cursor: true,
+    checkboxClass: 'icheckbox_square-blue'
+  });
+};
+
 ppu.appendSummernote = function(el) {
   return $(el).find('.summernote').summernote({
     fontname: ['Lato'],

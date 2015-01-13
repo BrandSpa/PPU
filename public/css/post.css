@@ -47,6 +47,11 @@
       font-size: 0.8em;
       font-style: italic;
       color: #7F7F7F; }
+    .post-main-featured-item .content .country {
+      font-size: 0.8em;
+      font-style: italic;
+      color: #7F7F7F;
+      margin-right: 10px; }
     .post-main-featured-item .content .share {
       font-size: 1em;
       float: right;
@@ -120,6 +125,11 @@
       font-size: 0.8em;
       color: #7F7F7F;
       font-style: italic; }
+    .post-item .content .country, .post-featured-item .content .country {
+      font-size: 0.8em;
+      font-style: italic;
+      color: #7F7F7F;
+      margin-right: 10px; }
     .post-item .content .share, .post-featured-item .content .share {
       color: #002855;
       font-size: 0.8em;

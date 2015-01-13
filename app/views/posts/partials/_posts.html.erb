@@ -11,11 +11,13 @@
 	<h3><a href="posts/{{ slug }}">{{ title }}</a></h3>
 	  <p> {{shortenText2 excerpt }}</p>
 	  <div class="footer">
-	  	<span class="date">{{dateFormat date format="D - M - YYYY"}}</span>
-	  	<a href="#" class="share" data-toggle="modal" data-target="#share-modal"><%= t("share") %> <i class="fa fa-share-alt"></i></a>
+    <span class="country"><i class="fa fa-globe"></i> {{ country }}</span>
+	  	<span class="date"><i class="fa fa-calendar-o"></i> {{dateFormat date format="D - M - YYYY"}}</span>
+	  	<a href="#" class="share" data-toggle="modal" data-target="#share-modal"><i class="fa fa-share-alt"></i> <%= t("share") %></a>
 	  </div>
 </div>
 </script>
+
 
 <script id="post-main-featured-template" type="text/x-handlebars-template">
 <div class="img-container">
@@ -30,8 +32,9 @@
 	  <h3><a href="posts/{{ slug }}">{{ title }}</a></h3>
 	  <p> {{shortenText excerpt }}</p>
 	  <div class="footer">
-	  <span class="date">{{dateFormat date format="D - M - YYYY"}}</span>
-	  <a href="#" class="share" data-toggle="modal" data-target="#share-modal"><%= t("share") %> <i class="fa fa-share-alt"></i></a>
+    <span class="country"><i class="fa fa-globe"></i> {{ country }}</span>
+	  <span class="date"><i class="fa fa-calendar-o"></i> {{dateFormat date format="D - M - YYYY"}}</span>
+	  <a href="#" class="share" data-toggle="modal" data-target="#share-modal"><i class="fa fa-share-alt"></i> <%= t("share") %></a>
 	  </div>
   </div>
 </script>

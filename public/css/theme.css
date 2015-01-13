@@ -23,6 +23,9 @@ body {
   @media (min-width: 768px) and (max-width: 991px) {
     body {
       font-size: 11px; } }
+  @media (max-width: 767px) {
+    body {
+      padding: 0; } }
 
 a:hover {
   text-decoration: none; }
@@ -217,7 +220,6 @@ select.form-control {
 
 #top-bar {
   background: #002855;
-  padding-left: 15px;
   height: auto; }
   @media (min-width: 1200px) {
     #top-bar {
@@ -239,7 +241,7 @@ select.form-control {
     color: #00A1B1;
     float: left;
     font-weight: 400;
-    padding: 15px 5px 0 0;
+    padding: 15px 5px 0 15px;
     margin: 0; }
     #top-bar h1 a {
       color: #00A1B1; }
@@ -256,8 +258,8 @@ select.form-control {
     background: #002855; }
   #top-bar .checkbox-inline {
     color: #fff;
-    padding-left: 30px;
     font-weight: 200;
+    padding: 0 0 0 15px;
     font-size: 0.9em; }
   #top-bar label {
     font-weight: 200; }
@@ -269,11 +271,21 @@ select.form-control {
     float: right;
     height: 50px;
     border-left: 1px solid #fff; }
+    @media (max-width: 767px) {
+      #top-bar .category {
+        padding: 0;
+        border: none; } }
   #top-bar .countries {
     float: right;
     height: 50px;
-    padding: 17px 0 0 10px;
-    border-left: 1px solid #fff; }
+    padding: 17px 0 0 0;
+    border-left: 1px solid #fff;
+    background: #002855;
+    text-align: center; }
+    @media (max-width: 767px) {
+      #top-bar .countries {
+        padding: 0;
+        border: none; } }
   #top-bar .search {
     height: 50px;
     float: right;
@@ -598,6 +610,9 @@ select.form-control {
     @media (max-width: 480px) {
       .navbar-app .navbar-header {
         background-size: 150%; } }
+  .navbar-app .navbar-collapse {
+    margin-left: 0;
+    width: 100%; }
 
 .navbar-toggle {
   background: #fff;
@@ -888,6 +903,11 @@ select.form-control {
       font-size: 0.8em;
       font-style: italic;
       color: #7F7F7F; }
+    .post-main-featured-item .content .country {
+      font-size: 0.8em;
+      font-style: italic;
+      color: #7F7F7F;
+      margin-right: 10px; }
     .post-main-featured-item .content .share {
       font-size: 1em;
       float: right;
@@ -961,6 +981,11 @@ select.form-control {
       font-size: 0.8em;
       color: #7F7F7F;
       font-style: italic; }
+    .post-item .content .country, .post-featured-item .content .country {
+      font-size: 0.8em;
+      font-style: italic;
+      color: #7F7F7F;
+      margin-right: 10px; }
     .post-item .content .share, .post-featured-item .content .share {
       color: #002855;
       font-size: 0.8em;
@@ -1162,19 +1187,28 @@ select.form-control {
     color: #002855; }
 
 #carousel-us-awards ul {
-  padding-left: 80px; }
+  padding-left: 80px;
+  height: 300px; }
   #carousel-us-awards ul li {
-    display: inline-block;
-    width: 30%; }
-    #carousel-us-awards ul li img {
-      margin: 0 auto;
-      display: block; }
+    height: 300px;
+    float: left;
+    width: 30%;
+    list-style: none; }
+    #carousel-us-awards ul li .img-container {
+      height: 120px;
+      width: 100%; }
+      #carousel-us-awards ul li .img-container img {
+        margin: 0 auto;
+        display: block; }
     #carousel-us-awards ul li span {
       width: 100%;
       display: block;
       text-align: center;
-      padding: 30px;
+      padding: 15px 30px 0 30px;
       font-size: 0.9em; }
+#carousel-us-awards .carousel-control {
+  top: 120px;
+  bottom: auto; }
 
 .carousel-text .carousel-control.left, .carousel-text .carousel-control.right {
   background-image: none; }

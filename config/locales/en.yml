@@ -51,9 +51,10 @@ en:
     telecommunications: "Telecommunications"
     infrastructure_&_projects: "Infrastructure & Projects"
     litigations: "Litigations"
+    
   form_footer:
     name: "Name"
-    lastname: "lastname"
+    lastname: "Last name"
     message: "Message"
     country: "Country"
 

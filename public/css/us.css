@@ -36,19 +36,28 @@
     color: #002855; }
 
 #carousel-us-awards ul {
-  padding-left: 80px; }
+  padding-left: 80px;
+  height: 300px; }
   #carousel-us-awards ul li {
-    display: inline-block;
-    width: 30%; }
-    #carousel-us-awards ul li img {
-      margin: 0 auto;
-      display: block; }
+    height: 300px;
+    float: left;
+    width: 30%;
+    list-style: none; }
+    #carousel-us-awards ul li .img-container {
+      height: 120px;
+      width: 100%; }
+      #carousel-us-awards ul li .img-container img {
+        margin: 0 auto;
+        display: block; }
     #carousel-us-awards ul li span {
       width: 100%;
       display: block;
       text-align: center;
-      padding: 30px;
+      padding: 15px 30px 0 30px;
       font-size: 0.9em; }
+#carousel-us-awards .carousel-control {
+  top: 120px;
+  bottom: auto; }
 
 .carousel-text .carousel-control.left, .carousel-text .carousel-control.right {
   background-image: none; }

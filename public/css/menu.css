@@ -32,6 +32,9 @@
     @media (max-width: 480px) {
       .navbar-app .navbar-header {
         background-size: 150%; } }
+  .navbar-app .navbar-collapse {
+    margin-left: 0;
+    width: 100%; }
 
 .navbar-toggle {
   background: #fff;

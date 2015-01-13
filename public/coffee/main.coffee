@@ -54,6 +54,9 @@ ppu.appendDatePicker = (el) ->
 ppu.appendSelect = (el) ->
   $(el).find("select").selectBoxIt autoWidth: false
 
+ppu.appendCheck = (el) ->
+  $(el).find("input").iCheck labelHover: false, cursor: true, checkboxClass: 'icheckbox_square-blue'
+
 ppu.appendSummernote = (el) ->
    $(el).find('.summernote').summernote
     fontname: ['Lato'],
@@ -100,6 +103,7 @@ ppu.appendForm = (el, template)->
   $(temp()).appendTo($(el).find('.fields')).hide().slideDown()
   ppu.appendDatePickerYear(el)
 
+
 ppu.ajaxOptions = (type, data) ->
   type: type
   data: data
@@ -145,3 +149,10 @@ $(document).find('.datepicker').datepicker
   language: 'es'
   autoclose: true
   
+if ($(window).width() < 768)
+  console.log "768"
+else if ($(window).width() > 768 &&  $(window).width() <= 992)
+  console.log "992"
+else if ($(window).width() > 992 &&  $(window).width() <= 1200)
+  console.log "1200"
+else

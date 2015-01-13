@@ -20,7 +20,9 @@ body
 
 	@media #{$tablet}
 		font-size: 11px
-		city-info
+	
+	@media #{$mobile}
+		padding: 0
 a
 	&:hover
 		text-decoration: none
@@ -241,7 +243,6 @@ select.form-control
 
 #top-bar
 	background: #002855
-	padding-left: 15px
 	height: auto
 
 	@media #{$desktop-lg}
@@ -264,11 +265,11 @@ select.form-control
 		color: #00A1B1
 		float: left
 		font-weight: 400
-		padding: 15px 5px 0 0
+		padding: 15px 5px 0 15px
 		margin: 0
+
 		a
 			color: #00A1B1
-
 
 	input
 		background: transparent
@@ -282,13 +283,11 @@ select.form-control
 	select
 		border: none
 		background: $color-darkBlue
-
-
 		
 	.checkbox-inline
 		color: #fff
-		padding-left: 30px
 		font-weight: 200
+		padding: 0 0 0 15px
 		font-size: 0.9em
 	label
 		font-weight: 200
@@ -303,12 +302,21 @@ select.form-control
 		float: right
 		height: 50px
 		border-left: 1px solid #fff
+		@media #{$mobile}
+			padding: 0
+			border: none
 	
 	.countries
 		float: right
 		height: 50px
-		padding: 17px 0 0 10px
+		padding: 17px 0 0 0
 		border-left: 1px solid #fff
+		background: $color-darkBlue
+		text-align: center
+
+		@media #{$mobile}
+			padding: 0
+			border: none
 
 	.search
 		height: 50px

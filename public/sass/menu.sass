@@ -6,7 +6,7 @@
 		max-width: 100%
 		@media #{$mobile}
 			max-width: 100%
-
+	
 	.navbar-brand
 		width: 28%
 		display: block
@@ -31,6 +31,10 @@
 		@media #{$mobile-xs}
 			background-size: 150%
 
+	.navbar-collapse
+		margin-left: 0
+		width: 100%
+
 .navbar-toggle
 	background: #fff
 	border: none
@@ -38,8 +42,10 @@
 	color: #002855
 	font-size: 1.4em
 	margin: 60px
+
 	@media #{$tablet}
 		margin: 40px
+
 	@media #{$mobile}
 		margin: 20px
 		font-size: 1.1em
