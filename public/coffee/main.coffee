@@ -129,7 +129,7 @@ $(window).scroll () ->
   else
     $(".top-bar-container").removeClass("to-top")
 
-$('.carousel').carousel()
+$('.carousel').carousel interval: 2000
 
 $('.popver').popover()
 

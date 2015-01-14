@@ -177,7 +177,9 @@ $(window).scroll(function() {
   }
 });
 
-$('.carousel').carousel();
+$('.carousel').carousel({
+  interval: 2000
+});
 
 $('.popver').popover();
 
