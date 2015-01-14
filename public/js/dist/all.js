@@ -177,7 +177,9 @@ $(window).scroll(function() {
   }
 });
 
-$('.carousel').carousel();
+$('.carousel').carousel({
+  interval: 2000
+});
 
 $('.popver').popover();
 
@@ -200,6 +202,16 @@ $(document).find('.datepicker').datepicker({
   language: 'es',
   autoclose: true
 });
+
+if ($(window).width() < 768) {
+  console.log("768");
+} else if ($(window).width() > 768 && $(window).width() <= 992) {
+  console.log("992");
+} else if ($(window).width() > 992 && $(window).width() <= 1200) {
+  console.log("1200");
+} else {
+
+}
 
 var __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };

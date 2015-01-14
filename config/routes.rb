@@ -29,7 +29,7 @@ Rails.application.routes.draw do
   scope "(:locale)", locale: /en|es/ do
     get "", to: 'posts#index'
     get "abogados-beta", to: 'lawyers#index'
-    get "abogados", to: 'lawyers#message'
+    get "abogados", to: 'lawyers#index'
     get "abogados/:id", to: 'lawyers#show', constraints: { id: /[^\/]+/ }
 
     get "experiencias", to: 'experiences#index'

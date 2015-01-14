@@ -1,7 +1,7 @@
 $ ->
   class ppu.Workspace extends Backbone.Router
     routes:
-      "abogados-beta" : "lawyers"
+      "abogados" : "lawyers"
       "abogados/:slug" : "lawyer"
       "experiencias" : "experiences"
       "experiencias/:slug" : "experience"
