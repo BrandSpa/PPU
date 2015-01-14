@@ -244,6 +244,8 @@ select
 	position: fixed
 	@media #{$desktop-lg}
 		padding: 0 15px 0 0 !important
+	@media #{$mobile}
+		min-width: 100%
 
 .to-top
 	top: 0
@@ -303,6 +305,8 @@ select
 		float: right
 		position: relative
 		padding-left: 0
+		@media #{$mobile}
+			display: none
 
  
 	.category
@@ -312,6 +316,7 @@ select
 		@media #{$mobile}
 			padding: 0
 			border: none
+			display: none
 	
 	.countries
 		float: right
@@ -323,6 +328,7 @@ select
 
 		@media #{$mobile}
 			padding: 0
+			display: none
 			border: none
 
 	.search
@@ -331,6 +337,8 @@ select
 		position: relative
 		border-left: 1px solid #fff
 		padding-top: 5px
+		@media #{$mobile}
+			min-width: 40%
 
 		&:before
 			font-family: 'FontAwesome'
@@ -344,6 +352,7 @@ select
 
 		input
 			width: 100%
+
 		::-webkit-input-placeholder
 			color: #fff
 		:-moz-placeholder
@@ -353,6 +362,13 @@ select
 		:-ms-input-placeholder
 			color: #fff
 
+	.open-filters
+		margin: 15px 15px 0 0
+		display: none
+		float: right
+		color: #fff
+		@media #{$mobile}
+			display: block
 	select
 		padding: 10px 0 0 0
 		-webkit-appearance: none

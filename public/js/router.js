@@ -74,9 +74,10 @@ $(function() {
         collection: ppu.posts
       });
       ppu.postsFeatured = new ppu.Posts;
-      return ppu.postsFeaturedView = new ppu.PostsFeaturedView({
+      ppu.postsFeaturedView = new ppu.PostsFeaturedView({
         collection: ppu.postsFeatured
       });
+      return ppu.filtersMobile = new ppu.FiltersMobile;
     };
 
     Workspace.prototype.post = function(slug) {

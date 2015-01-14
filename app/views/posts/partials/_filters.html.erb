@@ -1,8 +1,10 @@
 <script id="posts-filter" type="text/x-handlebars-template">  
   <h1><%= t("News") %></h1>
+  
   <form class="form-group search">
     <input type="text" class="form-control query" placeholder="<%= t("Search") %>">
   </form>
+
     <div class="col-md-3 col-sm-3 countries">
     <div class="checkbox-inline">
       <label>
@@ -26,4 +28,5 @@
     </select>
   </div>
 
+  <a href="#" class="open-filters" data-toggle="modal" data-target="#filters-modal"><i class="fa fa-bars"></i> Filtrar</a>
 </script>

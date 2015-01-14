@@ -214,6 +214,9 @@ select .form-control {
   @media (min-width: 1200px) {
     .top-bar-container {
       padding: 0 15px 0 0 !important; } }
+  @media (max-width: 767px) {
+    .top-bar-container {
+      min-width: 100%; } }
 
 .to-top {
   top: 0; }
@@ -267,6 +270,9 @@ select .form-control {
     float: right;
     position: relative;
     padding-left: 0; }
+    @media (max-width: 767px) {
+      #top-bar .position {
+        display: none; } }
   #top-bar .category {
     float: right;
     height: 50px;
@@ -274,7 +280,8 @@ select .form-control {
     @media (max-width: 767px) {
       #top-bar .category {
         padding: 0;
-        border: none; } }
+        border: none;
+        display: none; } }
   #top-bar .countries {
     float: right;
     height: 50px;
@@ -285,6 +292,7 @@ select .form-control {
     @media (max-width: 767px) {
       #top-bar .countries {
         padding: 0;
+        display: none;
         border: none; } }
   #top-bar .search {
     height: 50px;
@@ -294,6 +302,9 @@ select .form-control {
     padding-top: 5px;
     -moz-placeholder-color: #fff;
     -ms-input-placeholder-color: #fff; }
+    @media (max-width: 767px) {
+      #top-bar .search {
+        min-width: 40%; } }
     #top-bar .search:before {
       font-family: "FontAwesome";
       content: "";
@@ -309,6 +320,14 @@ select .form-control {
       color: #fff; }
     #top-bar .search ::-moz-placeholder {
       color: #fff; }
+  #top-bar .open-filters {
+    margin: 15px 15px 0 0;
+    display: none;
+    float: right;
+    color: #fff; }
+    @media (max-width: 767px) {
+      #top-bar .open-filters {
+        display: block; } }
   #top-bar select {
     padding: 10px 0 0 0;
     -webkit-appearance: none;

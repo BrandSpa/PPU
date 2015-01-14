@@ -43,6 +43,8 @@ $ ->
 
       ppu.postsFeatured = new ppu.Posts
       ppu.postsFeaturedView = new ppu.PostsFeaturedView collection: ppu.postsFeatured
+
+      ppu.filtersMobile = new ppu.FiltersMobile
       
     post: (slug)->
       ppu.post = new ppu.Post id: slug
