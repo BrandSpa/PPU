@@ -27,6 +27,8 @@ Rails.application.routes.draw do
   get "editar-abogado", to: 'api/lawyers#update_description'
 
   scope "(:locale)", locale: /en|es/ do
+
+    resources :posts
     get "", to: 'posts#index'
     get "abogados-beta", to: 'lawyers#index'
     get "abogados", to: 'lawyers#index'
@@ -42,14 +44,13 @@ Rails.application.routes.draw do
     get "editar-abogado/:slug", to: 'admin/lawyers#index'
     get "edit-lawyer/:username", to: 'admin/lawyers#index'
 
-    resources :posts
-
     get "areas", to: 'categories#index'
     get "areas/:name", to: 'categories#show'
 
     get "/nosotros", to: 'pages#us'
     get "/trabaje-con-nosotros", to: 'pages#work_with_us'
     get "/probono", to: 'pages#pro_bono'
+
 
     namespace :admin do 
       resources :posts

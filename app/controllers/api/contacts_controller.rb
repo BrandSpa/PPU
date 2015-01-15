@@ -8,6 +8,8 @@ class Api::ContactsController < ApplicationController
 
     if model.valid?
       render json: model, status: 200
+
+      ContactMailer.notification(model, "alejandro@brandspa.com").deliver
     else
       render json: model.errors, status: 400
     end

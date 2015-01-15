@@ -1,178 +1,183 @@
 <div id="us">
 	<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
 
-  <!-- Wrapper for slides -->
-  <div class="carousel-inner" role="listbox">
-    <div class="item active">
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+      <div class="item active">
       <img src="/img/us_slider/01.jpg" alt="...">
+      </div>
+
+      <div class="item">
+        <img src="/img/us_slider/slider04.jpg" alt="slider">
+      </div>
+
+      <div class="item">
+        <img src="/img/us_slider/slider05.jpg" alt="slider">
+      </div>
+      <div class="item">
+        <img src="/img/us_slider/slider01.jpg" alt="slider">
+
+      </div>
+      <div class="item">
+        <img src="/img/us_slider/slider02.jpg" alt="slider">
+      </div>
+
 
     </div>
- 
 
-    <div class="item">
-      <img src="/img/us_slider/slider04.jpg" alt="...">
-    </div>
-
-    <div class="item">
-      <img src="/img/us_slider/slider05.jpg" alt="...">
-    </div>
-       <div class="item">
-      <img src="/img/us_slider/slider01.jpg" alt="...">
-
-    </div>
-    <div class="item">
-      <img src="/img/us_slider/slider02.jpg" alt="...">
-    </div>
-
- 
+    <!-- Controls -->
+    <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
   </div>
+  <div class="content">
 
-  <!-- Controls -->
-  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
-</div>
-<div class="content">
-	
-<h2><%= t("us_page.title") %></h2>
+    <h2><%= t("us_page.title") %></h2>
 
-<p>
-	<%= t("us_page.content_p1") %>
-</p>
+    <p>
+     <%= t("us_page.content_p1") %>
+   </p>
 
-<p>
-	<%= t("us_page.content_p2") %>
+   <p>
+     <%= t("us_page.content_p2") %>
 
-</p>
+   </p>
 
-<p>
-	 <%= t("us_page.content_p3") %>
-</p>
+   <p>
+    <%= t("us_page.content_p3") %>
+  </p>
 
-<p>
-	<%= t("us_page.content_p4") %>
-</p>
+  <p>
+   <%= t("us_page.content_p4") %>
+ </p>
 
 
-	<%= render "pages/partials/us_phrases" %>
+ <%= render "pages/partials/us_phrases" %>
 
-	<h3>Reconocimientos</h3>
+ <h3>Reconocimientos</h3>
 
-	<div id="carousel-us-awards" class="carousel carousel-text slide" data-ride="carousel">
+ <div id="carousel-us-awards" class="carousel carousel-text slide" data-ride="carousel">
 
   <!-- Wrapper for slides -->
   <div class="carousel-inner" role="listbox">
-  <div class="item">
-    <ul>
-      <li>
-        <div class="img-container">
-          <img src="/img/us_awards/IFLR-americas-2014.jpg" alt="IFLR-americas-2014" width="100">
-        </div>
-        
-        <span>
-          Mejor firma del año en Colombia 2012, 2013 y 2014. Negocio del año en financiación de proyectos en el continente Americano. 
+    <div class="item">
+      <ul>
+        <li>
+          <div class="img-container">
+            <img src="/img/us_awards/IFLR-americas-2014.jpg" alt="IFLR-americas-2014" width="100">
+          </div>
+
+          <span>
+            Mejor firma del año en Colombia 2012, 2013 y 2014. Negocio del año en financiación de proyectos en el continente Americano. 
           </span>
-      </li>
-      <li>
-        <div class="img-container">
+        </li>
+        <li>
+          <div class="img-container">
            <img src="/img/us_awards/probono-embed.png" alt="probono-embed" width="100">
-        </div>
-       
-        <span>Firma Probono del Año 2014.</span>
-      </li>
-      
-      <li>
-      <div class="img-container">
-        <img src="/img/us_awards/Euromoney.jpeg" alt="" width="100">
-      </div>
-      <span>Premio a la mejor firma del año en Colombia para mujeres en la profesión legal 2014.</span></li> </ul>
-  </div>
+         </div>
 
-  <div class="item">
-  <ul>
-    <li>
-      <div class="img-container">
-        <img src="/img/us_awards/Chambers Latin America Awards 2013.jpg" width="100">
-      </div>
-      
-      <span>Mejor firma del año en Colombia 2012, 2013.</span>
-    </li>
-    <li>
-      <div class="img-container">
-        <img src="/img/us_awards/internatioal-tax.jpg" alt="" width="100">
-      </div>
-      <span>Mejor firma colombiana del año en precios de transferencia 2012, 2013.</span>
-    </li> 
-    <li>
-      <div class="img-container">
-        <img src="/img/us_awards/IFLR.jpeg" width="100" alt="">
-      </div>
-      <span>Negocio del año en financiación de proyectos 2013.</span>
-    </li> 
-    </ul>
-    
-  </div>
+         <span>Firma Probono del Año 2014.</span>
+       </li>
 
-  <div class="item">
-    <ul>
-      <li>
+       <li>
         <div class="img-container">
-          <img src="/img/us_awards/latinlawyer.jpg" alt="" width="100">
+          <img src="/img/us_awards/Euromoney.jpeg" alt="" width="100">
         </div>
-        <span>Negocio del año fusiones y adquisiciones 2012.</span></li> 
-      <li>
-        <div class="img-container">
-          <img src="/img/us_awards/chambers-women.jpg" alt="" width="100">
-        </div>
-        <span>Mejor programa de mentor?a en firmas de abogados en Colombia 2012.</span>
-        </li> 
-    </ul>
-  </div>
+        <span>Premio a la mejor firma del año en Colombia para mujeres en la profesión legal 2014.</span></li> </ul>
+      </div>
 
-    <div class="item active">
-    <ul>
-      <li>
-        <div class="img-container">
-          <img src="/img/us_awards/Chambers_Latin_America Awards_2014.jpg" alt="" width="100">
+      <div class="item">
+        <ul>
+          <li>
+            <div class="img-container">
+              <img src="/img/us_awards/Chambers Latin America Awards 2013.jpg" width="100">
+            </div>
+
+            <span>Mejor firma del año en Colombia 2012, 2013.</span>
+          </li>
+          <li>
+            <div class="img-container">
+              <img src="/img/us_awards/internatioal-tax.jpg" alt="" width="100">
+            </div>
+            <span>Mejor firma colombiana del año en precios de transferencia 2012, 2013.</span>
+          </li> 
+          <li>
+            <div class="img-container">
+              <img src="/img/us_awards/IFLR.jpeg" width="100" alt="">
+            </div>
+            <span>Negocio del año en financiación de proyectos 2013.</span>
+          </li> 
+        </ul>
+
+      </div>
+
+      <div class="item">
+        <ul>
+          <li>
+            <div class="img-container">
+              <img src="/img/us_awards/latinlawyer.jpg" alt="" width="100">
+            </div>
+            <span>Negocio del año fusiones y adquisiciones 2012.</span></li> 
+            <li>
+              <div class="img-container">
+                <img src="/img/us_awards/chambers-women.jpg" alt="" width="100">
+              </div>
+              <span>Mejor programa de mentor?a en firmas de abogados en Colombia 2012.</span>
+            </li> 
+          </ul>
         </div>
-        <span><%= t("awards.cl_chambers_2014") %></span>
-     </li>
-     <li>
-      <div class="img-container">
-        <img src="/img/us_awards/chi-award01@2x.jpg" alt="" width="100">
+
+        <div class="item active">
+          <ul>
+            <li>
+              <div class="img-container">
+                <img src="/img/us_awards/Chambers_Latin_America Awards_2014.jpg" alt="" width="100">
+              </div>
+              <span><%= t("awards.cl_chambers_2014") %></span>
+            </li>
+            <li>
+              <div class="img-container">
+                <img src="/img/us_awards/chi-award01@2x.jpg" alt="" width="100">
+              </div>
+              <span><%= t("awards.cl_chambers_2013") %></span>
+            </li>
+            <li>
+              <div class="img-container">
+                <img src="/img/us_awards/co_chambers_2013.png" alt="" width="100">
+              </div>
+              <span><%= t("awards.co_chambers_2013") %></span>
+            </li>
+
+          </ul>
+        </div>
       </div>
-      <span><%= t("awards.cl_chambers_2013") %></span>
-     </li>
-     <li>
-      <div class="img-container">
-        <img src="/img/us_awards/co_chambers_2013.png" alt="" width="100">
+
+      <h3>Redes</h3>
+
+      <div class="reds">
+        <img src="/img/redes/SCG_Legal_logo_lg.jpg" width="150" alt="SCG_Legal_logo_lg.jpg">
+        <img src="/img/redes/Uria_Menendez_Best_Friends.jpg" width="150" alt="Uria_Menendez_Best_Friends.jpg">
+        <img src="/img/redes/World_Law_Group.jpeg" width="150" alt="World_Law_Group.jpeg">
       </div>
-      <span><%= t("awards.co_chambers_2013") %></span>
-     </li>
- 
-    </ul>
+
+      <script id="us-title-template" type="text/x-handlebars-template">
+        <h1><%= t("us") %></h1>
+      </script>
+
+      <!-- Controls -->
+      <a class="left carousel-control" href="#carousel-us-awards" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="right carousel-control" href="#carousel-us-awards" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
     </div>
-   
   </div>
-
-  <script id="us-title-template" type="text/x-handlebars-template">
-    <h1><%= t("us") %></h1>
-  </script>
-
-  <!-- Controls -->
-  <a class="left carousel-control" href="#carousel-us-awards" role="button" data-slide="prev">
-    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="right carousel-control" href="#carousel-us-awards" role="button" data-slide="next">
-    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
-</div>
-</div>
 </div>

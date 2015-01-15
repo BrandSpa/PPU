@@ -1,7 +1,8 @@
 class ContactMailer < ActionMailer::Base
-  default from: "from@example.com"
+  default from: "no-replay@ppulegal.com"
 
-  def notification
-    
+  def notification(contact, to)
+    @contact = contact
+    mail(to: to, subject: 'ppulegal Contacto')
   end
 end

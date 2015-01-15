@@ -33,7 +33,10 @@ class Lawyer < ActiveRecord::Base
   scope :search, -> (keyword){ where("lawyers.keywords LIKE ?", "%#{keyword}%") }
   scope :has_translation, -> (slug) { where(slug: slug).count }
   scope :paginate, -> (paginate) { limit(20).offset(paginate) }
+  scope :order_by_partner, -> { order("FIELD(position,'Partner') DESC", lastname: :asc) }
+  scope :order_by_lastname, -> { order(position: :desc, lastname: :asc) }
 
+  
   def self.attach_categories(model, collection)
     if collection.present?
       collection.each do |id|

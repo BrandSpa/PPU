@@ -64,4 +64,9 @@
 .carousel-text .carousel-control .glyphicon-chevron-right, .carousel-text .carousel-control .glyphicon-chevron-left {
   color: #444; }
 
+.reds {
+  text-align: center; }
+  .reds img {
+    margin: 0 30px 0 30px; }
+
 /*# sourceMappingURL=us.css.map */

@@ -7,9 +7,9 @@ class Api::LawyersController < ApplicationController
     slug = params[:slug]
 
     if lang.equal?(:en)
-      collection = entity.where(nil).lang(lang).includes(:translations, :translation).order("FIELD(position,'Partner') DESC", lastname: :asc).paginate(paginate)
+      collection = entity.where(nil).lang(lang).includes(:translations, :translation).order_by_partner.paginate(paginate)
     else
-      collection = entity.where(nil).lang(lang).includes(:translations, :translation).order(position: :desc, lastname: :asc).paginate(paginate)
+      collection = entity.where(nil).lang(lang).includes(:translations, :translation).order_by_lastname.paginate(paginate)
     end
     
     filters.each do |key, val|
