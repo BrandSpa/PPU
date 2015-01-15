@@ -253,19 +253,20 @@ select .form-control {
     color: #fff;
     border: none;
     padding-top: 15px;
-    font-weight: 200;
-    font-size: 0.9em;
+    font-size: 1em;
+    font-weight: 400;
     padding-right: 20px; }
+  #top-bar label {
+    font-weight: 400;
+    font-size: 1em;
+    line-height: 1.6em; }
   #top-bar select {
     border: none;
     background: #002855; }
   #top-bar .checkbox-inline {
     color: #fff;
-    font-weight: 200;
     padding: 0 0 0 15px;
     font-size: 0.9em; }
-  #top-bar label {
-    font-weight: 200; }
   #top-bar .position {
     float: right;
     position: relative;
@@ -586,7 +587,7 @@ select .form-control {
 .country-container .selectboxit-option {
   font-size: 0.9em; }
 
-.form-group span {
+.form-group > span {
   display: block;
   font-size: 0.7em;
   margin-top: 5px;
@@ -1176,8 +1177,7 @@ select .form-control {
 #us {
   background: #fff; }
   #us .content {
-    padding: 30px;
-    font-weight: 200; }
+    padding: 30px; }
   #us h2 {
     font-size: 1.4em;
     color: #002855;

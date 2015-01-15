@@ -285,9 +285,14 @@ select
 		color: #fff
 		border: none
 		padding-top: 15px
-		font-weight: 200
-		font-size: 0.9em
+		font-size: 1em
+		font-weight: 400
 		padding-right: 20px
+
+	label
+		font-weight: 400
+		font-size: 1em
+		line-height: 1.6em
 
 	select
 		border: none
@@ -295,11 +300,8 @@ select
 		
 	.checkbox-inline
 		color: #fff
-		font-weight: 200
 		padding: 0 0 0 15px
 		font-size: 0.9em
-	label
-		font-weight: 200
 
 	.position
 		float: right
@@ -308,7 +310,6 @@ select
 		@media #{$mobile}
 			display: none
 
- 
 	.category
 		float: right
 		height: 50px
@@ -369,6 +370,7 @@ select
 		color: #fff
 		@media #{$mobile}
 			display: block
+
 	select
 		padding: 10px 0 0 0
 		-webkit-appearance: none
@@ -679,7 +681,7 @@ select
 		font-size: .9em
 
 .form-group
-	span
+	& >span
 		display: block 
 		font-size: .7em
 		margin-top: 5px
