@@ -73,6 +73,14 @@ $(function() {
       return this.listenTo(this.collection, 'add', this.renderOne);
     };
 
+    LawyersView.prototype.paginate = function() {
+      return this.collection.fetch({
+        data: {
+          offset: offset
+        }
+      });
+    };
+
     LawyersView.prototype.renderOne = function(model) {
       var view;
       view = new ppu.LawyerView({
@@ -102,6 +110,8 @@ $(function() {
 
     LawyersFilters.prototype.template = $("#lawyers-filter");
 
+    LawyersFilters.prototype.offset = 20;
+
     LawyersFilters.prototype.events = {
       'change .position': 'byPosition',
       'change .country': 'byCountry',
@@ -112,8 +122,7 @@ $(function() {
 
     LawyersFilters.prototype.initialize = function() {
       this.filtersAplied = {};
-      this.$el.data("filtersAplied", this.filtersAplied);
-      return app.pubsub.bind("general:scroll", this.paginate, this);
+      return this.$el.data("filtersAplied", this.filtersAplied);
     };
 
     LawyersFilters.prototype.render = function() {
@@ -121,18 +130,6 @@ $(function() {
       template = app.compile(this.template);
       this.$el.html(template);
       return ppu.appendSelect(this.el);
-    };
-
-    LawyersFilters.prototype.paginate = function() {
-      var data, offset;
-      offset = $(this.el).data('offset') || 20;
-      data = _.extend(this.filtersAplied, {
-        paginate: offset
-      });
-      ppu.lawyers.fetch({
-        data: data
-      });
-      return $(this.el).data('offset', offset + 20);
     };
 
     LawyersFilters.prototype.byPosition = function(e) {

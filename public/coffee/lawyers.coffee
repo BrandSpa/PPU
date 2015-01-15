@@ -25,6 +25,9 @@ $ ->
     initialize: ->
       @listenTo(@collection, 'reset', @render)
       @listenTo(@collection, 'add', @renderOne)
+
+    paginate: () ->
+      @collection.fetch data: offset: offset
     
     renderOne: (model) ->
       view = new ppu.LawyerView model: model
@@ -39,7 +42,7 @@ $ ->
   class ppu.LawyersFilters extends Backbone.View
     el: $ '#top-bar'
     template: $ "#lawyers-filter"
-
+    offset: 20
     events:
       'change .position': 'byPosition'
       'change .country': 'byCountry'
@@ -50,18 +53,11 @@ $ ->
     initialize: ->
       @filtersAplied = {}
       @$el.data("filtersAplied", @filtersAplied)
-      app.pubsub.bind("general:scroll", @paginate, @)
 
     render: ->
       template = app.compile(@template)
       @$el.html(template)
       ppu.appendSelect(@el)
-
-    paginate: ->
-      offset = $(@el).data('offset') || 20
-      data = _.extend(@filtersAplied, paginate: offset)
-      ppu.lawyers.fetch data: data
-      $(@el).data('offset', (offset+20))
 
     byPosition: (e) ->
       val = $(e.currentTarget).find('select').val()

@@ -2,7 +2,7 @@ $ ->
   class ppu.AppView extends Backbone.View
     el: $ "#ppu-app"
     events: 
-      "click .change-lang-page": 'changeLangPage'
+      'click .change-lang-page': 'changeLangPage'
 
     initialize: ->
       app.pubsub.bind("filter:aplied", @paginateOff, @)

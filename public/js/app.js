@@ -12,7 +12,7 @@ $(function() {
     AppView.prototype.el = $("#ppu-app");
 
     AppView.prototype.events = {
-      "click .change-lang-page": 'changeLangPage'
+      'click .change-lang-page': 'changeLangPage'
     };
 
     AppView.prototype.initialize = function() {

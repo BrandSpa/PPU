@@ -164,7 +164,8 @@ ppu.saveMultipeForms = function(el, model, lawyer_id) {
 };
 
 $(window).scroll(function() {
-  if ($(window).scrollTop() === $(document).height() - $(window).height() - 150) {
+  if ($(window).scrollTop() > $(document).height() - $(window).height() - 60) {
+    console.log("scroll");
     return app.pubsub.trigger("general:scroll");
   }
 });

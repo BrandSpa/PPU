@@ -118,10 +118,13 @@ ppu.saveMultipeForms = (el, model, lawyer_id) ->
     data = new FormData($forms[index])
     data.append("fields[lawyer_id]", lawyer_id)
     model.save data, $.extend({}, ppu.ajaxOptions("POST", data))
-
 $(window).scroll () ->
-  if ($(window).scrollTop() == $(document).height() - $(window).height() - 150)
+  
+  if $(window).scrollTop() > $(document).height() - $(window).height() - 60
+    console.log "scroll"
     app.pubsub.trigger("general:scroll")
+
+       
 
 $(window).scroll () ->
   if $(window).scrollTop() > 35
