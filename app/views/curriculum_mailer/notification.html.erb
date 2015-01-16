@@ -122,19 +122,14 @@
                 </tr>
                 <tr>
                     <td class="content">
-
-                        <h2><%= @contact.name %> <%= @contact.lastname %>,</h2>
-
-                        <p><%= @contact.message %></p>
-
                         <table>
                             <tr>
                                 <td align="center">
                                   <p>
-                                    <%= @contact.email %>
+                                    <%= @curriculum.name %> - <%= @curriculum.country %>
                                   </p>
                                     <p>
-                                        <a href="mailto:<%= @contact.email %>" class="button">Responder</a>
+                                        <a href="<%= @curriculum.file_name.url %>" class="button">Descargar</a>
                                     </p>
                                 </td>
                             </tr>

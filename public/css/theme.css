@@ -1213,9 +1213,9 @@ select .form-control {
 
 #carousel-us-awards ul {
   padding-left: 80px;
-  height: 300px; }
+  height: 200px; }
   #carousel-us-awards ul li {
-    height: 300px;
+    height: 200px;
     float: left;
     width: 30%;
     list-style: none; }

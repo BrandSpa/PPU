@@ -5,6 +5,7 @@ class Api::CurriculumsController < ApplicationController
 		model = entity.create(curriculum_params)
 		if model.valid?
 			render json: model
+      CurriculumMailer.notification(model, "alejandro@brandspa.com").deliver
 		else
 			render json: model.errors, status: 400
 		end
