@@ -3,14 +3,13 @@
 		{{#if gallery }}
 			<img src="{{ gallery.img_name.url }}" alt="">
 		{{/if}}
-		<span class="year">{{getYear date}}</span>	
+		<span class="year">{{ country }} - {{getYear date format="YYYY"}}
+</span>	
 		<h1>{{ title }}</h1>
 		<span class="company-name">{{ company_name }}</span>
 		<span class="company-web"><a href="http://{{ company_web }}" target="_blank">{{ company_web }}</a></span>
 	</div>
 	<div class="content">
-		{{ country }} - {{ date }}
-
 		{{{ content }}}
 	</div>
 

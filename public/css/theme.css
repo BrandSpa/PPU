@@ -530,7 +530,8 @@ select .form-control {
   font-size: 0.9em; }
 
 .social {
-  margin-top: -30px; }
+  margin-right: 60px;
+  float: right; }
   .social li {
     display: inline-block;
     margin-left: 15px; }
@@ -831,7 +832,7 @@ select .form-control {
     font-size: 1.1em; }
   #lawyer li {
     font-size: 0.9em;
-    margin-bottom: 15px; }
+    margin-bottom: 5px; }
   #lawyer h4 {
     margin-top: 30px;
     margin-bottom: 30px; }
@@ -868,11 +869,11 @@ select .form-control {
     padding: 0 30px; }
   #lawyer .award h5 {
     font-size: 1em;
-    margin-bottom: 15px; }
+    margin-bottom: 5px; }
   #lawyer .article-container a, #lawyer .article-container p {
     font-size: 0.9em;
     float: left;
-    margin-bottom: 15px; }
+    margin-bottom: 5px; }
 
 /* Large desktops and laptops */
 /* Portrait tablets and medium desktops */
@@ -928,9 +929,14 @@ select .form-control {
       font-style: italic;
       color: #7F7F7F;
       margin-right: 10px; }
+    .post-main-featured-item .content .date {
+      font-size: 0.8em;
+      color: #5F5F5F;
+      font-style: italic; }
     .post-main-featured-item .content .share {
-      font-size: 1em;
+      font-size: 0.8em;
       float: right;
+      padding-right: 15px;
       color: #002855; }
       .post-main-featured-item .content .share i {
         padding-left: 5px; }
@@ -1305,17 +1311,26 @@ select .form-control {
       font-size: 0.9em;
       line-height: 150%;
       padding: 0 15px 0 0; }
+    .experience-item .content .country {
+      font-size: 0.8em;
+      font-style: italic;
+      color: #7F7F7F;
+      margin-right: 10px; }
+      .experience-item .content .country i {
+        padding-right: 3px; }
     .experience-item .content .date {
       font-size: 0.8em;
       color: #5F5F5F;
       font-style: italic; }
+      .experience-item .content .date i {
+        padding-right: 3px; }
     .experience-item .content .share {
       font-size: 0.8em;
       float: right;
       padding-right: 15px;
       color: #002855; }
       .experience-item .content .share i {
-        padding-left: 5px; }
+        padding-right: 3px; }
 
 .experience-header {
   background: #002855;

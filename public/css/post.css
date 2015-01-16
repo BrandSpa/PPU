@@ -52,9 +52,14 @@
       font-style: italic;
       color: #7F7F7F;
       margin-right: 10px; }
+    .post-main-featured-item .content .date {
+      font-size: 0.8em;
+      color: #5F5F5F;
+      font-style: italic; }
     .post-main-featured-item .content .share {
-      font-size: 1em;
+      font-size: 0.8em;
       float: right;
+      padding-right: 15px;
       color: #002855; }
       .post-main-featured-item .content .share i {
         padding-left: 5px; }

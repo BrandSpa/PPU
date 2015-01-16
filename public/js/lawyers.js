@@ -122,7 +122,8 @@ $(function() {
 
     LawyersFilters.prototype.initialize = function() {
       this.filtersAplied = {};
-      return this.$el.data("filtersAplied", this.filtersAplied);
+      this.$el.data("filtersAplied", this.filtersAplied);
+      return app.pubsub.bind("general:scroll", this.paginate, this);
     };
 
     LawyersFilters.prototype.render = function() {
@@ -130,6 +131,17 @@ $(function() {
       template = app.compile(this.template);
       this.$el.html(template);
       return ppu.appendSelect(this.el);
+    };
+
+    LawyersFilters.prototype.paginate = function() {
+      var data;
+      data = _.extend(this.filtersAplied, {
+        paginate: this.offset
+      });
+      ppu.lawyers.fetch({
+        data: data
+      });
+      return this.offset = this.offset + 20;
     };
 
     LawyersFilters.prototype.byPosition = function(e) {

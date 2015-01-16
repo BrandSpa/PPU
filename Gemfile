@@ -6,7 +6,6 @@ gem 'rails', '4.1.2'
 # Use mysql as the database for Active Record
 gem 'mysql2'
 
-gem 'active_model_serializers'
 
 gem 'devise'
 

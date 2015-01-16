@@ -21,6 +21,11 @@ $(document).ajaxStart (t) ->
 $(document).ajaxStop () ->
   NProgress.done()
 
+$(window).scroll () ->
+  if ($(window).scrollTop() == $(document).height() - $(window).height())
+    _.throttle(app.pubsub.trigger("general:scroll"), 300)
+   
+
 $(".select-cities li a").click (e) ->
   $(".select-cities li a").removeClass('active')
   $(e.currentTarget).addClass('active')

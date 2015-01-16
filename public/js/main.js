@@ -28,6 +28,12 @@ $(document).ajaxStop(function() {
   return NProgress.done();
 });
 
+$(window).scroll(function() {
+  if ($(window).scrollTop() === $(document).height() - $(window).height()) {
+    return _.throttle(app.pubsub.trigger("general:scroll"), 300);
+  }
+});
+
 $(".select-cities li a").click(function(e) {
   $(".select-cities li a").removeClass('active');
   $(e.currentTarget).addClass('active');

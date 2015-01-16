@@ -174,7 +174,7 @@
     font-size: 1.1em; }
   #lawyer li {
     font-size: 0.9em;
-    margin-bottom: 15px; }
+    margin-bottom: 5px; }
   #lawyer h4 {
     margin-top: 30px;
     margin-bottom: 30px; }
@@ -211,10 +211,10 @@
     padding: 0 30px; }
   #lawyer .award h5 {
     font-size: 1em;
-    margin-bottom: 15px; }
+    margin-bottom: 5px; }
   #lawyer .article-container a, #lawyer .article-container p {
     font-size: 0.9em;
     float: left;
-    margin-bottom: 15px; }
+    margin-bottom: 5px; }
 
 /*# sourceMappingURL=lawyer.css.map */
