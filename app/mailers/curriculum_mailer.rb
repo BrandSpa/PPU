@@ -1,5 +1,5 @@
 class CurriculumMailer < ActionMailer::Base
-  default from: "from@example.com"
+  default from: "no-replay@ppulegal.com"
 
   def notification(curriculum, to)
     @curriculum = curriculum
