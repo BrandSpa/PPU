@@ -141,7 +141,7 @@ $(function() {
       });
       return ppu.lawyers.fetch({
         data: data
-      }).done(function(t) {
+      }).then(function() {
         return addmore;
       });
     };

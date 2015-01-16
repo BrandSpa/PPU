@@ -21,14 +21,6 @@ $(document).ajaxStart (t) ->
 $(document).ajaxStop () ->
   NProgress.done()
 
-$(window).scroll () ->
-  wintop = $(window).scrollTop()
-  docheight = $(document).height()
-  winheight = $(window).height()
-  scrolltrigger = 0.80
-  if  ((wintop/(docheight-winheight)) > scrolltrigger)
-    app.pubsub.trigger("general:scroll")
-   
 $(".select-cities li a").click (e) ->
   $(".select-cities li a").removeClass('active')
   $(e.currentTarget).addClass('active')
@@ -125,14 +117,16 @@ ppu.saveMultipeForms = (el, model, lawyer_id) ->
     data = new FormData($forms[index])
     data.append("fields[lawyer_id]", lawyer_id)
     model.save data, $.extend({}, ppu.ajaxOptions("POST", data))
-$(window).scroll () ->
-  
-  if $(window).scrollTop() > $(document).height() - $(window).height() - 60
+
+$(window).on "scroll", _.throttle (event) =>
+  body = document.body
+  tolerance = 100
+  threshold = body.scrollHeight - window.innerHeight - tolerance
+  if body.scrollTop > threshold
     console.log "scroll"
     app.pubsub.trigger("general:scroll")
-
-       
-
+, 1000
+    
 $(window).scroll () ->
   if $(window).scrollTop() > 35
     $(".top-bar-container").addClass("to-top")

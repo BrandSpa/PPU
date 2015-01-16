@@ -29,7 +29,8 @@
     padding: 20px;
     background: #fff;
     color: #5F5F5F;
-    height: 180px; }
+    height: 180px;
+    float: left; }
     .post-main-featured-item .content h3 {
       font-size: 1em;
       margin: 0;

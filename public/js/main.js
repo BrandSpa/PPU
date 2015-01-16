@@ -28,17 +28,6 @@ $(document).ajaxStop(function() {
   return NProgress.done();
 });
 
-$(window).scroll(function() {
-  var docheight, scrolltrigger, winheight, wintop;
-  wintop = $(window).scrollTop();
-  docheight = $(document).height();
-  winheight = $(window).height();
-  scrolltrigger = 0.80;
-  if ((wintop / (docheight - winheight)) > scrolltrigger) {
-    return app.pubsub.trigger("general:scroll");
-  }
-});
-
 $(".select-cities li a").click(function(e) {
   $(".select-cities li a").removeClass('active');
   $(e.currentTarget).addClass('active');
@@ -174,12 +163,18 @@ ppu.saveMultipeForms = function(el, model, lawyer_id) {
   });
 };
 
-$(window).scroll(function() {
-  if ($(window).scrollTop() > $(document).height() - $(window).height() - 60) {
-    console.log("scroll");
-    return app.pubsub.trigger("general:scroll");
-  }
-});
+$(window).on("scroll", _.throttle((function(_this) {
+  return function(event) {
+    var body, threshold, tolerance;
+    body = document.body;
+    tolerance = 100;
+    threshold = body.scrollHeight - window.innerHeight - tolerance;
+    if (body.scrollTop > threshold) {
+      console.log("scroll");
+      return app.pubsub.trigger("general:scroll");
+    }
+  };
+})(this), 1000));
 
 $(window).scroll(function() {
   if ($(window).scrollTop() > 35) {

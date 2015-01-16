@@ -6,6 +6,8 @@ gem 'rails', '4.1.2'
 # Use mysql as the database for Active Record
 gem 'mysql2'
 
+gem 'dalli'
+
 gem 'devise'
 
 gem 'carrierwave'
