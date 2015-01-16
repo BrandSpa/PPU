@@ -55,7 +55,6 @@ $ ->
       @$el.data("filtersAplied", @filtersAplied)
       app.pubsub.bind("general:scroll", @paginate, @)
 
-
     render: ->
       template = app.compile(@template)
       @$el.html(template)

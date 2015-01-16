@@ -3,6 +3,7 @@ var gulp = require('gulp');
   gutil = require('gulp-util');
   coffee = require('gulp-coffee');
   concat = require('gulp-concat');
+  uglify = require('gulp-uglify');
 
 
 gulp.task('coffee', function() {
@@ -16,19 +17,6 @@ gulp.task('sass', function () {
     gulp.src('sass/*.sass')
         .pipe(sass())
         .pipe(gulp.dest('css'));
-});
-
-gulp.task('plugins-scripts', function() {
-  gulp.src([
-    'bower_components/jquery/dist/jquery.min.js',
-    'bower_components/bootstrap/dist/js/bootstrap.min.js',
-    'bower_components/underscore/underscore-min.js',
-    'bower_components/handlebars/handlebars.min.js',
-    'bower_components/backbone/backbone.js',
-    'bower_components/jquery.serializeJSON/jquery.serializejson.min.js'
-    ])
-    .pipe(concat('dependencies.js'))
-    .pipe(gulp.dest('js/dist/'))
 });
 
 gulp.task('dependencies-scripts', function() {
@@ -49,18 +37,33 @@ gulp.task('dependencies-scripts', function() {
     .pipe(gulp.dest('js/dist/'))
 });
 
-gulp.task('bb-scripts', function() {
+gulp.task('app-scripts', function() {
   gulp.src([
     'js/main.js',
-    'js/messages.js',
-    'js/pictures.js',
-    'js/albums.js',
+    'js/handlebars_helpers.js',
+    'js/bb_helpers.js',
     'js/app.js',
+    'js/filters.js',
+    'js/categories.js',
+    'js/lawyers.js',
+    'js/posts.js',
+    'js/experiences.js',
+    'js/categories.js',
+    'js/curriculum.js',
+    'js/contact.js',
+    'js/seo.js',
     'js/router.js'
     ])
-    .pipe(concat('all.js'))
+    .pipe(concat('app.js'))
     .pipe(gulp.dest('js/dist/'))
 });
+
+gulp.task('compress', function() {
+  gulp.src('js/dist/*.js')
+    .pipe(uglify())
+    .pipe(gulp.dest('js/dist/min'))
+});
+
 
 gulp.task('watch', ['sass', 'coffee'], function(){
   gulp.watch('sass/*.sass', ['sass']);
@@ -68,4 +71,4 @@ gulp.task('watch', ['sass', 'coffee'], function(){
   gulp.watch('coffee/*/*.coffee', ['coffee']);
 });
  
-gulp.task('default', ['dependencies-scripts', 'bb-scripts','watch']);
+gulp.task('default', ['dependencies-scripts', 'app-scripts', 'compress','watch']);
