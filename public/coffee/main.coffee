@@ -22,10 +22,13 @@ $(document).ajaxStop () ->
   NProgress.done()
 
 $(window).scroll () ->
-  if ($(window).scrollTop() == $(document).height() - $(window).height())
-    _.throttle(app.pubsub.trigger("general:scroll"), 300)
+  wintop = $(window).scrollTop()
+  docheight = $(document).height()
+  winheight = $(window).height()
+  scrolltrigger = 0.80
+  if  ((wintop/(docheight-winheight)) > scrolltrigger)
+    app.pubsub.trigger("general:scroll")
    
-
 $(".select-cities li a").click (e) ->
   $(".select-cities li a").removeClass('active')
   $(e.currentTarget).addClass('active')
@@ -54,7 +57,6 @@ ppu.appendDatePicker = (el) ->
     format: 'dd/mm/yyyy'
     language: 'es'
     autoclose: true
-
 
 ppu.appendSelect = (el) ->
   $(el).find("select").selectBoxIt autoWidth: false

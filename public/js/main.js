@@ -29,8 +29,13 @@ $(document).ajaxStop(function() {
 });
 
 $(window).scroll(function() {
-  if ($(window).scrollTop() === $(document).height() - $(window).height()) {
-    return _.throttle(app.pubsub.trigger("general:scroll"), 300);
+  var docheight, scrolltrigger, winheight, wintop;
+  wintop = $(window).scrollTop();
+  docheight = $(document).height();
+  winheight = $(window).height();
+  scrolltrigger = 0.80;
+  if ((wintop / (docheight - winheight)) > scrolltrigger) {
+    return app.pubsub.trigger("general:scroll");
   }
 });
 

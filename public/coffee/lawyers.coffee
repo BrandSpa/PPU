@@ -62,10 +62,14 @@ $ ->
       ppu.appendSelect(@el)
 
     paginate: ->
+      addmore = @addMore()
       data = _.extend(@filtersAplied, paginate: @offset)
-      ppu.lawyers.fetch data: data
-      @offset = (@offset+20)
+      ppu.lawyers.fetch data: data 
+        .done (t) ->
+          addmore
 
+    addMore: ->
+      @offset = (@offset+20)
     byPosition: (e) ->
       val = $(e.currentTarget).find('select').val()
       data = _.extend(@filtersAplied,paginate: 0, position: val)
