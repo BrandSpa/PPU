@@ -134,19 +134,13 @@ $(function() {
     };
 
     LawyersFilters.prototype.paginate = function() {
-      var addmore, data;
-      addmore = this.addMore();
+      var data;
       data = _.extend(this.filtersAplied, {
         paginate: this.offset
       });
-      return ppu.lawyers.fetch({
+      ppu.lawyers.fetch({
         data: data
-      }).then(function() {
-        return addmore;
       });
-    };
-
-    LawyersFilters.prototype.addMore = function() {
       return this.offset = this.offset + 20;
     };
 
