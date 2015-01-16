@@ -10,6 +10,10 @@ class CurriculumUploader < CarrierWave::Uploader::Base
   #storage :file
   storage :fog
 
+  def self.fog_public
+    true
+  end
+
   def filename
     "#{secure_token}.#{file.extension}" if original_filename.present?
   end
