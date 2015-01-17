@@ -1,5 +1,7 @@
 var gulp = require('gulp');
   sass = require('gulp-ruby-sass');
+  minifyCSS = require('gulp-minify-css');
+  rename = require('gulp-rename');
   gutil = require('gulp-util');
   coffee = require('gulp-coffee');
   concat = require('gulp-concat');
@@ -12,11 +14,28 @@ gulp.task('coffee', function() {
     .pipe(gulp.dest('js'))
 });
 
-
 gulp.task('sass', function () {
     gulp.src('sass/*.sass')
         .pipe(sass())
         .pipe(gulp.dest('css'));
+});
+
+gulp.task('stylesheets', function() {
+  gulp.src([
+    'bower_components/jquery/dist/jquery.min.js',
+    'bower_components/jquery-ui/jquery-ui.js',
+    'bower_components/bootstrap/dist/js/bootstrap.min.js',
+    'bower_components/bootstrap-datepicker/js/bootstrap-datepicker.js',
+    'bower_components/underscore/underscore-min.js',
+    'bower_components/handlebars/handlebars.min.js',
+    'bower_components/backbone/backbone.js',
+    'bower_components/jquery.serializeJSON/jquery.serializejson.min.js',
+    'bower_components/moment/min/moment.min.js',
+    'bower_components/nprogress/nprogress.js',
+    'js/libs/jquery.selectBoxIt.min.js'
+    ])
+    .pipe(concat('dependencies.js'))
+    .pipe(gulp.dest('js/dist/'))
 });
 
 gulp.task('dependencies-scripts', function() {
@@ -30,8 +49,8 @@ gulp.task('dependencies-scripts', function() {
     'bower_components/backbone/backbone.js',
     'bower_components/jquery.serializeJSON/jquery.serializejson.min.js',
     'bower_components/moment/min/moment.min.js',
-    'bower_components/nprogress/nprogress.js'
-    
+    'bower_components/nprogress/nprogress.js',
+    'js/libs/jquery.selectBoxIt.min.js'
     ])
     .pipe(concat('dependencies.js'))
     .pipe(gulp.dest('js/dist/'))
@@ -54,6 +73,7 @@ gulp.task('app-scripts', function() {
     'js/seo.js',
     'js/router.js'
     ])
+
     .pipe(concat('app.js'))
     .pipe(gulp.dest('js/dist/'))
 });
@@ -67,8 +87,7 @@ gulp.task('compress', function() {
 
 gulp.task('watch', ['sass', 'coffee'], function(){
   gulp.watch('sass/*.sass', ['sass']);
-  gulp.watch('coffee/*.coffee', ['coffee']);
-  gulp.watch('coffee/*/*.coffee', ['coffee']);
+  gulp.watch(['coffee/*.coffee', 'coffee/*/*.coffee'], ['coffee', 'app-scripts']);
 });
  
-gulp.task('default', ['dependencies-scripts', 'app-scripts', 'compress','watch']);
+gulp.task('default', ['dependencies-scripts', 'compress', 'watch']);

@@ -8,6 +8,8 @@
     "gulp-ruby-sass": "",
     "gulp-coffee": "",
     "gulp-concat": "",
-    "gulp-uglify": ""
+    "gulp-uglify": "",
+    "gulp-minify-css": "",
+    "gulp-rename": ""
   }
 }
