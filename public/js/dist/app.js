@@ -176,14 +176,6 @@ $(window).on("scroll", _.throttle((function(_this) {
   };
 })(this), 1000));
 
-$(window).scroll(function() {
-  if ($(window).scrollTop() > 35) {
-    return $(".top-bar-container").addClass("to-top");
-  } else {
-    return $(".top-bar-container").removeClass("to-top");
-  }
-});
-
 $('.carousel').carousel({
   interval: 2000
 });
@@ -211,14 +203,22 @@ $(document).find('.datepicker').datepicker({
 });
 
 if ($(window).width() < 768) {
-  console.log("768");
+  app.topPadding = 200;
 } else if ($(window).width() > 768 && $(window).width() <= 992) {
-  console.log("992");
+  app.topPadding = 150;
 } else if ($(window).width() > 992 && $(window).width() <= 1200) {
-  console.log("1200");
+  app.topPadding = 35;
 } else {
-
+  app.topPadding = 35;
 }
+
+$(window).scroll(function() {
+  if ($(window).scrollTop() > app.topPadding) {
+    return $(".top-bar-container").addClass("to-top");
+  } else {
+    return $(".top-bar-container").removeClass("to-top");
+  }
+});
 
 Handlebars.registerHelper('checked', function(val1, val2) {
   var _ref;
@@ -448,156 +448,6 @@ $(function() {
   })(Backbone.View);
 });
 
-var __hasProp = {}.hasOwnProperty,
-  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
-
-$(function() {
-  ppu.Category = (function(_super) {
-    __extends(Category, _super);
-
-    function Category() {
-      return Category.__super__.constructor.apply(this, arguments);
-    }
-
-    Category.prototype.urlRoot = '/api/categories';
-
-    return Category;
-
-  })(Backbone.Model);
-  ppu.Categories = (function(_super) {
-    __extends(Categories, _super);
-
-    function Categories() {
-      return Categories.__super__.constructor.apply(this, arguments);
-    }
-
-    Categories.prototype.url = '/api/categories';
-
-    Categories.prototype.model = ppu.Category;
-
-    return Categories;
-
-  })(Backbone.Collection);
-  ppu.CategoryView = (function(_super) {
-    __extends(CategoryView, _super);
-
-    function CategoryView() {
-      return CategoryView.__super__.constructor.apply(this, arguments);
-    }
-
-    CategoryView.prototype.template = $("#category-template");
-
-    CategoryView.prototype.className = "col-md-6 col-sm-6 col-xs-12 category-item";
-
-    CategoryView.prototype.render = function() {
-      var template;
-      template = app.compile(this.template);
-      $(this.el).html(template(this.model.toJSON()));
-      return this;
-    };
-
-    return CategoryView;
-
-  })(Backbone.View);
-  ppu.CategoriesView = (function(_super) {
-    __extends(CategoriesView, _super);
-
-    function CategoriesView() {
-      return CategoriesView.__super__.constructor.apply(this, arguments);
-    }
-
-    CategoriesView.prototype.el = $("#categories");
-
-    CategoriesView.prototype.initialize = function() {
-      this.listenTo(this.collection, 'reset', this.render);
-      return this.getTitle();
-    };
-
-    CategoriesView.prototype.getTitle = function() {
-      return $("#top-bar").html($("#category-title").html());
-    };
-
-    CategoriesView.prototype.renderOne = function(model) {
-      ppu.categoryView = new ppu.CategoryView({
-        model: model
-      });
-      return this.$el.append(ppu.categoryView.render().el);
-    };
-
-    CategoriesView.prototype.render = function() {
-      return this.collection.each(function(model) {
-        return this.renderOne(model);
-      }, this);
-    };
-
-    return CategoriesView;
-
-  })(Backbone.View);
-  ppu.CategoryDetail = (function(_super) {
-    __extends(CategoryDetail, _super);
-
-    function CategoryDetail() {
-      return CategoryDetail.__super__.constructor.apply(this, arguments);
-    }
-
-    CategoryDetail.prototype.el = $("#category");
-
-    CategoryDetail.prototype.template = $("#category-detail-template");
-
-    CategoryDetail.prototype.initialize = function() {
-      this.listenTo(this.model, "change", this.render);
-      return this.getTitle();
-    };
-
-    CategoryDetail.prototype.getTitle = function() {
-      return $("#top-bar").html($("#category-detail-title").html());
-    };
-
-    CategoryDetail.prototype.render = function() {
-      var template;
-      template = app.compile(this.template);
-      this.$el.html(template(this.model.toJSON()));
-      this.setUrlTranslation(this.model);
-      app.pubsub.trigger("categories:list");
-      return app.pubsub.trigger("lawyers:related", this.model.get("name"));
-    };
-
-    return CategoryDetail;
-
-  })(Backbone.View);
-  return ppu.CategoriesList = (function(_super) {
-    __extends(CategoriesList, _super);
-
-    function CategoriesList() {
-      return CategoriesList.__super__.constructor.apply(this, arguments);
-    }
-
-    CategoriesList.prototype.el = $("#categories-list");
-
-    CategoriesList.prototype.template = $("#categories-list-template");
-
-    CategoriesList.prototype.initialize = function() {
-      this.listenTo(this.collection, "reset", this.render);
-      return app.pubsub.bind("categories:list", this.getAll, this);
-    };
-
-    CategoriesList.prototype.getAll = function() {
-      return ppu.categories.fetch({
-        reset: true
-      });
-    };
-
-    CategoriesList.prototype.render = function() {
-      var template;
-      template = app.compile(this.template);
-      $("#categories-list").html(template(this.collection.toJSON()));
-      return console.log($("#categories-list").html());
-    };
-
-    return CategoriesList;
-
-  })(Backbone.View);
-});
 
 var __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -670,8 +520,26 @@ $(function() {
     LawyersView.prototype.el = $('#lawyers');
 
     LawyersView.prototype.initialize = function() {
+      var order;
       this.listenTo(this.collection, 'reset', this.render);
-      return this.listenTo(this.collection, 'add', this.renderOne);
+      this.listenTo(this.collection, 'add', this.renderOne);
+      order = this.order_by();
+      return this.collection.fetch({
+        reset: true,
+        data: order
+      });
+    };
+
+    LawyersView.prototype.order_by = function() {
+      if (app.lang === "en") {
+        return {
+          order_by_english: true
+        };
+      } else {
+        return {
+          order_by_spanish: true
+        };
+      }
     };
 
     LawyersView.prototype.paginate = function() {
@@ -722,9 +590,25 @@ $(function() {
     };
 
     LawyersFilters.prototype.initialize = function() {
-      this.filtersAplied = {};
+      this.render();
+      this.filtersAplied = {
+        lang: app.lang
+      };
+      this.order_by();
       this.$el.data("filtersAplied", this.filtersAplied);
       return app.pubsub.bind("general:scroll", this.paginate, this);
+    };
+
+    LawyersFilters.prototype.order_by = function() {
+      if (app.lang === "en") {
+        return _.extend(this.filtersAplied, {
+          order_by_english: true
+        });
+      } else {
+        return _.extend(this.filtersAplied, {
+          order_by_spanish: true
+        });
+      }
     };
 
     LawyersFilters.prototype.render = function() {
@@ -852,8 +736,9 @@ $(function() {
     };
 
     LawyerDetailView.prototype.initialize = function() {
-      this.listenTo(this.collection, 'reset', this.render);
-      return this.getTitle();
+      this.listenTo(this.model, 'change', this.render);
+      this.getTitle();
+      return this.model.fetch();
     };
 
     LawyerDetailView.prototype.getTitle = function() {
@@ -861,11 +746,9 @@ $(function() {
     };
 
     LawyerDetailView.prototype.render = function() {
-      return this.collection.each(function(model) {
-        var template;
-        template = app.compile(this.template);
-        return $(this.el).html(template(model.toJSON()));
-      }, this);
+      var template;
+      template = app.compile(this.template);
+      return $(this.el).html(template(this.model.toJSON()));
     };
 
     return LawyerDetailView;
@@ -1653,32 +1536,22 @@ $(function() {
 
     Workspace.prototype.lawyers = function(lang) {
       ppu.lawyers = new ppu.Lawyers;
-      ppu.lawyers.fetch({
-        reset: true
-      });
-      ppu.lawyersFilters = new ppu.LawyersFilters;
-      ppu.lawyersFilters.render();
-      return ppu.lawyersView = new ppu.LawyersView({
+      ppu.lawyersView = new ppu.LawyersView({
         collection: ppu.lawyers
       });
+      return ppu.lawyersFilters = new ppu.LawyersFilters;
     };
 
     Workspace.prototype.lawyer = function(slug) {
-      ppu.lawyer = new ppu.Lawyers;
-      ppu.lawyer.fetch({
-        reset: true,
-        data: {
-          slug: slug
-        }
+      ppu.lawyer = new ppu.Lawyer({
+        id: slug
       });
       return ppu.LawyerDetailView = new ppu.LawyerDetailView({
-        collection: ppu.lawyer
+        model: ppu.lawyer
       });
     };
 
     Workspace.prototype.posts = function() {
-      ppu.postsFilters = new ppu.PostsFilters;
-      ppu.postsFilters.render();
       ppu.posts = new ppu.Posts;
       ppu.posts.fetch({
         reset: true,
@@ -1694,6 +1567,8 @@ $(function() {
       ppu.postsFeaturedView = new ppu.PostsFeaturedView({
         collection: ppu.postsFeatured
       });
+      ppu.postsFilters = new ppu.PostsFilters;
+      ppu.postsFilters.render();
       return ppu.filtersMobile = new ppu.FiltersMobile;
     };
 

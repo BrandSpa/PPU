@@ -28,9 +28,9 @@ a
 		text-decoration: none
 
 .app-container
-	padding-bottom: 50px
+	@media #{$desktop}, #{$desktop-lg}
+		padding-bottom: 50px
 	
-
 #yield-container
 	margin-top: 65px
 	@media #{$mobile}
@@ -55,6 +55,14 @@ a
 	padding: 15px 0 0 15px
 	color: #fff
 	font-weight: 200
+
+	@media #{$mobile}, #{$tablet}, #{$desktop}
+		width: 80px
+		height: 40px
+		padding: 10px 0 0 0
+		text-align: center
+		position: absolute
+		right: 0
 
 .navbar-app
 
@@ -242,8 +250,10 @@ select
 	height: 50px
 	z-index: 1
 	position: fixed
+	
 	@media #{$desktop-lg}
 		padding: 0 15px 0 0 !important
+
 	@media #{$mobile}
 		min-width: 100%
 
@@ -276,6 +286,8 @@ select
 		font-weight: 400
 		padding: 15px 5px 0 15px
 		margin: 0
+		@media #{$mobile}
+			font-size: 1.1em
 
 		a
 			color: #00A1B1
@@ -339,7 +351,9 @@ select
 		border-left: 1px solid #fff
 		padding-top: 5px
 		@media #{$mobile}
-			min-width: 40%
+			max-width: 40%
+		@media #{$mobile-xs}
+			max-width: 40%
 
 		&:before
 			font-family: 'FontAwesome'

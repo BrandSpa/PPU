@@ -4,7 +4,8 @@
 /* Landscape phones and portrait tablets */
 /* Landscape phones and smaller */
 .navbar-app {
-  background: #fff; }
+  background: #fff;
+  border-radius: 0; }
   .navbar-app img {
     max-width: 100%; }
     @media (max-width: 767px) {
@@ -15,20 +16,26 @@
     display: block;
     height: auto;
     padding: 0 15px !important; }
+    @media (min-width: 768px) and (max-width: 991px) {
+      .navbar-app .navbar-brand {
+        width: 30%; } }
     @media (max-width: 767px) {
       .navbar-app .navbar-brand {
-        width: 40%; } }
+        width: 40%;
+        margin-left: -20px; } }
     @media (max-width: 480px) {
       .navbar-app .navbar-brand {
-        width: 55%; } }
+        width: 50%;
+        margin-left: -20px; } }
   .navbar-app .navbar-header {
     margin: 0;
     float: none;
-    background: url("../img/linea-tablet@2x.png") no-repeat top left;
-    background-size: contain; }
+    background: url("../../img/linea-tablet@2x.png") no-repeat top left;
+    background-size: contain;
+    border-radius: 0; }
     @media (max-width: 767px) {
       .navbar-app .navbar-header {
-        background-size: 100%; } }
+        background-size: 125%; } }
     @media (max-width: 480px) {
       .navbar-app .navbar-header {
         background-size: 150%; } }
@@ -48,7 +55,11 @@
       margin: 40px; } }
   @media (max-width: 767px) {
     .navbar-toggle {
-      margin: 20px;
+      margin: 50px 10px 10px 0;
+      font-size: 1.1em; } }
+  @media (max-width: 480px) {
+    .navbar-toggle {
+      margin: 40px 10px 10px 0;
       font-size: 1.1em; } }
   .navbar-toggle i {
     padding: 15px 0 0 15px;

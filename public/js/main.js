@@ -176,14 +176,6 @@ $(window).on("scroll", _.throttle((function(_this) {
   };
 })(this), 1000));
 
-$(window).scroll(function() {
-  if ($(window).scrollTop() > 35) {
-    return $(".top-bar-container").addClass("to-top");
-  } else {
-    return $(".top-bar-container").removeClass("to-top");
-  }
-});
-
 $('.carousel').carousel({
   interval: 2000
 });
@@ -211,11 +203,19 @@ $(document).find('.datepicker').datepicker({
 });
 
 if ($(window).width() < 768) {
-  console.log("768");
+  app.topPadding = 200;
 } else if ($(window).width() > 768 && $(window).width() <= 992) {
-  console.log("992");
+  app.topPadding = 150;
 } else if ($(window).width() > 992 && $(window).width() <= 1200) {
-  console.log("1200");
+  app.topPadding = 35;
 } else {
-
+  app.topPadding = 35;
 }
+
+$(window).scroll(function() {
+  if ($(window).scrollTop() > app.topPadding) {
+    return $(".top-bar-container").addClass("to-top");
+  } else {
+    return $(".top-bar-container").removeClass("to-top");
+  }
+});

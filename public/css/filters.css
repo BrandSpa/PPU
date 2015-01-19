@@ -1,7 +1,8 @@
 #filters-modal .modal-content {
   background: transparent !important;
   box-shadow: none;
-  color: #fff; }
+  color: #fff;
+  border: none; }
 #filters-modal .modal-header {
   background: transparent !important;
   color: #fff; }

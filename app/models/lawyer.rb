@@ -23,16 +23,16 @@ class Lawyer < ActiveRecord::Base
 
   scope :relationships, -> { includes( :academics, :articles, :awards, :educations, :institutions, :jobs, :languages, :phrases, :recognitions, :categories) }
   scope :lang, -> (lang){ where(lang: lang) }
-  scope :position, -> (position){ where("lawyers.position = ?", position) }
   scope :slug, -> (slug){ where(slug: slug) }
+  scope :position, -> (position){ where("lawyers.position = ?", position) }
   scope :country, -> (country){ where("lawyers.country = ?", country) }
   scope :category, -> (category){ includes(:categories).where(categories: {name: category}) }
   scope :search, -> (keyword){ where("lawyers.keywords LIKE ?", "%#{keyword}%") }
-  scope :has_translation, -> (slug) { where(slug: slug).count }
   scope :paginate, -> (paginate) { limit(20).offset(paginate) }
-  scope :order_by_partner, -> { order("FIELD(position,'Partner') DESC", lastname: :asc) }
-  scope :order_by_lastname, -> { order(position: :desc, lastname: :asc) }
-
+  scope :has_translation, -> (slug) { where(slug: slug).count }
+  scope :get_translations, -> { includes(:translations, :translation) }
+  scope :order_by_english, -> { order("FIELD(position,'Partner') DESC", lastname: :asc) }
+  scope :order_by_spanish, -> { order(position: :desc, lastname: :asc) }
   
   def self.attach_categories(model, collection)
     if collection.present?

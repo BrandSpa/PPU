@@ -3,15 +3,25 @@ class Api::PostsController < ApplicationController
 
   def index
     lang = params[:lang] || I18n.locale
-
-    filters = params.slice(:by_category, :by_country, :by_keyword)
-    filters_not_params = params.slice(:featured, :published, :not_featured, :not_published)
     
     collection = entity.get_relationships().by_lang(lang).all.order(date: :desc)
-    collection = filters_without_params(filters_not_params, collection)
-    collection = filters_with_params(filters, collection)
+    collection = filters_without_params(set_filters_without_params(params), collection)
+    collection = filters_with_params(set_filters(params), collection)
 
     render json: collection.to_json(:include => [:translations, :translation, :gallery])
+  end
+
+  def show
+    id = params[:id]
+    lang = params[:lang] || I18n.locale
+
+    if is_a_number?(id)
+      model = entity.get_relationships().find_by(id: id)
+    else
+      model = entity.get_relationships().find_by(slug: id)
+    end
+
+    render json: model.to_json(:include => [:translations, :translation, :categories, :lawyers, :gallery])  
   end
 
   def create
@@ -45,17 +55,12 @@ class Api::PostsController < ApplicationController
     
   end
 
-  def show
-    id = params[:id]
-    lang = params[:lang] || I18n.locale
+  def set_filters(params)
+    params.slice(:by_category, :by_country, :by_keyword)
+  end
 
-    if is_a_number?(id)
-      model = entity.get_relationships().find_by(id: id)
-    else
-      model = entity.get_relationships().find_by(slug: id)
-    end
-
-    render json: model.to_json(:include => [:translations, :translation, :categories, :lawyers, :gallery])  
+  def set_filters_without_params(params)
+    params.slice(:featured, :published, :not_featured, :not_published)
   end
 
   def is_a_number?(s)

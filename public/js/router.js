@@ -36,32 +36,22 @@ $(function() {
 
     Workspace.prototype.lawyers = function(lang) {
       ppu.lawyers = new ppu.Lawyers;
-      ppu.lawyers.fetch({
-        reset: true
-      });
-      ppu.lawyersFilters = new ppu.LawyersFilters;
-      ppu.lawyersFilters.render();
-      return ppu.lawyersView = new ppu.LawyersView({
+      ppu.lawyersView = new ppu.LawyersView({
         collection: ppu.lawyers
       });
+      return ppu.lawyersFilters = new ppu.LawyersFilters;
     };
 
     Workspace.prototype.lawyer = function(slug) {
-      ppu.lawyer = new ppu.Lawyers;
-      ppu.lawyer.fetch({
-        reset: true,
-        data: {
-          slug: slug
-        }
+      ppu.lawyer = new ppu.Lawyer({
+        id: slug
       });
       return ppu.LawyerDetailView = new ppu.LawyerDetailView({
-        collection: ppu.lawyer
+        model: ppu.lawyer
       });
     };
 
     Workspace.prototype.posts = function() {
-      ppu.postsFilters = new ppu.PostsFilters;
-      ppu.postsFilters.render();
       ppu.posts = new ppu.Posts;
       ppu.posts.fetch({
         reset: true,
@@ -77,6 +67,8 @@ $(function() {
       ppu.postsFeaturedView = new ppu.PostsFeaturedView({
         collection: ppu.postsFeatured
       });
+      ppu.postsFilters = new ppu.PostsFilters;
+      ppu.postsFilters.render();
       return ppu.filtersMobile = new ppu.FiltersMobile;
     };
 

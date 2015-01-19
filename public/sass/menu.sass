@@ -2,6 +2,7 @@
 
 .navbar-app
 	background: #fff
+	border-radius: 0
 	img
 		max-width: 100%
 		@media #{$mobile}
@@ -13,20 +14,26 @@
 		height: auto
 		padding: 0 15px !important
 
+		@media #{$tablet}
+			width: 30%
+
 		@media #{$mobile}
 			width: 40%
+			margin-left: -20px
 
 		@media #{$mobile-xs}
-			width: 55%
+			width: 50%
+			margin-left: -20px
 
 	.navbar-header 
 		margin: 0
 		float: none
-		background: url("../img/linea-tablet@2x.png") no-repeat top left
+		background: url("../../img/linea-tablet@2x.png") no-repeat top left
 		background-size: contain
+		border-radius: 0
 
 		@media #{$mobile}
-			background-size: 100%
+			background-size: 125%
 
 		@media #{$mobile-xs}
 			background-size: 150%
@@ -47,8 +54,13 @@
 		margin: 40px
 
 	@media #{$mobile}
-		margin: 20px
+		margin: 50px 10px 10px 0
 		font-size: 1.1em
+
+	@media #{$mobile-xs}
+		margin: 40px 10px 10px 0
+		font-size: 1.1em
+
 	i
 		padding: 15px 0 0 15px
 		font-size: 1.5em

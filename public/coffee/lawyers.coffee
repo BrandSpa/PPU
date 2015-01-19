@@ -25,6 +25,14 @@ $ ->
     initialize: ->
       @listenTo(@collection, 'reset', @render)
       @listenTo(@collection, 'add', @renderOne)
+      order = @order_by()
+      @collection.fetch reset: true, data: order
+
+    order_by: ->
+      if app.lang == "en"
+        order_by_english: true
+      else
+        order_by_spanish: true
 
     paginate: () ->
       @collection.fetch data: offset: offset
@@ -51,10 +59,18 @@ $ ->
       'submit .search': 'bySearch'
 
     initialize: ->
-      @filtersAplied = {}
+      @render()
+      @filtersAplied = {lang: app.lang}
+      @order_by()
       @$el.data("filtersAplied", @filtersAplied)
       app.pubsub.bind("general:scroll", @paginate, @)
 
+    order_by: ->
+      if app.lang == "en"
+        _.extend(@filtersAplied, order_by_english: true)
+      else
+        _.extend(@filtersAplied, order_by_spanish: true)
+       
     render: ->
       template = app.compile(@template)
       @$el.html(template)
@@ -105,7 +121,6 @@ $ ->
       data = _.extend(@filtersAplied, paginate: 0, search: val)
       ppu.lawyers.fetch reset: true, data: data
 
-
   class ppu.LawyerDetailView extends Backbone.View
     el: $ '#lawyer'
     template: $ '#lawyer-template'
@@ -113,17 +128,16 @@ $ ->
       "click .share": "openShare"
     
     initialize: ->
-      @listenTo(@collection, 'reset', @render)
+      @listenTo(@model, 'change', @render)
       @getTitle()
+      @model.fetch()
 
     getTitle: ->
       $("#top-bar").html $("#lawyer-detail-title").html()
 
     render: ->
-      @collection.each (model) ->
-        template = app.compile(@template)
-        $(@el).html template( model.toJSON() )
-      , @
+      template = app.compile(@template)
+      $(@el).html template( @model.toJSON() )
 
   class ppu.lawyersRelatedCategory extends Backbone.View
     el: $ "#lawyers-related"
@@ -144,6 +158,3 @@ $ ->
     render: ->
       template = app.compile(@template)
       $("#lawyers-related").html template( @collection.toJSON() )
-
-
-

@@ -22,7 +22,6 @@ Rails.application.routes.draw do
       resources :pharases
       resources :recognitions
     end
-    get "improve-slug", to: "lawyers#imp_slug"
   end
   
   get "editar-abogado", to: 'api/lawyers#update_description'

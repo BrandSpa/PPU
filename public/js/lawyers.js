@@ -69,8 +69,26 @@ $(function() {
     LawyersView.prototype.el = $('#lawyers');
 
     LawyersView.prototype.initialize = function() {
+      var order;
       this.listenTo(this.collection, 'reset', this.render);
-      return this.listenTo(this.collection, 'add', this.renderOne);
+      this.listenTo(this.collection, 'add', this.renderOne);
+      order = this.order_by();
+      return this.collection.fetch({
+        reset: true,
+        data: order
+      });
+    };
+
+    LawyersView.prototype.order_by = function() {
+      if (app.lang === "en") {
+        return {
+          order_by_english: true
+        };
+      } else {
+        return {
+          order_by_spanish: true
+        };
+      }
     };
 
     LawyersView.prototype.paginate = function() {
@@ -121,9 +139,25 @@ $(function() {
     };
 
     LawyersFilters.prototype.initialize = function() {
-      this.filtersAplied = {};
+      this.render();
+      this.filtersAplied = {
+        lang: app.lang
+      };
+      this.order_by();
       this.$el.data("filtersAplied", this.filtersAplied);
       return app.pubsub.bind("general:scroll", this.paginate, this);
+    };
+
+    LawyersFilters.prototype.order_by = function() {
+      if (app.lang === "en") {
+        return _.extend(this.filtersAplied, {
+          order_by_english: true
+        });
+      } else {
+        return _.extend(this.filtersAplied, {
+          order_by_spanish: true
+        });
+      }
     };
 
     LawyersFilters.prototype.render = function() {
@@ -251,8 +285,9 @@ $(function() {
     };
 
     LawyerDetailView.prototype.initialize = function() {
-      this.listenTo(this.collection, 'reset', this.render);
-      return this.getTitle();
+      this.listenTo(this.model, 'change', this.render);
+      this.getTitle();
+      return this.model.fetch();
     };
 
     LawyerDetailView.prototype.getTitle = function() {
@@ -260,11 +295,9 @@ $(function() {
     };
 
     LawyerDetailView.prototype.render = function() {
-      return this.collection.each(function(model) {
-        var template;
-        template = app.compile(this.template);
-        return $(this.el).html(template(model.toJSON()));
-      }, this);
+      var template;
+      template = app.compile(this.template);
+      return $(this.el).html(template(this.model.toJSON()));
     };
 
     return LawyerDetailView;

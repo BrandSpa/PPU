@@ -127,11 +127,6 @@ $(window).on "scroll", _.throttle (event) =>
     app.pubsub.trigger("general:scroll")
 , 1000
     
-$(window).scroll () ->
-  if $(window).scrollTop() > 35
-    $(".top-bar-container").addClass("to-top")
-  else
-    $(".top-bar-container").removeClass("to-top")
 
 $('.carousel').carousel interval: 2000
 
@@ -154,9 +149,16 @@ $(document).find('.datepicker').datepicker
   autoclose: true
   
 if ($(window).width() < 768)
-  console.log "768"
+  app.topPadding = 200
 else if ($(window).width() > 768 &&  $(window).width() <= 992)
-  console.log "992"
+  app.topPadding = 150
 else if ($(window).width() > 992 &&  $(window).width() <= 1200)
-  console.log "1200"
+  app.topPadding = 35
 else
+  app.topPadding = 35
+  
+$(window).scroll () ->
+  if $(window).scrollTop() > app.topPadding
+    $(".top-bar-container").addClass("to-top")
+  else
+    $(".top-bar-container").removeClass("to-top")

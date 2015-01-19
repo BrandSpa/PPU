@@ -79,7 +79,7 @@ gulp.task('compress', function() {
 
 gulp.task('watch', ['sass', 'coffee'], function(){
   gulp.watch('sass/*.sass', ['sass', 'stylesheets']);
-  gulp.watch(['coffee/*.coffee', 'coffee/*/*.coffee'], ['coffee', 'app-scripts']);
+  gulp.watch(['coffee/*.coffee', 'coffee/*/*.coffee'], ['coffee', 'app-scripts', 'compress']);
 });
  
-gulp.task('default', ['dependencies-scripts', 'compress', 'watch']);
+gulp.task('default', ['watch']);

@@ -23,28 +23,25 @@ $ ->
       
     lawyers: (lang) ->
       ppu.lawyers =  new ppu.Lawyers
-      ppu.lawyers.fetch reset: true
-      ppu.lawyersFilters = new ppu.LawyersFilters
-      ppu.lawyersFilters.render()
       ppu.lawyersView =  new ppu.LawyersView collection: ppu.lawyers
-
+      ppu.lawyersFilters = new ppu.LawyersFilters
+    
     lawyer: (slug) ->
-      ppu.lawyer = new ppu.Lawyers 
-      ppu.lawyer.fetch reset: true, data: slug: slug
-      ppu.LawyerDetailView = new ppu.LawyerDetailView collection: ppu.lawyer
+      ppu.lawyer = new ppu.Lawyer id: slug
+      ppu.LawyerDetailView = new ppu.LawyerDetailView model: ppu.lawyer
 
     posts: ->
-      ppu.postsFilters = new ppu.PostsFilters
-      ppu.postsFilters.render()
-
       ppu.posts = new ppu.Posts
       ppu.posts.fetch reset: true, data: published: true, not_featured: true
       ppu.postsView = new ppu.PostsView collection: ppu.posts
 
       ppu.postsFeatured = new ppu.Posts
       ppu.postsFeaturedView = new ppu.PostsFeaturedView collection: ppu.postsFeatured
-
+      
+      ppu.postsFilters = new ppu.PostsFilters
+      ppu.postsFilters.render()
       ppu.filtersMobile = new ppu.FiltersMobile
+
       
     post: (slug)->
       ppu.post = new ppu.Post id: slug
