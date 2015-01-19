@@ -640,7 +640,7 @@ select .form-control {
         margin-left: -20px; } }
     @media (max-width: 480px) {
       .navbar-app .navbar-brand {
-        width: 50%;
+        width: 60%;
         margin-left: -20px; } }
   .navbar-app .navbar-header {
     margin: 0;
