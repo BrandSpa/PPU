@@ -13,3 +13,17 @@ $lato: 'Lato', sans-serif
 
 $color-darkBlue: #002855
 $color-gray: #5F5F5F
+
+=order-items()
+	@media #{$mobile}
+		padding: 0
+	
+	@media #{$tablet}, #{$desktop}, #{$desktop-lg}
+
+		&:first-child, &:nth-child(2n+3)
+			padding-left: 0
+			padding-right: 7px
+
+		&:nth-child(2n+2)
+			padding-right: 0
+			padding-left: 7px

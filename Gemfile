@@ -36,6 +36,12 @@ gem 'amoeba'
 gem 'spring',        group: :development
 gem 'faker',        group: :development
 gem 'traceroute', group: :development
+
+group :test do
+  gem 'rspec-rails', '~> 3.0'
+  gem 'airborne'
+end
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

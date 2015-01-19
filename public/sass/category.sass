@@ -1,19 +1,14 @@
 @import variables
+#categories
+	@media #{$mobile}
+		margin-top: 65px
 
 .category-item
 	height: 155px
 	margin-bottom: 15px
 	overflow: hidden
-	&:first-child
-		padding-left: 0
 
-	&:first-child, &:nth-child(2n+3)
-		padding-left: 0
-		padding-right: 7px
-
-	&:nth-child(2n+2)
-		padding-right: 0
-		padding-left: 7px
+	+order-items
 
 	.img-container
 		width: 155px

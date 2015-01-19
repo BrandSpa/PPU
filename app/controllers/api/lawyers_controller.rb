@@ -24,6 +24,14 @@ class Api::LawyersController < ApplicationController
     end
   end
 
+  def imp_slug
+    collection = entity.all
+    collection.each do |model|
+      model.slug = I18n.transliterate(model.email.split('@')[0].downcase.gsub('.', '-')).parameterize
+      model.save
+    end
+  end
+
   def update_description
     collection = entity.all.relationships
     collection.each do |model|

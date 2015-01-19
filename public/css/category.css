@@ -3,18 +3,24 @@
 /* Portrait tablets and small desktops */
 /* Landscape phones and portrait tablets */
 /* Landscape phones and smaller */
+@media (max-width: 767px) {
+  #categories {
+    margin-top: 65px; } }
+
 .category-item {
   height: 155px;
   margin-bottom: 15px;
   overflow: hidden; }
-  .category-item:first-child {
-    padding-left: 0; }
-  .category-item:first-child, .category-item:nth-child(2n+3) {
-    padding-left: 0;
-    padding-right: 7px; }
-  .category-item:nth-child(2n+2) {
-    padding-right: 0;
-    padding-left: 7px; }
+  @media (max-width: 767px) {
+    .category-item {
+      padding: 0; } }
+  @media (min-width: 768px) and (max-width: 991px), (min-width: 992px) and (max-width: 1199px), (min-width: 1200px) {
+    .category-item:first-child, .category-item:nth-child(2n+3) {
+      padding-left: 0;
+      padding-right: 7px; }
+    .category-item:nth-child(2n+2) {
+      padding-right: 0;
+      padding-left: 7px; } }
   .category-item .img-container {
     width: 155px;
     float: left;

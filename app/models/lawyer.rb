@@ -21,9 +21,6 @@ class Lawyer < ActiveRecord::Base
 
   mount_uploader :img_name, LawyerImgUploader
 
-  after_create :add_keywords
-  after_create :add_slug
-  
   scope :relationships, -> { includes( :academics, :articles, :awards, :educations, :institutions, :jobs, :languages, :phrases, :recognitions, :categories) }
   scope :lang, -> (lang){ where(lang: lang) }
   scope :position, -> (position){ where("lawyers.position = ?", position) }
@@ -122,18 +119,24 @@ class Lawyer < ActiveRecord::Base
     end
   end
 
+  before_create :add_keywords
+  before_create :add_slug
+
   private
     def add_keywords()
       model = self
       model.keywords = [self.name, self.lastname, self.position, self.email, self.phone, self.description].join(" ")
-      model.save
+    end
+
+    def clean_email(email)
+      I18n.transliterate(email.split('@')[0].downcase.gsub('.', '-')).parameterize
     end
 
     def add_slug
       model = self
+
       if self.email
-        model.slug = self.email.split('@')[0]
-        model.save
+        model.slug = clean_email(self.email)
       end
     end
 end

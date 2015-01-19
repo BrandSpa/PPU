@@ -7,14 +7,16 @@
   height: 155px;
   margin-bottom: 15px;
   overflow: hidden; }
-  .experience-item:first-child {
-    padding-left: 0; }
-  .experience-item:first-child, .experience-item:nth-child(2n+3) {
-    padding-left: 0;
-    padding-right: 7px; }
-  .experience-item:nth-child(2n+2) {
-    padding-right: 0;
-    padding-left: 7px; }
+  @media (max-width: 767px) {
+    .experience-item {
+      padding: 0; } }
+  @media (min-width: 768px) and (max-width: 991px), (min-width: 992px) and (max-width: 1199px), (min-width: 1200px) {
+    .experience-item:first-child, .experience-item:nth-child(2n+3) {
+      padding-left: 0;
+      padding-right: 7px; }
+    .experience-item:nth-child(2n+2) {
+      padding-right: 0;
+      padding-left: 7px; } }
   .experience-item .img-container {
     width: 155px;
     float: left;

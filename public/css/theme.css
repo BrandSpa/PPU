@@ -662,6 +662,10 @@ select .form-control {
 /* Portrait tablets and small desktops */
 /* Landscape phones and portrait tablets */
 /* Landscape phones and smaller */
+@media (max-width: 767px) {
+  #lawyers {
+    margin-top: 65px; } }
+
 .panel-heading h5 {
   color: #002855;
   font-weight: bold; }
@@ -729,15 +733,22 @@ select .form-control {
     .lawyer-item .content h3 {
       margin: 0;
       font-size: 1em; }
+      @media (max-width: 767px) {
+        .lawyer-item .content h3 {
+          font-size: 0.8em; } }
       .lawyer-item .content h3 a {
         color: #5F5F5F;
         font-weight: bold; }
-  .lawyer-item:first-child, .lawyer-item:nth-child(2n+3) {
-    padding-left: 0;
-    padding-right: 7px; }
-  .lawyer-item:nth-child(2n+2) {
-    padding-right: 0;
-    padding-left: 7px; }
+  @media (max-width: 767px) {
+    .lawyer-item {
+      padding: 0; } }
+  @media (min-width: 768px) and (max-width: 991px), (min-width: 992px) and (max-width: 1199px), (min-width: 1200px) {
+    .lawyer-item:first-child, .lawyer-item:nth-child(2n+3) {
+      padding-left: 0;
+      padding-right: 7px; }
+    .lawyer-item:nth-child(2n+2) {
+      padding-right: 0;
+      padding-left: 7px; } }
   .lawyer-item .phone, .lawyer-item .email {
     color: #00A1B1;
     display: block;
@@ -1079,18 +1090,24 @@ select .form-control {
 /* Portrait tablets and small desktops */
 /* Landscape phones and portrait tablets */
 /* Landscape phones and smaller */
+@media (max-width: 767px) {
+  #categories {
+    margin-top: 65px; } }
+
 .category-item {
   height: 155px;
   margin-bottom: 15px;
   overflow: hidden; }
-  .category-item:first-child {
-    padding-left: 0; }
-  .category-item:first-child, .category-item:nth-child(2n+3) {
-    padding-left: 0;
-    padding-right: 7px; }
-  .category-item:nth-child(2n+2) {
-    padding-right: 0;
-    padding-left: 7px; }
+  @media (max-width: 767px) {
+    .category-item {
+      padding: 0; } }
+  @media (min-width: 768px) and (max-width: 991px), (min-width: 992px) and (max-width: 1199px), (min-width: 1200px) {
+    .category-item:first-child, .category-item:nth-child(2n+3) {
+      padding-left: 0;
+      padding-right: 7px; }
+    .category-item:nth-child(2n+2) {
+      padding-right: 0;
+      padding-left: 7px; } }
   .category-item .img-container {
     width: 155px;
     float: left;
@@ -1280,14 +1297,16 @@ select .form-control {
   height: 155px;
   margin-bottom: 15px;
   overflow: hidden; }
-  .experience-item:first-child {
-    padding-left: 0; }
-  .experience-item:first-child, .experience-item:nth-child(2n+3) {
-    padding-left: 0;
-    padding-right: 7px; }
-  .experience-item:nth-child(2n+2) {
-    padding-right: 0;
-    padding-left: 7px; }
+  @media (max-width: 767px) {
+    .experience-item {
+      padding: 0; } }
+  @media (min-width: 768px) and (max-width: 991px), (min-width: 992px) and (max-width: 1199px), (min-width: 1200px) {
+    .experience-item:first-child, .experience-item:nth-child(2n+3) {
+      padding-left: 0;
+      padding-right: 7px; }
+    .experience-item:nth-child(2n+2) {
+      padding-right: 0;
+      padding-left: 7px; } }
   .experience-item .img-container {
     width: 155px;
     float: left;
