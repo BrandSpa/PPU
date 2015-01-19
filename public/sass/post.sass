@@ -46,6 +46,8 @@
 			font-size: 1em
 			line-height: 170%
 			margin: 10px 0 10px 0
+			@media #{$mobile}
+				display: none
 
 		.date
 			font-size: 0.8em
@@ -72,6 +74,7 @@
 				padding-left: 5px
 	
 .post-item, .post-featured-item
+
 	height: 180px
 	margin-bottom: 15px
 	overflow: hidden
@@ -103,6 +106,8 @@
 		float: left
 		overflow: hidden
 		margin-right: 20px
+		@media #{$mobile}
+			display: none
 
 		img
 			margin: 0 0 0 -80px
@@ -121,6 +126,8 @@
 
 		@media #{$mobile}
 			height: 105px
+			padding: 15px
+
 		
 		h3
 			font-size: 1em
@@ -144,6 +151,7 @@
 
 			@media #{$mobile}
 				display: none
+
 		
 		.date
 			font-size: 0.8em

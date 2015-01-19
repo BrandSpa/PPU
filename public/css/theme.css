@@ -971,6 +971,9 @@ select .form-control {
       font-size: 1em;
       line-height: 170%;
       margin: 10px 0 10px 0; }
+      @media (max-width: 767px) {
+        .post-main-featured-item .content p {
+          display: none; } }
     .post-main-featured-item .content .date {
       font-size: 0.8em;
       font-style: italic;
@@ -1019,6 +1022,9 @@ select .form-control {
     float: left;
     overflow: hidden;
     margin-right: 20px; }
+    @media (max-width: 767px) {
+      .post-item .img-container, .post-featured-item .img-container {
+        display: none; } }
     .post-item .img-container img, .post-featured-item .img-container img {
       margin: 0 0 0 -80px;
       height: 180px; }
@@ -1033,7 +1039,8 @@ select .form-control {
     height: 180px; }
     @media (max-width: 767px) {
       .post-item .content, .post-featured-item .content {
-        height: 105px; } }
+        height: 105px;
+        padding: 15px; } }
     .post-item .content h3, .post-featured-item .content h3 {
       font-size: 1em;
       padding-right: 7px;
