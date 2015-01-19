@@ -779,7 +779,8 @@ select .form-control {
       font-size: 1em; }
       @media (max-width: 767px) {
         .lawyer-item .content h3 {
-          font-size: 0.9em; } }
+          font-size: 0.9em;
+          line-height: 1em; } }
       .lawyer-item .content h3 a {
         color: #5F5F5F;
         font-weight: bold; }
@@ -1261,6 +1262,9 @@ select .form-control {
   background: #fff; }
   #us .content {
     padding: 30px; }
+    @media (max-width: 767px) {
+      #us .content {
+        padding: 15px; } }
   #us h2 {
     font-size: 1.4em;
     color: #002855;
@@ -1281,6 +1285,10 @@ select .form-control {
     font-weight: 400;
     color: #002855;
     padding: 0 85px; }
+    @media (max-width: 767px) {
+      #carousel-us-quotes .item p {
+        padding: 0;
+        font-size: 0.9em; } }
   #carousel-us-quotes .item span {
     font-size: 1.1em;
     text-align: center;
@@ -1291,11 +1299,20 @@ select .form-control {
 #carousel-us-awards ul {
   padding-left: 80px;
   height: 200px; }
+  @media (max-width: 767px) {
+    #carousel-us-awards ul {
+      height: auto;
+      padding: 0; } }
   #carousel-us-awards ul li {
     height: 200px;
     float: left;
     width: 30%;
     list-style: none; }
+    @media (max-width: 767px) {
+      #carousel-us-awards ul li {
+        width: 100%;
+        float: none;
+        height: auto; } }
     #carousel-us-awards ul li .img-container {
       height: 120px;
       width: 100%; }
@@ -1308,6 +1325,9 @@ select .form-control {
       text-align: center;
       padding: 15px 30px 0 30px;
       font-size: 0.9em; }
+      @media (max-width: 767px) {
+        #carousel-us-awards ul li span {
+          padding: 0; } }
 #carousel-us-awards .carousel-control {
   top: 120px;
   bottom: auto; }
@@ -1337,14 +1357,19 @@ select .form-control {
 #carousel-probono-foundations {
   margin-top: 60px; }
   #carousel-probono-foundations ul {
-    padding-left: 80px; }
-    #carousel-probono-foundations ul li {
-      display: inline-block;
-      width: 22%; }
-      #carousel-probono-foundations ul li img {
-        width: 150px;
-        margin: 0 auto;
-        display: block; }
+    list-style: none;
+    width: 22%; }
+    @media (min-width: 992px) and (max-width: 1199px), (min-width: 1200px) {
+      #carousel-probono-foundations ul li {
+        display: inline-block;
+        padding-left: 80px; } }
+    @media (max-width: 767px) {
+      #carousel-probono-foundations ul li {
+        padding-left: 43px;
+        margin-bottom: 10px; } }
+    #carousel-probono-foundations ul li img {
+      width: 150px;
+      display: block; }
 
 /* Large desktops and laptops */
 /* Portrait tablets and medium desktops */
@@ -1373,9 +1398,12 @@ select .form-control {
     min-height: 100%; }
     .experience-item .img-container img {
       width: 100%; }
+    @media (max-width: 767px) {
+      .experience-item .img-container {
+        display: none; } }
   .experience-item .content {
     background: #fff;
-    padding: 7px;
+    padding: 15px;
     height: 155px; }
     .experience-item .content h3 {
       font-size: 0.9em;
@@ -1383,6 +1411,9 @@ select .form-control {
       line-height: 1.4em;
       font-weight: bold;
       margin: 15px 0 15px 15px; }
+      @media (max-width: 767px) {
+        .experience-item .content h3 {
+          margin: 0 0 15px 0; } }
       .experience-item .content h3 a {
         color: #002855; }
     .experience-item .content p {
@@ -1469,11 +1500,18 @@ select .form-control {
     padding-top: 15px;
     width: 70%;
     margin: 0 auto; }
+    @media (max-width: 767px) {
+      #work-with-us .video {
+        padding: 0;
+        width: 100%; } }
   #work-with-us h3, #work-with-us h4 {
     color: #002855;
     border-bottom: 1px solid #ccc;
     padding: 15px 0;
     margin: 30px 300px; }
+    @media (max-width: 767px) {
+      #work-with-us h3, #work-with-us h4 {
+        margin: 0; } }
   #work-with-us h5 {
     color: #002855; }
   #work-with-us h3 {
@@ -1481,14 +1519,25 @@ select .form-control {
     padding: 15px 0;
     border-bottom: 1px solid #ccc;
     margin: 30px 300px; }
+    @media (max-width: 767px) {
+      #work-with-us h3 {
+        margin: 0; } }
   #work-with-us p {
     font-size: 1em;
     color: #5F5F5F;
     font-weight: 200;
     padding-right: 30px;
     margin-bottom: 15px; }
+    @media (max-width: 767px) {
+      #work-with-us p {
+        padding-right: 0; } }
   #work-with-us ul {
     padding-left: 15px; }
+    @media (max-width: 767px) {
+      #work-with-us ul {
+        padding: 0; }
+        #work-with-us ul li {
+          margin-bottom: 10px; } }
     #work-with-us ul li {
       font-weight: 200;
       list-style: none; }

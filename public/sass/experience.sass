@@ -17,10 +17,12 @@
 		min-height: 100%
 		img
 			width: 100%
+		@media #{$mobile}
+			display: none
 			
 	.content
 		background: #fff
-		padding: 7px
+		padding: 15px
 		height: 155px
 		
 		h3
@@ -29,6 +31,8 @@
 			line-height: 1.4em 
 			font-weight: bold
 			margin: 15px 0 15px 15px
+			@media #{$mobile}
+				margin: 0 0 15px 0
 			a
 				color: $color-darkBlue
 		p

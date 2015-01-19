@@ -7,12 +7,17 @@
 		padding-top: 15px
 		width: 70%
 		margin: 0 auto
+		@media #{$mobile}
+			padding: 0
+			width: 100%
 
 	h3, h4
 		color: $color-darkBlue
 		border-bottom: 1px solid #ccc
 		padding: 15px 0
 		margin: 30px 300px
+		@media #{$mobile}
+			margin: 0
 
 	h5
 		color: $color-darkBlue
@@ -22,6 +27,8 @@
 		padding: 15px 0
 		border-bottom: 1px solid #ccc
 		margin: 30px 300px
+		@media #{$mobile}
+			margin: 0
 
 	p
 		font-size: 1em
@@ -30,8 +37,16 @@
 		padding-right: 30px
 		margin-bottom: 15px
 
+		@media #{$mobile}
+			padding-right: 0
+
 	ul
 		padding-left: 15px
+		@media #{$mobile}
+			padding: 0
+			li
+				margin-bottom: 10px
+
 
 		li
 			font-weight: 200

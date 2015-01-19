@@ -7,6 +7,9 @@
   background: #fff; }
   #us .content {
     padding: 30px; }
+    @media (max-width: 767px) {
+      #us .content {
+        padding: 15px; } }
   #us h2 {
     font-size: 1.4em;
     color: #002855;
@@ -27,6 +30,10 @@
     font-weight: 400;
     color: #002855;
     padding: 0 85px; }
+    @media (max-width: 767px) {
+      #carousel-us-quotes .item p {
+        padding: 0;
+        font-size: 0.9em; } }
   #carousel-us-quotes .item span {
     font-size: 1.1em;
     text-align: center;
@@ -37,11 +44,20 @@
 #carousel-us-awards ul {
   padding-left: 80px;
   height: 200px; }
+  @media (max-width: 767px) {
+    #carousel-us-awards ul {
+      height: auto;
+      padding: 0; } }
   #carousel-us-awards ul li {
     height: 200px;
     float: left;
     width: 30%;
     list-style: none; }
+    @media (max-width: 767px) {
+      #carousel-us-awards ul li {
+        width: 100%;
+        float: none;
+        height: auto; } }
     #carousel-us-awards ul li .img-container {
       height: 120px;
       width: 100%; }
@@ -54,6 +70,9 @@
       text-align: center;
       padding: 15px 30px 0 30px;
       font-size: 0.9em; }
+      @media (max-width: 767px) {
+        #carousel-us-awards ul li span {
+          padding: 0; } }
 #carousel-us-awards .carousel-control {
   top: 120px;
   bottom: auto; }

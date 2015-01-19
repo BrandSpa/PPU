@@ -13,13 +13,18 @@
 #carousel-probono-foundations {
   margin-top: 60px; }
   #carousel-probono-foundations ul {
-    padding-left: 80px; }
-    #carousel-probono-foundations ul li {
-      display: inline-block;
-      width: 22%; }
-      #carousel-probono-foundations ul li img {
-        width: 150px;
-        margin: 0 auto;
-        display: block; }
+    list-style: none;
+    width: 22%; }
+    @media (min-width: 992px) and (max-width: 1199px), (min-width: 1200px) {
+      #carousel-probono-foundations ul li {
+        display: inline-block;
+        padding-left: 80px; } }
+    @media (max-width: 767px) {
+      #carousel-probono-foundations ul li {
+        padding-left: 43px;
+        margin-bottom: 10px; } }
+    #carousel-probono-foundations ul li img {
+      width: 150px;
+      display: block; }
 
 /*# sourceMappingURL=probono.css.map */

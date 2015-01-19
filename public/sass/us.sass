@@ -4,6 +4,8 @@
 	background: #fff
 	.content
 		padding: 30px
+		@media #{$mobile}
+			padding: 15px
 
 	h2
 		font-size: 1.4em
@@ -27,6 +29,10 @@
 			font-weight: 400
 			color: $color-darkBlue
 			padding: 0 85px
+
+			@media #{$mobile}
+				padding: 0
+				font-size: .9em
 			
 		span
 			font-size: 1.1em
@@ -39,11 +45,18 @@
 	ul
 		padding-left: 80px
 		height: 200px
+		@media #{$mobile}
+			height: auto
+			padding: 0
 		li
 			height: 200px
 			float: left
 			width: 30%
 			list-style: none
+			@media #{$mobile}
+				width: 100%
+				float: none
+				height: auto
 
 			.img-container
 				height: 120px
@@ -58,6 +71,9 @@
 				text-align: center
 				padding: 15px 30px 0 30px
 				font-size: .9em
+				@media #{$mobile}
+					padding: 0
+
 	.carousel-control
 		top: 120px
 		bottom: auto
