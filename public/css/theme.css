@@ -35,11 +35,9 @@ a:hover {
   .app-container {
     padding-bottom: 50px; } }
 
-#yield-container {
-  margin-top: 65px; }
-  @media (max-width: 767px) {
-    #yield-container {
-      margin-top: 0; } }
+@media (min-width: 1200px) {
+  #yield-container {
+    margin-top: 65px; } }
 
 .panel {
   border-radius: 0; }
@@ -219,17 +217,20 @@ select .form-control {
   padding: 0 !important;
   margin-bottom: 15px;
   height: 50px;
-  z-index: 1;
-  position: fixed; }
+  z-index: 1; }
   @media (min-width: 1200px) {
     .top-bar-container {
-      padding: 0 15px 0 0 !important; } }
+      padding: 0 15px 0 0 !important;
+      position: fixed; } }
   @media (max-width: 767px) {
     .top-bar-container {
       min-width: 100%; } }
 
 .to-top {
   top: 0; }
+  @media (max-width: 767px), (min-width: 768px) and (max-width: 991px), (min-width: 992px) and (max-width: 1199px) {
+    .to-top {
+      position: fixed; } }
 
 #top-bar {
   background: #002855;
@@ -688,10 +689,6 @@ select .form-control {
 /* Portrait tablets and small desktops */
 /* Landscape phones and portrait tablets */
 /* Landscape phones and smaller */
-@media (max-width: 767px) {
-  #lawyers {
-    margin-top: 65px; } }
-
 .panel-heading h5 {
   color: #002855;
   font-weight: bold; }

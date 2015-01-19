@@ -3,10 +3,6 @@
 /* Portrait tablets and small desktops */
 /* Landscape phones and portrait tablets */
 /* Landscape phones and smaller */
-@media (max-width: 767px) {
-  #lawyers {
-    margin-top: 65px; } }
-
 .panel-heading h5 {
   color: #002855;
   font-weight: bold; }
