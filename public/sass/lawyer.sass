@@ -175,21 +175,36 @@
 		.content-right
 			width: 50%
 			float: right
+			@media #{$mobile}
+				width: 100%
 
 		.share-container
 			float: right
 			width: 150px
 			padding: 60px 0 0 0
+
 			a
 				float: right
 				margin-right: 30px
 				margin-bottom: 15px
+				@media #{$mobile}
+					float: left
+					display: block
+			
+			@media #{$mobile}
+				float: left
+				margin: 15px
+				padding: 0
+				width: 100%
 
 		img
 			width: 180px
 			float: right
 			@include filter(grayscale(100%))
 			filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale")
+			@media #{$mobile}
+				width: 100%
+
 
 		.btn-vcard
 			font-size: 0.9em
@@ -280,6 +295,9 @@
 		h5
 			font-size: 1em
 			margin-bottom: 5px
+
+		@media #{$mobile}
+			text-align: center
 
 	.article-container
 		a, p

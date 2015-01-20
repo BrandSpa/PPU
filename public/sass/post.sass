@@ -212,6 +212,8 @@
 	color: $color-gray
 	font-size: 1em
 	line-height: 1.7em
+	@media #{$mobile}
+		padding: 15px
 
 .post-featured-item
 	height: 180px
@@ -230,3 +232,7 @@
 	&:nth-child(2n+2)
 		padding-right: 0
 
+#post-detail
+	.content
+		@media #{$mobile}
+			padding: 15px !important

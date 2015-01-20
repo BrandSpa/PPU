@@ -3,10 +3,6 @@
 /* Portrait tablets and small desktops */
 /* Landscape phones and portrait tablets */
 /* Landscape phones and smaller */
-@media (max-width: 767px) {
-  #categories {
-    margin-top: 65px; } }
-
 .category-item {
   height: 155px;
   margin-bottom: 15px;

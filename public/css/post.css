@@ -191,6 +191,9 @@
   color: #5F5F5F;
   font-size: 1em;
   line-height: 1.7em; }
+  @media (max-width: 767px) {
+    .content {
+      padding: 15px; } }
 
 .post-featured-item {
   height: 180px;
@@ -205,5 +208,9 @@
     padding-right: 0; }
   .post-featured-item:nth-child(2n+2) {
     padding-right: 0; }
+
+@media (max-width: 767px) {
+  #post-detail .content {
+    padding: 15px !important; } }
 
 /*# sourceMappingURL=post.css.map */

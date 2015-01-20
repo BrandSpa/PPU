@@ -71,12 +71,15 @@
 	width: 100%
 	margin-bottom: 30px
 	padding-left: 30px
+	@media #{$mobile}
+		padding-left: 15px
+		padding-bottom: 15px
 	
 	.year
 		margin: 15px 0 7px 0
 		display: block
 		font-weight: 200
-
+s
 	img
 		float: right
 		height: 150px
@@ -87,10 +90,15 @@
 		margin: 0
 		font-size: 1.4em
 		font-weight: 400
+		@media #{$mobile}
+			font-size: 1em
+			padding: 7px 0px
 
 	.company-name
 		font-size: 1.2em
 		display: block
+		@media #{$mobile}
+			font-size: .8em
 
 	.company-web
 		font-size: .9em
@@ -98,6 +106,8 @@
 		color: #00A1B1
 		a
 			color: #00A1B1
+		@media #{$mobile}
+			font-size: .8em
 
 
 .content

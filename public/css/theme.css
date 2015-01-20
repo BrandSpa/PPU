@@ -549,6 +549,12 @@ select .form-control {
 .social {
   margin-right: 60px;
   float: right; }
+  @media (max-width: 767px) {
+    .social {
+      float: none;
+      margin: 10px auto;
+      display: block;
+      width: 100px; } }
   .social li {
     display: inline-block;
     margin-left: 15px; }
@@ -849,6 +855,9 @@ select .form-control {
     #lawyer .lawyer-header .content-right {
       width: 50%;
       float: right; }
+      @media (max-width: 767px) {
+        #lawyer .lawyer-header .content-right {
+          width: 100%; } }
     #lawyer .lawyer-header .share-container {
       float: right;
       width: 150px;
@@ -857,12 +866,25 @@ select .form-control {
         float: right;
         margin-right: 30px;
         margin-bottom: 15px; }
+        @media (max-width: 767px) {
+          #lawyer .lawyer-header .share-container a {
+            float: left;
+            display: block; } }
+      @media (max-width: 767px) {
+        #lawyer .lawyer-header .share-container {
+          float: left;
+          margin: 15px;
+          padding: 0;
+          width: 100%; } }
     #lawyer .lawyer-header img {
       width: 180px;
       float: right;
       -webkit-filter: grayscale(100%);
       filter: grayscale(100%);
       filter: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><filter id='grayscale'><feColorMatrix type='matrix' values='0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0'/></filter></svg>#grayscale"); }
+      @media (max-width: 767px) {
+        #lawyer .lawyer-header img {
+          width: 100%; } }
     #lawyer .lawyer-header .btn-vcard {
       font-size: 0.9em;
       font-weight: bold;
@@ -931,6 +953,9 @@ select .form-control {
   #lawyer .award h5 {
     font-size: 1em;
     margin-bottom: 5px; }
+  @media (max-width: 767px) {
+    #lawyer .award {
+      text-align: center; } }
   #lawyer .article-container a, #lawyer .article-container p {
     font-size: 0.9em;
     float: left;
@@ -1129,6 +1154,9 @@ select .form-control {
   color: #5F5F5F;
   font-size: 1em;
   line-height: 1.7em; }
+  @media (max-width: 767px) {
+    .content {
+      padding: 15px; } }
 
 .post-featured-item {
   height: 180px;
@@ -1144,15 +1172,15 @@ select .form-control {
   .post-featured-item:nth-child(2n+2) {
     padding-right: 0; }
 
+@media (max-width: 767px) {
+  #post-detail .content {
+    padding: 15px !important; } }
+
 /* Large desktops and laptops */
 /* Portrait tablets and medium desktops */
 /* Portrait tablets and small desktops */
 /* Landscape phones and portrait tablets */
 /* Landscape phones and smaller */
-@media (max-width: 767px) {
-  #categories {
-    margin-top: 65px; } }
-
 .category-item {
   height: 155px;
   margin-bottom: 15px;
@@ -1449,28 +1477,43 @@ select .form-control {
   width: 100%;
   margin-bottom: 30px;
   padding-left: 30px; }
+  @media (max-width: 767px) {
+    .experience-header {
+      padding-left: 15px;
+      padding-bottom: 15px; } }
   .experience-header .year {
     margin: 15px 0 7px 0;
     display: block;
     font-weight: 200; }
-  .experience-header img {
-    float: right;
-    height: 150px;
-    margin-left: 30px; }
-  .experience-header h1 {
-    padding: 0 60px 15px 0;
-    margin: 0;
-    font-size: 1.4em;
-    font-weight: 400; }
-  .experience-header .company-name {
-    font-size: 1.2em;
-    display: block; }
-  .experience-header .company-web {
-    font-size: 0.9em;
-    display: block;
+
+s img {
+  float: right;
+  height: 150px;
+  margin-left: 30px; }
+s h1 {
+  padding: 0 60px 15px 0;
+  margin: 0;
+  font-size: 1.4em;
+  font-weight: 400; }
+  @media (max-width: 767px) {
+    s h1 {
+      font-size: 1em;
+      padding: 7px 0px; } }
+s .company-name {
+  font-size: 1.2em;
+  display: block; }
+  @media (max-width: 767px) {
+    s .company-name {
+      font-size: 0.8em; } }
+s .company-web {
+  font-size: 0.9em;
+  display: block;
+  color: #00A1B1; }
+  s .company-web a {
     color: #00A1B1; }
-    .experience-header .company-web a {
-      color: #00A1B1; }
+  @media (max-width: 767px) {
+    s .company-web {
+      font-size: 0.8em; } }
 
 .content {
   background: #fff;
