@@ -55,7 +55,7 @@ $ ->
       @
 
   class ppu.PostsFeaturedView extends Backbone.View
-    el: $ "#posts"
+    el: $ "#posts-featured"
     
     initialize: ->
       @listenTo(@collection, "reset", @render)
@@ -69,12 +69,15 @@ $ ->
       @$el.prepend ppu.postMainFeaturedView.render().el
 
     renderOne: (model) ->
-      ppu.postView = new ppu.PostFeaturedView model: model
+      ppu.postView = new ppu.PostView model: model
       @$el.append ppu.postView.render().el
 
     render: ->
       @collection.each (model) ->
-        @renderMain(model)
+        if model.get('featured') == '1'
+          @renderMain(model)
+        else
+          @renderOne(model)
       , @
         
   class ppu.PostsFilters extends Backbone.View
