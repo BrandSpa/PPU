@@ -162,7 +162,7 @@ $(function() {
     };
 
     PostsFeaturedView.prototype.renderOne = function(model) {
-      ppu.postView = new ppu.PostView({
+      ppu.postView = new ppu.PostFeaturedView({
         model: model
       });
       return this.$el.append(ppu.postView.render().el);
@@ -170,7 +170,7 @@ $(function() {
 
     PostsFeaturedView.prototype.render = function() {
       return this.collection.each(function(model) {
-        if (model.get('featured') === '1') {
+        if (model.get('featured') === 1) {
           return this.renderMain(model);
         } else {
           return this.renderOne(model);

@@ -1112,7 +1112,7 @@ $(function() {
     };
 
     PostsFeaturedView.prototype.renderOne = function(model) {
-      ppu.postView = new ppu.PostView({
+      ppu.postView = new ppu.PostFeaturedView({
         model: model
       });
       return this.$el.append(ppu.postView.render().el);

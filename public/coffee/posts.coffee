@@ -69,12 +69,12 @@ $ ->
       @$el.prepend ppu.postMainFeaturedView.render().el
 
     renderOne: (model) ->
-      ppu.postView = new ppu.PostView model: model
+      ppu.postView = new ppu.PostFeaturedView model: model
       @$el.append ppu.postView.render().el
 
     render: ->
       @collection.each (model) ->
-        if model.get('featured') == '1'
+        if model.get('featured') == 1
           @renderMain(model)
         else
           @renderOne(model)
