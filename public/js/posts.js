@@ -101,10 +101,9 @@ $(function() {
 
     PostsView.prototype.render = function() {
       this.$el.html("");
-      this.collection.each(function(model) {
+      return this.collection.each(function(model) {
         return this.renderOne(model);
       }, this);
-      return app.pubsub.trigger("posts:rendered");
     };
 
     return PostsView;

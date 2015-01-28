@@ -43,7 +43,6 @@ $ ->
       @collection.each (model) ->
         @renderOne(model)
       , @
-      app.pubsub.trigger("posts:rendered")
 
   class ppu.PostMainFeaturedView extends Backbone.View
     template: $ "#post-main-featured-template"

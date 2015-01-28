@@ -1051,10 +1051,9 @@ $(function() {
 
     PostsView.prototype.render = function() {
       this.$el.html("");
-      this.collection.each(function(model) {
+      return this.collection.each(function(model) {
         return this.renderOne(model);
       }, this);
-      return app.pubsub.trigger("posts:rendered");
     };
 
     return PostsView;
@@ -1720,6 +1719,12 @@ $(function() {
       ppu.postsFeatured = new ppu.Posts;
       ppu.postsFeaturedView = new ppu.PostsFeaturedView({
         collection: ppu.postsFeatured
+      });
+      ppu.postsFeatured.fetch({
+        reset: true,
+        data: {
+          featured: true
+        }
       });
       ppu.postsFilters = new ppu.PostsFilters;
       ppu.postsFilters.render();
