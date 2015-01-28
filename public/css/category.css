@@ -82,15 +82,14 @@
   .content h4 {
     color: #002855;
     margin: 30px 0 30px 0; }
-  .content #categories-list li {
+  .content #categories-list li a {
+    color: #5F5F5F;
     list-style: none;
     border-bottom: 1px solid #f5f5f5;
     padding: 15px;
     font-size: 1.1em; }
-    .content #categories-list li a {
-      color: #5F5F5F; }
-    .content #categories-list li:first-child {
-      padding-top: 0; }
+  .content #categories-list li:first-child {
+    padding-top: 0; }
 
 #lawyers-related .lawyer-item {
   padding: 0;

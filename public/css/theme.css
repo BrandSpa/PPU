@@ -1267,15 +1267,14 @@ select .form-control {
   .content h4 {
     color: #002855;
     margin: 30px 0 30px 0; }
-  .content #categories-list li {
+  .content #categories-list li a {
+    color: #5F5F5F;
     list-style: none;
     border-bottom: 1px solid #f5f5f5;
     padding: 15px;
     font-size: 1.1em; }
-    .content #categories-list li a {
-      color: #5F5F5F; }
-    .content #categories-list li:first-child {
-      padding-top: 0; }
+  .content #categories-list li:first-child {
+    padding-top: 0; }
 
 #lawyers-related .lawyer-item {
   padding: 0;
@@ -1496,35 +1495,34 @@ select .form-control {
     margin: 15px 0 7px 0;
     display: block;
     font-weight: 200; }
-
-s img {
-  float: right;
-  height: 150px;
-  margin-left: 30px; }
-s h1 {
-  padding: 0 60px 15px 0;
-  margin: 0;
-  font-size: 1.4em;
-  font-weight: 400; }
-  @media (max-width: 767px) {
-    s h1 {
-      font-size: 1em;
-      padding: 7px 0px; } }
-s .company-name {
-  font-size: 1.2em;
-  display: block; }
-  @media (max-width: 767px) {
-    s .company-name {
-      font-size: 0.8em; } }
-s .company-web {
-  font-size: 0.9em;
-  display: block;
-  color: #00A1B1; }
-  s .company-web a {
+  .experience-header img {
+    float: right;
+    height: 150px;
+    margin-left: 30px; }
+  .experience-header h1 {
+    padding: 0 60px 15px 0;
+    margin: 0;
+    font-size: 1.4em;
+    font-weight: 400; }
+    @media (max-width: 767px) {
+      .experience-header h1 {
+        font-size: 1em;
+        padding: 7px 0px; } }
+  .experience-header .company-name {
+    font-size: 1.2em;
+    display: block; }
+    @media (max-width: 767px) {
+      .experience-header .company-name {
+        font-size: 0.8em; } }
+  .experience-header .company-web {
+    font-size: 0.9em;
+    display: block;
     color: #00A1B1; }
-  @media (max-width: 767px) {
-    s .company-web {
-      font-size: 0.8em; } }
+    .experience-header .company-web a {
+      color: #00A1B1; }
+    @media (max-width: 767px) {
+      .experience-header .company-web {
+        font-size: 0.8em; } }
 
 .content {
   background: #fff;
