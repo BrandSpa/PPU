@@ -35,7 +35,7 @@ $(function() {
       var val;
       val = $(e.currentTarget).find('select').val();
       return this.addFilter({
-        by_category: val
+        category: val
       });
     };
 
@@ -43,7 +43,7 @@ $(function() {
       var val;
       val = $(e.currentTarget).find('select').val();
       return this.addFilter({
-        by_country: val
+        country: val
       });
     };
 

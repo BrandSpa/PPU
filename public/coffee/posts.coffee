@@ -107,11 +107,11 @@ $ ->
       el = $(e.currentTarget)
 
       if $(".countries").find('input[type="checkbox"]:checked').length == 2
-        @filterBy(by_country: "")
+        @filterBy(country: "")
       else
         if el.find(":not(:checked)")
           val = @CountryNotChecked(el)
-          @filterBy(by_country: val)
+          @filterBy(country: val)
 
     CountryNotChecked: (el) ->
       val = if el.val() == "Colombia" then "Chile" else "Colombia"
@@ -120,17 +120,17 @@ $ ->
 
     byCategory: (e) ->
       val = $(e.currentTarget).find('select').val()
-      @filterBy(by_category: val)
+      @filterBy(category: val)
 
     byKeyword: (e) ->
       val = $(e.currentTarget).val()
       if val.length >= 1
-        @filterBy(by_keyword: val)
+        @filterBy(keyword: val)
 
     bySearch: (e) ->
       e.preventDefault()
       val = $(e.currentTarget).find(".query").val()
-      @filterBy(by_keyword: val)
+      @filterBy(keyword: val)
 
 
   class ppu.PostDetailView extends Backbone.View

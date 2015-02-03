@@ -19,11 +19,11 @@ $ ->
 
 		addCategory: (e) ->
 			val = $(e.currentTarget).find('select').val()
-			@addFilter({by_category: val})
+			@addFilter({category: val})
 		
 		addCountry: (e) ->
 			val = $(e.currentTarget).find('select').val()
-			@addFilter({by_country: val})
+			@addFilter({country: val})
 			
 
 

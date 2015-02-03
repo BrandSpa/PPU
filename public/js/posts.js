@@ -226,13 +226,13 @@ $(function() {
       el = $(e.currentTarget);
       if ($(".countries").find('input[type="checkbox"]:checked').length === 2) {
         return this.filterBy({
-          by_country: ""
+          country: ""
         });
       } else {
         if (el.find(":not(:checked)")) {
           val = this.CountryNotChecked(el);
           return this.filterBy({
-            by_country: val
+            country: val
           });
         }
       }
@@ -249,7 +249,7 @@ $(function() {
       var val;
       val = $(e.currentTarget).find('select').val();
       return this.filterBy({
-        by_category: val
+        category: val
       });
     };
 
@@ -258,7 +258,7 @@ $(function() {
       val = $(e.currentTarget).val();
       if (val.length >= 1) {
         return this.filterBy({
-          by_keyword: val
+          keyword: val
         });
       }
     };
@@ -268,7 +268,7 @@ $(function() {
       e.preventDefault();
       val = $(e.currentTarget).find(".query").val();
       return this.filterBy({
-        by_keyword: val
+        keyword: val
       });
     };
 

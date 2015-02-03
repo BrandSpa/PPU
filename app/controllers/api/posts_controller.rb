@@ -4,7 +4,7 @@ class Api::PostsController < ApplicationController
   def index
     lang = params[:lang] || I18n.locale
     
-    collection = entity.get_relationships().by_lang(lang).all.order(date: :desc)
+    collection = entity.get_relationships().lang(lang).all.order(date: :desc)
     collection = filters_without_params(set_filters_without_params(params), collection)
     collection = filters_with_params(set_filters(params), collection)
 
@@ -56,7 +56,7 @@ class Api::PostsController < ApplicationController
   end
 
   def set_filters(params)
-    params.slice(:by_category, :by_country, :by_keyword)
+    params.slice(:category, :country, :keyword)
   end
 
   def set_filters_without_params(params)
