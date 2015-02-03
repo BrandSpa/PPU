@@ -17,26 +17,25 @@ $(function() {
       "change .country": "addCountry"
     };
 
+    FiltersMobile.prototype.initialize = function() {
+      return this.filters = {};
+    };
+
     FiltersMobile.prototype.applyFilters = function(e) {
-      var filters;
       e.preventDefault();
-      filters = $(e.currentTarget).data("filters");
-      return console.log(filters);
+      app.pubsub.trigger("apply:filters", this.filters);
+      return this.$el.modal('hide');
     };
 
     FiltersMobile.prototype.addFilter = function(filter) {
-      var btnfilters, filters, newFilter;
-      btnfilters = $(".apply-filters");
-      filters = btnfilters.data("filters");
-      newFilter = _.extend(filters, filter);
-      return btnfilters.data("filters", newFilter);
+      return this.filters = _.extend(this.filters, filter);
     };
 
     FiltersMobile.prototype.addCategory = function(e) {
       var val;
       val = $(e.currentTarget).find('select').val();
       return this.addFilter({
-        category: val
+        by_category: val
       });
     };
 
@@ -44,7 +43,7 @@ $(function() {
       var val;
       val = $(e.currentTarget).find('select').val();
       return this.addFilter({
-        country: val
+        by_country: val
       });
     };
 

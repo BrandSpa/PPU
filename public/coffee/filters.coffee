@@ -6,24 +6,24 @@ $ ->
 			"change .category": "addCategory"
 			"change .country": "addCountry"
 
+		initialize: ->
+			@filters = {}
+
 		applyFilters: (e) ->
 			e.preventDefault()
-			filters = $(e.currentTarget).data("filters")
-			console.log filters
+			app.pubsub.trigger("apply:filters", @filters)
+			@$el.modal('hide')
 
-		addFilter: (filter)->
-			btnfilters = $(".apply-filters")
-			filters = btnfilters.data("filters")
-			newFilter = _.extend(filters, filter)
-			btnfilters.data("filters", newFilter)
+		addFilter: (filter) ->
+			@filters = _.extend(@filters, filter)
 
 		addCategory: (e) ->
 			val = $(e.currentTarget).find('select').val()
-			@addFilter({category: val})
+			@addFilter({by_category: val})
 		
 		addCountry: (e) ->
 			val = $(e.currentTarget).find('select').val()
-			@addFilter({country: val})
+			@addFilter({by_country: val})
 			
 
 

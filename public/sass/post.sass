@@ -20,6 +20,11 @@
 
 			@media #{$tablet}
 				margin-top: 0px
+			
+			@media #{$mobile}
+				margin-top: 0px
+				width: 125%
+
 
 		@media #{$mobile}
 			height: auto
@@ -31,6 +36,10 @@
 		color: $color-gray
 		height: 180px
 		float: left
+		
+		@media #{$mobile}
+			width: 100%
+			height: auto
 
 		h3
 			font-size: 1em
@@ -74,7 +83,7 @@
 				padding-left: 5px
 
 .post-featured-item
-	@media #{$tablet}, #{$desktop}, #{$desktop-lg}
+	@media #{$desktop}, #{$desktop-lg}
 		&:first-child
 			padding-left: 7px
 			padding-right: 0
@@ -86,6 +95,9 @@
 		&:nth-child(2n+3)
 			padding-left: 7px
 			padding-right: 0
+
+	@media #{$mobile}
+		padding: 0 !important
 
 .post-item, .post-featured-item
 	height: 180px

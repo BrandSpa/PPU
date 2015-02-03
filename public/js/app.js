@@ -15,14 +15,6 @@ $(function() {
       'click .change-lang-page': 'changeLangPage'
     };
 
-    AppView.prototype.initialize = function() {
-      return app.pubsub.bind("filter:aplied", this.paginateOff, this);
-    };
-
-    AppView.prototype.paginateOff = function() {
-      return this.$el.data("paginate");
-    };
-
     AppView.prototype.changeLangPage = function(e) {
       var urlTranslation;
       e.preventDefault();

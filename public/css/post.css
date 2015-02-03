@@ -21,6 +21,10 @@
       @media (min-width: 768px) and (max-width: 991px) {
         .post-main-featured-item .img-container img {
           margin-top: 0px; } }
+      @media (max-width: 767px) {
+        .post-main-featured-item .img-container img {
+          margin-top: 0px;
+          width: 125%; } }
     @media (max-width: 767px) {
       .post-main-featured-item .img-container {
         height: auto;
@@ -31,6 +35,10 @@
     color: #5F5F5F;
     height: 180px;
     float: left; }
+    @media (max-width: 767px) {
+      .post-main-featured-item .content {
+        width: 100%;
+        height: auto; } }
     .post-main-featured-item .content h3 {
       font-size: 1em;
       margin: 0;
@@ -68,7 +76,7 @@
       .post-main-featured-item .content .share i {
         padding-left: 5px; }
 
-@media (min-width: 768px) and (max-width: 991px), (min-width: 992px) and (max-width: 1199px), (min-width: 1200px) {
+@media (min-width: 992px) and (max-width: 1199px), (min-width: 1200px) {
   .post-featured-item:first-child {
     padding-left: 7px;
     padding-right: 0; }
@@ -78,6 +86,9 @@
   .post-featured-item:nth-child(2n+3) {
     padding-left: 7px;
     padding-right: 0; } }
+@media (max-width: 767px) {
+  .post-featured-item {
+    padding: 0 !important; } }
 
 .post-item, .post-featured-item {
   height: 180px;

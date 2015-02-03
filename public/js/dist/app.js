@@ -361,14 +361,6 @@ $(function() {
       'click .change-lang-page': 'changeLangPage'
     };
 
-    AppView.prototype.initialize = function() {
-      return app.pubsub.bind("filter:aplied", this.paginateOff, this);
-    };
-
-    AppView.prototype.paginateOff = function() {
-      return this.$el.data("paginate");
-    };
-
     AppView.prototype.changeLangPage = function(e) {
       var urlTranslation;
       e.preventDefault();
@@ -412,26 +404,25 @@ $(function() {
       "change .country": "addCountry"
     };
 
+    FiltersMobile.prototype.initialize = function() {
+      return this.filters = {};
+    };
+
     FiltersMobile.prototype.applyFilters = function(e) {
-      var filters;
       e.preventDefault();
-      filters = $(e.currentTarget).data("filters");
-      return console.log(filters);
+      app.pubsub.trigger("apply:filters", this.filters);
+      return this.$el.modal('hide');
     };
 
     FiltersMobile.prototype.addFilter = function(filter) {
-      var btnfilters, filters, newFilter;
-      btnfilters = $(".apply-filters");
-      filters = btnfilters.data("filters");
-      newFilter = _.extend(filters, filter);
-      return btnfilters.data("filters", newFilter);
+      return this.filters = _.extend(this.filters, filter);
     };
 
     FiltersMobile.prototype.addCategory = function(e) {
       var val;
       val = $(e.currentTarget).find('select').val();
       return this.addFilter({
-        category: val
+        by_category: val
       });
     };
 
@@ -439,7 +430,7 @@ $(function() {
       var val;
       val = $(e.currentTarget).find('select').val();
       return this.addFilter({
-        country: val
+        by_country: val
       });
     };
 
@@ -1031,13 +1022,17 @@ $(function() {
 
     PostsView.prototype.initialize = function() {
       this.listenTo(this.collection, 'reset', this.render);
-      return app.pubsub.bind("posts:filter", this.filterCollection, this);
+      app.pubsub.on("posts:filter", this.filterCollection, this);
+      return app.pubsub.on("apply:filters", this.filterCollection, this);
     };
 
     PostsView.prototype.filterCollection = function(filters) {
+      filters = _.extend({
+        lang: app.lang,
+        not_featured: true
+      }, filters);
       return this.collection.fetch({
         reset: true,
-        lang: app.lang,
         data: filters
       });
     };
@@ -1050,7 +1045,7 @@ $(function() {
     };
 
     PostsView.prototype.render = function() {
-      this.$el.html("");
+      this.$el.empty();
       return this.collection.each(function(model) {
         return this.renderOne(model);
       }, this);

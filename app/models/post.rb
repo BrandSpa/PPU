@@ -10,17 +10,17 @@ class Post < ActiveRecord::Base
   validates :content, presence: true
   validates :title, uniqueness: true
   
-  scope :by_lang, -> (lang){ where(lang: lang) }
-  scope :by_slug, -> (slug){ where(slug: slug) }
+  scope :lang, -> (lang){ where(lang: lang) }
+  scope :slug, -> (slug){ where(slug: slug) }
   scope :featured, -> { where.not(featured: nil) }
   scope :published, -> { where(published: true) }
   scope :not_featured, -> { where(featured: nil) }
-  scope :by_country, -> (country){ where("posts.country = ? OR posts.country = 'Global'", country) }
-  scope :by_category, -> (category){ includes(:categories).where(categories: {name: category}) }
-  scope :by_keyword, -> (keyword){ where("posts.keywords LIKE ?", "%#{keyword}%") }
+  scope :country, -> (country){ where("posts.country = ? OR posts.country = 'Global'", country) }
+  scope :category, -> (category){ includes(:categories).where(categories: {name: category}) }
+  scope :keyword, -> (keyword){ where("posts.keywords LIKE ?", "%#{keyword}%") }
   scope :get_relationships, -> { includes(:translation,:translations, :categories, :lawyers, :gallery) }
   scope :order_featured, -> { order(featured: :asc) }
-  scope :order_by_date, -> { order(date: :desc) }
+  scope :order_date, -> { order(date: :desc) }
 
   mount_uploader :img_name, PostImageUploader
 

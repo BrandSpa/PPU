@@ -81,13 +81,17 @@ $(function() {
 
     PostsView.prototype.initialize = function() {
       this.listenTo(this.collection, 'reset', this.render);
-      return app.pubsub.bind("posts:filter", this.filterCollection, this);
+      app.pubsub.on("posts:filter", this.filterCollection, this);
+      return app.pubsub.on("apply:filters", this.filterCollection, this);
     };
 
     PostsView.prototype.filterCollection = function(filters) {
+      filters = _.extend({
+        lang: app.lang,
+        not_featured: true
+      }, filters);
       return this.collection.fetch({
         reset: true,
-        lang: app.lang,
         data: filters
       });
     };
@@ -100,7 +104,7 @@ $(function() {
     };
 
     PostsView.prototype.render = function() {
-      this.$el.html("");
+      this.$el.empty();
       return this.collection.each(function(model) {
         return this.renderOne(model);
       }, this);

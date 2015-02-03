@@ -29,17 +29,19 @@ $ ->
 
     initialize: ->
       @listenTo(@collection, 'reset', @render)
-      app.pubsub.bind("posts:filter", @filterCollection, @)
+      app.pubsub.on("posts:filter", @filterCollection, @)
+      app.pubsub.on("apply:filters", @filterCollection, @)
 
     filterCollection: (filters) ->
-      @collection.fetch reset: true, lang: app.lang, data: filters
+      filters = _.extend({lang: app.lang, not_featured: true}, filters)
+      @collection.fetch reset: true, data: filters
 
     renderOne: (model) ->
       ppu.postView = new ppu.PostView model: model
       @$el.append ppu.postView.render().el
 
     render: ->
-      @$el.html("")
+      @$el.empty()
       @collection.each (model) ->
         @renderOne(model)
       , @
