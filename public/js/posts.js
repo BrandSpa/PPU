@@ -87,8 +87,7 @@ $(function() {
 
     PostsView.prototype.filterCollection = function(filters) {
       filters = _.extend({
-        lang: app.lang,
-        not_featured: true
+        lang: app.lang
       }, filters);
       return this.collection.fetch({
         reset: true,
@@ -145,7 +144,8 @@ $(function() {
 
     PostsFeaturedView.prototype.initialize = function() {
       this.listenTo(this.collection, "reset", this.render);
-      return app.pubsub.bind("posts:rendered", this.getFeatured, this);
+      app.pubsub.bind("posts:rendered", this.getFeatured, this);
+      return app.pubsub.on("posts:filter", this.remove, this);
     };
 
     PostsFeaturedView.prototype.getFeatured = function() {

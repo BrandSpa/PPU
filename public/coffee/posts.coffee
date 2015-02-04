@@ -33,7 +33,7 @@ $ ->
       app.pubsub.on("apply:filters", @filterCollection, @)
 
     filterCollection: (filters) ->
-      filters = _.extend({lang: app.lang, not_featured: true}, filters)
+      filters = _.extend(lang: app.lang, filters)
       @collection.fetch reset: true, data: filters
 
     renderOne: (model) ->
@@ -61,6 +61,7 @@ $ ->
     initialize: ->
       @listenTo(@collection, "reset", @render)
       app.pubsub.bind("posts:rendered", @getFeatured, @)
+      app.pubsub.on("posts:filter", @remove, @)
 
     getFeatured: ->
       @collection.fetch reset: true, data: featured: true
@@ -126,11 +127,13 @@ $ ->
       val = $(e.currentTarget).val()
       if val.length >= 1
         @filterBy(keyword: val)
+        
 
     bySearch: (e) ->
       e.preventDefault()
       val = $(e.currentTarget).find(".query").val()
       @filterBy(keyword: val)
+      
 
 
   class ppu.PostDetailView extends Backbone.View
