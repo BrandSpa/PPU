@@ -39,7 +39,8 @@ $(function() {
       ppu.lawyersView = new ppu.LawyersView({
         collection: ppu.lawyers
       });
-      return ppu.lawyersFilters = new ppu.LawyersFilters;
+      ppu.lawyersFilters = new ppu.LawyersFilters;
+      return ppu.filtersMobile = new ppu.FiltersMobile;
     };
 
     Workspace.prototype.lawyer = function(slug) {
@@ -137,9 +138,10 @@ $(function() {
           not_featured: true
         }
       });
-      return ppu.experiencesView = new ppu.ExperiencesView({
+      ppu.experiencesView = new ppu.ExperiencesView({
         collection: ppu.experiences
       });
+      return ppu.filtersMobile = new ppu.FiltersMobile;
     };
 
     Workspace.prototype.curriculum = function() {

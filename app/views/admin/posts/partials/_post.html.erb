@@ -11,7 +11,12 @@
  	<a href="/admin/posts/{{ id }}/edit" class="btn btn-success btn-sm unpublish">Publicado</a>
  	{{else}}
  	<a href="#" class="btn btn-success btn-sm publish">Publicar</a>
- {{/if}}	
+ {{/if}}
+ {{#if featured}}
+  <a href="#" class="btn btn-default disabled">{{featured}} <i class="fa fa-star"></i></a>
+ {{/if}}
   </td>
 </script>
+
+
 

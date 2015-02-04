@@ -6,7 +6,7 @@ class Lawyer < ActiveRecord::Base
   has_and_belongs_to_many :posts
   has_many :awards
   has_many :academics
-  has_many :educations, -> { order "year DESC" }
+  has_many :educations, -> { order "position ASC" }
   has_many :jobs
   has_many :languages, -> { order "name ASC" }
   has_many :articles

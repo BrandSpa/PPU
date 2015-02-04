@@ -6,10 +6,14 @@ mixins.lawyerRelationshipView =
   initialize: ->
     @listenTo @model, 'change', @render
 
+  setPosition: (pos) ->
+    @model.save position: pos
+
   render: ->
     source = $(@template).html()
     template = Handlebars.compile(source)
     @$el.html template( @model.toJSON() )
+    @$el.data('id', @model.get('id'))
     @$el.append '<a href="#" class="btn btn-warning btn-xs open-edit" >editar</a> '
     @$el.append '<a href="#" class="btn btn-danger btn-xs remove" >eliminar</a>'
     @
@@ -28,6 +32,19 @@ mixins.lawyerRelationshipView =
 mixins.lawyerRelationshipViews =
   events:
     'click .open-modal-create' : 'openCreate'
+    "sortstop": "stop"
+
+  stop: (event, ui) ->
+
+    pos = ui.item.index()
+    id = $(ui.item).data('id')
+    that = @
+    $.map $(@el).find('ul li'), (el) ->
+      console.log el
+      pos = $(el).index()
+      id = $(el).data('id')
+      model = that.collection.get(id)
+      model.save fields: position: pos
 
   initialize: ->
     @listenTo(@collection, 'reset', @renderCollection)
@@ -42,6 +59,7 @@ mixins.lawyerRelationshipViews =
   renderOne: (model) ->
     view = new  @view model: model
     @$el.find('ul').append( view.render().el )
+    @$el.find('.sortable').sortable()
 
   openCreate: (e)->
     e.preventDefault()

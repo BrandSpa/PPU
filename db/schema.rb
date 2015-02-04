@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150109235959) do
+ActiveRecord::Schema.define(version: 20150204014538) do
 
   create_table "academics", force: true do |t|
     t.integer  "lawyer_id"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20150109235959) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "locale"
+    t.integer  "position"
   end
 
   add_index "academics", ["lawyer_id"], name: "index_academics_on_lawyer_id", using: :btree
@@ -35,6 +36,7 @@ ActiveRecord::Schema.define(version: 20150109235959) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "locale"
+    t.integer  "position"
   end
 
   create_table "awards", force: true do |t|
@@ -44,6 +46,7 @@ ActiveRecord::Schema.define(version: 20150109235959) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "locale"
+    t.integer  "position"
   end
 
   create_table "awards_lawyers", id: false, force: true do |t|
@@ -169,6 +172,7 @@ ActiveRecord::Schema.define(version: 20150109235959) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "locale"
+    t.integer  "position"
   end
 
   add_index "institutions", ["lawyer_id"], name: "index_institutions_on_lawyer_id", using: :btree
@@ -183,6 +187,7 @@ ActiveRecord::Schema.define(version: 20150109235959) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "locale"
+    t.integer  "position"
   end
 
   add_index "jobs", ["lawyer_id"], name: "index_jobs_on_lawyer_id", using: :btree
@@ -193,6 +198,7 @@ ActiveRecord::Schema.define(version: 20150109235959) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "locale"
+    t.integer  "position"
   end
 
   create_table "lawyers", force: true do |t|
@@ -231,6 +237,7 @@ ActiveRecord::Schema.define(version: 20150109235959) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "locale"
+    t.integer  "position"
   end
 
   create_table "posts", force: true do |t|
@@ -270,6 +277,7 @@ ActiveRecord::Schema.define(version: 20150109235959) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "locale"
+    t.integer  "position"
   end
 
   add_index "recognitions", ["lawyer_id"], name: "index_recognitions_on_lawyer_id", using: :btree

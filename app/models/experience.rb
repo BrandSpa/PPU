@@ -7,11 +7,11 @@ class Experience < ActiveRecord::Base
 
 	mount_uploader :img_name, ExperienceImgUploader
 
-  scope :by_lang, -> (lang){ where(lang: lang) }
-  scope :by_slug, -> (slug){ where(slug: slug) }
-  scope :by_country, -> (country){ where("experiences.country = ?", country) }
-  scope :by_keyword, -> (keyword){ where("experiences.keywords LIKE ?", "%#{keyword}%") }
-  scope :by_category, -> (category){ includes(:categories).where(categories: {name: category}) }
+  scope :lang, -> (lang){ where(lang: lang) }
+  scope :slug, -> (slug){ where(slug: slug) }
+  scope :country, -> (country){ where("experiences.country = ?", country) }
+  scope :keyword, -> (keyword){ where("experiences.keywords LIKE ?", "%#{keyword}%") }
+  scope :category, -> (category){ includes(:categories).where(categories: {name: category}) }
   scope :with_relationships, ->{ includes(:gallery, :translations, :categories, :lawyers) }
 
 	def self.duplicate(model)

@@ -73,9 +73,20 @@ $(function() {
       this.listenTo(this.collection, 'reset', this.render);
       this.listenTo(this.collection, 'add', this.renderOne);
       order = this.order_by();
-      return this.collection.fetch({
+      this.collection.fetch({
         reset: true,
         data: order
+      });
+      return app.pubsub.on("apply:filters", this.filterCollection, this);
+    };
+
+    LawyersView.prototype.filterCollection = function(filters) {
+      filters = _.extend({
+        lang: app.lang
+      }, filters);
+      return this.collection.fetch({
+        reset: true,
+        data: filters
       });
     };
 
@@ -145,7 +156,8 @@ $(function() {
       };
       this.order_by();
       this.$el.data("filtersAplied", this.filtersAplied);
-      return app.pubsub.bind("general:scroll", this.paginate, this);
+      app.pubsub.on("general:scroll", this.paginate, this);
+      return app.pubsub.trigger("filters:showPosition");
     };
 
     LawyersFilters.prototype.order_by = function() {

@@ -8,12 +8,17 @@ $ ->
 
 		initialize: ->
 			@filters = {}
+			app.pubsub.on("filters:showPosition", @showPosition, @)
 
 		applyFilters: (e) ->
 			e.preventDefault()
 			app.pubsub.trigger("apply:filters", @filters)
 			@$el.modal('hide')
 
+		showPosition: ->
+			console.log "dale remove"
+			$("#filters-modal").find('.position').removeClass('hidden')
+			
 		addFilter: (filter) ->
 			@filters = _.extend(@filters, filter)
 

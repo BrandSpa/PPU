@@ -6,11 +6,17 @@ mixins.lawyerRelationshipView = {
   initialize: function() {
     return this.listenTo(this.model, 'change', this.render);
   },
+  setPosition: function(pos) {
+    return this.model.save({
+      position: pos
+    });
+  },
   render: function() {
     var source, template;
     source = $(this.template).html();
     template = Handlebars.compile(source);
     this.$el.html(template(this.model.toJSON()));
+    this.$el.data('id', this.model.get('id'));
     this.$el.append('<a href="#" class="btn btn-warning btn-xs open-edit" >editar</a> ');
     this.$el.append('<a href="#" class="btn btn-danger btn-xs remove" >eliminar</a>');
     return this;
@@ -33,7 +39,26 @@ mixins.lawyerRelationshipView = {
 
 mixins.lawyerRelationshipViews = {
   events: {
-    'click .open-modal-create': 'openCreate'
+    'click .open-modal-create': 'openCreate',
+    "sortstop": "stop"
+  },
+  stop: function(event, ui) {
+    var id, pos, that;
+    pos = ui.item.index();
+    id = $(ui.item).data('id');
+    that = this;
+    return $.map($(this.el).find('ul li'), function(el) {
+      var model;
+      console.log(el);
+      pos = $(el).index();
+      id = $(el).data('id');
+      model = that.collection.get(id);
+      return model.save({
+        fields: {
+          position: pos
+        }
+      });
+    });
   },
   initialize: function() {
     this.listenTo(this.collection, 'reset', this.renderCollection);
@@ -50,7 +75,8 @@ mixins.lawyerRelationshipViews = {
     view = new this.view({
       model: model
     });
-    return this.$el.find('ul').append(view.render().el);
+    this.$el.find('ul').append(view.render().el);
+    return this.$el.find('.sortable').sortable();
   },
   openCreate: function(e) {
     var lawyer_id, view;

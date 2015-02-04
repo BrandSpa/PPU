@@ -27,6 +27,12 @@ $ ->
       @listenTo(@collection, 'add', @renderOne)
       order = @order_by()
       @collection.fetch reset: true, data: order
+      app.pubsub.on("apply:filters", @filterCollection, @)
+
+    filterCollection: (filters) ->
+      filters = _.extend({lang: app.lang}, filters)
+      @collection.fetch reset: true, data: filters
+
 
     order_by: ->
       if app.lang == "en"
@@ -63,7 +69,8 @@ $ ->
       @filtersAplied = {lang: app.lang}
       @order_by()
       @$el.data("filtersAplied", @filtersAplied)
-      app.pubsub.bind("general:scroll", @paginate, @)
+      app.pubsub.on("general:scroll", @paginate, @)
+      app.pubsub.trigger("filters:showPosition")
 
     order_by: ->
       if app.lang == "en"

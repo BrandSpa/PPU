@@ -5,6 +5,13 @@ module BelongsToLawyer
 		before_action :authenticate_user!, except: [:index, :show]
 	end
 
+  def index
+    lawyer_id = params[:lawyer_id]
+    collection = entity.all
+    collection = collection.by_lawyer(lawyer_id).order(position: :asc) if lawyer_id.present?
+    render json: collection, status: 200
+  end
+
 	def show
     id = params[:id]
     model = entity.find_by(id: id) if id.present?
@@ -22,7 +29,7 @@ module BelongsToLawyer
 
 	def update
 		model = entity.find(params[:id])
-		model.update(model_params)
+		updated = model.update(model_params)
     render json: model, status: 200
 	end
 

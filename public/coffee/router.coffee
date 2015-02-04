@@ -25,6 +25,7 @@ $ ->
       ppu.lawyers =  new ppu.Lawyers
       ppu.lawyersView =  new ppu.LawyersView collection: ppu.lawyers
       ppu.lawyersFilters = new ppu.LawyersFilters
+      ppu.filtersMobile = new ppu.FiltersMobile
     
     lawyer: (slug) ->
       ppu.lawyer = new ppu.Lawyer id: slug
@@ -75,6 +76,8 @@ $ ->
       ppu.experiences = new ppu.Experiences
       ppu.experiences.fetch reset: true, data: published: true, not_featured: true
       ppu.experiencesView = new ppu.ExperiencesView collection: ppu.experiences
+
+      ppu.filtersMobile = new ppu.FiltersMobile
 
     curriculum: ->
       ppu.curriculum = new ppu.Curriculum

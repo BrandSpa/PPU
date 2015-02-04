@@ -66,8 +66,8 @@ gulp.task('app-scripts', function() {
     'js/seo.js',
     'js/router.js'
     ])
+  .pipe(concat('app.js'))
 
-    .pipe(concat('app.js'))
     .pipe(gulp.dest('js/dist/'))
 });
 
