@@ -22,7 +22,6 @@ $ ->
       v = new ppu.lawyerConfirmTranslate
       v.render()
 
-
     translate: (e) ->
       @model.save duplicate: true
         .done (mod) ->
@@ -247,8 +246,7 @@ $ ->
       $(@el).html t( @model.toJSON() )
       $("#lawyer-finish").removeClass("hidden")
       ppu.currentLawyerId = id
-
-        
+      
     renderCategories: ->
       source = $("#lawyer-category-template").html()
       t = Handlebars.compile(source)

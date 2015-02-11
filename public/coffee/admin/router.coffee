@@ -4,8 +4,11 @@ $ ->
       'dashboard': 'dashboard'
 
       "admin/lawyers/new": "createLawyer"
+  
       'admin/posts/new': 'createPost'
+      'admin/posts': 'post'
       'admin/experiences/new': 'createExperience'
+      'admin/experiences': 'experience'
 
       "en/admin/lawyers/new": "createLawyer"
       'en/admin/posts/new': 'createPost'
@@ -30,11 +33,19 @@ $ ->
       ppu.admin.lawyers= new ppu.admin.LawyersView collection: ppu.lawyers
       ppu.admin.lawyersFilters = new ppu.admin.LawyersFilters
 
+    post: ->
       ppu.posts = new ppu.Posts
       ppu.posts.fetch reset: true
       ppu.admin.posts = new ppu.admin.PostsView collection: ppu.posts
       ppu.admin.postsFilters = new ppu.admin.PostsFilters
 
+    lawyer: ->
+      ppu.lawyers = new ppu.Lawyers
+      ppu.lawyers.fetch reset: true
+      ppu.admin.lawyers= new ppu.admin.LawyersView collection: ppu.lawyers
+      ppu.admin.lawyersFilters = new ppu.admin.LawyersFilters
+
+    experience: ->
       ppu.experiences = new ppu.Experiences
       ppu.experiences.fetch reset: true
       ppu.admin.experiences = new ppu.admin.ExperiencesView collection: ppu.experiences

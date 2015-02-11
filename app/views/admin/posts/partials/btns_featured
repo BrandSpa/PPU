@@ -1,0 +1,11 @@
+<div class="btn-group" data-toggle="buttons">
+        <label class="btn btn-primary change-featured">
+        <input type="radio" name="featured" autocomplete="off" value="1"> 1 <i class="fa fa-star"></i>
+        </label>
+        <label class="btn btn-primary change-featured">
+          <input type="radio" name="featured" autocomplete="off" value="2"> 2 <i class="fa fa-star"></i>
+        </label>
+        <label class="btn btn-primary change-featured">
+          <input type="radio" name="featured" autocomplete="off" value="3"> 3 <i class="fa fa-star"></i>
+        </label>
+      </div>

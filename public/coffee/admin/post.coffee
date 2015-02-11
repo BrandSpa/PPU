@@ -12,7 +12,7 @@ $ ->
     events: 
       "click .publish": "publish"
       "click .unpublish": "unpublish"
-      "click .translate": "translate"
+      "click .change-featured": "changeFeatured"
 
     initialize: ->
       @listenTo(@model, "change", @render)
@@ -37,24 +37,35 @@ $ ->
         .done (model) ->
           window.location = "en/admin/posts/#{model.id}/edit"
 
-
+    changeFeatured: (e) ->
+      el = $(e.currentTarget).find('input').val()
+      app.pubsub.trigger('post:changeFeatured', el)
+      @model.save fields: featured: el
+      
   class ppu.admin.PostsView extends Backbone.View
     el: $ "#posts-dasboard"
 
     initialize: ->
       @listenTo(@collection, 'reset', @render)
       @listenTo(@collection, 'add', @addOne, @)
-      app.pubsub.bind("posts:filter", @filterCollection, @)
+      app.pubsub.on("posts:filter", @filterCollection, @)
+      app.pubsub.on("post:changeFeatured", @changeFeatured, @)
 
     filterCollection: (filters) ->
       @collection.fetch reset: true, lang: app.lang, data: filters
+
+    changeFeatured: (val) ->
+      coll = new ppu.Posts
+      @collection.fetch add: false, data: is_featured: val
+        .done (models) ->
+          coll.add models
+      console.log coll
 
     addOne: (model) ->
       view = new ppu.admin.PostView model: model
       $(@el).find('thead').append view.render().el
 
     render: ->
-      console.log "render posts"
       $(@el).find('tbody').html('')
       @collection.each (model) ->
         view = new ppu.admin.PostView model: model
@@ -76,6 +87,10 @@ $ ->
       template = app.compile(@template)
       @$el.html(template)
 
+    filterBy: (data) ->
+      data = _.extend(@filtersAplied,  data)
+      app.pubsub.trigger("posts:filter", data)
+
     byCountry: (e) ->
       el = $(e.currentTarget)
       val = el.val()
@@ -85,7 +100,6 @@ $ ->
     CountryNotChecked: (el) ->
       val = if el.val() == "Colombia" then "Chile" else "Colombia"
       $(".countries").find("input[value='#{val}']").prop('checked', true)
-      val
 
     byCategory: (e) ->
       val = $(e.currentTarget).find('select').val()
@@ -93,11 +107,10 @@ $ ->
       app.pubsub.trigger("posts:filter", data)
 
     byKeyword: (e) ->
-     
       val = $(e.currentTarget).val()
-      data = _.extend(@filtersAplied, by_keyword: val)
-      if val.length >= 3
-        app.pubsub.trigger("posts:filter", data)
+      console.log val
+      if val.length >= 1
+        @filterBy(keyword: val)
 
   class ppu.admin.PostCreate extends Backbone.View
     el: $ "#post-create"

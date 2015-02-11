@@ -1,19 +1,18 @@
 <script id="post-admin-template" type="text/x-handlebars-template">
-  <td> {{ title }} </td>
+  <td> {{ title }}  {{#if featured}}
+  <a href="#" class="btn btn-xs btn-default disabled">{{featured}} <i class="fa fa-star"></i></a>  
+ {{/if}}</td>
   <td>  {{#if translations}}
-   <a href="en/admin/posts/{{ translations.id }}/edit" class="btn btn-warning btn-sm">Editar Traducción</a>
+   <a href="en/admin/posts/{{ translations.id }}/edit" class="btn btn-default btn-xs"><i class="fa fa-pencil-square-o"></i> Editar Traducción</a>
    {{else}}
-   <a href="#" class="btn btn-primary btn-sm translate">Traducir</a> 
+   <a href="#" class="btn btn-default btn-xs translate"><i class="fa fa-globe"></i> Traducir</a> 
    {{/if}} </td>
   <td>
-   <a href="/admin/posts/{{ id }}/edit" class="btn btn-warning btn-sm edit">Editar</a>
+   <a href="/admin/posts/{{ id }}/edit" class="btn btn-default btn-xs edit"><i class="fa fa-pencil-square-o"></i> Editar</a>
   {{#if published}}
- 	<a href="/admin/posts/{{ id }}/edit" class="btn btn-success btn-sm unpublish">Publicado</a>
+ 	<a href="/admin/posts/{{ id }}/edit" class="btn btn-success btn-xs unpublish">Publicado</a>
  	{{else}}
- 	<a href="#" class="btn btn-success btn-sm publish">Publicar</a>
- {{/if}}
- {{#if featured}}
-  <a href="#" class="btn btn-default disabled">{{featured}} <i class="fa fa-star"></i></a>
+ 	<a href="#" class="btn btn-success btn-xs publish">Publicar</a>
  {{/if}}
   </td>
 </script>

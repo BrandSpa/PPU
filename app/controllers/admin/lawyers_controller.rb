@@ -5,14 +5,12 @@ class Admin::LawyersController < ApplicationController
   def index
   end
 
-   def dashboard
-  	
+  def dashboard	
   end
+
   def new
-  	
   end
 
   def edit
-    
   end
 end

@@ -17,4 +17,16 @@ class PagesController < ApplicationController
 		
 	end
 
+  def admin_lawyers
+    
+  end
+
+  def admin_posts
+    
+  end
+
+  def admin_experiences
+    
+  end
+
 end

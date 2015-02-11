@@ -9,4 +9,7 @@ class Admin::ExperiencesController < ApplicationController
 	def edit
 		
 	end
+
+  def dashboard  
+  end
 end

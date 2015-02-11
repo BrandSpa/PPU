@@ -42,7 +42,7 @@ $(function() {
     PostView.prototype.events = {
       "click .publish": "publish",
       "click .unpublish": "unpublish",
-      "click .translate": "translate"
+      "click .change-featured": "changeFeatured"
     };
 
     PostView.prototype.initialize = function() {
@@ -84,6 +84,17 @@ $(function() {
       });
     };
 
+    PostView.prototype.changeFeatured = function(e) {
+      var el;
+      el = $(e.currentTarget).find('input').val();
+      app.pubsub.trigger('post:changeFeatured', el);
+      return this.model.save({
+        fields: {
+          featured: el
+        }
+      });
+    };
+
     return PostView;
 
   })(Backbone.View);
@@ -99,7 +110,8 @@ $(function() {
     PostsView.prototype.initialize = function() {
       this.listenTo(this.collection, 'reset', this.render);
       this.listenTo(this.collection, 'add', this.addOne, this);
-      return app.pubsub.bind("posts:filter", this.filterCollection, this);
+      app.pubsub.on("posts:filter", this.filterCollection, this);
+      return app.pubsub.on("post:changeFeatured", this.changeFeatured, this);
     };
 
     PostsView.prototype.filterCollection = function(filters) {
@@ -108,6 +120,20 @@ $(function() {
         lang: app.lang,
         data: filters
       });
+    };
+
+    PostsView.prototype.changeFeatured = function(val) {
+      var coll;
+      coll = new ppu.Posts;
+      this.collection.fetch({
+        add: false,
+        data: {
+          is_featured: val
+        }
+      }).done(function(models) {
+        return coll.add(models);
+      });
+      return console.log(coll);
     };
 
     PostsView.prototype.addOne = function(model) {
@@ -119,7 +145,6 @@ $(function() {
     };
 
     PostsView.prototype.render = function() {
-      console.log("render posts");
       $(this.el).find('tbody').html('');
       return this.collection.each(function(model) {
         var view;
@@ -160,6 +185,11 @@ $(function() {
       return this.$el.html(template);
     };
 
+    PostsFilters.prototype.filterBy = function(data) {
+      data = _.extend(this.filtersAplied, data);
+      return app.pubsub.trigger("posts:filter", data);
+    };
+
     PostsFilters.prototype.byCountry = function(e) {
       var data, el, val;
       el = $(e.currentTarget);
@@ -173,8 +203,7 @@ $(function() {
     PostsFilters.prototype.CountryNotChecked = function(el) {
       var val;
       val = el.val() === "Colombia" ? "Chile" : "Colombia";
-      $(".countries").find("input[value='" + val + "']").prop('checked', true);
-      return val;
+      return $(".countries").find("input[value='" + val + "']").prop('checked', true);
     };
 
     PostsFilters.prototype.byCategory = function(e) {
@@ -187,13 +216,13 @@ $(function() {
     };
 
     PostsFilters.prototype.byKeyword = function(e) {
-      var data, val;
+      var val;
       val = $(e.currentTarget).val();
-      data = _.extend(this.filtersAplied, {
-        by_keyword: val
-      });
-      if (val.length >= 3) {
-        return app.pubsub.trigger("posts:filter", data);
+      console.log(val);
+      if (val.length >= 1) {
+        return this.filterBy({
+          keyword: val
+        });
       }
     };
 

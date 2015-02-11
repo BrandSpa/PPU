@@ -51,7 +51,6 @@ Rails.application.routes.draw do
     get "/trabaje-con-nosotros", to: 'pages#work_with_us'
     get "/probono", to: 'pages#pro_bono'
 
-
     namespace :admin do 
       resources :posts
       resources :lawyers
@@ -60,5 +59,7 @@ Rails.application.routes.draw do
   end
 
   get "dashboard", to: 'admin/lawyers#dashboard'
+  get "admin/experiences", to: 'admin/experiences#dashboard'
+  get "admin/posts", to: 'admin/posts#dashboard'
 
 end

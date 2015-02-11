@@ -13,7 +13,9 @@ $(function() {
       'dashboard': 'dashboard',
       "admin/lawyers/new": "createLawyer",
       'admin/posts/new': 'createPost',
+      'admin/posts': 'post',
       'admin/experiences/new': 'createExperience',
+      'admin/experiences': 'experience',
       "en/admin/lawyers/new": "createLawyer",
       'en/admin/posts/new': 'createPost',
       'admin/lawyers/:id/edit': 'editLawyer',
@@ -36,7 +38,10 @@ $(function() {
       ppu.admin.lawyers = new ppu.admin.LawyersView({
         collection: ppu.lawyers
       });
-      ppu.admin.lawyersFilters = new ppu.admin.LawyersFilters;
+      return ppu.admin.lawyersFilters = new ppu.admin.LawyersFilters;
+    };
+
+    Router.prototype.post = function() {
       ppu.posts = new ppu.Posts;
       ppu.posts.fetch({
         reset: true
@@ -44,7 +49,21 @@ $(function() {
       ppu.admin.posts = new ppu.admin.PostsView({
         collection: ppu.posts
       });
-      ppu.admin.postsFilters = new ppu.admin.PostsFilters;
+      return ppu.admin.postsFilters = new ppu.admin.PostsFilters;
+    };
+
+    Router.prototype.lawyer = function() {
+      ppu.lawyers = new ppu.Lawyers;
+      ppu.lawyers.fetch({
+        reset: true
+      });
+      ppu.admin.lawyers = new ppu.admin.LawyersView({
+        collection: ppu.lawyers
+      });
+      return ppu.admin.lawyersFilters = new ppu.admin.LawyersFilters;
+    };
+
+    Router.prototype.experience = function() {
       ppu.experiences = new ppu.Experiences;
       ppu.experiences.fetch({
         reset: true
