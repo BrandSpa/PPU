@@ -82,4 +82,4 @@ gulp.task('watch', ['sass', 'coffee'], function(){
   gulp.watch(['coffee/*.coffee', 'coffee/*/*.coffee'], ['coffee', 'app-scripts', 'compress']);
 });
  
-gulp.task('default', ['watch', 'dependencies-scripts']);
+gulp.task('default', ['watch']);
