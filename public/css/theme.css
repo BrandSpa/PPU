@@ -93,7 +93,6 @@ a:hover {
   display: block !important; }
 
 .navbar-default {
-  background: #fff !important;
   color: #002855; }
   .navbar-default .navbar-header {
     background: #fff; }
@@ -625,6 +624,14 @@ select .form-control {
 /* Portrait tablets and small desktops */
 /* Landscape phones and portrait tablets */
 /* Landscape phones and smaller */
+#nav-responsive .navbar-collapse {
+  background: #002855 !important; }
+  #nav-responsive .navbar-collapse li {
+    border-bottom: 1px solid #335377; }
+    #nav-responsive .navbar-collapse li a {
+      color: #fff !important;
+      font-size: 1.2em; }
+
 .navbar-app {
   background: #fff;
   border-radius: 0; }
@@ -689,6 +696,11 @@ select .form-control {
 
 .navbar-collapse {
   background: #002855; }
+
+#filters-modal .modal-header {
+  border: none; }
+#filters-modal .modal-footer {
+  border: none; }
 
 /* Large desktops and laptops */
 /* Portrait tablets and medium desktops */
@@ -1063,38 +1075,46 @@ select .form-control {
       height: 105px;
       padding: 0; } }
   @media (min-width: 768px) and (max-width: 991px), (min-width: 992px) and (max-width: 1199px), (min-width: 1200px) {
-    .post-item:nth-child(2n+3), .post-featured-item:nth-child(2n+3) {
+    .post-item:first-child, .post-featured-item:first-child {
+      padding-left: 0;
+      padding-right: 7px; }
+    .post-item:first-child, .post-item:nth-child(2n+3), .post-featured-item:first-child, .post-featured-item:nth-child(2n+3) {
       padding-left: 0;
       padding-right: 7px; }
     .post-item:nth-child(2n+2), .post-featured-item:nth-child(2n+2) {
       padding-right: 0;
-      padding-left: 7px; }
-    .post-item:first-child, .post-featured-item:first-child {
-      padding-left: 0;
-      padding-right: 7px; }
-    .post-item:nth-child(2), .post-featured-item:nth-child(2) {
-      padding-left: 7px;
-      padding-right: 0; } }
-  .post-item .img-container, .post-featured-item .img-container {
-    width: 180px;
+      padding-left: 7px; } }
+  .post-item .thumb, .post-featured-item .thumb {
+    width: 35%;
+    height: 180px;
     float: left;
     overflow: hidden;
-    margin-right: 20px; }
+    position: relative;
+    background: #002855; }
     @media (max-width: 767px) {
-      .post-item .img-container, .post-featured-item .img-container {
+      .post-item .thumb, .post-featured-item .thumb {
         display: none; } }
-    .post-item .img-container img, .post-featured-item .img-container img {
-      margin: 0 0 0 -80px;
-      height: 180px; }
+    .post-item .thumb img, .post-featured-item .thumb img {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      height: 100%;
+      width: auto;
+      -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%); }
     @media (max-width: 767px) {
-      .post-item .img-container, .post-featured-item .img-container {
+      .post-item .thumb, .post-featured-item .thumb {
         width: 120px; }
-        .post-item .img-container img, .post-featured-item .img-container img {
+        .post-item .thumb img, .post-featured-item .thumb img {
           height: 105px; } }
   .post-item .content, .post-featured-item .content {
+    width: 65%;
     background: #fff;
     padding: 15px 20px 20px 20px;
-    height: 180px; }
+    height: 180px;
+    float: left;
+    position: relative; }
     @media (max-width: 767px) {
       .post-item .content, .post-featured-item .content {
         height: 105px;
@@ -1119,6 +1139,14 @@ select .form-control {
       @media (max-width: 767px) {
         .post-item .content p, .post-featured-item .content p {
           display: none; } }
+    .post-item .content .footer, .post-featured-item .content .footer {
+      position: absolute;
+      width: 100%;
+      bottom: 0;
+      left: 0;
+      padding: 20px 15px 10px 15px;
+      background: none, linear-gradient(180deg, rgba(255, 255, 255, 0) 0, #fff 50%);
+      overflow: hidden; }
     .post-item .content .date, .post-featured-item .content .date {
       font-size: 0.8em;
       color: #7F7F7F;
@@ -1131,8 +1159,7 @@ select .form-control {
     .post-item .content .share, .post-featured-item .content .share {
       color: #002855;
       font-size: 0.8em;
-      float: right;
-      padding-right: 15px; }
+      float: right; }
       .post-item .content .share i, .post-featured-item .content .share i {
         padding-left: 5px; }
 
@@ -1249,7 +1276,8 @@ select .form-control {
   float: left;
   width: 100%;
   margin-bottom: 30px;
-  padding-right: 30px; }
+  padding-right: 30px;
+  height: 150px; }
   .category-header img {
     float: left;
     height: 150px;
@@ -1261,6 +1289,9 @@ select .form-control {
     font-size: 1.5em;
     line-height: 1.5em;
     font-weight: 400; }
+    @media (max-width: 767px) {
+      .category-header h1 {
+        font-size: 1.1em; } }
   .category-header .share {
     color: #fff;
     padding: 30px 0;
@@ -1321,6 +1352,9 @@ select .form-control {
     border-bottom: 1px solid #ccc;
     margin: 60px 350px;
     font-weight: bold; }
+    @media (max-width: 767px) {
+      #us h3 {
+        margin: 30px 0; } }
 
 #carousel-us-quotes {
   margin: 60px 0; }
@@ -1407,15 +1441,16 @@ select .form-control {
     margin-left: 80px; }
     @media (max-width: 767px) {
       #carousel-probono-foundations ul {
-        margin-left: 0px; } }
+        margin: 0 auto;
+        display: block; } }
     @media (min-width: 992px) and (max-width: 1199px), (min-width: 1200px) {
       #carousel-probono-foundations ul li {
         float: left;
         padding-left: 15px; } }
     @media (max-width: 767px) {
       #carousel-probono-foundations ul li {
-        padding-left: 43px;
-        margin-bottom: 10px; } }
+        margin-bottom: 10px;
+        margin-left: 80px; } }
     #carousel-probono-foundations ul li img {
       width: 150px;
       display: block; }
@@ -1447,9 +1482,6 @@ select .form-control {
     min-height: 100%; }
     .experience-item .img-container img {
       width: 100%; }
-    @media (max-width: 767px) {
-      .experience-item .img-container {
-        display: none; } }
   .experience-item .content {
     background: #fff;
     padding: 15px;
@@ -1490,6 +1522,9 @@ select .form-control {
       color: #002855; }
       .experience-item .content .share i {
         padding-right: 3px; }
+      @media (max-width: 767px) {
+        .experience-item .content .share {
+          display: none; } }
 
 .experience-header {
   background: #002855;

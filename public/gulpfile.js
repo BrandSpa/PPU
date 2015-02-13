@@ -41,7 +41,7 @@ gulp.task('dependencies-scripts', function() {
     'bower_components/handlebars/handlebars.min.js',
     'bower_components/backbone/backbone.js',
     'bower_components/jquery.serializeJSON/jquery.serializejson.min.js',
-    'bower_components/moment/min/moment.min.js',
+    'bower_components/moment/min/moment-with-locales.min.js',
     'bower_components/nprogress/nprogress.js',
     'js/libs/jquery.selectBoxIt.min.js'
     ])
@@ -82,4 +82,4 @@ gulp.task('watch', ['sass', 'coffee'], function(){
   gulp.watch(['coffee/*.coffee', 'coffee/*/*.coffee'], ['coffee', 'app-scripts', 'compress']);
 });
  
-gulp.task('default', ['watch']);
+gulp.task('default', ['watch', 'dependencies-scripts']);

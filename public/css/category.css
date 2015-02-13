@@ -53,7 +53,8 @@
   float: left;
   width: 100%;
   margin-bottom: 30px;
-  padding-right: 30px; }
+  padding-right: 30px;
+  height: 150px; }
   .category-header img {
     float: left;
     height: 150px;
@@ -65,6 +66,9 @@
     font-size: 1.5em;
     line-height: 1.5em;
     font-weight: 400; }
+    @media (max-width: 767px) {
+      .category-header h1 {
+        font-size: 1.1em; } }
   .category-header .share {
     color: #fff;
     padding: 30px 0;

@@ -1,7 +1,7 @@
 <script id="category-detail-template" type="text/x-handlebars-template">
 	<div class="category-header">
 		{{#if gallery }}
-		<img src="{{ gallery.img_name.url }}" alt="" class="hidden-xs">
+		<img src="{{ gallery.img_name.url }}" alt="" >
 		{{/if}}
 
 		<h1>{{ name }}</h1>
@@ -28,19 +28,20 @@
 		{{#each experiences}}
 		<div class="col-md-6 col-sm-6 col-xs-12 experience-item">
 			<div class="img-container">
-				{{#if gallery.img_name.url }}
-				<img src="{{ gallery.img_name.url }}" alt="{{ title }}" class="hidden-xs">
-				{{else}}
-				<img src="{{ img_name.url }}" alt="{{ title }}" class="hidden-xs">
-				{{/if}}
-			</div>
+ {{#if gallery.img_name.url }}
+  <img src="{{ gallery.img_name.url }}" alt="{{ title }}" >
+  {{else}}
+   <img src="{{ img_name.url }}" alt="{{ title }}" >
+ {{/if}}
+</div>
 
-			<div class="content">
-				<h3><a href="/experiencias/{{ slug }}">{{ title }}</a></h3>
-				<p> {{shortenText2 excerpt }}</p>
-				<span class="date">{{dateFormat date format="D - M - YYYY"}}</span>
-				<a href="#" class="share" data-toggle="modal" data-target="#share-modal"><%= t("share") %>  <i class="fa fa-share-alt"></i></a>
-			</div>
+<div class="content">
+  <h3><a href="/experiencias/{{ slug }}">{{ title }}</a></h3>
+    <p> {{shortenText2 excerpt }}</p>
+    <span class="country"><i class="fa fa-globe"></i> {{country}}</span>
+    <span class="date"><i class="fa fa-calendar-o"></i> {{getYear date format="YYYY"}}</span>
+    <a href="#" class="share" data-toggle="modal" data-target="#share-modal"><i class="fa fa-share-alt"></i> <%= t("share") %></a>
+</div>
 		</div>
 		{{/each}}
 		{{/if}}

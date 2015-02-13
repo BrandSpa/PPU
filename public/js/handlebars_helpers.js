@@ -10,7 +10,7 @@ Handlebars.registerHelper('shortenText', function(text, block) {
 });
 
 Handlebars.registerHelper('shortenText2', function(text, block) {
-  return text.substring(0, 60) + " ...";
+  return text.substring(0, 120) + " ...";
 });
 
 Handlebars.registerHelper('dateFormat', function(context, block) {

@@ -109,8 +109,13 @@
 		height: 105px
 		padding: 0
 
+
 	@media #{$tablet}, #{$desktop}, #{$desktop-lg}
-		&:nth-child(2n+3)
+		&:first-child
+			padding-left: 0
+			padding-right: 7px
+		
+		&:first-child, &:nth-child(2n+3)
 			padding-left: 0
 			padding-right: 7px
 
@@ -118,36 +123,40 @@
 			padding-right: 0
 			padding-left: 7px
 
-		&:first-child
-			padding-left: 0
-			padding-right: 7px
-
-		&:nth-child(2)
-			padding-left: 7px
-			padding-right: 0
-
-	.img-container
-		width: 180px
+	.thumb
+		width: 35%
+		height: 180px
 		float: left
 		overflow: hidden
-		margin-right: 20px
+		position: relative
+		background: $color-darkBlue
 
 		@media #{$mobile}
 			display: none
 
 		img
-			margin: 0 0 0 -80px
-			height: 180px
-
+			position: absolute
+			left: 50%
+			top: 50%
+			height: 100%
+			width: auto
+			-webkit-transform: translate(-50%,-50%)
+			-ms-transform: translate(-50%,-50%)
+			transform: translate(-50%,-50%)
+			
+		
 		@media #{$mobile}
 			width: 120px
 			img
 				height: 105px
 
 	.content
+		width: 65%
 		background: #fff
 		padding: 15px 20px 20px 20px
 		height: 180px
+		float: left
+		position: relative
 
 		@media #{$mobile}
 			height: 105px
@@ -175,8 +184,18 @@
 
 			@media #{$mobile}
 				display: none
+	
+		.footer
+			position: absolute
+			width: 100%
+			bottom: 0
+			left: 0
+			padding: 20px 15px 10px 15px
+			background: none,linear-gradient(180deg,rgba(255,255,255,0) 0,#fff 50%)
+			overflow: hidden
 
-		
+		.share-buttons
+
 		.date
 			font-size: 0.8em
 			color: #7F7F7F
@@ -192,7 +211,6 @@
 			color: $color-darkBlue
 			font-size: 0.8em
 			float: right
-			padding-right: 15px
 			i
 				padding-left: 5px
 

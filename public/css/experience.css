@@ -25,9 +25,6 @@
     min-height: 100%; }
     .experience-item .img-container img {
       width: 100%; }
-    @media (max-width: 767px) {
-      .experience-item .img-container {
-        display: none; } }
   .experience-item .content {
     background: #fff;
     padding: 15px;
@@ -68,6 +65,9 @@
       color: #002855; }
       .experience-item .content .share i {
         padding-right: 3px; }
+      @media (max-width: 767px) {
+        .experience-item .content .share {
+          display: none; } }
 
 .experience-header {
   background: #002855;

@@ -3,6 +3,14 @@
 /* Portrait tablets and small desktops */
 /* Landscape phones and portrait tablets */
 /* Landscape phones and smaller */
+#nav-responsive .navbar-collapse {
+  background: #002855 !important; }
+  #nav-responsive .navbar-collapse li {
+    border-bottom: 1px solid #335377; }
+    #nav-responsive .navbar-collapse li a {
+      color: #fff !important;
+      font-size: 1.2em; }
+
 .navbar-app {
   background: #fff;
   border-radius: 0; }
@@ -67,5 +75,10 @@
 
 .navbar-collapse {
   background: #002855; }
+
+#filters-modal .modal-header {
+  border: none; }
+#filters-modal .modal-footer {
+  border: none; }
 
 /*# sourceMappingURL=menu.css.map */

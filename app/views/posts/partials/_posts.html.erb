@@ -1,21 +1,28 @@
 <script id="post-template" type="text/x-handlebars-template">
-<div class="img-container">
- {{#if gallery}}
-  <img src="{{ gallery.img_name.url }}" alt="{{ title }}" >
-  {{else}}
-   <img src="{{ img_name.url }}" alt="{{ title }}" >
- {{/if}}
-</div>
 
-<div class="content">
-	<h3><a href="posts/{{ slug }}">{{ title }}</a></h3>
-	  <p> {{shortenText2 excerpt }}</p>
-	  <div class="footer">
-    <span class="country"><i class="fa fa-globe"></i> {{ country }}</span>
-	  	<span class="date"><i class="fa fa-calendar-o"></i> {{dateFormat date format="D - M - YYYY"}}</span>
-	  	<a href="#" class="share" data-toggle="modal" data-target="#share-modal"><i class="fa fa-share-alt"></i> <%= t("share") %></a>
-	  </div>
-</div>
+  <div class="item-container">
+    <div class="thumb">
+   {{#if gallery}}
+    <img class="lazy" src="{{ gallery.img_name.url }}" alt="{{ title }}" >
+    {{else}}
+     <img class="lazy" src="{{ img_name.url }}" alt="{{ title }}" >
+   {{/if}}
+  </div>
+
+    <div class="content">
+      <h3><a href="/posts/{{ slug }}">{{ title }}</a></h3>
+      <p>{{shortenText2 excerpt }}</p>
+        <div class="footer">
+          <span class="country"><i class="fa fa-globe"></i> {{ country }}</span>
+          <span class="date"><i class="fa fa-calendar-o"></i> {{dateFormat date format="LL"}}</span>
+          <div class="share-buttons hidden">
+            <a href="#" class="share" data-toggle="modal" data-target="#share-modal"><i class="fa fa-share-alt"></i> <%= t("share") %></a>
+          </div>
+        </div>
+    </div>
+    
+  
+  </div>
 </script>
 
 

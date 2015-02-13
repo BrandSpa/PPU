@@ -21,6 +21,9 @@
     border-bottom: 1px solid #ccc;
     margin: 60px 350px;
     font-weight: bold; }
+    @media (max-width: 767px) {
+      #us h3 {
+        margin: 30px 0; } }
 
 #carousel-us-quotes {
   margin: 60px 0; }
