@@ -108,6 +108,7 @@
 	@media #{$mobile}
 		height: 105px
 		padding: 0
+		width: 100%
 
 
 	@media #{$tablet}, #{$desktop}, #{$desktop-lg}
@@ -131,8 +132,6 @@
 		position: relative
 		background: $color-darkBlue
 
-		@media #{$mobile}
-			display: none
 
 		img
 			position: absolute
@@ -143,10 +142,15 @@
 			-webkit-transform: translate(-50%,-50%)
 			-ms-transform: translate(-50%,-50%)
 			transform: translate(-50%,-50%)
+
+			@media #{$mobile}
+				transform: none
+				left: 0
+				top: 0
+				width: 100% !important
 			
 		
 		@media #{$mobile}
-			width: 120px
 			img
 				height: 105px
 
@@ -161,6 +165,7 @@
 		@media #{$mobile}
 			height: 105px
 			padding: 15px
+			width: 65%
 		
 		h3
 			font-size: 1em

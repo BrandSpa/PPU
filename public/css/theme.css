@@ -1073,7 +1073,8 @@ select .form-control {
   @media (max-width: 767px) {
     .post-item, .post-featured-item {
       height: 105px;
-      padding: 0; } }
+      padding: 0;
+      width: 100%; } }
   @media (min-width: 768px) and (max-width: 991px), (min-width: 992px) and (max-width: 1199px), (min-width: 1200px) {
     .post-item:first-child, .post-featured-item:first-child {
       padding-left: 0;
@@ -1091,9 +1092,6 @@ select .form-control {
     overflow: hidden;
     position: relative;
     background: #002855; }
-    @media (max-width: 767px) {
-      .post-item .thumb, .post-featured-item .thumb {
-        display: none; } }
     .post-item .thumb img, .post-featured-item .thumb img {
       position: absolute;
       left: 50%;
@@ -1103,11 +1101,15 @@ select .form-control {
       -webkit-transform: translate(-50%, -50%);
       -ms-transform: translate(-50%, -50%);
       transform: translate(-50%, -50%); }
-    @media (max-width: 767px) {
-      .post-item .thumb, .post-featured-item .thumb {
-        width: 120px; }
+      @media (max-width: 767px) {
         .post-item .thumb img, .post-featured-item .thumb img {
-          height: 105px; } }
+          transform: none;
+          left: 0;
+          top: 0;
+          width: 100% !important; } }
+    @media (max-width: 767px) {
+      .post-item .thumb img, .post-featured-item .thumb img {
+        height: 105px; } }
   .post-item .content, .post-featured-item .content {
     width: 65%;
     background: #fff;
@@ -1118,7 +1120,8 @@ select .form-control {
     @media (max-width: 767px) {
       .post-item .content, .post-featured-item .content {
         height: 105px;
-        padding: 15px; } }
+        padding: 15px;
+        width: 65%; } }
     .post-item .content h3, .post-featured-item .content h3 {
       font-size: 1em;
       padding-right: 7px;
