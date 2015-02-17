@@ -10,8 +10,14 @@
 <div class="content">
 	<h3><a href="/experiencias/{{ slug }}">{{ title }}</a></h3>
 	  <p> {{shortenText2 excerpt }}</p>
-    <span class="country"><i class="fa fa-globe"></i> {{country}}</span>
-	  <span class="date"><i class="fa fa-calendar-o"></i> {{getYear date format="YYYY"}}</span>
-	  <a href="#" class="share" data-toggle="modal" data-target="#share-modal"><i class="fa fa-share-alt"></i> <%= t("share") %></a>
+    <div class="footer">
+      <span class="country"><i class="fa fa-globe"></i> {{country}}</span>
+	   <span class="date"><i class="fa fa-calendar-o"></i> {{getYear date format="YYYY"}}</span>
+	   <a href="#" class="share" data-toggle="modal" data-target="#share-modal"><i class="fa fa-share-alt"></i> <%= t("share") %></a>
+    </div>
 </div>
 </script>
+
+
+  
+

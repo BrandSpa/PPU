@@ -125,37 +125,34 @@
 			padding-left: 7px
 
 	.thumb
-		width: 35%
+		width: 40%
 		height: 180px
 		float: left
 		overflow: hidden
 		position: relative
 		background: $color-darkBlue
+		overflow: hidden
+
+		@media #{$mobile}
+			width: 25%
+
+		@media #{$tablet}
 
 
 		img
+			display: block
 			position: absolute
-			left: 50%
-			top: 50%
-			height: 100%
-			width: auto
-			-webkit-transform: translate(-50%,-50%)
-			-ms-transform: translate(-50%,-50%)
-			transform: translate(-50%,-50%)
+			width: 400px
+			overflow: auto
+			margin: auto
+			right: 0
+			top: 0
+			bottom: 0
+			left: -100px
 
-			@media #{$mobile}
-				transform: none
-				left: 0
-				top: 0
-				width: 100% !important
-			
-		
-		@media #{$mobile}
-			img
-				height: 105px
 
 	.content
-		width: 65%
+		width: 60%
 		background: #fff
 		padding: 15px 20px 20px 20px
 		height: 180px
@@ -165,7 +162,7 @@
 		@media #{$mobile}
 			height: 105px
 			padding: 15px
-			width: 65%
+			width: 75%
 		
 		h3
 			font-size: 1em
