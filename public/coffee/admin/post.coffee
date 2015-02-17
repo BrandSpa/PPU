@@ -194,6 +194,7 @@ $ ->
       @listenTo(@model, 'change', @render)
       @listenTo(@model, 'error', @renderPostErrors, @)
       app.pubsub.bind('gallery:selected', @appendSelectedGallery, @)
+      app.pubsub.on('post:socialPublished', @redirectTo, @)
 
     render: ->
       template = app.compile(@template)

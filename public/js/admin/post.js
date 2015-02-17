@@ -353,7 +353,8 @@ $(function() {
     PostEdit.prototype.initialize = function() {
       this.listenTo(this.model, 'change', this.render);
       this.listenTo(this.model, 'error', this.renderPostErrors, this);
-      return app.pubsub.bind('gallery:selected', this.appendSelectedGallery, this);
+      app.pubsub.bind('gallery:selected', this.appendSelectedGallery, this);
+      return app.pubsub.on('post:socialPublished', this.redirectTo, this);
     };
 
     PostEdit.prototype.render = function() {
