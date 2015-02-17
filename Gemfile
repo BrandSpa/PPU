@@ -8,6 +8,8 @@ gem 'mysql2'
 
 gem 'dalli'
 
+gem 'fb_graph'
+
 gem 'devise'
 
 gem 'carrierwave'

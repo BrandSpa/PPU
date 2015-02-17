@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="/bower_components/summernote/dist/summernote-bs3.css">
   <link rel="stylesheet" href="/bower_components/nprogress/nprogress.css">
   <%= csrf_meta_tags %>
+
   <style>
     body{
       padding-top: 65px;
@@ -28,6 +29,23 @@
   </style>
 </head>
 <body id="ppu-admin">
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '594890600612824',
+      xfbml      : true,
+      version    : 'v2.2'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
  
 <div class="container">
 <nav class="navbar navbar-default navbar-admin navbar-fixed-top" role="navigation">
@@ -41,7 +59,6 @@
         <span class="icon-bar"></span>
       </button>
       <a class="navbar-brand" href="/dashboard">PPU Admin <img src="/img/favicon.png" alt=""></a>
-
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -53,6 +70,7 @@
         <li><a href="/admin/posts/new">Crear Noticia</a></li>
         <li><a href="/admin/experiences">Experencias</a></li>
         <li><a href="/admin/experiences/new">Crear Experiencia</a></li>
+
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
@@ -60,7 +78,6 @@
 
   <%= yield %>
 </div>
-
   <%= render "articles/form" %>
   <%= render "awards/form" %>
   <%= render "educations/form" %>
@@ -72,9 +89,8 @@
   <%= render "academics/form" %>
   
   <%= render "partials/share_modal" %>
-<script type="text/javascript">var switchTo5x=true;</script>
-<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
-<script type="text/javascript">stLight.options({publisher: "0ddbf8d7-ae80-459a-94e4-167fd7e54f82", doNotHash: true, doNotCopy: true, hashAddressBar: false});</script>
+
+
   <script src="/bower_components/jquery/dist/jquery.min.js"></script>
    <script src="/bower_components/jquery-ui/jquery-ui.js"></script>
   <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -92,8 +108,8 @@
   <script src="/bower_components/moment/min/moment.min.js"></script>
   <script src="/bower_components/nprogress/nprogress.js"></script>
  
-    
   <script src="/js/main.js"></script>
+  <script src="/js/fb.js"></script>
   <script src="/js/handlebars_helpers.js"></script>
   <script src="/js/bb_helpers.js"></script>
   <script src="/js/mixins.js"></script>
@@ -120,7 +136,6 @@
     app.hostname = window.location.hostname;
     app.pathname = window.location.pathname;
   </script>
-
 
 </body>
 </html>

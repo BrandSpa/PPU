@@ -251,7 +251,8 @@ $(function() {
     PostCreate.prototype.initialize = function() {
       this.listenTo(this.model, 'error', this.renderPostErrors, this);
       this.listenTo(this.model, 'sync', this.stored);
-      return app.pubsub.bind('gallery:selected', this.appendSelectedGallery, this);
+      app.pubsub.bind('gallery:selected', this.appendSelectedGallery, this);
+      return app.pubsub.on('post:socialPublished', this.redirectTo, this);
     };
 
     PostCreate.prototype.render = function() {
@@ -274,8 +275,18 @@ $(function() {
       return this.model.save(data, $.extend({}, options));
     };
 
-    PostCreate.prototype.stored = function() {
-      return window.location = "/dashboard";
+    PostCreate.prototype.stored = function(model) {
+      var published, url;
+      if (model.get('social_published')) {
+        url = setSubdomain(model.get('lang')) + ("posts/" + (model.get('slug')));
+        return published = fb_check_and_publish(model.get('title'), url);
+      } else {
+        return this.redirectTo();
+      }
+    };
+
+    PostCreate.prototype.redirectTo = function() {
+      return window.location = '/admin/posts';
     };
 
     PostCreate.prototype.getCategories = function() {
@@ -342,7 +353,6 @@ $(function() {
     PostEdit.prototype.initialize = function() {
       this.listenTo(this.model, 'change', this.render);
       this.listenTo(this.model, 'error', this.renderPostErrors, this);
-      this.listenTo(this.model, 'sync', this.updated, this);
       return app.pubsub.bind('gallery:selected', this.appendSelectedGallery, this);
     };
 
@@ -357,18 +367,31 @@ $(function() {
     };
 
     PostEdit.prototype.update = function(e) {
-      var $form, content, data, options;
+      var $form, content, data, options, that;
       e.preventDefault();
+      that = this;
       $form = this.$el.find('form');
       content = $(this.el).find('.summernote').code();
       data = new FormData($form[0]);
       data.append("fields[content]", content);
       options = ppu.ajaxOptions("PUT", data);
       return this.model.save(data, $.extend({}, options)).done(function(model) {
-        if (model) {
-          return window.location = "/dashboard";
-        }
+        return that.updated(model);
       });
+    };
+
+    PostEdit.prototype.updated = function(model) {
+      var published, url;
+      if (model.social_published) {
+        url = setSubdomain(model.lang) + ("posts/" + model.slug);
+        return published = fb_check_and_publish(model.title, url);
+      } else {
+        return this.redirectTo();
+      }
+    };
+
+    PostEdit.prototype.redirectTo = function() {
+      return window.location = '/admin/posts';
     };
 
     PostEdit.prototype.getCategories = function() {

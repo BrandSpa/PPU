@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150204014538) do
+ActiveRecord::Schema.define(version: 20150216231413) do
 
   create_table "academics", force: true do |t|
     t.integer  "lawyer_id"
@@ -243,20 +243,21 @@ ActiveRecord::Schema.define(version: 20150204014538) do
   create_table "posts", force: true do |t|
     t.integer  "gallery_id"
     t.integer  "translation_id"
-    t.string   "lang",                       default: "es",       null: false
-    t.string   "country",                    default: "Colombia", null: false
+    t.string   "lang",                         default: "es",       null: false
+    t.string   "country",                      default: "Colombia", null: false
     t.date     "date"
     t.string   "title"
     t.string   "author"
     t.text     "content"
     t.text     "excerpt"
-    t.string   "img_name",       limit: 250
+    t.string   "img_name",         limit: 250
     t.text     "slug"
     t.text     "keywords"
     t.integer  "featured"
-    t.boolean  "published",                  default: false
+    t.boolean  "published",                    default: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "social_published"
   end
 
   create_table "posts_categories", id: false, force: true do |t|

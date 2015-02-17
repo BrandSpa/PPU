@@ -33,6 +33,7 @@ class Api::PostsController < ApplicationController
     end
   end
 
+
   def update
     id = params[:id]
     duplicate = params[:duplicate]
@@ -73,7 +74,7 @@ class Api::PostsController < ApplicationController
     end
 
     def post_params
-      params.require(:fields).permit(:lang, :country, :date, :author, :title, :content, :content_plain, :img_name, :gallery_id, :published, :featured, :lawyer_ids => [], :category_ids => [])
+      params.require(:fields).permit(:lang, :country, :date, :author, :title, :content, :content_plain, :img_name, :gallery_id, :published, :social_published, :featured, :lawyer_ids => [], :category_ids => [])
     end
     
 end

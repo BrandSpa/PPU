@@ -58,6 +58,10 @@ Rails.application.routes.draw do
     end
   end
 
+  get "get-token", to: 'sessions#get_token_fb'
+  get "save-token", to: 'sessions#save_user_token'
+  get "see-token", to: 'sessions#see_token'
+  
   get "dashboard", to: 'admin/lawyers#dashboard'
   get "admin/experiences", to: 'admin/experiences#dashboard'
   get "admin/posts", to: 'admin/posts#dashboard'

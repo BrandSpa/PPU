@@ -126,6 +126,8 @@ $ ->
       @listenTo(@model, 'error', @renderPostErrors, @)
       @listenTo(@model, 'sync', @stored)
       app.pubsub.bind('gallery:selected', @appendSelectedGallery, @)
+      app.pubsub.on('post:socialPublished', @redirectTo, @)
+
 
     render: ->
       source = @template.html()
@@ -143,8 +145,17 @@ $ ->
       options = ppu.ajaxOptions("POST", data)
       @model.save data, $.extend({}, options)
     
-    stored: ->
-      window.location = "/dashboard"
+    stored: (model) ->
+      
+      if model.get('social_published')
+        url = setSubdomain(model.get('lang')) + "posts/#{model.get('slug')}"
+        published = fb_check_and_publish(model.get('title'), url)
+      else
+        @redirectTo()
+
+
+    redirectTo: ->
+      window.location = '/admin/posts'
 
     getCategories: ->
       ppu.categories = new ppu.Categories
@@ -182,7 +193,6 @@ $ ->
     initialize: ->
       @listenTo(@model, 'change', @render)
       @listenTo(@model, 'error', @renderPostErrors, @)
-      @listenTo(@model, 'sync', @updated, @)
       app.pubsub.bind('gallery:selected', @appendSelectedGallery, @)
 
     render: ->
@@ -195,6 +205,7 @@ $ ->
 
     update: (e) ->
       e.preventDefault()
+      that = @
       $form = @$el.find('form')
       content = $(@el).find('.summernote').code()
       data = new FormData($form[0])
@@ -202,8 +213,18 @@ $ ->
       options = ppu.ajaxOptions("PUT", data)
       @model.save data, $.extend({}, options)
         .done (model) ->
-          if model
-            window.location = "/dashboard"
+          that.updated(model)
+
+    updated: (model) ->
+      if model.social_published
+        url = setSubdomain(model.lang) + "posts/#{model.slug}"
+        published = fb_check_and_publish(model.title, url)
+      else
+        @redirectTo()
+
+
+    redirectTo: ->
+      window.location = '/admin/posts'
           
     getCategories: ->
       ppu.categories = new ppu.Categories
