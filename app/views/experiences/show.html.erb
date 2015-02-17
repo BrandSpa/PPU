@@ -1,4 +1,17 @@
+<% content_for :head do %>
+ <title>Philippi Prietocarrizosa &Uría - <%= @post.title %></title>
+  <meta name="description" content="<%= @post.excerpt.truncate(170) %>">
+  <meta property="og:title" content="<%= @post.title %>" /> 
+  <meta property="og:description" content="<%= @post.excerpt.truncate(170) %>" /> 
+  <%if @post.gallery.img_name.url %>
+  <meta property="og:image" content="<%= @post.gallery.img_name.url %>" />
+  <% else %>
+  <meta property="og:image" content="<%= @post.img_name.url %>" />
+  <% end %>
+<% end %>
+
 <div id="experience">
 	
 </div>
+
 <%= render "/experiences/partials/experience" %>
