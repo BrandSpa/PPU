@@ -998,6 +998,15 @@ $(function() {
 
     PostView.prototype.className = "col-md-6 col-sm-6 col-xs-12 post-item";
 
+    PostView.prototype.events = {
+      "click": "open"
+    };
+
+    PostView.prototype.open = function(e) {
+      e.preventDefault();
+      return window.location = "/posts/" + (this.model.get('slug'));
+    };
+
     PostView.prototype.render = function() {
       var template;
       template = app.compile(this.template);

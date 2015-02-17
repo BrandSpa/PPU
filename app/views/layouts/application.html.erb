@@ -30,6 +30,23 @@
   <%= csrf_meta_tags %>
 </head>
 <body id="ppu-app" data-paginate="true">
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '594890600612824',
+      xfbml      : true,
+      version    : 'v2.2'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
   <div class="container app-container">
 
  <%= render("layouts/partials/menu_responsive") %>
@@ -201,6 +218,10 @@
 
 <script src="/js/dist/app.js"></script>
 
+
+<script src="/js/twt.js"></script>
+<script src="/js/fb.js"></script>
+
 <!-- <script src="/js/main.js"></script>
 <script src="/js/handlebars_helpers.js"></script>
 <script src="/js/bb_helpers.js"></script>
@@ -236,6 +257,58 @@
 
 <!-- Go to www.addthis.com/dashboard to customize your tools -->
 <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-54a5ce286920b34d" async="async"></script>
+
+<script>
+  (function() {
+  if (window.__twitterIntentHandler) return;
+  var intentRegex = /twitter\.com(\:\d{2,4})?\/intent\/(\w+)/,
+      windowOptions = 'scrollbars=yes,resizable=yes,toolbar=no,location=yes',
+      width = 550,
+      height = 420,
+      winHeight = screen.height,
+      winWidth = screen.width;
+ 
+  function handleIntent(e) {
+    e = e || window.event;
+    var target = e.target || e.srcElement,
+        m, left, top;
+ 
+    while (target && target.nodeName.toLowerCase() !== 'a') {
+      target = target.parentNode;
+    }
+ 
+    if (target && target.nodeName.toLowerCase() === 'a' && target.href) {
+      m = target.href.match(intentRegex);
+      if (m) {
+        left = Math.round((winWidth / 2) - (width / 2));
+        top = 0;
+ 
+        if (winHeight > height) {
+          top = Math.round((winHeight / 2) - (height / 2));
+        }
+ 
+        window.open(target.href, 'intent', windowOptions + ',width=' + width +
+                                           ',height=' + height + ',left=' + left + ',top=' + top);
+        e.returnValue = false;
+        e.preventDefault && e.preventDefault();
+      }
+    }
+  }
+ 
+  if (document.addEventListener) {
+    document.addEventListener('click', handleIntent, false);
+  } else if (document.attachEvent) {
+    document.attachEvent('onclick', handleIntent);
+  }
+  window.__twitterIntentHandler = true;
+}());
+</script>
+
+<script type="text/javascript" src="//platform.linkedin.com/in.js">
+    api_key:   '78y8c3s0z6diid',
+    lang:      'es_ES'
+</script>
+
 
 </body>
 </html>

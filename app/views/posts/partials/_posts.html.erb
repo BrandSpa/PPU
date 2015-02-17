@@ -9,18 +9,34 @@
     </div>
 
     <div class="content">
+
+      <div class="share-hover">
+        <a href="/posts/{{slug}}"><h3>Ver Noticia +</h3></a>
+        <h4>Compartir  <i class="fa fa-share-alt"></i></h4>
+
+        <a class="share" href="https://twitter.com/intent/tweet?text={{ title }}&url=http://ppulegal.com/posts/{{ slug }}"><i class="fa fa-twitter-square"></i></a>
+
+        <a class="share" href="http://www.linkedin.com/shareArticle?mini=true&url=http://ppulegal.com/posts/{{ slug }}" onclick="javascript:window.open(this.href,
+          '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" ><i class="fa fa-linkedin-square"></i></a>
+
+    <a class="share" href="https://plus.google.com/share?url=http://ppulegal.com/posts/{{ slug }}" onclick="javascript:window.open(this.href,
+  '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
+    <i class="fa fa-google-plus-square"></i>
+  </a>
+
+<a class="share" href="#" onclick="javascript:openShare('http://ppulegal.com/posts/{{ slug }}')"><i class="fa fa-facebook-square"></i></a>
+</div>
+
       <h3><a href="/posts/{{ slug }}">{{ title }}</a></h3>
       <p>{{shortenText2 excerpt }}</p>
         <div class="footer">
           <span class="country"><i class="fa fa-globe"></i> {{ country }}</span>
           <span class="date"><i class="fa fa-calendar-o"></i> {{dateFormat date format="DD - MM -YYYY"}}</span>
-          <div class="share-buttons hidden">
-            <a href="#" class="share" data-toggle="modal" data-target="#share-modal"><i class="fa fa-share-alt"></i> <%= t("share") %></a>
-          </div>
         </div>
     </div>
   </div>
 </script>
+
 
 
 <script id="post-main-featured-template" type="text/x-handlebars-template">
@@ -33,17 +49,31 @@
 </div>
 
   <div class="content">
+       <div class="share-hover">
+        <a href="/posts/{{slug}}"><h3>Ver Noticia +</h3></a>
+        <h4>Compartir  <i class="fa fa-share-alt"></i></h4>
+
+        <a class="share" href="https://twitter.com/intent/tweet?text={{ title }}&url=http://ppulegal.com/posts/{{ slug }}"><i class="fa fa-twitter-square"></i></a>
+
+        <a class="share" href="http://www.linkedin.com/shareArticle?mini=true&url=http://ppulegal.com/posts/{{ slug }}" onclick="javascript:window.open(this.href,
+          '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" ><i class="fa fa-linkedin-square"></i></a>
+
+    <a class="share" href="https://plus.google.com/share?url=http://ppulegal.com/posts/{{ slug }}" onclick="javascript:window.open(this.href,
+  '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
+    <i class="fa fa-google-plus-square"></i>
+  </a>
+
+<a class="share" href="#" onclick="javascript:openShare('http://ppulegal.com/posts/{{ slug }}')"><i class="fa fa-facebook-square"></i></a>
+</div>
 	  <h3><a href="posts/{{ slug }}">{{ title }}</a></h3>
 	  <p> {{shortenText excerpt }}</p>
 	  <div class="footer">
     <span class="country"><i class="fa fa-globe"></i> {{ country }}</span>
 	  <span class="date"><i class="fa fa-calendar-o"></i> {{dateFormat date format="D - M - YYYY"}}</span>
-	  <a href="#" class="share" data-toggle="modal" data-target="#share-modal"><i class="fa fa-share-alt"></i> <%= t("share") %></a>
 	  </div>
   </div>
 </script>
 
 
 	
-
 

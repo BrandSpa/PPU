@@ -44,3 +44,19 @@ function fb_publish(message, link){
     };
 
   }
+
+function  openShare(link){
+  FB.ui(
+  {
+    method: 'share',
+    href: link,
+  },
+  function(response) {
+    if (response && !response.error_code) {
+      console.log('Posting completed.');
+    } else {
+      console.log('Error while posting.');
+    }
+  }
+);
+}
