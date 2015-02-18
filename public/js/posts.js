@@ -40,11 +40,10 @@ $(function() {
     PostView.prototype.className = "col-md-6 col-sm-6 col-xs-12 post-item";
 
     PostView.prototype.events = {
-      "click .post-item": "open"
+      "click .share-hover": "open"
     };
 
-    PostView.prototype.open = function(e) {
-      e.preventDefault();
+    PostView.prototype.open = function() {
       return window.location = "/posts/" + (this.model.get('slug'));
     };
 

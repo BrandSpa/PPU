@@ -21,3 +21,10 @@ Handlebars.registerHelper 'getYear', (context, block) ->
     moment(context).format(f)
   else
     context
+
+Handlebars.registerHelper 'getLangDomain', (url, block) ->
+  if app.lang == 'en'
+    return "en.ppulegal.com/#{url}#{block}"
+  else
+    return "http://ppulegal.com/#{url}#{block}"
+  

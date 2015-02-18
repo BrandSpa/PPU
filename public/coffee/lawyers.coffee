@@ -33,7 +33,6 @@ $ ->
       filters = _.extend({lang: app.lang}, filters)
       @collection.fetch reset: true, data: filters
 
-
     order_by: ->
       if app.lang == "en"
         order_by_english: true
@@ -131,8 +130,6 @@ $ ->
   class ppu.LawyerDetailView extends Backbone.View
     el: $ '#lawyer'
     template: $ '#lawyer-template'
-    events:
-      "click .share": "openShare"
     
     initialize: ->
       @listenTo(@model, 'change', @render)

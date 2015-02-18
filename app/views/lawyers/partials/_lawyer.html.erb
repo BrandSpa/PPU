@@ -21,7 +21,16 @@
 
       {{/if}}
       <div class="share-container">
-        <a href="#" class="share"> <%= t("share") %> <i class="fa fa-share-alt"></i></a>
+        <a class="share" href="https://twitter.com/intent/tweet?text={{ position }} {{ name }} {{ lastname}}&url={{getLangDomain "abogados/" slug}}"><i class="fa fa-twitter-square"></i></a>
+
+        <a class="share" href="http://www.linkedin.com/shareArticle?mini=true&url={{getLangDomain "abogados/" slug}}" onclick="javascript:window.open(this.href,
+          '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" ><i class="fa fa-linkedin-square"></i></a>
+
+        <a class="share" href="https://plus.google.com/share?url={{getLangDomain "abogados/" slug}}" onclick="javascript:window.open(this.href,
+  '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
+    <i class="fa fa-google-plus-square"></i>
+  </a>
+
         <a href="/abogados/{{ id }}/vcard" class="btn btn-primary btn-vcard" target="_new"><%= t('Download')%> </br>VCard</a>
       </div>
       

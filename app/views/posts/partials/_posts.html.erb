@@ -1,4 +1,5 @@
 <script id="post-template" type="text/x-handlebars-template">
+<a href="/posts/{{ slug }}">
   <div class="item-container">
     <div class="thumb">
    {{#if gallery}}
@@ -6,7 +7,7 @@
     {{else}}
      <img class="lazy" src="{{ img_name.url }}" alt="{{ title }}" >
    {{/if}}
-    </div>
+  </div>
 
     <div class="content">
 
@@ -34,9 +35,8 @@
         </div>
     </div>
   </div>
+  </a>
 </script>
-
-
 
 <script id="post-main-featured-template" type="text/x-handlebars-template">
 <div class="img-container">

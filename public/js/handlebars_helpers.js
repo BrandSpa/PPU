@@ -34,3 +34,11 @@ Handlebars.registerHelper('getYear', function(context, block) {
     return context;
   }
 });
+
+Handlebars.registerHelper('getLangDomain', function(url, block) {
+  if (app.lang === 'en') {
+    return "en.ppulegal.com/" + url + block;
+  } else {
+    return "http://ppulegal.com/" + url + block;
+  }
+});

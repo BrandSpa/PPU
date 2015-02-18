@@ -292,10 +292,6 @@ $(function() {
 
     LawyerDetailView.prototype.template = $('#lawyer-template');
 
-    LawyerDetailView.prototype.events = {
-      "click .share": "openShare"
-    };
-
     LawyerDetailView.prototype.initialize = function() {
       this.listenTo(this.model, 'change', this.render);
       this.getTitle();

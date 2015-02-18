@@ -169,10 +169,10 @@
     #lawyer .lawyer-header .share-container {
       float: right;
       width: 150px;
-      padding: 60px 0 0 0; }
+      padding: 40px 15px 0 0; }
       #lawyer .lawyer-header .share-container a {
         float: right;
-        margin-right: 30px;
+        margin-right: 15px;
         margin-bottom: 15px; }
         @media (max-width: 767px) {
           #lawyer .lawyer-header .share-container a {
@@ -197,13 +197,12 @@
       font-size: 0.9em;
       font-weight: bold;
       width: 120px; }
-    #lawyer .lawyer-header .share {
+    #lawyer .lawyer-header a.share {
       color: #fff;
-      float: right;
+      font-size: 28px;
       display: block;
-      font-size: 1.1em; }
-      #lawyer .lawyer-header .share i {
-        padding-left: 5px; }
+      float: right;
+      margin-right: 15px; }
   #lawyer p {
     margin: 0; }
   #lawyer h1 {

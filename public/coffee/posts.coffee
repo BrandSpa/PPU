@@ -10,10 +10,9 @@ $ ->
     template: $ "#post-template"
     className: "col-md-6 col-sm-6 col-xs-12 post-item"
     events: 
-      "click .post-item": "open"
+      "click .share-hover": "open"
 
-    open: (e) ->
-      e.preventDefault()
+    open: ->
       window.location = "/posts/#{@model.get('slug')}"
 
     render: ->

@@ -3,7 +3,8 @@ class LawyersController < ApplicationController
   end
 
   def show
-
+    slug = params[:id]
+    @lawyer = Lawyer.find_by(slug: slug)
   end
 
   def vcard
