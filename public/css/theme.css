@@ -293,7 +293,7 @@ select .form-control {
     float: right;
     height: 50px;
     border-left: 1px solid #fff;
-    padding: 0; }
+    padding: 0 15px 0 0; }
     #top-bar .category .form-control {
       padding-left: 15px;
       padding-right: 15px; }

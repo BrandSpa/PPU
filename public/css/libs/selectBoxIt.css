@@ -237,8 +237,7 @@ ul[aria-hidden=false]{
 .selectboxit-container .selectboxit,
 .selectboxit-container {
     width: 100%;
-    padding-right: 15px;
-}
+  }
 
 .selectboxit-container .selectboxit-options {
   width: 355px;
