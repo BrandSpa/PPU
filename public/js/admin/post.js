@@ -42,7 +42,8 @@ $(function() {
     PostView.prototype.events = {
       "click .publish": "publish",
       "click .unpublish": "unpublish",
-      "click .change-featured": "changeFeatured"
+      "click .change-featured": "changeFeatured",
+      "click .publish-on-social-network": "publishFb"
     };
 
     PostView.prototype.initialize = function() {
@@ -64,6 +65,13 @@ $(function() {
           published: true
         }
       });
+    };
+
+    PostView.prototype.publishFb = function(e) {
+      var published, url;
+      e.preventDefault();
+      url = setSubdomain(this.model.get('lang')) + ("posts/" + (this.model.get('slug')));
+      return published = fb_check_and_publish(this.model.get('title'), url);
     };
 
     PostView.prototype.unpublish = function(e) {
@@ -125,7 +133,7 @@ $(function() {
     PostsView.prototype.changeFeatured = function(val) {
       var coll;
       coll = new ppu.Posts;
-      this.collection.fetch({
+      return this.collection.fetch({
         add: false,
         data: {
           is_featured: val
@@ -133,7 +141,6 @@ $(function() {
       }).done(function(models) {
         return coll.add(models);
       });
-      return console.log(coll);
     };
 
     PostsView.prototype.addOne = function(model) {
@@ -276,13 +283,17 @@ $(function() {
     };
 
     PostCreate.prototype.stored = function(model) {
-      var published, url;
       if (model.get('social_published')) {
-        url = setSubdomain(model.get('lang')) + ("posts/" + (model.get('slug')));
-        return published = fb_check_and_publish(model.get('title'), url);
+        return this.publishFb(model);
       } else {
         return this.redirectTo();
       }
+    };
+
+    PostCreate.prototype.publishFb = function(model) {
+      var published, url;
+      url = setSubdomain(model.get('lang')) + ("posts/" + (model.get('slug')));
+      return published = fb_check_and_publish(model.get('title'), url);
     };
 
     PostCreate.prototype.redirectTo = function() {

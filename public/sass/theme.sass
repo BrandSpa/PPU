@@ -66,11 +66,12 @@ a
 .navbar-app
 
 	.navbar-toggle
-		background: transparent
+		background: #fff
 
-	.navbar-toggle:hover, .navbar-default .navbar-toggle:focus
-		background: transparent
-
+	.navbar-toggle, .navbar-toggle:hover, .navbar-toggle:focus
+		background: transparent !important
+	.open>a:focus 
+		background: transparent !important
 
 	.navbar-left,.navbar-right 
 		float: none !important
@@ -324,6 +325,12 @@ select
 		float: right
 		height: 50px
 		border-left: 1px solid #fff
+		padding: 0
+
+		.form-control
+			padding-left: 15px
+			padding-right: 15px
+
 		@media #{$mobile}
 			padding: 0
 			border: none

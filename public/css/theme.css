@@ -66,9 +66,11 @@ a:hover {
       right: 0; } }
 
 .navbar-app .navbar-toggle {
-  background: transparent; }
-.navbar-app .navbar-toggle:hover, .navbar-app .navbar-default .navbar-toggle:focus {
-  background: transparent; }
+  background: #fff; }
+.navbar-app .navbar-toggle, .navbar-app .navbar-toggle:hover, .navbar-app .navbar-toggle:focus {
+  background: transparent !important; }
+.navbar-app .open > a:focus {
+  background: transparent !important; }
 .navbar-app .navbar-left, .navbar-app .navbar-right {
   float: none !important; }
 .navbar-app .navbar-toggle {
@@ -290,7 +292,11 @@ select .form-control {
   #top-bar .category {
     float: right;
     height: 50px;
-    border-left: 1px solid #fff; }
+    border-left: 1px solid #fff;
+    padding: 0; }
+    #top-bar .category .form-control {
+      padding-left: 15px;
+      padding-right: 15px; }
     @media (max-width: 767px) {
       #top-bar .category {
         padding: 0;

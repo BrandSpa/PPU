@@ -999,7 +999,7 @@ $(function() {
     PostView.prototype.className = "col-md-6 col-sm-6 col-xs-12 post-item";
 
     PostView.prototype.events = {
-      "click": "open"
+      "click .post-item": "open"
     };
 
     PostView.prototype.open = function(e) {

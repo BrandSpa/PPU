@@ -13,6 +13,7 @@ $ ->
       "click .publish": "publish"
       "click .unpublish": "unpublish"
       "click .change-featured": "changeFeatured"
+      "click .publish-on-social-network": "publishFb"
 
     initialize: ->
       @listenTo(@model, "change", @render)
@@ -26,6 +27,11 @@ $ ->
     publish: (e) ->
       e.preventDefault()
       @model.save fields: published: true
+
+    publishFb: (e)-> 
+      e.preventDefault()
+      url = setSubdomain(@model.get('lang')) + "posts/#{@model.get('slug')}"
+      published = fb_check_and_publish(@model.get('title'), url)
 
     unpublish: (e) ->
       e.preventDefault()
@@ -59,7 +65,6 @@ $ ->
       @collection.fetch add: false, data: is_featured: val
         .done (models) ->
           coll.add models
-      console.log coll
 
     addOne: (model) ->
       view = new ppu.admin.PostView model: model
@@ -146,13 +151,14 @@ $ ->
       @model.save data, $.extend({}, options)
     
     stored: (model) ->
-      
       if model.get('social_published')
-        url = setSubdomain(model.get('lang')) + "posts/#{model.get('slug')}"
-        published = fb_check_and_publish(model.get('title'), url)
+        @publishFb(model)
       else
         @redirectTo()
 
+    publishFb: (model) ->
+      url = setSubdomain(model.get('lang')) + "posts/#{model.get('slug')}"
+      published = fb_check_and_publish(model.get('title'), url)
 
     redirectTo: ->
       window.location = '/admin/posts'
