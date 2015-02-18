@@ -111,10 +111,24 @@ $(function() {
       return this.$el.append(ppu.postView.render().el);
     };
 
+    PostsView.prototype.renderMain = function(model) {
+      ppu.postMainFeaturedView = new ppu.PostMainFeaturedView({
+        model: model
+      });
+      return this.$el.prepend(ppu.postMainFeaturedView.render().el);
+    };
+
     PostsView.prototype.render = function() {
+      var i;
       this.$el.empty();
+      i = 0;
       return this.collection.each(function(model) {
-        return this.renderOne(model);
+        if (i === 0) {
+          this.renderMain(model);
+        } else {
+          this.renderOne(model);
+        }
+        return i++;
       }, this);
     };
 

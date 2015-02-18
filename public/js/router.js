@@ -26,7 +26,6 @@ $(function() {
 
     Workspace.prototype.initialize = function() {
       new ppu.AppView;
-      new ppu.Seo;
       window.urlTranslation = "";
       ppu.contact = new ppu.Contact;
       return ppu.FooterContactCreate = new ppu.FooterContactCreate({
@@ -63,16 +62,6 @@ $(function() {
       });
       ppu.postsView = new ppu.PostsView({
         collection: ppu.posts
-      });
-      ppu.postsFeatured = new ppu.Posts;
-      ppu.postsFeaturedView = new ppu.PostsFeaturedView({
-        collection: ppu.postsFeatured
-      });
-      ppu.postsFeatured.fetch({
-        reset: true,
-        data: {
-          featured: true
-        }
       });
       ppu.postsFilters = new ppu.PostsFilters;
       ppu.postsFilters.render();

@@ -1124,10 +1124,16 @@ select .form-control {
     .post-item:first-child, .post-featured-item:first-child {
       padding-left: 0;
       padding-right: 7px; }
-    .post-item:first-child, .post-item:nth-child(2n+3), .post-featured-item:first-child, .post-featured-item:nth-child(2n+3) {
+    .post-item:first-child, .post-featured-item:first-child {
       padding-left: 0;
       padding-right: 7px; }
+    .post-item:nth-child(2n+3), .post-featured-item:nth-child(2n+3) {
+      padding-right: 0;
+      padding-left: 7px; }
     .post-item:nth-child(2n+2), .post-featured-item:nth-child(2n+2) {
+      padding-left: 0;
+      padding-right: 7px; }
+    .post-item:nth-child(2), .post-featured-item:nth-child(2) {
       padding-right: 0;
       padding-left: 7px; } }
   .post-item .thumb, .post-featured-item .thumb {

@@ -46,10 +46,19 @@ $ ->
       ppu.postView = new ppu.PostView model: model
       @$el.append ppu.postView.render().el
 
+    renderMain: (model) ->
+      ppu.postMainFeaturedView = new ppu.PostMainFeaturedView model: model
+      @$el.prepend ppu.postMainFeaturedView.render().el
+
     render: ->
       @$el.empty()
+      i = 0
       @collection.each (model) ->
-        @renderOne(model)
+        if i == 0
+          @renderMain(model)
+        else
+          @renderOne(model)
+        i++
       , @
 
   class ppu.PostMainFeaturedView extends Backbone.View
@@ -140,7 +149,6 @@ $ ->
       val = $(e.currentTarget).find(".query").val()
       @filterBy(keyword: val)
       
-
 
   class ppu.PostDetailView extends Backbone.View
     el: $ "#post-detail"
