@@ -298,10 +298,6 @@
     display: block;
     float: right;
     margin-right: 15px; }
-  .post-header .date {
-    font-size: 0.8em;
-    color: #7F7F7F;
-    font-style: italic; }
 
 .content {
   background: #fff;
@@ -326,5 +322,9 @@
 @media (max-width: 767px) {
   #post-detail .content {
     padding: 15px !important; } }
+#post-detail .date {
+  font-size: 0.8em;
+  color: #7F7F7F;
+  font-style: italic; }
 
 /*# sourceMappingURL=post.css.map */

@@ -1278,10 +1278,6 @@ select .form-control {
     display: block;
     float: right;
     margin-right: 15px; }
-  .post-header .date {
-    font-size: 0.8em;
-    color: #7F7F7F;
-    font-style: italic; }
 
 .content {
   background: #fff;
@@ -1306,6 +1302,10 @@ select .form-control {
 @media (max-width: 767px) {
   #post-detail .content {
     padding: 15px !important; } }
+#post-detail .date {
+  font-size: 0.8em;
+  color: #7F7F7F;
+  font-style: italic; }
 
 /* Large desktops and laptops */
 /* Portrait tablets and medium desktops */
