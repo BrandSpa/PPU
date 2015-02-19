@@ -89,7 +89,7 @@ $ ->
 
     byPosition: (e) ->
       val = $(e.currentTarget).find('select').val()
-      data = _.extend(@filtersAplied,paginate: 0, position: val)
+      data = _.extend(@filtersAplied, paginate: 0, position: val)
       ppu.lawyers.fetch reset: true, data: data
       
     byCountry: (e) ->

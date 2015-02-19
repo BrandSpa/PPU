@@ -43,6 +43,7 @@ es:
   send: "Enviar"
   contact: "Contacto"
   share: "Compartir"
+  read_new: "Leer Noticia"
   us: "Nosotros"
   work_with: "Trabaje con nosotros"
   form_footer:
