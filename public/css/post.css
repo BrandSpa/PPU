@@ -298,6 +298,10 @@
     display: block;
     float: right;
     margin-right: 15px; }
+  .post-header .date {
+    font-size: 0.8em;
+    color: #7F7F7F;
+    font-style: italic; }
 
 .content {
   background: #fff;
