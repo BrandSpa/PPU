@@ -9,6 +9,7 @@ class Experience < ActiveRecord::Base
 
   scope :lang, -> (lang){ where(lang: lang) }
   scope :slug, -> (slug){ where(slug: slug) }
+  scope :paginate, -> (paginate) { limit(20).offset(paginate) }
   scope :country, -> (country){ where("experiences.country = ?", country) }
   scope :keyword, -> (keyword){ where("experiences.keywords LIKE ?", "%#{keyword}%") }
   scope :category, -> (category){ includes(:categories).where(categories: {name: category}) }

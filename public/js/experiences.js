@@ -60,6 +60,7 @@ $(function() {
 
     ExperiencesView.prototype.initialize = function() {
       this.listenTo(this.collection, 'reset', this.render);
+      this.listenTo(this.collection, 'add', this.renderOne);
       app.pubsub.bind("experiences:filter", this.filterCollection, this);
       return app.pubsub.on("apply:filters", this.filterCollection, this);
     };
@@ -112,9 +113,11 @@ $(function() {
     };
 
     ExperiencesFilters.prototype.initialize = function() {
-      return this.filtersAplied = {
+      this.filtersAplied = {
         lang: app.lang
       };
+      app.pubsub.on("general:scroll", this.paginate, this);
+      return this.offset = 20;
     };
 
     ExperiencesFilters.prototype.render = function() {
@@ -124,7 +127,22 @@ $(function() {
       return ppu.appendSelect(this.el);
     };
 
+    ExperiencesFilters.prototype.paginate = function() {
+      var data;
+      data = _.extend(this.filtersAplied, {
+        paginate: this.offset
+      });
+      ppu.experiences.fetch({
+        data: data
+      });
+      return this.offset = this.offset + 20;
+    };
+
     ExperiencesFilters.prototype.filterBy = function(data) {
+      this.offset = 0;
+      data = _.extend({
+        paginate: 0
+      }, data);
       data = _.extend(this.filtersAplied, data);
       return app.pubsub.trigger("experiences:filter", data);
     };

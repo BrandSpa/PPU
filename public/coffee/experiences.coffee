@@ -20,6 +20,7 @@ $ ->
 
   	initialize: ->
       @listenTo(@collection, 'reset', @render)
+      @listenTo(@collection, 'add', @renderOne)
       app.pubsub.bind("experiences:filter", @filterCollection, @)
       app.pubsub.on("apply:filters", @filterCollection, @)
 
@@ -50,13 +51,22 @@ $ ->
 
     initialize: ->
       @filtersAplied = {lang: app.lang}
+      app.pubsub.on("general:scroll", @paginate, @)
+      @offset = 20
 
     render: ->
       template = app.compile(@template)
       @$el.html(template)
       ppu.appendSelect(@el)
 
+    paginate: ->
+      data = _.extend(@filtersAplied,  paginate: @offset)
+      ppu.experiences.fetch data: data
+      @offset = (@offset+20)
+
     filterBy: (data) ->
+      @offset = 0
+      data = _.extend(paginate: 0,  data)
       data = _.extend(@filtersAplied,  data)
       app.pubsub.trigger("experiences:filter", data)
       
