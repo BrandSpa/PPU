@@ -1,3 +1,15 @@
+<% content_for :head do %>
+ <title>Philippi Prietocarrizosa &Uría - <%= @category.name %></title>
+  <meta name="description" content="<%= @category.description %>">
+  <meta property="og:title" content="<%= @category.name %>" />
+  <meta property="og:description" content="<%= @category.description %>" /> 
+  <%if @category.gallery %>
+  <meta property="og:image" content="<%= @category.gallery.img_name.url %>" />
+  <% else %>
+  <meta property="og:image" content="<%= @category.img_name.url %>" />
+  <% end %>
+<% end %>
+
 <div id="category">
 	
 </div>
