@@ -34,6 +34,7 @@ $ ->
 
     initialize: ->
       @listenTo(@collection, 'reset', @render)
+      @listenTo(@collection, 'add', @renderOne)
       app.pubsub.on("posts:filter", @filterCollection, @)
       app.pubsub.on("apply:filters", @filterCollection, @)
 
@@ -108,6 +109,8 @@ $ ->
 
     initialize: ->
       @filtersAplied = {lang: app.lang, not_featured: true}
+      app.pubsub.on("general:scroll", @paginate, @)
+      @offset = 20
 
     render: ->
       template = app.compile(@template)
@@ -115,8 +118,14 @@ $ ->
       ppu.appendSelect(@el)
 
     filterBy: (data) ->
-      data = _.extend(@filtersAplied,  data)
+      data = _.extend(paginate: 0, data)
+      data = _.extend(@filtersAplied, data)
       app.pubsub.trigger("posts:filter", data)
+
+    paginate: ->
+      data = _.extend(@filtersAplied,  paginate: @offset)
+      ppu.posts.fetch data: data
+      @offset = (@offset+20)
 
     byCountry: (e) ->
       el = $(e.currentTarget)
@@ -148,7 +157,6 @@ $ ->
       val = $(e.currentTarget).find(".query").val()
       @filterBy(keyword: val)
       
-
   class ppu.PostDetailView extends Backbone.View
     el: $ "#post-detail"
     template: $ "#post-detail-template"
@@ -160,8 +168,11 @@ $ ->
     getTitle: ->
       $("#top-bar").html $("#post-detail-title").html()
 
+    getRelated: (categories) ->
+
     render: ->
       template = app.compile(@template)
       @$el.html(template( @model.toJSON() ))
       @setUrlTranslation(@model)
+      @model.get('categories')
 

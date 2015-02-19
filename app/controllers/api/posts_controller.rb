@@ -3,8 +3,9 @@ class Api::PostsController < ApplicationController
 
   def index
     lang = params[:lang] || I18n.locale
+    paginate = params[:paginate] || 0
     
-    collection = entity.get_relationships().lang(lang).all.order(date: :desc)
+    collection = entity.get_relationships().lang(lang).order(date: :desc).paginate(paginate)
     collection = filters_without_params(set_filters_without_params(params), collection)
     collection = filters_with_params(set_filters(params), collection)
 

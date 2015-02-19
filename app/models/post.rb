@@ -12,6 +12,7 @@ class Post < ActiveRecord::Base
   
   scope :lang, -> (lang){ where(lang: lang) }
   scope :slug, -> (slug){ where(slug: slug) }
+  scope :paginate, -> (paginate) { limit(20).offset(paginate) }
   scope :featured, -> { where.not(featured: nil) }
   scope :is_featured, -> (val) { where(featured: val) }
   scope :published, -> { where(published: true) }
@@ -22,7 +23,6 @@ class Post < ActiveRecord::Base
   scope :get_relationships, -> { includes(:translation,:translations, :categories, :lawyers, :gallery) }
   scope :order_featured, -> { order(featured: :asc) }
   scope :order_date, -> { order(date: :desc) }
-
 
   mount_uploader :img_name, PostImageUploader
 

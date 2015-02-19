@@ -75,8 +75,9 @@ Backbone.View.prototype.setUrlTranslation = function(model) {
   translations = model.get("translations");
   translation = model.get("translation");
   if (translations) {
-    return window.urlTranslation = translations.slug;
-  } else {
+    window.urlTranslation = translations.slug;
+  }
+  if (translation) {
     return window.urlTranslation = translation.slug;
   }
 };

@@ -57,7 +57,8 @@ Backbone.View::setUrlTranslation = (model) ->
 
   if translations
     window.urlTranslation = translations.slug
-  else
+    
+  if translation
     window.urlTranslation = translation.slug
 
 Backbone.View::openShare = ->

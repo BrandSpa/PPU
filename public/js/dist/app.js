@@ -342,8 +342,9 @@ Backbone.View.prototype.setUrlTranslation = function(model) {
   translations = model.get("translations");
   translation = model.get("translation");
   if (translations) {
-    return window.urlTranslation = translations.slug;
-  } else {
+    window.urlTranslation = translations.slug;
+  }
+  if (translation) {
     return window.urlTranslation = translation.slug;
   }
 };
@@ -1052,6 +1053,7 @@ $(function() {
 
     PostsView.prototype.initialize = function() {
       this.listenTo(this.collection, 'reset', this.render);
+      this.listenTo(this.collection, 'add', this.renderOne);
       app.pubsub.on("posts:filter", this.filterCollection, this);
       return app.pubsub.on("apply:filters", this.filterCollection, this);
     };
@@ -1188,10 +1190,12 @@ $(function() {
     };
 
     PostsFilters.prototype.initialize = function() {
-      return this.filtersAplied = {
+      this.filtersAplied = {
         lang: app.lang,
         not_featured: true
       };
+      app.pubsub.on("general:scroll", this.paginate, this);
+      return this.offset = 20;
     };
 
     PostsFilters.prototype.render = function() {
@@ -1202,8 +1206,22 @@ $(function() {
     };
 
     PostsFilters.prototype.filterBy = function(data) {
+      data = _.extend({
+        paginate: 0
+      }, data);
       data = _.extend(this.filtersAplied, data);
       return app.pubsub.trigger("posts:filter", data);
+    };
+
+    PostsFilters.prototype.paginate = function() {
+      var data;
+      data = _.extend(this.filtersAplied, {
+        paginate: this.offset
+      });
+      ppu.posts.fetch({
+        data: data
+      });
+      return this.offset = this.offset + 20;
     };
 
     PostsFilters.prototype.byCountry = function(e) {
@@ -1280,11 +1298,14 @@ $(function() {
       return $("#top-bar").html($("#post-detail-title").html());
     };
 
+    PostDetailView.prototype.getRelated = function(categories) {};
+
     PostDetailView.prototype.render = function() {
       var template;
       template = app.compile(this.template);
       this.$el.html(template(this.model.toJSON()));
-      return this.setUrlTranslation(this.model);
+      this.setUrlTranslation(this.model);
+      return this.model.get('categories');
     };
 
     return PostDetailView;
