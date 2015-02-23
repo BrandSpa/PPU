@@ -32,7 +32,7 @@ $ ->
 
     posts: ->
       ppu.posts = new ppu.Posts
-      ppu.posts.fetch reset: true, data: published: true, not_featured: true
+      ppu.posts.fetch reset: true, data: published: true, with_featured: true
       ppu.postsView = new ppu.PostsView collection: ppu.posts
 
       ppu.postsFilters = new ppu.PostsFilters

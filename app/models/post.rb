@@ -14,6 +14,7 @@ class Post < ActiveRecord::Base
   scope :slug, -> (slug){ where(slug: slug) }
   scope :paginate, -> (paginate) { limit(20).offset(paginate) }
   scope :featured, -> { where.not(featured: nil) }
+  scope :with_featured, -> { order(featured: :asc) }
   scope :is_featured, -> (val) { where(featured: val) }
   scope :published, -> { where(published: true) }
   scope :not_featured, -> { where(featured: nil) }

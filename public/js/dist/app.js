@@ -1789,7 +1789,7 @@ $(function() {
         reset: true,
         data: {
           published: true,
-          not_featured: true
+          with_featured: true
         }
       });
       ppu.postsView = new ppu.PostsView({

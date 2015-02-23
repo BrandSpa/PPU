@@ -5,7 +5,7 @@ class Api::PostsController < ApplicationController
     lang = params[:lang] || I18n.locale
     paginate = params[:paginate] || 0
     
-    collection = entity.get_relationships().lang(lang).order(date: :desc).paginate(paginate)
+    collection = entity.get_relationships().lang(lang).order(featured: :desc).order(date: :desc).paginate(paginate)
     collection = filters_without_params(set_filters_without_params(params), collection)
     collection = filters_with_params(set_filters(params), collection)
 
@@ -62,7 +62,7 @@ class Api::PostsController < ApplicationController
   end
 
   def set_filters_without_params(params)
-    params.slice(:featured, :published, :not_featured, :not_published)
+    params.slice(:featured, :published, :not_featured, :not_published, :with_featured)
   end
 
   def is_a_number?(s)
