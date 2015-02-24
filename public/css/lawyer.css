@@ -79,7 +79,15 @@
   .lawyer-item .content {
     padding: 30px 0 0 0;
     background: #fff;
-    min-height: 150px; }
+    min-height: 150px;
+    transition: 500ms all; }
+    .lawyer-item .content:hover {
+      background: #002855;
+      color: #fff; }
+      .lawyer-item .content:hover .position {
+        color: #fff; }
+      .lawyer-item .content:hover h3 a {
+        color: #fff; }
     @media (max-width: 767px) {
       .lawyer-item .content {
         padding: 0; } }

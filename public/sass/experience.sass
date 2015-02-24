@@ -6,22 +6,39 @@
 	height: 155px
 	margin-bottom: 15px
 	overflow: hidden
-
+	@media #{$tablet}
+		height: 124px
+	@media #{$mobile-xs}
+		height: 100px
 	+order-items
 
 	.img-container
 		width: 35%
 		float: left
 		overflow: hidden
-		margin-right: 15px
 		min-height: 100%
+		background: $color-darkBlue
 		img
 			width: 100%
-		
+		@media #{$mobile}
+			width: 25%
+		@media #{$mobile-xs}
+			width: 35%
+
 	.content
 		background: #fff
 		padding: 15px
 		height: 155px
+		float: left
+		width: 65%
+		position: relative
+		@media #{$tablet}
+			height: 124px
+		@media #{$mobile}
+			width: 75%
+		@media #{$mobile-xs}
+			width: 65%
+			height: 100px
 
 		+share_social
 		
@@ -31,7 +48,8 @@
 			line-height: 1.4em 
 			font-weight: bold
 			margin: 15px 0 15px 15px
-			@media #{$mobile}
+
+			@media #{$mobile}, #{$tablet}
 				margin: 0 0 15px 0
 			a
 				color: $color-darkBlue
@@ -45,17 +63,19 @@
 		.footer
 			position: absolute
 			bottom: 0
-			right: 15px
+			right: 0
+			left: 0
 			padding: 30px 15px 10px 15px
 			background: none,linear-gradient(180deg,rgba(255,255,255,0) 0,#fff 50%)
 			overflow: hidden
-			width: 60%
+			width: 100%
 
 		.country
 			font-size: 0.8em
 			font-style: italic
 			color: #7F7F7F
 			margin-right: 10px
+			margin-left: 1px
 			i
 				padding-right: 3px
 

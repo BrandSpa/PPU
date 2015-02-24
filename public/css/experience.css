@@ -7,6 +7,12 @@
   height: 155px;
   margin-bottom: 15px;
   overflow: hidden; }
+  @media (min-width: 768px) and (max-width: 991px) {
+    .experience-item {
+      height: 124px; } }
+  @media (max-width: 480px) {
+    .experience-item {
+      height: 100px; } }
   @media (max-width: 767px) {
     .experience-item {
       padding: 0; } }
@@ -21,14 +27,33 @@
     width: 35%;
     float: left;
     overflow: hidden;
-    margin-right: 15px;
-    min-height: 100%; }
+    min-height: 100%;
+    background: #002855; }
     .experience-item .img-container img {
       width: 100%; }
+    @media (max-width: 767px) {
+      .experience-item .img-container {
+        width: 25%; } }
+    @media (max-width: 480px) {
+      .experience-item .img-container {
+        width: 35%; } }
   .experience-item .content {
     background: #fff;
     padding: 15px;
-    height: 155px; }
+    height: 155px;
+    float: left;
+    width: 65%;
+    position: relative; }
+    @media (min-width: 768px) and (max-width: 991px) {
+      .experience-item .content {
+        height: 124px; } }
+    @media (max-width: 767px) {
+      .experience-item .content {
+        width: 75%; } }
+    @media (max-width: 480px) {
+      .experience-item .content {
+        width: 65%;
+        height: 100px; } }
     .experience-item .content .share-hover {
       position: absolute;
       width: 100%;
@@ -72,7 +97,7 @@
       line-height: 1.4em;
       font-weight: bold;
       margin: 15px 0 15px 15px; }
-      @media (max-width: 767px) {
+      @media (max-width: 767px), (min-width: 768px) and (max-width: 991px) {
         .experience-item .content h3 {
           margin: 0 0 15px 0; } }
       .experience-item .content h3 a {
@@ -85,16 +110,18 @@
     .experience-item .content .footer {
       position: absolute;
       bottom: 0;
-      right: 15px;
+      right: 0;
+      left: 0;
       padding: 30px 15px 10px 15px;
       background: none, linear-gradient(180deg, rgba(255, 255, 255, 0) 0, #fff 50%);
       overflow: hidden;
-      width: 60%; }
+      width: 100%; }
     .experience-item .content .country {
       font-size: 0.8em;
       font-style: italic;
       color: #7F7F7F;
-      margin-right: 10px; }
+      margin-right: 10px;
+      margin-left: 1px; }
       .experience-item .content .country i {
         padding-right: 3px; }
     .experience-item .content .date {

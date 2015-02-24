@@ -110,10 +110,12 @@
 	cursor: pointer
 
 	@media #{$mobile}
-		height: 105px
+		height: 135px
 		padding: 0
 		width: 100%
 
+	@media #{$mobile-xs}
+		height: 100px
 
 	@media #{$tablet}, #{$desktop}, #{$desktop-lg}
 		&:first-child
@@ -149,6 +151,9 @@
 		@media #{$mobile}
 			width: 25%
 
+		@media #{$mobile-xs}
+			width: 35%
+
 		@media #{$tablet}
 
 		img
@@ -174,9 +179,12 @@
 		+share_social
 
 		@media #{$mobile}
-			height: 105px
+			height: 135px
 			padding: 15px
 			width: 75%
+		@media #{$mobile-xs}
+			height: 100px
+			width: 65%
 		
 		h3
 			font-size: 1em
@@ -198,9 +206,6 @@
 			margin: 0
 			color: #7F7F7F
 
-			@media #{$mobile}
-				display: none
-	
 		.footer
 			position: absolute
 			width: 100%
