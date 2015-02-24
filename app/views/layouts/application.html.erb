@@ -221,9 +221,10 @@
 <%= render "partials/seo" %>
 
 <script src="/js/dist/min/dependencies.js"></script>
+<script src="/bower_components/imagesloaded/imagesloaded.pkgd.min.js"></script>
+<script src="/bower_components/imagefill.js/js/jquery-imagefill.js"></script>
 
 <script src="/js/dist/app.js"></script>
-
 
 <script src="/js/twt.js"></script>
 <script src="/js/fb.js"></script>
@@ -247,7 +248,8 @@
   app.lang = "<%= I18n.locale %>";
   app.hostname = window.location.hostname;
   app.pathname = window.location.pathname;
-  moment.locale(app.lang)
+  moment.locale(app.lang);
+  $('.thumb').imagefill();
 </script>
 
 <script>
@@ -260,9 +262,6 @@
   ga('send', 'pageview');
 </script>
 
-
-<!-- Go to www.addthis.com/dashboard to customize your tools -->
-<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-54a5ce286920b34d" async="async"></script>
 
 <script>
   (function() {

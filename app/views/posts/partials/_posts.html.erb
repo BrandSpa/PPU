@@ -1,11 +1,11 @@
 <script id="post-template" type="text/x-handlebars-template">
 <a href="/posts/{{ slug }}">
   <div class="item-container">
-    <div class="thumb">
+    <div class="thumb imgLiquidFill">
    {{#if gallery}}
-    <img class="lazy" src="{{ gallery.img_name.url }}" alt="{{ title }}" >
+    <img  src="{{ gallery.img_name.url }}" alt="{{ title }}" >
     {{else}}
-     <img class="lazy" src="{{ img_name.url }}" alt="{{ title }}" >
+     <img  src="{{ img_name.url }}" alt="{{ title }}" >
    {{/if}}
   </div>
 

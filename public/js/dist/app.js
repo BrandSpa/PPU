@@ -1086,7 +1086,7 @@ $(function() {
       var i;
       this.$el.empty();
       i = 0;
-      return this.collection.each(function(model) {
+      this.collection.each(function(model) {
         if (i === 0) {
           this.renderMain(model);
         } else {
@@ -1094,6 +1094,7 @@ $(function() {
         }
         return i++;
       }, this);
+      return $(this.el).find('.thumb').imagefill();
     };
 
     return PostsView;

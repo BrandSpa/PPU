@@ -265,12 +265,12 @@
     padding: 0 90px; }
   #lawyer .lawyer-right {
     padding: 0 30px; }
-  #lawyer .award h5 {
-    font-size: 1em;
-    margin-bottom: 5px; }
-  @media (max-width: 767px) {
-    #lawyer .award {
-      text-align: center; } }
+    #lawyer .lawyer-right h5 {
+      font-size: 1em;
+      margin-bottom: 5px; }
+    @media (max-width: 767px) {
+      #lawyer .lawyer-right {
+        text-align: center; } }
   #lawyer .article-container a, #lawyer .article-container p {
     font-size: 0.9em;
     float: left;

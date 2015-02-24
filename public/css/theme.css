@@ -975,12 +975,12 @@ select .form-control {
     padding: 0 90px; }
   #lawyer .lawyer-right {
     padding: 0 30px; }
-  #lawyer .award h5 {
-    font-size: 1em;
-    margin-bottom: 5px; }
-  @media (max-width: 767px) {
-    #lawyer .award {
-      text-align: center; } }
+    #lawyer .lawyer-right h5 {
+      font-size: 1em;
+      margin-bottom: 5px; }
+    @media (max-width: 767px) {
+      #lawyer .lawyer-right {
+        text-align: center; } }
   #lawyer .article-container a, #lawyer .article-container p {
     font-size: 0.9em;
     float: left;
@@ -1129,7 +1129,7 @@ select .form-control {
       width: 100%; } }
   @media (max-width: 480px) {
     .post-item, .post-featured-item {
-      height: 100px; } }
+      height: 120px; } }
   @media (min-width: 768px) and (max-width: 991px), (min-width: 992px) and (max-width: 1199px), (min-width: 1200px) {
     .post-item:first-child, .post-featured-item:first-child {
       padding-left: 0;
@@ -1591,29 +1591,30 @@ select .form-control {
     width: 35%;
     float: left;
     overflow: hidden;
-    min-height: 100%;
     background: #002855; }
     .experience-item .img-container img {
-      width: 100%; }
+      max-width: 100%;
+      min-height: 100%; }
+    @media (min-width: 768px) and (max-width: 991px) {
+      .experience-item .img-container {
+        height: 124px; } }
     @media (max-width: 767px) {
       .experience-item .img-container {
-        width: 25%; } }
+        width: 30%; } }
     @media (max-width: 480px) {
       .experience-item .img-container {
-        width: 35%; } }
+        width: 35%;
+        height: 100px; } }
   .experience-item .content {
     background: #fff;
     padding: 15px;
-    height: 155px;
     float: left;
     width: 65%;
+    height: 155px;
     position: relative; }
-    @media (min-width: 768px) and (max-width: 991px) {
-      .experience-item .content {
-        height: 124px; } }
     @media (max-width: 767px) {
       .experience-item .content {
-        width: 75%; } }
+        width: 70%; } }
     @media (max-width: 480px) {
       .experience-item .content {
         width: 65%;
@@ -1661,6 +1662,9 @@ select .form-control {
       line-height: 1.4em;
       font-weight: bold;
       margin: 15px 0 15px 15px; }
+      @media (max-width: 480px) {
+        .experience-item .content h3 {
+          padding: 0; } }
       @media (max-width: 767px), (min-width: 768px) and (max-width: 991px) {
         .experience-item .content h3 {
           margin: 0 0 15px 0; } }

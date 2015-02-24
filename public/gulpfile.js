@@ -43,7 +43,7 @@ gulp.task('dependencies-scripts', function() {
     'bower_components/jquery.serializeJSON/jquery.serializejson.min.js',
     'bower_components/moment/min/moment-with-locales.min.js',
     'bower_components/nprogress/nprogress.js',
-    'js/libs/jquery.selectBoxIt.min.js'
+    'js/libs/jquery.selectBoxIt.min.js',
     ])
     .pipe(concat('dependencies.js'))
     .pipe(gulp.dest('js/dist/'))

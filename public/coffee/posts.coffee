@@ -60,6 +60,7 @@ $ ->
           @renderOne(model)
         i++
       , @
+      $(@el).find('.thumb').imagefill()
 
   class ppu.PostMainFeaturedView extends Backbone.View
     template: $ "#post-main-featured-template"
