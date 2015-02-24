@@ -34,16 +34,19 @@ class Api::PostsController < ApplicationController
     end
   end
 
-
   def update
     id = params[:id]
     duplicate = params[:duplicate]
+    featured = params[:fields][:featured]
 
     model = entity.get_relationships().find_by(id: id)
 
     if duplicate.present?
       new_model = entity.duplicate(model)
       render json: new_model, status: 200
+
+    elsif featured.present?
+      unfeatured_all(id)
     else
 
       model.update(post_params)
@@ -55,6 +58,23 @@ class Api::PostsController < ApplicationController
       end
     end
     
+  end
+
+  def unfeatured_all(id)
+    featured = Post.where(featured: 3)
+
+    featured.each do |f|
+      f.update(featured: '')
+    end
+
+    new = Post.find(id)
+    trans = new.translations
+    new.update(featured: 3)
+
+    if trans
+      trans.update(featured: 3)
+    end
+    render json: new
   end
 
   def set_filters(params)
@@ -75,7 +95,7 @@ class Api::PostsController < ApplicationController
     end
 
     def post_params
-      params.require(:fields).permit(:lang, :country, :date, :author, :title, :content, :content_plain, :img_name, :gallery_id, :published, :social_published, :featured, :lawyer_ids => [], :category_ids => [])
+      params.require(:fields).permit(:lang, :country, :date, :author, :title, :content, :content_plain, :img_name, :gallery_id, :published, :social_published, :featured, :unfeatured, :lawyer_ids => [], :category_ids => [])
     end
     
 end

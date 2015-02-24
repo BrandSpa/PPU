@@ -7,10 +7,54 @@ var gulp = require('gulp');
   concat = require('gulp-concat');
   uglify = require('gulp-uglify');
 
-gulp.task('coffee', function() {
-  gulp.src(['coffee/*.coffee', 'coffee/*/*.coffee'])
-    .pipe(coffee({bare: true}).on('error', gutil.log))
-    .pipe(gulp.dest('js'))
+gulp.task('app', function() {
+  gulp.src([
+    'coffee/main.coffee',
+    'coffee/handlebars_helpers.coffee',
+    'coffee/bb_helpers.coffee',
+    'coffee/app.coffee',
+    'coffee/filters.coffee',
+    'coffee/categories.coffee',
+    'coffee/lawyers.coffee',
+    'coffee/posts.coffee',
+    'coffee/experiences.coffee',
+    'coffee/categories.coffee',
+    'coffee/curriculum.coffee',
+    'coffee/contact.coffee',
+    'coffee/seo.coffee',
+    'coffee/router.coffee'
+    ])
+  .pipe(coffee({bare: true}).on('error', gutil.log))
+  .pipe(concat('app.js'))
+  .pipe(gulp.dest('js/dist/'))
+});
+
+gulp.task('app-admin', function() {
+  gulp.src([
+    'coffee/main.coffee',
+    'coffee/handlebars_helpers.coffee',
+    'coffee/bb_helpers.coffee',
+    'coffee/categories.coffee',
+    'coffee/lawyer/article.coffee',
+    'coffee/lawyer/award.coffee',
+    'coffee/lawyer/academic.coffee',
+    'coffee/lawyer/education.coffee',
+    'coffee/lawyer/institution.coffee',
+    'coffee/lawyer/language.coffee',
+    'coffee/lawyer/pharase.coffee',
+    'coffee/lawyer/job.coffee',
+    'coffee/lawyer/recognition.coffee',
+    'coffee/lawyers.coffee',
+    'coffee/admin/category.coffee',
+    'coffee/admin/lawyer.coffee',
+    'coffee/admin/post.coffee',
+    'coffee/admin/gallery.coffee',
+    'coffee/admin/experience.coffee',
+    'coffee/admin/router.coffee'
+    ])
+  .pipe(coffee({bare: true}).on('error', gutil.log))
+  .pipe(concat('app-admin.js'))
+  .pipe(gulp.dest('js/dist/'))
 });
 
 gulp.task('sass', function () {
@@ -66,9 +110,8 @@ gulp.task('app-scripts', function() {
     'js/seo.js',
     'js/router.js'
     ])
-  .pipe(concat('app.js'))
-
-    .pipe(gulp.dest('js/dist/'))
+  .pipe(concat('app-admin.js'))
+  .pipe(gulp.dest('js/dist/'))
 });
 
 gulp.task('compress', function() {
@@ -77,9 +120,9 @@ gulp.task('compress', function() {
     .pipe(gulp.dest('js/dist/min'))
 });
 
-gulp.task('watch', ['sass', 'coffee'], function(){
+gulp.task('watch', ['sass', 'app', 'app-admin'], function(){
   gulp.watch('sass/*.sass', ['sass', 'stylesheets']);
-  gulp.watch(['coffee/*.coffee', 'coffee/*/*.coffee'], ['coffee', 'app-scripts', 'compress']);
+  gulp.watch(['coffee/*.coffee', 'coffee/*/*.coffee'], ['app', 'app-admin']);
 });
  
 gulp.task('default', ['watch']);

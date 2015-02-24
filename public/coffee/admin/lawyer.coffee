@@ -4,6 +4,8 @@ $ ->
     template: $ '#lawyer-dashbord-template'
     events: 
       "click .confirm-translate": "confirmTranslate"
+      "click .publish": "publish"
+      "click .unpublish": "unpublish"
 
     initialize: ->
       @listenTo(@model, 'change', @render)
@@ -15,6 +17,14 @@ $ ->
       t = Handlebars.compile(source)
       $(@el).html t( @model.toJSON() )
       @
+
+    publish: (e) ->
+      e.preventDefault()
+      @model.save fields: published: true
+
+    unpublish: (e) ->
+      e.preventDefault()
+      @model.save fields: published: false
 
     confirmTranslate: (e)->
       e.preventDefault()

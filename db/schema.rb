@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150216231413) do
+ActiveRecord::Schema.define(version: 20150224193244) do
 
   create_table "academics", force: true do |t|
     t.integer  "lawyer_id"
@@ -218,6 +218,7 @@ ActiveRecord::Schema.define(version: 20150216231413) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "description_en"
+    t.boolean  "published"
   end
 
   create_table "lawyers_posts", id: false, force: true do |t|
@@ -257,7 +258,7 @@ ActiveRecord::Schema.define(version: 20150216231413) do
     t.boolean  "published",                    default: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "social_published"
+    t.boolean  "social_published",             default: false
   end
 
   create_table "posts_categories", id: false, force: true do |t|

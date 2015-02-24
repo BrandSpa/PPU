@@ -25,8 +25,11 @@ $ ->
     initialize: ->
       @listenTo(@collection, 'reset', @render)
       @listenTo(@collection, 'add', @renderOne)
-      order = @order_by()
-      @collection.fetch reset: true, data: order
+      if app.lang == "en"
+        data = _.extend published: true, order_by_english: true
+      else
+        data = _.extend published: true, order_by_spanish: true
+      @collection.fetch reset: true, data: data
       app.pubsub.on("apply:filters", @filterCollection, @)
 
     filterCollection: (filters) ->
@@ -34,10 +37,7 @@ $ ->
       @collection.fetch reset: true, data: filters
 
     order_by: ->
-      if app.lang == "en"
-        order_by_english: true
-      else
-        order_by_spanish: true
+      
 
     paginate: () ->
       @collection.fetch data: offset: offset
@@ -65,7 +65,7 @@ $ ->
 
     initialize: ->
       @render()
-      @filtersAplied = {lang: app.lang}
+      @filtersAplied = {lang: app.lang, published: true}
       @order_by()
       @$el.data("filtersAplied", @filtersAplied)
       app.pubsub.on("general:scroll", @paginate, @)

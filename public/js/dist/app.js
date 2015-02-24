@@ -676,13 +676,23 @@ $(function() {
     LawyersView.prototype.el = $('#lawyers');
 
     LawyersView.prototype.initialize = function() {
-      var order;
+      var data;
       this.listenTo(this.collection, 'reset', this.render);
       this.listenTo(this.collection, 'add', this.renderOne);
-      order = this.order_by();
+      if (app.lang === "en") {
+        data = _.extend({
+          published: true,
+          order_by_english: true
+        });
+      } else {
+        data = _.extend({
+          published: true,
+          order_by_spanish: true
+        });
+      }
       this.collection.fetch({
         reset: true,
-        data: order
+        data: data
       });
       return app.pubsub.on("apply:filters", this.filterCollection, this);
     };
@@ -697,17 +707,7 @@ $(function() {
       });
     };
 
-    LawyersView.prototype.order_by = function() {
-      if (app.lang === "en") {
-        return {
-          order_by_english: true
-        };
-      } else {
-        return {
-          order_by_spanish: true
-        };
-      }
-    };
+    LawyersView.prototype.order_by = function() {};
 
     LawyersView.prototype.paginate = function() {
       return this.collection.fetch({
@@ -759,7 +759,8 @@ $(function() {
     LawyersFilters.prototype.initialize = function() {
       this.render();
       this.filtersAplied = {
-        lang: app.lang
+        lang: app.lang,
+        published: true
       };
       this.order_by();
       this.$el.data("filtersAplied", this.filtersAplied);

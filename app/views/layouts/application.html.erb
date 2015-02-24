@@ -218,7 +218,6 @@
 
 <%= render "partials/select_categories" %>
 <%= render "partials/share_modal" %>
-<%= render "partials/seo" %>
 
 <script src="/js/dist/min/dependencies.js"></script>
 <script src="/bower_components/imagesloaded/imagesloaded.pkgd.min.js"></script>
@@ -229,27 +228,11 @@
 <script src="/js/twt.js"></script>
 <script src="/js/fb.js"></script>
 
-<!-- <script src="/js/main.js"></script>
-<script src="/js/handlebars_helpers.js"></script>
-<script src="/js/bb_helpers.js"></script>
-<script src="/js/app.js"></script>
-<script src="/js/filters.js"></script>
-<script src="/js/categories.js"></script>
-<script src="/js/lawyers.js"></script>
-<script src="/js/posts.js"></script>
-<script src="/js/experiences.js"></script>
-<script src="/js/categories.js"></script>
-<script src="/js/curriculum.js"></script>
-<script src="/js/contact.js"></script>
-<script src="/js/seo.js"></script>
-<script src="/js/router.js"></script> -->
-
 <script>
   app.lang = "<%= I18n.locale %>";
   app.hostname = window.location.hostname;
   app.pathname = window.location.pathname;
   moment.locale(app.lang);
-  $('.thumb').imagefill();
 </script>
 
 <script>

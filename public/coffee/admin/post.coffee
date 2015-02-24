@@ -14,6 +14,8 @@ $ ->
       "click .unpublish": "unpublish"
       "click .change-featured": "changeFeatured"
       "click .publish-on-social-network": "publishFb"
+      "click .highlight": "highlight"
+      "click .unhighlight": "unhighlight"
 
     initialize: ->
       @listenTo(@model, "change", @render)
@@ -28,6 +30,14 @@ $ ->
       e.preventDefault()
       @model.save fields: published: true
 
+    highlight: (e) ->
+      e.preventDefault()
+      that = 
+      that.model.save fields: featured: 3
+      .done () ->
+        app.pubsub.trigger('post:unfeatured')
+
+     
     publishFb: (e)-> 
       e.preventDefault()
       url = setSubdomain(@model.get('lang')) + "posts/#{@model.get('slug')}"
@@ -56,9 +66,13 @@ $ ->
       @listenTo(@collection, 'add', @addOne, @)
       app.pubsub.on("posts:filter", @filterCollection, @)
       app.pubsub.on("post:changeFeatured", @changeFeatured, @)
+      app.pubsub.on('post:unfeatured', @unfeatured, @)
 
     filterCollection: (filters) ->
       @collection.fetch reset: true, lang: app.lang, data: filters
+
+    unfeatured: ->
+      @collection.fetch reset: true
 
     changeFeatured: (val) ->
       coll = new ppu.Posts
@@ -76,6 +90,7 @@ $ ->
         view = new ppu.admin.PostView model: model
         $(@el).find('tbody').append view.render().el
       , @
+
 
   class ppu.admin.PostsFilters extends Backbone.View
     el: $ '.post-filter'

@@ -25,6 +25,7 @@ class Lawyer < ActiveRecord::Base
   scope :lang, -> (lang){ where(lang: lang) }
   scope :slug, -> (slug){ where(slug: slug) }
   scope :position, -> (position){ where("lawyers.position = ?", position) }
+  scope :published, -> { where(published: true) }
   scope :country, -> (country){ where("lawyers.country = ?", country) }
   scope :category, -> (category){ includes(:categories).where(categories: {name: category}) }
   scope :search, -> (keyword){ where("lawyers.keywords LIKE ?", "%#{keyword}%") }

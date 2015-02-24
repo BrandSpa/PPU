@@ -61,7 +61,7 @@ class Api::LawyersController < ApplicationController
   end
 
   def set_filters_without_params(params)
-    params.slice(:order_by_spanish, :order_by_english)
+    params.slice(:order_by_spanish, :order_by_english, :published)
   end
 
   def is_a_number?(s)
@@ -75,6 +75,6 @@ class Api::LawyersController < ApplicationController
     end
 
     def lawyer_params
-      params.require(:fields).permit(:lang, :country, :img_name, :name , :lastname, :phone, :position, :level, :email, :description, :keywords, :slug, :category_ids => []) 
+      params.require(:fields).permit(:lang, :country, :img_name, :name , :lastname, :phone, :position, :level, :email, :description, :keywords, :slug, :published, :category_ids => []) 
     end
 end
