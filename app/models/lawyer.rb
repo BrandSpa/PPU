@@ -4,15 +4,15 @@ class Lawyer < ActiveRecord::Base
   has_and_belongs_to_many :categories, -> { order "name ASC" }
   has_and_belongs_to_many :trades
   has_and_belongs_to_many :posts
-  has_many :awards
-  has_many :academics
-  has_many :educations, -> { order "position ASC" }
-  has_many :jobs
-  has_many :languages, -> { order "name ASC" }
-  has_many :articles
-  has_many :phrases
-  has_many :institutions
-  has_many :recognitions
+  has_many :awards, -> { order "position ASC, created_at DESC" }
+  has_many :academics, -> { order "position ASC, created_at DESC" }
+  has_many :educations, -> { order "position ASC, created_at DESC" }
+  has_many :jobs, -> { order "position ASC, created_at DESC" }
+  has_many :languages, -> { order "position ASC, created_at DESC" }
+  has_many :articles, -> { order "position ASC, created_at DESC" }
+  has_many :phrases, -> { order "position ASC, created_at DESC" }
+  has_many :institutions, -> { order "position ASC, created_at DESC" }
+  has_many :recognitions, -> { order "position ASC, created_at DESC" }
 
   validates :name, presence: true
   validates :lastname, presence: true
