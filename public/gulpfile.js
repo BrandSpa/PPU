@@ -10,6 +10,7 @@ var gulp = require('gulp');
 gulp.task('app', function() {
   gulp.src([
     'coffee/main.coffee',
+    'coffee/mixins.coffee',
     'coffee/handlebars_helpers.coffee',
     'coffee/bb_helpers.coffee',
     'coffee/app.coffee',
@@ -32,6 +33,7 @@ gulp.task('app', function() {
 gulp.task('app-admin', function() {
   gulp.src([
     'coffee/main.coffee',
+    'coffee/mixins.coffee',
     'coffee/handlebars_helpers.coffee',
     'coffee/bb_helpers.coffee',
     'coffee/categories.coffee',

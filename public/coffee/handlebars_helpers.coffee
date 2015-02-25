@@ -5,7 +5,7 @@ Handlebars.registerHelper 'shortenText', (text, block) ->
   text.substring(0, 95) + " ..."
 
 Handlebars.registerHelper 'shortenText2', (text, block) ->
-  text.substring(0, 120) + " ..."
+  text.substring(0, 190)
 
 Handlebars.registerHelper 'dateFormat', (context, block) ->
   if window.moment
