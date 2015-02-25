@@ -1072,7 +1072,7 @@ select .form-control {
     @media (max-width: 767px) {
       .post-main-featured-item .content {
         width: 100%;
-        height: auto; } }
+        height: 120px; } }
     .post-main-featured-item .content h3 {
       font-size: 1em;
       margin: 0;
@@ -1229,7 +1229,7 @@ select .form-control {
         width: 75%; } }
     @media (max-width: 480px) {
       .post-item .content, .post-featured-item .content {
-        height: 100px;
+        height: 120px;
         width: 65%; } }
     .post-item .content h3, .post-featured-item .content h3 {
       font-size: 1em;
@@ -1601,8 +1601,7 @@ select .form-control {
     overflow: hidden;
     background: #fff; }
     .experience-item .img-container img {
-      max-width: 100%;
-      min-height: 100%; }
+      max-width: 100%; }
     @media (max-width: 767px) {
       .experience-item .img-container {
         width: 30%; } }

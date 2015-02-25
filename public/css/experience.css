@@ -29,8 +29,7 @@
     overflow: hidden;
     background: #fff; }
     .experience-item .img-container img {
-      max-width: 100%;
-      min-height: 100%; }
+      max-width: 100%; }
     @media (max-width: 767px) {
       .experience-item .img-container {
         width: 30%; } }
