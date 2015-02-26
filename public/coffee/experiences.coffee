@@ -125,5 +125,27 @@ $ ->
 			template = app.compile(@template)
 			@$el.html(template( @model.toJSON() ))
 			@setUrlTranslation(@model)
+			dataRelated = category: @model.get('categories')[0].name, without: @model.id
+			app.pubsub.trigger('experiences:getRelated', dataRelated)
+
+	class ppu.ExperienecesRelated extends Backbone.View
+		el: "#experiences-related"
+
+		initialize: ->
+			@listenTo @collection, 'reset', @render
+			app.pubsub.on('experiences:getRelated', @get, @)
+
+		get: (data) ->
+			@collection.fetch reset: true, data: data
+
+		renderOne: (model) ->
+			ppu.experienceView = new ppu.ExperienceView model: model
+			@$el.append ppu.experienceView.render().el
+
+		render: ->
+			$(@el).empty()
+			@collection.each (model) ->
+				@renderOne(model)
+			, @
 			 
 	

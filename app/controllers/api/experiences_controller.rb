@@ -4,7 +4,7 @@ class Api::ExperiencesController < ApplicationController
 	def index
 		lang = params[:lang] || I18n.locale 
     paginate = params[:paginate] || 0
-		filters = params.slice(:category, :country, :keyword)
+		filters = params.slice(:category, :country, :keyword, :without)
 		collection = entity.with_relationships.lang(lang).paginate(paginate)
     collection = filters_with_params(filters, collection)
 

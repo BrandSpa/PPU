@@ -14,6 +14,7 @@ class Experience < ActiveRecord::Base
   scope :keyword, -> (keyword){ where("experiences.keywords LIKE ?", "%#{keyword}%") }
   scope :category, -> (category){ includes(:categories).where(categories: {name: category}) }
   scope :with_relationships, ->{ includes(:gallery, :translations, :categories, :lawyers) }
+  scope :without, -> (id) { where.not(id: id) }
 
 	def self.duplicate(model)
     model_new = model.dup

@@ -66,6 +66,8 @@ $ ->
       ppu.experience = new ppu.Experience id: slug
       ppu.experience.fetch()
       ppu.experienceDetailView = new ppu.ExperienceDetailView model: ppu.experience
+      ppu.experiences = new ppu.Experiences
+      ppu.experienecesRelated = new ppu.ExperienecesRelated collection: ppu.experiences
 
     experiences: () ->
       ppu.experiencesFilters = new ppu.ExperiencesFilters

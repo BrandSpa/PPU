@@ -1794,7 +1794,7 @@ $(function() {
     return ExperiencesFilters;
 
   })(Backbone.View);
-  return ppu.ExperienceDetailView = (function(_super) {
+  ppu.ExperienceDetailView = (function(_super) {
     __extends(ExperienceDetailView, _super);
 
     function ExperienceDetailView() {
@@ -1815,13 +1815,56 @@ $(function() {
     };
 
     ExperienceDetailView.prototype.render = function() {
-      var template;
+      var dataRelated, template;
       template = app.compile(this.template);
       this.$el.html(template(this.model.toJSON()));
-      return this.setUrlTranslation(this.model);
+      this.setUrlTranslation(this.model);
+      dataRelated = {
+        category: this.model.get('categories')[0].name,
+        without: this.model.id
+      };
+      return app.pubsub.trigger('experiences:getRelated', dataRelated);
     };
 
     return ExperienceDetailView;
+
+  })(Backbone.View);
+  return ppu.ExperienecesRelated = (function(_super) {
+    __extends(ExperienecesRelated, _super);
+
+    function ExperienecesRelated() {
+      return ExperienecesRelated.__super__.constructor.apply(this, arguments);
+    }
+
+    ExperienecesRelated.prototype.el = "#experiences-related";
+
+    ExperienecesRelated.prototype.initialize = function() {
+      this.listenTo(this.collection, 'reset', this.render);
+      return app.pubsub.on('experiences:getRelated', this.get, this);
+    };
+
+    ExperienecesRelated.prototype.get = function(data) {
+      return this.collection.fetch({
+        reset: true,
+        data: data
+      });
+    };
+
+    ExperienecesRelated.prototype.renderOne = function(model) {
+      ppu.experienceView = new ppu.ExperienceView({
+        model: model
+      });
+      return this.$el.append(ppu.experienceView.render().el);
+    };
+
+    ExperienecesRelated.prototype.render = function() {
+      $(this.el).empty();
+      return this.collection.each(function(model) {
+        return this.renderOne(model);
+      }, this);
+    };
+
+    return ExperienecesRelated;
 
   })(Backbone.View);
 });
@@ -2113,8 +2156,12 @@ $(function() {
         id: slug
       });
       ppu.experience.fetch();
-      return ppu.experienceDetailView = new ppu.ExperienceDetailView({
+      ppu.experienceDetailView = new ppu.ExperienceDetailView({
         model: ppu.experience
+      });
+      ppu.experiences = new ppu.Experiences;
+      return ppu.experienecesRelated = new ppu.ExperienecesRelated({
+        collection: ppu.experiences
       });
     };
 

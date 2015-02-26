@@ -1818,7 +1818,8 @@ select .form-control {
   padding: 30px;
   color: #5F5F5F;
   font-size: 1em;
-  line-height: 1.7em; }
+  line-height: 1.7em;
+  margin-bottom: 15px; }
 
 /* Large desktops and laptops */
 /* Portrait tablets and medium desktops */
