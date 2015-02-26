@@ -14,7 +14,7 @@
 		<span>{{ name }}</span>
 		{{/each}}
 	</div>
-	
+	<div class="post-social">
         <a class="share" href="https://twitter.com/intent/tweet?text={{ title }}&url=http://ppulegal.com/posts/{{ slug }}"><i class="fa fa-twitter-square"></i></a>
 
         <a class="share" href="http://www.linkedin.com/shareArticle?mini=true&url=http://ppulegal.com/posts/{{ slug }}" onclick="javascript:window.open(this.href,
@@ -26,6 +26,8 @@
   </a>
 
 <a class="share" href="#" onclick="javascript:openShare('http://ppulegal.com/posts/{{ slug }}')"><i class="fa fa-facebook-square"></i></a>
+</div>
+
 </div>
 <div class="content">
   <div class="date">
@@ -40,3 +42,6 @@
 <script id="post-detail-title" type="text/x-handlebars-template">
 	<h1><a href="/"><%= t("News") %></a></h1>
 </script>
+
+
+  

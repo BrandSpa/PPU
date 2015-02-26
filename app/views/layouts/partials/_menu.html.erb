@@ -1,13 +1,11 @@
 <div id="nav-main-container" class="col-lg-2 visible-lg">
   <ul class="nav-main col-lg-1">
-    <li class="link-main">
-      <a href="/"><img src="/img/Logo@2x.png" alt="" class="img-responsive"></a>
-    </li>
-    <li><a href="/abogados"><%= t("Lawyers") %></a></li>
-    <li><a href="/areas"><%= t("Practice Areas") %></a></li>
-    <li><a href="/experiencias"><%= t("Experience") %></a></li>
-    <li><a href="/nosotros"><%= t("Us") %></a></li>
-    <li><a href="/probono">Probono</a></li>
-    <li><a href="/trabaje-con-nosotros"><%= t("Work with Us") %></a></li>
+    <a href="/"><img src="/img/Logo@2x.png" alt="" class="img-responsive"></a>
+    <li><a data-url="/abogados" href="/abogados"><%= t("Lawyers") %></a></li>
+    <li><a data-url="/areas" href="/areas"><%= t("Practice Areas") %></a></li>
+    <li><a data-url="/experiencias" href="/experiencias"><%= t("Experience") %></a></li>
+    <li><a data-url="/nosotros" href="/nosotros"><%= t("Us") %></a></li>
+    <li><a data-url="/probono" href="/probono">Probono</a></li>
+    <li><a data-url="/trabaje-con-nosotros" href="/trabaje-con-nosotros"><%= t("Work with Us") %></a></li>
   </ul>
 </div>

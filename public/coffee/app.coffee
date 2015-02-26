@@ -4,6 +4,15 @@ $ ->
     events: 
       'click .change-lang-page': 'changeLangPage'
 
+    initialize: ->
+      @activeLink()
+
+    activeLink: ->
+      links = $(@el).find('.nav-main li a')
+      links.each (link, b) ->
+        if $(b).data('url') == "/#{ppu.pathUrl[1]}"
+          $(b).parent().addClass('active')
+
     changeLangPage: (e) ->
       e.preventDefault()
       urlTranslation = window.urlTranslation

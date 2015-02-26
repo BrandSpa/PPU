@@ -554,6 +554,20 @@ $(function() {
       'click .change-lang-page': 'changeLangPage'
     };
 
+    AppView.prototype.initialize = function() {
+      return this.activeLink();
+    };
+
+    AppView.prototype.activeLink = function() {
+      var links;
+      links = $(this.el).find('.nav-main li a');
+      return links.each(function(link, b) {
+        if ($(b).data('url') === ("/" + ppu.pathUrl[1])) {
+          return $(b).parent().addClass('active');
+        }
+      });
+    };
+
     AppView.prototype.changeLangPage = function(e) {
       var urlTranslation;
       e.preventDefault();
@@ -838,6 +852,14 @@ $(function() {
     LawyerView.prototype.template = $('#lawyer-template');
 
     LawyerView.prototype.className = 'col-md-6 col-sm-6 col-xs-12 lawyer-item';
+
+    LawyerView.prototype.events = {
+      "click": "open"
+    };
+
+    LawyerView.prototype.open = function() {
+      return window.location = "/abogados/" + (this.model.get('slug'));
+    };
 
     LawyerView.prototype.render = function() {
       var compile, source;
@@ -1295,6 +1317,14 @@ $(function() {
     PostMainFeaturedView.prototype.template = $("#post-main-featured-template");
 
     PostMainFeaturedView.prototype.className = "col-md-6 col-sm-6 col-xs-12 post-main-featured-item";
+
+    PostMainFeaturedView.prototype.events = {
+      "click .share-hover": "open"
+    };
+
+    PostMainFeaturedView.prototype.open = function() {
+      return window.location = "/posts/" + (this.model.get('slug'));
+    };
 
     PostMainFeaturedView.prototype.render = function() {
       var template;

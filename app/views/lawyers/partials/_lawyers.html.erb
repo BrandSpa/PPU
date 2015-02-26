@@ -1,4 +1,6 @@
 <script id="lawyer-template" type="text/x-handlebars-template">
+
+<div class="img-container">
 {{#if translation.img_name.url}}
   <img src="{{ translation.img_name.url }}" alt="{{ name }} {{ lastname }}">
   {{else}}
@@ -10,13 +12,24 @@
   {{/if}}
 
 {{/if}}
+</div>
 
   <div class="content">
+    <div class="hover">
+       <span class="position">{{ position }}</span>
+    <h3><a href="abogados/{{ slug }}">{{toUpperCase name }} {{toUpperCase lastname }}</a></h3>
+    <span class="country">{{ country }}</span>
+    <a href="tel:{{ phone }}" class="phone">{{ phone }}</a>
+    <a href="mailto:{{ email }}" class="email">{{ email }}</a>
+    </div>
 	  <span class="position">{{ position }}</span>
 	  <h3><a href="abogados/{{ slug }}">{{toUpperCase name }} {{toUpperCase lastname }}</a></h3>
     <span class="country">{{ country }}</span>
 	  <a href="tel:{{ phone }}" class="phone">{{ phone }}</a>
 	  <a href="mailto:{{ email }}" class="email">{{ email }}</a>
   </div>
+
 </script>
+
+
 

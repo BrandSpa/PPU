@@ -312,6 +312,9 @@
     display: block;
     float: right;
     margin-right: 15px; }
+  @media (min-width: 1200px), (min-width: 992px) and (max-width: 1199px) {
+    .post-header .post-social {
+      margin-top: -30px; } }
 
 .content {
   background: #fff;

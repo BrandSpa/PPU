@@ -28,8 +28,13 @@ body {
     body {
       padding: 0; } }
 
-a:hover {
+a {
   text-decoration: none; }
+  a:hover {
+    text-decoration: none; }
+  a:focus {
+    text-decoration: none;
+    border: none; }
 
 @media (min-width: 992px) and (max-width: 1199px), (min-width: 1200px) {
   .app-container {
@@ -198,12 +203,23 @@ select .form-control {
   background: #002855;
   width: 180px;
   padding: 0;
-  margin: 0; }
+  margin: 0;
+  z-index: 9999; }
+  .nav-main > a {
+    background: #fff;
+    display: block; }
   .nav-main li {
     list-style: none;
-    padding: 0 30px 25px 30px; }
+    padding: 15px 30px;
+    transition: 500ms all; }
+    .nav-main li:hover {
+      border-left: 4px solid #00A1B1; }
+    .nav-main li.active {
+      border-left: 4px solid #00A1B1; }
     .nav-main li:nth-child(2) {
       padding-top: 15px !important; }
+    .nav-main li:last-child {
+      margin-bottom: 15px; }
     .nav-main li a {
       color: #fff;
       font-size: 14px;
@@ -770,34 +786,33 @@ select .form-control {
   @media (max-width: 767px) {
     .lawyer-item {
       height: 100px; } }
-  .lawyer-item img {
-    -webkit-filter: grayscale(100%);
-    filter: grayscale(100%);
-    filter: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><filter id='grayscale'><feColorMatrix type='matrix' values='0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0'/></filter></svg>#grayscale");
+  .lawyer-item a {
+    display: block; }
+  .lawyer-item .img-container {
     float: left;
     width: 150px;
     height: 150px;
     margin: 0;
     padding: 0;
     overflow: hidden;
-    position: relative;
-    margin-right: 15px; }
+    margin-right: 15px;
+    z-index: 3;
+    position: relative; }
+  .lawyer-item img {
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%);
+    filter: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><filter id='grayscale'><feColorMatrix type='matrix' values='0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0'/></filter></svg>#grayscale");
+    width: 100%; }
     @media (max-width: 767px) {
       .lawyer-item img {
         width: 100px;
         height: 100px; } }
   .lawyer-item .content {
-    padding: 30px 0 0 0;
+    padding: 15px 0 0 0;
     background: #fff;
     min-height: 150px;
-    transition: 500ms all; }
-    .lawyer-item .content:hover {
-      background: #002855;
-      color: #fff; }
-      .lawyer-item .content:hover .position {
-        color: #fff; }
-      .lawyer-item .content:hover h3 a {
-        color: #fff; }
+    position: relative;
+    z-index: 1; }
     @media (max-width: 767px) {
       .lawyer-item .content {
         padding: 0; } }
@@ -819,6 +834,27 @@ select .form-control {
         @media (max-width: 767px) {
           .lawyer-item .content h3 a {
             font-size: 0.7em; } }
+    .lawyer-item .content .hover {
+      width: 100%;
+      position: absolute;
+      right: 0;
+      top: -50px;
+      background: #002855;
+      height: 150px;
+      display: block;
+      z-index: 2;
+      opacity: 0;
+      color: #fff;
+      padding: 15px 0 0 165px;
+      transition: all 500ms;
+      cursor: pointer; }
+      .lawyer-item .content .hover span {
+        color: #fff; }
+      .lawyer-item .content .hover h3 a {
+        color: #fff; }
+      .lawyer-item .content .hover:hover {
+        top: 0;
+        opacity: 1; }
   @media (max-width: 767px) {
     .lawyer-item {
       padding: 0; } }
@@ -1300,6 +1336,9 @@ select .form-control {
     display: block;
     float: right;
     margin-right: 15px; }
+  @media (min-width: 1200px), (min-width: 992px) and (max-width: 1199px) {
+    .post-header .post-social {
+      margin-top: -30px; } }
 
 .content {
   background: #fff;

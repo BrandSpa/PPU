@@ -1962,6 +1962,14 @@ $(function() {
 
     LawyerView.prototype.className = 'col-md-6 col-sm-6 col-xs-12 lawyer-item';
 
+    LawyerView.prototype.events = {
+      "click": "open"
+    };
+
+    LawyerView.prototype.open = function() {
+      return window.location = "/abogados/" + (this.model.get('slug'));
+    };
+
     LawyerView.prototype.render = function() {
       var compile, source;
       source = this.template.html();
