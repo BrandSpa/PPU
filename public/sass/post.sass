@@ -303,9 +303,39 @@
 	&:nth-child(2n+2)
 		padding-right: 0
 
+#posts-related
+	.post-item
+		&:first-child
+			padding-left: 0
+			padding-right: 7px
+
+		&:nth-child(2n+2)
+			padding-right: 0
+			padding-left: 7px
+
+		&:nth-child(2n+3)
+		padding-left: 0
+		padding-right: 7px
+
+.related-title
+	float: left
+	width: 100%
+	text-align: center
+	background: #fff
+	margin-bottom: 15px
+	padding: 15px
+	h3
+		font-size: 1.2em
+		color: #002855
+		margin: 0
+
 #post-detail
+
 	.content
 		float: left
+		width: 100%
+		margin-bottom: 15px
+		display: block
 		@media #{$mobile}
 			padding: 15px !important
 

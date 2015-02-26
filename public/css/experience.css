@@ -6,7 +6,8 @@
 .experience-item {
   height: 155px;
   margin-bottom: 15px;
-  overflow: hidden; }
+  overflow: hidden;
+  cursor: pointer; }
   @media (min-width: 768px) and (max-width: 991px) {
     .experience-item {
       height: 124px; } }
@@ -92,10 +93,9 @@
         margin-right: 15px; }
     .experience-item .content h3 {
       font-size: 0.9em;
-      padding-right: 15px;
       line-height: 1.4em;
       font-weight: bold;
-      margin: 15px 0 15px 15px; }
+      margin: 15px 0 15px 0; }
       @media (max-width: 480px) {
         .experience-item .content h3 {
           padding: 0; } }

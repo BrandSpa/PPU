@@ -78,7 +78,7 @@ class Api::PostsController < ApplicationController
   end
 
   def set_filters(params)
-    params.slice(:is_featured, :category, :country, :keyword)
+    params.slice(:is_featured, :category, :country, :keyword, :without)
   end
 
   def set_filters_without_params(params)

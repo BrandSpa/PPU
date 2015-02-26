@@ -24,6 +24,7 @@ class Post < ActiveRecord::Base
   scope :get_relationships, -> { includes(:translation,:translations, :categories, :lawyers, :gallery) }
   scope :order_featured, -> { order(featured: :asc) }
   scope :order_date, -> { order(date: :desc) }
+  scope :without, -> (id) {where.not(id: id) }
 
   mount_uploader :img_name, PostImageUploader
 

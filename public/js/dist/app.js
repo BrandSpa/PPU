@@ -1293,7 +1293,7 @@ $(function() {
       var i;
       this.$el.empty();
       i = 0;
-      this.collection.each(function(model) {
+      return this.collection.each(function(model) {
         if (i === 0) {
           this.renderMain(model);
         } else {
@@ -1301,7 +1301,6 @@ $(function() {
         }
         return i++;
       }, this);
-      return $(this.el).find('.thumb').imagefill();
     };
 
     return PostsView;
@@ -1494,7 +1493,7 @@ $(function() {
     return PostsFilters;
 
   })(Backbone.View);
-  return ppu.PostDetailView = (function(_super) {
+  ppu.PostDetailView = (function(_super) {
     __extends(PostDetailView, _super);
 
     function PostDetailView() {
@@ -1514,17 +1513,60 @@ $(function() {
       return $("#top-bar").html($("#post-detail-title").html());
     };
 
-    PostDetailView.prototype.getRelated = function(categories) {};
-
     PostDetailView.prototype.render = function() {
-      var template;
+      var relatedData, template;
       template = app.compile(this.template);
       this.$el.html(template(this.model.toJSON()));
       this.setUrlTranslation(this.model);
-      return this.model.get('categories');
+      this.model.get('categories');
+      relatedData = {
+        category: this.model.get('categories')[0].name,
+        without: this.model.id
+      };
+      return app.pubsub.trigger('posts:getRelated', relatedData);
     };
 
     return PostDetailView;
+
+  })(Backbone.View);
+  return ppu.PostsRelated = (function(_super) {
+    __extends(PostsRelated, _super);
+
+    function PostsRelated() {
+      return PostsRelated.__super__.constructor.apply(this, arguments);
+    }
+
+    PostsRelated.prototype.el = $("#posts-related");
+
+    PostsRelated.prototype.initialize = function() {
+      this.listenTo(this.collection, 'reset', this.render);
+      return app.pubsub.on('posts:getRelated', this.get, this);
+    };
+
+    PostsRelated.prototype.get = function(data) {
+      console.log(data);
+      return this.collection.fetch({
+        reset: true,
+        data: data
+      });
+    };
+
+    PostsRelated.prototype.renderOne = function(model) {
+      console.log(this);
+      ppu.postView = new ppu.PostView({
+        model: model
+      });
+      return this.$el.append(ppu.postView.render().el);
+    };
+
+    PostsRelated.prototype.render = function() {
+      this.$el.empty();
+      return this.collection.each(function(model) {
+        return this.renderOne(model);
+      }, this);
+    };
+
+    return PostsRelated;
 
   })(Backbone.View);
 });
@@ -1569,6 +1611,14 @@ $(function() {
     ExperienceView.prototype.template = $("#experience-template");
 
     ExperienceView.prototype.className = "col-md-6 col-sm-6 col-xs-12 experience-item";
+
+    ExperienceView.prototype.events = {
+      "click": "open"
+    };
+
+    ExperienceView.prototype.open = function() {
+      return window.location = "/experiencias/" + (this.model.get('slug'));
+    };
 
     ExperienceView.prototype.render = function() {
       var template;
@@ -2020,9 +2070,13 @@ $(function() {
       ppu.post = new ppu.Post({
         id: slug
       });
+      ppu.posts = new ppu.Posts;
       ppu.post.fetch();
-      return ppu.postDetailView = new ppu.PostDetailView({
+      ppu.postDetailView = new ppu.PostDetailView({
         model: ppu.post
+      });
+      return ppu.postsRelated = new ppu.PostsRelated({
+        collection: ppu.posts
       });
     };
 

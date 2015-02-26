@@ -336,8 +336,33 @@
 .post-featured-item:nth-child(2n+2) {
   padding-right: 0; }
 
+#posts-related .post-item {
+  padding-left: 0;
+  padding-right: 7px; }
+  #posts-related .post-item:first-child {
+    padding-left: 0;
+    padding-right: 7px; }
+  #posts-related .post-item:nth-child(2n+2) {
+    padding-right: 0;
+    padding-left: 7px; }
+
+.related-title {
+  float: left;
+  width: 100%;
+  text-align: center;
+  background: #fff;
+  margin-bottom: 15px;
+  padding: 15px; }
+  .related-title h3 {
+    font-size: 1.2em;
+    color: #002855;
+    margin: 0; }
+
 #post-detail .content {
-  float: left; }
+  float: left;
+  width: 100%;
+  margin-bottom: 15px;
+  display: block; }
   @media (max-width: 767px) {
     #post-detail .content {
       padding: 15px !important; } }

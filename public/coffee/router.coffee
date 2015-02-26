@@ -41,8 +41,10 @@ $ ->
 
     post: (slug)->
       ppu.post = new ppu.Post id: slug
+      ppu.posts = new ppu.Posts
       ppu.post.fetch()
       ppu.postDetailView = new ppu.PostDetailView model: ppu.post
+      ppu.postsRelated = new ppu.PostsRelated collection: ppu.posts
 
     areas: ->
       ppu.categories = new ppu.Categories
