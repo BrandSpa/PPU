@@ -5,8 +5,9 @@
 /* Landscape phones and smaller */
 .category-item {
   height: 155px;
-  margin-bottom: 15px;
-  overflow: hidden; }
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 15px; }
   @media (max-width: 767px) {
     .category-item {
       padding: 0; } }
@@ -21,14 +22,28 @@
     width: 155px;
     float: left;
     overflow: hidden;
-    margin-right: 30px; }
+    position: relative;
+    z-index: 1; }
     .category-item .img-container img {
       width: 155px; }
   .category-item .content {
     background: #fff;
     padding: 15px;
     height: 155px;
-    line-height: 200%; }
+    line-height: 200%;
+    z-index: 2;
+    position: relative;
+    overflow: hidden; }
+    .category-item .content .footer {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      padding: 30px 15px 10px 15px;
+      margin-right: 15px;
+      background: none, linear-gradient(180deg, rgba(255, 255, 255, 0) 0, #fff 50%);
+      overflow: hidden;
+      width: 100%; }
     .category-item .content h3 {
       font-size: 1.1em;
       font-weight: bold; }
