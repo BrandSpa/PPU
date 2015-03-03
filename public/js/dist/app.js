@@ -1400,14 +1400,13 @@ $(function() {
     PostsFilters.prototype.events = {
       'change .country': 'byCountry',
       'change .category': 'byCategory',
-      'keydown .query': 'byKeyword',
+      'keyup .query': 'byKeyword',
       'submit .search': 'bySearch'
     };
 
     PostsFilters.prototype.initialize = function() {
       this.filtersAplied = {
         lang: app.lang,
-        not_featured: true,
         published: true
       };
       app.pubsub.on("general:scroll", this.paginate, this);
@@ -1480,7 +1479,10 @@ $(function() {
           keyword: val
         });
       } else if (val.length === 1) {
-        return console.log("no hay error");
+        return this.filterBy({
+          keyword: "",
+          with_featured: true
+        });
       }
     };
 

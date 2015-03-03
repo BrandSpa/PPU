@@ -109,11 +109,11 @@ $ ->
     events:
       'change .country': 'byCountry'
       'change .category': 'byCategory'
-      'keydown .query': 'byKeyword'
+      'keyup .query': 'byKeyword'
       'submit .search': 'bySearch'
 
     initialize: ->
-      @filtersAplied = {lang: app.lang, not_featured: true, published: true}
+      @filtersAplied = {lang: app.lang,  published: true}
       app.pubsub.on("general:scroll", @paginate, @)
       @offset = 20
 
@@ -156,8 +156,8 @@ $ ->
       if val.length >= 2
         @filterBy(keyword: val)
       else if val.length == 1
-        console.log "no hay error"
-
+        @filterBy(keyword: "", with_featured: true)
+      
 
     bySearch: (e) ->
       e.preventDefault()

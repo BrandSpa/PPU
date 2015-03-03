@@ -4104,7 +4104,7 @@ $(function() {
       return this.collection.fetch({
         reset: true,
         data: {
-          keyword: query
+          search: query
         }
       });
     };

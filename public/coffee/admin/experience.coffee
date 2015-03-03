@@ -272,7 +272,7 @@ $ ->
       , @
 
     search: (query) ->
-      @collection.fetch reset: true, data: keyword: query
+      @collection.fetch reset: true, data: search: query
 
   class ppu.admin.ExperienceLawyersSelected extends Backbone.View
     template: $ '#lawyer-selected-template'
