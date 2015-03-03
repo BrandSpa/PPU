@@ -113,7 +113,7 @@ $ ->
       'submit .search': 'bySearch'
 
     initialize: ->
-      @filtersAplied = {lang: app.lang, not_featured: true}
+      @filtersAplied = {lang: app.lang, not_featured: true, published: true}
       app.pubsub.on("general:scroll", @paginate, @)
       @offset = 20
 
@@ -153,9 +153,11 @@ $ ->
 
     byKeyword: (e) ->
       val = $(e.currentTarget).val()
-      if val.length >= 1
+      if val.length >= 2
         @filterBy(keyword: val)
-        
+      else if val.length == 1
+        console.log "no hay error"
+
 
     bySearch: (e) ->
       e.preventDefault()

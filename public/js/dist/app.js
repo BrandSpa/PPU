@@ -1407,7 +1407,8 @@ $(function() {
     PostsFilters.prototype.initialize = function() {
       this.filtersAplied = {
         lang: app.lang,
-        not_featured: true
+        not_featured: true,
+        published: true
       };
       app.pubsub.on("general:scroll", this.paginate, this);
       return this.offset = 20;
@@ -1474,10 +1475,12 @@ $(function() {
     PostsFilters.prototype.byKeyword = function(e) {
       var val;
       val = $(e.currentTarget).val();
-      if (val.length >= 1) {
+      if (val.length >= 2) {
         return this.filterBy({
           keyword: val
         });
+      } else if (val.length === 1) {
+        return console.log("no hay error");
       }
     };
 
