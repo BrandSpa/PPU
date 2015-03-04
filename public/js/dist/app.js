@@ -999,7 +999,13 @@ $(function() {
         paginate: this.offset
       });
       ppu.lawyers.fetch({
-        data: data
+        data: data,
+        beforeSend: function() {
+          return $('.preload').removeClass('hidden');
+        },
+        success: function() {
+          return $('.preload').addClass('hidden');
+        }
       });
       return this.offset = this.offset + 20;
     };
@@ -1725,7 +1731,13 @@ $(function() {
         paginate: this.offset
       });
       ppu.experiences.fetch({
-        data: data
+        data: data,
+        beforeSend: function() {
+          return $('.preload').removeClass('hidden');
+        },
+        success: function() {
+          return $('.preload').addClass('hidden');
+        }
       });
       return this.offset = this.offset + 20;
     };

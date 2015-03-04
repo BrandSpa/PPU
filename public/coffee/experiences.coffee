@@ -66,7 +66,10 @@ $ ->
 
 		paginate: ->
 			data = _.extend(@filtersAplied,  paginate: @offset)
-			ppu.experiences.fetch data: data
+			ppu.experiences.fetch data: data, beforeSend: () ->
+        $('.preload').removeClass('hidden')
+      , success: () ->
+        $('.preload').addClass('hidden')
 			@offset = (@offset+20)
 
 		filterBy: (data) ->

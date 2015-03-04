@@ -89,7 +89,10 @@ $ ->
 
     paginate: ->
       data = _.extend(@filtersAplied, paginate: @offset)
-      ppu.lawyers.fetch data: data
+      ppu.lawyers.fetch data: data, beforeSend: () ->
+        $('.preload').removeClass('hidden')
+      , success: () ->
+        $('.preload').addClass('hidden')
       @offset = (@offset+20)
 
     byPosition: (e) ->
