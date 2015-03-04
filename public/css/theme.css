@@ -641,6 +641,13 @@ select .form-control {
   font-size: 0.9em;
   font-weight: 200; }
 
+.preload {
+  width: 100%;
+  padding: 15px;
+  background: #fff;
+  text-align: center;
+  float: left; }
+
 /* Large desktops and laptops */
 /* Portrait tablets and medium desktops */
 /* Portrait tablets and small desktops */

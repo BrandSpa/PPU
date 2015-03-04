@@ -1434,7 +1434,13 @@ $(function() {
         paginate: this.offset
       });
       ppu.posts.fetch({
-        data: data
+        data: data,
+        beforeSend: function() {
+          return $('.preload').removeClass('hidden');
+        },
+        success: function() {
+          return $('.preload').addClass('hidden');
+        }
       });
       return this.offset = this.offset + 20;
     };

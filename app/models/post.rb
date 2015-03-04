@@ -12,7 +12,7 @@ class Post < ActiveRecord::Base
   
   scope :lang, -> (lang){ where(lang: lang) }
   scope :slug, -> (slug){ where(slug: slug) }
-  scope :paginate, -> (paginate) { limit(20).offset(paginate) }
+  scope :paginate, -> (paginate) { limit(21).offset(paginate) }
   scope :featured, -> { where.not(featured: nil) }
   scope :with_featured, -> { order(featured: :asc) }
   scope :is_featured, -> (val) { where(featured: val) }

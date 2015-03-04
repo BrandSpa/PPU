@@ -129,7 +129,11 @@ $ ->
 
     paginate: ->
       data = _.extend(@filtersAplied,  paginate: @offset)
-      ppu.posts.fetch data: data
+      ppu.posts.fetch data: data, beforeSend: () ->
+        $('.preload').removeClass('hidden')
+      , success: () ->
+        $('.preload').addClass('hidden')
+
       @offset = (@offset+20)
 
     byCountry: (e) ->
