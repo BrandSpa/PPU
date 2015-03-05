@@ -8,6 +8,8 @@ gem 'mysql2'
 
 gem 'dalli'
 
+gem 'prerender_rails'
+
 gem 'fb_graph'
 
 gem 'devise'
