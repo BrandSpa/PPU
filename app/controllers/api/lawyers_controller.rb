@@ -22,7 +22,7 @@ class Api::LawyersController < ApplicationController
       render json: model.to_json(:include => [:translations,:categories, :translation])
     else
       model = entity.lang(lang).relationships.find_by(slug: id)
-      render json: model.to_json(:include => [:translations, :translation, :academics, :articles, :awards, :educations, :institutions, :jobs, :languages, :phrases, :recognitions, :categories])
+      render json: model.to_json(:include => [:translations, :translation, :academics, :articles, :awards, :educations, :institutions, :jobs, :languages, :phrases, :recognitions, :categories, :posts])
     end
   end
 

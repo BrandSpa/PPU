@@ -35,7 +35,6 @@ mixins.lawyerRelationshipViews =
     "sortstop": "stop"
 
   stop: (event, ui) ->
-
     pos = ui.item.index()
     id = $(ui.item).data('id')
     that = @

@@ -136,8 +136,11 @@
       {{/each}}
       {{/if}}
 
-    {{#if articles}}
+
       <h3><i class="fa fa-file-text-o"></i> <%= t('Articles') %></h3>
+      {{#each posts}}
+        <a href="/posts/{{ slug }}" target="_new">{{ title }}</a>
+      {{/each}}
       {{#each articles}}
       <div class="article-container">
         {{#if file_name.url}}
@@ -152,7 +155,7 @@
       {{/if}}  
       </div>
       {{/each}}
-      {{/if}}
+
       
 
     </div>
