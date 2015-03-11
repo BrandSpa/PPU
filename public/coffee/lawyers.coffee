@@ -150,6 +150,16 @@ $ ->
     render: ->
       template = app.compile(@template)
       $(@el).html template( @model.toJSON() )
+      @getImgs()
+      
+
+    getImgs: ->
+      h = @$el.find('.award img')
+      _.each h, (e) ->
+        $(e).load (a) ->
+          if $(@).height() > 90
+            $(@).css('height', '90px')
+      
 
   class ppu.lawyersRelatedCategory extends Backbone.View
     el: $ "#lawyers-related"

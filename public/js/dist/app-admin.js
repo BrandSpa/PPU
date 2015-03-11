@@ -2234,7 +2234,20 @@ $(function() {
     LawyerDetailView.prototype.render = function() {
       var template;
       template = app.compile(this.template);
-      return $(this.el).html(template(this.model.toJSON()));
+      $(this.el).html(template(this.model.toJSON()));
+      return this.getImgs();
+    };
+
+    LawyerDetailView.prototype.getImgs = function() {
+      var h;
+      h = this.$el.find('.award img');
+      return _.each(h, function(e) {
+        return $(e).load(function(a) {
+          if ($(this).height() > 90) {
+            return $(this).css('height', '90px');
+          }
+        });
+      });
     };
 
     return LawyerDetailView;
