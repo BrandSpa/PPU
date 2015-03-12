@@ -6,6 +6,7 @@
   <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,500,700' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="/css/theme.css">
+  <link rel="stylesheet" href="/css/admin.css">
   <link rel="stylesheet" href="/bower_components/bootstrap-datepicker/css/datepicker3.css">
   <link rel="stylesheet" href="/bower_components/toastr/toastr.min.css">
   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" />
@@ -47,10 +48,8 @@
      fjs.parentNode.insertBefore(js, fjs);
    }(document, 'script', 'facebook-jssdk'));
 </script>
- 
-<div class="container">
-<nav class="navbar navbar-default navbar-admin navbar-fixed-top" role="navigation">
-  <div class="container">
+ <nav class="navbar navbar-admin navbar-fixed-top">
+  <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -59,24 +58,41 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/dashboard">PPU Admin <img src="/img/favicon.png" alt=""></a>
+      <a class="navbar-brand" href="#"> PPU Dashboard</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
+      <ul class="nav navbar-nav visible-xs visible-sm">
         <li><a href="/dashboard">Abogados</a></li>
         <li><a href="/admin/lawyers/new">Crear Abogado</a></li>
         <li><a href="/admin/posts">Noticias</a></li>
         <li><a href="/admin/posts/new">Crear Noticia</a></li>
         <li><a href="/admin/experiences">Experiencia</a></li>
         <li><a href="/admin/experiences/new">Crear Experiencia</a></li>
-
+        <li><a href="/users/sign_out">Salir</a></li>
+       
       </ul>
+   
+   
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
-
+<% if user_signed_in? %>
+<div class="sidebar hidden-xs hidden-sm">
+  <ul>
+    <li><a href="/dashboard">Abogados</a></li>
+        <li><a href="/admin/lawyers/new">Crear Abogado</a></li>
+        <li><a href="/admin/posts">Noticias</a></li>
+        <li><a href="/admin/posts/new">Crear Noticia</a></li>
+        <li><a href="/admin/experiences">Experiencia</a></li>
+        <li><a href="/admin/experiences/new">Crear Experiencia</a></li>
+        <li><a href="/users/sign_out">Salir</a></li>
+  </ul>
+</div>
+<% end %>
+<div class="wrap">
+  
   <%= yield %>
 </div>
   <%= render "articles/form" %>

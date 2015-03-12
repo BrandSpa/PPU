@@ -2928,7 +2928,7 @@ $(function() {
       var published, url;
       e.preventDefault();
       url = setSubdomain(this.model.get('lang')) + ("posts/" + (this.model.get('slug')));
-      return published = fb_check_and_publish(this.model.get('title'), url);
+      return published = openShare(url);
     };
 
     PostView.prototype.unpublish = function(e) {

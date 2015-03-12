@@ -1,0 +1,42 @@
+/* Large desktops and laptops */
+/* Portrait tablets and medium desktops */
+/* Portrait tablets and small desktops */
+/* Landscape phones and portrait tablets */
+/* Landscape phones and smaller */
+#ppu-admin .navbar-admin {
+  border: none;
+  background: #002855 !important; }
+#ppu-admin .navbar-header {
+  background: #002855 !important; }
+  #ppu-admin .navbar-header .navbar-brand {
+    background: #002855 !important;
+    color: #fff !important; }
+  #ppu-admin .navbar-header .navbar-collapse {
+    background: #002855 !important; }
+    #ppu-admin .navbar-header .navbar-collapse li > a {
+      color: #fff !important; }
+
+.sidebar {
+  width: 200px;
+  position: fixed;
+  min-height: 100%;
+  position: fixed;
+  left: 0;
+  background: #002855;
+  margin-top: -15px; }
+  .sidebar ul {
+    width: 100%; }
+    .sidebar ul li a {
+      display: block;
+      width: 100%;
+      padding: 10px 30px 10px 30px;
+      color: #fff; }
+
+.wrap {
+  margin-left: 215px;
+  margin-right: 15px; }
+  @media (max-width: 767px), (max-width: 480px) {
+    .wrap {
+      margin-left: 15px; } }
+
+/*# sourceMappingURL=admin.css.map */

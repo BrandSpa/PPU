@@ -1,8 +1,7 @@
   <div class="col-lg-5">
-  <div class="panel panel-default">
+
+  <div class="panel panel-default" style="margin: 0 auto">
   <div class="panel-body">
-  <h3>Log in</h3>
-  <hr>
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="row">
     <div class="form-group col-lg-12">
@@ -10,12 +9,10 @@
   </div>
 
    <div class="form-group col-lg-12">
-    <input type="text" name="user[password]" class="form-control" autocomplete="false" placeholder="Contraseña">
+    <input type="password" name="user[password]" class="form-control" autocomplete="false" placeholder="Contraseña">
   </div>
-
   </div>
-
-  <input type="submit" class="btn btn-info pull-right">
+  <input type="submit" class="btn btn-info pull-right" value="Ingresar">
   <% end %>
 
   </div>

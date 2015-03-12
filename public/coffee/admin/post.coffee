@@ -36,12 +36,11 @@ $ ->
       that.model.save fields: featured: 3
       .done () ->
         app.pubsub.trigger('post:unfeatured')
-
      
     publishFb: (e)-> 
       e.preventDefault()
       url = setSubdomain(@model.get('lang')) + "posts/#{@model.get('slug')}"
-      published = fb_check_and_publish(@model.get('title'), url)
+      published = openShare(url)
 
     unpublish: (e) ->
       e.preventDefault()

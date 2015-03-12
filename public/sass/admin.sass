@@ -1,0 +1,52 @@
+/* Large desktops and laptops */
+$desktop-lg: "(min-width: 1200px)"
+/* Portrait tablets and medium desktops */
+$desktop: "(min-width: 992px) and (max-width: 1199px)"
+/* Portrait tablets and small desktops */
+$tablet: "(min-width: 768px) and (max-width: 991px)"
+/* Landscape phones and portrait tablets */
+$mobile: "(max-width: 767px)"
+/* Landscape phones and smaller */
+$mobile-xs: "(max-width: 480px)"
+
+#ppu-admin
+	.navbar-admin
+		border: none
+		background: #002855 !important
+	.navbar-header
+		background: #002855 !important
+		.navbar-brand
+			background: #002855 !important
+			color: #fff !important
+		.navbar-collapse
+			background: #002855 !important
+			
+			li
+				&>a
+					color: #fff !important
+
+
+.sidebar
+	width: 200px
+	position: fixed
+	min-height: 100%
+	position: fixed
+	left: 0
+	background: #002855
+	margin-top: -15px
+	ul
+		width: 100%
+		li
+			a
+				display: block
+				width: 100%
+				padding: 10px 30px 10px 30px
+				color: #fff
+
+
+
+.wrap
+	margin-left: 215px
+	margin-right: 15px
+	@media #{$mobile}, #{$mobile-xs}
+		margin-left: 15px 
