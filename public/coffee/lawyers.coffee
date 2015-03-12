@@ -63,7 +63,7 @@ $ ->
     offset: 20
     events:
       'change .position': 'byPosition'
-      'change .country': 'byCountry'
+      'change .countries': 'byCountry'
       'change .category': 'byCategory'
       'keyup .query': 'byQuery'
       'submit .search': 'bySearch'
@@ -101,22 +101,9 @@ $ ->
       ppu.lawyers.fetch reset: true, data: data
       
     byCountry: (e) ->
-      el = $(e.currentTarget)
-
-      if $(".countries").find('input[type="checkbox"]:checked').length == 2
-        data = _.extend(@filtersAplied,paginate: 0,  country: "")
-        ppu.lawyers.fetch reset: true, data: data
-      else
-        if el.find(":not(:checked)")
-           value = el.val()
-          if value == "Colombia"
-            val = "Chile"
-          else
-            val = "Colombia"
-            
-          $(".countries").find("input[value='#{val}']").prop('checked', true)
-          data = _.extend(@filtersAplied,paginate: 0,  country: val)
-          ppu.lawyers.fetch reset: true, data: data          
+      val = $(e.currentTarget).find('select').val()
+      data = _.extend(@filtersAplied,paginate: 0,  country: val)
+      ppu.lawyers.fetch reset: true, data: data          
          
     byCategory: (e) ->
       val = $(e.currentTarget).find('select').val()

@@ -321,7 +321,7 @@ select .form-control {
   #top-bar .countries {
     float: right;
     height: 50px;
-    padding: 17px 0 0 0;
+    padding: 0 15px 0 0;
     border-left: 1px solid #fff;
     background: #002855;
     text-align: center; }
@@ -647,6 +647,47 @@ select .form-control {
   background: #fff;
   text-align: center;
   float: left; }
+
+.bootstrap-select {
+  width: 100% !important;
+  padding-top: 10px;
+  padding-left: 5px;
+  padding-bottom: 5px; }
+  .bootstrap-select .btn-default {
+    background: transparent !important;
+    color: #fff; }
+    .bootstrap-select .btn-default:hover, .bootstrap-select .btn-default.active, .bootstrap-select .btn-default:focus {
+      color: #00A1B1; }
+  .bootstrap-select .btn:focus {
+    outline: none !important; }
+
+.btn-group.open .dropdown-toggle {
+  color: #00A1B1;
+  box-shadow: none; }
+
+.bootstrap-select.btn-group .dropdown-menu.inner {
+  background: #002855;
+  color: #fff;
+  border-radius: 0; }
+
+.bootstrap-select.btn-group .dropdown-menu li a span.text {
+  color: #fff; }
+
+.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
+  background: #00A1B1;
+  outline: none !important; }
+
+.dropdown-menu {
+  padding: 0;
+  border-radius: 0; }
+
+.country-container .bootstrap-select {
+  padding-left: 0; }
+  .country-container .bootstrap-select .btn {
+    border: 1px solid #00A1B1;
+    opacity: 0.7;
+    margin: 0;
+    border-radius: 0; }
 
 /* Large desktops and laptops */
 /* Portrait tablets and medium desktops */

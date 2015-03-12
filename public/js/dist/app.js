@@ -66,9 +66,7 @@ ppu.appendDatePicker = function(el) {
 };
 
 ppu.appendSelect = function(el) {
-  return $(el).find("select").selectBoxIt({
-    autoWidth: false
-  });
+  return $(el).find('.selectpicker').selectpicker();
 };
 
 ppu.appendCheck = function(el) {
@@ -956,7 +954,7 @@ $(function() {
 
     LawyersFilters.prototype.events = {
       'change .position': 'byPosition',
-      'change .country': 'byCountry',
+      'change .countries': 'byCountry',
       'change .category': 'byCategory',
       'keyup .query': 'byQuery',
       'submit .search': 'bySearch'
@@ -1024,36 +1022,16 @@ $(function() {
     };
 
     LawyersFilters.prototype.byCountry = function(e) {
-      var data, el, val, value;
-      el = $(e.currentTarget);
-      if ($(".countries").find('input[type="checkbox"]:checked').length === 2) {
-        data = _.extend(this.filtersAplied, {
-          paginate: 0,
-          country: ""
-        });
-        return ppu.lawyers.fetch({
-          reset: true,
-          data: data
-        });
-      } else {
-        if (el.find(":not(:checked)")) {
-          value = el.val();
-        }
-        if (value === "Colombia") {
-          val = "Chile";
-        } else {
-          val = "Colombia";
-        }
-        $(".countries").find("input[value='" + val + "']").prop('checked', true);
-        data = _.extend(this.filtersAplied, {
-          paginate: 0,
-          country: val
-        });
-        return ppu.lawyers.fetch({
-          reset: true,
-          data: data
-        });
-      }
+      var data, val;
+      val = $(e.currentTarget).find('select').val();
+      data = _.extend(this.filtersAplied, {
+        paginate: 0,
+        country: val
+      });
+      return ppu.lawyers.fetch({
+        reset: true,
+        data: data
+      });
     };
 
     LawyersFilters.prototype.byCategory = function(e) {
@@ -1417,7 +1395,7 @@ $(function() {
     PostsFilters.prototype.template = $("#posts-filter");
 
     PostsFilters.prototype.events = {
-      'change .country': 'byCountry',
+      'change .countries': 'byCountry',
       'change .category': 'byCategory',
       'keyup .query': 'byKeyword',
       'submit .search': 'bySearch'
@@ -1465,20 +1443,11 @@ $(function() {
     };
 
     PostsFilters.prototype.byCountry = function(e) {
-      var el, val;
-      el = $(e.currentTarget);
-      if ($(".countries").find('input[type="checkbox"]:checked').length === 2) {
-        return this.filterBy({
-          country: ""
-        });
-      } else {
-        if (el.find(":not(:checked)")) {
-          val = this.CountryNotChecked(el);
-          return this.filterBy({
-            country: val
-          });
-        }
-      }
+      var val;
+      val = $(e.currentTarget).find('select').val();
+      return this.filterBy({
+        country: val
+      });
     };
 
     PostsFilters.prototype.CountryNotChecked = function(el) {
@@ -1717,7 +1686,7 @@ $(function() {
 
     ExperiencesFilters.prototype.events = {
       'change .position': 'byPosition',
-      'change .country': 'byCountry',
+      'change .countries': 'byCountry',
       'change .category': 'byCategory',
       'keydown .query': 'byQuery',
       'submit .search': 'bySearch'
@@ -1773,20 +1742,11 @@ $(function() {
     };
 
     ExperiencesFilters.prototype.byCountry = function(e) {
-      var el, val;
-      el = $(e.currentTarget);
-      if ($(".countries").find('input[type="checkbox"]:checked').length === 2) {
-        return this.filterBy({
-          country: ""
-        });
-      } else {
-        if (el.find(":not(:checked)")) {
-          val = this.CountryNotChecked(el);
-          return this.filterBy({
-            country: val
-          });
-        }
-      }
+      var val;
+      val = $(e.currentTarget).find('select').val();
+      return this.filterBy({
+        country: val
+      });
     };
 
     ExperiencesFilters.prototype.CountryNotChecked = function(el) {

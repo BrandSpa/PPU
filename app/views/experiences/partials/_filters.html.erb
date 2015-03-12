@@ -5,24 +5,16 @@
     <input type="text" class="form-control query" placeholder="<%= t("Search") %>">
   </form>
 
-  <div class="col-md-3 col-sm-3 countries">
-    <div class="checkbox-inline">
-      <label>
-        <input type="checkbox" class="country" value="Colombia" checked="checked">
-        Colombia
-      </label>
-    </div>
-
-    <div class="checkbox-inline">
-      <label>
-        <input type="checkbox" class="country" value="Chile" checked="checked">
-        Chile
-      </label>
-    </div>
+ <div class="col-md-2 col-sm-2 countries">
+    <select name="country" class="selectpicker">
+      <option value=""><%= t("country") %></option>
+      <option value="Colombia">Colombia</option>
+      <option value="Chile">Chile</option>
+    </select>
   </div>
 
   <div class="col-md-2 col-sm-2 category">
-    <select class="form-control ">
+    <select class="selectpicker">
       <option value=""><%= t("Areas") %></option>
       <%= render "partials/categories_option" %>
     </select>

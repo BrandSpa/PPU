@@ -4,31 +4,24 @@
     <input type="text" class="form-control query" placeholder="<%= t("Search") %>">
   </form>
 
-  <div class="col-md-3 col-sm-3 countries">
-    <div class="checkbox-inline">
-      <label>
-        <input type="checkbox" class="country" value="Colombia" checked="checked">
-        <span>Colombia</span>
-      </label>
-    </div>
-
-    <div class="checkbox-inline">
-      <label>
-        <input type="checkbox" class="country" value="Chile"  checked="checked">
-         <span>Chile</span>
-      </label>
-    </div>
+   <div class="col-md-2 col-sm-2 countries">
+    <select name="country" class="selectpicker">
+      <option value=""><%= t("country") %></option>
+      <option value="Colombia">Colombia</option>
+      <option value="Chile">Chile</option>
+      <option value="España">España</option>
+    </select>
   </div>
 
    <div class="col-md-2 col-sm-2 category">
-    <select class="form-control ">
+    <select class="selectpicker">
       <option value=""><%= t("Areas") %></option>
       <%= render "partials/categories_option" %>
     </select>
   </div>
 
    <div class="col-md-2 col-sm-2 position">
-    <select class="form-control">
+    <select class="selectpicker">
       <option value=""><%= t("Lawyer type") %> </option>
       <option value="<%= t("lawyer") %>"><%= t("lawyer") %></option>
       <option value="<%= t("specialist") %>"><%= t("specialist") %></option>

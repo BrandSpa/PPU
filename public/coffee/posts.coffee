@@ -107,7 +107,7 @@ $ ->
     template: $ "#posts-filter"
 
     events:
-      'change .country': 'byCountry'
+      'change .countries': 'byCountry'
       'change .category': 'byCategory'
       'keyup .query': 'byKeyword'
       'submit .search': 'bySearch'
@@ -137,14 +137,8 @@ $ ->
       @offset = (@offset+20)
 
     byCountry: (e) ->
-      el = $(e.currentTarget)
-
-      if $(".countries").find('input[type="checkbox"]:checked').length == 2
-        @filterBy(country: "")
-      else
-        if el.find(":not(:checked)")
-          val = @CountryNotChecked(el)
-          @filterBy(country: val)
+      val = $(e.currentTarget).find('select').val()
+      @filterBy(country: val)
 
     CountryNotChecked: (el) ->
       val = if el.val() == "Colombia" then "Chile" else "Colombia"

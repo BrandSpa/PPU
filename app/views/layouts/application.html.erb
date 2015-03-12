@@ -20,7 +20,7 @@
   <link rel="icon" type="image/png" href="/img/favicon.png" />
 
   <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css' media="screen, print">
-  <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css" media="screen, print"/>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/css/bootstrap-select.min.css"> <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css" media="screen, print"/>
   <link href='/css/dist/style.min.css' rel='stylesheet' type='text/css' media="screen, print">
   <link rel="stylesheet" href="/bower_components/fontawesome/css/font-awesome.min.css" media="screen, print"/>
 
@@ -150,7 +150,7 @@
                     <label for="fields[country]" class="col-sm-2 control-label"><%= t("form_footer.country") %></label>
 
                     <div class="col-sm-10 country-container">
-                      <select name="fields[country]" class="form-control">
+                      <select name="fields[country]" class="selectpicker">
                         <option value="">Seleccionar País</option>
                         <option value="Colombia">Colombia</option>
                         <option value="Chile">Chile</option>
@@ -225,6 +225,7 @@
 <script src="/js/dist/min/dependencies.js"></script>
 <script src="/bower_components/imagesloaded/imagesloaded.pkgd.min.js"></script>
 <script src="/bower_components/imagefill.js/js/jquery-imagefill.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/js/bootstrap-select.min.js"></script>
 
 <script src="/js/dist/app.js"></script>
 

@@ -51,8 +51,7 @@ ppu.appendDatePicker = (el) ->
     autoclose: true
 
 ppu.appendSelect = (el) ->
-  $(el).find("select").selectBoxIt autoWidth: false
-
+ $(el).find('.selectpicker').selectpicker()
 ppu.appendCheck = (el) ->
   $(el).find("input").iCheck labelHover: false, cursor: true, checkboxClass: 'icheckbox_square-blue'
 
