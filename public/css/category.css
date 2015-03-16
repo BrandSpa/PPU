@@ -8,6 +8,8 @@
   overflow: hidden;
   position: relative;
   margin-bottom: 15px; }
+  .category-item:hover {
+    cursor: pointer; }
   @media (max-width: 767px) {
     .category-item {
       padding: 0; } }

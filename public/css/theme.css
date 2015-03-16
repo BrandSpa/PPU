@@ -831,6 +831,8 @@ select .form-control {
   font-size: 1em;
   margin-bottom: 15px;
   height: 150px; }
+  .lawyer-item:hover {
+    cursor: pointer; }
   @media (max-width: 767px) {
     .lawyer-item {
       height: 100px; } }
@@ -970,7 +972,7 @@ select .form-control {
           width: 100%; } }
     #lawyer .lawyer-header .share-container {
       float: right;
-      width: 150px;
+      width: 200px;
       padding: 40px 15px 0 0; }
       #lawyer .lawyer-header .share-container a {
         float: right;
@@ -1081,6 +1083,8 @@ select .form-control {
 .post-main-featured-item {
   padding-left: 0;
   padding-right: 7px; }
+  .post-main-featured-item:hover {
+    cursor: pointer; }
   @media (max-width: 767px) {
     .post-main-featured-item {
       padding: 0;
@@ -1458,6 +1462,8 @@ select .form-control {
   overflow: hidden;
   position: relative;
   margin-bottom: 15px; }
+  .category-item:hover {
+    cursor: pointer; }
   @media (max-width: 767px) {
     .category-item {
       padding: 0; } }

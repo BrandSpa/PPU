@@ -117,12 +117,15 @@ ppu.saveMultipeForms = (el, model, lawyer_id) ->
     data.append("fields[lawyer_id]", lawyer_id)
     model.save data, $.extend({}, ppu.ajaxOptions("POST", data))
 
+
 $(window).on "scroll", _.throttle (event) =>
+  console.log "scroll1"
   body = document.body
-  tolerance = 100
+  tolerance = 200
   threshold = body.scrollHeight - window.innerHeight - tolerance
-  if body.scrollTop > threshold
-    console.log "scroll"
+  console.log $(window).scrollTop()
+  if $(window).scrollTop() > threshold
+    console.log "scroll2"
     app.pubsub.trigger("general:scroll")
 , 1000
     
@@ -155,8 +158,10 @@ else if ($(window).width() > 992 &&  $(window).width() <= 1200)
   app.topPadding = 35
 else
   app.topPadding = 35
-  
-$(window).scroll () ->
+
+console.log $(document)
+
+$(document).scroll () ->
   if $(window).scrollTop() > app.topPadding
     $(".top-bar-container").addClass("to-top")
   else

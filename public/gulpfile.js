@@ -60,22 +60,21 @@ gulp.task('app-admin', function() {
 });
 
 gulp.task('sass', function () {
-    gulp.src('sass/*.sass')
+    gulp.src([
+      'sass/*.sass',
+      'css/theme.css',
+      'css/libs/selectBoxIt.css',
+      'bower_components/nprogress/nprogress.css'
+      ])
       .pipe(sass())
       .pipe(gulp.dest('css'))
+      .pipe(concat('style.css'))
+      .pipe(minifyCSS())
+      .pipe(rename('style.min.css'))
+      .pipe(gulp.dest('css/dist/'))
 });
 
-gulp.task('stylesheets', function() {
-  gulp.src([
-    'css/theme.css',
-    'css/libs/selectBoxIt.css',
-    'bower_components/nprogress/nprogress.css'
-    ])
-    .pipe(concat('style.css'))
-    .pipe(minifyCSS())
-    .pipe(rename('style.min.css'))
-    .pipe(gulp.dest('css/dist/'))
-});
+
 
 gulp.task('dependencies-scripts', function() {
   gulp.src([
@@ -123,7 +122,7 @@ gulp.task('compress', function() {
 });
 
 gulp.task('watch', ['sass', 'app', 'app-admin'], function(){
-  gulp.watch('sass/*.sass', ['sass', 'stylesheets']);
+  gulp.watch('sass/*.sass', ['sass']);
   gulp.watch(['coffee/*.coffee', 'coffee/*/*.coffee'], ['app', 'app-admin']);
 });
  

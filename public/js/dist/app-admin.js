@@ -164,11 +164,13 @@ ppu.saveMultipeForms = function(el, model, lawyer_id) {
 $(window).on("scroll", _.throttle((function(_this) {
   return function(event) {
     var body, threshold, tolerance;
+    console.log("scroll1");
     body = document.body;
-    tolerance = 100;
+    tolerance = 200;
     threshold = body.scrollHeight - window.innerHeight - tolerance;
-    if (body.scrollTop > threshold) {
-      console.log("scroll");
+    console.log($(window).scrollTop());
+    if ($(window).scrollTop() > threshold) {
+      console.log("scroll2");
       return app.pubsub.trigger("general:scroll");
     }
   };
@@ -210,7 +212,9 @@ if ($(window).width() < 768) {
   app.topPadding = 35;
 }
 
-$(window).scroll(function() {
+console.log($(document));
+
+$(document).scroll(function() {
   if ($(window).scrollTop() > app.topPadding) {
     return $(".top-bar-container").addClass("to-top");
   } else {
@@ -575,6 +579,14 @@ $(function() {
     CategoryView.prototype.template = $("#category-template");
 
     CategoryView.prototype.className = "col-md-6 col-sm-6 col-xs-12 category-item";
+
+    CategoryView.prototype.events = {
+      "click": "open"
+    };
+
+    CategoryView.prototype.open = function() {
+      return window.location = "/areas/" + (this.model.get('slug'));
+    };
 
     CategoryView.prototype.render = function() {
       var template;

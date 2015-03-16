@@ -9,6 +9,8 @@
 .post-main-featured-item {
   padding-left: 0;
   padding-right: 7px; }
+  .post-main-featured-item:hover {
+    cursor: pointer; }
   @media (max-width: 767px) {
     .post-main-featured-item {
       padding: 0;
