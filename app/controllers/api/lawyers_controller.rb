@@ -70,7 +70,7 @@ class Api::LawyersController < ApplicationController
 
   private
 
-    def entity
+    def entit
       Lawyer
     end
 

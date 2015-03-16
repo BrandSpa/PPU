@@ -28,7 +28,7 @@ class Lawyer < ActiveRecord::Base
   scope :published, -> { where(published: true) }
   scope :country, -> (country){ where("lawyers.country = ?", country) }
   scope :category, -> (category){ includes(:categories).where(categories: {name: category}) }
-  scope :search, -> (keyword){ where("lawyers.keywords LIKE ?", "%#{keyword}%") }
+  scope :search, -> (keyword){ where("lawyers.lastname LIKE ? OR lawyers.name LIKE ?", "%#{keyword}%", "%#{keyword}%") }
   scope :paginate, -> (paginate) { limit(20).offset(paginate) }
   scope :has_translation, -> (slug) { where(slug: slug).count }
   scope :get_translations, -> { includes(:translations, :translation) }
