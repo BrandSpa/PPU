@@ -151,7 +151,7 @@
 
                     <div class="col-sm-10 country-container">
                       <select name="fields[country]" class="selectpicker">
-                        <option value="">Seleccionar País</option>
+                        <option value=""><%= t('form_footer.select_country')%></option>
                         <option value="Colombia">Colombia</option>
                         <option value="Chile">Chile</option>
                         
@@ -198,7 +198,7 @@
 
              <a href="#footer-content" class="open-contact open-contact-footer" data-toggle="collapse"><%= t("contact") %> <i class="fa fa-chevron-up"></i></a>
               <div class="pull-right">
-                <a href="#" class="policy">Política de tratamiento de datos</a>
+                <a href="#" class="policy"><%= t('data_processing_policy') %></a>
               </div>
               <ul class="social">
                     <li><a href="https://www.linkedin.com/company/1426675?trk=tyah&trkInfo=tarId%3A1420095055704%2Ctas%3Aphilippi%20prie%2Cidx%3A2-1-6" target="new"><i class="fa fa-linkedin"></i></a></li>
@@ -207,7 +207,6 @@
 
                     <li><a href="https://plus.google.com/109929769911906216381" rel="publisher" target="new"><i class="fa fa-google-plus"></i></a></li>
                   </ul>
-             
               
             </div>
             </div>

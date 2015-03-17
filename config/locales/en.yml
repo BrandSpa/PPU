@@ -60,12 +60,13 @@ en:
     infrastructure_&_projects: "Infrastructure & Projects"
     litigations: "Litigations"
     dispute_resolution: "Dispute Resolution"
-    
+    data_processing_policy: "Data processing policy"
   form_footer:
     name: "Name"
     lastname: "Last name"
     message: "Message"
     country: "Country"
+    select_country: "Select Country"
 
   work_with_us:
     top_title: Who are we looking for?

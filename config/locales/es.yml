@@ -52,11 +52,13 @@ es:
   recognitions: "Reconocimientos"
   networks: "Redes"
   work_with: "Trabaje con nosotros"
+  data_processing_policy: "Política de tratamiento de datos"
   form_footer:
     name: "Nombre"
     lastname: "Apellido"
     message: "Mensaje"
     country: "País"
+    select_country: "Seleccionar País"
 
   form_thanks: "Gracias por comunicarse con nostros, pronto nos pondremos en contacto con usted."  
 
