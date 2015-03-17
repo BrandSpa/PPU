@@ -7,13 +7,22 @@
  {{/if}}
 
 	<h1>{{ title }}</h1>
+{{#if lawyers}}
+  {{#each lawyers}}
+    <h5><a href="/abogados/{{ slug }}">{{name}} {{lastname}}</a></h5>
+  {{/each}}
+ {{else}}
   <h5>{{ author }}</h5>
-  
+ {{/if}}
+
+
+
 	<div class="categories">
 		{{#each categories }}
 		<span>{{ name }}</span>
 		{{/each}}
 	</div>
+
 	<div class="post-social">
         <a class="share" href="https://twitter.com/intent/tweet?text={{ title }}&url=http://ppulegal.com/posts/{{ slug }}"><i class="fa fa-twitter-square"></i></a>
 
