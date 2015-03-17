@@ -48,6 +48,8 @@ es:
   read_new: "Leer Noticia"
   read_experience: "Leer Experiencia"
   us: "Nosotros"
+  recognitions: "Reconocimientos"
+  networks: "Redes"
   work_with: "Trabaje con nosotros"
   form_footer:
     name: "Nombre"
