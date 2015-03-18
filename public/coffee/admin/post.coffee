@@ -165,10 +165,7 @@ $ ->
       @model.save data, $.extend({}, options)
     
     stored: (model) ->
-      if model.get('social_published')
-        @publishFb(model)
-      else
-        @redirectTo()
+       window.location = "/posts/#{@model.get('slug')}"
 
     publishFb: (model) ->
       url = setSubdomain(model.get('lang')) + "posts/#{model.get('slug')}"

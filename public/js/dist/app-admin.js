@@ -3157,11 +3157,7 @@ $(function() {
     };
 
     PostCreate.prototype.stored = function(model) {
-      if (model.get('social_published')) {
-        return this.publishFb(model);
-      } else {
-        return this.redirectTo();
-      }
+      return window.location = "/posts/" + (this.model.get('slug'));
     };
 
     PostCreate.prototype.publishFb = function(model) {
