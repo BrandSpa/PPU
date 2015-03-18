@@ -1,14 +1,9 @@
 <script type="text/x-handlebars-template" id="lawyer-article-template">
-  {{#if file_name.url}}
-    <a href="{{ file_name.url }}" target="_new">{{ title }}</a>
-  {{else}}
-    {{#if link}}
-      <a href="{{ link }}" target="_new">{{ title }}</a>
-    {{else}}
-      {{ title }}
-    {{/if}}
-
-  {{/if}}  
+<td> {{title}} </td>
+<td>
+<a href="#" class="btn btn-warning btn-xs open-edit" >editar</a> 
+<a href="#" class="btn btn-danger btn-xs remove" >eliminar</a>
+</td>
 </script>
 
 

@@ -1,5 +1,13 @@
 <script type="text/x-handlebars-template" id="lawyer-award-template">
-  <div class="lawyer-award">
-    <img src="{{img_name.url}}"> <h5>{{ title }}</h5>
-  </div>
+  <td>
+  <img src="{{img_name.url}}" width="40"> 
+</td>
+<td>
+  {{ title }}
+</td>
+<td>
+  <a href="#" class="btn btn-warning btn-xs open-edit" >editar</a> 
+  <a href="#" class="btn btn-danger btn-xs remove" >eliminar</a>
+</td>
 </script>
+

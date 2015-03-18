@@ -223,6 +223,7 @@ $(document).scroll(function() {
 });
 
 mixins.lawyerRelationshipView = {
+  tagName: "tr",
   events: {
     "click .open-edit": "openEdit",
     "click .remove": "remove"
@@ -241,8 +242,6 @@ mixins.lawyerRelationshipView = {
     template = Handlebars.compile(source);
     this.$el.html(template(this.model.toJSON()));
     this.$el.data('id', this.model.get('id'));
-    this.$el.append('<a href="#" class="btn btn-warning btn-xs open-edit" >editar</a> ');
-    this.$el.append('<a href="#" class="btn btn-danger btn-xs remove" >eliminar</a>');
     return this;
   },
   openEdit: function(e) {
@@ -271,9 +270,8 @@ mixins.lawyerRelationshipViews = {
     pos = ui.item.index();
     id = $(ui.item).data('id');
     that = this;
-    return $.map($(this.el).find('ul li'), function(el) {
+    return $.map($(this.el).find('tbody tr'), function(el) {
       var model;
-      console.log(el);
       pos = $(el).index();
       id = $(el).data('id');
       model = that.collection.get(id);
@@ -289,7 +287,7 @@ mixins.lawyerRelationshipViews = {
     return this.listenTo(this.collection, 'add', this.renderCollection);
   },
   renderCollection: function() {
-    this.$el.find('ul').html('');
+    this.$el.find('table tbody').html('');
     return this.collection.each(function(model) {
       return this.renderOne(model);
     }, this);
@@ -299,7 +297,7 @@ mixins.lawyerRelationshipViews = {
     view = new this.view({
       model: model
     });
-    this.$el.find('ul').append(view.render().el);
+    this.$el.find('table').append(view.render().el);
     return this.$el.find('.sortable').sortable();
   },
   openCreate: function(e) {

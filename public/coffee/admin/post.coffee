@@ -234,15 +234,10 @@ $ ->
       options = ppu.ajaxOptions("PUT", data)
       @model.save data, $.extend({}, options)
         .done (model) ->
-          that.updated(model)
+          that.updated(model, that)
 
-    updated: (model) ->
-      if model.social_published
-        url = setSubdomain(model.lang) + "posts/#{model.slug}"
-        published = fb_check_and_publish(model.title, url)
-      else
-        @redirectTo()
-
+    updated: (model, that) ->
+      window.location = "/admin/posts/#{model.id}/edit"
 
     redirectTo: ->
       window.location = '/admin/posts'

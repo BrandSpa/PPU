@@ -2,9 +2,15 @@
   <h4><%= t(title) %></h4>
   <span><%= message %></span>
   <br>
-  <ul class="sortable"> </ul>
   <a href="#" class="btn btn-info btn-sm open-modal-create">Agregar</a>
+  <br><br>
+  <table class="table table-striped"> 
+    <tbody class="sortable"></tbody>
+  </table>
+  
 </div>
+
+
 
 <div class="modal fade" id="lawyer-<%= model %>-edit-modal">
   <div class="modal-dialog modal-lg">

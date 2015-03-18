@@ -33,7 +33,7 @@ $ ->
     _.extend(@.prototype, mixins.lawyerRelationshipModalEdit)
 
   class ppu.LawyerArticleView extends Backbone.View
-    tagName: 'li'
+    tagName: 'tr'
     template: $ '#lawyer-article-template'
     modal: ppu.LawyerArticlesEditModal
     _.extend(@.prototype, mixins.lawyerRelationshipView)

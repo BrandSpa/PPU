@@ -1,4 +1,5 @@
 mixins.lawyerRelationshipView =
+  tagName: "tr"
   events:
     "click .open-edit": "openEdit"
     "click .remove": "remove"
@@ -14,8 +15,6 @@ mixins.lawyerRelationshipView =
     template = Handlebars.compile(source)
     @$el.html template( @model.toJSON() )
     @$el.data('id', @model.get('id'))
-    @$el.append '<a href="#" class="btn btn-warning btn-xs open-edit" >editar</a> '
-    @$el.append '<a href="#" class="btn btn-danger btn-xs remove" >eliminar</a>'
     @
 
   openEdit: (e) ->
@@ -38,8 +37,7 @@ mixins.lawyerRelationshipViews =
     pos = ui.item.index()
     id = $(ui.item).data('id')
     that = @
-    $.map $(@el).find('ul li'), (el) ->
-      console.log el
+    $.map $(@el).find('tbody tr'), (el) ->
       pos = $(el).index()
       id = $(el).data('id')
       model = that.collection.get(id)
@@ -50,14 +48,14 @@ mixins.lawyerRelationshipViews =
     @listenTo(@collection, 'add', @renderCollection)
 
   renderCollection: ->
-    @$el.find('ul').html('')
+    @$el.find('table tbody').html('')
     @collection.each (model) ->
       @renderOne(model)
     , @
 
   renderOne: (model) ->
     view = new  @view model: model
-    @$el.find('ul').append( view.render().el )
+    @$el.find('table').append( view.render().el )
     @$el.find('.sortable').sortable()
 
   openCreate: (e)->
