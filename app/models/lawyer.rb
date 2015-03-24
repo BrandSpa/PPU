@@ -32,7 +32,7 @@ class Lawyer < ActiveRecord::Base
   scope :paginate, -> (paginate) { limit(20).offset(paginate) }
   scope :has_translation, -> (slug) { where(slug: slug).count }
   scope :get_translations, -> { includes(:translations, :translation) }
-  scope :order_by_english, -> { order("FIELD(lawyers.position,'Partner') DESC lawyers.lastname ASC") }
+  scope :order_by_english, -> { order("FIELD(lawyers.position,'Partner') DESC, lawyers.lastname ASC") }
   scope :order_by_spanish, -> { order(position: :desc, lastname: :asc) }
   
   def self.attach_categories(model, collection)
