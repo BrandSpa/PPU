@@ -28,7 +28,7 @@ $ ->
       e.preventDefault()
       @model.save fields: published: false
       id = @model.get('translations').id
-      $.ajax url: "/api/lawyers/#{id}", type: 'PUT', data: fields: published: true
+      $.ajax url: "/api/lawyers/#{id}", type: 'PUT', data: fields: published: false
 
     confirmTranslate: (e)->
       e.preventDefault()

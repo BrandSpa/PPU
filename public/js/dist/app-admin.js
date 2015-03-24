@@ -2411,7 +2411,7 @@ $(function() {
         type: 'PUT',
         data: {
           fields: {
-            published: true
+            published: false
           }
         }
       });
