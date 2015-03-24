@@ -2378,19 +2378,41 @@ $(function() {
     };
 
     LawyerView.prototype.publish = function(e) {
+      var id;
       e.preventDefault();
-      return this.model.save({
+      this.model.save({
         fields: {
           published: true
+        }
+      });
+      id = this.model.get('translations').id;
+      return $.ajax({
+        url: "/api/lawyers/" + id,
+        type: 'PUT',
+        data: {
+          fields: {
+            published: true
+          }
         }
       });
     };
 
     LawyerView.prototype.unpublish = function(e) {
+      var id;
       e.preventDefault();
-      return this.model.save({
+      this.model.save({
         fields: {
           published: false
+        }
+      });
+      id = this.model.get('translations').id;
+      return $.ajax({
+        url: "/api/lawyers/" + id,
+        type: 'PUT',
+        data: {
+          fields: {
+            published: true
+          }
         }
       });
     };

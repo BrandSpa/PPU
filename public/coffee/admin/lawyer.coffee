@@ -21,10 +21,14 @@ $ ->
     publish: (e) ->
       e.preventDefault()
       @model.save fields: published: true
+      id = @model.get('translations').id
+      $.ajax url: "/api/lawyers/#{id}", type: 'PUT', data: fields: published: true
 
     unpublish: (e) ->
       e.preventDefault()
       @model.save fields: published: false
+      id = @model.get('translations').id
+      $.ajax url: "/api/lawyers/#{id}", type: 'PUT', data: fields: published: true
 
     confirmTranslate: (e)->
       e.preventDefault()
