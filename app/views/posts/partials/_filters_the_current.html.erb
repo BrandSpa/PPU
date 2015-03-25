@@ -1,0 +1,17 @@
+<script id="the-current-filter" type="text/x-handlebars-template">  
+  <h1>El actual</h1>
+  
+  <form class="form-group search">
+    <input type="text" class="form-control query" placeholder="<%= t("Search") %>">
+  </form>
+
+  <div class="col-md-2 col-sm-2 category">
+    <select class="selectpicker">
+      <option value=""><%= t("Areas") %></option>
+      <%= render "partials/categories_option" %>
+    </select>
+  </div>
+
+  <a href="#" class="open-filters" data-toggle="modal" data-target="#filters-modal"><i class="fa fa-bars"></i> Filtrar</a>
+</script>
+

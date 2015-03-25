@@ -22,7 +22,7 @@ gulp.task('app', function() {
     'coffee/categories.coffee',
     'coffee/curriculum.coffee',
     'coffee/contact.coffee',
-    'coffee/seo.coffee',
+    'coffee/the_current.coffee',
     'coffee/router.coffee'
     ])
   .pipe(coffee({bare: true}).on('error', gutil.log))
@@ -73,8 +73,6 @@ gulp.task('sass', function () {
       .pipe(rename('style.min.css'))
       .pipe(gulp.dest('css/dist/'))
 });
-
-
 
 gulp.task('dependencies-scripts', function() {
   gulp.src([

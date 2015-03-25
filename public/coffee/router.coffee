@@ -6,6 +6,7 @@ $ ->
       "experiencias" : "experiences"
       "experiencias/:slug" : "experience"
       "posts" : "posts"
+      "el-actual" : "posts"
       "" : "posts"
       "posts/:slug" : "post"
       "areas": "areas"
@@ -38,6 +39,9 @@ $ ->
       ppu.postsFilters = new ppu.PostsFilters
       ppu.postsFilters.render()
       ppu.filtersMobile = new ppu.FiltersMobile
+
+    theCurrent: ->
+      
 
     post: (slug)->
       ppu.post = new ppu.Post id: slug

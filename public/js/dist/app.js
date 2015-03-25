@@ -2021,26 +2021,90 @@ var __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
 $(function() {
-  return ppu.Seo = (function(_super) {
-    __extends(Seo, _super);
+  ppu.TheCurrentView = (function(_super) {
+    __extends(TheCurrentView, _super);
 
-    function Seo() {
-      return Seo.__super__.constructor.apply(this, arguments);
+    function TheCurrentView() {
+      return TheCurrentView.__super__.constructor.apply(this, arguments);
     }
 
-    Seo.prototype.el = $("#ppu");
+    TheCurrentView.prototype.template = $("#post-template");
 
-    Seo.prototype.template = $("#seo-template");
+    TheCurrentView.prototype.className = "col-md-6 col-sm-6 col-xs-12 post-item";
 
-    Seo.prototype.initialize = function() {
-      return app.pubsub.bind("seo:render", this.render, this);
+    TheCurrentView.prototype.events = {
+      "click .share-hover": "open"
     };
 
-    Seo.prototype.render = function(data) {
-      return console.log(data);
+    TheCurrentView.prototype.open = function() {
+      return window.location = "/posts/" + (this.model.get('slug'));
     };
 
-    return Seo;
+    TheCurrentView.prototype.render = function() {
+      var template;
+      template = app.compile(this.template);
+      $(this.el).html(template(this.model.toJSON()));
+      return this;
+    };
+
+    return TheCurrentView;
+
+  })(Backbone.View);
+  return ppu.TheCurrentViews = (function(_super) {
+    __extends(TheCurrentViews, _super);
+
+    function TheCurrentViews() {
+      return TheCurrentViews.__super__.constructor.apply(this, arguments);
+    }
+
+    TheCurrentViews.prototype.el = $("#posts");
+
+    TheCurrentViews.prototype.initialize = function() {
+      this.listenTo(this.collection, 'reset', this.render);
+      this.listenTo(this.collection, 'add', this.renderOne);
+      app.pubsub.on("posts:filter", this.filterCollection, this);
+      return app.pubsub.on("apply:filters", this.filterCollection, this);
+    };
+
+    TheCurrentViews.prototype.filterCollection = function(filters) {
+      filters = _.extend({
+        lang: app.lang
+      }, filters);
+      return this.collection.fetch({
+        reset: true,
+        data: filters
+      });
+    };
+
+    TheCurrentViews.prototype.renderOne = function(model) {
+      ppu.postView = new ppu.PostView({
+        model: model
+      });
+      return this.$el.append(ppu.postView.render().el);
+    };
+
+    TheCurrentViews.prototype.renderMain = function(model) {
+      ppu.postMainFeaturedView = new ppu.PostMainFeaturedView({
+        model: model
+      });
+      return this.$el.prepend(ppu.postMainFeaturedView.render().el);
+    };
+
+    TheCurrentViews.prototype.render = function() {
+      var i;
+      this.$el.empty();
+      i = 0;
+      return this.collection.each(function(model) {
+        if (i === 0) {
+          this.renderMain(model);
+        } else {
+          this.renderOne(model);
+        }
+        return i++;
+      }, this);
+    };
+
+    return TheCurrentViews;
 
   })(Backbone.View);
 });
@@ -2062,6 +2126,7 @@ $(function() {
       "experiencias": "experiences",
       "experiencias/:slug": "experience",
       "posts": "posts",
+      "el-actual": "posts",
       "": "posts",
       "posts/:slug": "post",
       "areas": "areas",
@@ -2114,6 +2179,8 @@ $(function() {
       ppu.postsFilters.render();
       return ppu.filtersMobile = new ppu.FiltersMobile;
     };
+
+    Workspace.prototype.theCurrent = function() {};
 
     Workspace.prototype.post = function(slug) {
       ppu.post = new ppu.Post({

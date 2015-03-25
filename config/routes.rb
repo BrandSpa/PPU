@@ -30,6 +30,7 @@ Rails.application.routes.draw do
 
     resources :posts
     get "", to: 'posts#index'
+    get "el-actual", to: 'posts#the_current'
     get "abogados-beta", to: 'lawyers#index'
     get "abogados", to: 'lawyers#index'
     get "abogados/:id", to: 'lawyers#show', constraints: { id: /[^\/]+/ }
