@@ -1411,6 +1411,11 @@ $(function() {
     PostsView.prototype.render = function() {
       var i;
       this.$el.empty();
+      if (this.collection.length <= 0) {
+        $('.not-found').removeClass('hidden');
+      } else {
+        $('.not-found').addClass('hidden');
+      }
       i = 0;
       return this.collection.each(function(model) {
         if (i === 0) {
@@ -1653,11 +1658,13 @@ $(function() {
       this.$el.html(template(this.model.toJSON()));
       this.setUrlTranslation(this.model);
       this.model.get('categories');
-      relatedData = {
-        category: this.model.get('categories')[0].name,
-        without: this.model.id
-      };
-      return app.pubsub.trigger('posts:getRelated', relatedData);
+      if (this.model.get('categories')[0]) {
+        relatedData = {
+          category: this.model.get('categories')[0].name,
+          without: this.model.id
+        };
+        return app.pubsub.trigger('posts:getRelated', relatedData);
+      }
     };
 
     return PostDetailView;
@@ -1685,7 +1692,6 @@ $(function() {
     };
 
     PostsRelated.prototype.renderOne = function(model) {
-      console.log(this);
       ppu.postView = new ppu.PostView({
         model: model
       });
@@ -1694,9 +1700,12 @@ $(function() {
 
     PostsRelated.prototype.render = function() {
       this.$el.empty();
-      return this.collection.each(function(model) {
-        return this.renderOne(model);
-      }, this);
+      if (this.collection.length > 0) {
+        $('.related-title').removeClass('hidden');
+        return this.collection.each(function(model) {
+          return this.renderOne(model);
+        }, this);
+      }
     };
 
     return PostsRelated;
@@ -2074,7 +2083,7 @@ $(function() {
       return TheCurrentView.__super__.constructor.apply(this, arguments);
     }
 
-    TheCurrentView.prototype.template = $("#post-template");
+    TheCurrentView.prototype.template = $("#the-actual-post-template");
 
     TheCurrentView.prototype.className = "col-md-6 col-sm-6 col-xs-12 post-item";
 
@@ -2083,7 +2092,7 @@ $(function() {
     };
 
     TheCurrentView.prototype.open = function() {
-      return window.location = "/posts/" + (this.model.get('slug'));
+      return window.location = "/el-actual/" + (this.model.get('slug'));
     };
 
     TheCurrentView.prototype.render = function() {
@@ -2094,6 +2103,35 @@ $(function() {
     };
 
     return TheCurrentView;
+
+  })(Backbone.View);
+  ppu.TheActualFeaturedView = (function(_super) {
+    __extends(TheActualFeaturedView, _super);
+
+    function TheActualFeaturedView() {
+      return TheActualFeaturedView.__super__.constructor.apply(this, arguments);
+    }
+
+    TheActualFeaturedView.prototype.template = $("#the-actual-featured-template");
+
+    TheActualFeaturedView.prototype.className = "col-md-6 col-sm-6 col-xs-12 post-main-featured-item";
+
+    TheActualFeaturedView.prototype.events = {
+      "click": "open"
+    };
+
+    TheActualFeaturedView.prototype.open = function() {
+      return window.location = "/posts/" + (this.model.get('slug'));
+    };
+
+    TheActualFeaturedView.prototype.render = function() {
+      var template;
+      template = app.compile(this.template);
+      $(this.el).html(template(this.model.toJSON()));
+      return this;
+    };
+
+    return TheActualFeaturedView;
 
   })(Backbone.View);
   return ppu.TheCurrentViews = (function(_super) {
@@ -2142,14 +2180,14 @@ $(function() {
     };
 
     TheCurrentViews.prototype.renderOne = function(model) {
-      ppu.postView = new ppu.PostView({
+      ppu.postView = new ppu.TheCurrentView({
         model: model
       });
       return this.$el.append(ppu.postView.render().el);
     };
 
     TheCurrentViews.prototype.renderMain = function(model) {
-      ppu.postMainFeaturedView = new ppu.PostMainFeaturedView({
+      ppu.postMainFeaturedView = new ppu.TheActualFeaturedView({
         model: model
       });
       return this.$el.prepend(ppu.postMainFeaturedView.render().el);
@@ -2158,6 +2196,11 @@ $(function() {
     TheCurrentViews.prototype.render = function() {
       var i;
       this.$el.empty();
+      if (this.collection.length <= 0) {
+        $('.not-found').removeClass('hidden');
+      } else {
+        $('.not-found').addClass('hidden');
+      }
       i = 0;
       return this.collection.each(function(model) {
         if (i === 0) {
@@ -2204,54 +2247,59 @@ $(function() {
       this.$el.html(template(this.model.toJSON()));
       this.setUrlTranslation(this.model);
       this.model.get('categories');
-      relatedData = {
-        category: this.model.get('categories')[0].name,
-        without: this.model.id,
-        the_actual: true
-      };
-      return app.pubsub.trigger('posts:getRelated', relatedData);
+      if (this.model.get('categories')[0]) {
+        relatedData = {
+          category: this.model.get('categories')[0].name,
+          without: this.model.id,
+          the_actual: true
+        };
+        return app.pubsub.trigger('posts:getRelated', relatedData);
+      }
     };
 
     return TheActualDetailView;
 
   })(Backbone.View);
-  return ppu.PostsRelated = (function(_super) {
-    __extends(PostsRelated, _super);
+  return ppu.TheActualRelated = (function(_super) {
+    __extends(TheActualRelated, _super);
 
-    function PostsRelated() {
-      return PostsRelated.__super__.constructor.apply(this, arguments);
+    function TheActualRelated() {
+      return TheActualRelated.__super__.constructor.apply(this, arguments);
     }
 
-    PostsRelated.prototype.el = $("#posts-related");
+    TheActualRelated.prototype.el = $("#posts-related");
 
-    PostsRelated.prototype.initialize = function() {
+    TheActualRelated.prototype.initialize = function() {
       this.listenTo(this.collection, 'reset', this.render);
       return app.pubsub.on('posts:getRelated', this.get, this);
     };
 
-    PostsRelated.prototype.get = function(data) {
+    TheActualRelated.prototype.get = function(data) {
       return this.collection.fetch({
         reset: true,
         data: data
       });
     };
 
-    PostsRelated.prototype.renderOne = function(model) {
-      console.log(this);
-      ppu.postView = new ppu.PostView({
+    TheActualRelated.prototype.renderOne = function(model) {
+      ppu.postView = new ppu.TheCurrentView({
         model: model
       });
       return this.$el.append(ppu.postView.render().el);
     };
 
-    PostsRelated.prototype.render = function() {
+    TheActualRelated.prototype.render = function() {
       this.$el.empty();
-      return this.collection.each(function(model) {
-        return this.renderOne(model);
-      }, this);
+      console.log(this.collection.length);
+      if (this.collection.length > 0) {
+        $('.related-title').removeClass('hidden');
+        return this.collection.each(function(model) {
+          return this.renderOne(model);
+        }, this);
+      }
     };
 
-    return PostsRelated;
+    return TheActualRelated;
 
   })(Backbone.View);
 });

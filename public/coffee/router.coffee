@@ -107,4 +107,4 @@ $ ->
       $("#top-bar").html title
 
   new ppu.Workspace
-  Backbone.history.start pushState: true 
+  Backbone.history.start pushState: true

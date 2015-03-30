@@ -26,7 +26,7 @@ $ ->
     highlight: (e) ->
       e.preventDefault()
       that = @
-      that.model.save fields: featured: 3
+      that.model.save fields: featured: 3, the_actual: true
       .done () ->
         app.pubsub.trigger('post:unfeatured')
      

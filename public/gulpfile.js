@@ -11,6 +11,7 @@ gulp.task('app', function() {
   gulp.src([
     'coffee/main.coffee',
     'coffee/mixins.coffee',
+
     'coffee/helpers/handlebars_helpers.coffee',
     'coffee/helpers/bb_helpers.coffee',
     'coffee/app.coffee',
@@ -49,10 +50,8 @@ gulp.task('app-admin', function() {
     'coffee/mixins.coffee',
     'coffee/helpers/handlebars_helpers.coffee',
     'coffee/helpers/bb_helpers.coffee',
-    
     'coffee/models/categories.coffee',
     'coffee/views/categories.coffee',
-
     'coffee/lawyer/article.coffee',
     'coffee/lawyer/award.coffee',
     'coffee/lawyer/academic.coffee',
@@ -62,7 +61,6 @@ gulp.task('app-admin', function() {
     'coffee/lawyer/pharase.coffee',
     'coffee/lawyer/job.coffee',
     'coffee/lawyer/recognition.coffee',
-
     'coffee/models/lawyer.coffee',
     'coffee/admin/category.coffee',
     'coffee/admin/lawyer.coffee',

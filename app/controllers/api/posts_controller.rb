@@ -38,15 +38,17 @@ class Api::PostsController < ApplicationController
     id = params[:id]
     duplicate = params[:duplicate]
     featured = params[:fields][:featured]
+    the_actual = params[:fields][:the_actual]
 
     model = entity.get_relationships().find_by(id: id)
 
     if duplicate.present?
       new_model = entity.duplicate(model)
-      render json: new_model, status: 200
+      # render json: new_model, status: 200
 
     elsif featured.present?
-      unfeatured_all(id)
+      unfeatured_all(id, the_actual)
+
     else
 
       model.update(post_params)
@@ -57,14 +59,26 @@ class Api::PostsController < ApplicationController
         render json: model.errors, status: 400
       end
     end
-    
+
+    render json: the_actual
   end
 
-  def unfeatured_all(id)
-    featured = Post.where(featured: 3)
+  def unfeatured_all(id, the_actual)
+
+    if the_actual
+      featured = Post.where(featured: 3, the_actual: true)
+    else
+      featured = Post.where(featured: 3, the_actual: false, the_actual: nil)
+    end
 
     featured.each do |f|
       f.update(featured: '')
+      trans = f.translations
+
+      if trans
+        trans.update(featured: '')
+      end
+
     end
 
     new = Post.find(id)
@@ -74,7 +88,7 @@ class Api::PostsController < ApplicationController
     if trans
       trans.update(featured: 3)
     end
-    render json: new
+    
   end
 
   def set_filters(params)

@@ -48,6 +48,11 @@ $ ->
 
     render: ->
       @$el.empty()
+      if @collection.length <= 0
+        $('.not-found').removeClass('hidden')
+      else
+        $('.not-found').addClass('hidden')
+
       i = 0
       @collection.each (model) ->
         if i == 0
@@ -91,6 +96,7 @@ $ ->
       @$el.append ppu.postView.render().el
 
     render: ->
+
       @collection.each (model) ->
         if model.get('featured') == 1
           @renderMain(model)

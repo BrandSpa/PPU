@@ -35,6 +35,8 @@ en:
   general_information: "General Information"
   contact: "Contact"
   News: "News"
+  results_not_found: "Results not found"
+  return: "Return"
   share: "Share"
   read_new: "Read Post"
   read_experience: "Read Experience"

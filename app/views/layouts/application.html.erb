@@ -227,6 +227,9 @@
   app.lang = "<%= I18n.locale %>";
   app.hostname = window.location.hostname;
   app.pathname = window.location.pathname;
+  function goBack() {
+    window.location = document.URL;
+  }
   moment.locale(app.lang);
 </script>
 

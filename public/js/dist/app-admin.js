@@ -3219,7 +3219,8 @@ $(function() {
       that = this;
       return that.model.save({
         fields: {
-          featured: 3
+          featured: 3,
+          the_actual: true
         }
       }).done(function() {
         return app.pubsub.trigger('post:unfeatured');
@@ -3380,6 +3381,7 @@ $(function() {
       data = new FormData($form[0]);
       data.append("fields[content]", content);
       data.append("fields[lang]", app.lang);
+      data.append("fields[country]", "Chile");
       data.append('fields[the_actual]', 1);
       options = ppu.ajaxOptions("POST", data);
       return this.model.save(data, $.extend({}, options));

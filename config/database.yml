@@ -5,10 +5,12 @@ default: &default
   pool: 5
   username: root
 
+
 development:
   <<: *default
   database: ppu_development
   username: root
+
 
 test:
   <<: *default

@@ -15,8 +15,10 @@ $ ->
       @$el.html(template( @model.toJSON() ))
       @setUrlTranslation(@model)
       @model.get('categories')
-      relatedData = category: @model.get('categories')[0].name, without: @model.id
-      app.pubsub.trigger('posts:getRelated', relatedData)
+
+      if @model.get('categories')[0]
+        relatedData = category: @model.get('categories')[0].name, without: @model.id
+        app.pubsub.trigger('posts:getRelated', relatedData)
 
   class ppu.PostsRelated extends Backbone.View
     el: $ "#posts-related"
@@ -29,13 +31,14 @@ $ ->
       @collection.fetch reset: true, data: data
 
     renderOne: (model) ->
-      console.log @
       ppu.postView = new ppu.PostView model: model
       @$el.append ppu.postView.render().el
 
     render: ->
       @$el.empty()
-      @collection.each (model) ->
-        @renderOne(model)
-      , @
+      if @collection.length > 0
+        $('.related-title').removeClass('hidden') 
+        @collection.each (model) ->
+          @renderOne(model)
+        , @
 

@@ -36,6 +36,8 @@ es:
   general_information: "Información general"
   Experience: "Experiencia"
   News: "Noticias"
+  results_not_found: "No se encontraron resultados"
+  return: "Volver"
   Lawyers: "Abogados"
   Search: "Buscar"
   Lawyer type: "Tipo abogado"

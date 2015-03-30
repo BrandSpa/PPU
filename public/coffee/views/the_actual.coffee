@@ -1,13 +1,27 @@
 $ ->
   class ppu.TheCurrentView extends Backbone.View
-    template: $ "#post-template"
+    template: $ "#the-actual-post-template"
     className: "col-md-6 col-sm-6 col-xs-12 post-item"
     events: 
       "click .share-hover": "open"
 
     open: ->
-      window.location = "/posts/#{@model.get('slug')}"
+      window.location = "/el-actual/#{@model.get('slug')}"
 
+    render: ->
+      template = app.compile(@template)
+      $(@el).html template( @model.toJSON() )
+      @
+
+  class ppu.TheActualFeaturedView extends Backbone.View
+    template: $ "#the-actual-featured-template"
+    className: "col-md-6 col-sm-6 col-xs-12 post-main-featured-item"
+    events: 
+      "click": "open"
+
+    open: ->
+      window.location = "/posts/#{@model.get('slug')}"
+    
     render: ->
       template = app.compile(@template)
       $(@el).html template( @model.toJSON() )
@@ -38,15 +52,22 @@ $ ->
 
 
     renderOne: (model) ->
-      ppu.postView = new ppu.PostView model: model
+      ppu.postView = new ppu.TheCurrentView model: model
       @$el.append ppu.postView.render().el
 
     renderMain: (model) ->
-      ppu.postMainFeaturedView = new ppu.PostMainFeaturedView model: model
+      ppu.postMainFeaturedView = new ppu.TheActualFeaturedView model: model
       @$el.prepend ppu.postMainFeaturedView.render().el
 
     render: ->
       @$el.empty()
+
+      if @collection.length <= 0
+        $('.not-found').removeClass('hidden')
+      else
+        $('.not-found').addClass('hidden')
+
+
       i = 0
       @collection.each (model) ->
         if i == 0
