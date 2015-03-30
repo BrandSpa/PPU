@@ -595,6 +595,201 @@ $(function() {
 var __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
+ppu.Category = (function(_super) {
+  __extends(Category, _super);
+
+  function Category() {
+    return Category.__super__.constructor.apply(this, arguments);
+  }
+
+  Category.prototype.urlRoot = '/api/categories';
+
+  return Category;
+
+})(Backbone.Model);
+
+ppu.Categories = (function(_super) {
+  __extends(Categories, _super);
+
+  function Categories() {
+    return Categories.__super__.constructor.apply(this, arguments);
+  }
+
+  Categories.prototype.url = '/api/categories';
+
+  Categories.prototype.model = ppu.Category;
+
+  return Categories;
+
+})(Backbone.Collection);
+
+var __hasProp = {}.hasOwnProperty,
+  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+ppu.Curriculum = (function(_super) {
+  __extends(Curriculum, _super);
+
+  function Curriculum() {
+    return Curriculum.__super__.constructor.apply(this, arguments);
+  }
+
+  Curriculum.prototype.urlRoot = "/api/curriculums";
+
+  ppu.Curriculums = (function(_super1) {
+    __extends(Curriculums, _super1);
+
+    function Curriculums() {
+      return Curriculums.__super__.constructor.apply(this, arguments);
+    }
+
+    Curriculums.prototype.url = "/api/curriculums";
+
+    Curriculums.prototype.model = ppu.Curriculum;
+
+    return Curriculums;
+
+  })(Backbone.Collection);
+
+  return Curriculum;
+
+})(Backbone.Model);
+
+var __hasProp = {}.hasOwnProperty,
+  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+ppu.Contact = (function(_super) {
+  __extends(Contact, _super);
+
+  function Contact() {
+    return Contact.__super__.constructor.apply(this, arguments);
+  }
+
+  Contact.prototype.urlRoot = "/api/contacts";
+
+  return Contact;
+
+})(Backbone.Model);
+
+ppu.Contacts = (function(_super) {
+  __extends(Contacts, _super);
+
+  function Contacts() {
+    return Contacts.__super__.constructor.apply(this, arguments);
+  }
+
+  Contacts.prototype.url = "/api/contacts";
+
+  Contacts.prototype.model = ppu.Contact;
+
+  return Contacts;
+
+})(Backbone.Collection);
+
+var __hasProp = {}.hasOwnProperty,
+  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+ppu.Lawyer = (function(_super) {
+  __extends(Lawyer, _super);
+
+  function Lawyer() {
+    return Lawyer.__super__.constructor.apply(this, arguments);
+  }
+
+  Lawyer.prototype.urlRoot = "/api/lawyers";
+
+  Lawyer.prototype.fetchBySlug = function(slug) {
+    return this.fetch({
+      data: $.param({
+        slug: slug,
+        locale: app.lang
+      })
+    });
+  };
+
+  return Lawyer;
+
+})(Backbone.Model);
+
+ppu.Lawyers = (function(_super) {
+  __extends(Lawyers, _super);
+
+  function Lawyers() {
+    return Lawyers.__super__.constructor.apply(this, arguments);
+  }
+
+  Lawyers.prototype.url = "/api/lawyers";
+
+  Lawyers.prototype.model = ppu.Lawyer;
+
+  return Lawyers;
+
+})(Backbone.Collection);
+
+var __hasProp = {}.hasOwnProperty,
+  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+ppu.Post = (function(_super) {
+  __extends(Post, _super);
+
+  function Post() {
+    return Post.__super__.constructor.apply(this, arguments);
+  }
+
+  Post.prototype.urlRoot = '/api/posts';
+
+  return Post;
+
+})(Backbone.Model);
+
+ppu.Posts = (function(_super) {
+  __extends(Posts, _super);
+
+  function Posts() {
+    return Posts.__super__.constructor.apply(this, arguments);
+  }
+
+  Posts.prototype.url = '/api/posts';
+
+  Posts.prototype.model = ppu.Post;
+
+  return Posts;
+
+})(Backbone.Collection);
+
+var __hasProp = {}.hasOwnProperty,
+  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+ppu.Experience = (function(_super) {
+  __extends(Experience, _super);
+
+  function Experience() {
+    return Experience.__super__.constructor.apply(this, arguments);
+  }
+
+  Experience.prototype.urlRoot = "/api/experiences";
+
+  return Experience;
+
+})(Backbone.Model);
+
+ppu.Experiences = (function(_super) {
+  __extends(Experiences, _super);
+
+  function Experiences() {
+    return Experiences.__super__.constructor.apply(this, arguments);
+  }
+
+  Experiences.prototype.url = "/api/experiences";
+
+  Experiences.prototype.model = ppu.Experience;
+
+  return Experiences;
+
+})(Backbone.Collection);
+
+var __hasProp = {}.hasOwnProperty,
+  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
 $(function() {
   return ppu.FiltersMobile = (function(_super) {
     __extends(FiltersMobile, _super);
@@ -656,32 +851,6 @@ var __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
 $(function() {
-  ppu.Category = (function(_super) {
-    __extends(Category, _super);
-
-    function Category() {
-      return Category.__super__.constructor.apply(this, arguments);
-    }
-
-    Category.prototype.urlRoot = '/api/categories';
-
-    return Category;
-
-  })(Backbone.Model);
-  ppu.Categories = (function(_super) {
-    __extends(Categories, _super);
-
-    function Categories() {
-      return Categories.__super__.constructor.apply(this, arguments);
-    }
-
-    Categories.prototype.url = '/api/categories';
-
-    Categories.prototype.model = ppu.Category;
-
-    return Categories;
-
-  })(Backbone.Collection);
   ppu.CategoryView = (function(_super) {
     __extends(CategoryView, _super);
 
@@ -815,41 +984,6 @@ var __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
 $(function() {
-  ppu.Lawyer = (function(_super) {
-    __extends(Lawyer, _super);
-
-    function Lawyer() {
-      return Lawyer.__super__.constructor.apply(this, arguments);
-    }
-
-    Lawyer.prototype.urlRoot = "/api/lawyers";
-
-    Lawyer.prototype.fetchBySlug = function(slug) {
-      return this.fetch({
-        data: $.param({
-          slug: slug,
-          locale: app.lang
-        })
-      });
-    };
-
-    return Lawyer;
-
-  })(Backbone.Model);
-  ppu.Lawyers = (function(_super) {
-    __extends(Lawyers, _super);
-
-    function Lawyers() {
-      return Lawyers.__super__.constructor.apply(this, arguments);
-    }
-
-    Lawyers.prototype.url = "/api/lawyers";
-
-    Lawyers.prototype.model = ppu.Lawyer;
-
-    return Lawyers;
-
-  })(Backbone.Collection);
   ppu.LawyerView = (function(_super) {
     __extends(LawyerView, _super);
 
@@ -921,8 +1055,6 @@ $(function() {
       });
     };
 
-    LawyersView.prototype.order_by = function() {};
-
     LawyersView.prototype.paginate = function() {
       return this.collection.fetch({
         data: {
@@ -940,7 +1072,7 @@ $(function() {
     };
 
     LawyersView.prototype.render = function() {
-      $(this.el).html('');
+      $(this.el).empty();
       return this.collection.each(function(model) {
         return this.renderOne(model);
       }, this);
@@ -1180,32 +1312,6 @@ var __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
 $(function() {
-  ppu.Post = (function(_super) {
-    __extends(Post, _super);
-
-    function Post() {
-      return Post.__super__.constructor.apply(this, arguments);
-    }
-
-    Post.prototype.urlRoot = '/api/posts';
-
-    return Post;
-
-  })(Backbone.Model);
-  ppu.Posts = (function(_super) {
-    __extends(Posts, _super);
-
-    function Posts() {
-      return Posts.__super__.constructor.apply(this, arguments);
-    }
-
-    Posts.prototype.url = '/api/posts';
-
-    Posts.prototype.model = ppu.Post;
-
-    return Posts;
-
-  })(Backbone.Collection);
   ppu.PostView = (function(_super) {
     __extends(PostView, _super);
 
@@ -1278,7 +1384,13 @@ $(function() {
       }, filters);
       return this.collection.fetch({
         reset: true,
-        data: filters
+        data: filters,
+        beforeSend: function() {
+          return $('.preload').removeClass('hidden');
+        },
+        success: function() {
+          return $('.preload').addClass('hidden');
+        }
       });
     };
 
@@ -1342,7 +1454,7 @@ $(function() {
     return PostMainFeaturedView;
 
   })(Backbone.View);
-  ppu.PostsFeaturedView = (function(_super) {
+  return ppu.PostsFeaturedView = (function(_super) {
     __extends(PostsFeaturedView, _super);
 
     function PostsFeaturedView() {
@@ -1393,7 +1505,13 @@ $(function() {
     return PostsFeaturedView;
 
   })(Backbone.View);
-  ppu.PostsFilters = (function(_super) {
+});
+
+var __hasProp = {}.hasOwnProperty,
+  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+$(function() {
+  return ppu.PostsFilters = (function(_super) {
     __extends(PostsFilters, _super);
 
     function PostsFilters() {
@@ -1414,7 +1532,8 @@ $(function() {
     PostsFilters.prototype.initialize = function() {
       this.filtersAplied = {
         lang: app.lang,
-        published: true
+        published: true,
+        without_the_actual: false
       };
       app.pubsub.on("general:scroll", this.paginate, this);
       return this.offset = 20;
@@ -1502,6 +1621,12 @@ $(function() {
     return PostsFilters;
 
   })(Backbone.View);
+});
+
+var __hasProp = {}.hasOwnProperty,
+  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+$(function() {
   ppu.PostDetailView = (function(_super) {
     __extends(PostDetailView, _super);
 
@@ -1553,7 +1678,6 @@ $(function() {
     };
 
     PostsRelated.prototype.get = function(data) {
-      console.log(data);
       return this.collection.fetch({
         reset: true,
         data: data
@@ -1584,32 +1708,6 @@ var __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
 $(function() {
-  ppu.Experience = (function(_super) {
-    __extends(Experience, _super);
-
-    function Experience() {
-      return Experience.__super__.constructor.apply(this, arguments);
-    }
-
-    Experience.prototype.urlRoot = "/api/experiences";
-
-    return Experience;
-
-  })(Backbone.Model);
-  ppu.Experiences = (function(_super) {
-    __extends(Experiences, _super);
-
-    function Experiences() {
-      return Experiences.__super__.constructor.apply(this, arguments);
-    }
-
-    Experiences.prototype.url = "/api/experiences";
-
-    Experiences.prototype.model = ppu.Experience;
-
-    return Experiences;
-
-  })(Backbone.Collection);
   ppu.ExperienceView = (function(_super) {
     __extends(ExperienceView, _super);
 
@@ -1879,32 +1977,6 @@ var __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
 $(function() {
-  ppu.Curriculum = (function(_super) {
-    __extends(Curriculum, _super);
-
-    function Curriculum() {
-      return Curriculum.__super__.constructor.apply(this, arguments);
-    }
-
-    Curriculum.prototype.urlRoot = "/api/curriculums";
-
-    return Curriculum;
-
-  })(Backbone.Model);
-  ppu.Curriculums = (function(_super) {
-    __extends(Curriculums, _super);
-
-    function Curriculums() {
-      return Curriculums.__super__.constructor.apply(this, arguments);
-    }
-
-    Curriculums.prototype.url = "/api/curriculums";
-
-    Curriculums.prototype.model = ppu.Curriculum;
-
-    return Curriculums;
-
-  })(Backbone.Collection);
   return ppu.CurriculumCreate = (function(_super) {
     __extends(CurriculumCreate, _super);
 
@@ -1949,32 +2021,6 @@ var __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
 $(function() {
-  ppu.Contact = (function(_super) {
-    __extends(Contact, _super);
-
-    function Contact() {
-      return Contact.__super__.constructor.apply(this, arguments);
-    }
-
-    Contact.prototype.urlRoot = "/api/contacts";
-
-    return Contact;
-
-  })(Backbone.Model);
-  ppu.Contacts = (function(_super) {
-    __extends(Contacts, _super);
-
-    function Contacts() {
-      return Contacts.__super__.constructor.apply(this, arguments);
-    }
-
-    Contacts.prototype.url = "/api/contacts";
-
-    Contacts.prototype.model = ppu.Contact;
-
-    return Contacts;
-
-  })(Backbone.Collection);
   return ppu.FooterContactCreate = (function(_super) {
     __extends(FooterContactCreate, _super);
 
@@ -2063,7 +2109,8 @@ $(function() {
       this.listenTo(this.collection, 'reset', this.render);
       this.listenTo(this.collection, 'add', this.renderOne);
       app.pubsub.on("posts:filter", this.filterCollection, this);
-      return app.pubsub.on("apply:filters", this.filterCollection, this);
+      app.pubsub.on("apply:filters", this.filterCollection, this);
+      return app.pubsub.on("posts:paginate", this.paginate, this);
     };
 
     TheCurrentViews.prototype.filterCollection = function(filters) {
@@ -2072,7 +2119,25 @@ $(function() {
       }, filters);
       return this.collection.fetch({
         reset: true,
-        data: filters
+        data: filters,
+        beforeSend: function() {
+          return $('.preload').removeClass('hidden');
+        },
+        success: function() {
+          return $('.preload').addClass('hidden');
+        }
+      });
+    };
+
+    TheCurrentViews.prototype.paginate = function(data) {
+      return this.collection.fetch({
+        data: data,
+        beforeSend: function() {
+          return $('.preload').removeClass('hidden');
+        },
+        success: function() {
+          return $('.preload').addClass('hidden');
+        }
       });
     };
 
@@ -2113,6 +2178,201 @@ var __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
 $(function() {
+  ppu.TheActualDetailView = (function(_super) {
+    __extends(TheActualDetailView, _super);
+
+    function TheActualDetailView() {
+      return TheActualDetailView.__super__.constructor.apply(this, arguments);
+    }
+
+    TheActualDetailView.prototype.el = $("#post-detail");
+
+    TheActualDetailView.prototype.template = $("#post-detail-template");
+
+    TheActualDetailView.prototype.initialize = function() {
+      this.listenTo(this.model, "change", this.render);
+      return this.getTitle();
+    };
+
+    TheActualDetailView.prototype.getTitle = function() {
+      return $("#top-bar").html($("#post-detail-title").html());
+    };
+
+    TheActualDetailView.prototype.render = function() {
+      var relatedData, template;
+      template = app.compile(this.template);
+      this.$el.html(template(this.model.toJSON()));
+      this.setUrlTranslation(this.model);
+      this.model.get('categories');
+      relatedData = {
+        category: this.model.get('categories')[0].name,
+        without: this.model.id,
+        the_actual: true
+      };
+      return app.pubsub.trigger('posts:getRelated', relatedData);
+    };
+
+    return TheActualDetailView;
+
+  })(Backbone.View);
+  return ppu.PostsRelated = (function(_super) {
+    __extends(PostsRelated, _super);
+
+    function PostsRelated() {
+      return PostsRelated.__super__.constructor.apply(this, arguments);
+    }
+
+    PostsRelated.prototype.el = $("#posts-related");
+
+    PostsRelated.prototype.initialize = function() {
+      this.listenTo(this.collection, 'reset', this.render);
+      return app.pubsub.on('posts:getRelated', this.get, this);
+    };
+
+    PostsRelated.prototype.get = function(data) {
+      return this.collection.fetch({
+        reset: true,
+        data: data
+      });
+    };
+
+    PostsRelated.prototype.renderOne = function(model) {
+      console.log(this);
+      ppu.postView = new ppu.PostView({
+        model: model
+      });
+      return this.$el.append(ppu.postView.render().el);
+    };
+
+    PostsRelated.prototype.render = function() {
+      this.$el.empty();
+      return this.collection.each(function(model) {
+        return this.renderOne(model);
+      }, this);
+    };
+
+    return PostsRelated;
+
+  })(Backbone.View);
+});
+
+var __hasProp = {}.hasOwnProperty,
+  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+$(function() {
+  return ppu.TheCurrentFilter = (function(_super) {
+    __extends(TheCurrentFilter, _super);
+
+    function TheCurrentFilter() {
+      return TheCurrentFilter.__super__.constructor.apply(this, arguments);
+    }
+
+    TheCurrentFilter.prototype.el = $('#top-bar');
+
+    TheCurrentFilter.prototype.template = $("#the-current-filters");
+
+    TheCurrentFilter.prototype.events = {
+      'change .countries': 'byCountry',
+      'change .category': 'byCategory',
+      'keyup .query': 'byKeyword',
+      'submit .search': 'bySearch'
+    };
+
+    TheCurrentFilter.prototype.initialize = function() {
+      this.filtersAplied = {
+        lang: app.lang,
+        published: true,
+        the_actual: true
+      };
+      app.pubsub.on("general:scroll", this.paginate, this);
+      return this.offset = 20;
+    };
+
+    TheCurrentFilter.prototype.render = function() {
+      var template;
+      template = app.compile(this.template);
+      this.$el.html(template);
+      return ppu.appendSelect(this.el);
+    };
+
+    TheCurrentFilter.prototype.filterBy = function(data) {
+      data = _.extend({
+        paginate: 0
+      }, data);
+      data = _.extend(this.filtersAplied, data);
+      return app.pubsub.trigger("posts:filter", data);
+    };
+
+    TheCurrentFilter.prototype.paginate = function() {
+      var data;
+      data = _.extend(this.filtersAplied, {
+        paginate: this.offset
+      });
+      app.pubsub.trigger("posts:paginate", data);
+      return this.offset = this.offset + 20;
+    };
+
+    TheCurrentFilter.prototype.byCategory = function(e) {
+      var val;
+      val = $(e.currentTarget).find('select').val();
+      return this.filterBy({
+        category: val
+      });
+    };
+
+    TheCurrentFilter.prototype.byKeyword = function(e) {
+      var val;
+      val = $(e.currentTarget).val();
+      if (val.length >= 2) {
+        return this.filterBy({
+          keyword: val
+        });
+      } else if (val.length === 1) {
+        return this.filterBy({
+          keyword: "",
+          with_featured: true
+        });
+      }
+    };
+
+    TheCurrentFilter.prototype.bySearch = function(e) {
+      var val;
+      e.preventDefault();
+      val = $(e.currentTarget).find(".query").val();
+      return this.filterBy({
+        keyword: val
+      });
+    };
+
+    return TheCurrentFilter;
+
+  })(Backbone.View);
+});
+
+ppu.TheCurrentController = {
+  index: function() {
+    var collection, filters;
+    collection = new ppu.Posts;
+    collection.fetch({
+      reset: true,
+      data: {
+        published: true,
+        with_featured: true,
+        the_actual: true
+      }
+    });
+    new ppu.TheCurrentViews({
+      collection: collection
+    });
+    filters = new ppu.TheCurrentFilter;
+    return filters.render();
+  }
+};
+
+var __hasProp = {}.hasOwnProperty,
+  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+$(function() {
   ppu.Workspace = (function(_super) {
     __extends(Workspace, _super);
 
@@ -2126,7 +2386,8 @@ $(function() {
       "experiencias": "experiences",
       "experiencias/:slug": "experience",
       "posts": "posts",
-      "el-actual": "posts",
+      "el-actual": "theActual",
+      "el-actual/:slug": "theActualDetail",
       "": "posts",
       "posts/:slug": "post",
       "areas": "areas",
@@ -2145,7 +2406,7 @@ $(function() {
       });
     };
 
-    Workspace.prototype.lawyers = function(lang) {
+    Workspace.prototype.lawyers = function() {
       ppu.lawyers = new ppu.Lawyers;
       ppu.lawyersView = new ppu.LawyersView({
         collection: ppu.lawyers
@@ -2168,8 +2429,9 @@ $(function() {
       ppu.posts.fetch({
         reset: true,
         data: {
+          with_featured: true,
           published: true,
-          with_featured: true
+          without_the_actual: true
         }
       });
       ppu.postsView = new ppu.PostsView({
@@ -2180,7 +2442,23 @@ $(function() {
       return ppu.filtersMobile = new ppu.FiltersMobile;
     };
 
-    Workspace.prototype.theCurrent = function() {};
+    Workspace.prototype.theActual = function() {
+      return ppu.TheCurrentController.index();
+    };
+
+    Workspace.prototype.theActualDetail = function(slug) {
+      ppu.post = new ppu.Post({
+        id: slug
+      });
+      ppu.posts = new ppu.Posts;
+      ppu.post.fetch();
+      ppu.postDetailView = new ppu.TheActualDetailView({
+        model: ppu.post
+      });
+      return ppu.postsRelated = new ppu.PostsRelated({
+        collection: ppu.posts
+      });
+    };
 
     Workspace.prototype.post = function(slug) {
       ppu.post = new ppu.Post({

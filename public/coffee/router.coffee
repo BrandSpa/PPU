@@ -6,7 +6,8 @@ $ ->
       "experiencias" : "experiences"
       "experiencias/:slug" : "experience"
       "posts" : "posts"
-      "el-actual" : "posts"
+      "el-actual" : "theActual"
+      "el-actual/:slug" : "theActualDetail"
       "" : "posts"
       "posts/:slug" : "post"
       "areas": "areas"
@@ -21,7 +22,7 @@ $ ->
       ppu.contact = new ppu.Contact
       ppu.FooterContactCreate = new ppu.FooterContactCreate model: ppu.contact
       
-    lawyers: (lang) ->
+    lawyers: () ->
       ppu.lawyers =  new ppu.Lawyers
       ppu.lawyersView =  new ppu.LawyersView collection: ppu.lawyers
       ppu.lawyersFilters = new ppu.LawyersFilters
@@ -33,15 +34,23 @@ $ ->
 
     posts: ->
       ppu.posts = new ppu.Posts
-      ppu.posts.fetch reset: true, data: published: true, with_featured: true
+      ppu.posts.fetch reset: true, data: with_featured: true, published: true, without_the_actual: true
       ppu.postsView = new ppu.PostsView collection: ppu.posts
 
       ppu.postsFilters = new ppu.PostsFilters
       ppu.postsFilters.render()
       ppu.filtersMobile = new ppu.FiltersMobile
 
-    theCurrent: ->
-      
+    theActual: ->
+      ppu.TheCurrentController.index()
+
+    theActualDetail: (slug)->
+      ppu.post = new ppu.Post id: slug
+      ppu.posts = new ppu.Posts
+      ppu.post.fetch()
+      ppu.postDetailView = new ppu.TheActualDetailView model: ppu.post
+      ppu.postsRelated = new ppu.PostsRelated collection: ppu.posts
+
 
     post: (slug)->
       ppu.post = new ppu.Post id: slug

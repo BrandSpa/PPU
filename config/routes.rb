@@ -29,8 +29,10 @@ Rails.application.routes.draw do
   scope "(:locale)", locale: /en|es/ do
 
     resources :posts
+
     get "", to: 'posts#index'
-    get "el-actual", to: 'posts#the_current'
+    get "el-actual", to: 'posts#the_actual'
+    get "el-actual/:id", to: 'posts#the_actual_detail'
     get "abogados-beta", to: 'lawyers#index'
     get "abogados", to: 'lawyers#index'
     get "abogados/:id", to: 'lawyers#show', constraints: { id: /[^\/]+/ }
@@ -55,6 +57,9 @@ Rails.application.routes.draw do
 
     namespace :admin do 
       resources :posts
+      get "the-actual/new", to: "posts#the_actual_new"
+      get "the-actual/:id/edit", to: "posts#the_actual_edit"
+      get "the-actual", to: "posts#the_actual"
       resources :lawyers
       resources :experiences
     end

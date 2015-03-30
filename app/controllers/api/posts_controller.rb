@@ -82,7 +82,7 @@ class Api::PostsController < ApplicationController
   end
 
   def set_filters_without_params(params)
-    params.slice(:featured, :published, :not_featured, :not_published, :with_featured)
+    params.slice(:featured, :published, :not_featured, :not_published, :with_featured, :the_actual, :without_the_actual)
   end
 
   def is_a_number?(s)
@@ -95,7 +95,7 @@ class Api::PostsController < ApplicationController
     end
 
     def post_params
-      params.require(:fields).permit(:lang, :country, :date, :author, :title, :content, :content_plain, :img_name, :gallery_id, :published, :social_published, :featured, :unfeatured, :lawyer_ids => [], :category_ids => [])
+      params.require(:fields).permit(:lang, :country, :date, :author, :title, :content, :content_plain, :img_name, :gallery_id, :published, :social_published, :featured, :unfeatured, :the_actual, :lawyer_ids => [], :category_ids => [])
     end
     
 end

@@ -32,7 +32,7 @@ $ ->
 
     highlight: (e) ->
       e.preventDefault()
-      that = 
+      that = @
       that.model.save fields: featured: 3
       .done () ->
         app.pubsub.trigger('post:unfeatured')
@@ -90,7 +90,6 @@ $ ->
         $(@el).find('tbody').append view.render().el
       , @
 
-
   class ppu.admin.PostsFilters extends Backbone.View
     el: $ '.post-filter'
   
@@ -127,13 +126,13 @@ $ ->
 
     byKeyword: (e) ->
       val = $(e.currentTarget).val()
-      console.log val
       if val.length >= 1
         @filterBy(keyword: val)
 
   class ppu.admin.PostCreate extends Backbone.View
     el: $ "#post-create"
     template: $ "#post-create-template"
+
     events: 
       "click button.store": "store"
       "click .open-gallery": "openGallery"
@@ -147,7 +146,6 @@ $ ->
       app.pubsub.bind('gallery:selected', @appendSelectedGallery, @)
       app.pubsub.on('post:socialPublished', @redirectTo, @)
 
-
     render: ->
       source = @template.html()
       template = Handlebars.compile(source)
@@ -155,7 +153,8 @@ $ ->
       ppu.appendDatePicker(@el)
       ppu.appendSummernote(@el)
 
-    store: ->
+    store: (e) ->
+      e.preventDefault()
       $form = @$el.find('form')
       content = $(@el).find('.summernote').code()
       data = new FormData($form[0])
@@ -166,13 +165,6 @@ $ ->
     
     stored: (model) ->
        window.location = "/posts/#{@model.get('slug')}"
-
-    publishFb: (model) ->
-      url = setSubdomain(model.get('lang')) + "posts/#{model.get('slug')}"
-      published = fb_check_and_publish(model.get('title'), url)
-
-    redirectTo: ->
-      window.location = '/admin/posts'
 
     getCategories: ->
       ppu.categories = new ppu.Categories

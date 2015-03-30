@@ -4,5 +4,14 @@ class Admin::PostsController < ApplicationController
 
   def dashboard  
   end
+
+  def the_actual
+  end
+
+  def the_actual_new
+  end
+
+  def the_actual_edit
+  end
   
 end

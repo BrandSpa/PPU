@@ -1,11 +1,4 @@
 $ ->
-  class ppu.Category extends Backbone.Model
-    urlRoot: '/api/categories'
-
-  class ppu.Categories extends Backbone.Collection
-    url:  '/api/categories'
-    model: ppu.Category
-
   class ppu.CategoryView extends Backbone.View
     template: $ "#category-template"
     className: "col-md-6 col-sm-6 col-xs-12 category-item"

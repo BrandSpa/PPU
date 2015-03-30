@@ -117,7 +117,6 @@ ppu.saveMultipeForms = (el, model, lawyer_id) ->
     data.append("fields[lawyer_id]", lawyer_id)
     model.save data, $.extend({}, ppu.ajaxOptions("POST", data))
 
-
 $(window).on "scroll", _.throttle (event) =>
   console.log "scroll1"
   body = document.body

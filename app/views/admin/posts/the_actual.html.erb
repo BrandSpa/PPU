@@ -1,0 +1,54 @@
+<%= render "admin/posts/partials/the_actual" %>
+
+<div class="panel panel-default" id="posts-dasboard">
+<div class="panel-heading">
+    <h4>El actual Chile</h4>
+      </div>
+  <div class="panel-body">
+    <div class="row post-filter">
+      <div class="col-lg-3">
+        <form class="search">
+          <input name="query" class="form-control query" placeholder="Buscar">
+        </form>
+      </div>
+      
+      <div class="col-lg-3 category">
+        <select class="form-control ">
+          <option>Áreas</option>
+          <option value="<%= t('categories.corporate_and_M&A')%>"><%= t('categories.corporate_and_M&A')%></option>
+          <option value="<%= t('categories.competition')%>"><%= t('categories.competition')%></option>
+          <option value="<%= t('categories.banking_&_finance')%>"><%= t('categories.banking_&_finance')%></option>
+          <option value="<%= t('categories.transport')%>"><%= t('categories.transport')%></option>
+          <option value="<%= t('categories.private_clients_&_family')%>"><%= t('categories.private_clients_&_family')%></option>
+          <option value="<%= t('categories.real_estate')%>"><%= t('categories.real_estate')%></option>
+          <option value="<%= t('categories.intellectual_property')%>"><%= t('categories.intellectual_property')%></option>
+          <option value="<%= t('categories.tax_&_international_trade')%>"><%= t('categories.tax_&_international_trade')%></option>
+          <option value="<%= t('categories.labor')%>"><%= t('categories.labor')%></option>
+          <option value="<%= t('categories.public_law')%>"><%= t('categories.public_law')%></option>
+          <option value="<%= t('categories.energy')%>"><%= t('categories.energy')%></option>
+          <option value="<%= t('categories.telecommunications')%>"><%= t('categories.telecommunications')%></option>
+          <option value="<%= t('categories.infrastructure_&_projects')%>"><%= t('categories.infrastructure_&_projects')%></option>
+          <option value="<%= t('categories.litigations')%>"><%= t('categories.litigations')%></option>
+        </select>
+      </div>
+    </div>
+    <hr>
+    <div class="table-responsive">
+      <table class="table table-condensed table-striped">
+        <thead>
+          <tr>
+            <th>Título</th>
+            <th>Traducción</th>
+            <th>opciones</th>
+            <th>Publicación</th>
+          </tr>
+        </thead>
+
+        <tbody>
+    
+        </tbody>
+        
+      </table>
+    </div>
+  </div>
+</div>

@@ -7,6 +7,10 @@ $ ->
   
       'admin/posts/new': 'createPost'
       'admin/posts': 'post'
+      'admin/the-actual/new': 'createTheActual'
+      'admin/the-actual/:id/edit': 'editTheActual'
+      'admin/the-actual': 'theActual'
+
       'admin/experiences/new': 'createExperience'
       'admin/experiences': 'experience'
 
@@ -26,7 +30,6 @@ $ ->
       'editar-abogado/:id': 'editLawyer'
       'en/editar-abogado/:id': 'editLawyer'
 
-
     dashboard: ->
       ppu.lawyers = new ppu.Lawyers
       ppu.lawyers.fetch reset: true
@@ -35,9 +38,36 @@ $ ->
 
     post: ->
       ppu.posts = new ppu.Posts
-      ppu.posts.fetch reset: true
+      ppu.posts.fetch reset: true, data: without_the_actual: true
       ppu.admin.posts = new ppu.admin.PostsView collection: ppu.posts
       ppu.admin.postsFilters = new ppu.admin.PostsFilters
+
+    theActual: ->
+      ppu.posts = new ppu.Posts
+      ppu.posts.fetch reset: true, data: the_actual: true
+      ppu.admin.posts = new ppu.admin.TheActualViews collection: ppu.posts
+      ppu.admin.postsFilters = new ppu.admin.PostsFilters
+
+    createTheActual: ->
+      ppu.admin.post = new ppu.Post
+      ppu.admin.postCreate = new ppu.admin.TheActualCreate model: ppu.admin.post
+      ppu.admin.postCreate.render()
+
+      ppu.categories = new ppu.Categories
+      ppu.categories.fetch reset: true
+      ppu.admin.categoriesCheckboxnew = new ppu.admin.CategoriesCheckbox collection: ppu.categories
+
+      ppu.admin.galleries = new  ppu.admin.Galleries
+      ppu.admin.galleries.fetch reset: true, data: name: "post_header"
+
+    editTheActual: (id) ->
+      ppu.admin.post = new ppu.Post id: id
+      ppu.admin.post.fetch data: lang: app.lang
+      ppu.admin.postEdit = new ppu.admin.PostEdit model: ppu.admin.post
+
+      ppu.admin.galleries = new  ppu.admin.Galleries
+      ppu.admin.galleries.fetch reset: true, data: name: "post_header"
+
 
     lawyer: ->
       ppu.lawyers = new ppu.Lawyers

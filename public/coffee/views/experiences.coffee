@@ -1,11 +1,4 @@
 $ ->
-  class ppu.Experience extends Backbone.Model
-    urlRoot: "/api/experiences"
-
-  class ppu.Experiences extends Backbone.Collection
-    url: "/api/experiences"
-    model: ppu.Experience
-
   class ppu.ExperienceView extends Backbone.View
     template: $ "#experience-template"
     className: "col-md-6 col-sm-6 col-xs-12 experience-item"

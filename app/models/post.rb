@@ -16,7 +16,8 @@ class Post < ActiveRecord::Base
   scope :featured, -> { where.not(featured: nil) }
   scope :with_featured, -> { order(featured: :asc) }
   scope :is_featured, -> (val) { where(featured: val) }
-  scope :published, -> { where(published: true) }
+  scope :published, -> { where("posts.published = true") }
+  scope :the_actual, -> { where(the_actual: true) }
   scope :not_featured, -> { where(featured: nil) }
   scope :country, -> (country){ where("posts.country = ? OR posts.country = 'Global'", country) }
   scope :category, -> (category){ includes(:categories).where(categories: {name: category}) }
@@ -25,6 +26,7 @@ class Post < ActiveRecord::Base
   scope :order_featured, -> { order(featured: :asc) }
   scope :order_date, -> { order(date: :desc) }
   scope :without, -> (id) {where.not(id: id) }
+  scope :without_the_actual, ->{where(the_actual: false, the_actual: nil) }
 
   mount_uploader :img_name, PostImageUploader
 

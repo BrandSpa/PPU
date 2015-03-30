@@ -7,7 +7,12 @@ class PostsController < ApplicationController
     @post = Post.find_by(slug: id)
   end
 
-  def the_current
+  def the_actual
+  end
+
+  def the_actual_detail
+    id = params[:id]
+    @post = Post.find_by(slug: id)
   end
 
 end

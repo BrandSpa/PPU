@@ -21,10 +21,21 @@ $ ->
       @listenTo(@collection, 'add', @renderOne)
       app.pubsub.on("posts:filter", @filterCollection, @)
       app.pubsub.on("apply:filters", @filterCollection, @)
+      app.pubsub.on("posts:paginate", @paginate, @)
 
     filterCollection: (filters) ->
       filters = _.extend(lang: app.lang, filters)
-      @collection.fetch reset: true, data: filters
+      @collection.fetch reset: true, data: filters, beforeSend: () ->
+        $('.preload').removeClass('hidden')
+      , success: () ->
+        $('.preload').addClass('hidden')
+
+    paginate: (data) ->
+      @collection.fetch data: data, beforeSend: () ->
+        $('.preload').removeClass('hidden')
+      , success: () ->
+        $('.preload').addClass('hidden')
+
 
     renderOne: (model) ->
       ppu.postView = new ppu.PostView model: model

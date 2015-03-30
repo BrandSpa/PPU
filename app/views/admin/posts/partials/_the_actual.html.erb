@@ -1,0 +1,39 @@
+<script id="the-actual-admin-template" type="text/x-handlebars-template">
+  <td> 
+    {{ title }}  
+    {{#if featured}}
+    <a href="#" class="unhighlight"> <i class="fa fa-star"></i></a>
+    {{else}}
+    <a href="#" class="highlight"> <i class="fa fa-star-o"></i></a>
+    {{/if}}
+  </td>
+
+  <td>  
+  {{#if translations}}
+    <a href="en/admin/the-actual/{{ translations.id }}/edit" class="btn btn-default btn-xs"><i class="fa fa-pencil-square-o"></i> Editar Traducción</a>
+   {{else}}
+    <a href="#" class="btn btn-default btn-xs translate"><i class="fa fa-globe"></i> Traducir</a> 
+   {{/if}} 
+  </td>
+
+  <td>
+   <a href="/admin/the-actual/{{ id }}/edit" class="btn btn-default btn-xs edit">
+    <i class="fa fa-pencil-square-o"></i> Editar
+   </a>
+  </td>
+
+  <td>
+    {{#if published}}
+      <a href="/admin/the-actual/{{ id }}/edit" class="btn btn-success btn-xs unpublish">Publicado</a>
+    {{else}}
+      <a href="#" class="btn btn-default btn-xs publish">Publicar</a>
+    {{/if}}
+  </td>
+
+<td>
+  <a href="#" class="btn btn-default btn-xs publish-on-social-network">Publicar en Redes Sociales</a>
+</td>
+</script>
+
+
+

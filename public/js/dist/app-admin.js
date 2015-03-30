@@ -540,33 +540,38 @@ Backbone.View.prototype.openShare = function() {
 var __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
+ppu.Category = (function(_super) {
+  __extends(Category, _super);
+
+  function Category() {
+    return Category.__super__.constructor.apply(this, arguments);
+  }
+
+  Category.prototype.urlRoot = '/api/categories';
+
+  return Category;
+
+})(Backbone.Model);
+
+ppu.Categories = (function(_super) {
+  __extends(Categories, _super);
+
+  function Categories() {
+    return Categories.__super__.constructor.apply(this, arguments);
+  }
+
+  Categories.prototype.url = '/api/categories';
+
+  Categories.prototype.model = ppu.Category;
+
+  return Categories;
+
+})(Backbone.Collection);
+
+var __hasProp = {}.hasOwnProperty,
+  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
 $(function() {
-  ppu.Category = (function(_super) {
-    __extends(Category, _super);
-
-    function Category() {
-      return Category.__super__.constructor.apply(this, arguments);
-    }
-
-    Category.prototype.urlRoot = '/api/categories';
-
-    return Category;
-
-  })(Backbone.Model);
-  ppu.Categories = (function(_super) {
-    __extends(Categories, _super);
-
-    function Categories() {
-      return Categories.__super__.constructor.apply(this, arguments);
-    }
-
-    Categories.prototype.url = '/api/categories';
-
-    Categories.prototype.model = ppu.Category;
-
-    return Categories;
-
-  })(Backbone.Collection);
   ppu.CategoryView = (function(_super) {
     __extends(CategoryView, _super);
 
@@ -1923,367 +1928,42 @@ $(function() {
 var __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-$(function() {
-  ppu.Lawyer = (function(_super) {
-    __extends(Lawyer, _super);
+ppu.Lawyer = (function(_super) {
+  __extends(Lawyer, _super);
 
-    function Lawyer() {
-      return Lawyer.__super__.constructor.apply(this, arguments);
-    }
+  function Lawyer() {
+    return Lawyer.__super__.constructor.apply(this, arguments);
+  }
 
-    Lawyer.prototype.urlRoot = "/api/lawyers";
+  Lawyer.prototype.urlRoot = "/api/lawyers";
 
-    Lawyer.prototype.fetchBySlug = function(slug) {
-      return this.fetch({
-        data: $.param({
-          slug: slug,
-          locale: app.lang
-        })
-      });
-    };
+  Lawyer.prototype.fetchBySlug = function(slug) {
+    return this.fetch({
+      data: $.param({
+        slug: slug,
+        locale: app.lang
+      })
+    });
+  };
 
-    return Lawyer;
+  return Lawyer;
 
-  })(Backbone.Model);
-  ppu.Lawyers = (function(_super) {
-    __extends(Lawyers, _super);
+})(Backbone.Model);
 
-    function Lawyers() {
-      return Lawyers.__super__.constructor.apply(this, arguments);
-    }
+ppu.Lawyers = (function(_super) {
+  __extends(Lawyers, _super);
 
-    Lawyers.prototype.url = "/api/lawyers";
+  function Lawyers() {
+    return Lawyers.__super__.constructor.apply(this, arguments);
+  }
 
-    Lawyers.prototype.model = ppu.Lawyer;
+  Lawyers.prototype.url = "/api/lawyers";
 
-    return Lawyers;
+  Lawyers.prototype.model = ppu.Lawyer;
 
-  })(Backbone.Collection);
-  ppu.LawyerView = (function(_super) {
-    __extends(LawyerView, _super);
+  return Lawyers;
 
-    function LawyerView() {
-      return LawyerView.__super__.constructor.apply(this, arguments);
-    }
-
-    LawyerView.prototype.template = $('#lawyer-template');
-
-    LawyerView.prototype.className = 'col-md-6 col-sm-6 col-xs-12 lawyer-item';
-
-    LawyerView.prototype.events = {
-      "click": "open"
-    };
-
-    LawyerView.prototype.open = function() {
-      return window.location = "/abogados/" + (this.model.get('slug'));
-    };
-
-    LawyerView.prototype.render = function() {
-      var compile, source;
-      source = this.template.html();
-      compile = Handlebars.compile(source);
-      $(this.el).html(compile(this.model.toJSON()));
-      return this;
-    };
-
-    return LawyerView;
-
-  })(Backbone.View);
-  ppu.LawyersView = (function(_super) {
-    __extends(LawyersView, _super);
-
-    function LawyersView() {
-      return LawyersView.__super__.constructor.apply(this, arguments);
-    }
-
-    LawyersView.prototype.el = $('#lawyers');
-
-    LawyersView.prototype.initialize = function() {
-      var data;
-      this.listenTo(this.collection, 'reset', this.render);
-      this.listenTo(this.collection, 'add', this.renderOne);
-      if (app.lang === "en") {
-        data = _.extend({
-          published: true,
-          order_by_english: true
-        });
-      } else {
-        data = _.extend({
-          published: true,
-          order_by_spanish: true
-        });
-      }
-      this.collection.fetch({
-        reset: true,
-        data: data
-      });
-      return app.pubsub.on("apply:filters", this.filterCollection, this);
-    };
-
-    LawyersView.prototype.filterCollection = function(filters) {
-      filters = _.extend({
-        lang: app.lang
-      }, filters);
-      return this.collection.fetch({
-        reset: true,
-        data: filters
-      });
-    };
-
-    LawyersView.prototype.order_by = function() {};
-
-    LawyersView.prototype.paginate = function() {
-      return this.collection.fetch({
-        data: {
-          offset: offset
-        }
-      });
-    };
-
-    LawyersView.prototype.renderOne = function(model) {
-      var view;
-      view = new ppu.LawyerView({
-        model: model
-      });
-      return $(this.el).append(view.render().el);
-    };
-
-    LawyersView.prototype.render = function() {
-      $(this.el).html('');
-      return this.collection.each(function(model) {
-        return this.renderOne(model);
-      }, this);
-    };
-
-    return LawyersView;
-
-  })(Backbone.View);
-  ppu.LawyersFilters = (function(_super) {
-    __extends(LawyersFilters, _super);
-
-    function LawyersFilters() {
-      return LawyersFilters.__super__.constructor.apply(this, arguments);
-    }
-
-    LawyersFilters.prototype.el = $('#top-bar');
-
-    LawyersFilters.prototype.template = $("#lawyers-filter");
-
-    LawyersFilters.prototype.offset = 20;
-
-    LawyersFilters.prototype.events = {
-      'change .position': 'byPosition',
-      'change .countries': 'byCountry',
-      'change .category': 'byCategory',
-      'keyup .query': 'byQuery',
-      'submit .search': 'bySearch'
-    };
-
-    LawyersFilters.prototype.initialize = function() {
-      this.render();
-      this.filtersAplied = {
-        lang: app.lang,
-        published: true
-      };
-      this.order_by();
-      this.$el.data("filtersAplied", this.filtersAplied);
-      app.pubsub.on("general:scroll", this.paginate, this);
-      return app.pubsub.trigger("filters:showPosition");
-    };
-
-    LawyersFilters.prototype.order_by = function() {
-      if (app.lang === "en") {
-        return _.extend(this.filtersAplied, {
-          order_by_english: true
-        });
-      } else {
-        return _.extend(this.filtersAplied, {
-          order_by_spanish: true
-        });
-      }
-    };
-
-    LawyersFilters.prototype.render = function() {
-      var template;
-      template = app.compile(this.template);
-      this.$el.html(template);
-      return ppu.appendSelect(this.el);
-    };
-
-    LawyersFilters.prototype.paginate = function() {
-      var data;
-      data = _.extend(this.filtersAplied, {
-        paginate: this.offset
-      });
-      ppu.lawyers.fetch({
-        data: data,
-        beforeSend: function() {
-          return $('.preload').removeClass('hidden');
-        },
-        success: function() {
-          return $('.preload').addClass('hidden');
-        }
-      });
-      return this.offset = this.offset + 20;
-    };
-
-    LawyersFilters.prototype.byPosition = function(e) {
-      var data, val;
-      val = $(e.currentTarget).find('select').val();
-      data = _.extend(this.filtersAplied, {
-        paginate: 0,
-        position: val
-      });
-      return ppu.lawyers.fetch({
-        reset: true,
-        data: data
-      });
-    };
-
-    LawyersFilters.prototype.byCountry = function(e) {
-      var data, val;
-      val = $(e.currentTarget).find('select').val();
-      data = _.extend(this.filtersAplied, {
-        paginate: 0,
-        country: val
-      });
-      return ppu.lawyers.fetch({
-        reset: true,
-        data: data
-      });
-    };
-
-    LawyersFilters.prototype.byCategory = function(e) {
-      var data, val;
-      val = $(e.currentTarget).find('select').val();
-      data = _.extend(this.filtersAplied, {
-        paginate: 0,
-        category: val
-      });
-      return ppu.lawyers.fetch({
-        reset: true,
-        data: data
-      });
-    };
-
-    LawyersFilters.prototype.byQuery = function(e) {
-      var data, val;
-      val = $(e.currentTarget).val();
-      if (val.length >= 1) {
-        data = _.extend(this.filtersAplied, {
-          paginate: 0,
-          search: val
-        });
-        return ppu.lawyers.fetch({
-          reset: true,
-          data: data
-        });
-      }
-    };
-
-    LawyersFilters.prototype.bySearch = function(e) {
-      var data, val;
-      e.preventDefault();
-      val = $(e.currentTarget).find(".query").val();
-      data = _.extend(this.filtersAplied, {
-        paginate: 0,
-        search: val
-      });
-      return ppu.lawyers.fetch({
-        reset: true,
-        data: data
-      });
-    };
-
-    return LawyersFilters;
-
-  })(Backbone.View);
-  ppu.LawyerDetailView = (function(_super) {
-    __extends(LawyerDetailView, _super);
-
-    function LawyerDetailView() {
-      return LawyerDetailView.__super__.constructor.apply(this, arguments);
-    }
-
-    LawyerDetailView.prototype.el = $('#lawyer');
-
-    LawyerDetailView.prototype.template = $('#lawyer-template');
-
-    LawyerDetailView.prototype.initialize = function() {
-      this.listenTo(this.model, 'change', this.render);
-      this.getTitle();
-      return this.model.fetch();
-    };
-
-    LawyerDetailView.prototype.getTitle = function() {
-      return $("#top-bar").html($("#lawyer-detail-title").html());
-    };
-
-    LawyerDetailView.prototype.render = function() {
-      var template;
-      template = app.compile(this.template);
-      $(this.el).html(template(this.model.toJSON()));
-      return this.getImgs();
-    };
-
-    LawyerDetailView.prototype.getImgs = function() {
-      var h;
-      h = this.$el.find('.award img');
-      return _.each(h, function(e) {
-        return $(e).load(function(a) {
-          if ($(this).height() > 90) {
-            return $(this).css('height', '90px');
-          }
-        });
-      });
-    };
-
-    return LawyerDetailView;
-
-  })(Backbone.View);
-  return ppu.lawyersRelatedCategory = (function(_super) {
-    __extends(lawyersRelatedCategory, _super);
-
-    function lawyersRelatedCategory() {
-      return lawyersRelatedCategory.__super__.constructor.apply(this, arguments);
-    }
-
-    lawyersRelatedCategory.prototype.el = $("#lawyers-related");
-
-    lawyersRelatedCategory.prototype.template = $("#lawyer-related-template");
-
-    lawyersRelatedCategory.prototype.initialize = function() {
-      this.listenTo(this.collection, "reset", this.render);
-      return app.pubsub.bind("lawyers:related", this.getRelated, this);
-    };
-
-    lawyersRelatedCategory.prototype.getRelated = function(category) {
-      var position;
-      if (app.lang === "en") {
-        position = "Partner";
-      } else {
-        position = "Socio";
-      }
-      return this.collection.fetch({
-        reset: true,
-        data: {
-          lang: app.lang,
-          category: category,
-          position: position
-        }
-      });
-    };
-
-    lawyersRelatedCategory.prototype.render = function() {
-      var template;
-      template = app.compile(this.template);
-      return $("#lawyers-related").html(template(this.collection.toJSON()));
-    };
-
-    return lawyersRelatedCategory;
-
-  })(Backbone.View);
-});
+})(Backbone.Collection);
 
 var __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -2947,7 +2627,8 @@ $(function() {
     PostView.prototype.highlight = function(e) {
       var that;
       e.preventDefault();
-      return that = that.model.save({
+      that = this;
+      return that.model.save({
         fields: {
           featured: 3
         }
@@ -3121,7 +2802,6 @@ $(function() {
     PostsFilters.prototype.byKeyword = function(e) {
       var val;
       val = $(e.currentTarget).val();
-      console.log(val);
       if (val.length >= 1) {
         return this.filterBy({
           keyword: val
@@ -3167,8 +2847,9 @@ $(function() {
       return ppu.appendSummernote(this.el);
     };
 
-    PostCreate.prototype.store = function() {
+    PostCreate.prototype.store = function(e) {
       var $form, content, data, options;
+      e.preventDefault();
       $form = this.$el.find('form');
       content = $(this.el).find('.summernote').code();
       data = new FormData($form[0]);
@@ -3180,16 +2861,6 @@ $(function() {
 
     PostCreate.prototype.stored = function(model) {
       return window.location = "/posts/" + (this.model.get('slug'));
-    };
-
-    PostCreate.prototype.publishFb = function(model) {
-      var published, url;
-      url = setSubdomain(model.get('lang')) + ("posts/" + (model.get('slug')));
-      return published = fb_check_and_publish(model.get('title'), url);
-    };
-
-    PostCreate.prototype.redirectTo = function() {
-      return window.location = '/admin/posts';
     };
 
     PostCreate.prototype.getCategories = function() {
@@ -3493,6 +3164,281 @@ $(function() {
     };
 
     return PostLawyersSelected;
+
+  })(Backbone.View);
+});
+
+var __hasProp = {}.hasOwnProperty,
+  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+$(function() {
+  ppu.admin.TheActualView = (function(_super) {
+    __extends(TheActualView, _super);
+
+    function TheActualView() {
+      return TheActualView.__super__.constructor.apply(this, arguments);
+    }
+
+    TheActualView.prototype.template = $('#the-actual-admin-template');
+
+    TheActualView.prototype.tagName = 'tr';
+
+    TheActualView.prototype.events = {
+      "click .publish": "publish",
+      "click .unpublish": "unpublish",
+      "click .change-featured": "changeFeatured",
+      "click .publish-on-social-network": "publishFb",
+      "click .highlight": "highlight",
+      "click .unhighlight": "unhighlight"
+    };
+
+    TheActualView.prototype.initialize = function() {
+      return this.listenTo(this.model, "change", this.render);
+    };
+
+    TheActualView.prototype.render = function() {
+      var source, t;
+      source = this.template.html();
+      t = Handlebars.compile(source);
+      $(this.el).html(t(this.model.toJSON()));
+      return this;
+    };
+
+    TheActualView.prototype.publish = function(e) {
+      e.preventDefault();
+      return this.model.save({
+        fields: {
+          published: true
+        }
+      });
+    };
+
+    TheActualView.prototype.highlight = function(e) {
+      var that;
+      e.preventDefault();
+      that = this;
+      return that.model.save({
+        fields: {
+          featured: 3
+        }
+      }).done(function() {
+        return app.pubsub.trigger('post:unfeatured');
+      });
+    };
+
+    TheActualView.prototype.publishFb = function(e) {
+      var published, url;
+      e.preventDefault();
+      url = setSubdomain(this.model.get('lang')) + ("posts/" + (this.model.get('slug')));
+      return published = openShare(url);
+    };
+
+    TheActualView.prototype.unpublish = function(e) {
+      e.preventDefault();
+      return this.model.save({
+        fields: {
+          published: false
+        }
+      });
+    };
+
+    TheActualView.prototype.translate = function(e) {
+      e.preventDefault();
+      return this.model.save({
+        duplicate: true
+      }).done(function(model) {
+        return window.location = "en/admin/posts/" + model.id + "/edit";
+      });
+    };
+
+    TheActualView.prototype.changeFeatured = function(e) {
+      var el;
+      el = $(e.currentTarget).find('input').val();
+      app.pubsub.trigger('post:changeFeatured', el);
+      return this.model.save({
+        fields: {
+          featured: el
+        }
+      });
+    };
+
+    return TheActualView;
+
+  })(Backbone.View);
+  return ppu.admin.TheActualViews = (function(_super) {
+    __extends(TheActualViews, _super);
+
+    function TheActualViews() {
+      return TheActualViews.__super__.constructor.apply(this, arguments);
+    }
+
+    TheActualViews.prototype.el = $("#posts-dasboard");
+
+    TheActualViews.prototype.initialize = function() {
+      this.listenTo(this.collection, 'reset', this.render);
+      this.listenTo(this.collection, 'add', this.addOne, this);
+      app.pubsub.on("posts:filter", this.filterCollection, this);
+      app.pubsub.on("post:changeFeatured", this.changeFeatured, this);
+      return app.pubsub.on('post:unfeatured', this.unfeatured, this);
+    };
+
+    TheActualViews.prototype.filterCollection = function(filters) {
+      return this.collection.fetch({
+        reset: true,
+        lang: app.lang,
+        data: filters
+      });
+    };
+
+    TheActualViews.prototype.unfeatured = function() {
+      return this.collection.fetch({
+        reset: true
+      });
+    };
+
+    TheActualViews.prototype.changeFeatured = function(val) {
+      var coll;
+      coll = new ppu.Posts;
+      return this.collection.fetch({
+        add: false,
+        data: {
+          is_featured: val
+        }
+      }).done(function(models) {
+        return coll.add(models);
+      });
+    };
+
+    TheActualViews.prototype.addOne = function(model) {
+      var view;
+      view = new ppu.admin.TheActualView({
+        model: model
+      });
+      return $(this.el).find('thead').append(view.render().el);
+    };
+
+    TheActualViews.prototype.render = function() {
+      $(this.el).find('tbody').html('');
+      return this.collection.each(function(model) {
+        var view;
+        view = new ppu.admin.TheActualView({
+          model: model
+        });
+        return $(this.el).find('tbody').append(view.render().el);
+      }, this);
+    };
+
+    return TheActualViews;
+
+  })(Backbone.View);
+});
+
+var __hasProp = {}.hasOwnProperty,
+  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+$(function() {
+  return ppu.admin.TheActualCreate = (function(_super) {
+    __extends(TheActualCreate, _super);
+
+    function TheActualCreate() {
+      return TheActualCreate.__super__.constructor.apply(this, arguments);
+    }
+
+    TheActualCreate.prototype.el = $("#post-create");
+
+    TheActualCreate.prototype.template = $("#the-actual-create-template");
+
+    TheActualCreate.prototype.events = {
+      "click button.store": "store",
+      "click .open-gallery": "openGallery",
+      "keydown input[name='query']": "searchLawyer",
+      "change .form-control": "removeError",
+      "keydown .form-control": "removeError"
+    };
+
+    TheActualCreate.prototype.initialize = function() {
+      this.listenTo(this.model, 'error', this.renderPostErrors, this);
+      this.listenTo(this.model, 'sync', this.stored);
+      app.pubsub.bind('gallery:selected', this.appendSelectedGallery, this);
+      return app.pubsub.on('post:socialPublished', this.redirectTo, this);
+    };
+
+    TheActualCreate.prototype.render = function() {
+      var source, template;
+      source = this.template.html();
+      template = Handlebars.compile(source);
+      this.$el.find('.panel-body').html(template());
+      ppu.appendDatePicker(this.el);
+      return ppu.appendSummernote(this.el);
+    };
+
+    TheActualCreate.prototype.store = function(e) {
+      var $form, content, data, options;
+      e.preventDefault();
+      $form = this.$el.find('form');
+      content = $(this.el).find('.summernote').code();
+      data = new FormData($form[0]);
+      data.append("fields[content]", content);
+      data.append("fields[lang]", app.lang);
+      data.append('fields[the_actual]', 1);
+      options = ppu.ajaxOptions("POST", data);
+      return this.model.save(data, $.extend({}, options));
+    };
+
+    TheActualCreate.prototype.stored = function(model) {
+      return window.location = "/el-actual/" + (this.model.get('slug'));
+    };
+
+    TheActualCreate.prototype.publishFb = function(model) {
+      var published, url;
+      url = setSubdomain(model.get('lang')) + ("posts/" + (model.get('slug')));
+      return published = fb_check_and_publish(model.get('title'), url);
+    };
+
+    TheActualCreate.prototype.redirectTo = function() {
+      return window.location = '/admin/posts';
+    };
+
+    TheActualCreate.prototype.getCategories = function() {
+      ppu.categories = new ppu.Categories;
+      return ppu.categories.fetch({
+        data: {
+          lang: app.lang
+        }
+      }).done(function(collection) {
+        var source, template;
+        source = $('#lawyer-categories-template').html();
+        template = Handlebars.compile(source);
+        return $('#categories-checkboxes').html(template(collection));
+      });
+    };
+
+    TheActualCreate.prototype.openGallery = function(e) {
+      e.preventDefault();
+      ppu.admin.galleryPostModal = new ppu.admin.GalleryPostModal({
+        collection: ppu.admin.galleries
+      });
+      return ppu.admin.galleryPostModal.render();
+    };
+
+    TheActualCreate.prototype.appendSelectedGallery = function(gallery_id) {
+      $(this.el).find('.gallery_id').val(gallery_id);
+      return ppu.admin.galleryPostModal.closeModal();
+    };
+
+    TheActualCreate.prototype.searchLawyer = function(e) {
+      var collection, query;
+      query = $(e.currentTarget).val();
+      if (query.length > 3) {
+        collection = new ppu.Lawyers;
+        ppu.admin.postLawyersSelect = new ppu.admin.PostLawyersSelect({
+          collection: collection
+        });
+        return ppu.admin.postLawyersSelect.search(query);
+      }
+    };
+
+    return TheActualCreate;
 
   })(Backbone.View);
 });
@@ -4186,6 +4132,9 @@ $(function() {
       "admin/lawyers/new": "createLawyer",
       'admin/posts/new': 'createPost',
       'admin/posts': 'post',
+      'admin/the-actual/new': 'createTheActual',
+      'admin/the-actual/:id/edit': 'editTheActual',
+      'admin/the-actual': 'theActual',
       'admin/experiences/new': 'createExperience',
       'admin/experiences': 'experience',
       "en/admin/lawyers/new": "createLawyer",
@@ -4216,12 +4165,72 @@ $(function() {
     Router.prototype.post = function() {
       ppu.posts = new ppu.Posts;
       ppu.posts.fetch({
-        reset: true
+        reset: true,
+        data: {
+          without_the_actual: true
+        }
       });
       ppu.admin.posts = new ppu.admin.PostsView({
         collection: ppu.posts
       });
       return ppu.admin.postsFilters = new ppu.admin.PostsFilters;
+    };
+
+    Router.prototype.theActual = function() {
+      ppu.posts = new ppu.Posts;
+      ppu.posts.fetch({
+        reset: true,
+        data: {
+          the_actual: true
+        }
+      });
+      ppu.admin.posts = new ppu.admin.TheActualViews({
+        collection: ppu.posts
+      });
+      return ppu.admin.postsFilters = new ppu.admin.PostsFilters;
+    };
+
+    Router.prototype.createTheActual = function() {
+      ppu.admin.post = new ppu.Post;
+      ppu.admin.postCreate = new ppu.admin.TheActualCreate({
+        model: ppu.admin.post
+      });
+      ppu.admin.postCreate.render();
+      ppu.categories = new ppu.Categories;
+      ppu.categories.fetch({
+        reset: true
+      });
+      ppu.admin.categoriesCheckboxnew = new ppu.admin.CategoriesCheckbox({
+        collection: ppu.categories
+      });
+      ppu.admin.galleries = new ppu.admin.Galleries;
+      return ppu.admin.galleries.fetch({
+        reset: true,
+        data: {
+          name: "post_header"
+        }
+      });
+    };
+
+    Router.prototype.editTheActual = function(id) {
+      ppu.admin.post = new ppu.Post({
+        id: id
+      });
+      ppu.admin.post.fetch({
+        data: {
+          lang: app.lang
+        }
+      });
+      ppu.admin.postEdit = new ppu.admin.PostEdit({
+        model: ppu.admin.post
+      });
+      ppu.admin.galleries = new ppu.admin.Galleries;
+      return ppu.admin.galleries.fetch({
+        reset: true,
+        data: {
+          name: "post_header"
+        }
+      });
     };
 
     Router.prototype.lawyer = function() {

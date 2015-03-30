@@ -11,18 +11,31 @@ gulp.task('app', function() {
   gulp.src([
     'coffee/main.coffee',
     'coffee/mixins.coffee',
-    'coffee/handlebars_helpers.coffee',
-    'coffee/bb_helpers.coffee',
+    'coffee/helpers/handlebars_helpers.coffee',
+    'coffee/helpers/bb_helpers.coffee',
     'coffee/app.coffee',
-    'coffee/filters.coffee',
-    'coffee/categories.coffee',
-    'coffee/lawyers.coffee',
-    'coffee/posts.coffee',
-    'coffee/experiences.coffee',
-    'coffee/categories.coffee',
-    'coffee/curriculum.coffee',
-    'coffee/contact.coffee',
-    'coffee/the_current.coffee',
+
+    'coffee/models/categories.coffee',
+    'coffee/models/curriculum.coffee',
+    'coffee/models/contact.coffee',
+    'coffee/models/lawyer.coffee',
+    'coffee/models/post.coffee',
+    'coffee/models/experencie.coffee',
+
+    'coffee/views/filters.coffee',
+    'coffee/views/categories.coffee',
+    'coffee/views/lawyers.coffee',
+    'coffee/views/posts.coffee',
+    'coffee/views/posts_filters.coffee',
+    'coffee/views/post.coffee',
+    'coffee/views/experiences.coffee',
+    'coffee/views/curriculum.coffee',
+    'coffee/views/contact.coffee',
+    'coffee/views/the_actual.coffee',
+    'coffee/views/the_actual_detail.coffee',
+    'coffee/views/the_actual_filters.coffee',
+    'coffee/controllers/the_current.coffee',
+
     'coffee/router.coffee'
     ])
   .pipe(coffee({bare: true}).on('error', gutil.log))
@@ -34,9 +47,12 @@ gulp.task('app-admin', function() {
   gulp.src([
     'coffee/main.coffee',
     'coffee/mixins.coffee',
-    'coffee/handlebars_helpers.coffee',
-    'coffee/bb_helpers.coffee',
-    'coffee/categories.coffee',
+    'coffee/helpers/handlebars_helpers.coffee',
+    'coffee/helpers/bb_helpers.coffee',
+    
+    'coffee/models/categories.coffee',
+    'coffee/views/categories.coffee',
+
     'coffee/lawyer/article.coffee',
     'coffee/lawyer/award.coffee',
     'coffee/lawyer/academic.coffee',
@@ -46,10 +62,13 @@ gulp.task('app-admin', function() {
     'coffee/lawyer/pharase.coffee',
     'coffee/lawyer/job.coffee',
     'coffee/lawyer/recognition.coffee',
-    'coffee/lawyers.coffee',
+
+    'coffee/models/lawyer.coffee',
     'coffee/admin/category.coffee',
     'coffee/admin/lawyer.coffee',
     'coffee/admin/post.coffee',
+    'coffee/admin/the_actual.coffee',
+    'coffee/admin/the_actual_create.coffee',
     'coffee/admin/gallery.coffee',
     'coffee/admin/experience.coffee',
     'coffee/admin/router.coffee'

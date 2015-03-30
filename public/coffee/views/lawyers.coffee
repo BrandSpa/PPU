@@ -1,14 +1,4 @@
 $ ->
-  class ppu.Lawyer extends Backbone.Model
-    urlRoot: "/api/lawyers"
-
-    fetchBySlug: (slug)->
-      @fetch data: $.param slug: slug, locale: app.lang
-
-  class ppu.Lawyers extends Backbone.Collection
-    url: "/api/lawyers"
-    model: ppu.Lawyer
-
   class ppu.LawyerView extends Backbone.View
     template: $ '#lawyer-template'
     className: 'col-md-6 col-sm-6 col-xs-12 lawyer-item'
@@ -41,9 +31,6 @@ $ ->
       filters = _.extend({lang: app.lang}, filters)
       @collection.fetch reset: true, data: filters
 
-    order_by: ->
-      
-
     paginate: () ->
       @collection.fetch data: offset: offset
     
@@ -52,7 +39,7 @@ $ ->
       $(@el).append view.render().el
 
     render: ->
-      $(@el).html('')
+      $(@el).empty()
       @collection.each (model) ->
         @renderOne(model)
       , @
