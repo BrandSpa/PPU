@@ -94,9 +94,11 @@ $ ->
     el: $ '.post-filter'
   
     events:
+      'click .see-more' : 'seeMore'
       'change .country': 'byCountry'
       'change .category': 'byCategory'
       'keydown .query': 'byKeyword'
+
 
     initialize: ->
       @filtersAplied = {lang: "es"}
@@ -108,6 +110,13 @@ $ ->
     filterBy: (data) ->
       data = _.extend(@filtersAplied,  data)
       app.pubsub.trigger("posts:filter", data)
+
+    seeMore: (e) ->
+      e.preventDefault()
+      offset = $(@el).data('offset') || 20
+      data = _.extend(@filtersAplied, paginate: offset)
+      ppu.posts.fetch data: data
+      $(@el).data('offset', (offset+20))
 
     byCountry: (e) ->
       el = $(e.currentTarget)

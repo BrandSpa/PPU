@@ -2752,6 +2752,7 @@ $(function() {
     PostsFilters.prototype.el = $('.post-filter');
 
     PostsFilters.prototype.events = {
+      'click .see-more': 'seeMore',
       'change .country': 'byCountry',
       'change .category': 'byCategory',
       'keydown .query': 'byKeyword'
@@ -2772,6 +2773,19 @@ $(function() {
     PostsFilters.prototype.filterBy = function(data) {
       data = _.extend(this.filtersAplied, data);
       return app.pubsub.trigger("posts:filter", data);
+    };
+
+    PostsFilters.prototype.seeMore = function(e) {
+      var data, offset;
+      e.preventDefault();
+      offset = $(this.el).data('offset') || 20;
+      data = _.extend(this.filtersAplied, {
+        paginate: offset
+      });
+      ppu.posts.fetch({
+        data: data
+      });
+      return $(this.el).data('offset', offset + 20);
     };
 
     PostsFilters.prototype.byCountry = function(e) {
