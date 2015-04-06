@@ -59,8 +59,6 @@ class Api::PostsController < ApplicationController
         render json: model.errors, status: 400
       end
     end
-
-    render json: the_actual
   end
 
   def unfeatured_all(id, the_actual)
