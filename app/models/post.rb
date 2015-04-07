@@ -26,7 +26,7 @@ class Post < ActiveRecord::Base
   scope :order_featured, -> { order(featured: :asc) }
   scope :order_date, -> { order(date: :desc) }
   scope :without, -> (id) {where.not(id: id) }
-  scope :without_the_actual, ->{where(the_actual: false, the_actual: nil, the_actual: 0) }
+  scope :without_the_actual, ->{ where("posts.the_actual = 0 OR posts.the_actual IS NULL") }
 
   mount_uploader :img_name, PostImageUploader
 
