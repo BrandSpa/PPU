@@ -52,6 +52,7 @@ gulp.task('app-admin', function() {
     'coffee/helpers/bb_helpers.coffee',
     'coffee/models/categories.coffee',
     'coffee/views/categories.coffee',
+    
     'coffee/lawyer/article.coffee',
     'coffee/lawyer/award.coffee',
     'coffee/lawyer/academic.coffee',

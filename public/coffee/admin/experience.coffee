@@ -46,7 +46,7 @@ $ ->
 
     addOne: (model) ->
       view = new ppu.admin.ExperienceView model: model
-      $(@el).find('thead').append view.render().el
+      $(@el).find('tbody').append view.render().el
 
     render: ->
       $(@el).find('tbody').html('')
@@ -75,18 +75,18 @@ $ ->
     filterBy: (field, val) ->
       data = _.extend(@filtersAplied,  field: val)
       app.pubsub.trigger("experiences:filter", data)
-      
+
     seeMore: (e) ->
       e.preventDefault()
       offset = $(@el).data('offset') || 20
       data = _.extend(@filtersAplied, paginate: offset)
-      ppu.posts.fetch data: data
+      ppu.experiences.fetch data: data
       $(@el).data('offset', (offset+20))
-      
+
     byPosition: (e) ->
       val = $(e.currentTarget).find('select').val()
       @filterBy('by_position', val)
-      
+
     byCountry: (e) ->
       val = $(e.currentTarget).val()
       if $(".countries").find('input[type="checkbox"]:checked').length == 2
@@ -302,4 +302,3 @@ $ ->
     destroy: (e)->
       e.preventDefault()
       @$el.remove()
-

@@ -161,7 +161,6 @@ $ ->
     stored: (model)->
       window.location = "/admin/lawyers/#{model.id}/edit"
 
-
   class ppu.LawyerCreateView extends Backbone.View
     el: $ "#lawyer-create"
 
@@ -177,7 +176,6 @@ $ ->
     store: (e) ->
       e.preventDefault()
       ppu.lawyerCreateForm.store()
-
 
   class ppu.lawyerEdit extends Backbone.View
     el: $ "#lawyer-edit-modal"
@@ -297,6 +295,3 @@ $ ->
       e.preventDefault()
       $(e.currentTarget).addClass("disabled").text("Guardando")
       app.pubsub.trigger("lawyer:translate")
-
-
-

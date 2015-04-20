@@ -1173,6 +1173,9 @@ select .form-control {
         @media (max-width: 767px) {
           .post-main-featured-item .content h3 a {
             font-size: 0.8em; } }
+        @media (max-width: 480px) {
+          .post-main-featured-item .content h3 a {
+            font-size: 0.8em; } }
     .post-main-featured-item .content p {
       color: #7F7F7F;
       font-size: 1em;

@@ -47,7 +47,3 @@ $ ->
     view: ppu.LawyerAcademicView
     modal: ppu.LawyerAcademicModalCreate
     _.extend(@.prototype, mixins.lawyerRelationshipViews)
-
-  
-      
-

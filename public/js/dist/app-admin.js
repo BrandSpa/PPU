@@ -3702,7 +3702,7 @@ $(function() {
       view = new ppu.admin.ExperienceView({
         model: model
       });
-      return $(this.el).find('thead').append(view.render().el);
+      return $(this.el).find('tbody').append(view.render().el);
     };
 
     ExperiencesView.prototype.render = function() {
@@ -3732,7 +3732,8 @@ $(function() {
       'change .position': 'byPosition',
       'change .country': 'byCountry',
       'change .category': 'byCategory',
-      'keydown .query': 'byQuery'
+      'keydown .query': 'byQuery',
+      'click .see-more': 'seeMore'
     };
 
     ExperiencesFilters.prototype.initialize = function() {
@@ -3751,6 +3752,19 @@ $(function() {
         field: val
       });
       return app.pubsub.trigger("experiences:filter", data);
+    };
+
+    ExperiencesFilters.prototype.seeMore = function(e) {
+      var data, offset;
+      e.preventDefault();
+      offset = $(this.el).data('offset') || 20;
+      data = _.extend(this.filtersAplied, {
+        paginate: offset
+      });
+      ppu.experiences.fetch({
+        data: data
+      });
+      return $(this.el).data('offset', offset + 20);
     };
 
     ExperiencesFilters.prototype.byPosition = function(e) {

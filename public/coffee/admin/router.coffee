@@ -68,7 +68,6 @@ $ ->
       ppu.admin.galleries = new  ppu.admin.Galleries
       ppu.admin.galleries.fetch reset: true, data: name: "post_header"
 
-
     lawyer: ->
       ppu.lawyers = new ppu.Lawyers
       ppu.lawyers.fetch reset: true
