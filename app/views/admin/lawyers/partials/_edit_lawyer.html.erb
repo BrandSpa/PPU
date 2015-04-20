@@ -1,33 +1,38 @@
-<div class="panel panel-default col-lg-10 hidden" id="lawyer-finish">
+<div class="panel panel-default col-lg-12 hidden" id="lawyer-finish">
   <div class="panel-heading">
     <h5>Editar Perfil</h5>
   </div>
+
   <div class="panel-body">
   <div class="container-lawyer"></div>
-  <br>
- <hr>
-  </div>
 
-  <div class="col-lg-12 lawyer-left">
-  <h3><i class="fa fa-briefcase"></i> <%= t('general_information') %></h3>
+  <div class="col-lg-12">
     <div id="lawyer-category-edit">
     <h4><%= t('practice_areas') %></h4>
     <ul> </ul>
     </div>
-    <hr>
-    <%= render "admin/lawyers/partials/section_edit", :model => "education", :title => "education", :message => "Por favor enumerar desde la más reciente a la más antigua" %>
+  </div>
 
+  <div class="col-lg-12 lawyer-left">
+    
+   <hr>
+    <%= render "admin/lawyers/partials/section_edit", :model => "education", :title => "education", :message => "Por favor enumerar desde la más reciente a la más antigua" %>
     <hr>
+
     <%= render "admin/lawyers/partials/section_edit", :model => "job", :title => "professional_experience", :message => "Por favor enumerar desde la más reciente a la más antigua"  %>
     <hr>
+
     <%= render "admin/lawyers/partials/section_edit", :model => "recognition", :title => "conferences_recognitions", :message => "Conferencias o cátedras dictadas sobre algún tema puntual"%>
     <hr>
+
     <%= render "admin/lawyers/partials/section_edit", :model => "academic", :title => "Academic Activities", :message => "especifique si es o ha sido docente, monitor o si dirige cualquier tipo de actividad académica." %>
     <hr>
     <%= render "admin/lawyers/partials/section_edit", :model => "institution", :title => "memberships", :message => "Instituciones a las que esté afiliado (cámaras, fundaciones, agremiaciones, juntas directivas, etc.)" %>
     <hr>
+
     <%= render "admin/lawyers/partials/section_edit", :model => "language", :title => "languages", :message => "Su lengua materna primero" %>
     <hr>
+
     <%= render "admin/lawyers/partials/section_edit", :model => "phrase", :title => "phrases", :message => "Si ha sido mencionado y calificado en alguna publicación (Chambers and Partners, Legal 500). Incluya la frase textual en español entre comillas. Ingresé máximo 2." %>
     <hr>
 
@@ -51,11 +56,6 @@ publicarse en orden del más reciente al más antiguo." %>
 
 </div>
   </div>
-
-
-
-
-
 
 
 <div class="modal fade" id="lawyer-article-edit-modal">

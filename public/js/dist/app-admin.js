@@ -126,7 +126,6 @@ app.uploadPhotoSummernoteExperience = function(file, editor, welEditable) {
     contentType: false,
     processData: false,
     success: function(url) {
-      console.log(url);
       return editor.insertImage(welEditable, url);
     }
   });
@@ -164,13 +163,10 @@ ppu.saveMultipeForms = function(el, model, lawyer_id) {
 $(window).on("scroll", _.throttle((function(_this) {
   return function(event) {
     var body, threshold, tolerance;
-    console.log("scroll1");
     body = document.body;
     tolerance = 200;
     threshold = body.scrollHeight - window.innerHeight - tolerance;
-    console.log($(window).scrollTop());
     if ($(window).scrollTop() > threshold) {
-      console.log("scroll2");
       return app.pubsub.trigger("general:scroll");
     }
   };

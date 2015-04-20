@@ -454,7 +454,8 @@ select .form-control {
     #lawyer-finish .lawyer-header h1 {
       font-size: 1.4em;
       margin-top: 0;
-      margin-bottom: 30px; }
+      margin-bottom: 30px;
+      color: #fff; }
     #lawyer-finish .lawyer-header p {
       margin: 0;
       font-size: 1.1em; }

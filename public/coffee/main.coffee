@@ -93,7 +93,6 @@ app.uploadPhotoSummernoteExperience = (file, editor, welEditable) ->
     contentType: false
     processData: false
     success: (url) ->
-      console.log url
       editor.insertImage(welEditable, url)
 
 ppu.appendForm = (el, template)->
@@ -118,13 +117,12 @@ ppu.saveMultipeForms = (el, model, lawyer_id) ->
     model.save data, $.extend({}, ppu.ajaxOptions("POST", data))
 
 $(window).on "scroll", _.throttle (event) =>
-  console.log "scroll1"
+ 
   body = document.body
   tolerance = 200
   threshold = body.scrollHeight - window.innerHeight - tolerance
-  console.log $(window).scrollTop()
+  
   if $(window).scrollTop() > threshold
-    console.log "scroll2"
     app.pubsub.trigger("general:scroll")
 , 1000
     
