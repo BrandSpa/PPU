@@ -100,7 +100,7 @@ $ ->
       'keydown .query': 'byKeyword'
 
     initialize: ->
-      @filtersAplied = {lang: "es"}
+      @filtersAplied = {lang: "es", without_the_actual: false}
 
     render: ->
       template = app.compile(@template)
@@ -120,16 +120,12 @@ $ ->
     byCountry: (e) ->
       el = $(e.currentTarget)
       val = el.val()
-      data = _.extend(@filtersAplied,  by_country: val)
+      data = _.extend(@filtersAplied, country: val)
       app.pubsub.trigger("posts:filter", data)
-
-    CountryNotChecked: (el) ->
-      val = if el.val() == "Colombia" then "Chile" else "Colombia"
-      $(".countries").find("input[value='#{val}']").prop('checked', true)
 
     byCategory: (e) ->
       val = $(e.currentTarget).find('select').val()
-      data = _.extend(@filtersAplied, by_category: val)
+      data = _.extend(@filtersAplied, category: val)
       app.pubsub.trigger("posts:filter", data)
 
     byKeyword: (e) ->

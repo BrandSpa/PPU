@@ -43,6 +43,10 @@ $ ->
     initialize: ->
       @listenTo(@collection, 'reset', @render)
       @listenTo(@collection, 'add', @addOne, @)
+      app.pubsub.on("experiences:filter", @filterCollection, @)
+
+    filterCollection: (filters) ->
+      @collection.fetch reset: true, data: filters
 
     addOne: (model) ->
       view = new ppu.admin.ExperienceView model: model
@@ -66,14 +70,14 @@ $ ->
       'click .see-more' : 'seeMore'
 
     initialize: ->
-      @filtersAplied = {}
+      @filtersAplied = {lang: "es"}
 
     render: ->
       template = app.compile(@template)
       @$el.html(template)
 
-    filterBy: (field, val) ->
-      data = _.extend(@filtersAplied,  field: val)
+    filterBy: (data) ->
+      data = _.extend(@filtersAplied,  data)
       app.pubsub.trigger("experiences:filter", data)
 
     seeMore: (e) ->
@@ -85,30 +89,20 @@ $ ->
 
     byPosition: (e) ->
       val = $(e.currentTarget).find('select').val()
-      @filterBy('by_position', val)
+      @filterBy({position: val})
 
     byCountry: (e) ->
       val = $(e.currentTarget).val()
-      if $(".countries").find('input[type="checkbox"]:checked').length == 2
-        @filterBy('by_country', "")
-      else
-        if el.find(":not(:checked)")
-          val = @CountryNotChecked(el)
-          @filterBy('by_country', val)
-
-    CountryNotChecked: (el) ->
-      val = if el.val() == "Colombia" then "Chile" else "Colombia"
-      $(".countries").find("input[value='#{val}']").prop('checked', true)
-      val
+      @filterBy({country: val})
 
     byCategory: (e) ->
       val = $(e.currentTarget).find('select').val()
-      @filterBy('by_category', val)
+      @filterBy(category: val)
 
     byQuery: (e) ->
       val = $(e.currentTarget).val()
       if val.length >= 3
-        @filterBy('by_keyword', val)
+        @filterBy(keyword: val)
 
   class ppu.admin.ExperienceCreate extends Backbone.View
     el: $ "#experience-create"

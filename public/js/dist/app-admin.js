@@ -2756,7 +2756,8 @@ $(function() {
 
     PostsFilters.prototype.initialize = function() {
       return this.filtersAplied = {
-        lang: "es"
+        lang: "es",
+        without_the_actual: false
       };
     };
 
@@ -2789,22 +2790,16 @@ $(function() {
       el = $(e.currentTarget);
       val = el.val();
       data = _.extend(this.filtersAplied, {
-        by_country: val
+        country: val
       });
       return app.pubsub.trigger("posts:filter", data);
-    };
-
-    PostsFilters.prototype.CountryNotChecked = function(el) {
-      var val;
-      val = el.val() === "Colombia" ? "Chile" : "Colombia";
-      return $(".countries").find("input[value='" + val + "']").prop('checked', true);
     };
 
     PostsFilters.prototype.byCategory = function(e) {
       var data, val;
       val = $(e.currentTarget).find('select').val();
       data = _.extend(this.filtersAplied, {
-        by_category: val
+        category: val
       });
       return app.pubsub.trigger("posts:filter", data);
     };
@@ -3690,7 +3685,15 @@ $(function() {
 
     ExperiencesView.prototype.initialize = function() {
       this.listenTo(this.collection, 'reset', this.render);
-      return this.listenTo(this.collection, 'add', this.addOne, this);
+      this.listenTo(this.collection, 'add', this.addOne, this);
+      return app.pubsub.on("experiences:filter", this.filterCollection, this);
+    };
+
+    ExperiencesView.prototype.filterCollection = function(filters) {
+      return this.collection.fetch({
+        reset: true,
+        data: filters
+      });
     };
 
     ExperiencesView.prototype.addOne = function(model) {
@@ -3733,7 +3736,9 @@ $(function() {
     };
 
     ExperiencesFilters.prototype.initialize = function() {
-      return this.filtersAplied = {};
+      return this.filtersAplied = {
+        lang: "es"
+      };
     };
 
     ExperiencesFilters.prototype.render = function() {
@@ -3742,11 +3747,8 @@ $(function() {
       return this.$el.html(template);
     };
 
-    ExperiencesFilters.prototype.filterBy = function(field, val) {
-      var data;
-      data = _.extend(this.filtersAplied, {
-        field: val
-      });
+    ExperiencesFilters.prototype.filterBy = function(data) {
+      data = _.extend(this.filtersAplied, data);
       return app.pubsub.trigger("experiences:filter", data);
     };
 
@@ -3766,40 +3768,34 @@ $(function() {
     ExperiencesFilters.prototype.byPosition = function(e) {
       var val;
       val = $(e.currentTarget).find('select').val();
-      return this.filterBy('by_position', val);
+      return this.filterBy({
+        position: val
+      });
     };
 
     ExperiencesFilters.prototype.byCountry = function(e) {
       var val;
       val = $(e.currentTarget).val();
-      if ($(".countries").find('input[type="checkbox"]:checked').length === 2) {
-        return this.filterBy('by_country', "");
-      } else {
-        if (el.find(":not(:checked)")) {
-          val = this.CountryNotChecked(el);
-          return this.filterBy('by_country', val);
-        }
-      }
-    };
-
-    ExperiencesFilters.prototype.CountryNotChecked = function(el) {
-      var val;
-      val = el.val() === "Colombia" ? "Chile" : "Colombia";
-      $(".countries").find("input[value='" + val + "']").prop('checked', true);
-      return val;
+      return this.filterBy({
+        country: val
+      });
     };
 
     ExperiencesFilters.prototype.byCategory = function(e) {
       var val;
       val = $(e.currentTarget).find('select').val();
-      return this.filterBy('by_category', val);
+      return this.filterBy({
+        category: val
+      });
     };
 
     ExperiencesFilters.prototype.byQuery = function(e) {
       var val;
       val = $(e.currentTarget).val();
       if (val.length >= 3) {
-        return this.filterBy('by_keyword', val);
+        return this.filterBy({
+          keyword: val
+        });
       }
     };
 

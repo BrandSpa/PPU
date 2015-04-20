@@ -94,7 +94,7 @@ $ ->
          
     byCategory: (e) ->
       val = $(e.currentTarget).find('select').val()
-      data = _.extend(@filtersAplied,paginate: 0, category: val)
+      data = _.extend(@filtersAplied, paginate: 0, category: val)
       ppu.lawyers.fetch reset: true, data: data
       
     byQuery: (e) ->
