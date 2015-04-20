@@ -41,7 +41,7 @@ gulp.task('app', function() {
     ])
   .pipe(coffee({bare: true}).on('error', gutil.log))
   .pipe(concat('app.js'))
-  .pipe(gulp.dest('js/dist/'))
+  .pipe(gulp.dest('js/dist/'));
 });
 
 gulp.task('app-admin', function() {
@@ -62,6 +62,7 @@ gulp.task('app-admin', function() {
     'coffee/lawyer/job.coffee',
     'coffee/lawyer/recognition.coffee',
     'coffee/models/lawyer.coffee',
+
     'coffee/admin/category.coffee',
     'coffee/admin/lawyer.coffee',
     'coffee/admin/post.coffee',
@@ -73,7 +74,7 @@ gulp.task('app-admin', function() {
     ])
   .pipe(coffee({bare: true}).on('error', gutil.log))
   .pipe(concat('app-admin.js'))
-  .pipe(gulp.dest('js/dist/'))
+  .pipe(gulp.dest('js/dist/'));
 });
 
 gulp.task('sass', function () {
@@ -88,7 +89,7 @@ gulp.task('sass', function () {
       .pipe(concat('style.css'))
       .pipe(minifyCSS())
       .pipe(rename('style.min.css'))
-      .pipe(gulp.dest('css/dist/'))
+      .pipe(gulp.dest('css/dist/'));
 });
 
 gulp.task('dependencies-scripts', function() {
@@ -106,7 +107,7 @@ gulp.task('dependencies-scripts', function() {
     'js/libs/jquery.selectBoxIt.min.js',
     ])
     .pipe(concat('dependencies.js'))
-    .pipe(gulp.dest('js/dist/'))
+    .pipe(gulp.dest('js/dist/'));
 });
 
 gulp.task('app-scripts', function() {
@@ -127,13 +128,13 @@ gulp.task('app-scripts', function() {
     'js/router.js'
     ])
   .pipe(concat('app-admin.js'))
-  .pipe(gulp.dest('js/dist/'))
+  .pipe(gulp.dest('js/dist/'));
 });
 
 gulp.task('compress', function() {
   gulp.src('js/dist/*.js')
     .pipe(uglify())
-    .pipe(gulp.dest('js/dist/min'))
+    .pipe(gulp.dest('js/dist/min'));
 });
 
 gulp.task('watch', ['sass', 'app', 'app-admin'], function(){

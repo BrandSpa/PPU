@@ -1,23 +1,28 @@
 source 'https://rubygems.org'
 
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.2'
 # Use mysql as the database for Active Record
 gem 'mysql2'
 
+# Use for cache
 gem 'dalli'
 
 gem 'prerender_rails'
 
+#use for work with facebook api
 gem 'fb_graph'
 
+#use for login
 gem 'devise'
 
+# use for upload files to amazon s3
 gem 'carrierwave'
 
+# use for work with images
 gem "mini_magick"
 
+# use for sanatize input
 gem "sanitize"
 
 gem 'globalize', '~> 4.0.2'
@@ -27,9 +32,10 @@ gem 'jbuilder', '~> 2.0'
 
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0',          group: :doc
-
+# use for make v cards
 gem 'vcardigan'
 
+# for reports bugs
 gem "bugsnag"
 
 gem "fog"

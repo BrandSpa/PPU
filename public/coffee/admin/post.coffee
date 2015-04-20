@@ -99,7 +99,6 @@ $ ->
       'change .category': 'byCategory'
       'keydown .query': 'byKeyword'
 
-
     initialize: ->
       @filtersAplied = {lang: "es"}
 

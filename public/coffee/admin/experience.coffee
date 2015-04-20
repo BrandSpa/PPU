@@ -63,6 +63,7 @@ $ ->
       'change .country': 'byCountry'
       'change .category': 'byCategory'
       'keydown .query': 'byQuery'
+      'click .see-more' : 'seeMore'
 
     initialize: ->
       @filtersAplied = {}
@@ -74,6 +75,13 @@ $ ->
     filterBy: (field, val) ->
       data = _.extend(@filtersAplied,  field: val)
       app.pubsub.trigger("experiences:filter", data)
+      
+    seeMore: (e) ->
+      e.preventDefault()
+      offset = $(@el).data('offset') || 20
+      data = _.extend(@filtersAplied, paginate: offset)
+      ppu.posts.fetch data: data
+      $(@el).data('offset', (offset+20))
       
     byPosition: (e) ->
       val = $(e.currentTarget).find('select').val()
