@@ -5,7 +5,7 @@ class Api::ExperiencesController < ApplicationController
 		lang = params[:lang] || I18n.locale 
     paginate = params[:paginate] || 0
 		filters = params.slice(:category, :country, :keyword, :without)
-		collection = entity.with_relationships.lang(lang).paginate(paginate)
+		collection = entity.with_relationships.lang(lang).paginate(paginate).order(date: :desc)
     collection = filters_with_params(filters, collection)
 
 		render json: collection.to_json(:include => [:translations,:translation, :categories, :lawyers, :gallery])
