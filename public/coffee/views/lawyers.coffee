@@ -20,6 +20,7 @@ $ ->
     initialize: ->
       @listenTo(@collection, 'reset', @render)
       @listenTo(@collection, 'add', @renderOne)
+      
       if app.lang == "en"
         data = _.extend published: true, order_by_english: true
       else

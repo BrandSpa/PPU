@@ -1,15 +1,57 @@
 class Api::PostsController < ApplicationController
   include Filterable
 
+  ## get collection of posts with filters
   def index
+
+    # get lang by params or by I18n default
     lang = params[:lang] || I18n.locale
+
+    # get paginate offset by params or zero by default
     paginate = params[:paginate] || 0
-    
-    collection = entity.get_relationships().lang(lang).order(featured: :desc).order(date: :desc).paginate(paginate)
-    collection = filters_without_params(set_filters_without_params(params), collection)
+
+    # get collection with relations, by lang, order by featured, date and paginate
+    collection = entity
+      .get_relationships()
+      .lang(lang)
+      .order(featured: :desc)
+      .order(date: :desc)
+      .paginate(paginate)
+
+    # filter collection by filters without params
+    collection = filters_without_params( set_filters_without_params(params), collection )
+
+    # filter collection by filters with params
     collection = filters_with_params(set_filters(params), collection)
 
+    # Response json with relationships
     render json: collection.to_json(:include => [:translations, :translation, :gallery])
+  end
+
+  def set_filters(params)
+
+    params.slice(
+      :is_featured,
+      :category,
+      :country,
+      :keyword,
+      :without
+    )
+
+  end
+
+  def set_filters_without_params(params)
+
+    params.slice(
+      :featured,
+      :published,
+      :not_featured,
+      :not_published,
+      :with_featured,
+      :the_actual,
+      :without_the_actual
+    )
+
   end
 
   def show
@@ -22,7 +64,13 @@ class Api::PostsController < ApplicationController
       model = entity.get_relationships().find_by(slug: id)
     end
 
-    render json: model.to_json(:include => [:translations, :translation, :categories, :lawyers, :gallery])  
+    render json: model.to_json(:include => [
+      :translations,
+      :translation,
+      :categories,
+      :lawyers,
+      :gallery
+    ])
   end
 
   def create
@@ -33,6 +81,7 @@ class Api::PostsController < ApplicationController
       render json: model.errors, status: 400
     end
   end
+
 
   def update
     id = params[:id]
@@ -86,28 +135,37 @@ class Api::PostsController < ApplicationController
     if trans
       trans.update(featured: 3)
     end
-    
-  end
 
-  def set_filters(params)
-    params.slice(:is_featured, :category, :country, :keyword, :without)
-  end
-
-  def set_filters_without_params(params)
-    params.slice(:featured, :published, :not_featured, :not_published, :with_featured, :the_actual, :without_the_actual)
   end
 
   def is_a_number?(s)
-    s.to_s.match(/\A[+-]?\d+?(\.\d+)?\Z/) == nil ? false : true 
+    s.to_s.match(/\A[+-]?\d+?(\.\d+)?\Z/) == nil ? false : true
   end
 
-  private 
+  private
     def entity
       Post
     end
 
     def post_params
-      params.require(:fields).permit(:lang, :country, :date, :author, :title, :content, :content_plain, :img_name, :gallery_id, :published, :social_published, :featured, :unfeatured, :the_actual, :lawyer_ids => [], :category_ids => [])
+      params.require(:fields).permit(
+        :lang,
+        :country,
+        :date,
+        :author,
+        :title,
+        :content,
+        :content_plain,
+        :img_name,
+        :gallery_id,
+        :published,
+        :social_published,
+        :featured,
+        :unfeatured,
+        :the_actual,
+        :lawyer_ids => [],
+        :category_ids => []
+      )
     end
-    
+
 end
