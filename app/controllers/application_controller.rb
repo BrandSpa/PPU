@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  #protect_from_forgery with: :exception
+  protect_from_forgery with: :exception
 
   def layout_by_resource
     if devise_controller?
