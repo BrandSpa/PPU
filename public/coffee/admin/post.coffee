@@ -9,7 +9,7 @@ $ ->
   class ppu.admin.PostView extends Backbone.View
     template: $ '#post-admin-template'
     tagName: 'tr'
-    events: 
+    events:
       "click .publish": "publish"
       "click .unpublish": "unpublish"
       "click .change-featured": "changeFeatured"
@@ -19,7 +19,7 @@ $ ->
 
     initialize: ->
       @listenTo(@model, "change", @render)
-      
+
     render: ->
       source = @template.html()
       t = Handlebars.compile(source)
@@ -36,8 +36,8 @@ $ ->
       that.model.save fields: featured: 3
       .done () ->
         app.pubsub.trigger('post:unfeatured')
-     
-    publishFb: (e)-> 
+
+    publishFb: (e)->
       e.preventDefault()
       url = setSubdomain(@model.get('lang')) + "posts/#{@model.get('slug')}"
       published = openShare(url)
@@ -48,7 +48,7 @@ $ ->
 
     translate: (e) ->
       e.preventDefault()
-      @model.save duplicate: true 
+      @model.save duplicate: true
         .done (model) ->
           window.location = "en/admin/posts/#{model.id}/edit"
 
@@ -56,7 +56,7 @@ $ ->
       el = $(e.currentTarget).find('input').val()
       app.pubsub.trigger('post:changeFeatured', el)
       @model.save fields: featured: el
-      
+
   class ppu.admin.PostsView extends Backbone.View
     el: $ "#posts-dasboard"
 
@@ -92,12 +92,13 @@ $ ->
 
   class ppu.admin.PostsFilters extends Backbone.View
     el: $ '.post-filter'
-  
+
     events:
       'click .see-more' : 'seeMore'
       'change .country': 'byCountry'
       'change .category': 'byCategory'
       'keydown .query': 'byKeyword'
+      'change .by-lang': 'byLang'
 
     initialize: ->
       @filtersAplied = {lang: "es", without_the_actual: false}
@@ -133,11 +134,15 @@ $ ->
       if val.length >= 1
         @filterBy(keyword: val)
 
+    byLang: (e) ->
+      val = $(e.currentTarget).val()
+      @filterBy(lang: val)
+
   class ppu.admin.PostCreate extends Backbone.View
     el: $ "#post-create"
     template: $ "#post-create-template"
 
-    events: 
+    events:
       "click button.store": "store"
       "click .open-gallery": "openGallery"
       "keydown input[name='query']": "searchLawyer"
@@ -166,7 +171,7 @@ $ ->
       data.append("fields[lang]", app.lang)
       options = ppu.ajaxOptions("POST", data)
       @model.save data, $.extend({}, options)
-    
+
     stored: (model) ->
        window.location = "/posts/#{@model.get('slug')}"
 
@@ -192,11 +197,11 @@ $ ->
         collection = new ppu.Lawyers
         ppu.admin.postLawyersSelect = new ppu.admin.PostLawyersSelect collection: collection
         ppu.admin.postLawyersSelect.search(query)
-      
+
   class ppu.admin.PostEdit extends Backbone.View
     el: $ "#post-edit"
     template: $ "#post-create-template"
-    events: 
+    events:
       "click button.update": "update"
       "click .open-gallery": "openGallery"
       "keydown input[name='query']": "searchLawyer"
@@ -234,7 +239,7 @@ $ ->
 
     redirectTo: ->
       window.location = '/admin/posts'
-          
+
     getCategories: ->
       ppu.categories = new ppu.Categories
       el = @$el
@@ -272,7 +277,7 @@ $ ->
   class ppu.admin.PostSelectLawyers extends Backbone.View
     el: $ "#"
     template: "#lawyer-select"
-    events: 
+    events:
       "submit .search": "search"
 
     render: ->
@@ -287,7 +292,7 @@ $ ->
   class ppu.admin.PostLawyerSelect extends Backbone.View
     tagName: 'tr'
     template: $ '#lawyer-select-template'
-    events: 
+    events:
       "click .append": "append"
 
     render: ->
@@ -304,7 +309,7 @@ $ ->
   class ppu.admin.PostLawyersSelect extends Backbone.View
     el: $ "#lawyers-result"
 
-    events: 
+    events:
       "" : ""
 
     initialize: ->
@@ -329,7 +334,7 @@ $ ->
     render: ->
       source = @template.html()
       template = Handlebars.compile(source)
-      
+
       $('#lawyers-selected tbody').append @$el.html( template( @model.toJSON() ) )
 
     renderObject: (model)->
@@ -340,4 +345,3 @@ $ ->
     destroy: (e)->
       e.preventDefault()
       @$el.remove()
-

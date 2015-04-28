@@ -1,4 +1,6 @@
 class Api::PostsController < ApplicationController
+
+  # concerns
   include Filterable
 
   ## get collection of posts with filters
@@ -28,6 +30,7 @@ class Api::PostsController < ApplicationController
     render json: collection.to_json(:include => [:translations, :translation, :gallery])
   end
 
+  # filters with params to add
   def set_filters(params)
 
     params.slice(
@@ -40,6 +43,7 @@ class Api::PostsController < ApplicationController
 
   end
 
+  # filters without params to add
   def set_filters_without_params(params)
 
     params.slice(
@@ -49,21 +53,28 @@ class Api::PostsController < ApplicationController
       :not_published,
       :with_featured,
       :the_actual,
-      :without_the_actual
+      :without_the_actual,
+      :the_actual_colombia,
+      :without_the_actual_colombia
     )
 
   end
 
   def show
     id = params[:id]
+
+    # get lang by params or by I18n default
     lang = params[:lang] || I18n.locale
 
+    # if id is a number find by id
+    # if not find by slug
     if is_a_number?(id)
       model = entity.get_relationships().find_by(id: id)
     else
       model = entity.get_relationships().find_by(slug: id)
     end
 
+    # Response json with relationships
     render json: model.to_json(:include => [
       :translations,
       :translation,
@@ -73,8 +84,13 @@ class Api::PostsController < ApplicationController
     ])
   end
 
+  # store new model to db
   def create
+
     model = entity.create(post_params)
+
+    #if model passes validation return json with the model
+    #if not passes return json with the validation errors
     if model.valid?
       render json: model, status: 200
     else
@@ -143,10 +159,13 @@ class Api::PostsController < ApplicationController
   end
 
   private
+
+    # model
     def entity
       Post
     end
 
+    # params accepted
     def post_params
       params.require(:fields).permit(
         :lang,

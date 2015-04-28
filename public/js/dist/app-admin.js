@@ -2751,7 +2751,8 @@ $(function() {
       'click .see-more': 'seeMore',
       'change .country': 'byCountry',
       'change .category': 'byCategory',
-      'keydown .query': 'byKeyword'
+      'keydown .query': 'byKeyword',
+      'change .by-lang': 'byLang'
     };
 
     PostsFilters.prototype.initialize = function() {
@@ -2812,6 +2813,14 @@ $(function() {
           keyword: val
         });
       }
+    };
+
+    PostsFilters.prototype.byLang = function(e) {
+      var val;
+      val = $(e.currentTarget).val();
+      return this.filterBy({
+        lang: val
+      });
     };
 
     return PostsFilters;

@@ -1,12 +1,13 @@
 $ ->
   class ppu.admin.PostsFilters extends Backbone.View
     el: $ '.post-filter'
-  
+
     events:
       'click .see-more' : 'seeMore'
       'change .country': 'byCountry'
       'change .category': 'byCategory'
       'keydown .query': 'byKeyword'
+      'change .by-lang': 'byLang'
 
     initialize: ->
       @filtersAplied = {lang: "es"}
@@ -17,6 +18,11 @@ $ ->
 
     filterBy: (data) ->
       data = _.extend(@filtersAplied,  data)
+      app.pubsub.trigger("posts:filter", data)
+
+    byLang: (e) ->
+      val = $(e.currentTarget).val()
+      data = _.extend(@filtersAplied,  lang: val)
       app.pubsub.trigger("posts:filter", data)
 
     seeMore: (e) ->

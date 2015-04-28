@@ -3,7 +3,7 @@
 <head>
   <title>PPU - ADMIN</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  
+
   <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,500,700' rel='stylesheet' type='text/css'>
 
   <!-- <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css"> -->
@@ -76,10 +76,10 @@
         <li><a href="/admin/the-actual">El actual</a></li>
         <li><a href="/admin/the-actual/new">Crear Noticia El actual</a></li>
         <li><a href="/users/sign_out">Salir</a></li>
-       
+
       </ul>
-   
-   
+
+
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
@@ -99,7 +99,7 @@
 </div>
 <% end %>
 <div class="wrap">
-  
+
   <%= yield %>
 </div>
   <%= render "articles/form" %>
@@ -111,7 +111,7 @@
   <%= render "phrases/form" %>
   <%= render "recognitions/form" %>
   <%= render "academics/form" %>
-  
+
   <%= render "partials/share_modal" %>
 
 
@@ -131,9 +131,10 @@
   <script src="/bower_components/summernote/dist/summernote.min.js"></script>
   <script src="/bower_components/moment/min/moment.min.js"></script>
   <script src="/bower_components/nprogress/nprogress.js"></script>
- 
+
   <script src="/js/fb.js"></script>
   <script src="/js/dist/app-admin.js"></script>
+  
  <script>
     app.lang = "<%= I18n.locale %>";
     app.hostname = window.location.hostname;

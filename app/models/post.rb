@@ -47,10 +47,16 @@ class Post < ActiveRecord::Base
   # get model by published
   scope :published, -> { where("posts.published = true") }
 
-  # get model by the actual chile
+  # get model by the actual Chile
   scope :the_actual, -> { where(the_actual: true) }
 
-  # get models without the actual chile
+  # get models without the actual Chile
+  scope :without_the_actual, ->{ where("posts.the_actual = 0 OR posts.the_actual IS NULL") }
+
+  # get model by the actual Colombia
+  scope :the_actual, -> { where(the_actual: true) }
+
+  # get models without the actual Colombia
   scope :without_the_actual, ->{ where("posts.the_actual = 0 OR posts.the_actual IS NULL") }
 
   # get model by country

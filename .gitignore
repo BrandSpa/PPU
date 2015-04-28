@@ -15,6 +15,7 @@
 /log/*.log
 /tmp
 
+node_modules
 /public/node_modules
 /public/.sass-cache
 /public/uploads/*
