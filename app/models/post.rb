@@ -50,14 +50,14 @@ class Post < ActiveRecord::Base
   # get model by the actual Chile
   scope :the_actual, -> { where(the_actual: true) }
 
+  # get model by the actual Colombia
+  scope :the_actual_colombia, -> { where(the_actual_colombia: true) }
+
   # get models without the actual Chile
   scope :without_the_actual, ->{ where("posts.the_actual = 0 OR posts.the_actual IS NULL") }
 
-  # get model by the actual Colombia
-  scope :the_actual, -> { where(the_actual: true) }
-
   # get models without the actual Colombia
-  scope :without_the_actual, ->{ where("posts.the_actual = 0 OR posts.the_actual IS NULL") }
+  scope :without_the_actual_colombia, ->{ where("posts.the_actual_colombia = 0 OR posts.the_actual_colombia IS NULL") }
 
   # get model by country
   scope :country, -> (country){ where("posts.country = ? OR posts.country = 'Global'", country) }
@@ -107,7 +107,7 @@ class Post < ActiveRecord::Base
 
   private
 
-    # remove from content html tags
+    # remove html tags from content
     def add_excerpt
       self.excerpt = Sanitize.fragment(self.content)
     end
@@ -117,7 +117,7 @@ class Post < ActiveRecord::Base
       self.slug = I18n.transliterate(self.title.downcase.gsub(/[ ]/, '-').gsub(".", '-')).parameterize
     end
 
-    # if not exist date add current date
+    # if not exist date, add current date
     def add_date
       self.date = Time.now if self.date.blank?
     end

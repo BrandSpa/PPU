@@ -98,20 +98,16 @@ class Api::PostsController < ApplicationController
     end
   end
 
-
+  #Update model
   def update
     id = params[:id]
-    duplicate = params[:duplicate]
     featured = params[:fields][:featured]
     the_actual = params[:fields][:the_actual]
 
     model = entity.get_relationships().find_by(id: id)
 
-    if duplicate.present?
-      new_model = entity.duplicate(model)
-      # render json: new_model, status: 200
+    if featured.present?
 
-    elsif featured.present?
       unfeatured_all(id, the_actual)
 
     else
@@ -126,6 +122,15 @@ class Api::PostsController < ApplicationController
     end
   end
 
+  # duplicate model
+  def duplicate
+    id = params[:id]
+    model = entity.get_relationships().find_by(id: id)
+    new_model = entity.duplicate(model)
+    render json: new_model, status: 200
+  end
+
+  # Remove all featured
   def unfeatured_all(id, the_actual)
 
     if the_actual
@@ -154,6 +159,7 @@ class Api::PostsController < ApplicationController
 
   end
 
+  # Validate if the param is a number
   def is_a_number?(s)
     s.to_s.match(/\A[+-]?\d+?(\.\d+)?\Z/) == nil ? false : true
   end

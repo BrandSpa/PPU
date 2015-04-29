@@ -21,13 +21,13 @@ $ ->
       window.urlTranslation = ""
       ppu.contact = new ppu.Contact
       ppu.FooterContactCreate = new ppu.FooterContactCreate model: ppu.contact
-      
+
     lawyers: () ->
       ppu.lawyers =  new ppu.Lawyers
       ppu.lawyersView =  new ppu.LawyersView collection: ppu.lawyers
       ppu.lawyersFilters = new ppu.LawyersFilters
       ppu.filtersMobile = new ppu.FiltersMobile
-    
+
     lawyer: (slug) ->
       ppu.lawyer = new ppu.Lawyer id: slug
       ppu.LawyerDetailView = new ppu.LawyerDetailView model: ppu.lawyer
@@ -94,7 +94,7 @@ $ ->
     curriculum: ->
       ppu.curriculum = new ppu.Curriculum
       ppu.curriculumCreate = new ppu.CurriculumCreate model: ppu.curriculum
-      
+
       title = $("#work-with-title-template").html()
       $("#top-bar").html title
 

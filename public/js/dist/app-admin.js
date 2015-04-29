@@ -2596,7 +2596,8 @@ $(function() {
       "click .change-featured": "changeFeatured",
       "click .publish-on-social-network": "publishFb",
       "click .highlight": "highlight",
-      "click .unhighlight": "unhighlight"
+      "click .unhighlight": "unhighlight",
+      "click .translate": "translate"
     };
 
     PostView.prototype.initialize = function() {
@@ -2650,11 +2651,11 @@ $(function() {
     };
 
     PostView.prototype.translate = function(e) {
+      var id;
       e.preventDefault();
-      return this.model.save({
-        duplicate: true
-      }).done(function(model) {
-        return window.location = "en/admin/posts/" + model.id + "/edit";
+      id = this.model.id;
+      return $.post("/api/posts/" + id + "/duplicate").done(function(model) {
+        return window.location = "/en/admin/posts/" + model.id + "/edit";
       });
     };
 
@@ -3203,7 +3204,8 @@ $(function() {
       "click .change-featured": "changeFeatured",
       "click .publish-on-social-network": "publishFb",
       "click .highlight": "highlight",
-      "click .unhighlight": "unhighlight"
+      "click .unhighlight": "unhighlight",
+      "click .translate": "translate"
     };
 
     TheActualView.prototype.initialize = function() {
@@ -3258,11 +3260,11 @@ $(function() {
     };
 
     TheActualView.prototype.translate = function(e) {
+      var id;
       e.preventDefault();
-      return this.model.save({
-        duplicate: true
-      }).done(function(model) {
-        return window.location = "en/admin/posts/" + model.id + "/edit";
+      id = this.model.id;
+      return $.post("/api/posts/" + id + "/duplicate").done(function(model) {
+        return window.location = "/en/admin/the-actual/" + model.id + "/edit";
       });
     };
 
@@ -4160,26 +4162,27 @@ $(function() {
 
     Router.prototype.routes = {
       'dashboard': 'dashboard',
+      'crear-abogado': 'createLawyer',
       "admin/lawyers/new": "createLawyer",
-      'admin/posts/new': 'createPost',
+      "en/admin/lawyers/new": "createLawyer",
+      ':lang/crear-abogado': 'createLawyer',
+      'admin/lawyers/:id/edit': 'editLawyer',
+      "en/admin/lawyers/:id/edit": "editLawyer",
+      'editar-abogado/:id': 'editLawyer',
+      'en/editar-abogado/:id': 'editLawyer',
       'admin/posts': 'post',
+      'admin/posts/new': 'createPost',
+      'en/admin/posts/new': 'createPost',
+      'admin/posts/:id/edit': 'editPost',
+      'en/admin/posts/:id/edit': 'editPost',
       'admin/the-actual/new': 'createTheActual',
       'admin/the-actual/:id/edit': 'editTheActual',
+      'en/admin/the-actual/:id/edit': 'editTheActual',
       'admin/the-actual': 'theActual',
-      'admin/experiences/new': 'createExperience',
       'admin/experiences': 'experience',
-      "en/admin/lawyers/new": "createLawyer",
-      'en/admin/posts/new': 'createPost',
-      'admin/lawyers/:id/edit': 'editLawyer',
-      'admin/posts/:id/edit': 'editPost',
+      'admin/experiences/new': 'createExperience',
       'admin/experiences/:id/edit': 'editExperience',
-      "en/admin/lawyers/:id/edit": "editLawyer",
-      'en/admin/posts/:id/edit': 'editPost',
-      'en/admin/experiences/:id/edit': 'editExperience',
-      'crear-abogado': 'createLawyer',
-      ':lang/crear-abogado': 'createLawyer',
-      'editar-abogado/:id': 'editLawyer',
-      'en/editar-abogado/:id': 'editLawyer'
+      'en/admin/experiences/:id/edit': 'editExperience'
     };
 
     Router.prototype.dashboard = function() {
@@ -4205,6 +4208,49 @@ $(function() {
         collection: ppu.posts
       });
       return ppu.admin.postsFilters = new ppu.admin.PostsFilters;
+    };
+
+    Router.prototype.createPost = function(lang) {
+      ppu.admin.post = new ppu.Post;
+      ppu.admin.postCreate = new ppu.admin.PostCreate({
+        model: ppu.admin.post
+      });
+      ppu.admin.postCreate.render();
+      ppu.categories = new ppu.Categories;
+      ppu.categories.fetch({
+        reset: true
+      });
+      ppu.admin.categoriesCheckboxnew = new ppu.admin.CategoriesCheckbox({
+        collection: ppu.categories
+      });
+      ppu.admin.galleries = new ppu.admin.Galleries;
+      return ppu.admin.galleries.fetch({
+        reset: true,
+        data: {
+          name: "post_header"
+        }
+      });
+    };
+
+    Router.prototype.editPost = function(id) {
+      ppu.admin.post = new ppu.Post({
+        id: id
+      });
+      ppu.admin.post.fetch({
+        data: {
+          lang: app.lang
+        }
+      });
+      ppu.admin.postEdit = new ppu.admin.PostEdit({
+        model: ppu.admin.post
+      });
+      ppu.admin.galleries = new ppu.admin.Galleries;
+      return ppu.admin.galleries.fetch({
+        reset: true,
+        data: {
+          name: "post_header"
+        }
+      });
     };
 
     Router.prototype.theActual = function() {
@@ -4275,17 +4321,6 @@ $(function() {
       return ppu.admin.lawyersFilters = new ppu.admin.LawyersFilters;
     };
 
-    Router.prototype.experience = function() {
-      ppu.experiences = new ppu.Experiences;
-      ppu.experiences.fetch({
-        reset: true
-      });
-      ppu.admin.experiences = new ppu.admin.ExperiencesView({
-        collection: ppu.experiences
-      });
-      return ppu.admin.experiencesFilters = new ppu.admin.ExperiencesFilters;
-    };
-
     Router.prototype.createLawyer = function(lang) {
       ppu.lawyer = new ppu.Lawyer;
       ppu.lawyerCreateForm = new ppu.LawyerCreateForm({
@@ -4345,26 +4380,15 @@ $(function() {
       });
     };
 
-    Router.prototype.createPost = function(lang) {
-      ppu.admin.post = new ppu.Post;
-      ppu.admin.postCreate = new ppu.admin.PostCreate({
-        model: ppu.admin.post
-      });
-      ppu.admin.postCreate.render();
-      ppu.categories = new ppu.Categories;
-      ppu.categories.fetch({
+    Router.prototype.experience = function() {
+      ppu.experiences = new ppu.Experiences;
+      ppu.experiences.fetch({
         reset: true
       });
-      ppu.admin.categoriesCheckboxnew = new ppu.admin.CategoriesCheckbox({
-        collection: ppu.categories
+      ppu.admin.experiences = new ppu.admin.ExperiencesView({
+        collection: ppu.experiences
       });
-      ppu.admin.galleries = new ppu.admin.Galleries;
-      return ppu.admin.galleries.fetch({
-        reset: true,
-        data: {
-          name: "post_header"
-        }
-      });
+      return ppu.admin.experiencesFilters = new ppu.admin.ExperiencesFilters;
     };
 
     Router.prototype.createExperience = function(lang) {
@@ -4385,27 +4409,6 @@ $(function() {
         reset: true,
         data: {
           name: "company_logo"
-        }
-      });
-    };
-
-    Router.prototype.editPost = function(id) {
-      ppu.admin.post = new ppu.Post({
-        id: id
-      });
-      ppu.admin.post.fetch({
-        data: {
-          lang: app.lang
-        }
-      });
-      ppu.admin.postEdit = new ppu.admin.PostEdit({
-        model: ppu.admin.post
-      });
-      ppu.admin.galleries = new ppu.admin.Galleries;
-      return ppu.admin.galleries.fetch({
-        reset: true,
-        data: {
-          name: "post_header"
         }
       });
     };

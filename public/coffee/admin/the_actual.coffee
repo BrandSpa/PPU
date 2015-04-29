@@ -2,17 +2,18 @@ $ ->
   class ppu.admin.TheActualView extends Backbone.View
     template: $ '#the-actual-admin-template'
     tagName: 'tr'
-    events: 
+    events:
       "click .publish": "publish"
       "click .unpublish": "unpublish"
       "click .change-featured": "changeFeatured"
       "click .publish-on-social-network": "publishFb"
       "click .highlight": "highlight"
       "click .unhighlight": "unhighlight"
+      "click .translate": "translate"
 
     initialize: ->
       @listenTo(@model, "change", @render)
-      
+
     render: ->
       source = @template.html()
       t = Handlebars.compile(source)
@@ -29,8 +30,8 @@ $ ->
       that.model.save fields: featured: 3, the_actual: true
       .done () ->
         app.pubsub.trigger('post:unfeatured')
-     
-    publishFb: (e)-> 
+
+    publishFb: (e)->
       e.preventDefault()
       url = setSubdomain(@model.get('lang')) + "posts/#{@model.get('slug')}"
       published = openShare(url)
@@ -41,15 +42,17 @@ $ ->
 
     translate: (e) ->
       e.preventDefault()
-      @model.save duplicate: true 
-        .done (model) ->
-          window.location = "en/admin/posts/#{model.id}/edit"
+      id = @model.id
+      $.post "/api/posts/#{id}/duplicate"
+      .done (model) ->
+        window.location = "/en/admin/the-actual/#{model.id}/edit"
+
 
     changeFeatured: (e) ->
       el = $(e.currentTarget).find('input').val()
       app.pubsub.trigger('post:changeFeatured', el)
       @model.save fields: featured: el
-      
+
   class ppu.admin.TheActualViews extends Backbone.View
     el: $ "#posts-dasboard"
 

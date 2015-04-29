@@ -1,17 +1,18 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  namespace :api do 
+  namespace :api do
     resources :lawyers
     resources :categories
     resources :trades
     resources :posts
+    post "posts/:id/duplicate", to: 'posts#duplicate'
     resources :galleries
     resources :experiences
     resources :curriculums
     resources :contacts
-    
-    namespace :lawyrs do 
+
+    namespace :lawyrs do
       resources :academics
       resources :articles
       resources :awards
@@ -23,7 +24,7 @@ Rails.application.routes.draw do
       resources :recognitions
     end
   end
-  
+
   get "editar-abogado", to: 'api/lawyers#update_description'
 
   scope "(:locale)", locale: /en|es/ do
@@ -31,8 +32,11 @@ Rails.application.routes.draw do
     resources :posts
 
     get "", to: 'posts#index'
+
     get "el-actual", to: 'posts#the_actual'
+
     get "el-actual/:id", to: 'posts#the_actual_detail'
+
     get "abogados-beta", to: 'lawyers#index'
     get "abogados", to: 'lawyers#index'
     get "abogados/:id", to: 'lawyers#show', constraints: { id: /[^\/]+/ }
@@ -41,9 +45,9 @@ Rails.application.routes.draw do
     get "experiencias/:slug", to: 'experiences#show'
 
     get "abogados/:id/vcard", to: 'lawyers#vcard'
-    
+
     get "lawyers", to: 'lawyers#index'
-    
+
     get "crear-abogado", to: redirect('/admin/lawyers/new')
     get "editar-abogado/:slug", to: 'admin/lawyers#index'
     get "edit-lawyer/:username", to: 'admin/lawyers#index'
@@ -55,7 +59,7 @@ Rails.application.routes.draw do
     get "/trabaje-con-nosotros", to: 'pages#work_with_us'
     get "/probono", to: 'pages#pro_bono'
 
-    namespace :admin do 
+    namespace :admin do
       resources :posts
       get "the-actual/new", to: "posts#the_actual_new"
       get "the-actual/:id/edit", to: "posts#the_actual_edit"
@@ -68,7 +72,7 @@ Rails.application.routes.draw do
   get "get-token", to: 'sessions#get_token_fb'
   get "save-token", to: 'sessions#save_user_token'
   get "see-token", to: 'sessions#see_token'
-  
+
   get "dashboard", to: 'admin/lawyers#dashboard'
   get "admin/experiences", to: 'admin/experiences#dashboard'
   get "admin/posts", to: 'admin/posts#dashboard'

@@ -1,4 +1,5 @@
 class Lawyer < ActiveRecord::Base
+  #Relations
   has_one :translations, class_name: "Lawyer", foreign_key: "translation_id"
   belongs_to :translation, class_name: "Lawyer"
   has_and_belongs_to_many :categories, -> { order "name ASC" }
@@ -13,12 +14,13 @@ class Lawyer < ActiveRecord::Base
   has_many :phrases, -> { order "position ASC, created_at DESC" }
   has_many :institutions, -> { order "position ASC, created_at DESC" }
   has_many :recognitions, -> { order "position ASC, created_at DESC" }
-
+  #Validations
   validates :name, presence: true
   validates :lastname, presence: true
   validates :position, presence: true
   validates :email, presence: true
 
+  #Carrierwave config
   mount_uploader :img_name, LawyerImgUploader
 
   scope :relationships, -> { includes( :academics, :articles, :awards, :educations, :institutions, :jobs, :languages, :phrases, :recognitions, :categories) }
@@ -28,13 +30,13 @@ class Lawyer < ActiveRecord::Base
   scope :published, -> { where(published: true) }
   scope :country, -> (country){ where("lawyers.country = ?", country) }
   scope :category, -> (category){ includes(:categories).where(categories: {name: category}) }
-  scope :search, -> (keyword){ where("lawyers.lastname LIKE ? OR lawyers.name LIKE ?", "%#{keyword}%", "%#{keyword}%") }
+  scope :search, -> (keyword){ where("lawyers.name LIKE ? OR lawyers.lastname LIKE ? OR lawyers.keywords LIKE ?", "%#{keyword}%", "%#{keyword}%", "%#{keyword}%") }
   scope :paginate, -> (paginate) { limit(20).offset(paginate) }
   scope :has_translation, -> (slug) { where(slug: slug).count }
   scope :get_translations, -> { includes(:translations, :translation) }
   scope :order_by_english, -> { order("FIELD(lawyers.position,'Partner') DESC, lawyers.lastname ASC") }
   scope :order_by_spanish, -> { order(position: :desc, lastname: :asc) }
-  
+
   def self.attach_categories(model, collection)
     if collection.present?
       collection.each do |id|
@@ -65,8 +67,8 @@ class Lawyer < ActiveRecord::Base
 
   def self.translate_position(position)
     if position == "Abogado"
-      "Lawyer" 
-    elsif position == "Socio" 
+      "Lawyer"
+    elsif position == "Socio"
       "Partner"
     elsif position == "Especialista"
       "Specialist"
