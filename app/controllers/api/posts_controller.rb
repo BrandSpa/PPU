@@ -156,6 +156,8 @@ class Api::PostsController < ApplicationController
         :content,
         :content_plain,
         :img_name,
+        :slug,
+        :keywords,
         :gallery_id,
         :published,
         :social_published,
