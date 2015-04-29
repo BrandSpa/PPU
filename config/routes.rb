@@ -5,8 +5,11 @@ Rails.application.routes.draw do
     resources :lawyers
     resources :categories
     resources :trades
+
     resources :posts
     post "posts/:id/duplicate", to: 'posts#duplicate'
+    post "posts/:id/featured", to: 'posts#featured'
+
     resources :galleries
     resources :experiences
     resources :curriculums

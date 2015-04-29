@@ -15,7 +15,7 @@ $ ->
       "click .unpublish": "unpublish"
       "click .change-featured": "changeFeatured"
       "click .publish-on-social-network": "publishFb"
-      "click .highlight": "highlight"
+      "click .featured": "featured"
       "click .unhighlight": "unhighlight"
       "click .translate": "translate"
 
@@ -32,10 +32,10 @@ $ ->
       e.preventDefault()
       @model.save fields: published: true
 
-    highlight: (e) ->
+    featured: (e) ->
       e.preventDefault()
-      that = @
-      that.model.save fields: featured: 3
+      id = @model.id
+      $.post "/api/posts/#{id}/featured"
       .done () ->
         app.pubsub.trigger('post:unfeatured')
 
@@ -68,12 +68,12 @@ $ ->
       @listenTo(@collection, 'add', @addOne, @)
       app.pubsub.on("posts:filter", @filterCollection, @)
       app.pubsub.on("post:changeFeatured", @changeFeatured, @)
-      app.pubsub.on('post:unfeatured', @unfeatured, @)
+      app.pubsub.on('post:unfeatured', @pull, @)
 
     filterCollection: (filters) ->
       @collection.fetch reset: true, lang: app.lang, data: filters
 
-    unfeatured: ->
+    pull: ->
       @collection.fetch reset: true
 
     changeFeatured: (val) ->
@@ -105,7 +105,7 @@ $ ->
 
     initialize: ->
       @filtersAplied = {lang: "es", without_the_actual: false}
-      
+
     # append template to $el
     render: ->
       template = app.compile(@template)

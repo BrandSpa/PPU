@@ -7,8 +7,6 @@ $ ->
       "click .unpublish": "unpublish"
       "click .change-featured": "changeFeatured"
       "click .publish-on-social-network": "publishFb"
-      "click .highlight": "highlight"
-      "click .unhighlight": "unhighlight"
       "click .translate": "translate"
 
     initialize: ->
@@ -23,13 +21,6 @@ $ ->
     publish: (e) ->
       e.preventDefault()
       @model.save fields: published: true
-
-    highlight: (e) ->
-      e.preventDefault()
-      that = @
-      that.model.save fields: featured: 3, the_actual: true
-      .done () ->
-        app.pubsub.trigger('post:unfeatured')
 
     publishFb: (e)->
       e.preventDefault()
@@ -46,7 +37,6 @@ $ ->
       $.post "/api/posts/#{id}/duplicate"
       .done (model) ->
         window.location = "/en/admin/the-actual/#{model.id}/edit"
-
 
     changeFeatured: (e) ->
       el = $(e.currentTarget).find('input').val()

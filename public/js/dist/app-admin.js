@@ -2595,7 +2595,7 @@ $(function() {
       "click .unpublish": "unpublish",
       "click .change-featured": "changeFeatured",
       "click .publish-on-social-network": "publishFb",
-      "click .highlight": "highlight",
+      "click .featured": "featured",
       "click .unhighlight": "unhighlight",
       "click .translate": "translate"
     };
@@ -2621,15 +2621,11 @@ $(function() {
       });
     };
 
-    PostView.prototype.highlight = function(e) {
-      var that;
+    PostView.prototype.featured = function(e) {
+      var id;
       e.preventDefault();
-      that = this;
-      return that.model.save({
-        fields: {
-          featured: 3
-        }
-      }).done(function() {
+      id = this.model.id;
+      return $.post("/api/posts/" + id + "/featured").done(function() {
         return app.pubsub.trigger('post:unfeatured');
       });
     };
@@ -2687,7 +2683,7 @@ $(function() {
       this.listenTo(this.collection, 'add', this.addOne, this);
       app.pubsub.on("posts:filter", this.filterCollection, this);
       app.pubsub.on("post:changeFeatured", this.changeFeatured, this);
-      return app.pubsub.on('post:unfeatured', this.unfeatured, this);
+      return app.pubsub.on('post:unfeatured', this.pull, this);
     };
 
     PostsView.prototype.filterCollection = function(filters) {
@@ -2698,7 +2694,7 @@ $(function() {
       });
     };
 
-    PostsView.prototype.unfeatured = function() {
+    PostsView.prototype.pull = function() {
       return this.collection.fetch({
         reset: true
       });
@@ -3203,8 +3199,6 @@ $(function() {
       "click .unpublish": "unpublish",
       "click .change-featured": "changeFeatured",
       "click .publish-on-social-network": "publishFb",
-      "click .highlight": "highlight",
-      "click .unhighlight": "unhighlight",
       "click .translate": "translate"
     };
 
@@ -3226,20 +3220,6 @@ $(function() {
         fields: {
           published: true
         }
-      });
-    };
-
-    TheActualView.prototype.highlight = function(e) {
-      var that;
-      e.preventDefault();
-      that = this;
-      return that.model.save({
-        fields: {
-          featured: 3,
-          the_actual: true
-        }
-      }).done(function() {
-        return app.pubsub.trigger('post:unfeatured');
       });
     };
 
