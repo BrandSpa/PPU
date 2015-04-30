@@ -7,7 +7,7 @@ es:
         lang: "idioma"
         country: "País"
         position: "cargo"
-        
+
   country: "País"
   Lawyers: "Abogados"
   senior_counsel: Senior Counsel
@@ -42,7 +42,7 @@ es:
   Search: "Buscar"
   Lawyer type: "Tipo abogado"
   Areas: "Áreas"
-  Practice Areas: "Áreas de Práctica" 
+  Practice Areas: "Áreas de Práctica"
   Us: "Nosotros"
   Work with Us: "Trabaje con Nosotros"
   send: "Enviar"
@@ -62,7 +62,7 @@ es:
     country: "País"
     select_country: "Seleccionar País"
 
-  form_thanks: "Gracias por comunicarse con nostros, pronto nos pondremos en contacto con usted."  
+  form_thanks: "Gracias por comunicarse con nostros, pronto nos pondremos en contacto con usted."
 
   categories:
     corporate_and_M&A: "Corporativo / M&A"
@@ -308,4 +308,3 @@ es:
     content_p5: "También hemos trabajado en investigaciones del Cyrus R . Vance Center for International Justice."
     content_p6: "En Chile asesoramos en requerimientos legales necesarios de Hogar de Cristo, María Ayuda, Corporación Chileno Alemana de Beneficencia, People Help People, Consejo Economía de la Iglesia Católica, Iglesia Evangélica y otras instituciones sociales y de beneficencia."
     content_p7: "Por otra parte, con la finalidad de contribuir a la protección jurídica de los derechos civiles y sociales y de derechos humanos, miembros de nuestro Estudio han integrado el Consejo Asesor de Alto Nivel para el Desarrollo Sustentable de la ONU, la Comisión Verdad y Reconciliación, el Consejo Nacional Asesor del Programa de Pequeños Subsidios para el Medio Ambiente Mundial del PNUD, la Fundación de las Américas, la Corporación PARTICIPA y la Fundación PRO-HUMANA."
-  

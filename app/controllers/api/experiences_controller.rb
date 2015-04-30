@@ -32,7 +32,7 @@ class Api::ExperiencesController < ApplicationController
 		if model.valid?
 			render json: model
 		else
-			render json: model.errors, status: 400
+			render json: model.errors.messages, status: 400
 		end
 	end
 

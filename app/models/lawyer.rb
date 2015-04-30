@@ -72,7 +72,7 @@ class Lawyer < ActiveRecord::Base
 
   scope :order_by_english, -> { order("FIELD(lawyers.position,'Partner') DESC, lawyers.lastname ASC") }
 
-  scope :order_by_spanish, -> { order(position: :desc, lastname: :asc) }
+  scope :order_by_spanish, -> { order("lawyers.position DESC, lawyers.lastname ASC") }
 
   def self.attach_categories(model, collection)
     if collection.present?
@@ -163,6 +163,7 @@ class Lawyer < ActiveRecord::Base
   before_create :add_slug
 
   private
+  
     def add_keywords()
       model = self
       model.keywords = [self.name, self.lastname, self.position, self.email, self.phone, self.description].join(" ")

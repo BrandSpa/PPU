@@ -2844,7 +2844,7 @@ $(function() {
     };
 
     PostCreate.prototype.initialize = function() {
-      this.listenTo(this.model, 'error', this.renderPostErrors, this);
+      this.listenTo(this.model, 'error', this.showErrors, this);
       this.listenTo(this.model, 'sync', this.stored);
       app.pubsub.bind('gallery:selected', this.appendSelectedGallery, this);
       return app.pubsub.on('post:socialPublished', this.redirectTo, this);
@@ -2873,6 +2873,14 @@ $(function() {
 
     PostCreate.prototype.stored = function(model) {
       return window.location = "/posts/" + (this.model.get('slug'));
+    };
+
+    PostCreate.prototype.showErrors = function(model, b) {
+      return _.each(b.responseJSON, function(error) {
+        return _.each(error, function(message) {
+          return toastr.error(message);
+        });
+      });
     };
 
     PostCreate.prototype.getCategories = function() {
@@ -3379,7 +3387,7 @@ $(function() {
       data.append("fields[content]", content);
       data.append("fields[lang]", app.lang);
       data.append("fields[country]", "Chile");
-      data.append('fields[the_actual]', 1);
+      data.append('fields[the_actual_ch]', 1);
       options = ppu.ajaxOptions("POST", data);
       return this.model.save(data, $.extend({}, options));
     };
@@ -3438,6 +3446,268 @@ $(function() {
     };
 
     return TheActualCreate;
+
+  })(Backbone.View);
+});
+
+var __hasProp = {}.hasOwnProperty,
+  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+$(function() {
+  ppu.admin.TheActualCoView = (function(_super) {
+    __extends(TheActualCoView, _super);
+
+    function TheActualCoView() {
+      return TheActualCoView.__super__.constructor.apply(this, arguments);
+    }
+
+    TheActualCoView.prototype.template = $('#the-actual-admin-template');
+
+    TheActualCoView.prototype.tagName = 'tr';
+
+    TheActualCoView.prototype.events = {
+      "click .publish": "publish",
+      "click .unpublish": "unpublish",
+      "click .change-featured": "changeFeatured",
+      "click .publish-on-social-network": "publishFb",
+      "click .translate": "translate"
+    };
+
+    TheActualCoView.prototype.initialize = function() {
+      return this.listenTo(this.model, "change", this.render);
+    };
+
+    TheActualCoView.prototype.render = function() {
+      var source, t;
+      source = this.template.html();
+      t = Handlebars.compile(source);
+      $(this.el).html(t(this.model.toJSON()));
+      return this;
+    };
+
+    TheActualCoView.prototype.publish = function(e) {
+      e.preventDefault();
+      return this.model.save({
+        fields: {
+          published: true
+        }
+      });
+    };
+
+    TheActualCoView.prototype.publishFb = function(e) {
+      var published, url;
+      e.preventDefault();
+      url = setSubdomain(this.model.get('lang')) + ("posts/" + (this.model.get('slug')));
+      return published = openShare(url);
+    };
+
+    TheActualCoView.prototype.unpublish = function(e) {
+      e.preventDefault();
+      return this.model.save({
+        fields: {
+          published: false
+        }
+      });
+    };
+
+    TheActualCoView.prototype.translate = function(e) {
+      var id;
+      e.preventDefault();
+      id = this.model.id;
+      return $.post("/api/posts/" + id + "/duplicate").done(function(model) {
+        return window.location = "/en/admin/the-actual/" + model.id + "/edit";
+      });
+    };
+
+    TheActualCoView.prototype.changeFeatured = function(e) {
+      var el;
+      el = $(e.currentTarget).find('input').val();
+      app.pubsub.trigger('post:changeFeatured', el);
+      return this.model.save({
+        fields: {
+          featured: el
+        }
+      });
+    };
+
+    return TheActualCoView;
+
+  })(Backbone.View);
+  return ppu.admin.TheActualCoViews = (function(_super) {
+    __extends(TheActualCoViews, _super);
+
+    function TheActualCoViews() {
+      return TheActualCoViews.__super__.constructor.apply(this, arguments);
+    }
+
+    TheActualCoViews.prototype.el = $("#posts-dasboard");
+
+    TheActualCoViews.prototype.initialize = function() {
+      this.listenTo(this.collection, 'reset', this.render);
+      this.listenTo(this.collection, 'add', this.addOne, this);
+      app.pubsub.on("posts:filter", this.filterCollection, this);
+      app.pubsub.on("post:changeFeatured", this.changeFeatured, this);
+      return app.pubsub.on('post:unfeatured', this.unfeatured, this);
+    };
+
+    TheActualCoViews.prototype.filterCollection = function(filters) {
+      return this.collection.fetch({
+        reset: true,
+        lang: app.lang,
+        data: filters
+      });
+    };
+
+    TheActualCoViews.prototype.unfeatured = function() {
+      return this.collection.fetch({
+        reset: true
+      });
+    };
+
+    TheActualCoViews.prototype.changeFeatured = function(val) {
+      var coll;
+      coll = new ppu.Posts;
+      return this.collection.fetch({
+        add: false,
+        data: {
+          is_featured: val
+        }
+      }).done(function(models) {
+        return coll.add(models);
+      });
+    };
+
+    TheActualCoViews.prototype.addOne = function(model) {
+      var view;
+      view = new ppu.admin.TheActualView({
+        model: model
+      });
+      return $(this.el).find('thead').append(view.render().el);
+    };
+
+    TheActualCoViews.prototype.render = function() {
+      $(this.el).find('tbody').html('');
+      return this.collection.each(function(model) {
+        var view;
+        view = new ppu.admin.TheActualView({
+          model: model
+        });
+        return $(this.el).find('tbody').append(view.render().el);
+      }, this);
+    };
+
+    return TheActualCoViews;
+
+  })(Backbone.View);
+});
+
+var __hasProp = {}.hasOwnProperty,
+  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+$(function() {
+  return ppu.admin.TheActualCoCreate = (function(_super) {
+    __extends(TheActualCoCreate, _super);
+
+    function TheActualCoCreate() {
+      return TheActualCoCreate.__super__.constructor.apply(this, arguments);
+    }
+
+    TheActualCoCreate.prototype.el = $("#post-create");
+
+    TheActualCoCreate.prototype.template = $("#the-actual-create-template");
+
+    TheActualCoCreate.prototype.events = {
+      "click button.store": "store",
+      "click .open-gallery": "openGallery",
+      "keydown input[name='query']": "searchLawyer",
+      "change .form-control": "removeError",
+      "keydown .form-control": "removeError"
+    };
+
+    TheActualCoCreate.prototype.initialize = function() {
+      this.listenTo(this.model, 'error', this.renderPostErrors, this);
+      this.listenTo(this.model, 'sync', this.stored);
+      app.pubsub.bind('gallery:selected', this.appendSelectedGallery, this);
+      return app.pubsub.on('post:socialPublished', this.redirectTo, this);
+    };
+
+    TheActualCoCreate.prototype.render = function() {
+      var source, template;
+      source = this.template.html();
+      template = Handlebars.compile(source);
+      this.$el.find('.panel-body').html(template());
+      ppu.appendDatePicker(this.el);
+      return ppu.appendSummernote(this.el);
+    };
+
+    TheActualCoCreate.prototype.store = function(e) {
+      var $form, content, data, options;
+      e.preventDefault();
+      $form = this.$el.find('form');
+      content = $(this.el).find('.summernote').code();
+      data = new FormData($form[0]);
+      data.append("fields[content]", content);
+      data.append("fields[lang]", app.lang);
+      data.append("fields[country]", "Colombia");
+      data.append('fields[the_actual_co]', 1);
+      options = ppu.ajaxOptions("POST", data);
+      return this.model.save(data, $.extend({}, options));
+    };
+
+    TheActualCoCreate.prototype.stored = function(model) {
+      return window.location = "/el-actual-colombia/" + (this.model.get('slug'));
+    };
+
+    TheActualCoCreate.prototype.publishFb = function(model) {
+      var published, url;
+      url = setSubdomain(model.get('lang')) + ("posts/" + (model.get('slug')));
+      return published = fb_check_and_publish(model.get('title'), url);
+    };
+
+    TheActualCoCreate.prototype.redirectTo = function() {
+      return window.location = '/admin/posts';
+    };
+
+    TheActualCoCreate.prototype.getCategories = function() {
+      ppu.categories = new ppu.Categories;
+      return ppu.categories.fetch({
+        data: {
+          lang: app.lang
+        }
+      }).done(function(collection) {
+        var source, template;
+        source = $('#lawyer-categories-template').html();
+        template = Handlebars.compile(source);
+        return $('#categories-checkboxes').html(template(collection));
+      });
+    };
+
+    TheActualCoCreate.prototype.openGallery = function(e) {
+      e.preventDefault();
+      ppu.admin.galleryPostModal = new ppu.admin.GalleryPostModal({
+        collection: ppu.admin.galleries
+      });
+      return ppu.admin.galleryPostModal.render();
+    };
+
+    TheActualCoCreate.prototype.appendSelectedGallery = function(gallery_id) {
+      $(this.el).find('.gallery_id').val(gallery_id);
+      return ppu.admin.galleryPostModal.closeModal();
+    };
+
+    TheActualCoCreate.prototype.searchLawyer = function(e) {
+      var collection, query;
+      query = $(e.currentTarget).val();
+      if (query.length > 3) {
+        collection = new ppu.Lawyers;
+        ppu.admin.postLawyersSelect = new ppu.admin.PostLawyersSelect({
+          collection: collection
+        });
+        return ppu.admin.postLawyersSelect.search(query);
+      }
+    };
+
+    return TheActualCoCreate;
 
   })(Backbone.View);
 });
@@ -3814,7 +4084,7 @@ $(function() {
     };
 
     ExperienceCreate.prototype.initialize = function() {
-      this.listenTo(this.model, 'error', this.renderExperienceErrors, this);
+      this.listenTo(this.model, 'error', this.showErrors, this);
       this.listenTo(this.model, 'sync', this.stored);
       return app.pubsub.bind('gallery:selected', this.appendSelectedGallery, this);
     };
@@ -3843,6 +4113,14 @@ $(function() {
       if (model) {
         return window.location = "/dashboard";
       }
+    };
+
+    ExperienceCreate.prototype.showErrors = function(model, b) {
+      return _.each(b.responseJSON, function(error) {
+        return _.each(error, function(message) {
+          return toastr.error(message);
+        });
+      });
     };
 
     ExperienceCreate.prototype.openGallery = function(e) {
@@ -4160,6 +4438,10 @@ $(function() {
       'admin/the-actual/:id/edit': 'editTheActual',
       'en/admin/the-actual/:id/edit': 'editTheActual',
       'admin/the-actual': 'theActual',
+      'admin/the-actual-co/new': 'createTheActualCo',
+      'admin/the-actual-co/:id/edit': 'editTheActualCo',
+      'en/admin/the-actual-co/:id/edit': 'editTheActualCo',
+      'admin/the-actual-co': 'theActualCo',
       'admin/experiences': 'experience',
       'admin/experiences/new': 'createExperience',
       'admin/experiences/:id/edit': 'editExperience',
@@ -4272,6 +4554,63 @@ $(function() {
     };
 
     Router.prototype.editTheActual = function(id) {
+      ppu.admin.post = new ppu.Post({
+        id: id
+      });
+      ppu.admin.post.fetch({
+        data: {
+          lang: app.lang
+        }
+      });
+      ppu.admin.postEdit = new ppu.admin.PostEdit({
+        model: ppu.admin.post
+      });
+      ppu.admin.galleries = new ppu.admin.Galleries;
+      return ppu.admin.galleries.fetch({
+        reset: true,
+        data: {
+          name: "post_header"
+        }
+      });
+    };
+
+    Router.prototype.theActualCo = function() {
+      ppu.posts = new ppu.Posts;
+      ppu.posts.fetch({
+        reset: true,
+        data: {
+          the_actual_co: 1
+        }
+      });
+      ppu.admin.posts = new ppu.admin.TheActualCoViews({
+        collection: ppu.posts
+      });
+      return ppu.admin.postsFilters = new ppu.admin.PostsFilters;
+    };
+
+    Router.prototype.createTheActualCo = function() {
+      ppu.admin.post = new ppu.Post;
+      ppu.admin.postCreate = new ppu.admin.TheActualCoCreate({
+        model: ppu.admin.post
+      });
+      ppu.admin.postCreate.render();
+      ppu.categories = new ppu.Categories;
+      ppu.categories.fetch({
+        reset: true
+      });
+      ppu.admin.categoriesCheckboxnew = new ppu.admin.CategoriesCheckbox({
+        collection: ppu.categories
+      });
+      ppu.admin.galleries = new ppu.admin.Galleries;
+      return ppu.admin.galleries.fetch({
+        reset: true,
+        data: {
+          name: "post_header"
+        }
+      });
+    };
+
+    Router.prototype.editTheActualCo = function(id) {
       ppu.admin.post = new ppu.Post({
         id: id
       });

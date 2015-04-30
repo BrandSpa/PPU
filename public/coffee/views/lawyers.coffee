@@ -58,7 +58,7 @@ $ ->
 
     initialize: ->
       @render()
-      @filtersAplied = {lang: app.lang, published: true}
+      @filtersAplied = {lang: app.lang, published: 1}
       @order_by()
       @$el.data("filtersAplied", @filtersAplied)
       app.pubsub.on("general:scroll", @paginate, @)

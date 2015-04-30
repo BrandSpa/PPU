@@ -1,5 +1,5 @@
 $ ->
-  class ppu.TheActualDetailView extends Backbone.View
+  class ppu.TheActualCoDetailView extends Backbone.View
     el: $ "#post-detail"
     template: $ "#post-detail-template"
 
@@ -16,7 +16,7 @@ $ ->
       @setUrlTranslation(@model)
       @model.get('categories')
       if @model.get('categories')[0]
-        relatedData = category: @model.get('categories')[0].name, without: @model.id, the_actual_ch: 1
+        relatedData = category: @model.get('categories')[0].name, without: @model.id, the_actual_co: 1
         app.pubsub.trigger('posts:getRelated', relatedData)
 
   class ppu.TheActualRelated extends Backbone.View

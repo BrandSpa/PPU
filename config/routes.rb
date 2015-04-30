@@ -40,6 +40,10 @@ Rails.application.routes.draw do
 
     get "el-actual/:id", to: 'posts#the_actual_detail'
 
+    get "el-actual-colombia", to: 'posts#the_actual_co'
+
+    get "el-actual-colombia/:id", to: 'posts#the_actual_co_detail'
+
     get "abogados-beta", to: 'lawyers#index'
     get "abogados", to: 'lawyers#index'
     get "abogados/:id", to: 'lawyers#show', constraints: { id: /[^\/]+/ }
@@ -64,12 +68,17 @@ Rails.application.routes.draw do
 
     namespace :admin do
       resources :posts
+      resources :lawyers
+      resources :experiences
+
       get "the-actual/new", to: "posts#the_actual_new"
       get "the-actual/:id/edit", to: "posts#the_actual_edit"
       get "the-actual", to: "posts#the_actual"
-      resources :lawyers
-      resources :experiences
+      get "the-actual-co/new", to: "posts#the_actual_co_new"
+      get "the-actual-co/:id/edit", to: "posts#the_actual_co_edit"
+      get "the-actual-co", to: "posts#the_actual_co"
     end
+    
   end
 
   get "get-token", to: 'sessions#get_token_fb'

@@ -26,6 +26,12 @@ $ ->
       'en/admin/the-actual/:id/edit': 'editTheActual'
       'admin/the-actual': 'theActual'
 
+      #The actual Colombia
+      'admin/the-actual-co/new': 'createTheActualCo'
+      'admin/the-actual-co/:id/edit': 'editTheActualCo'
+      'en/admin/the-actual-co/:id/edit': 'editTheActualCo'
+      'admin/the-actual-co': 'theActualCo'
+
       #Experiences
       'admin/experiences': 'experience'
       'admin/experiences/new': 'createExperience'
@@ -83,6 +89,32 @@ $ ->
       ppu.admin.galleries.fetch reset: true, data: name: "post_header"
 
     editTheActual: (id) ->
+      ppu.admin.post = new ppu.Post id: id
+      ppu.admin.post.fetch data: lang: app.lang
+      ppu.admin.postEdit = new ppu.admin.PostEdit model: ppu.admin.post
+
+      ppu.admin.galleries = new  ppu.admin.Galleries
+      ppu.admin.galleries.fetch reset: true, data: name: "post_header"
+
+    theActualCo: ->
+      ppu.posts = new ppu.Posts
+      ppu.posts.fetch reset: true, data: the_actual_co: 1
+      ppu.admin.posts = new ppu.admin.TheActualCoViews collection: ppu.posts
+      ppu.admin.postsFilters = new ppu.admin.PostsFilters
+
+    createTheActualCo: ->
+      ppu.admin.post = new ppu.Post
+      ppu.admin.postCreate = new ppu.admin.TheActualCoCreate model: ppu.admin.post
+      ppu.admin.postCreate.render()
+
+      ppu.categories = new ppu.Categories
+      ppu.categories.fetch reset: true
+      ppu.admin.categoriesCheckboxnew = new ppu.admin.CategoriesCheckbox collection: ppu.categories
+
+      ppu.admin.galleries = new  ppu.admin.Galleries
+      ppu.admin.galleries.fetch reset: true, data: name: "post_header"
+
+    editTheActualCo: (id) ->
       ppu.admin.post = new ppu.Post id: id
       ppu.admin.post.fetch data: lang: app.lang
       ppu.admin.postEdit = new ppu.admin.PostEdit model: ppu.admin.post

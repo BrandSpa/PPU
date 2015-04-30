@@ -32,8 +32,18 @@ class Experience < ActiveRecord::Base
 
   scope :category, -> (category){ includes(:categories).where(categories: {name: category}) }
 
-
   scope :without, -> (id) { where.not(id: id) }
+
+	# validate title exists
+	validates :title, :presence => {message: "Título no puede estar en blanco"}
+
+	# validate title to be unique
+	validates :title, :uniqueness  => {message: "Título ya en uso"}
+
+	# validate content exists
+	validates :content, :presence => {message: "Contenido no puede estar en blanco"}
+
+
 
 	def self.duplicate(model)
     model_new = model.dup

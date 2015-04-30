@@ -20,8 +20,8 @@ class Api::PostsController < ApplicationController
 
     render json: collection.to_json(
     :except => [
-      :content,
-      :keywords
+      :keywords,
+      :content
     ],
     :include => [
       {:translations => {:only => :id }},
@@ -151,6 +151,8 @@ class Api::PostsController < ApplicationController
         :featured,
         :unfeatured,
         :the_actual,
+        :the_actual_ch,
+        :the_actual_co,
         :lawyer_ids => [],
         :category_ids => []
       )

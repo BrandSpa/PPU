@@ -1,17 +1,32 @@
 $ ->
   class ppu.Workspace extends Backbone.Router
     routes:
+      # Posts
+      "" : "posts"
+      "posts" : "posts"
+      "posts/:slug" : "post"
+
+      # Laywers
       "abogados" : "lawyers"
       "abogados/:slug" : "lawyer"
+
+      # Experiences
       "experiencias" : "experiences"
       "experiencias/:slug" : "experience"
-      "posts" : "posts"
+
+      # The actual
       "el-actual" : "theActual"
       "el-actual/:slug" : "theActualDetail"
-      "" : "posts"
-      "posts/:slug" : "post"
+
+      # The Actual Colombia
+      "el-actual-colombia" : "theActual"
+      "el-actual-colombia/:slug" : "theActualDetail"
+
+      # Areas
       "areas": "areas"
       "areas/:slug": "area"
+
+      # Pages
       "trabaje-con-nosotros": "curriculum"
       "nosotros": "us"
       "probono": "probono"
@@ -21,26 +36,6 @@ $ ->
       window.urlTranslation = ""
       ppu.contact = new ppu.Contact
       ppu.FooterContactCreate = new ppu.FooterContactCreate model: ppu.contact
-
-    lawyers: () ->
-      ppu.lawyers =  new ppu.Lawyers
-      ppu.lawyersView =  new ppu.LawyersView collection: ppu.lawyers
-      ppu.lawyersFilters = new ppu.LawyersFilters
-      ppu.filtersMobile = new ppu.FiltersMobile
-
-    lawyer: (slug) ->
-      ppu.lawyer = new ppu.Lawyer id: slug
-      ppu.LawyerDetailView = new ppu.LawyerDetailView model: ppu.lawyer
-
-    theActual: ->
-      ppu.TheCurrentController.index()
-
-    theActualDetail: (slug)->
-      ppu.post = new ppu.Post id: slug
-      ppu.posts = new ppu.Posts
-      ppu.post.fetch()
-      ppu.postDetailView = new ppu.TheActualDetailView model: ppu.post
-      ppu.postsRelated = new ppu.PostsRelated collection: ppu.posts
 
     posts: ->
       ppu.posts = new ppu.Posts
@@ -63,6 +58,27 @@ $ ->
       ppu.posts = new ppu.Posts
       ppu.post.fetch()
       ppu.postDetailView = new ppu.PostDetailView model: ppu.post
+      ppu.postsRelated = new ppu.PostsRelated collection: ppu.posts
+
+
+    lawyers: () ->
+      ppu.lawyers =  new ppu.Lawyers
+      ppu.lawyersView =  new ppu.LawyersView collection: ppu.lawyers
+      ppu.lawyersFilters = new ppu.LawyersFilters
+      ppu.filtersMobile = new ppu.FiltersMobile
+
+    lawyer: (slug) ->
+      ppu.lawyer = new ppu.Lawyer id: slug
+      ppu.LawyerDetailView = new ppu.LawyerDetailView model: ppu.lawyer
+
+    theActual: ->
+      ppu.TheActualChileController.index()
+
+    theActualDetail: (slug)->
+      ppu.post = new ppu.Post id: slug
+      ppu.posts = new ppu.Posts
+      ppu.post.fetch()
+      ppu.postDetailView = new ppu.TheActualDetailView model: ppu.post
       ppu.postsRelated = new ppu.PostsRelated collection: ppu.posts
 
     areas: ->

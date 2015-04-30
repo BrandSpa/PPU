@@ -14,13 +14,13 @@ class Post < ActiveRecord::Base
   #Validations
 
   # validate title exists
-  validates :title, presence: true
-
-  # validate content exists
-  validates :content, presence: true
+  validates :title, :presence => {message: "Título no puede estar en blanco"}
 
   # validate title to be unique
-  validates :title, uniqueness: true
+  validates :title, :uniqueness  => {message: "Título ya en uso"}
+
+  # validate content exists
+  validates :content, :presence => {message: "Contenido no puede estar en blanco"}
 
   # Scopes
   #
@@ -100,7 +100,7 @@ class Post < ActiveRecord::Base
 
     # remove html tags from content
     def add_excerpt
-      self.excerpt = Sanitize.fragment(self.content)
+      self.excerpt = Sanitize.fragment(self.content, :elements => ['&amp;'])
     end
 
     # convert spaces for dashes in title and passes to slug field

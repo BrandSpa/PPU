@@ -1102,7 +1102,7 @@ $(function() {
       this.render();
       this.filtersAplied = {
         lang: app.lang,
-        published: true
+        published: 1
       };
       this.order_by();
       this.$el.data("filtersAplied", this.filtersAplied);
@@ -2248,7 +2248,7 @@ $(function() {
         relatedData = {
           category: this.model.get('categories')[0].name,
           without: this.model.id,
-          the_actual: true
+          the_actual_ch: 1
         };
         return app.pubsub.trigger('posts:getRelated', relatedData);
       }
@@ -2394,26 +2394,6 @@ $(function() {
   })(Backbone.View);
 });
 
-ppu.TheCurrentController = {
-  index: function() {
-    var collection, filters;
-    collection = new ppu.Posts;
-    collection.fetch({
-      reset: true,
-      data: {
-        published: 1,
-        featured_order: "ASC",
-        the_actual_ch: 1
-      }
-    });
-    new ppu.TheCurrentViews({
-      collection: collection
-    });
-    filters = new ppu.TheCurrentFilter;
-    return filters.render();
-  }
-};
-
 var __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
@@ -2426,15 +2406,17 @@ $(function() {
     }
 
     Workspace.prototype.routes = {
+      "": "posts",
+      "posts": "posts",
+      "posts/:slug": "post",
       "abogados": "lawyers",
       "abogados/:slug": "lawyer",
       "experiencias": "experiences",
       "experiencias/:slug": "experience",
-      "posts": "posts",
       "el-actual": "theActual",
       "el-actual/:slug": "theActualDetail",
-      "": "posts",
-      "posts/:slug": "post",
+      "el-actual-colombia": "theActual",
+      "el-actual-colombia/:slug": "theActualDetail",
       "areas": "areas",
       "areas/:slug": "area",
       "trabaje-con-nosotros": "curriculum",
@@ -2448,42 +2430,6 @@ $(function() {
       ppu.contact = new ppu.Contact;
       return ppu.FooterContactCreate = new ppu.FooterContactCreate({
         model: ppu.contact
-      });
-    };
-
-    Workspace.prototype.lawyers = function() {
-      ppu.lawyers = new ppu.Lawyers;
-      ppu.lawyersView = new ppu.LawyersView({
-        collection: ppu.lawyers
-      });
-      ppu.lawyersFilters = new ppu.LawyersFilters;
-      return ppu.filtersMobile = new ppu.FiltersMobile;
-    };
-
-    Workspace.prototype.lawyer = function(slug) {
-      ppu.lawyer = new ppu.Lawyer({
-        id: slug
-      });
-      return ppu.LawyerDetailView = new ppu.LawyerDetailView({
-        model: ppu.lawyer
-      });
-    };
-
-    Workspace.prototype.theActual = function() {
-      return ppu.TheCurrentController.index();
-    };
-
-    Workspace.prototype.theActualDetail = function(slug) {
-      ppu.post = new ppu.Post({
-        id: slug
-      });
-      ppu.posts = new ppu.Posts;
-      ppu.post.fetch();
-      ppu.postDetailView = new ppu.TheActualDetailView({
-        model: ppu.post
-      });
-      return ppu.postsRelated = new ppu.PostsRelated({
-        collection: ppu.posts
       });
     };
 
@@ -2513,6 +2459,42 @@ $(function() {
       ppu.posts = new ppu.Posts;
       ppu.post.fetch();
       ppu.postDetailView = new ppu.PostDetailView({
+        model: ppu.post
+      });
+      return ppu.postsRelated = new ppu.PostsRelated({
+        collection: ppu.posts
+      });
+    };
+
+    Workspace.prototype.lawyers = function() {
+      ppu.lawyers = new ppu.Lawyers;
+      ppu.lawyersView = new ppu.LawyersView({
+        collection: ppu.lawyers
+      });
+      ppu.lawyersFilters = new ppu.LawyersFilters;
+      return ppu.filtersMobile = new ppu.FiltersMobile;
+    };
+
+    Workspace.prototype.lawyer = function(slug) {
+      ppu.lawyer = new ppu.Lawyer({
+        id: slug
+      });
+      return ppu.LawyerDetailView = new ppu.LawyerDetailView({
+        model: ppu.lawyer
+      });
+    };
+
+    Workspace.prototype.theActual = function() {
+      return ppu.TheActualChileController.index();
+    };
+
+    Workspace.prototype.theActualDetail = function(slug) {
+      ppu.post = new ppu.Post({
+        id: slug
+      });
+      ppu.posts = new ppu.Posts;
+      ppu.post.fetch();
+      ppu.postDetailView = new ppu.TheActualDetailView({
         model: ppu.post
       });
       return ppu.postsRelated = new ppu.PostsRelated({

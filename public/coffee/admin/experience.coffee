@@ -9,14 +9,14 @@ $ ->
   class ppu.admin.ExperienceView extends Backbone.View
     template: $ '#experience-admin-template'
     tagName: 'tr'
-    events: 
+    events:
       "click .publish": "publish"
       "click .unpublish": "unpublish"
       "click .translate": "translate"
 
     initialize: ->
       @listenTo(@model, "change", @render)
-      
+
     render: ->
       source = @template.html()
       t = Handlebars.compile(source)
@@ -33,7 +33,7 @@ $ ->
 
     translate: (e) ->
       e.preventDefault()
-      @model.save duplicate: true 
+      @model.save duplicate: true
         .done (model) ->
           window.location = "en/admin/experiences/#{model.id}/edit"
 
@@ -107,7 +107,7 @@ $ ->
   class ppu.admin.ExperienceCreate extends Backbone.View
     el: $ "#experience-create"
     template: $ "#experience-create-template"
-    events: 
+    events:
       "click button.store": "store"
       "click .open-gallery": "openGallery"
       "keydown input[name='query']": "searchLawyer"
@@ -115,7 +115,7 @@ $ ->
       "keydown .form-control": "removeError"
 
     initialize: ->
-      @listenTo(@model, 'error', @renderExperienceErrors, @)
+      @listenTo(@model, 'error', @showErrors, @)
       @listenTo(@model, 'sync', @stored)
       app.pubsub.bind('gallery:selected', @appendSelectedGallery, @)
 
@@ -124,7 +124,7 @@ $ ->
       template = Handlebars.compile(source)
       @$el.find('.panel-body').html template()
       ppu.appendDatePicker(@el)
-      
+
       ppu.appendSummernoteExperience(@el)
 
     store: ->
@@ -135,9 +135,14 @@ $ ->
       data.append("fields[lang]", app.lang)
       options = ppu.ajaxOptions("Post", data)
       @model.save data, $.extend({}, options)
-    
+
     stored: (model) ->
       window.location = "/dashboard" if model
+
+    showErrors: (model, b) ->
+      _.each b.responseJSON, (error) ->
+        _.each error, (message) ->
+          toastr.error(message)
 
     openGallery: (e) ->
       e.preventDefault()
@@ -154,11 +159,11 @@ $ ->
         collection = new ppu.Lawyers
         ppu.admin.experienceLawyersSelect = new ppu.admin.ExperienceLawyersSelect collection: collection
         ppu.admin.experienceLawyersSelect.search(query)
-      
+
   class ppu.admin.ExperienceEdit extends Backbone.View
     el: $ "#experience-edit"
     template: $ "#experience-create-template"
-    events: 
+    events:
       "click button.update": "update"
       "click .open-gallery": "openGallery"
       "keydown input[name='query']": "searchLawyer"
@@ -228,7 +233,7 @@ $ ->
   class ppu.admin.ExperienceSelectLawyers extends Backbone.View
     el: $ "#"
     template: "#lawyer-select"
-    events: 
+    events:
       "submit .search": "search"
 
     render: ->
@@ -243,7 +248,7 @@ $ ->
   class ppu.admin.ExperienceLawyerSelect extends Backbone.View
     tagName: 'tr'
     template: $ '#lawyer-select-template'
-    events: 
+    events:
       "click .append": "append"
 
     render: ->
@@ -260,7 +265,7 @@ $ ->
   class ppu.admin.ExperienceLawyersSelect extends Backbone.View
     el: $ "#lawyers-result"
 
-    events: 
+    events:
       "" : ""
 
     initialize: ->
@@ -285,7 +290,7 @@ $ ->
     render: ->
       source = @template.html()
       template = Handlebars.compile(source)
-      
+
       $('#lawyers-selected tbody').append @$el.html( template( @model.toJSON() ) )
 
     renderObject: (model)->

@@ -5,11 +5,13 @@ module Filterable
   def filters(filters, collection)
     filters.delete('action')
     filters.delete('controller')
+
     filters.each do |scope_name, scope_param|
-      if scope_param
-        collection = collection.public_send(scope_name, scope_param) if scope_param.present?
+
+      if scope_param.present?
+        collection = collection.public_send(scope_name, scope_param)
       else
-        collection = collection.public_send(scope_name) if scope_param.present?
+        collection = collection.public_send(scope_name)
       end
     end
 

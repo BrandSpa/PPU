@@ -17,6 +17,7 @@
   <link rel="stylesheet" href="/bower_components/summernote/dist/summernote.css">
   <link rel="stylesheet" href="/bower_components/summernote/dist/summernote-bs3.css">
   <link rel="stylesheet" href="/bower_components/nprogress/nprogress.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
   <%= csrf_meta_tags %>
 
   <style>
@@ -92,8 +93,10 @@
         <li><a href="/admin/posts/new">Crear Noticia</a></li>
         <li><a href="/admin/experiences">Experiencia</a></li>
         <li><a href="/admin/experiences/new">Crear Experiencia</a></li>
-        <li><a href="/admin/the-actual">El Actual</a></li>
-        <li><a href="/admin/the-actual/new">Crear El Actual</a></li>
+        <li><a href="/admin/the-actual">El Actual Chile</a></li>
+        <li><a href="/admin/the-actual/new">Crear El Actual Chile</a></li>
+        <li><a href="/admin/the-actual-co">El Actual Colombia</a></li>
+        <li><a href="/admin/the-actual-co/new">Crear El Actual Colombia</a></li>
         <li><a href="/users/sign_out">Salir</a></li>
   </ul>
 </div>
@@ -131,10 +134,11 @@
   <script src="/bower_components/summernote/dist/summernote.min.js"></script>
   <script src="/bower_components/moment/min/moment.min.js"></script>
   <script src="/bower_components/nprogress/nprogress.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 
   <script src="/js/fb.js"></script>
   <script src="/js/dist/app-admin.js"></script>
-  
+
  <script>
     app.lang = "<%= I18n.locale %>";
     app.hostname = window.location.hostname;

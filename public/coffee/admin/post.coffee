@@ -154,7 +154,7 @@ $ ->
       "keydown .form-control": "removeError"
 
     initialize: ->
-      @listenTo(@model, 'error', @renderPostErrors, @)
+      @listenTo(@model, 'error', @showErrors, @)
       @listenTo(@model, 'sync', @stored)
       app.pubsub.bind('gallery:selected', @appendSelectedGallery, @)
       app.pubsub.on('post:socialPublished', @redirectTo, @)
@@ -166,18 +166,29 @@ $ ->
       ppu.appendDatePicker(@el)
       ppu.appendSummernote(@el)
 
+    # send data from form
     store: (e) ->
       e.preventDefault()
       $form = @$el.find('form')
+
       content = $(@el).find('.summernote').code()
       data = new FormData($form[0])
+
       data.append("fields[content]", content)
       data.append("fields[lang]", app.lang)
+
       options = ppu.ajaxOptions("POST", data)
       @model.save data, $.extend({}, options)
 
+    # after store redirect to post
     stored: (model) ->
        window.location = "/posts/#{@model.get('slug')}"
+
+    # show errors of validation
+    showErrors: (model, b) ->
+      _.each b.responseJSON, (error) ->
+        _.each error, (message) ->
+          toastr.error(message)
 
     getCategories: ->
       ppu.categories = new ppu.Categories
@@ -205,6 +216,8 @@ $ ->
   class ppu.admin.PostEdit extends Backbone.View
     el: $ "#post-edit"
     template: $ "#post-create-template"
+
+    # jquery events
     events:
       "click button.update": "update"
       "click .open-gallery": "openGallery"
@@ -212,12 +225,14 @@ $ ->
       "change .form-control": "removeError"
       "keydown .form-control": "removeError"
 
+    # Start to listen events when the view it's initialize
     initialize: ->
       @listenTo(@model, 'change', @render)
       @listenTo(@model, 'error', @renderPostErrors, @)
       app.pubsub.bind('gallery:selected', @appendSelectedGallery, @)
       app.pubsub.on('post:socialPublished', @redirectTo, @)
 
+    # apped template with data to $el
     render: ->
       template = app.compile(@template)
       @$el.find('.panel-body').html template( @model.toJSON() )
@@ -226,6 +241,7 @@ $ ->
       @getCategories()
       @showLawyers()
 
+    # send data modified to server
     update: (e) ->
       e.preventDefault()
       that = @
@@ -238,16 +254,19 @@ $ ->
         .done (model) ->
           that.updated(model, that)
 
+    # redirect to post url when it's updated
     updated: (model, that) ->
       window.location = "/admin/posts/#{model.id}/edit"
 
     redirectTo: ->
       window.location = '/admin/posts'
 
+    # get categories 
     getCategories: ->
       ppu.categories = new ppu.Categories
       el = @$el
       modelCategories = @model.get('categories')
+
       ppu.categories.fetch(data: locale: app.lang).done (collection) ->
         source = $('#lawyer-categories-template').html()
         template = Handlebars.compile(source)

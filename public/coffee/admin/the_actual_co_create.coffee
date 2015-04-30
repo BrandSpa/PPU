@@ -1,5 +1,5 @@
 $ ->
-  class ppu.admin.TheActualCreate extends Backbone.View
+  class ppu.admin.TheActualCoCreate extends Backbone.View
     el: $ "#post-create"
     template: $ "#the-actual-create-template"
 
@@ -30,13 +30,13 @@ $ ->
       data = new FormData($form[0])
       data.append("fields[content]", content)
       data.append("fields[lang]", app.lang)
-      data.append("fields[country]", "Chile")
-      data.append('fields[the_actual_ch]', 1)
+      data.append("fields[country]", "Colombia")
+      data.append('fields[the_actual_co]', 1)
       options = ppu.ajaxOptions("POST", data)
       @model.save data, $.extend({}, options)
 
     stored: (model) ->
-       window.location = "/el-actual/#{@model.get('slug')}"
+       window.location = "/el-actual-colombia/#{@model.get('slug')}"
 
     publishFb: (model) ->
       url = setSubdomain(model.get('lang')) + "posts/#{model.get('slug')}"
