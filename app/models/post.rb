@@ -2,9 +2,13 @@ class Post < ActiveRecord::Base
 
   #Relations
   has_and_belongs_to_many :lawyers
+
   has_and_belongs_to_many :categories
+
   has_one :translations, class_name: "Post", foreign_key: "translation_id"
+
   belongs_to :translation, class_name: "Post"
+
   belongs_to :gallery
 
   #Validations
@@ -19,60 +23,47 @@ class Post < ActiveRecord::Base
   validates :title, uniqueness: true
 
   # Scopes
-
+  #
   # get model by lang
   scope :lang, -> (lang){ where(lang: lang) }
-
-  # get model by slug
-  scope :slug, -> (slug){ where(slug: slug) }
 
   # paginate models
   scope :paginate, -> (paginate) { limit(21).offset(paginate) }
 
-  # get model by featured
-  scope :featured, -> { where.not(featured: nil) }
+  # get model by slug
+  scope :slug, -> (slug){ where(slug: slug) }
+
+  # order models by data desc
+  scope :order_date, -> { order(date: :desc) }
+
+  # get model relationships
+  scope :get_relationships, -> { includes(:translation, :translations, :categories, :lawyers, :gallery) }
+
+  #Filters
 
   # get model by not featured
   scope :not_featured, -> { where(featured: nil) }
 
-  # order models by featured asc
-  scope :with_featured, -> { order(featured: :asc) }
-
-  # get model by featured index
-  scope :is_featured, -> (val) { where(featured: val) }
-
   # order by featured asc
-  scope :order_featured, -> { order(featured: :asc) }
+  scope :featured_order, -> (val) { order("posts.featured #{val}") }
 
   # get model by published
-  scope :published, -> { where("posts.published = true") }
+  scope :published, -> (val) { where("posts.published = ?", val) }
 
   # get model by the actual Chile
-  scope :the_actual, -> { where(the_actual: true) }
+  scope :the_actual_ch, -> (val) { where("posts.the_actual_ch = ?", val) }
 
   # get model by the actual Colombia
-  scope :the_actual_colombia, -> { where(the_actual_colombia: true) }
-
-  # get models without the actual Chile
-  scope :without_the_actual, ->{ where("posts.the_actual = 0 OR posts.the_actual IS NULL") }
-
-  # get models without the actual Colombia
-  scope :without_the_actual_colombia, ->{ where("posts.the_actual_colombia = 0 OR posts.the_actual_colombia IS NULL") }
+  scope :the_actual_co, -> (val) { where("posts.the_actual_co = ?", val) }
 
   # get model by country
-  scope :country, -> (country){ where("posts.country = ? OR posts.country = 'Global'", country) }
+  scope :country, -> (country) { where("posts.country = ? OR posts.country = 'Global'", country) }
 
   # get model by category
-  scope :category, -> (category){ includes(:categories).where(categories: {name: category}) }
+  scope :category, -> (category) { includes(:categories).where(categories: {name: category}) }
 
   # get model by keyword
-  scope :keyword, -> (keyword){ where("posts.keywords LIKE ?", "%#{keyword}%") }
-
-  # get model relationships
-  scope :get_relationships, -> { includes(:translation,:translations, :categories, :lawyers, :gallery) }
-
-  # order model by data desc
-  scope :order_date, -> { order(date: :desc) }
+  scope :keyword, -> (keyword) { where("posts.keywords LIKE ?", "%#{keyword}%") }
 
   # get models without models ids
   scope :without, -> (id) {where.not(id: id) }

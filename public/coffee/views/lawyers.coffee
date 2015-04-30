@@ -2,7 +2,7 @@ $ ->
   class ppu.LawyerView extends Backbone.View
     template: $ '#lawyer-template'
     className: 'col-md-6 col-sm-6 col-xs-12 lawyer-item'
-    events: 
+    events:
       "click": "open"
 
     open: ->
@@ -20,11 +20,11 @@ $ ->
     initialize: ->
       @listenTo(@collection, 'reset', @render)
       @listenTo(@collection, 'add', @renderOne)
-      
+
       if app.lang == "en"
-        data = _.extend published: true, order_by_english: true
+        data = _.extend published: 1, order_by_english: ""
       else
-        data = _.extend published: true, order_by_spanish: true
+        data = _.extend published: 1, order_by_spanish: ""
       @collection.fetch reset: true, data: data
       app.pubsub.on("apply:filters", @filterCollection, @)
 
@@ -34,7 +34,7 @@ $ ->
 
     paginate: () ->
       @collection.fetch data: offset: offset
-    
+
     renderOne: (model) ->
       view = new ppu.LawyerView model: model
       $(@el).append view.render().el
@@ -44,7 +44,7 @@ $ ->
       @collection.each (model) ->
         @renderOne(model)
       , @
-      
+
   class ppu.LawyersFilters extends Backbone.View
     el: $ '#top-bar'
     template: $ "#lawyers-filter"
@@ -66,10 +66,10 @@ $ ->
 
     order_by: ->
       if app.lang == "en"
-        _.extend(@filtersAplied, order_by_english: true)
+        _.extend(@filtersAplied, order_by_english: "")
       else
-        _.extend(@filtersAplied, order_by_spanish: true)
-       
+        _.extend(@filtersAplied, order_by_spanish: "")
+
     render: ->
       template = app.compile(@template)
       @$el.html(template)
@@ -87,23 +87,23 @@ $ ->
       val = $(e.currentTarget).find('select').val()
       data = _.extend(@filtersAplied, paginate: 0, position: val)
       ppu.lawyers.fetch reset: true, data: data
-      
+
     byCountry: (e) ->
       val = $(e.currentTarget).find('select').val()
       data = _.extend(@filtersAplied,paginate: 0,  country: val)
-      ppu.lawyers.fetch reset: true, data: data          
-         
+      ppu.lawyers.fetch reset: true, data: data
+
     byCategory: (e) ->
       val = $(e.currentTarget).find('select').val()
       data = _.extend(@filtersAplied, paginate: 0, category: val)
       ppu.lawyers.fetch reset: true, data: data
-      
+
     byQuery: (e) ->
       val = $(e.currentTarget).val()
       if val.length >= 1
         data = _.extend(@filtersAplied,paginate: 0, search: val)
         ppu.lawyers.fetch reset: true, data: data
-    
+
     bySearch: (e) ->
       e.preventDefault()
       val = $(e.currentTarget).find(".query").val()
@@ -113,7 +113,7 @@ $ ->
   class ppu.LawyerDetailView extends Backbone.View
     el: $ '#lawyer'
     template: $ '#lawyer-template'
-    
+
     initialize: ->
       @listenTo(@model, 'change', @render)
       @getTitle()
@@ -126,7 +126,7 @@ $ ->
       template = app.compile(@template)
       $(@el).html template( @model.toJSON() )
       @getImgs()
-      
+
 
     getImgs: ->
       h = @$el.find('.award img')
@@ -134,7 +134,7 @@ $ ->
         $(e).load (a) ->
           if $(@).height() > 90
             $(@).css('height', '90px')
-      
+
 
   class ppu.lawyersRelatedCategory extends Backbone.View
     el: $ "#lawyers-related"

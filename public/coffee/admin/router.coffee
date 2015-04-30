@@ -40,7 +40,7 @@ $ ->
 
     post: ->
       ppu.posts = new ppu.Posts
-      ppu.posts.fetch reset: true, data: without_the_actual: true
+      ppu.posts.fetch reset: true, data: the_actual_ch: 0, the_actual_co: 0
       ppu.admin.posts = new ppu.admin.PostsView collection: ppu.posts
       ppu.admin.postsFilters = new ppu.admin.PostsFilters
 
@@ -66,7 +66,7 @@ $ ->
 
     theActual: ->
       ppu.posts = new ppu.Posts
-      ppu.posts.fetch reset: true, data: the_actual: true
+      ppu.posts.fetch reset: true, data: the_actual_ch: 1
       ppu.admin.posts = new ppu.admin.TheActualViews collection: ppu.posts
       ppu.admin.postsFilters = new ppu.admin.PostsFilters
 

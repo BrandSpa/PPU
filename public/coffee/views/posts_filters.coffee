@@ -1,4 +1,4 @@
-$ ->  
+$ ->
   class ppu.PostsFilters extends Backbone.View
     el: $ '#top-bar'
     template: $ "#posts-filter"
@@ -10,7 +10,13 @@ $ ->
       'submit .search': 'bySearch'
 
     initialize: ->
-      @filtersAplied = {lang: app.lang, published: true, without_the_actual: false}
+      @filtersAplied = {
+        lang: app.lang,
+        published: 1,
+        the_actual_ch: 0
+        the_actual_co: 0
+      }
+
       app.pubsub.on("general:scroll", @paginate, @)
       @offset = 20
 
@@ -31,7 +37,7 @@ $ ->
       , success: () ->
         $('.preload').addClass('hidden')
 
-      @offset = (@offset+20)
+      @offset = ( @offset + 20 )
 
     byCountry: (e) ->
       val = $(e.currentTarget).find('select').val()
@@ -51,7 +57,7 @@ $ ->
       if val.length >= 2
         @filterBy(keyword: val)
       else if val.length == 1
-        @filterBy(keyword: "", with_featured: true)
+        @filterBy(keyword: "", featured_order: "ASC")
 
     bySearch: (e) ->
       e.preventDefault()

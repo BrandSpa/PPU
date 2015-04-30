@@ -2,13 +2,18 @@ class Api::ExperiencesController < ApplicationController
 	include Filterable
 
 	def index
-		lang = params[:lang] || I18n.locale 
+		lang = params[:lang] || I18n.locale
     paginate = params[:paginate] || 0
-		filters = params.slice(:category, :country, :keyword, :without)
 		collection = entity.with_relationships.lang(lang).paginate(paginate).order(date: :desc)
-    collection = filters_with_params(filters, collection)
+		collection = filters( params, collection)
 
-		render json: collection.to_json(:include => [:translations,:translation, :categories, :lawyers, :gallery])
+		render json: collection.to_json(:include => [
+			:translations,
+			:translation,
+			{:categories => {:only => [:id, :name]} },
+			:lawyers,
+			:gallery
+			]);
 	end
 
 	def show
@@ -55,7 +60,7 @@ class Api::ExperiencesController < ApplicationController
 	end
 
 	def is_a_number?(s)
-  	s.to_s.match(/\A[+-]?\d+?(\.\d+)?\Z/) == nil ? false : true 
+  	s.to_s.match(/\A[+-]?\d+?(\.\d+)?\Z/) == nil ? false : true
 	end
 
 	private
@@ -64,7 +69,17 @@ class Api::ExperiencesController < ApplicationController
 		end
 
 		def experience_params
-			params.require(:fields).permit(:gallery_id, :country, :img_name, :company_name, :company_web, :date, :title, :content, :category_ids => [], :lawyer_ids => [])
+			params.require(:fields).permit(
+			:gallery_id,
+			:country,
+			:img_name,
+			:company_name,
+			:company_web,
+			:date,
+			:title,
+			:content,
+			:category_ids => [],
+			:lawyer_ids => [])
 		end
 
 end

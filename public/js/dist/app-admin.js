@@ -2755,7 +2755,8 @@ $(function() {
     PostsFilters.prototype.initialize = function() {
       return this.filtersAplied = {
         lang: "es",
-        without_the_actual: false
+        the_actual_ch: 0,
+        the_actual_co: 0
       };
     };
 
@@ -4181,7 +4182,8 @@ $(function() {
       ppu.posts.fetch({
         reset: true,
         data: {
-          without_the_actual: true
+          the_actual_ch: 0,
+          the_actual_co: 0
         }
       });
       ppu.admin.posts = new ppu.admin.PostsView({
@@ -4238,7 +4240,7 @@ $(function() {
       ppu.posts.fetch({
         reset: true,
         data: {
-          the_actual: true
+          the_actual_ch: 1
         }
       });
       ppu.admin.posts = new ppu.admin.TheActualViews({

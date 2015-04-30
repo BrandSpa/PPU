@@ -2,7 +2,7 @@ $ ->
   class ppu.PostView extends Backbone.View
     template: $ "#post-template"
     className: "col-md-6 col-sm-6 col-xs-12 post-item"
-    events: 
+    events:
       "click .share-hover": "open"
 
     open: ->
@@ -61,16 +61,17 @@ $ ->
           @renderOne(model)
         i++
       , @
+      
 
   class ppu.PostMainFeaturedView extends Backbone.View
     template: $ "#post-main-featured-template"
     className: "col-md-6 col-sm-6 col-xs-12 post-main-featured-item"
-    events: 
+    events:
       "click": "open"
 
     open: ->
       window.location = "/posts/#{@model.get('slug')}"
-    
+
     render: ->
       template = app.compile(@template)
       $(@el).html template( @model.toJSON() )
@@ -78,7 +79,7 @@ $ ->
 
   class ppu.PostsFeaturedView extends Backbone.View
     el: $ "#posts-featured"
-    
+
     initialize: ->
       @listenTo(@collection, "reset", @render)
       app.pubsub.bind("posts:rendered", @getFeatured, @)

@@ -32,15 +32,6 @@ $ ->
       ppu.lawyer = new ppu.Lawyer id: slug
       ppu.LawyerDetailView = new ppu.LawyerDetailView model: ppu.lawyer
 
-    posts: ->
-      ppu.posts = new ppu.Posts
-      ppu.posts.fetch reset: true, data: with_featured: true, published: true, without_the_actual: true
-      ppu.postsView = new ppu.PostsView collection: ppu.posts
-
-      ppu.postsFilters = new ppu.PostsFilters
-      ppu.postsFilters.render()
-      ppu.filtersMobile = new ppu.FiltersMobile
-
     theActual: ->
       ppu.TheCurrentController.index()
 
@@ -51,6 +42,21 @@ $ ->
       ppu.postDetailView = new ppu.TheActualDetailView model: ppu.post
       ppu.postsRelated = new ppu.PostsRelated collection: ppu.posts
 
+    posts: ->
+      ppu.posts = new ppu.Posts
+
+      ppu.posts.fetch reset: true,
+      data:
+        featured_order: "ASC",
+        published: 1,
+        the_actual_ch: 0
+        the_actual_co: 0
+
+      ppu.postsView = new ppu.PostsView collection: ppu.posts
+
+      ppu.postsFilters = new ppu.PostsFilters
+      ppu.postsFilters.render()
+      ppu.filtersMobile = new ppu.FiltersMobile
 
     post: (slug)->
       ppu.post = new ppu.Post id: slug
@@ -86,7 +92,7 @@ $ ->
       ppu.experiencesFilters = new ppu.ExperiencesFilters
       ppu.experiencesFilters.render()
       ppu.experiences = new ppu.Experiences
-      ppu.experiences.fetch reset: true, data: published: true, not_featured: true
+      ppu.experiences.fetch reset: true
       ppu.experiencesView = new ppu.ExperiencesView collection: ppu.experiences
 
       ppu.filtersMobile = new ppu.FiltersMobile

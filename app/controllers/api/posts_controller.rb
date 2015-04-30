@@ -16,33 +16,20 @@ class Api::PostsController < ApplicationController
       .order(date: :desc)
       .paginate(paginate)
 
-    collection = filters_without_params(
-      params.slice(
-        :featured,
-        :published,
-        :not_featured,
-        :not_published,
-        :with_featured,
-        :the_actual,
-        :without_the_actual,
-        :the_actual_colombia,
-        :without_the_actual_colombia
-      ),
-      collection
-    )
+    collection = filters( params, collection )
 
-    collection = filters_with_params(
-      params.slice(
-        :is_featured,
-        :category,
-        :country,
-        :keyword,
-        :without
-      ),
-      collection
-    )
+    render json: collection.to_json(
+    :except => [
+      :content,
+      :keywords
+    ],
+    :include => [
+      {:translations => {:only => :id }},
+      :translation,
+      :lawyers,
+      {:gallery => {:only => :img_name }}
+    ])
 
-    render json: collection.to_json(:include => [:translations, :translation, :gallery])
   end
 
   def show

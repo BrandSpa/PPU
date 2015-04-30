@@ -104,7 +104,7 @@ $ ->
       'change .by-lang': 'byLang'
 
     initialize: ->
-      @filtersAplied = {lang: "es", without_the_actual: false}
+      @filtersAplied = {lang: "es", the_actual_ch: 0, the_actual_co: 0}
 
     # append template to $el
     render: ->

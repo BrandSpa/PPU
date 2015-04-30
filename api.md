@@ -86,8 +86,51 @@ Request
 
 Response
 
+#Filters
+
+- index
+
+      featured_order=ASC&published=1&the_actual=0&the_actual_colombia=0
+
+- paginate
+
+      lang=es&published=1&the_actual=0&paginate=20
+
+- category
+
+      lang=es&published=1&the_actual=0&paginate=0&category=Competencia
+
+
+- country
+
+      lang=es&published=1&the_actual=0&paginate=0&country=Colombia
+
+- keyword
+
+      lang=es&published=1&the_actual=0&paginate=0&keyword=legal&featured_order=1
+
 ## resource /api/categories
 
+
 ## resource /api/lawyers
+[POST]
+[GET]
+[GET]
+
+##Filters
+
+- index
+      ?published=true&order_by_spanish=true
+      ?published=1&order_by_spanish=DESC
 
 ## resource /api/experiences
+[POST]
+
+[GET]
+
+[GET]
+##filters
+- paginate
+
+
+      ?lang=es&paginate=20

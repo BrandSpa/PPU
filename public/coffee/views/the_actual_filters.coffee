@@ -9,7 +9,7 @@ $ ->
       'submit .search': 'bySearch'
 
     initialize: ->
-      @filtersAplied = {lang: app.lang,  published: true, the_actual: true}
+      @filtersAplied = {lang: app.lang,  published: 1, the_actual_ch: 1}
       app.pubsub.on("general:scroll", @paginate, @)
       @offset = 20
 
@@ -37,8 +37,8 @@ $ ->
       if val.length >= 2
         @filterBy(keyword: val)
       else if val.length == 1
-        @filterBy(keyword: "", with_featured: true)
-      
+        @filterBy(keyword: "", featured_order: "ASC")
+
     bySearch: (e) ->
       e.preventDefault()
       val = $(e.currentTarget).find(".query").val()

@@ -1,19 +1,38 @@
 class Experience < ActiveRecord::Base
-	has_one :translations, class_name: "Experience", foreign_key: "translation_id"
-  belongs_to :translation, class_name: "Experience"
-  has_and_belongs_to_many :categories
-  has_and_belongs_to_many :lawyers
-  belongs_to :gallery
 
+	has_one :translations, class_name: "Experience", foreign_key: "translation_id"
+
+  belongs_to :translation, class_name: "Experience"
+
+  has_and_belongs_to_many :categories
+
+  has_and_belongs_to_many :lawyers
+
+  belongs_to :gallery
+	# carrierwave options
 	mount_uploader :img_name, ExperienceImgUploader
 
+	#collection by lang
   scope :lang, -> (lang){ where(lang: lang) }
+
+	#collection by slug
   scope :slug, -> (slug){ where(slug: slug) }
+
+	# collection paginate
   scope :paginate, -> (paginate) { limit(20).offset(paginate) }
+
+	# get collection relationships
+	scope :with_relationships, ->{ includes(:gallery, :translations, :categories, :lawyers) }
+
+	# Filters
+	# Search by country
   scope :country, -> (country){ where("experiences.country = ?", country) }
+
   scope :keyword, -> (keyword){ where("experiences.keywords LIKE ?", "%#{keyword}%") }
+
   scope :category, -> (category){ includes(:categories).where(categories: {name: category}) }
-  scope :with_relationships, ->{ includes(:gallery, :translations, :categories, :lawyers) }
+
+
   scope :without, -> (id) { where.not(id: id) }
 
 	def self.duplicate(model)

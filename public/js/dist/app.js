@@ -1025,13 +1025,13 @@ $(function() {
       this.listenTo(this.collection, 'add', this.renderOne);
       if (app.lang === "en") {
         data = _.extend({
-          published: true,
-          order_by_english: true
+          published: 1,
+          order_by_english: ""
         });
       } else {
         data = _.extend({
-          published: true,
-          order_by_spanish: true
+          published: 1,
+          order_by_spanish: ""
         });
       }
       this.collection.fetch({
@@ -1113,11 +1113,11 @@ $(function() {
     LawyersFilters.prototype.order_by = function() {
       if (app.lang === "en") {
         return _.extend(this.filtersAplied, {
-          order_by_english: true
+          order_by_english: ""
         });
       } else {
         return _.extend(this.filtersAplied, {
-          order_by_spanish: true
+          order_by_spanish: ""
         });
       }
     };
@@ -1533,8 +1533,9 @@ $(function() {
     PostsFilters.prototype.initialize = function() {
       this.filtersAplied = {
         lang: app.lang,
-        published: true,
-        without_the_actual: false
+        published: 1,
+        the_actual_ch: 0,
+        the_actual_co: 0
       };
       app.pubsub.on("general:scroll", this.paginate, this);
       return this.offset = 20;
@@ -1605,7 +1606,7 @@ $(function() {
       } else if (val.length === 1) {
         return this.filterBy({
           keyword: "",
-          with_featured: true
+          featured_order: "ASC"
         });
       }
     };
@@ -2325,8 +2326,8 @@ $(function() {
     TheCurrentFilter.prototype.initialize = function() {
       this.filtersAplied = {
         lang: app.lang,
-        published: true,
-        the_actual: true
+        published: 1,
+        the_actual_ch: 1
       };
       app.pubsub.on("general:scroll", this.paginate, this);
       return this.offset = 20;
@@ -2374,7 +2375,7 @@ $(function() {
       } else if (val.length === 1) {
         return this.filterBy({
           keyword: "",
-          with_featured: true
+          featured_order: "ASC"
         });
       }
     };
@@ -2400,9 +2401,9 @@ ppu.TheCurrentController = {
     collection.fetch({
       reset: true,
       data: {
-        published: true,
-        with_featured: true,
-        the_actual: true
+        published: 1,
+        featured_order: "ASC",
+        the_actual_ch: 1
       }
     });
     new ppu.TheCurrentViews({
@@ -2468,24 +2469,6 @@ $(function() {
       });
     };
 
-    Workspace.prototype.posts = function() {
-      ppu.posts = new ppu.Posts;
-      ppu.posts.fetch({
-        reset: true,
-        data: {
-          with_featured: true,
-          published: true,
-          without_the_actual: true
-        }
-      });
-      ppu.postsView = new ppu.PostsView({
-        collection: ppu.posts
-      });
-      ppu.postsFilters = new ppu.PostsFilters;
-      ppu.postsFilters.render();
-      return ppu.filtersMobile = new ppu.FiltersMobile;
-    };
-
     Workspace.prototype.theActual = function() {
       return ppu.TheCurrentController.index();
     };
@@ -2502,6 +2485,25 @@ $(function() {
       return ppu.postsRelated = new ppu.PostsRelated({
         collection: ppu.posts
       });
+    };
+
+    Workspace.prototype.posts = function() {
+      ppu.posts = new ppu.Posts;
+      ppu.posts.fetch({
+        reset: true,
+        data: {
+          featured_order: "ASC",
+          published: 1,
+          the_actual_ch: 0,
+          the_actual_co: 0
+        }
+      });
+      ppu.postsView = new ppu.PostsView({
+        collection: ppu.posts
+      });
+      ppu.postsFilters = new ppu.PostsFilters;
+      ppu.postsFilters.render();
+      return ppu.filtersMobile = new ppu.FiltersMobile;
     };
 
     Workspace.prototype.post = function(slug) {
@@ -2565,11 +2567,7 @@ $(function() {
       ppu.experiencesFilters.render();
       ppu.experiences = new ppu.Experiences;
       ppu.experiences.fetch({
-        reset: true,
-        data: {
-          published: true,
-          not_featured: true
-        }
+        reset: true
       });
       ppu.experiencesView = new ppu.ExperiencesView({
         collection: ppu.experiences
