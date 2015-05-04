@@ -163,7 +163,8 @@ class Lawyer < ActiveRecord::Base
   before_create :add_slug
 
   private
-  
+
+    # remove html tags from content and passes to excerpt field
     def add_keywords()
       model = self
       model.keywords = [self.name, self.lastname, self.position, self.email, self.phone, self.description].join(" ")

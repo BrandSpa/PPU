@@ -567,6 +567,46 @@ ppu.Categories = (function(_super) {
 var __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
+ppu.Lawyer = (function(_super) {
+  __extends(Lawyer, _super);
+
+  function Lawyer() {
+    return Lawyer.__super__.constructor.apply(this, arguments);
+  }
+
+  Lawyer.prototype.urlRoot = "/api/lawyers";
+
+  Lawyer.prototype.fetchBySlug = function(slug) {
+    return this.fetch({
+      data: $.param({
+        slug: slug,
+        locale: app.lang
+      })
+    });
+  };
+
+  return Lawyer;
+
+})(Backbone.Model);
+
+ppu.Lawyers = (function(_super) {
+  __extends(Lawyers, _super);
+
+  function Lawyers() {
+    return Lawyers.__super__.constructor.apply(this, arguments);
+  }
+
+  Lawyers.prototype.url = "/api/lawyers";
+
+  Lawyers.prototype.model = ppu.Lawyer;
+
+  return Lawyers;
+
+})(Backbone.Collection);
+
+var __hasProp = {}.hasOwnProperty,
+  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
 $(function() {
   ppu.CategoryView = (function(_super) {
     __extends(CategoryView, _super);
@@ -1920,46 +1960,6 @@ $(function() {
 
   })(Backbone.View);
 });
-
-var __hasProp = {}.hasOwnProperty,
-  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
-
-ppu.Lawyer = (function(_super) {
-  __extends(Lawyer, _super);
-
-  function Lawyer() {
-    return Lawyer.__super__.constructor.apply(this, arguments);
-  }
-
-  Lawyer.prototype.urlRoot = "/api/lawyers";
-
-  Lawyer.prototype.fetchBySlug = function(slug) {
-    return this.fetch({
-      data: $.param({
-        slug: slug,
-        locale: app.lang
-      })
-    });
-  };
-
-  return Lawyer;
-
-})(Backbone.Model);
-
-ppu.Lawyers = (function(_super) {
-  __extends(Lawyers, _super);
-
-  function Lawyers() {
-    return Lawyers.__super__.constructor.apply(this, arguments);
-  }
-
-  Lawyers.prototype.url = "/api/lawyers";
-
-  Lawyers.prototype.model = ppu.Lawyer;
-
-  return Lawyers;
-
-})(Backbone.Collection);
 
 var __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };

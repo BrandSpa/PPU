@@ -1,5 +1,9 @@
 class Trade < ActiveRecord::Base
+
+  # Relationships
   has_and_belongs_to_many :lawyers
+
+  # Scopes
   scope :lang, -> (lang){ where(lang: lang) }
   scope :search, -> (keyword){ where("keywords LIKE ?", "%#{keyword}%") }
 

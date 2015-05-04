@@ -98,7 +98,7 @@ class Post < ActiveRecord::Base
 
   private
 
-    # remove html tags from content
+    # remove html tags from content and passes to excerpt field
     def add_excerpt
       self.excerpt = Sanitize.fragment(self.content, :elements => ['&amp;'])
     end

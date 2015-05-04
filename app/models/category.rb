@@ -1,5 +1,6 @@
 class Category < ActiveRecord::Base
 
+	#Relationships
 	has_one :translations, class_name: "Category", foreign_key: "translation_id"
 
   belongs_to :translation, class_name: "Category"
@@ -12,6 +13,7 @@ class Category < ActiveRecord::Base
 
   belongs_to :gallery
 
+	# Scopes
   scope :lang, -> (lang){ where(lang: lang) }
 
 end

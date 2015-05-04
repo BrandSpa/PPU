@@ -2394,6 +2394,26 @@ $(function() {
   })(Backbone.View);
 });
 
+ppu.TheActualChController = {
+  index: function() {
+    var collection, filters;
+    collection = new ppu.Posts;
+    collection.fetch({
+      reset: true,
+      data: {
+        published: 1,
+        featured_order: "ASC",
+        the_actual_ch: 1
+      }
+    });
+    new ppu.TheCurrentViews({
+      collection: collection
+    });
+    filters = new ppu.TheCurrentFilter;
+    return filters.render();
+  }
+};
+
 var __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 

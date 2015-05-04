@@ -1,5 +1,6 @@
 class Experience < ActiveRecord::Base
 
+	# Relationships
 	has_one :translations, class_name: "Experience", foreign_key: "translation_id"
 
   belongs_to :translation, class_name: "Experience"
@@ -9,6 +10,7 @@ class Experience < ActiveRecord::Base
   has_and_belongs_to_many :lawyers
 
   belongs_to :gallery
+
 	# carrierwave options
 	mount_uploader :img_name, ExperienceImgUploader
 
@@ -44,7 +46,6 @@ class Experience < ActiveRecord::Base
 	validates :content, :presence => {message: "Contenido no puede estar en blanco"}
 
 
-
 	def self.duplicate(model)
     model_new = model.dup
     model_new.lang = "en"
@@ -68,6 +69,7 @@ class Experience < ActiveRecord::Base
   before_save :add_keywords
 
   private
+	
     def add_excerpt
       self.excerpt = Sanitize.fragment(self.content)
     end
