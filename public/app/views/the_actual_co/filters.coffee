@@ -1,5 +1,5 @@
 $ ->
-  class ppu.TheCurrentFilter extends Backbone.View
+  class ppu.TheActualCoFilter extends Backbone.View
     el: $ '#top-bar'
     template: $ "#the-current-filters"
     events:
@@ -9,7 +9,7 @@ $ ->
       'submit .search': 'bySearch'
 
     initialize: ->
-      @filtersAplied = {lang: app.lang,  published: 1, the_actual_ch: 1}
+      @filtersAplied = {lang: app.lang,  published: 1, the_actual_co: 1}
       app.pubsub.on("general:scroll", @paginate, @)
       @offset = 20
 

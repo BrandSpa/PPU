@@ -401,8 +401,8 @@ mixins.lawyerRelationshipModalEdit = {
 };
 
 Handlebars.registerHelper('checked', function(val1, val2) {
-  var _ref;
-  return (_ref = val1 === val2) != null ? _ref : {
+  var ref;
+  return (ref = val1 === val2) != null ? ref : {
     ' checked="checked"': ''
   };
 });
@@ -533,11 +533,11 @@ Backbone.View.prototype.openShare = function() {
   return $("#share-modal").modal();
 };
 
-var __hasProp = {}.hasOwnProperty,
-  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  hasProp = {}.hasOwnProperty;
 
-ppu.Category = (function(_super) {
-  __extends(Category, _super);
+ppu.Category = (function(superClass) {
+  extend(Category, superClass);
 
   function Category() {
     return Category.__super__.constructor.apply(this, arguments);
@@ -549,8 +549,8 @@ ppu.Category = (function(_super) {
 
 })(Backbone.Model);
 
-ppu.Categories = (function(_super) {
-  __extends(Categories, _super);
+ppu.Categories = (function(superClass) {
+  extend(Categories, superClass);
 
   function Categories() {
     return Categories.__super__.constructor.apply(this, arguments);
@@ -564,11 +564,11 @@ ppu.Categories = (function(_super) {
 
 })(Backbone.Collection);
 
-var __hasProp = {}.hasOwnProperty,
-  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  hasProp = {}.hasOwnProperty;
 
-ppu.Lawyer = (function(_super) {
-  __extends(Lawyer, _super);
+ppu.Lawyer = (function(superClass) {
+  extend(Lawyer, superClass);
 
   function Lawyer() {
     return Lawyer.__super__.constructor.apply(this, arguments);
@@ -589,8 +589,8 @@ ppu.Lawyer = (function(_super) {
 
 })(Backbone.Model);
 
-ppu.Lawyers = (function(_super) {
-  __extends(Lawyers, _super);
+ppu.Lawyers = (function(superClass) {
+  extend(Lawyers, superClass);
 
   function Lawyers() {
     return Lawyers.__super__.constructor.apply(this, arguments);
@@ -604,12 +604,12 @@ ppu.Lawyers = (function(_super) {
 
 })(Backbone.Collection);
 
-var __hasProp = {}.hasOwnProperty,
-  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  hasProp = {}.hasOwnProperty;
 
 $(function() {
-  ppu.LawyerArticle = (function(_super) {
-    __extends(LawyerArticle, _super);
+  ppu.LawyerArticle = (function(superClass) {
+    extend(LawyerArticle, superClass);
 
     function LawyerArticle() {
       return LawyerArticle.__super__.constructor.apply(this, arguments);
@@ -620,8 +620,8 @@ $(function() {
     return LawyerArticle;
 
   })(Backbone.Model);
-  ppu.LawyerArticles = (function(_super) {
-    __extends(LawyerArticles, _super);
+  ppu.LawyerArticles = (function(superClass) {
+    extend(LawyerArticles, superClass);
 
     function LawyerArticles() {
       return LawyerArticles.__super__.constructor.apply(this, arguments);
@@ -634,8 +634,8 @@ $(function() {
     return LawyerArticles;
 
   })(Backbone.Collection);
-  ppu.LawyerArticleCreate = (function(_super) {
-    __extends(LawyerArticleCreate, _super);
+  ppu.LawyerArticleCreate = (function(superClass) {
+    extend(LawyerArticleCreate, superClass);
 
     function LawyerArticleCreate() {
       return LawyerArticleCreate.__super__.constructor.apply(this, arguments);
@@ -670,8 +670,8 @@ $(function() {
     return LawyerArticleCreate;
 
   })(Backbone.View);
-  ppu.LawyerArticlesEditModal = (function(_super) {
-    __extends(LawyerArticlesEditModal, _super);
+  ppu.LawyerArticlesEditModal = (function(superClass) {
+    extend(LawyerArticlesEditModal, superClass);
 
     function LawyerArticlesEditModal() {
       return LawyerArticlesEditModal.__super__.constructor.apply(this, arguments);
@@ -686,8 +686,8 @@ $(function() {
     return LawyerArticlesEditModal;
 
   })(Backbone.View);
-  ppu.LawyerArticleView = (function(_super) {
-    __extends(LawyerArticleView, _super);
+  ppu.LawyerArticleView = (function(superClass) {
+    extend(LawyerArticleView, superClass);
 
     function LawyerArticleView() {
       return LawyerArticleView.__super__.constructor.apply(this, arguments);
@@ -704,8 +704,8 @@ $(function() {
     return LawyerArticleView;
 
   })(Backbone.View);
-  ppu.LawyerArticleModalCreate = (function(_super) {
-    __extends(LawyerArticleModalCreate, _super);
+  ppu.LawyerArticleModalCreate = (function(superClass) {
+    extend(LawyerArticleModalCreate, superClass);
 
     function LawyerArticleModalCreate() {
       return LawyerArticleModalCreate.__super__.constructor.apply(this, arguments);
@@ -720,8 +720,8 @@ $(function() {
     return LawyerArticleModalCreate;
 
   })(Backbone.View);
-  return ppu.LawyerArticlesEdit = (function(_super) {
-    __extends(LawyerArticlesEdit, _super);
+  return ppu.LawyerArticlesEdit = (function(superClass) {
+    extend(LawyerArticlesEdit, superClass);
 
     function LawyerArticlesEdit() {
       return LawyerArticlesEdit.__super__.constructor.apply(this, arguments);
@@ -740,12 +740,12 @@ $(function() {
   })(Backbone.View);
 });
 
-var __hasProp = {}.hasOwnProperty,
-  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  hasProp = {}.hasOwnProperty;
 
 $(function() {
-  ppu.LawyerAward = (function(_super) {
-    __extends(LawyerAward, _super);
+  ppu.LawyerAward = (function(superClass) {
+    extend(LawyerAward, superClass);
 
     function LawyerAward() {
       return LawyerAward.__super__.constructor.apply(this, arguments);
@@ -756,8 +756,8 @@ $(function() {
     return LawyerAward;
 
   })(Backbone.Model);
-  ppu.LawyerAwards = (function(_super) {
-    __extends(LawyerAwards, _super);
+  ppu.LawyerAwards = (function(superClass) {
+    extend(LawyerAwards, superClass);
 
     function LawyerAwards() {
       return LawyerAwards.__super__.constructor.apply(this, arguments);
@@ -770,8 +770,8 @@ $(function() {
     return LawyerAwards;
 
   })(Backbone.Collection);
-  ppu.LawyerAwardCreate = (function(_super) {
-    __extends(LawyerAwardCreate, _super);
+  ppu.LawyerAwardCreate = (function(superClass) {
+    extend(LawyerAwardCreate, superClass);
 
     function LawyerAwardCreate() {
       return LawyerAwardCreate.__super__.constructor.apply(this, arguments);
@@ -806,8 +806,8 @@ $(function() {
     return LawyerAwardCreate;
 
   })(Backbone.View);
-  ppu.LawyerAwardsEditModal = (function(_super) {
-    __extends(LawyerAwardsEditModal, _super);
+  ppu.LawyerAwardsEditModal = (function(superClass) {
+    extend(LawyerAwardsEditModal, superClass);
 
     function LawyerAwardsEditModal() {
       return LawyerAwardsEditModal.__super__.constructor.apply(this, arguments);
@@ -822,8 +822,8 @@ $(function() {
     return LawyerAwardsEditModal;
 
   })(Backbone.View);
-  ppu.LawyerAwardView = (function(_super) {
-    __extends(LawyerAwardView, _super);
+  ppu.LawyerAwardView = (function(superClass) {
+    extend(LawyerAwardView, superClass);
 
     function LawyerAwardView() {
       return LawyerAwardView.__super__.constructor.apply(this, arguments);
@@ -840,8 +840,8 @@ $(function() {
     return LawyerAwardView;
 
   })(Backbone.View);
-  ppu.LawyerAwardModalCreate = (function(_super) {
-    __extends(LawyerAwardModalCreate, _super);
+  ppu.LawyerAwardModalCreate = (function(superClass) {
+    extend(LawyerAwardModalCreate, superClass);
 
     function LawyerAwardModalCreate() {
       return LawyerAwardModalCreate.__super__.constructor.apply(this, arguments);
@@ -856,8 +856,8 @@ $(function() {
     return LawyerAwardModalCreate;
 
   })(Backbone.View);
-  return ppu.LawyerAwardsEdit = (function(_super) {
-    __extends(LawyerAwardsEdit, _super);
+  return ppu.LawyerAwardsEdit = (function(superClass) {
+    extend(LawyerAwardsEdit, superClass);
 
     function LawyerAwardsEdit() {
       return LawyerAwardsEdit.__super__.constructor.apply(this, arguments);
@@ -876,12 +876,12 @@ $(function() {
   })(Backbone.View);
 });
 
-var __hasProp = {}.hasOwnProperty,
-  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  hasProp = {}.hasOwnProperty;
 
 $(function() {
-  ppu.LawyerAcademic = (function(_super) {
-    __extends(LawyerAcademic, _super);
+  ppu.LawyerAcademic = (function(superClass) {
+    extend(LawyerAcademic, superClass);
 
     function LawyerAcademic() {
       return LawyerAcademic.__super__.constructor.apply(this, arguments);
@@ -892,8 +892,8 @@ $(function() {
     return LawyerAcademic;
 
   })(Backbone.Model);
-  ppu.LawyerAcademics = (function(_super) {
-    __extends(LawyerAcademics, _super);
+  ppu.LawyerAcademics = (function(superClass) {
+    extend(LawyerAcademics, superClass);
 
     function LawyerAcademics() {
       return LawyerAcademics.__super__.constructor.apply(this, arguments);
@@ -906,8 +906,8 @@ $(function() {
     return LawyerAcademics;
 
   })(Backbone.Collection);
-  ppu.LawyerAcademicCreate = (function(_super) {
-    __extends(LawyerAcademicCreate, _super);
+  ppu.LawyerAcademicCreate = (function(superClass) {
+    extend(LawyerAcademicCreate, superClass);
 
     function LawyerAcademicCreate() {
       return LawyerAcademicCreate.__super__.constructor.apply(this, arguments);
@@ -942,8 +942,8 @@ $(function() {
     return LawyerAcademicCreate;
 
   })(Backbone.View);
-  ppu.LawyerAcademicsEditModal = (function(_super) {
-    __extends(LawyerAcademicsEditModal, _super);
+  ppu.LawyerAcademicsEditModal = (function(superClass) {
+    extend(LawyerAcademicsEditModal, superClass);
 
     function LawyerAcademicsEditModal() {
       return LawyerAcademicsEditModal.__super__.constructor.apply(this, arguments);
@@ -958,8 +958,8 @@ $(function() {
     return LawyerAcademicsEditModal;
 
   })(Backbone.View);
-  ppu.LawyerAcademicView = (function(_super) {
-    __extends(LawyerAcademicView, _super);
+  ppu.LawyerAcademicView = (function(superClass) {
+    extend(LawyerAcademicView, superClass);
 
     function LawyerAcademicView() {
       return LawyerAcademicView.__super__.constructor.apply(this, arguments);
@@ -976,8 +976,8 @@ $(function() {
     return LawyerAcademicView;
 
   })(Backbone.View);
-  ppu.LawyerAcademicModalCreate = (function(_super) {
-    __extends(LawyerAcademicModalCreate, _super);
+  ppu.LawyerAcademicModalCreate = (function(superClass) {
+    extend(LawyerAcademicModalCreate, superClass);
 
     function LawyerAcademicModalCreate() {
       return LawyerAcademicModalCreate.__super__.constructor.apply(this, arguments);
@@ -992,8 +992,8 @@ $(function() {
     return LawyerAcademicModalCreate;
 
   })(Backbone.View);
-  return ppu.LawyerAcademicsEdit = (function(_super) {
-    __extends(LawyerAcademicsEdit, _super);
+  return ppu.LawyerAcademicsEdit = (function(superClass) {
+    extend(LawyerAcademicsEdit, superClass);
 
     function LawyerAcademicsEdit() {
       return LawyerAcademicsEdit.__super__.constructor.apply(this, arguments);
@@ -1012,12 +1012,12 @@ $(function() {
   })(Backbone.View);
 });
 
-var __hasProp = {}.hasOwnProperty,
-  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  hasProp = {}.hasOwnProperty;
 
 $(function() {
-  ppu.LawyerEducation = (function(_super) {
-    __extends(LawyerEducation, _super);
+  ppu.LawyerEducation = (function(superClass) {
+    extend(LawyerEducation, superClass);
 
     function LawyerEducation() {
       return LawyerEducation.__super__.constructor.apply(this, arguments);
@@ -1028,8 +1028,8 @@ $(function() {
     return LawyerEducation;
 
   })(Backbone.Model);
-  ppu.LawyerEducations = (function(_super) {
-    __extends(LawyerEducations, _super);
+  ppu.LawyerEducations = (function(superClass) {
+    extend(LawyerEducations, superClass);
 
     function LawyerEducations() {
       return LawyerEducations.__super__.constructor.apply(this, arguments);
@@ -1042,8 +1042,8 @@ $(function() {
     return LawyerEducations;
 
   })(Backbone.Collection);
-  ppu.LawyerEducationCreate = (function(_super) {
-    __extends(LawyerEducationCreate, _super);
+  ppu.LawyerEducationCreate = (function(superClass) {
+    extend(LawyerEducationCreate, superClass);
 
     function LawyerEducationCreate() {
       return LawyerEducationCreate.__super__.constructor.apply(this, arguments);
@@ -1078,8 +1078,8 @@ $(function() {
     return LawyerEducationCreate;
 
   })(Backbone.View);
-  ppu.LawyerEducationModalCreate = (function(_super) {
-    __extends(LawyerEducationModalCreate, _super);
+  ppu.LawyerEducationModalCreate = (function(superClass) {
+    extend(LawyerEducationModalCreate, superClass);
 
     function LawyerEducationModalCreate() {
       return LawyerEducationModalCreate.__super__.constructor.apply(this, arguments);
@@ -1094,8 +1094,8 @@ $(function() {
     return LawyerEducationModalCreate;
 
   })(Backbone.View);
-  ppu.LawyerEducationEditModal = (function(_super) {
-    __extends(LawyerEducationEditModal, _super);
+  ppu.LawyerEducationEditModal = (function(superClass) {
+    extend(LawyerEducationEditModal, superClass);
 
     function LawyerEducationEditModal() {
       return LawyerEducationEditModal.__super__.constructor.apply(this, arguments);
@@ -1110,8 +1110,8 @@ $(function() {
     return LawyerEducationEditModal;
 
   })(Backbone.View);
-  ppu.LawyerEducationView = (function(_super) {
-    __extends(LawyerEducationView, _super);
+  ppu.LawyerEducationView = (function(superClass) {
+    extend(LawyerEducationView, superClass);
 
     function LawyerEducationView() {
       return LawyerEducationView.__super__.constructor.apply(this, arguments);
@@ -1128,8 +1128,8 @@ $(function() {
     return LawyerEducationView;
 
   })(Backbone.View);
-  return ppu.LawyerEducationsEdit = (function(_super) {
-    __extends(LawyerEducationsEdit, _super);
+  return ppu.LawyerEducationsEdit = (function(superClass) {
+    extend(LawyerEducationsEdit, superClass);
 
     function LawyerEducationsEdit() {
       return LawyerEducationsEdit.__super__.constructor.apply(this, arguments);
@@ -1148,12 +1148,12 @@ $(function() {
   })(Backbone.View);
 });
 
-var __hasProp = {}.hasOwnProperty,
-  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  hasProp = {}.hasOwnProperty;
 
 $(function() {
-  ppu.LawyerInstitution = (function(_super) {
-    __extends(LawyerInstitution, _super);
+  ppu.LawyerInstitution = (function(superClass) {
+    extend(LawyerInstitution, superClass);
 
     function LawyerInstitution() {
       return LawyerInstitution.__super__.constructor.apply(this, arguments);
@@ -1164,8 +1164,8 @@ $(function() {
     return LawyerInstitution;
 
   })(Backbone.Model);
-  ppu.LawyerInstitutions = (function(_super) {
-    __extends(LawyerInstitutions, _super);
+  ppu.LawyerInstitutions = (function(superClass) {
+    extend(LawyerInstitutions, superClass);
 
     function LawyerInstitutions() {
       return LawyerInstitutions.__super__.constructor.apply(this, arguments);
@@ -1178,8 +1178,8 @@ $(function() {
     return LawyerInstitutions;
 
   })(Backbone.Collection);
-  ppu.LawyerInstitutionCreate = (function(_super) {
-    __extends(LawyerInstitutionCreate, _super);
+  ppu.LawyerInstitutionCreate = (function(superClass) {
+    extend(LawyerInstitutionCreate, superClass);
 
     function LawyerInstitutionCreate() {
       return LawyerInstitutionCreate.__super__.constructor.apply(this, arguments);
@@ -1214,8 +1214,8 @@ $(function() {
     return LawyerInstitutionCreate;
 
   })(Backbone.View);
-  ppu.LawyerInstitutionsEditModal = (function(_super) {
-    __extends(LawyerInstitutionsEditModal, _super);
+  ppu.LawyerInstitutionsEditModal = (function(superClass) {
+    extend(LawyerInstitutionsEditModal, superClass);
 
     function LawyerInstitutionsEditModal() {
       return LawyerInstitutionsEditModal.__super__.constructor.apply(this, arguments);
@@ -1230,8 +1230,8 @@ $(function() {
     return LawyerInstitutionsEditModal;
 
   })(Backbone.View);
-  ppu.LawyerInstitutionView = (function(_super) {
-    __extends(LawyerInstitutionView, _super);
+  ppu.LawyerInstitutionView = (function(superClass) {
+    extend(LawyerInstitutionView, superClass);
 
     function LawyerInstitutionView() {
       return LawyerInstitutionView.__super__.constructor.apply(this, arguments);
@@ -1248,8 +1248,8 @@ $(function() {
     return LawyerInstitutionView;
 
   })(Backbone.View);
-  ppu.LawyerInstitutionModalCreate = (function(_super) {
-    __extends(LawyerInstitutionModalCreate, _super);
+  ppu.LawyerInstitutionModalCreate = (function(superClass) {
+    extend(LawyerInstitutionModalCreate, superClass);
 
     function LawyerInstitutionModalCreate() {
       return LawyerInstitutionModalCreate.__super__.constructor.apply(this, arguments);
@@ -1264,8 +1264,8 @@ $(function() {
     return LawyerInstitutionModalCreate;
 
   })(Backbone.View);
-  return ppu.LawyerInstitutionsEdit = (function(_super) {
-    __extends(LawyerInstitutionsEdit, _super);
+  return ppu.LawyerInstitutionsEdit = (function(superClass) {
+    extend(LawyerInstitutionsEdit, superClass);
 
     function LawyerInstitutionsEdit() {
       return LawyerInstitutionsEdit.__super__.constructor.apply(this, arguments);
@@ -1284,12 +1284,12 @@ $(function() {
   })(Backbone.View);
 });
 
-var __hasProp = {}.hasOwnProperty,
-  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  hasProp = {}.hasOwnProperty;
 
 $(function() {
-  ppu.LawyerLanguage = (function(_super) {
-    __extends(LawyerLanguage, _super);
+  ppu.LawyerLanguage = (function(superClass) {
+    extend(LawyerLanguage, superClass);
 
     function LawyerLanguage() {
       return LawyerLanguage.__super__.constructor.apply(this, arguments);
@@ -1300,8 +1300,8 @@ $(function() {
     return LawyerLanguage;
 
   })(Backbone.Model);
-  ppu.LawyerLanguages = (function(_super) {
-    __extends(LawyerLanguages, _super);
+  ppu.LawyerLanguages = (function(superClass) {
+    extend(LawyerLanguages, superClass);
 
     function LawyerLanguages() {
       return LawyerLanguages.__super__.constructor.apply(this, arguments);
@@ -1314,8 +1314,8 @@ $(function() {
     return LawyerLanguages;
 
   })(Backbone.Collection);
-  ppu.LawyerLanguageCreate = (function(_super) {
-    __extends(LawyerLanguageCreate, _super);
+  ppu.LawyerLanguageCreate = (function(superClass) {
+    extend(LawyerLanguageCreate, superClass);
 
     function LawyerLanguageCreate() {
       return LawyerLanguageCreate.__super__.constructor.apply(this, arguments);
@@ -1350,8 +1350,8 @@ $(function() {
     return LawyerLanguageCreate;
 
   })(Backbone.View);
-  ppu.LawyerLanguagesCreateModal = (function(_super) {
-    __extends(LawyerLanguagesCreateModal, _super);
+  ppu.LawyerLanguagesCreateModal = (function(superClass) {
+    extend(LawyerLanguagesCreateModal, superClass);
 
     function LawyerLanguagesCreateModal() {
       return LawyerLanguagesCreateModal.__super__.constructor.apply(this, arguments);
@@ -1366,8 +1366,8 @@ $(function() {
     return LawyerLanguagesCreateModal;
 
   })(Backbone.View);
-  ppu.LawyerLanguagesEditModal = (function(_super) {
-    __extends(LawyerLanguagesEditModal, _super);
+  ppu.LawyerLanguagesEditModal = (function(superClass) {
+    extend(LawyerLanguagesEditModal, superClass);
 
     function LawyerLanguagesEditModal() {
       return LawyerLanguagesEditModal.__super__.constructor.apply(this, arguments);
@@ -1382,8 +1382,8 @@ $(function() {
     return LawyerLanguagesEditModal;
 
   })(Backbone.View);
-  ppu.LawyerLanguageView = (function(_super) {
-    __extends(LawyerLanguageView, _super);
+  ppu.LawyerLanguageView = (function(superClass) {
+    extend(LawyerLanguageView, superClass);
 
     function LawyerLanguageView() {
       return LawyerLanguageView.__super__.constructor.apply(this, arguments);
@@ -1400,8 +1400,8 @@ $(function() {
     return LawyerLanguageView;
 
   })(Backbone.View);
-  return ppu.LawyerLanguagesEdit = (function(_super) {
-    __extends(LawyerLanguagesEdit, _super);
+  return ppu.LawyerLanguagesEdit = (function(superClass) {
+    extend(LawyerLanguagesEdit, superClass);
 
     function LawyerLanguagesEdit() {
       return LawyerLanguagesEdit.__super__.constructor.apply(this, arguments);
@@ -1420,12 +1420,12 @@ $(function() {
   })(Backbone.View);
 });
 
-var __hasProp = {}.hasOwnProperty,
-  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  hasProp = {}.hasOwnProperty;
 
 $(function() {
-  ppu.LawyerPharase = (function(_super) {
-    __extends(LawyerPharase, _super);
+  ppu.LawyerPharase = (function(superClass) {
+    extend(LawyerPharase, superClass);
 
     function LawyerPharase() {
       return LawyerPharase.__super__.constructor.apply(this, arguments);
@@ -1436,8 +1436,8 @@ $(function() {
     return LawyerPharase;
 
   })(Backbone.Model);
-  ppu.LawyerPharases = (function(_super) {
-    __extends(LawyerPharases, _super);
+  ppu.LawyerPharases = (function(superClass) {
+    extend(LawyerPharases, superClass);
 
     function LawyerPharases() {
       return LawyerPharases.__super__.constructor.apply(this, arguments);
@@ -1450,8 +1450,8 @@ $(function() {
     return LawyerPharases;
 
   })(Backbone.Collection);
-  ppu.LawyerPharaseCreate = (function(_super) {
-    __extends(LawyerPharaseCreate, _super);
+  ppu.LawyerPharaseCreate = (function(superClass) {
+    extend(LawyerPharaseCreate, superClass);
 
     function LawyerPharaseCreate() {
       return LawyerPharaseCreate.__super__.constructor.apply(this, arguments);
@@ -1486,8 +1486,8 @@ $(function() {
     return LawyerPharaseCreate;
 
   })(Backbone.View);
-  ppu.LawyerPhrasesEditModal = (function(_super) {
-    __extends(LawyerPhrasesEditModal, _super);
+  ppu.LawyerPhrasesEditModal = (function(superClass) {
+    extend(LawyerPhrasesEditModal, superClass);
 
     function LawyerPhrasesEditModal() {
       return LawyerPhrasesEditModal.__super__.constructor.apply(this, arguments);
@@ -1502,8 +1502,8 @@ $(function() {
     return LawyerPhrasesEditModal;
 
   })(Backbone.View);
-  ppu.LawyerPharaseView = (function(_super) {
-    __extends(LawyerPharaseView, _super);
+  ppu.LawyerPharaseView = (function(superClass) {
+    extend(LawyerPharaseView, superClass);
 
     function LawyerPharaseView() {
       return LawyerPharaseView.__super__.constructor.apply(this, arguments);
@@ -1520,8 +1520,8 @@ $(function() {
     return LawyerPharaseView;
 
   })(Backbone.View);
-  ppu.LawyerPhraseModalCreate = (function(_super) {
-    __extends(LawyerPhraseModalCreate, _super);
+  ppu.LawyerPhraseModalCreate = (function(superClass) {
+    extend(LawyerPhraseModalCreate, superClass);
 
     function LawyerPhraseModalCreate() {
       return LawyerPhraseModalCreate.__super__.constructor.apply(this, arguments);
@@ -1536,8 +1536,8 @@ $(function() {
     return LawyerPhraseModalCreate;
 
   })(Backbone.View);
-  return ppu.LawyerPharasesEdit = (function(_super) {
-    __extends(LawyerPharasesEdit, _super);
+  return ppu.LawyerPharasesEdit = (function(superClass) {
+    extend(LawyerPharasesEdit, superClass);
 
     function LawyerPharasesEdit() {
       return LawyerPharasesEdit.__super__.constructor.apply(this, arguments);
@@ -1556,12 +1556,12 @@ $(function() {
   })(Backbone.View);
 });
 
-var __hasProp = {}.hasOwnProperty,
-  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  hasProp = {}.hasOwnProperty;
 
 $(function() {
-  ppu.LawyerJob = (function(_super) {
-    __extends(LawyerJob, _super);
+  ppu.LawyerJob = (function(superClass) {
+    extend(LawyerJob, superClass);
 
     function LawyerJob() {
       return LawyerJob.__super__.constructor.apply(this, arguments);
@@ -1572,8 +1572,8 @@ $(function() {
     return LawyerJob;
 
   })(Backbone.Model);
-  ppu.LawyerJobs = (function(_super) {
-    __extends(LawyerJobs, _super);
+  ppu.LawyerJobs = (function(superClass) {
+    extend(LawyerJobs, superClass);
 
     function LawyerJobs() {
       return LawyerJobs.__super__.constructor.apply(this, arguments);
@@ -1586,8 +1586,8 @@ $(function() {
     return LawyerJobs;
 
   })(Backbone.Collection);
-  ppu.LawyerJobCreate = (function(_super) {
-    __extends(LawyerJobCreate, _super);
+  ppu.LawyerJobCreate = (function(superClass) {
+    extend(LawyerJobCreate, superClass);
 
     function LawyerJobCreate() {
       return LawyerJobCreate.__super__.constructor.apply(this, arguments);
@@ -1622,8 +1622,8 @@ $(function() {
     return LawyerJobCreate;
 
   })(Backbone.View);
-  ppu.LawyerJobsEditModal = (function(_super) {
-    __extends(LawyerJobsEditModal, _super);
+  ppu.LawyerJobsEditModal = (function(superClass) {
+    extend(LawyerJobsEditModal, superClass);
 
     function LawyerJobsEditModal() {
       return LawyerJobsEditModal.__super__.constructor.apply(this, arguments);
@@ -1638,8 +1638,8 @@ $(function() {
     return LawyerJobsEditModal;
 
   })(Backbone.View);
-  ppu.LawyerJobView = (function(_super) {
-    __extends(LawyerJobView, _super);
+  ppu.LawyerJobView = (function(superClass) {
+    extend(LawyerJobView, superClass);
 
     function LawyerJobView() {
       return LawyerJobView.__super__.constructor.apply(this, arguments);
@@ -1656,8 +1656,8 @@ $(function() {
     return LawyerJobView;
 
   })(Backbone.View);
-  ppu.LawyerJobModalCreate = (function(_super) {
-    __extends(LawyerJobModalCreate, _super);
+  ppu.LawyerJobModalCreate = (function(superClass) {
+    extend(LawyerJobModalCreate, superClass);
 
     function LawyerJobModalCreate() {
       return LawyerJobModalCreate.__super__.constructor.apply(this, arguments);
@@ -1672,8 +1672,8 @@ $(function() {
     return LawyerJobModalCreate;
 
   })(Backbone.View);
-  return ppu.LawyerJobsEdit = (function(_super) {
-    __extends(LawyerJobsEdit, _super);
+  return ppu.LawyerJobsEdit = (function(superClass) {
+    extend(LawyerJobsEdit, superClass);
 
     function LawyerJobsEdit() {
       return LawyerJobsEdit.__super__.constructor.apply(this, arguments);
@@ -1692,12 +1692,12 @@ $(function() {
   })(Backbone.View);
 });
 
-var __hasProp = {}.hasOwnProperty,
-  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  hasProp = {}.hasOwnProperty;
 
 $(function() {
-  ppu.LawyerRecognition = (function(_super) {
-    __extends(LawyerRecognition, _super);
+  ppu.LawyerRecognition = (function(superClass) {
+    extend(LawyerRecognition, superClass);
 
     function LawyerRecognition() {
       return LawyerRecognition.__super__.constructor.apply(this, arguments);
@@ -1708,8 +1708,8 @@ $(function() {
     return LawyerRecognition;
 
   })(Backbone.Model);
-  ppu.LawyerRecognitions = (function(_super) {
-    __extends(LawyerRecognitions, _super);
+  ppu.LawyerRecognitions = (function(superClass) {
+    extend(LawyerRecognitions, superClass);
 
     function LawyerRecognitions() {
       return LawyerRecognitions.__super__.constructor.apply(this, arguments);
@@ -1722,8 +1722,8 @@ $(function() {
     return LawyerRecognitions;
 
   })(Backbone.Collection);
-  ppu.LawyerRecognitionCreate = (function(_super) {
-    __extends(LawyerRecognitionCreate, _super);
+  ppu.LawyerRecognitionCreate = (function(superClass) {
+    extend(LawyerRecognitionCreate, superClass);
 
     function LawyerRecognitionCreate() {
       return LawyerRecognitionCreate.__super__.constructor.apply(this, arguments);
@@ -1758,8 +1758,8 @@ $(function() {
     return LawyerRecognitionCreate;
 
   })(Backbone.View);
-  ppu.LawyerRecognitionsEditModal = (function(_super) {
-    __extends(LawyerRecognitionsEditModal, _super);
+  ppu.LawyerRecognitionsEditModal = (function(superClass) {
+    extend(LawyerRecognitionsEditModal, superClass);
 
     function LawyerRecognitionsEditModal() {
       return LawyerRecognitionsEditModal.__super__.constructor.apply(this, arguments);
@@ -1774,8 +1774,8 @@ $(function() {
     return LawyerRecognitionsEditModal;
 
   })(Backbone.View);
-  ppu.LawyerRecognitionView = (function(_super) {
-    __extends(LawyerRecognitionView, _super);
+  ppu.LawyerRecognitionView = (function(superClass) {
+    extend(LawyerRecognitionView, superClass);
 
     function LawyerRecognitionView() {
       return LawyerRecognitionView.__super__.constructor.apply(this, arguments);
@@ -1792,8 +1792,8 @@ $(function() {
     return LawyerRecognitionView;
 
   })(Backbone.View);
-  ppu.LawyerRecognitionModalCreate = (function(_super) {
-    __extends(LawyerRecognitionModalCreate, _super);
+  ppu.LawyerRecognitionModalCreate = (function(superClass) {
+    extend(LawyerRecognitionModalCreate, superClass);
 
     function LawyerRecognitionModalCreate() {
       return LawyerRecognitionModalCreate.__super__.constructor.apply(this, arguments);
@@ -1808,8 +1808,8 @@ $(function() {
     return LawyerRecognitionModalCreate;
 
   })(Backbone.View);
-  return ppu.LawyerRecognitionsEdit = (function(_super) {
-    __extends(LawyerRecognitionsEdit, _super);
+  return ppu.LawyerRecognitionsEdit = (function(superClass) {
+    extend(LawyerRecognitionsEdit, superClass);
 
     function LawyerRecognitionsEdit() {
       return LawyerRecognitionsEdit.__super__.constructor.apply(this, arguments);
@@ -1828,12 +1828,12 @@ $(function() {
   })(Backbone.View);
 });
 
-var __hasProp = {}.hasOwnProperty,
-  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  hasProp = {}.hasOwnProperty;
 
 $(function() {
-  ppu.admin.CategoryCheckbox = (function(_super) {
-    __extends(CategoryCheckbox, _super);
+  ppu.admin.CategoryCheckbox = (function(superClass) {
+    extend(CategoryCheckbox, superClass);
 
     function CategoryCheckbox() {
       return CategoryCheckbox.__super__.constructor.apply(this, arguments);
@@ -1853,8 +1853,8 @@ $(function() {
     return CategoryCheckbox;
 
   })(Backbone.View);
-  return ppu.admin.CategoriesCheckbox = (function(_super) {
-    __extends(CategoriesCheckbox, _super);
+  return ppu.admin.CategoriesCheckbox = (function(superClass) {
+    extend(CategoriesCheckbox, superClass);
 
     function CategoriesCheckbox() {
       return CategoriesCheckbox.__super__.constructor.apply(this, arguments);
@@ -1885,12 +1885,12 @@ $(function() {
   })(Backbone.View);
 });
 
-var __hasProp = {}.hasOwnProperty,
-  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  hasProp = {}.hasOwnProperty;
 
 $(function() {
-  ppu.admin.LawyerView = (function(_super) {
-    __extends(LawyerView, _super);
+  ppu.admin.LawyerView = (function(superClass) {
+    extend(LawyerView, superClass);
 
     function LawyerView() {
       return LawyerView.__super__.constructor.apply(this, arguments);
@@ -1978,8 +1978,8 @@ $(function() {
     return LawyerView;
 
   })(Backbone.View);
-  ppu.admin.LawyersView = (function(_super) {
-    __extends(LawyersView, _super);
+  ppu.admin.LawyersView = (function(superClass) {
+    extend(LawyersView, superClass);
 
     function LawyersView() {
       return LawyersView.__super__.constructor.apply(this, arguments);
@@ -2022,8 +2022,8 @@ $(function() {
     return LawyersView;
 
   })(Backbone.View);
-  ppu.admin.LawyersFilters = (function(_super) {
-    __extends(LawyersFilters, _super);
+  ppu.admin.LawyersFilters = (function(superClass) {
+    extend(LawyersFilters, superClass);
 
     function LawyersFilters() {
       return LawyersFilters.__super__.constructor.apply(this, arguments);
@@ -2120,8 +2120,8 @@ $(function() {
     return LawyersFilters;
 
   })(Backbone.View);
-  ppu.LawyerCreateForm = (function(_super) {
-    __extends(LawyerCreateForm, _super);
+  ppu.LawyerCreateForm = (function(superClass) {
+    extend(LawyerCreateForm, superClass);
 
     function LawyerCreateForm() {
       return LawyerCreateForm.__super__.constructor.apply(this, arguments);
@@ -2194,8 +2194,8 @@ $(function() {
     return LawyerCreateForm;
 
   })(Backbone.View);
-  ppu.LawyerCreateView = (function(_super) {
-    __extends(LawyerCreateView, _super);
+  ppu.LawyerCreateView = (function(superClass) {
+    extend(LawyerCreateView, superClass);
 
     function LawyerCreateView() {
       return LawyerCreateView.__super__.constructor.apply(this, arguments);
@@ -2222,8 +2222,8 @@ $(function() {
     return LawyerCreateView;
 
   })(Backbone.View);
-  ppu.lawyerEdit = (function(_super) {
-    __extends(lawyerEdit, _super);
+  ppu.lawyerEdit = (function(superClass) {
+    extend(lawyerEdit, superClass);
 
     function lawyerEdit() {
       return lawyerEdit.__super__.constructor.apply(this, arguments);
@@ -2312,8 +2312,8 @@ $(function() {
     return lawyerEdit;
 
   })(Backbone.View);
-  ppu.LawyerEditView = (function(_super) {
-    __extends(LawyerEditView, _super);
+  ppu.LawyerEditView = (function(superClass) {
+    extend(LawyerEditView, superClass);
 
     function LawyerEditView() {
       return LawyerEditView.__super__.constructor.apply(this, arguments);
@@ -2384,8 +2384,8 @@ $(function() {
     return LawyerEditView;
 
   })(Backbone.View);
-  return ppu.lawyerConfirmTranslate = (function(_super) {
-    __extends(lawyerConfirmTranslate, _super);
+  return ppu.lawyerConfirmTranslate = (function(superClass) {
+    extend(lawyerConfirmTranslate, superClass);
 
     function lawyerConfirmTranslate() {
       return lawyerConfirmTranslate.__super__.constructor.apply(this, arguments);
@@ -2415,12 +2415,12 @@ $(function() {
   })(Backbone.View);
 });
 
-var __hasProp = {}.hasOwnProperty,
-  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  hasProp = {}.hasOwnProperty;
 
 $(function() {
-  ppu.Post = (function(_super) {
-    __extends(Post, _super);
+  ppu.Post = (function(superClass) {
+    extend(Post, superClass);
 
     function Post() {
       return Post.__super__.constructor.apply(this, arguments);
@@ -2431,8 +2431,8 @@ $(function() {
     return Post;
 
   })(Backbone.Model);
-  ppu.Posts = (function(_super) {
-    __extends(Posts, _super);
+  ppu.Posts = (function(superClass) {
+    extend(Posts, superClass);
 
     function Posts() {
       return Posts.__super__.constructor.apply(this, arguments);
@@ -2445,8 +2445,8 @@ $(function() {
     return Posts;
 
   })(Backbone.Collection);
-  ppu.admin.PostView = (function(_super) {
-    __extends(PostView, _super);
+  ppu.admin.PostView = (function(superClass) {
+    extend(PostView, superClass);
 
     function PostView() {
       return PostView.__super__.constructor.apply(this, arguments);
@@ -2535,8 +2535,8 @@ $(function() {
     return PostView;
 
   })(Backbone.View);
-  ppu.admin.PostsView = (function(_super) {
-    __extends(PostsView, _super);
+  ppu.admin.PostsView = (function(superClass) {
+    extend(PostsView, superClass);
 
     function PostsView() {
       return PostsView.__super__.constructor.apply(this, arguments);
@@ -2601,8 +2601,8 @@ $(function() {
     return PostsView;
 
   })(Backbone.View);
-  ppu.admin.PostsFilters = (function(_super) {
-    __extends(PostsFilters, _super);
+  ppu.admin.PostsFilters = (function(superClass) {
+    extend(PostsFilters, superClass);
 
     function PostsFilters() {
       return PostsFilters.__super__.constructor.apply(this, arguments);
@@ -2690,8 +2690,8 @@ $(function() {
     return PostsFilters;
 
   })(Backbone.View);
-  ppu.admin.PostCreate = (function(_super) {
-    __extends(PostCreate, _super);
+  ppu.admin.PostCreate = (function(superClass) {
+    extend(PostCreate, superClass);
 
     function PostCreate() {
       return PostCreate.__super__.constructor.apply(this, arguments);
@@ -2791,8 +2791,8 @@ $(function() {
     return PostCreate;
 
   })(Backbone.View);
-  ppu.admin.PostEdit = (function(_super) {
-    __extends(PostEdit, _super);
+  ppu.admin.PostEdit = (function(superClass) {
+    extend(PostEdit, superClass);
 
     function PostEdit() {
       return PostEdit.__super__.constructor.apply(this, arguments);
@@ -2907,8 +2907,8 @@ $(function() {
     return PostEdit;
 
   })(Backbone.View);
-  ppu.admin.PostSelectLawyers = (function(_super) {
-    __extends(PostSelectLawyers, _super);
+  ppu.admin.PostSelectLawyers = (function(superClass) {
+    extend(PostSelectLawyers, superClass);
 
     function PostSelectLawyers() {
       return PostSelectLawyers.__super__.constructor.apply(this, arguments);
@@ -2941,8 +2941,8 @@ $(function() {
     return PostSelectLawyers;
 
   })(Backbone.View);
-  ppu.admin.PostLawyerSelect = (function(_super) {
-    __extends(PostLawyerSelect, _super);
+  ppu.admin.PostLawyerSelect = (function(superClass) {
+    extend(PostLawyerSelect, superClass);
 
     function PostLawyerSelect() {
       return PostLawyerSelect.__super__.constructor.apply(this, arguments);
@@ -2975,8 +2975,8 @@ $(function() {
     return PostLawyerSelect;
 
   })(Backbone.View);
-  ppu.admin.PostLawyersSelect = (function(_super) {
-    __extends(PostLawyersSelect, _super);
+  ppu.admin.PostLawyersSelect = (function(superClass) {
+    extend(PostLawyersSelect, superClass);
 
     function PostLawyersSelect() {
       return PostLawyersSelect.__super__.constructor.apply(this, arguments);
@@ -3015,8 +3015,8 @@ $(function() {
     return PostLawyersSelect;
 
   })(Backbone.View);
-  return ppu.admin.PostLawyersSelected = (function(_super) {
-    __extends(PostLawyersSelected, _super);
+  return ppu.admin.PostLawyersSelected = (function(superClass) {
+    extend(PostLawyersSelected, superClass);
 
     function PostLawyersSelected() {
       return PostLawyersSelected.__super__.constructor.apply(this, arguments);
@@ -3054,12 +3054,12 @@ $(function() {
   })(Backbone.View);
 });
 
-var __hasProp = {}.hasOwnProperty,
-  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  hasProp = {}.hasOwnProperty;
 
 $(function() {
-  ppu.admin.TheActualView = (function(_super) {
-    __extends(TheActualView, _super);
+  ppu.admin.TheActualView = (function(superClass) {
+    extend(TheActualView, superClass);
 
     function TheActualView() {
       return TheActualView.__super__.constructor.apply(this, arguments);
@@ -3137,8 +3137,8 @@ $(function() {
     return TheActualView;
 
   })(Backbone.View);
-  return ppu.admin.TheActualViews = (function(_super) {
-    __extends(TheActualViews, _super);
+  return ppu.admin.TheActualViews = (function(superClass) {
+    extend(TheActualViews, superClass);
 
     function TheActualViews() {
       return TheActualViews.__super__.constructor.apply(this, arguments);
@@ -3205,12 +3205,12 @@ $(function() {
   })(Backbone.View);
 });
 
-var __hasProp = {}.hasOwnProperty,
-  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  hasProp = {}.hasOwnProperty;
 
 $(function() {
-  return ppu.admin.TheActualCreate = (function(_super) {
-    __extends(TheActualCreate, _super);
+  return ppu.admin.TheActualCreate = (function(superClass) {
+    extend(TheActualCreate, superClass);
 
     function TheActualCreate() {
       return TheActualCreate.__super__.constructor.apply(this, arguments);
@@ -3316,12 +3316,12 @@ $(function() {
   })(Backbone.View);
 });
 
-var __hasProp = {}.hasOwnProperty,
-  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  hasProp = {}.hasOwnProperty;
 
 $(function() {
-  ppu.admin.TheActualCoView = (function(_super) {
-    __extends(TheActualCoView, _super);
+  ppu.admin.TheActualCoView = (function(superClass) {
+    extend(TheActualCoView, superClass);
 
     function TheActualCoView() {
       return TheActualCoView.__super__.constructor.apply(this, arguments);
@@ -3399,8 +3399,8 @@ $(function() {
     return TheActualCoView;
 
   })(Backbone.View);
-  return ppu.admin.TheActualCoViews = (function(_super) {
-    __extends(TheActualCoViews, _super);
+  return ppu.admin.TheActualCoViews = (function(superClass) {
+    extend(TheActualCoViews, superClass);
 
     function TheActualCoViews() {
       return TheActualCoViews.__super__.constructor.apply(this, arguments);
@@ -3467,12 +3467,12 @@ $(function() {
   })(Backbone.View);
 });
 
-var __hasProp = {}.hasOwnProperty,
-  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  hasProp = {}.hasOwnProperty;
 
 $(function() {
-  return ppu.admin.TheActualCoCreate = (function(_super) {
-    __extends(TheActualCoCreate, _super);
+  return ppu.admin.TheActualCoCreate = (function(superClass) {
+    extend(TheActualCoCreate, superClass);
 
     function TheActualCoCreate() {
       return TheActualCoCreate.__super__.constructor.apply(this, arguments);
@@ -3578,12 +3578,12 @@ $(function() {
   })(Backbone.View);
 });
 
-var __hasProp = {}.hasOwnProperty,
-  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  hasProp = {}.hasOwnProperty;
 
 $(function() {
-  ppu.admin.Gallery = (function(_super) {
-    __extends(Gallery, _super);
+  ppu.admin.Gallery = (function(superClass) {
+    extend(Gallery, superClass);
 
     function Gallery() {
       return Gallery.__super__.constructor.apply(this, arguments);
@@ -3594,8 +3594,8 @@ $(function() {
     return Gallery;
 
   })(Backbone.Model);
-  ppu.admin.Galleries = (function(_super) {
-    __extends(Galleries, _super);
+  ppu.admin.Galleries = (function(superClass) {
+    extend(Galleries, superClass);
 
     function Galleries() {
       return Galleries.__super__.constructor.apply(this, arguments);
@@ -3608,8 +3608,8 @@ $(function() {
     return Galleries;
 
   })(Backbone.Collection);
-  ppu.admin.GalleryView = (function(_super) {
-    __extends(GalleryView, _super);
+  ppu.admin.GalleryView = (function(superClass) {
+    extend(GalleryView, superClass);
 
     function GalleryView() {
       return GalleryView.__super__.constructor.apply(this, arguments);
@@ -3641,8 +3641,8 @@ $(function() {
     return GalleryView;
 
   })(Backbone.View);
-  ppu.admin.GalleryPostModal = (function(_super) {
-    __extends(GalleryPostModal, _super);
+  ppu.admin.GalleryPostModal = (function(superClass) {
+    extend(GalleryPostModal, superClass);
 
     function GalleryPostModal() {
       return GalleryPostModal.__super__.constructor.apply(this, arguments);
@@ -3678,8 +3678,8 @@ $(function() {
     return GalleryPostModal;
 
   })(Backbone.View);
-  return ppu.admin.GalleryExperienceModal = (function(_super) {
-    __extends(GalleryExperienceModal, _super);
+  return ppu.admin.GalleryExperienceModal = (function(superClass) {
+    extend(GalleryExperienceModal, superClass);
 
     function GalleryExperienceModal() {
       return GalleryExperienceModal.__super__.constructor.apply(this, arguments);
@@ -3717,12 +3717,12 @@ $(function() {
   })(Backbone.View);
 });
 
-var __hasProp = {}.hasOwnProperty,
-  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  hasProp = {}.hasOwnProperty;
 
 $(function() {
-  ppu.Experience = (function(_super) {
-    __extends(Experience, _super);
+  ppu.Experience = (function(superClass) {
+    extend(Experience, superClass);
 
     function Experience() {
       return Experience.__super__.constructor.apply(this, arguments);
@@ -3733,8 +3733,8 @@ $(function() {
     return Experience;
 
   })(Backbone.Model);
-  ppu.Experiences = (function(_super) {
-    __extends(Experiences, _super);
+  ppu.Experiences = (function(superClass) {
+    extend(Experiences, superClass);
 
     function Experiences() {
       return Experiences.__super__.constructor.apply(this, arguments);
@@ -3747,8 +3747,8 @@ $(function() {
     return Experiences;
 
   })(Backbone.Collection);
-  ppu.admin.ExperienceView = (function(_super) {
-    __extends(ExperienceView, _super);
+  ppu.admin.ExperienceView = (function(superClass) {
+    extend(ExperienceView, superClass);
 
     function ExperienceView() {
       return ExperienceView.__super__.constructor.apply(this, arguments);
@@ -3802,8 +3802,8 @@ $(function() {
     return ExperienceView;
 
   })(Backbone.View);
-  ppu.admin.ExperiencesView = (function(_super) {
-    __extends(ExperiencesView, _super);
+  ppu.admin.ExperiencesView = (function(superClass) {
+    extend(ExperiencesView, superClass);
 
     function ExperiencesView() {
       return ExperiencesView.__super__.constructor.apply(this, arguments);
@@ -3846,8 +3846,8 @@ $(function() {
     return ExperiencesView;
 
   })(Backbone.View);
-  ppu.admin.ExperiencesFilters = (function(_super) {
-    __extends(ExperiencesFilters, _super);
+  ppu.admin.ExperiencesFilters = (function(superClass) {
+    extend(ExperiencesFilters, superClass);
 
     function ExperiencesFilters() {
       return ExperiencesFilters.__super__.constructor.apply(this, arguments);
@@ -3930,8 +3930,8 @@ $(function() {
     return ExperiencesFilters;
 
   })(Backbone.View);
-  ppu.admin.ExperienceCreate = (function(_super) {
-    __extends(ExperienceCreate, _super);
+  ppu.admin.ExperienceCreate = (function(superClass) {
+    extend(ExperienceCreate, superClass);
 
     function ExperienceCreate() {
       return ExperienceCreate.__super__.constructor.apply(this, arguments);
@@ -4017,8 +4017,8 @@ $(function() {
     return ExperienceCreate;
 
   })(Backbone.View);
-  ppu.admin.ExperienceEdit = (function(_super) {
-    __extends(ExperienceEdit, _super);
+  ppu.admin.ExperienceEdit = (function(superClass) {
+    extend(ExperienceEdit, superClass);
 
     function ExperienceEdit() {
       return ExperienceEdit.__super__.constructor.apply(this, arguments);
@@ -4127,8 +4127,8 @@ $(function() {
     return ExperienceEdit;
 
   })(Backbone.View);
-  ppu.admin.ExperienceSelectLawyers = (function(_super) {
-    __extends(ExperienceSelectLawyers, _super);
+  ppu.admin.ExperienceSelectLawyers = (function(superClass) {
+    extend(ExperienceSelectLawyers, superClass);
 
     function ExperienceSelectLawyers() {
       return ExperienceSelectLawyers.__super__.constructor.apply(this, arguments);
@@ -4161,8 +4161,8 @@ $(function() {
     return ExperienceSelectLawyers;
 
   })(Backbone.View);
-  ppu.admin.ExperienceLawyerSelect = (function(_super) {
-    __extends(ExperienceLawyerSelect, _super);
+  ppu.admin.ExperienceLawyerSelect = (function(superClass) {
+    extend(ExperienceLawyerSelect, superClass);
 
     function ExperienceLawyerSelect() {
       return ExperienceLawyerSelect.__super__.constructor.apply(this, arguments);
@@ -4195,8 +4195,8 @@ $(function() {
     return ExperienceLawyerSelect;
 
   })(Backbone.View);
-  ppu.admin.ExperienceLawyersSelect = (function(_super) {
-    __extends(ExperienceLawyersSelect, _super);
+  ppu.admin.ExperienceLawyersSelect = (function(superClass) {
+    extend(ExperienceLawyersSelect, superClass);
 
     function ExperienceLawyersSelect() {
       return ExperienceLawyersSelect.__super__.constructor.apply(this, arguments);
@@ -4235,8 +4235,8 @@ $(function() {
     return ExperienceLawyersSelect;
 
   })(Backbone.View);
-  return ppu.admin.ExperienceLawyersSelected = (function(_super) {
-    __extends(ExperienceLawyersSelected, _super);
+  return ppu.admin.ExperienceLawyersSelected = (function(superClass) {
+    extend(ExperienceLawyersSelected, superClass);
 
     function ExperienceLawyersSelected() {
       return ExperienceLawyersSelected.__super__.constructor.apply(this, arguments);
@@ -4274,12 +4274,12 @@ $(function() {
   })(Backbone.View);
 });
 
-var __hasProp = {}.hasOwnProperty,
-  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  hasProp = {}.hasOwnProperty;
 
 $(function() {
-  ppu.admin.Router = (function(_super) {
-    __extends(Router, _super);
+  ppu.admin.Router = (function(superClass) {
+    extend(Router, superClass);
 
     function Router() {
       return Router.__super__.constructor.apply(this, arguments);

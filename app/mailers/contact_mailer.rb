@@ -5,4 +5,5 @@ class ContactMailer < ActionMailer::Base
     @contact = contact
     mail(to: to, subject: 'ppulegal Contacto')
   end
+  
 end

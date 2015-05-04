@@ -15,7 +15,7 @@ ppu.PostsController = {
     ppu.postsFilters.render()
     ppu.filtersMobile = new ppu.FiltersMobile
 
-  show: ->
+  show:(slug) ->
     ppu.post = new ppu.Post id: slug
     ppu.posts = new ppu.Posts
     ppu.post.fetch()

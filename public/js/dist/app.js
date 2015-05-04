@@ -401,8 +401,8 @@ mixins.lawyerRelationshipModalEdit = {
 };
 
 Handlebars.registerHelper('checked', function(val1, val2) {
-  var _ref;
-  return (_ref = val1 === val2) != null ? _ref : {
+  var ref;
+  return (ref = val1 === val2) != null ? ref : {
     ' checked="checked"': ''
   };
 });
@@ -533,12 +533,12 @@ Backbone.View.prototype.openShare = function() {
   return $("#share-modal").modal();
 };
 
-var __hasProp = {}.hasOwnProperty,
-  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  hasProp = {}.hasOwnProperty;
 
 $(function() {
-  return ppu.AppView = (function(_super) {
-    __extends(AppView, _super);
+  return ppu.AppView = (function(superClass) {
+    extend(AppView, superClass);
 
     function AppView() {
       return AppView.__super__.constructor.apply(this, arguments);
@@ -588,11 +588,11 @@ $(function() {
   })(Backbone.View);
 });
 
-var __hasProp = {}.hasOwnProperty,
-  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  hasProp = {}.hasOwnProperty;
 
-ppu.Category = (function(_super) {
-  __extends(Category, _super);
+ppu.Category = (function(superClass) {
+  extend(Category, superClass);
 
   function Category() {
     return Category.__super__.constructor.apply(this, arguments);
@@ -604,8 +604,8 @@ ppu.Category = (function(_super) {
 
 })(Backbone.Model);
 
-ppu.Categories = (function(_super) {
-  __extends(Categories, _super);
+ppu.Categories = (function(superClass) {
+  extend(Categories, superClass);
 
   function Categories() {
     return Categories.__super__.constructor.apply(this, arguments);
@@ -619,11 +619,11 @@ ppu.Categories = (function(_super) {
 
 })(Backbone.Collection);
 
-var __hasProp = {}.hasOwnProperty,
-  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  hasProp = {}.hasOwnProperty;
 
-ppu.Curriculum = (function(_super) {
-  __extends(Curriculum, _super);
+ppu.Curriculum = (function(superClass) {
+  extend(Curriculum, superClass);
 
   function Curriculum() {
     return Curriculum.__super__.constructor.apply(this, arguments);
@@ -631,8 +631,8 @@ ppu.Curriculum = (function(_super) {
 
   Curriculum.prototype.urlRoot = "/api/curriculums";
 
-  ppu.Curriculums = (function(_super1) {
-    __extends(Curriculums, _super1);
+  ppu.Curriculums = (function(superClass1) {
+    extend(Curriculums, superClass1);
 
     function Curriculums() {
       return Curriculums.__super__.constructor.apply(this, arguments);
@@ -650,11 +650,11 @@ ppu.Curriculum = (function(_super) {
 
 })(Backbone.Model);
 
-var __hasProp = {}.hasOwnProperty,
-  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  hasProp = {}.hasOwnProperty;
 
-ppu.Contact = (function(_super) {
-  __extends(Contact, _super);
+ppu.Contact = (function(superClass) {
+  extend(Contact, superClass);
 
   function Contact() {
     return Contact.__super__.constructor.apply(this, arguments);
@@ -666,8 +666,8 @@ ppu.Contact = (function(_super) {
 
 })(Backbone.Model);
 
-ppu.Contacts = (function(_super) {
-  __extends(Contacts, _super);
+ppu.Contacts = (function(superClass) {
+  extend(Contacts, superClass);
 
   function Contacts() {
     return Contacts.__super__.constructor.apply(this, arguments);
@@ -681,11 +681,11 @@ ppu.Contacts = (function(_super) {
 
 })(Backbone.Collection);
 
-var __hasProp = {}.hasOwnProperty,
-  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  hasProp = {}.hasOwnProperty;
 
-ppu.Lawyer = (function(_super) {
-  __extends(Lawyer, _super);
+ppu.Lawyer = (function(superClass) {
+  extend(Lawyer, superClass);
 
   function Lawyer() {
     return Lawyer.__super__.constructor.apply(this, arguments);
@@ -706,8 +706,8 @@ ppu.Lawyer = (function(_super) {
 
 })(Backbone.Model);
 
-ppu.Lawyers = (function(_super) {
-  __extends(Lawyers, _super);
+ppu.Lawyers = (function(superClass) {
+  extend(Lawyers, superClass);
 
   function Lawyers() {
     return Lawyers.__super__.constructor.apply(this, arguments);
@@ -721,11 +721,11 @@ ppu.Lawyers = (function(_super) {
 
 })(Backbone.Collection);
 
-var __hasProp = {}.hasOwnProperty,
-  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  hasProp = {}.hasOwnProperty;
 
-ppu.Post = (function(_super) {
-  __extends(Post, _super);
+ppu.Post = (function(superClass) {
+  extend(Post, superClass);
 
   function Post() {
     return Post.__super__.constructor.apply(this, arguments);
@@ -737,8 +737,8 @@ ppu.Post = (function(_super) {
 
 })(Backbone.Model);
 
-ppu.Posts = (function(_super) {
-  __extends(Posts, _super);
+ppu.Posts = (function(superClass) {
+  extend(Posts, superClass);
 
   function Posts() {
     return Posts.__super__.constructor.apply(this, arguments);
@@ -752,11 +752,11 @@ ppu.Posts = (function(_super) {
 
 })(Backbone.Collection);
 
-var __hasProp = {}.hasOwnProperty,
-  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  hasProp = {}.hasOwnProperty;
 
-ppu.Experience = (function(_super) {
-  __extends(Experience, _super);
+ppu.Experience = (function(superClass) {
+  extend(Experience, superClass);
 
   function Experience() {
     return Experience.__super__.constructor.apply(this, arguments);
@@ -768,8 +768,8 @@ ppu.Experience = (function(_super) {
 
 })(Backbone.Model);
 
-ppu.Experiences = (function(_super) {
-  __extends(Experiences, _super);
+ppu.Experiences = (function(superClass) {
+  extend(Experiences, superClass);
 
   function Experiences() {
     return Experiences.__super__.constructor.apply(this, arguments);
@@ -783,12 +783,12 @@ ppu.Experiences = (function(_super) {
 
 })(Backbone.Collection);
 
-var __hasProp = {}.hasOwnProperty,
-  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  hasProp = {}.hasOwnProperty;
 
 $(function() {
-  return ppu.FiltersMobile = (function(_super) {
-    __extends(FiltersMobile, _super);
+  return ppu.FiltersMobile = (function(superClass) {
+    extend(FiltersMobile, superClass);
 
     function FiltersMobile() {
       return FiltersMobile.__super__.constructor.apply(this, arguments);
@@ -843,12 +843,12 @@ $(function() {
   })(Backbone.View);
 });
 
-var __hasProp = {}.hasOwnProperty,
-  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  hasProp = {}.hasOwnProperty;
 
 $(function() {
-  return ppu.CategoryView = (function(_super) {
-    __extends(CategoryView, _super);
+  return ppu.CategoryView = (function(superClass) {
+    extend(CategoryView, superClass);
 
     function CategoryView() {
       return CategoryView.__super__.constructor.apply(this, arguments);
@@ -878,12 +878,12 @@ $(function() {
   })(Backbone.View);
 });
 
-var __hasProp = {}.hasOwnProperty,
-  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  hasProp = {}.hasOwnProperty;
 
 $(function() {
-  return ppu.CategoriesView = (function(_super) {
-    __extends(CategoriesView, _super);
+  return ppu.CategoriesView = (function(superClass) {
+    extend(CategoriesView, superClass);
 
     function CategoriesView() {
       return CategoriesView.__super__.constructor.apply(this, arguments);
@@ -918,12 +918,12 @@ $(function() {
   })(Backbone.View);
 });
 
-var __hasProp = {}.hasOwnProperty,
-  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  hasProp = {}.hasOwnProperty;
 
 $(function() {
-  return ppu.CategoryDetail = (function(_super) {
-    __extends(CategoryDetail, _super);
+  return ppu.CategoryDetail = (function(superClass) {
+    extend(CategoryDetail, superClass);
 
     function CategoryDetail() {
       return CategoryDetail.__super__.constructor.apply(this, arguments);
@@ -956,12 +956,12 @@ $(function() {
   })(Backbone.View);
 });
 
-var __hasProp = {}.hasOwnProperty,
-  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  hasProp = {}.hasOwnProperty;
 
 $(function() {
-  return ppu.CategoriesList = (function(_super) {
-    __extends(CategoriesList, _super);
+  return ppu.CategoriesList = (function(superClass) {
+    extend(CategoriesList, superClass);
 
     function CategoriesList() {
       return CategoriesList.__super__.constructor.apply(this, arguments);
@@ -993,12 +993,12 @@ $(function() {
   })(Backbone.View);
 });
 
-var __hasProp = {}.hasOwnProperty,
-  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  hasProp = {}.hasOwnProperty;
 
 $(function() {
-  return ppu.LawyerView = (function(_super) {
-    __extends(LawyerView, _super);
+  return ppu.LawyerView = (function(superClass) {
+    extend(LawyerView, superClass);
 
     function LawyerView() {
       return LawyerView.__super__.constructor.apply(this, arguments);
@@ -1029,12 +1029,12 @@ $(function() {
   })(Backbone.View);
 });
 
-var __hasProp = {}.hasOwnProperty,
-  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  hasProp = {}.hasOwnProperty;
 
 $(function() {
-  return ppu.LawyersView = (function(_super) {
-    __extends(LawyersView, _super);
+  return ppu.LawyersView = (function(superClass) {
+    extend(LawyersView, superClass);
 
     function LawyersView() {
       return LawyersView.__super__.constructor.apply(this, arguments);
@@ -1102,12 +1102,12 @@ $(function() {
   })(Backbone.View);
 });
 
-var __hasProp = {}.hasOwnProperty,
-  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  hasProp = {}.hasOwnProperty;
 
 $(function() {
-  return ppu.LawyerDetailView = (function(_super) {
-    __extends(LawyerDetailView, _super);
+  return ppu.LawyerDetailView = (function(superClass) {
+    extend(LawyerDetailView, superClass);
 
     function LawyerDetailView() {
       return LawyerDetailView.__super__.constructor.apply(this, arguments);
@@ -1151,12 +1151,12 @@ $(function() {
   })(Backbone.View);
 });
 
-var __hasProp = {}.hasOwnProperty,
-  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  hasProp = {}.hasOwnProperty;
 
 $(function() {
-  return ppu.LawyersFilters = (function(_super) {
-    __extends(LawyersFilters, _super);
+  return ppu.LawyersFilters = (function(superClass) {
+    extend(LawyersFilters, superClass);
 
     function LawyersFilters() {
       return LawyersFilters.__super__.constructor.apply(this, arguments);
@@ -1297,12 +1297,12 @@ $(function() {
   })(Backbone.View);
 });
 
-var __hasProp = {}.hasOwnProperty,
-  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  hasProp = {}.hasOwnProperty;
 
 $(function() {
-  return ppu.lawyersRelatedCategory = (function(_super) {
-    __extends(lawyersRelatedCategory, _super);
+  return ppu.lawyersRelatedCategory = (function(superClass) {
+    extend(lawyersRelatedCategory, superClass);
 
     function lawyersRelatedCategory() {
       return lawyersRelatedCategory.__super__.constructor.apply(this, arguments);
@@ -1345,12 +1345,12 @@ $(function() {
   })(Backbone.View);
 });
 
-var __hasProp = {}.hasOwnProperty,
-  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  hasProp = {}.hasOwnProperty;
 
 $(function() {
-  return ppu.PostView = (function(_super) {
-    __extends(PostView, _super);
+  return ppu.PostView = (function(superClass) {
+    extend(PostView, superClass);
 
     function PostView() {
       return PostView.__super__.constructor.apply(this, arguments);
@@ -1380,12 +1380,12 @@ $(function() {
   })(Backbone.View);
 });
 
-var __hasProp = {}.hasOwnProperty,
-  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  hasProp = {}.hasOwnProperty;
 
 $(function() {
-  return ppu.PostFeaturedView = (function(_super) {
-    __extends(PostFeaturedView, _super);
+  return ppu.PostFeaturedView = (function(superClass) {
+    extend(PostFeaturedView, superClass);
 
     function PostFeaturedView() {
       return PostFeaturedView.__super__.constructor.apply(this, arguments);
@@ -1407,12 +1407,12 @@ $(function() {
   })(Backbone.View);
 });
 
-var __hasProp = {}.hasOwnProperty,
-  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  hasProp = {}.hasOwnProperty;
 
 $(function() {
-  return ppu.PostMainFeaturedView = (function(_super) {
-    __extends(PostMainFeaturedView, _super);
+  return ppu.PostMainFeaturedView = (function(superClass) {
+    extend(PostMainFeaturedView, superClass);
 
     function PostMainFeaturedView() {
       return PostMainFeaturedView.__super__.constructor.apply(this, arguments);
@@ -1442,12 +1442,12 @@ $(function() {
   })(Backbone.View);
 });
 
-var __hasProp = {}.hasOwnProperty,
-  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  hasProp = {}.hasOwnProperty;
 
 $(function() {
-  return ppu.PostsView = (function(_super) {
-    __extends(PostsView, _super);
+  return ppu.PostsView = (function(superClass) {
+    extend(PostsView, superClass);
 
     function PostsView() {
       return PostsView.__super__.constructor.apply(this, arguments);
@@ -1516,12 +1516,12 @@ $(function() {
   })(Backbone.View);
 });
 
-var __hasProp = {}.hasOwnProperty,
-  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  hasProp = {}.hasOwnProperty;
 
 $(function() {
-  return ppu.PostsFeaturedView = (function(_super) {
-    __extends(PostsFeaturedView, _super);
+  return ppu.PostsFeaturedView = (function(superClass) {
+    extend(PostsFeaturedView, superClass);
 
     function PostsFeaturedView() {
       return PostsFeaturedView.__super__.constructor.apply(this, arguments);
@@ -1573,12 +1573,12 @@ $(function() {
   })(Backbone.View);
 });
 
-var __hasProp = {}.hasOwnProperty,
-  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  hasProp = {}.hasOwnProperty;
 
 $(function() {
-  return ppu.PostsFilters = (function(_super) {
-    __extends(PostsFilters, _super);
+  return ppu.PostsFilters = (function(superClass) {
+    extend(PostsFilters, superClass);
 
     function PostsFilters() {
       return PostsFilters.__super__.constructor.apply(this, arguments);
@@ -1690,12 +1690,12 @@ $(function() {
   })(Backbone.View);
 });
 
-var __hasProp = {}.hasOwnProperty,
-  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  hasProp = {}.hasOwnProperty;
 
 $(function() {
-  return ppu.PostDetailView = (function(_super) {
-    __extends(PostDetailView, _super);
+  return ppu.PostDetailView = (function(superClass) {
+    extend(PostDetailView, superClass);
 
     function PostDetailView() {
       return PostDetailView.__super__.constructor.apply(this, arguments);
@@ -1734,12 +1734,12 @@ $(function() {
   })(Backbone.View);
 });
 
-var __hasProp = {}.hasOwnProperty,
-  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  hasProp = {}.hasOwnProperty;
 
 $(function() {
-  return ppu.PostsRelated = (function(_super) {
-    __extends(PostsRelated, _super);
+  return ppu.PostsRelated = (function(superClass) {
+    extend(PostsRelated, superClass);
 
     function PostsRelated() {
       return PostsRelated.__super__.constructor.apply(this, arguments);
@@ -1781,12 +1781,12 @@ $(function() {
   })(Backbone.View);
 });
 
-var __hasProp = {}.hasOwnProperty,
-  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  hasProp = {}.hasOwnProperty;
 
 $(function() {
-  return ppu.ExperienceView = (function(_super) {
-    __extends(ExperienceView, _super);
+  return ppu.ExperienceView = (function(superClass) {
+    extend(ExperienceView, superClass);
 
     function ExperienceView() {
       return ExperienceView.__super__.constructor.apply(this, arguments);
@@ -1816,12 +1816,12 @@ $(function() {
   })(Backbone.View);
 });
 
-var __hasProp = {}.hasOwnProperty,
-  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  hasProp = {}.hasOwnProperty;
 
 $(function() {
-  return ppu.ExperiencesView = (function(_super) {
-    __extends(ExperiencesView, _super);
+  return ppu.ExperiencesView = (function(superClass) {
+    extend(ExperiencesView, superClass);
 
     function ExperiencesView() {
       return ExperiencesView.__super__.constructor.apply(this, arguments);
@@ -1866,12 +1866,12 @@ $(function() {
   })(Backbone.View);
 });
 
-var __hasProp = {}.hasOwnProperty,
-  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  hasProp = {}.hasOwnProperty;
 
 $(function() {
-  return ppu.ExperiencesFilters = (function(_super) {
-    __extends(ExperiencesFilters, _super);
+  return ppu.ExperiencesFilters = (function(superClass) {
+    extend(ExperiencesFilters, superClass);
 
     function ExperiencesFilters() {
       return ExperiencesFilters.__super__.constructor.apply(this, arguments);
@@ -1989,12 +1989,12 @@ $(function() {
   })(Backbone.View);
 });
 
-var __hasProp = {}.hasOwnProperty,
-  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  hasProp = {}.hasOwnProperty;
 
 $(function() {
-  return ppu.ExperienceDetailView = (function(_super) {
-    __extends(ExperienceDetailView, _super);
+  return ppu.ExperienceDetailView = (function(superClass) {
+    extend(ExperienceDetailView, superClass);
 
     function ExperienceDetailView() {
       return ExperienceDetailView.__super__.constructor.apply(this, arguments);
@@ -2030,12 +2030,12 @@ $(function() {
   })(Backbone.View);
 });
 
-var __hasProp = {}.hasOwnProperty,
-  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  hasProp = {}.hasOwnProperty;
 
 $(function() {
-  return ppu.ExperienecesRelated = (function(_super) {
-    __extends(ExperienecesRelated, _super);
+  return ppu.ExperienecesRelated = (function(superClass) {
+    extend(ExperienecesRelated, superClass);
 
     function ExperienecesRelated() {
       return ExperienecesRelated.__super__.constructor.apply(this, arguments);
@@ -2074,12 +2074,12 @@ $(function() {
   })(Backbone.View);
 });
 
-var __hasProp = {}.hasOwnProperty,
-  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  hasProp = {}.hasOwnProperty;
 
 $(function() {
-  return ppu.CurriculumCreate = (function(_super) {
-    __extends(CurriculumCreate, _super);
+  return ppu.CurriculumCreate = (function(superClass) {
+    extend(CurriculumCreate, superClass);
 
     function CurriculumCreate() {
       return CurriculumCreate.__super__.constructor.apply(this, arguments);
@@ -2124,12 +2124,12 @@ $(function() {
   })(Backbone.View);
 });
 
-var __hasProp = {}.hasOwnProperty,
-  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  hasProp = {}.hasOwnProperty;
 
 $(function() {
-  return ppu.FooterContactCreate = (function(_super) {
-    __extends(FooterContactCreate, _super);
+  return ppu.FooterContactCreate = (function(superClass) {
+    extend(FooterContactCreate, superClass);
 
     function FooterContactCreate() {
       return FooterContactCreate.__super__.constructor.apply(this, arguments);
@@ -2170,12 +2170,12 @@ $(function() {
   })(Backbone.View);
 });
 
-var __hasProp = {}.hasOwnProperty,
-  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  hasProp = {}.hasOwnProperty;
 
 $(function() {
-  return ppu.TheCurrentView = (function(_super) {
-    __extends(TheCurrentView, _super);
+  return ppu.TheCurrentView = (function(superClass) {
+    extend(TheCurrentView, superClass);
 
     function TheCurrentView() {
       return TheCurrentView.__super__.constructor.apply(this, arguments);
@@ -2205,12 +2205,12 @@ $(function() {
   })(Backbone.View);
 });
 
-var __hasProp = {}.hasOwnProperty,
-  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  hasProp = {}.hasOwnProperty;
 
 $(function() {
-  return ppu.TheActualFeaturedView = (function(_super) {
-    __extends(TheActualFeaturedView, _super);
+  return ppu.TheActualFeaturedView = (function(superClass) {
+    extend(TheActualFeaturedView, superClass);
 
     function TheActualFeaturedView() {
       return TheActualFeaturedView.__super__.constructor.apply(this, arguments);
@@ -2240,12 +2240,12 @@ $(function() {
   })(Backbone.View);
 });
 
-var __hasProp = {}.hasOwnProperty,
-  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  hasProp = {}.hasOwnProperty;
 
 $(function() {
-  return ppu.TheActualChViews = (function(_super) {
-    __extends(TheActualChViews, _super);
+  return ppu.TheActualChViews = (function(superClass) {
+    extend(TheActualChViews, superClass);
 
     function TheActualChViews() {
       return TheActualChViews.__super__.constructor.apply(this, arguments);
@@ -2327,12 +2327,12 @@ $(function() {
   })(Backbone.View);
 });
 
-var __hasProp = {}.hasOwnProperty,
-  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  hasProp = {}.hasOwnProperty;
 
 $(function() {
-  return ppu.TheActualChFilter = (function(_super) {
-    __extends(TheActualChFilter, _super);
+  return ppu.TheActualChFilter = (function(superClass) {
+    extend(TheActualChFilter, superClass);
 
     function TheActualChFilter() {
       return TheActualChFilter.__super__.constructor.apply(this, arguments);
@@ -2420,12 +2420,12 @@ $(function() {
   })(Backbone.View);
 });
 
-var __hasProp = {}.hasOwnProperty,
-  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  hasProp = {}.hasOwnProperty;
 
 $(function() {
-  ppu.TheActualDetailView = (function(_super) {
-    __extends(TheActualDetailView, _super);
+  ppu.TheActualDetailView = (function(superClass) {
+    extend(TheActualDetailView, superClass);
 
     function TheActualDetailView() {
       return TheActualDetailView.__super__.constructor.apply(this, arguments);
@@ -2463,8 +2463,8 @@ $(function() {
     return TheActualDetailView;
 
   })(Backbone.View);
-  return ppu.TheActualRelated = (function(_super) {
-    __extends(TheActualRelated, _super);
+  return ppu.TheActualRelated = (function(superClass) {
+    extend(TheActualRelated, superClass);
 
     function TheActualRelated() {
       return TheActualRelated.__super__.constructor.apply(this, arguments);
@@ -2507,12 +2507,12 @@ $(function() {
   })(Backbone.View);
 });
 
-var __hasProp = {}.hasOwnProperty,
-  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  hasProp = {}.hasOwnProperty;
 
 $(function() {
-  ppu.TheActualCoView = (function(_super) {
-    __extends(TheActualCoView, _super);
+  ppu.TheActualCoView = (function(superClass) {
+    extend(TheActualCoView, superClass);
 
     function TheActualCoView() {
       return TheActualCoView.__super__.constructor.apply(this, arguments);
@@ -2540,8 +2540,8 @@ $(function() {
     return TheActualCoView;
 
   })(Backbone.View);
-  return ppu.TheActualCoFeaturedView = (function(_super) {
-    __extends(TheActualCoFeaturedView, _super);
+  return ppu.TheActualCoFeaturedView = (function(superClass) {
+    extend(TheActualCoFeaturedView, superClass);
 
     function TheActualCoFeaturedView() {
       return TheActualCoFeaturedView.__super__.constructor.apply(this, arguments);
@@ -2571,12 +2571,12 @@ $(function() {
   })(Backbone.View);
 });
 
-var __hasProp = {}.hasOwnProperty,
-  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  hasProp = {}.hasOwnProperty;
 
 $(function() {
-  return ppu.TheActualCoFeaturedView = (function(_super) {
-    __extends(TheActualCoFeaturedView, _super);
+  return ppu.TheActualCoFeaturedView = (function(superClass) {
+    extend(TheActualCoFeaturedView, superClass);
 
     function TheActualCoFeaturedView() {
       return TheActualCoFeaturedView.__super__.constructor.apply(this, arguments);
@@ -2606,12 +2606,12 @@ $(function() {
   })(Backbone.View);
 });
 
-var __hasProp = {}.hasOwnProperty,
-  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  hasProp = {}.hasOwnProperty;
 
 $(function() {
-  return ppu.TheActualCoViews = (function(_super) {
-    __extends(TheActualCoViews, _super);
+  return ppu.TheActualCoViews = (function(superClass) {
+    extend(TheActualCoViews, superClass);
 
     function TheActualCoViews() {
       return TheActualCoViews.__super__.constructor.apply(this, arguments);
@@ -2693,46 +2693,46 @@ $(function() {
   })(Backbone.View);
 });
 
-var __hasProp = {}.hasOwnProperty,
-  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  hasProp = {}.hasOwnProperty;
 
 $(function() {
-  return ppu.TheCurrentFilter = (function(_super) {
-    __extends(TheCurrentFilter, _super);
+  return ppu.TheActualCoFilter = (function(superClass) {
+    extend(TheActualCoFilter, superClass);
 
-    function TheCurrentFilter() {
-      return TheCurrentFilter.__super__.constructor.apply(this, arguments);
+    function TheActualCoFilter() {
+      return TheActualCoFilter.__super__.constructor.apply(this, arguments);
     }
 
-    TheCurrentFilter.prototype.el = $('#top-bar');
+    TheActualCoFilter.prototype.el = $('#top-bar');
 
-    TheCurrentFilter.prototype.template = $("#the-current-filters");
+    TheActualCoFilter.prototype.template = $("#the-current-filters");
 
-    TheCurrentFilter.prototype.events = {
+    TheActualCoFilter.prototype.events = {
       'change .countries': 'byCountry',
       'change .category': 'byCategory',
       'keyup .query': 'byKeyword',
       'submit .search': 'bySearch'
     };
 
-    TheCurrentFilter.prototype.initialize = function() {
+    TheActualCoFilter.prototype.initialize = function() {
       this.filtersAplied = {
         lang: app.lang,
         published: 1,
-        the_actual_ch: 1
+        the_actual_co: 1
       };
       app.pubsub.on("general:scroll", this.paginate, this);
       return this.offset = 20;
     };
 
-    TheCurrentFilter.prototype.render = function() {
+    TheActualCoFilter.prototype.render = function() {
       var template;
       template = app.compile(this.template);
       this.$el.html(template);
       return ppu.appendSelect(this.el);
     };
 
-    TheCurrentFilter.prototype.filterBy = function(data) {
+    TheActualCoFilter.prototype.filterBy = function(data) {
       data = _.extend({
         paginate: 0
       }, data);
@@ -2740,7 +2740,7 @@ $(function() {
       return app.pubsub.trigger("posts:filter", data);
     };
 
-    TheCurrentFilter.prototype.paginate = function() {
+    TheActualCoFilter.prototype.paginate = function() {
       var data;
       data = _.extend(this.filtersAplied, {
         paginate: this.offset
@@ -2749,7 +2749,7 @@ $(function() {
       return this.offset = this.offset + 20;
     };
 
-    TheCurrentFilter.prototype.byCategory = function(e) {
+    TheActualCoFilter.prototype.byCategory = function(e) {
       var val;
       val = $(e.currentTarget).find('select').val();
       return this.filterBy({
@@ -2757,7 +2757,7 @@ $(function() {
       });
     };
 
-    TheCurrentFilter.prototype.byKeyword = function(e) {
+    TheActualCoFilter.prototype.byKeyword = function(e) {
       var val;
       val = $(e.currentTarget).val();
       if (val.length >= 2) {
@@ -2772,7 +2772,7 @@ $(function() {
       }
     };
 
-    TheCurrentFilter.prototype.bySearch = function(e) {
+    TheActualCoFilter.prototype.bySearch = function(e) {
       var val;
       e.preventDefault();
       val = $(e.currentTarget).find(".query").val();
@@ -2781,17 +2781,17 @@ $(function() {
       });
     };
 
-    return TheCurrentFilter;
+    return TheActualCoFilter;
 
   })(Backbone.View);
 });
 
-var __hasProp = {}.hasOwnProperty,
-  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  hasProp = {}.hasOwnProperty;
 
 $(function() {
-  ppu.TheActualCoDetailView = (function(_super) {
-    __extends(TheActualCoDetailView, _super);
+  ppu.TheActualCoDetailView = (function(superClass) {
+    extend(TheActualCoDetailView, superClass);
 
     function TheActualCoDetailView() {
       return TheActualCoDetailView.__super__.constructor.apply(this, arguments);
@@ -2829,8 +2829,8 @@ $(function() {
     return TheActualCoDetailView;
 
   })(Backbone.View);
-  return ppu.TheActualCoRelated = (function(_super) {
-    __extends(TheActualCoRelated, _super);
+  return ppu.TheActualCoRelated = (function(superClass) {
+    extend(TheActualCoRelated, superClass);
 
     function TheActualCoRelated() {
       return TheActualCoRelated.__super__.constructor.apply(this, arguments);
@@ -2917,10 +2917,10 @@ ppu.TheActualCoController = {
         the_actual_co: 1
       }
     });
-    new ppu.TheCurrentViews({
+    new ppu.TheActualCoViews({
       collection: collection
     });
-    filters = new ppu.TheCurrentFilter;
+    filters = new ppu.TheActualCoFilter;
     return filters.render();
   },
   show: function(slug) {
@@ -2929,7 +2929,7 @@ ppu.TheActualCoController = {
     });
     ppu.posts = new ppu.Posts;
     ppu.post.fetch();
-    ppu.postDetailView = new ppu.TheActualDetailView({
+    ppu.postDetailView = new ppu.TheActualCoDetailView({
       model: ppu.post
     });
     return ppu.postsRelated = new ppu.PostsRelated({
@@ -2957,7 +2957,7 @@ ppu.PostsController = {
     ppu.postsFilters.render();
     return ppu.filtersMobile = new ppu.FiltersMobile;
   },
-  show: function() {
+  show: function(slug) {
     ppu.post = new ppu.Post({
       id: slug
     });
@@ -2993,20 +2993,12 @@ ppu.LawyersController = {
 
 ppu.CategoriesController = {
   index: function() {
-    ppu.category = new ppu.Category({
-      id: slug
-    });
-    ppu.category.fetch();
-    ppu.categoryDetail = new ppu.CategoryDetail({
-      model: ppu.category
-    });
     ppu.categories = new ppu.Categories;
-    ppu.categoriesList = new ppu.CategoriesList({
-      collection: ppu.categories
+    ppu.categories.fetch({
+      reset: true
     });
-    ppu.lawyers = new ppu.Lawyers;
-    return ppu.lawyersRelated = new ppu.lawyersRelatedCategory({
-      collection: ppu.lawyers
+    return ppu.categoriesView = new ppu.CategoriesView({
+      collection: ppu.categories
     });
   },
   show: function(slug) {
@@ -3030,15 +3022,13 @@ ppu.CategoriesController = {
 
 ppu.ExperiencesController = {
   index: function() {
-    ppu.experience = new ppu.Experience({
-      id: slug
-    });
-    ppu.experience.fetch();
-    ppu.experienceDetailView = new ppu.ExperienceDetailView({
-      model: ppu.experience
-    });
+    ppu.experiencesFilters = new ppu.ExperiencesFilters;
+    ppu.experiencesFilters.render();
     ppu.experiences = new ppu.Experiences;
-    return ppu.experienecesRelated = new ppu.ExperienecesRelated({
+    ppu.experiences.fetch({
+      reset: true
+    });
+    return ppu.experiencesView = new ppu.ExperiencesView({
       collection: ppu.experiences
     });
   },
@@ -3081,12 +3071,12 @@ ppu.ProbonoController = {
   }
 };
 
-var __hasProp = {}.hasOwnProperty,
-  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  hasProp = {}.hasOwnProperty;
 
 $(function() {
-  ppu.Workspace = (function(_super) {
-    __extends(Workspace, _super);
+  ppu.Workspace = (function(superClass) {
+    extend(Workspace, superClass);
 
     function Workspace() {
       return Workspace.__super__.constructor.apply(this, arguments);

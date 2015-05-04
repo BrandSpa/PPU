@@ -1,0 +1,32 @@
+<script type="text/x-handlebars-template" id="lawyer-academic-form-template">
+ <form>
+  <div class="row">
+      <input type="hidden" name="fields[lawyer_id]" value="{{ lawyer_id }}">
+    <div class="form-group col-lg-12">
+      <textarea name="fields[title]" class="form-control" rows="3"  placeholder="Título">{{ title }}</textarea>
+    </div>
+    <div class="form-group col-lg-12">
+      <input type="text" name="fields[institution]" class="form-control" placeholder="Institución" value="{{ institution }}">
+    </div>
+
+    <div class="form-group col-lg-6">
+      <select name="fields[country]" class="form-control">
+      {{#if country}}
+        <option value="{{ country }}">{{ country }}</option>
+      {{else}}
+        <option value="">Seleccionar País</option>
+      {{/if}}
+
+        <%= render "partials/countries" %>
+      </select>
+    </div>
+
+    <div class="form-group col-lg-3">
+      <input type="text" name="fields[from]" class="form-control datepicker-year" placeholder="Año" value="{{ year }}">
+    </div>
+    <div class="form-group col-lg-3">
+      <input type="text" name="fields[until]" class="form-control datepicker-year" placeholder="Año" value="{{ year }}">
+    </div>
+  </div>
+</form>
+</script>

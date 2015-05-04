@@ -1,13 +1,15 @@
-var gulp = require('gulp');
-  sass = require('gulp-ruby-sass');
-  minifyCSS = require('gulp-minify-css');
-  rename = require('gulp-rename');
-  gutil = require('gulp-util');
-  coffee = require('gulp-coffee');
-  concat = require('gulp-concat');
-  uglify = require('gulp-uglify');
+var gulp      = require('gulp');
+var sass      = require('gulp-ruby-sass');
+var minifyCSS = require('gulp-minify-css');
+var rename    = require('gulp-rename');
+var gutil     = require('gulp-util');
+var coffee    = require('gulp-coffee');
+var concat    = require('gulp-concat');
+var uglify    = require('gulp-uglify');
 
+// Contact all javascripts files
 gulp.task('app', function() {
+
   gulp.src([
     'app/main.coffee',
     'app/mixins.coffee',
@@ -100,6 +102,7 @@ gulp.task('app', function() {
   .pipe(gulp.dest('js/dist/'));
 });
 
+
 gulp.task('app-admin', function() {
   gulp.src([
     'app/main.coffee',
@@ -146,18 +149,12 @@ gulp.task('app-admin', function() {
 });
 
 gulp.task('sass', function () {
-    gulp.src([
-      'sass/*.sass',
-      'css/theme.css',
-      'css/libs/selectBoxIt.css',
-      'bower_components/nprogress/nprogress.css'
-      ])
-      .pipe(sass())
-      .pipe(gulp.dest('css'))
-      .pipe(concat('style.css'))
-      .pipe(minifyCSS())
-      .pipe(rename('style.min.css'))
-      .pipe(gulp.dest('css/dist/'));
+    sass('sass')
+      .on('error', function (err) {
+        console.error('Error!', err.message);
+      })
+      .pipe(concat('app.css'))
+      .pipe(gulp.dest('css/dist'));
 });
 
 gulp.task('dependencies-scripts', function() {
@@ -206,6 +203,7 @@ gulp.task('compress', function() {
 });
 
 gulp.task('watch', ['sass', 'app', 'app-admin'], function(){
+
   gulp.watch('sass/*.sass', ['sass']);
 
   gulp.watch([

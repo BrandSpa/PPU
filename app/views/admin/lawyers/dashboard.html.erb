@@ -1,14 +1,17 @@
 <div class="panel panel-default" id="lawyers-dashboard">
 
-<div class="panel-heading">
-  <h4 >Abogados</h4>
-</div>
+  <div class="panel-heading">
+    <h4 >Abogados</h4>
+    <a class="btn btn-primary" href="/admin/lawyers/new">Crear Abogado</a>
+  </div>
 
   <div class="panel-body">
     <div class="row lawyers-filters" >
+
       <div class="col-lg-3">
         <input name="query" class="form-control query" placeholder="Buscar">
-      </div>  
+      </div>
+
       <div class="col-lg-3">
         <select class="form-control lawyer-filter-country">
           <option>País</option>
@@ -16,6 +19,7 @@
           <option value="Colombia">Colombia</option>
         </select>
       </div>
+
       <div class="col-lg-3">
         <select class="form-control lawyer-filter-position">
           <option>Cargo</option>
@@ -24,8 +28,9 @@
           <option value="<%= t('partner')%>"><%= t('partner')%></option>
           <option value="<%= t('senior_counsel')%>"><%= t('senior_counsel')%></option>
         </select>
-          </div>
-        <div class="col-lg-3">
+      </div>
+
+      <div class="col-lg-3">
         <select class="form-control lawyer-filter-category">
           <option>Áreas</option>
           <%= render "partials/categories_option" %>
@@ -36,26 +41,46 @@
     <hr>
 
     <div class="table-responsive">
-    <table class="table table-condensed">
-      <thead>
-        <tr>
-          <th>Nombre</th>
-          <th>Email</th>
-          <th>Cargo</th>
-          <th>País</th>
-          <th>Opciones</th>
-          <th>Estado</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
-  <hr>
-  <div class="lawyers-filters">
-    <a href="#" class="btn btn-info see-more" data-offset="0">Mostrar Más</a>
-  </div>
-  
+      <table class="table table-condensed">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Email</th>
+            <th>Cargo</th>
+            <th>País</th>
+            <th>Opciones</th>
+            <th>Estado</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+      <hr>
+      <div class="lawyers-filters">
+        <a href="#" class="btn btn-primary see-more" data-offset="0">Mostrar Más</a>
+      </div>
     </div>
   </div>
 </div>
 
-<%= render "admin/lawyers/partials/lawyer" %>
+<div class="modal fade" id="confirm-translate-modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    <div class="modal-header">
+      <h5>Crear perfil en Inglés</h5>
+    </div>
+    <div class="modal-body">
+    <p>
+        Es recomendable que su perfil en español esté completamente terminado antes de generar el perfil en inglés, pues éste duplicará la información en español para su posterior traducción.
+      </p>
+      <b >¿Desea continuar?</b>
+    </div>
+    <div class="modal-footer">
+    <a href="#" class="btn btn-default cancel">Cancelar</a>
+    <a href="#" class="btn btn-info continue">Aceptar</a>
+    </div>
+    </div>
+  </div>
+</div>
+
+<!-- Templates -->
+<%= render "admin/lawyers/partials/lawyer_dashboard" %>
