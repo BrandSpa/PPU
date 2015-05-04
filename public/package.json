@@ -19,7 +19,8 @@
     "jquery-ui": "^1.10.5",
     "nprogress": "^0.1.6",
     "summernote": "^0.6.6",
-    "toastr": "^2.0.4"
+    "toastr": "^2.0.4",
+    "underscore": "^1.8.3"
   },
   "version": "1.0.0",
   "main": "gulpfile.js",
@@ -31,7 +32,8 @@
     "gulp-rename": "^1.2.2",
     "gulp-ruby-sass": "^1.0.5",
     "gulp-uglify": "^1.2.0",
-    "gulp-util": "^3.0.4"
+    "gulp-util": "^3.0.4",
+    "require-dir": "^0.3.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

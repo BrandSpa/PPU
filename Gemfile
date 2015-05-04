@@ -9,7 +9,6 @@ gem 'mysql2'
 # Use for cache
 gem 'dalli'
 
-gem 'prerender_rails'
 
 #use for work with facebook api
 gem 'fb_graph'
@@ -25,8 +24,6 @@ gem "mini_magick"
 
 # use for sanatize input
 gem "sanitize"
-
-gem 'globalize', '~> 4.0.2'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'

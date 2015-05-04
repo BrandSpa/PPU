@@ -19,3 +19,5 @@ node_modules
 /public/node_modules
 /public/.sass-cache
 /public/uploads/*
+cookbooks
+.vagrant
