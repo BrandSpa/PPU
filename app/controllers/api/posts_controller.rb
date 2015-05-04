@@ -32,6 +32,7 @@ class Api::PostsController < ApplicationController
 
   end
 
+  # get model by id or slug
   def show
     id = params[:id]
 

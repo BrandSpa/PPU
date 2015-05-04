@@ -7,8 +7,9 @@ mixins.lawyerRelationshipView =
   initialize: ->
     @listenTo @model, 'change', @render
 
-  setPosition: (pos) ->
-    @model.save position: pos
+  # change position
+  setPosition: (position) ->
+    @model.save position: position
 
   render: ->
     source = $(@template).html()
@@ -21,7 +22,7 @@ mixins.lawyerRelationshipView =
     e.preventDefault()
     view = new @modal model: @model
     view.render()
-  
+
   remove: (e) ->
     e.preventDefault()
     @model.destroy()
@@ -85,7 +86,7 @@ mixins.lawyerRelationshipModalCreate =
     @$el.find('.modal-body').html template(data)
     $(@el).modal backdrop: 'static'
     ppu.appendDatePickerYear(@el)
-   
+
   create: (e) ->
     e.preventDefault()
     el = $(e.currentTarget)
@@ -103,7 +104,6 @@ mixins.lawyerRelationshipModalCreate =
     e.preventDefault()
     @closeModal()
 
-
 mixins.lawyerRelationshipModalEdit =
   events:
     "click .update": "update"
@@ -119,7 +119,7 @@ mixins.lawyerRelationshipModalEdit =
     @$el.find('.modal-body').html template( @model.toJSON() )
     $(@el).modal backdrop: 'static'
     ppu.appendDatePickerYear(@el)
-   
+
   update: (e) ->
     e.preventDefault()
     $form = @$el.find('form')

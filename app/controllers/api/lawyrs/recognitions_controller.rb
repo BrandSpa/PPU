@@ -4,5 +4,4 @@ class Api::Lawyrs::RecognitionsController < ApplicationController
   def entity
     Recognition
   end
-
 end

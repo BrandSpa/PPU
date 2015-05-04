@@ -9,7 +9,7 @@ $ ->
   class ppu.LawyerEducationCreate extends Backbone.View
     el: $ "#lawyer-form-education"
     template: $ "#lawyer-form-education-template"
-    events: 
+    events:
       'click .lawyer-add-education': 'addForm'
 
     initialize: ->
@@ -33,7 +33,7 @@ $ ->
 
   class ppu.LawyerEducationEditModal extends Backbone.View
     el: $ "#lawyer-education-edit-modal"
-    template: $ "#lawyer-form-education-template" 
+    template: $ "#lawyer-form-education-template"
 
     _.extend(@.prototype, mixins.lawyerRelationshipModalEdit)
 
@@ -48,4 +48,3 @@ $ ->
     view: ppu.LawyerEducationView
     modal: ppu.LawyerEducationModalCreate
     _.extend(@.prototype, mixins.lawyerRelationshipViews)
-    

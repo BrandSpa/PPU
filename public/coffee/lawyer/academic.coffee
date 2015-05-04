@@ -9,7 +9,7 @@ $ ->
   class ppu.LawyerAcademicCreate extends Backbone.View
     el: $ "#lawyer-form-academic"
     template: $ "#lawyer-academic-form-template"
-    events: 
+    events:
       'click .lawyer-add-academic': 'addForm'
 
     initialize: ->
@@ -28,7 +28,7 @@ $ ->
 
   class ppu.LawyerAcademicsEditModal extends Backbone.View
     el: $ "#lawyer-academic-edit-modal"
-    template: $ "#lawyer-academic-form-template" 
+    template: $ "#lawyer-academic-form-template"
     _.extend(@.prototype, mixins.lawyerRelationshipModalEdit)
 
   class ppu.LawyerAcademicView extends Backbone.View

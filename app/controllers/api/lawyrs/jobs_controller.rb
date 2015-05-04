@@ -4,6 +4,4 @@ class Api::Lawyrs::JobsController < ApplicationController
   def entity
     Job
   end
-
-  
 end

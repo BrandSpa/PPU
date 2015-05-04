@@ -4,5 +4,4 @@ class Api::Lawyrs::PharasesController < ApplicationController
   def entity
     Phrase
   end
-
 end

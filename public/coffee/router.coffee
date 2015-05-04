@@ -1,5 +1,6 @@
 $ ->
   class ppu.Workspace extends Backbone.Router
+    
     routes:
       # Posts
       "" : "posts"
@@ -19,8 +20,8 @@ $ ->
       "el-actual/:slug" : "theActualDetail"
 
       # The Actual Colombia
-      "el-actual-colombia" : "theActual"
-      "el-actual-colombia/:slug" : "theActualDetail"
+      "el-actual-colombia" : "theActualCo"
+      "el-actual-colombia/:slug" : "theActualCoDetail"
 
       # Areas
       "areas": "areas"
@@ -38,95 +39,49 @@ $ ->
       ppu.FooterContactCreate = new ppu.FooterContactCreate model: ppu.contact
 
     posts: ->
-      ppu.posts = new ppu.Posts
-
-      ppu.posts.fetch reset: true,
-      data:
-        featured_order: "ASC",
-        published: 1,
-        the_actual_ch: 0
-        the_actual_co: 0
-
-      ppu.postsView = new ppu.PostsView collection: ppu.posts
-
-      ppu.postsFilters = new ppu.PostsFilters
-      ppu.postsFilters.render()
-      ppu.filtersMobile = new ppu.FiltersMobile
+      ppu.PostsController.index()
 
     post: (slug)->
-      ppu.post = new ppu.Post id: slug
-      ppu.posts = new ppu.Posts
-      ppu.post.fetch()
-      ppu.postDetailView = new ppu.PostDetailView model: ppu.post
-      ppu.postsRelated = new ppu.PostsRelated collection: ppu.posts
-
+      ppu.PostsController.show(slug)
 
     lawyers: () ->
-      ppu.lawyers =  new ppu.Lawyers
-      ppu.lawyersView =  new ppu.LawyersView collection: ppu.lawyers
-      ppu.lawyersFilters = new ppu.LawyersFilters
-      ppu.filtersMobile = new ppu.FiltersMobile
+      ppu.LawyersController.index()
 
     lawyer: (slug) ->
-      ppu.lawyer = new ppu.Lawyer id: slug
-      ppu.LawyerDetailView = new ppu.LawyerDetailView model: ppu.lawyer
+      ppu.LawyersController.show(slug)
 
     theActual: ->
-      ppu.TheActualChileController.index()
+      ppu.TheActualChController.index()
 
     theActualDetail: (slug)->
-      ppu.post = new ppu.Post id: slug
-      ppu.posts = new ppu.Posts
-      ppu.post.fetch()
-      ppu.postDetailView = new ppu.TheActualDetailView model: ppu.post
-      ppu.postsRelated = new ppu.PostsRelated collection: ppu.posts
+      ppu.TheActualChController.show(slug)
+
+    theActualCo: ->
+      ppu.TheActualCoController.index()
+
+    theActualCoDetail: (slug)->
+      ppu.TheActualCoController.show(slug)
 
     areas: ->
-      ppu.categories = new ppu.Categories
-      ppu.categories.fetch reset: true
-      ppu.categoriesView = new ppu.CategoriesView collection: ppu.categories
+      ppu.CategoriesController.index()
 
     area: (slug)->
-      ppu.category = new ppu.Category id: slug
-      ppu.category.fetch()
-      ppu.categoryDetail = new ppu.CategoryDetail model: ppu.category
-
-      ppu.categories = new ppu.Categories
-      ppu.categoriesList = new ppu.CategoriesList collection: ppu.categories
-
-      ppu.lawyers = new ppu.Lawyers
-      ppu.lawyersRelated = new ppu.lawyersRelatedCategory collection: ppu.lawyers
-
-    experience: (slug) ->
-      ppu.experience = new ppu.Experience id: slug
-      ppu.experience.fetch()
-      ppu.experienceDetailView = new ppu.ExperienceDetailView model: ppu.experience
-      ppu.experiences = new ppu.Experiences
-      ppu.experienecesRelated = new ppu.ExperienecesRelated collection: ppu.experiences
+      ppu.CategoriesController.show()
 
     experiences: () ->
-      ppu.experiencesFilters = new ppu.ExperiencesFilters
-      ppu.experiencesFilters.render()
-      ppu.experiences = new ppu.Experiences
-      ppu.experiences.fetch reset: true
-      ppu.experiencesView = new ppu.ExperiencesView collection: ppu.experiences
+      ppu.ExperiencesController.index()
 
-      ppu.filtersMobile = new ppu.FiltersMobile
+    experience: (slug) ->
+      ppu.ExperiencesController.show(slug)
 
     curriculum: ->
-      ppu.curriculum = new ppu.Curriculum
-      ppu.curriculumCreate = new ppu.CurriculumCreate model: ppu.curriculum
-
-      title = $("#work-with-title-template").html()
-      $("#top-bar").html title
+      ppu.curriculumsController.index()
 
     us: ->
-      title = $("#us-title-template").html()
-      $("#top-bar").html title
+    ppu.UsController.index()
 
     probono: ->
-      title = $("#probono-title-template").html()
-      $("#top-bar").html title
+      ppu.ProbonoController.index()
 
   new ppu.Workspace
   Backbone.history.start pushState: true

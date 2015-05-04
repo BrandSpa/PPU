@@ -227,9 +227,9 @@ mixins.lawyerRelationshipView = {
   initialize: function() {
     return this.listenTo(this.model, 'change', this.render);
   },
-  setPosition: function(pos) {
+  setPosition: function(position) {
     return this.model.save({
-      position: pos
+      position: position
     });
   },
   render: function() {
@@ -847,7 +847,7 @@ var __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
 $(function() {
-  ppu.CategoryView = (function(_super) {
+  return ppu.CategoryView = (function(_super) {
     __extends(CategoryView, _super);
 
     function CategoryView() {
@@ -876,7 +876,13 @@ $(function() {
     return CategoryView;
 
   })(Backbone.View);
-  ppu.CategoriesView = (function(_super) {
+});
+
+var __hasProp = {}.hasOwnProperty,
+  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+$(function() {
+  return ppu.CategoriesView = (function(_super) {
     __extends(CategoriesView, _super);
 
     function CategoriesView() {
@@ -910,7 +916,13 @@ $(function() {
     return CategoriesView;
 
   })(Backbone.View);
-  ppu.CategoryDetail = (function(_super) {
+});
+
+var __hasProp = {}.hasOwnProperty,
+  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+$(function() {
+  return ppu.CategoryDetail = (function(_super) {
     __extends(CategoryDetail, _super);
 
     function CategoryDetail() {
@@ -942,6 +954,12 @@ $(function() {
     return CategoryDetail;
 
   })(Backbone.View);
+});
+
+var __hasProp = {}.hasOwnProperty,
+  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+$(function() {
   return ppu.CategoriesList = (function(_super) {
     __extends(CategoriesList, _super);
 
@@ -967,8 +985,7 @@ $(function() {
     CategoriesList.prototype.render = function() {
       var template;
       template = app.compile(this.template);
-      $("#categories-list").html(template(this.collection.toJSON()));
-      return console.log($("#categories-list").html());
+      return $("#categories-list").html(template(this.collection.toJSON()));
     };
 
     return CategoriesList;
@@ -980,7 +997,7 @@ var __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
 $(function() {
-  ppu.LawyerView = (function(_super) {
+  return ppu.LawyerView = (function(_super) {
     __extends(LawyerView, _super);
 
     function LawyerView() {
@@ -1010,7 +1027,13 @@ $(function() {
     return LawyerView;
 
   })(Backbone.View);
-  ppu.LawyersView = (function(_super) {
+});
+
+var __hasProp = {}.hasOwnProperty,
+  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+$(function() {
+  return ppu.LawyersView = (function(_super) {
     __extends(LawyersView, _super);
 
     function LawyersView() {
@@ -1077,7 +1100,62 @@ $(function() {
     return LawyersView;
 
   })(Backbone.View);
-  ppu.LawyersFilters = (function(_super) {
+});
+
+var __hasProp = {}.hasOwnProperty,
+  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+$(function() {
+  return ppu.LawyerDetailView = (function(_super) {
+    __extends(LawyerDetailView, _super);
+
+    function LawyerDetailView() {
+      return LawyerDetailView.__super__.constructor.apply(this, arguments);
+    }
+
+    LawyerDetailView.prototype.el = $('#lawyer');
+
+    LawyerDetailView.prototype.template = $('#lawyer-template');
+
+    LawyerDetailView.prototype.initialize = function() {
+      this.listenTo(this.model, 'change', this.render);
+      this.getTitle();
+      return this.model.fetch();
+    };
+
+    LawyerDetailView.prototype.getTitle = function() {
+      return $("#top-bar").html($("#lawyer-detail-title").html());
+    };
+
+    LawyerDetailView.prototype.render = function() {
+      var template;
+      template = app.compile(this.template);
+      $(this.el).html(template(this.model.toJSON()));
+      return this.getImgs();
+    };
+
+    LawyerDetailView.prototype.getImgs = function() {
+      var h;
+      h = this.$el.find('.award img');
+      return _.each(h, function(e) {
+        return $(e).load(function(a) {
+          if ($(this).height() > 90) {
+            return $(this).css('height', '90px');
+          }
+        });
+      });
+    };
+
+    return LawyerDetailView;
+
+  })(Backbone.View);
+});
+
+var __hasProp = {}.hasOwnProperty,
+  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+$(function() {
+  return ppu.LawyersFilters = (function(_super) {
     __extends(LawyersFilters, _super);
 
     function LawyersFilters() {
@@ -1217,49 +1295,12 @@ $(function() {
     return LawyersFilters;
 
   })(Backbone.View);
-  ppu.LawyerDetailView = (function(_super) {
-    __extends(LawyerDetailView, _super);
+});
 
-    function LawyerDetailView() {
-      return LawyerDetailView.__super__.constructor.apply(this, arguments);
-    }
+var __hasProp = {}.hasOwnProperty,
+  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-    LawyerDetailView.prototype.el = $('#lawyer');
-
-    LawyerDetailView.prototype.template = $('#lawyer-template');
-
-    LawyerDetailView.prototype.initialize = function() {
-      this.listenTo(this.model, 'change', this.render);
-      this.getTitle();
-      return this.model.fetch();
-    };
-
-    LawyerDetailView.prototype.getTitle = function() {
-      return $("#top-bar").html($("#lawyer-detail-title").html());
-    };
-
-    LawyerDetailView.prototype.render = function() {
-      var template;
-      template = app.compile(this.template);
-      $(this.el).html(template(this.model.toJSON()));
-      return this.getImgs();
-    };
-
-    LawyerDetailView.prototype.getImgs = function() {
-      var h;
-      h = this.$el.find('.award img');
-      return _.each(h, function(e) {
-        return $(e).load(function(a) {
-          if ($(this).height() > 90) {
-            return $(this).css('height', '90px');
-          }
-        });
-      });
-    };
-
-    return LawyerDetailView;
-
-  })(Backbone.View);
+$(function() {
   return ppu.lawyersRelatedCategory = (function(_super) {
     __extends(lawyersRelatedCategory, _super);
 
@@ -1308,7 +1349,7 @@ var __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
 $(function() {
-  ppu.PostView = (function(_super) {
+  return ppu.PostView = (function(_super) {
     __extends(PostView, _super);
 
     function PostView() {
@@ -1337,7 +1378,13 @@ $(function() {
     return PostView;
 
   })(Backbone.View);
-  ppu.PostFeaturedView = (function(_super) {
+});
+
+var __hasProp = {}.hasOwnProperty,
+  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+$(function() {
+  return ppu.PostFeaturedView = (function(_super) {
     __extends(PostFeaturedView, _super);
 
     function PostFeaturedView() {
@@ -1358,7 +1405,48 @@ $(function() {
     return PostFeaturedView;
 
   })(Backbone.View);
-  ppu.PostsView = (function(_super) {
+});
+
+var __hasProp = {}.hasOwnProperty,
+  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+$(function() {
+  return ppu.PostMainFeaturedView = (function(_super) {
+    __extends(PostMainFeaturedView, _super);
+
+    function PostMainFeaturedView() {
+      return PostMainFeaturedView.__super__.constructor.apply(this, arguments);
+    }
+
+    PostMainFeaturedView.prototype.template = $("#post-main-featured-template");
+
+    PostMainFeaturedView.prototype.className = "col-md-6 col-sm-6 col-xs-12 post-main-featured-item";
+
+    PostMainFeaturedView.prototype.events = {
+      "click": "open"
+    };
+
+    PostMainFeaturedView.prototype.open = function() {
+      return window.location = "/posts/" + (this.model.get('slug'));
+    };
+
+    PostMainFeaturedView.prototype.render = function() {
+      var template;
+      template = app.compile(this.template);
+      $(this.el).html(template(this.model.toJSON()));
+      return this;
+    };
+
+    return PostMainFeaturedView;
+
+  })(Backbone.View);
+});
+
+var __hasProp = {}.hasOwnProperty,
+  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+$(function() {
+  return ppu.PostsView = (function(_super) {
     __extends(PostsView, _super);
 
     function PostsView() {
@@ -1426,35 +1514,12 @@ $(function() {
     return PostsView;
 
   })(Backbone.View);
-  ppu.PostMainFeaturedView = (function(_super) {
-    __extends(PostMainFeaturedView, _super);
+});
 
-    function PostMainFeaturedView() {
-      return PostMainFeaturedView.__super__.constructor.apply(this, arguments);
-    }
+var __hasProp = {}.hasOwnProperty,
+  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-    PostMainFeaturedView.prototype.template = $("#post-main-featured-template");
-
-    PostMainFeaturedView.prototype.className = "col-md-6 col-sm-6 col-xs-12 post-main-featured-item";
-
-    PostMainFeaturedView.prototype.events = {
-      "click": "open"
-    };
-
-    PostMainFeaturedView.prototype.open = function() {
-      return window.location = "/posts/" + (this.model.get('slug'));
-    };
-
-    PostMainFeaturedView.prototype.render = function() {
-      var template;
-      template = app.compile(this.template);
-      $(this.el).html(template(this.model.toJSON()));
-      return this;
-    };
-
-    return PostMainFeaturedView;
-
-  })(Backbone.View);
+$(function() {
   return ppu.PostsFeaturedView = (function(_super) {
     __extends(PostsFeaturedView, _super);
 
@@ -1629,7 +1694,7 @@ var __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
 $(function() {
-  ppu.PostDetailView = (function(_super) {
+  return ppu.PostDetailView = (function(_super) {
     __extends(PostDetailView, _super);
 
     function PostDetailView() {
@@ -1667,6 +1732,12 @@ $(function() {
     return PostDetailView;
 
   })(Backbone.View);
+});
+
+var __hasProp = {}.hasOwnProperty,
+  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+$(function() {
   return ppu.PostsRelated = (function(_super) {
     __extends(PostsRelated, _super);
 
@@ -1714,7 +1785,7 @@ var __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
 $(function() {
-  ppu.ExperienceView = (function(_super) {
+  return ppu.ExperienceView = (function(_super) {
     __extends(ExperienceView, _super);
 
     function ExperienceView() {
@@ -1743,7 +1814,13 @@ $(function() {
     return ExperienceView;
 
   })(Backbone.View);
-  ppu.ExperiencesView = (function(_super) {
+});
+
+var __hasProp = {}.hasOwnProperty,
+  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+$(function() {
+  return ppu.ExperiencesView = (function(_super) {
     __extends(ExperiencesView, _super);
 
     function ExperiencesView() {
@@ -1787,7 +1864,13 @@ $(function() {
     return ExperiencesView;
 
   })(Backbone.View);
-  ppu.ExperiencesFilters = (function(_super) {
+});
+
+var __hasProp = {}.hasOwnProperty,
+  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+$(function() {
+  return ppu.ExperiencesFilters = (function(_super) {
     __extends(ExperiencesFilters, _super);
 
     function ExperiencesFilters() {
@@ -1904,7 +1987,13 @@ $(function() {
     return ExperiencesFilters;
 
   })(Backbone.View);
-  ppu.ExperienceDetailView = (function(_super) {
+});
+
+var __hasProp = {}.hasOwnProperty,
+  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+$(function() {
+  return ppu.ExperienceDetailView = (function(_super) {
     __extends(ExperienceDetailView, _super);
 
     function ExperienceDetailView() {
@@ -1939,6 +2028,12 @@ $(function() {
     return ExperienceDetailView;
 
   })(Backbone.View);
+});
+
+var __hasProp = {}.hasOwnProperty,
+  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+$(function() {
   return ppu.ExperienecesRelated = (function(_super) {
     __extends(ExperienecesRelated, _super);
 
@@ -1993,7 +2088,7 @@ $(function() {
     CurriculumCreate.prototype.el = $("#work-with-us");
 
     CurriculumCreate.prototype.events = {
-      "click .send-cv": "saveCV"
+      "click .send-cv": "store"
     };
 
     CurriculumCreate.prototype.initialize = function() {
@@ -2001,13 +2096,19 @@ $(function() {
       return this.listenTo(this.model, "error", this.renderErrors, this);
     };
 
-    CurriculumCreate.prototype.saveCV = function(e) {
+    CurriculumCreate.prototype.store = function(e) {
       var $forms, datas, options;
       e.preventDefault();
       $forms = $(this.el).find('form');
       datas = new FormData($forms[0]);
       options = ppu.ajaxOptions("POST", datas);
       return this.model.save(datas, $.extend({}, options));
+    };
+
+    CurriculumCreate.prototype.renderTitle = function() {
+      var title;
+      title = $("#work-with-title-template").html();
+      return $("#top-bar").html(title);
     };
 
     CurriculumCreate.prototype.stored = function(model) {
@@ -2073,7 +2174,7 @@ var __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
 $(function() {
-  ppu.TheCurrentView = (function(_super) {
+  return ppu.TheCurrentView = (function(_super) {
     __extends(TheCurrentView, _super);
 
     function TheCurrentView() {
@@ -2102,7 +2203,13 @@ $(function() {
     return TheCurrentView;
 
   })(Backbone.View);
-  ppu.TheActualFeaturedView = (function(_super) {
+});
+
+var __hasProp = {}.hasOwnProperty,
+  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+$(function() {
+  return ppu.TheActualFeaturedView = (function(_super) {
     __extends(TheActualFeaturedView, _super);
 
     function TheActualFeaturedView() {
@@ -2131,16 +2238,22 @@ $(function() {
     return TheActualFeaturedView;
 
   })(Backbone.View);
-  return ppu.TheCurrentViews = (function(_super) {
-    __extends(TheCurrentViews, _super);
+});
 
-    function TheCurrentViews() {
-      return TheCurrentViews.__super__.constructor.apply(this, arguments);
+var __hasProp = {}.hasOwnProperty,
+  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+$(function() {
+  return ppu.TheActualChViews = (function(_super) {
+    __extends(TheActualChViews, _super);
+
+    function TheActualChViews() {
+      return TheActualChViews.__super__.constructor.apply(this, arguments);
     }
 
-    TheCurrentViews.prototype.el = $("#posts");
+    TheActualChViews.prototype.el = $("#posts");
 
-    TheCurrentViews.prototype.initialize = function() {
+    TheActualChViews.prototype.initialize = function() {
       this.listenTo(this.collection, 'reset', this.render);
       this.listenTo(this.collection, 'add', this.renderOne);
       app.pubsub.on("posts:filter", this.filterCollection, this);
@@ -2148,7 +2261,7 @@ $(function() {
       return app.pubsub.on("posts:paginate", this.paginate, this);
     };
 
-    TheCurrentViews.prototype.filterCollection = function(filters) {
+    TheActualChViews.prototype.filterCollection = function(filters) {
       filters = _.extend({
         lang: app.lang
       }, filters);
@@ -2164,7 +2277,7 @@ $(function() {
       });
     };
 
-    TheCurrentViews.prototype.paginate = function(data) {
+    TheActualChViews.prototype.paginate = function(data) {
       return this.collection.fetch({
         data: data,
         beforeSend: function() {
@@ -2176,21 +2289,21 @@ $(function() {
       });
     };
 
-    TheCurrentViews.prototype.renderOne = function(model) {
+    TheActualChViews.prototype.renderOne = function(model) {
       ppu.postView = new ppu.TheCurrentView({
         model: model
       });
       return this.$el.append(ppu.postView.render().el);
     };
 
-    TheCurrentViews.prototype.renderMain = function(model) {
+    TheActualChViews.prototype.renderMain = function(model) {
       ppu.postMainFeaturedView = new ppu.TheActualFeaturedView({
         model: model
       });
       return this.$el.prepend(ppu.postMainFeaturedView.render().el);
     };
 
-    TheCurrentViews.prototype.render = function() {
+    TheActualChViews.prototype.render = function() {
       var i;
       this.$el.empty();
       if (this.collection.length <= 0) {
@@ -2209,7 +2322,100 @@ $(function() {
       }, this);
     };
 
-    return TheCurrentViews;
+    return TheActualChViews;
+
+  })(Backbone.View);
+});
+
+var __hasProp = {}.hasOwnProperty,
+  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+$(function() {
+  return ppu.TheActualChFilter = (function(_super) {
+    __extends(TheActualChFilter, _super);
+
+    function TheActualChFilter() {
+      return TheActualChFilter.__super__.constructor.apply(this, arguments);
+    }
+
+    TheActualChFilter.prototype.el = $('#top-bar');
+
+    TheActualChFilter.prototype.template = $("#the-current-filters");
+
+    TheActualChFilter.prototype.events = {
+      'change .countries': 'byCountry',
+      'change .category': 'byCategory',
+      'keyup .query': 'byKeyword',
+      'submit .search': 'bySearch'
+    };
+
+    TheActualChFilter.prototype.initialize = function() {
+      this.filtersAplied = {
+        lang: app.lang,
+        published: 1,
+        the_actual_ch: 1
+      };
+      app.pubsub.on("general:scroll", this.paginate, this);
+      return this.offset = 20;
+    };
+
+    TheActualChFilter.prototype.render = function() {
+      var template;
+      template = app.compile(this.template);
+      this.$el.html(template);
+      return ppu.appendSelect(this.el);
+    };
+
+    TheActualChFilter.prototype.filterBy = function(data) {
+      data = _.extend({
+        paginate: 0
+      }, data);
+      data = _.extend(this.filtersAplied, data);
+      return app.pubsub.trigger("posts:filter", data);
+    };
+
+    TheActualChFilter.prototype.paginate = function() {
+      var data;
+      data = _.extend(this.filtersAplied, {
+        paginate: this.offset
+      });
+      app.pubsub.trigger("posts:paginate", data);
+      return this.offset = this.offset + 20;
+    };
+
+    TheActualChFilter.prototype.byCategory = function(e) {
+      var val;
+      val = $(e.currentTarget).find('select').val();
+      return this.filterBy({
+        category: val
+      });
+    };
+
+    TheActualChFilter.prototype.byKeyword = function(e) {
+      var val;
+      val = $(e.currentTarget).val();
+      if (val.length >= 2) {
+        return this.filterBy({
+          keyword: val
+        });
+      } else if (val.length === 1) {
+        return this.filterBy({
+          keyword: "",
+          featured_order: "ASC"
+        });
+      }
+    };
+
+    TheActualChFilter.prototype.bySearch = function(e) {
+      var val;
+      e.preventDefault();
+      val = $(e.currentTarget).find(".query").val();
+      return this.filterBy({
+        keyword: val
+      });
+    };
+
+    return TheActualChFilter;
 
   })(Backbone.View);
 });
@@ -2297,6 +2503,192 @@ $(function() {
     };
 
     return TheActualRelated;
+
+  })(Backbone.View);
+});
+
+var __hasProp = {}.hasOwnProperty,
+  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+$(function() {
+  ppu.TheActualCoView = (function(_super) {
+    __extends(TheActualCoView, _super);
+
+    function TheActualCoView() {
+      return TheActualCoView.__super__.constructor.apply(this, arguments);
+    }
+
+    TheActualCoView.prototype.template = $("#the-actual-post-template");
+
+    TheActualCoView.prototype.className = "col-md-6 col-sm-6 col-xs-12 post-item";
+
+    TheActualCoView.prototype.events = {
+      "click .share-hover": "open"
+    };
+
+    TheActualCoView.prototype.open = function() {
+      return window.location = "/el-actual/" + (this.model.get('slug'));
+    };
+
+    TheActualCoView.prototype.render = function() {
+      var template;
+      template = app.compile(this.template);
+      $(this.el).html(template(this.model.toJSON()));
+      return this;
+    };
+
+    return TheActualCoView;
+
+  })(Backbone.View);
+  return ppu.TheActualCoFeaturedView = (function(_super) {
+    __extends(TheActualCoFeaturedView, _super);
+
+    function TheActualCoFeaturedView() {
+      return TheActualCoFeaturedView.__super__.constructor.apply(this, arguments);
+    }
+
+    TheActualCoFeaturedView.prototype.template = $("#the-actual-featured-template");
+
+    TheActualCoFeaturedView.prototype.className = "col-md-6 col-sm-6 col-xs-12 post-main-featured-item";
+
+    TheActualCoFeaturedView.prototype.events = {
+      "click": "open"
+    };
+
+    TheActualCoFeaturedView.prototype.open = function() {
+      return window.location = "/posts/" + (this.model.get('slug'));
+    };
+
+    TheActualCoFeaturedView.prototype.render = function() {
+      var template;
+      template = app.compile(this.template);
+      $(this.el).html(template(this.model.toJSON()));
+      return this;
+    };
+
+    return TheActualCoFeaturedView;
+
+  })(Backbone.View);
+});
+
+var __hasProp = {}.hasOwnProperty,
+  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+$(function() {
+  return ppu.TheActualCoFeaturedView = (function(_super) {
+    __extends(TheActualCoFeaturedView, _super);
+
+    function TheActualCoFeaturedView() {
+      return TheActualCoFeaturedView.__super__.constructor.apply(this, arguments);
+    }
+
+    TheActualCoFeaturedView.prototype.template = $("#the-actual-featured-template");
+
+    TheActualCoFeaturedView.prototype.className = "col-md-6 col-sm-6 col-xs-12 post-main-featured-item";
+
+    TheActualCoFeaturedView.prototype.events = {
+      "click": "open"
+    };
+
+    TheActualCoFeaturedView.prototype.open = function() {
+      return window.location = "/posts/" + (this.model.get('slug'));
+    };
+
+    TheActualCoFeaturedView.prototype.render = function() {
+      var template;
+      template = app.compile(this.template);
+      $(this.el).html(template(this.model.toJSON()));
+      return this;
+    };
+
+    return TheActualCoFeaturedView;
+
+  })(Backbone.View);
+});
+
+var __hasProp = {}.hasOwnProperty,
+  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+$(function() {
+  return ppu.TheActualCoViews = (function(_super) {
+    __extends(TheActualCoViews, _super);
+
+    function TheActualCoViews() {
+      return TheActualCoViews.__super__.constructor.apply(this, arguments);
+    }
+
+    TheActualCoViews.prototype.el = $("#posts");
+
+    TheActualCoViews.prototype.initialize = function() {
+      this.listenTo(this.collection, 'reset', this.render);
+      this.listenTo(this.collection, 'add', this.renderOne);
+      app.pubsub.on("posts:filter", this.filterCollection, this);
+      app.pubsub.on("apply:filters", this.filterCollection, this);
+      return app.pubsub.on("posts:paginate", this.paginate, this);
+    };
+
+    TheActualCoViews.prototype.filterCollection = function(filters) {
+      filters = _.extend({
+        lang: app.lang
+      }, filters);
+      return this.collection.fetch({
+        reset: true,
+        data: filters,
+        beforeSend: function() {
+          return $('.preload').removeClass('hidden');
+        },
+        success: function() {
+          return $('.preload').addClass('hidden');
+        }
+      });
+    };
+
+    TheActualCoViews.prototype.paginate = function(data) {
+      return this.collection.fetch({
+        data: data,
+        beforeSend: function() {
+          return $('.preload').removeClass('hidden');
+        },
+        success: function() {
+          return $('.preload').addClass('hidden');
+        }
+      });
+    };
+
+    TheActualCoViews.prototype.renderOne = function(model) {
+      ppu.postView = new ppu.TheActualCoView({
+        model: model
+      });
+      return this.$el.append(ppu.postView.render().el);
+    };
+
+    TheActualCoViews.prototype.renderMain = function(model) {
+      ppu.postMainFeaturedView = new ppu.TheActualCoFeaturedView({
+        model: model
+      });
+      return this.$el.prepend(ppu.postMainFeaturedView.render().el);
+    };
+
+    TheActualCoViews.prototype.render = function() {
+      var i;
+      this.$el.empty();
+      if (this.collection.length <= 0) {
+        $('.not-found').removeClass('hidden');
+      } else {
+        $('.not-found').addClass('hidden');
+      }
+      i = 0;
+      return this.collection.each(function(model) {
+        if (i === 0) {
+          this.renderMain(model);
+        } else {
+          this.renderOne(model);
+        }
+        return i++;
+      }, this);
+    };
+
+    return TheActualCoViews;
 
   })(Backbone.View);
 });
@@ -2394,6 +2786,92 @@ $(function() {
   })(Backbone.View);
 });
 
+var __hasProp = {}.hasOwnProperty,
+  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+$(function() {
+  ppu.TheActualCoDetailView = (function(_super) {
+    __extends(TheActualCoDetailView, _super);
+
+    function TheActualCoDetailView() {
+      return TheActualCoDetailView.__super__.constructor.apply(this, arguments);
+    }
+
+    TheActualCoDetailView.prototype.el = $("#post-detail");
+
+    TheActualCoDetailView.prototype.template = $("#post-detail-template");
+
+    TheActualCoDetailView.prototype.initialize = function() {
+      this.listenTo(this.model, "change", this.render);
+      return this.getTitle();
+    };
+
+    TheActualCoDetailView.prototype.getTitle = function() {
+      return $("#top-bar").html($("#post-detail-title").html());
+    };
+
+    TheActualCoDetailView.prototype.render = function() {
+      var relatedData, template;
+      template = app.compile(this.template);
+      this.$el.html(template(this.model.toJSON()));
+      this.setUrlTranslation(this.model);
+      this.model.get('categories');
+      if (this.model.get('categories')[0]) {
+        relatedData = {
+          category: this.model.get('categories')[0].name,
+          without: this.model.id,
+          the_actual_co: 1
+        };
+        return app.pubsub.trigger('posts:getRelated', relatedData);
+      }
+    };
+
+    return TheActualCoDetailView;
+
+  })(Backbone.View);
+  return ppu.TheActualCoRelated = (function(_super) {
+    __extends(TheActualCoRelated, _super);
+
+    function TheActualCoRelated() {
+      return TheActualCoRelated.__super__.constructor.apply(this, arguments);
+    }
+
+    TheActualCoRelated.prototype.el = $("#posts-related");
+
+    TheActualCoRelated.prototype.initialize = function() {
+      this.listenTo(this.collection, 'reset', this.render);
+      return app.pubsub.on('posts:getRelated', this.get, this);
+    };
+
+    TheActualCoRelated.prototype.get = function(data) {
+      return this.collection.fetch({
+        reset: true,
+        data: data
+      });
+    };
+
+    TheActualCoRelated.prototype.renderOne = function(model) {
+      ppu.postView = new ppu.TheCurrentView({
+        model: model
+      });
+      return this.$el.append(ppu.postView.render().el);
+    };
+
+    TheActualCoRelated.prototype.render = function() {
+      this.$el.empty();
+      if (this.collection.length > 0) {
+        $('.related-title').removeClass('hidden');
+        return this.collection.each(function(model) {
+          return this.renderOne(model);
+        }, this);
+      }
+    };
+
+    return TheActualCoRelated;
+
+  })(Backbone.View);
+});
+
 ppu.TheActualChController = {
   index: function() {
     var collection, filters;
@@ -2406,11 +2884,200 @@ ppu.TheActualChController = {
         the_actual_ch: 1
       }
     });
+    new ppu.TheActualChViews({
+      collection: collection
+    });
+    filters = new ppu.TheActualChFilter;
+    return filters.render();
+  },
+  show: function(slug) {
+    ppu.post = new ppu.Post({
+      id: slug
+    });
+    ppu.posts = new ppu.Posts;
+    ppu.post.fetch();
+    ppu.postDetailView = new ppu.TheActualDetailView({
+      model: ppu.post
+    });
+    return ppu.postsRelated = new ppu.PostsRelated({
+      collection: ppu.posts
+    });
+  }
+};
+
+ppu.TheActualCoController = {
+  index: function() {
+    var collection, filters;
+    collection = new ppu.Posts;
+    collection.fetch({
+      reset: true,
+      data: {
+        published: 1,
+        featured_order: "ASC",
+        the_actual_co: 1
+      }
+    });
     new ppu.TheCurrentViews({
       collection: collection
     });
     filters = new ppu.TheCurrentFilter;
     return filters.render();
+  },
+  show: function(slug) {
+    ppu.post = new ppu.Post({
+      id: slug
+    });
+    ppu.posts = new ppu.Posts;
+    ppu.post.fetch();
+    ppu.postDetailView = new ppu.TheActualDetailView({
+      model: ppu.post
+    });
+    return ppu.postsRelated = new ppu.PostsRelated({
+      collection: ppu.posts
+    });
+  }
+};
+
+ppu.PostsController = {
+  index: function() {
+    ppu.posts = new ppu.Posts;
+    ppu.posts.fetch({
+      reset: true,
+      data: {
+        featured_order: "ASC",
+        published: 1,
+        the_actual_ch: 0,
+        the_actual_co: 0
+      }
+    });
+    ppu.postsView = new ppu.PostsView({
+      collection: ppu.posts
+    });
+    ppu.postsFilters = new ppu.PostsFilters;
+    ppu.postsFilters.render();
+    return ppu.filtersMobile = new ppu.FiltersMobile;
+  },
+  show: function() {
+    ppu.post = new ppu.Post({
+      id: slug
+    });
+    ppu.posts = new ppu.Posts;
+    ppu.post.fetch();
+    ppu.postDetailView = new ppu.PostDetailView({
+      model: ppu.post
+    });
+    return ppu.postsRelated = new ppu.PostsRelated({
+      collection: ppu.posts
+    });
+  }
+};
+
+ppu.LawyersController = {
+  index: function() {
+    ppu.lawyers = new ppu.Lawyers;
+    ppu.lawyersView = new ppu.LawyersView({
+      collection: ppu.lawyers
+    });
+    ppu.lawyersFilters = new ppu.LawyersFilters;
+    return ppu.filtersMobile = new ppu.FiltersMobile;
+  },
+  show: function() {
+    ppu.lawyer = new ppu.Lawyer({
+      id: slug
+    });
+    return ppu.LawyerDetailView = new ppu.LawyerDetailView({
+      model: ppu.lawyer
+    });
+  }
+};
+
+ppu.CategoriesController = {
+  index: function() {
+    ppu.category = new ppu.Category({
+      id: slug
+    });
+    ppu.category.fetch();
+    ppu.categoryDetail = new ppu.CategoryDetail({
+      model: ppu.category
+    });
+    ppu.categories = new ppu.Categories;
+    ppu.categoriesList = new ppu.CategoriesList({
+      collection: ppu.categories
+    });
+    ppu.lawyers = new ppu.Lawyers;
+    return ppu.lawyersRelated = new ppu.lawyersRelatedCategory({
+      collection: ppu.lawyers
+    });
+  },
+  show: function(slug) {
+    ppu.category = new ppu.Category({
+      id: slug
+    });
+    ppu.category.fetch();
+    ppu.categoryDetail = new ppu.CategoryDetail({
+      model: ppu.category
+    });
+    ppu.categories = new ppu.Categories;
+    ppu.categoriesList = new ppu.CategoriesList({
+      collection: ppu.categories
+    });
+    ppu.lawyers = new ppu.Lawyers;
+    return ppu.lawyersRelated = new ppu.lawyersRelatedCategory({
+      collection: ppu.lawyers
+    });
+  }
+};
+
+ppu.ExperiencesController = {
+  index: function() {
+    ppu.experience = new ppu.Experience({
+      id: slug
+    });
+    ppu.experience.fetch();
+    ppu.experienceDetailView = new ppu.ExperienceDetailView({
+      model: ppu.experience
+    });
+    ppu.experiences = new ppu.Experiences;
+    return ppu.experienecesRelated = new ppu.ExperienecesRelated({
+      collection: ppu.experiences
+    });
+  },
+  show: function(slug) {
+    ppu.experiencesFilters = new ppu.ExperiencesFilters;
+    ppu.experiencesFilters.render();
+    ppu.experiences = new ppu.Experiences;
+    ppu.experiences.fetch({
+      reset: true
+    });
+    ppu.experiencesView = new ppu.ExperiencesView({
+      collection: ppu.experiences
+    });
+    return ppu.filtersMobile = new ppu.FiltersMobile;
+  }
+};
+
+ppu.curriculumsController = {
+  index: function() {
+    ppu.curriculum = new ppu.Curriculum;
+    return ppu.curriculumCreate = new ppu.CurriculumCreate({
+      model: ppu.curriculum
+    });
+  }
+};
+
+ppu.UsController = {
+  index: function() {
+    var title;
+    title = $("#us-title-template").html();
+    return $("#top-bar").html(title);
+  }
+};
+
+ppu.ProbonoController = {
+  index: function() {
+    var title;
+    title = $("#probono-title-template").html();
+    return $("#top-bar").html(title);
   }
 };
 
@@ -2435,8 +3102,8 @@ $(function() {
       "experiencias/:slug": "experience",
       "el-actual": "theActual",
       "el-actual/:slug": "theActualDetail",
-      "el-actual-colombia": "theActual",
-      "el-actual-colombia/:slug": "theActualDetail",
+      "el-actual-colombia": "theActualCo",
+      "el-actual-colombia/:slug": "theActualCoDetail",
       "areas": "areas",
       "areas/:slug": "area",
       "trabaje-con-nosotros": "curriculum",
@@ -2454,149 +3121,63 @@ $(function() {
     };
 
     Workspace.prototype.posts = function() {
-      ppu.posts = new ppu.Posts;
-      ppu.posts.fetch({
-        reset: true,
-        data: {
-          featured_order: "ASC",
-          published: 1,
-          the_actual_ch: 0,
-          the_actual_co: 0
-        }
-      });
-      ppu.postsView = new ppu.PostsView({
-        collection: ppu.posts
-      });
-      ppu.postsFilters = new ppu.PostsFilters;
-      ppu.postsFilters.render();
-      return ppu.filtersMobile = new ppu.FiltersMobile;
+      return ppu.PostsController.index();
     };
 
     Workspace.prototype.post = function(slug) {
-      ppu.post = new ppu.Post({
-        id: slug
-      });
-      ppu.posts = new ppu.Posts;
-      ppu.post.fetch();
-      ppu.postDetailView = new ppu.PostDetailView({
-        model: ppu.post
-      });
-      return ppu.postsRelated = new ppu.PostsRelated({
-        collection: ppu.posts
-      });
+      return ppu.PostsController.show(slug);
     };
 
     Workspace.prototype.lawyers = function() {
-      ppu.lawyers = new ppu.Lawyers;
-      ppu.lawyersView = new ppu.LawyersView({
-        collection: ppu.lawyers
-      });
-      ppu.lawyersFilters = new ppu.LawyersFilters;
-      return ppu.filtersMobile = new ppu.FiltersMobile;
+      return ppu.LawyersController.index();
     };
 
     Workspace.prototype.lawyer = function(slug) {
-      ppu.lawyer = new ppu.Lawyer({
-        id: slug
-      });
-      return ppu.LawyerDetailView = new ppu.LawyerDetailView({
-        model: ppu.lawyer
-      });
+      return ppu.LawyersController.show(slug);
     };
 
     Workspace.prototype.theActual = function() {
-      return ppu.TheActualChileController.index();
+      return ppu.TheActualChController.index();
     };
 
     Workspace.prototype.theActualDetail = function(slug) {
-      ppu.post = new ppu.Post({
-        id: slug
-      });
-      ppu.posts = new ppu.Posts;
-      ppu.post.fetch();
-      ppu.postDetailView = new ppu.TheActualDetailView({
-        model: ppu.post
-      });
-      return ppu.postsRelated = new ppu.PostsRelated({
-        collection: ppu.posts
-      });
+      return ppu.TheActualChController.show(slug);
+    };
+
+    Workspace.prototype.theActualCo = function() {
+      return ppu.TheActualCoController.index();
+    };
+
+    Workspace.prototype.theActualCoDetail = function(slug) {
+      return ppu.TheActualCoController.show(slug);
     };
 
     Workspace.prototype.areas = function() {
-      ppu.categories = new ppu.Categories;
-      ppu.categories.fetch({
-        reset: true
-      });
-      return ppu.categoriesView = new ppu.CategoriesView({
-        collection: ppu.categories
-      });
+      return ppu.CategoriesController.index();
     };
 
     Workspace.prototype.area = function(slug) {
-      ppu.category = new ppu.Category({
-        id: slug
-      });
-      ppu.category.fetch();
-      ppu.categoryDetail = new ppu.CategoryDetail({
-        model: ppu.category
-      });
-      ppu.categories = new ppu.Categories;
-      ppu.categoriesList = new ppu.CategoriesList({
-        collection: ppu.categories
-      });
-      ppu.lawyers = new ppu.Lawyers;
-      return ppu.lawyersRelated = new ppu.lawyersRelatedCategory({
-        collection: ppu.lawyers
-      });
-    };
-
-    Workspace.prototype.experience = function(slug) {
-      ppu.experience = new ppu.Experience({
-        id: slug
-      });
-      ppu.experience.fetch();
-      ppu.experienceDetailView = new ppu.ExperienceDetailView({
-        model: ppu.experience
-      });
-      ppu.experiences = new ppu.Experiences;
-      return ppu.experienecesRelated = new ppu.ExperienecesRelated({
-        collection: ppu.experiences
-      });
+      return ppu.CategoriesController.show();
     };
 
     Workspace.prototype.experiences = function() {
-      ppu.experiencesFilters = new ppu.ExperiencesFilters;
-      ppu.experiencesFilters.render();
-      ppu.experiences = new ppu.Experiences;
-      ppu.experiences.fetch({
-        reset: true
-      });
-      ppu.experiencesView = new ppu.ExperiencesView({
-        collection: ppu.experiences
-      });
-      return ppu.filtersMobile = new ppu.FiltersMobile;
+      return ppu.ExperiencesController.index();
+    };
+
+    Workspace.prototype.experience = function(slug) {
+      return ppu.ExperiencesController.show(slug);
     };
 
     Workspace.prototype.curriculum = function() {
-      var title;
-      ppu.curriculum = new ppu.Curriculum;
-      ppu.curriculumCreate = new ppu.CurriculumCreate({
-        model: ppu.curriculum
-      });
-      title = $("#work-with-title-template").html();
-      return $("#top-bar").html(title);
+      return ppu.curriculumsController.index();
     };
 
-    Workspace.prototype.us = function() {
-      var title;
-      title = $("#us-title-template").html();
-      return $("#top-bar").html(title);
-    };
+    Workspace.prototype.us = function() {};
+
+    ppu.UsController.index();
 
     Workspace.prototype.probono = function() {
-      var title;
-      title = $("#probono-title-template").html();
-      return $("#top-bar").html(title);
+      return ppu.ProbonoController.index();
     };
 
     return Workspace;

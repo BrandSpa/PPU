@@ -16,6 +16,7 @@ gulp.task('app', function() {
     'coffee/helpers/handlebars_helpers.coffee',
     'coffee/helpers/bb_helpers.coffee',
 
+    // App
     'coffee/app.coffee',
 
     // Models
@@ -26,25 +27,74 @@ gulp.task('app', function() {
     'coffee/models/post.coffee',
     'coffee/models/experencie.coffee',
 
+
     // Views
     'coffee/views/filters.coffee',
-    'coffee/views/categories.coffee',
-    'coffee/views/lawyers.coffee',
-    'coffee/views/posts.coffee',
-    'coffee/views/posts_filters.coffee',
-    'coffee/views/post.coffee',
-    'coffee/views/experiences.coffee',
-    'coffee/views/curriculum.coffee',
-    'coffee/views/contact.coffee',
-    'coffee/views/the_actual.coffee',
-    'coffee/views/the_actual_detail.coffee',
-    'coffee/views/the_actual_filters.coffee',
+
+    //Categories
+    'coffee/views/categories/item.coffee',
+    'coffee/views/categories/list.coffee',
+    'coffee/views/categories/detail.coffee',
+    'coffee/views/categories/select.coffee',
+
+    //lawyers
+    'coffee/views/lawyers/item.coffee',
+    'coffee/views/lawyers/list.coffee',
+    'coffee/views/lawyers/detail.coffee',
+    'coffee/views/lawyers/filters.coffee',
+    'coffee/views/lawyers/related_category.coffee',
+
+    //Posts
+    'coffee/views/posts/item.coffee',
+    'coffee/views/posts/item_featured.coffee',
+    'coffee/views/posts/item_main_featured.coffee',
+    'coffee/views/posts/list.coffee',
+    'coffee/views/posts/list_featured.coffee',
+    'coffee/views/posts/filters.coffee',
+    'coffee/views/posts/detail.coffee',
+    'coffee/views/posts/related.coffee',
+
+    //experiences
+    'coffee/views/experiences/item.coffee',
+    'coffee/views/experiences/list.coffee',
+    'coffee/views/experiences/filters.coffee',
+    'coffee/views/experiences/detail.coffee',
+    'coffee/views/experiences/related.coffee',
+
+    //curriculum
+    'coffee/views/curriculum/create.coffee',
+
+    //contacts
+    'coffee/views/contact/create.coffee',
+
+    //the_actual_ch
+    'coffee/views/the_actual_ch/item.coffee',
+    'coffee/views/the_actual_ch/featured.coffee',
+    'coffee/views/the_actual_ch/list.coffee',
+    'coffee/views/the_actual_ch/filters.coffee',
+    'coffee/views/the_actual_ch/detail.coffee',
+
+    //the_actual_co
+    'coffee/views/the_actual_co/item.coffee',
+    'coffee/views/the_actual_co/featured.coffee',
+    'coffee/views/the_actual_co/list.coffee',
+    'coffee/views/the_actual_co/filters.coffee',
+    'coffee/views/the_actual_co/detail.coffee',
 
     // Controllers
     'coffee/controllers/the_actual_ch.coffee',
-    
+    'coffee/controllers/the_actual_co.coffee',
+    'coffee/controllers/posts.coffee',
+    'coffee/controllers/lawyers.coffee',
+    'coffee/controllers/categories.coffee',
+    'coffee/controllers/experiences.coffee',
+    'coffee/controllers/curriculums.coffee',
+    'coffee/controllers/us.coffee',
+    'coffee/controllers/probono.coffee',
+
     // Router
     'coffee/router.coffee'
+
     ])
   .pipe(coffee({bare: true}).on('error', gutil.log))
   .pipe(concat('app.js'))
@@ -77,6 +127,8 @@ gulp.task('app-admin', function() {
     'coffee/lawyer/pharase.coffee',
     'coffee/lawyer/job.coffee',
     'coffee/lawyer/recognition.coffee',
+
+
 
     // Views admin
     'coffee/admin/category.coffee',
@@ -157,7 +209,16 @@ gulp.task('compress', function() {
 
 gulp.task('watch', ['sass', 'app', 'app-admin'], function(){
   gulp.watch('sass/*.sass', ['sass']);
-  gulp.watch(['coffee/*.coffee', 'coffee/*/*.coffee', 'coffee/*/*/*/*.coffee'], ['app', 'app-admin']);
+
+  gulp.watch([
+    'coffee/*.coffee',
+    'coffee/*/*.coffee',
+    'coffee/**/**/**/*.coffee'
+  ],
+  [
+    'app',
+    'app-admin'
+  ]);
 });
 
 gulp.task('default', ['watch']);

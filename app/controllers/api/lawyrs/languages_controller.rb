@@ -4,5 +4,4 @@ class Api::Lawyrs::LanguagesController < ApplicationController
   def entity
     Language
   end
-
 end

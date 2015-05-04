@@ -227,9 +227,9 @@ mixins.lawyerRelationshipView = {
   initialize: function() {
     return this.listenTo(this.model, 'change', this.render);
   },
-  setPosition: function(pos) {
+  setPosition: function(position) {
     return this.model.save({
-      position: pos
+      position: position
     });
   },
   render: function() {
@@ -603,139 +603,6 @@ ppu.Lawyers = (function(_super) {
   return Lawyers;
 
 })(Backbone.Collection);
-
-var __hasProp = {}.hasOwnProperty,
-  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
-
-$(function() {
-  ppu.CategoryView = (function(_super) {
-    __extends(CategoryView, _super);
-
-    function CategoryView() {
-      return CategoryView.__super__.constructor.apply(this, arguments);
-    }
-
-    CategoryView.prototype.template = $("#category-template");
-
-    CategoryView.prototype.className = "col-md-6 col-sm-6 col-xs-12 category-item";
-
-    CategoryView.prototype.events = {
-      "click": "open"
-    };
-
-    CategoryView.prototype.open = function() {
-      return window.location = "/areas/" + (this.model.get('slug'));
-    };
-
-    CategoryView.prototype.render = function() {
-      var template;
-      template = app.compile(this.template);
-      $(this.el).html(template(this.model.toJSON()));
-      return this;
-    };
-
-    return CategoryView;
-
-  })(Backbone.View);
-  ppu.CategoriesView = (function(_super) {
-    __extends(CategoriesView, _super);
-
-    function CategoriesView() {
-      return CategoriesView.__super__.constructor.apply(this, arguments);
-    }
-
-    CategoriesView.prototype.el = $("#categories");
-
-    CategoriesView.prototype.initialize = function() {
-      this.listenTo(this.collection, 'reset', this.render);
-      return this.getTitle();
-    };
-
-    CategoriesView.prototype.getTitle = function() {
-      return $("#top-bar").html($("#category-title").html());
-    };
-
-    CategoriesView.prototype.renderOne = function(model) {
-      ppu.categoryView = new ppu.CategoryView({
-        model: model
-      });
-      return this.$el.append(ppu.categoryView.render().el);
-    };
-
-    CategoriesView.prototype.render = function() {
-      return this.collection.each(function(model) {
-        return this.renderOne(model);
-      }, this);
-    };
-
-    return CategoriesView;
-
-  })(Backbone.View);
-  ppu.CategoryDetail = (function(_super) {
-    __extends(CategoryDetail, _super);
-
-    function CategoryDetail() {
-      return CategoryDetail.__super__.constructor.apply(this, arguments);
-    }
-
-    CategoryDetail.prototype.el = $("#category");
-
-    CategoryDetail.prototype.template = $("#category-detail-template");
-
-    CategoryDetail.prototype.initialize = function() {
-      this.listenTo(this.model, "change", this.render);
-      return this.getTitle();
-    };
-
-    CategoryDetail.prototype.getTitle = function() {
-      return $("#top-bar").html($("#category-detail-title").html());
-    };
-
-    CategoryDetail.prototype.render = function() {
-      var template;
-      template = app.compile(this.template);
-      this.$el.html(template(this.model.toJSON()));
-      this.setUrlTranslation(this.model);
-      app.pubsub.trigger("categories:list");
-      return app.pubsub.trigger("lawyers:related", this.model.get("name"));
-    };
-
-    return CategoryDetail;
-
-  })(Backbone.View);
-  return ppu.CategoriesList = (function(_super) {
-    __extends(CategoriesList, _super);
-
-    function CategoriesList() {
-      return CategoriesList.__super__.constructor.apply(this, arguments);
-    }
-
-    CategoriesList.prototype.el = $("#categories-list");
-
-    CategoriesList.prototype.template = $("#categories-list-template");
-
-    CategoriesList.prototype.initialize = function() {
-      this.listenTo(this.collection, "reset", this.render);
-      return app.pubsub.bind("categories:list", this.getAll, this);
-    };
-
-    CategoriesList.prototype.getAll = function() {
-      return ppu.categories.fetch({
-        reset: true
-      });
-    };
-
-    CategoriesList.prototype.render = function() {
-      var template;
-      template = app.compile(this.template);
-      $("#categories-list").html(template(this.collection.toJSON()));
-      return console.log($("#categories-list").html());
-    };
-
-    return CategoriesList;
-
-  })(Backbone.View);
-});
 
 var __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -2096,15 +1963,14 @@ $(function() {
     LawyerView.prototype.confirmTranslate = function(e) {
       var v;
       e.preventDefault();
-      console.log(v);
       v = new ppu.lawyerConfirmTranslate;
       return v.render();
     };
 
     LawyerView.prototype.translate = function(e) {
-      return this.model.save({
-        duplicate: true
-      }).done(function(mod) {
+      var id;
+      id = this.model.id;
+      return $.post("/api/lawyers/" + id + "/duplicate").done(function(model) {
         return window.location = "/en/admin/lawyers/" + mod.id + "/edit";
       });
     };
@@ -2504,10 +2370,10 @@ $(function() {
     };
 
     LawyerEditView.prototype.translate = function(e) {
-      return this.model.save({
-        duplicate: true
-      }).done(function(mod) {
-        return window.location = "/en/admin/lawyers/" + mod.id + "/edit";
+      var id;
+      id = this.model.id;
+      return $.post("/api/lawyers/" + id + "/duplicate").done(function(model) {
+        return window.location = "/en/admin/lawyers/" + model.id + "/edit";
       });
     };
 

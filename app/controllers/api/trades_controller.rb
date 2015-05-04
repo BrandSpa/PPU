@@ -1,4 +1,4 @@
-class Api::TradesController < ApplicationController  
+class Api::TradesController < ApplicationController
   def entity
     Trade
   end

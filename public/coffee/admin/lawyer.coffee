@@ -2,7 +2,7 @@ $ ->
   class ppu.admin.LawyerView extends Backbone.View
     tagName: 'tr'
     template: $ '#lawyer-dashbord-template'
-    events: 
+    events:
       "click .confirm-translate": "confirmTranslate"
       "click .publish": "publish"
       "click .unpublish": "unpublish"
@@ -32,18 +32,19 @@ $ ->
 
     confirmTranslate: (e)->
       e.preventDefault()
-      console.log v
       v = new ppu.lawyerConfirmTranslate
       v.render()
 
     translate: (e) ->
-      @model.save duplicate: true
-        .done (mod) ->
-          window.location = "/en/admin/lawyers/#{mod.id}/edit"
+      id = @model.id
+
+      $.post "/api/lawyers/#{id}/duplicate"
+      .done (model) ->
+        window.location = "/en/admin/lawyers/#{mod.id}/edit"
 
   class ppu.admin.LawyersView extends Backbone.View
     el: $ '#lawyers-dashboard'
-      
+
     initialize: ->
       @listenTo(@collection, 'reset', @render)
       @listenTo(@collection, 'add', @addOne)
@@ -112,7 +113,7 @@ $ ->
       val = $(e.currentTarget).val()
       data = _.extend(@filtersAplied, paginate: 0, category: val)
       app.pubsub.trigger("lawyers:filter",data)
-  
+
   class ppu.LawyerCreateForm extends Backbone.View
     el: $ "#lawyer-form-create"
     template: $ "#lawyer-form-template"
@@ -146,7 +147,7 @@ $ ->
         $('.lawyer-description').removeClass('hidden').hide().slideDown()
       else
         $('.lawyer-description').fadeOut()
-      
+
     store: (e) ->
       if e
         e.preventDefault()
@@ -209,7 +210,7 @@ $ ->
       t = Handlebars.compile(source)
       $(@el).find('.modal-body').html t( @model.toJSON() )
 
-      if level >= 6  
+      if level >= 6
         $('.lawyer-description').removeClass('hidden')
 
       if  position == "Senior Counsel"
@@ -220,7 +221,7 @@ $ ->
 
       if position == "Socio" || position == "Partner"
         $('.lawyer-description').removeClass('hidden')
- 
+
       $(@el).modal({backdrop: 'static'})
 
     update: (e) ->
@@ -232,20 +233,20 @@ $ ->
     updated: (model) ->
       if model.id
         @closeModal()
-      
+
     close: (e) ->
       e.preventDefault()
       @closeModal()
- 
+
   class ppu.LawyerEditView extends Backbone.View
     el: $ '.container-lawyer'
     template: $ '#lawyer-template'
-    events: 
+    events:
       'click .open-edit-lawyer': 'openEdit'
       'click .open-share': 'openShare'
       "click .confirm-translate": "confirmTranslate"
       "click .translate": "translate"
-    
+
     initialize: ->
       @listenTo(@model, 'change', @render)
       @listenTo(@model, 'change', @renderCategories)
@@ -258,7 +259,7 @@ $ ->
       $(@el).html t( @model.toJSON() )
       $("#lawyer-finish").removeClass("hidden")
       ppu.currentLawyerId = id
-      
+
     renderCategories: ->
       source = $("#lawyer-category-template").html()
       t = Handlebars.compile(source)
@@ -275,9 +276,11 @@ $ ->
       v.render()
 
     translate: (e) ->
-      @model.save duplicate: true
-        .done (mod) ->
-          window.location = "/en/admin/lawyers/#{mod.id}/edit"
+      id = @model.id
+
+      $.post "/api/lawyers/#{id}/duplicate"
+      .done (model) ->
+        window.location = "/en/admin/lawyers/#{model.id}/edit"
 
     openShare: (e) ->
       $('#share-modal').modal()

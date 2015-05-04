@@ -5,9 +5,6 @@ class Admin::LawyersController < ApplicationController
   def index
   end
 
-  def dashboard	
-  end
-
   def new
   end
 

@@ -1,23 +1,45 @@
 Rails.application.routes.draw do
+
+  # devise route for users
   devise_for :users
 
+  # api routes
   namespace :api do
-    resources :lawyers
-    resources :categories
-    resources :trades
 
-    resources :posts
-    post "posts/:id/duplicate", to: 'posts#duplicate'
-    post "posts/:id/featured", to: 'posts#featured'
+    resources :lawyers do
+      post "duplicate", on: :member
 
-    resources :experiences
-    post "experiences/:id/duplicate", to: 'experiences#duplicate'
+      resources :academics
+      resources :articles
+      resources :awards
+      resources :educations
+      resources :institutions
+      resources :jobs
+      resources :languages
+      resources :pharases
+      resources :recognitions
+    end
+
+    resources :posts do
+      post "duplicate", on: :member
+      post "featured", on: :member
+    end
+
+    resources :experiences do
+      post "duplicate", on: :member
+    end
 
     resources :galleries
 
+    resources :categories
+
+    resources :trades
+
     resources :curriculums
+
     resources :contacts
 
+    # lawyers relationships
     namespace :lawyrs do
       resources :academics
       resources :articles
@@ -29,6 +51,7 @@ Rails.application.routes.draw do
       resources :pharases
       resources :recognitions
     end
+
   end
 
   get "editar-abogado", to: 'api/lawyers#update_description'
@@ -89,6 +112,7 @@ Rails.application.routes.draw do
   get "see-token", to: 'sessions#see_token'
 
   get "dashboard", to: 'admin/lawyers#dashboard'
+
   get "admin/experiences", to: 'admin/experiences#dashboard'
   get "admin/posts", to: 'admin/posts#dashboard'
 

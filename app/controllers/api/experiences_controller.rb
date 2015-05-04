@@ -58,11 +58,10 @@ class Api::ExperiencesController < ApplicationController
 
 		model.update(experience_params)
 
-			if model.valid?
-				render json: model
-			else
-				render json: model.errors, status: 400
-			end
+		if model.valid?
+			render json: model
+		else
+			render json: model.errors, status: 400
 		end
 	end
 
@@ -80,6 +79,7 @@ class Api::ExperiencesController < ApplicationController
 			:gallery
 		]),
 		status: 200
+
 	end
 
 	def destroy
@@ -101,6 +101,7 @@ class Api::ExperiencesController < ApplicationController
 
 		# params accepted
 		def experience_params
+
 			params.require(:fields).permit(
 			:gallery_id,
 			:country,

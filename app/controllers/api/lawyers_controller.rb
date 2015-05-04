@@ -1,6 +1,9 @@
 class Api::LawyersController < ApplicationController
+
+  # concerns
   include Filterable
 
+  # get lawyers by some filters
   def index
     lang = params[:lang] || I18n.locale
     paginate = params[:paginate] || 0
@@ -8,18 +11,11 @@ class Api::LawyersController < ApplicationController
 
     collection = entity.where(nil).lang(lang).get_translations.paginate(paginate)
     collection = filters(params, collection)
-    
+
     render json: collection.to_json(:include => [:translations, :translation])
   end
 
-  def set_filters(params)
-    params.slice(:position, :country, :category, :search)
-  end
-
-  def set_filters_without_params(params)
-    params.slice(:order_by_spanish, :order_by_english, :published)
-  end
-
+  # get lawyer by id or slug
   def show
     id = params[:id]
     lang = params[:lang] || I18n.locale
@@ -49,36 +45,40 @@ class Api::LawyersController < ApplicationController
     end
   end
 
+  # store model
   def create
     model = entity.create(lawyer_params)
     if model.valid?
       render json: model, status: 200
     else
-      render_errors(model)
+      render json: model.errors.messages, status: 400
     end
   end
 
+  # update model
   def update
-    dupl = params[:duplicate]
-    model = entity.find(params[:id])
-    if dupl.present?
-      new_model = entity.duplicate(model)
-      render json: new_model
+    id = params[:id]
+    model = entity.find(id)
+
+    model.update(lawyer_params)
+    if model.valid?
+      render json: model.to_json(:include => [:categories])
     else
-      model.update(lawyer_params)
-      if model.valid?
-        render json: model.to_json(:include => [:categories])
-      else
-        render_errors(model)
-      end
+      render json: model.errors.messages, status: 400
     end
+  end
+  
+  # get model and duplicate it
+  def duplicate
+    id = params[:id]
+    model = entity.find(id)
+
+    new_model = entity.duplicate(model)
+    render json: new_model
 
   end
 
-  def render_errors(model)
-    render json: model.errors.messages, status: 400
-  end
-
+  # check if param is a number
   def is_a_number?(s)
     s.to_s.match(/\A[+-]?\d+?(\.\d+)?\Z/) == nil ? false : true
   end

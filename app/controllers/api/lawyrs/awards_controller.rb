@@ -4,5 +4,4 @@ class Api::Lawyrs::AwardsController < ApplicationController
   def entity
     Award
   end
-
 end

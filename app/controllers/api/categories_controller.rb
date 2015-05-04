@@ -7,9 +7,7 @@ class Api::CategoriesController < ApplicationController
 		collection = entity.includes(:gallery).all.lang(lang).order('name ASC')
 
 		render json: collection.to_json(:include => [:gallery])
-
 	end
-
 
 	# get category by slug or id
 	def show
@@ -39,7 +37,7 @@ class Api::CategoriesController < ApplicationController
 	end
 
 	private
-	
+
 		def entity
 			Category
 		end
