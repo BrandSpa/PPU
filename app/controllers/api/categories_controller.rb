@@ -1,4 +1,17 @@
 class Api::CategoriesController < ApplicationController
+
+	# get all and filter by lang
+	def index
+		lang = params[:lang] || I18n.locale
+
+		collection = entity.includes(:gallery).all.lang(lang).order('name ASC')
+
+		render json: collection.to_json(:include => [:gallery])
+
+	end
+
+
+	# get category by slug or id
 	def show
 
 		if I18n.locale == "en"
@@ -7,7 +20,7 @@ class Api::CategoriesController < ApplicationController
 			lawyer_position = "Socio"
 		end
 
-		model = Category.includes(
+		model = entity.includes(
 			:gallery,
 			:translation,
 			:experiences,
@@ -25,10 +38,10 @@ class Api::CategoriesController < ApplicationController
 		])
 	end
 
-  def index
-    lang = params[:lang] || I18n.locale
-    collection = Category.includes(:gallery).all.lang(lang).order('name ASC')
-    render json: collection.to_json(:include => [:gallery])
-  end
+	private
+	
+		def entity
+			Category
+		end
 
 end

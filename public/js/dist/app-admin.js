@@ -3925,11 +3925,11 @@ $(function() {
     };
 
     ExperienceView.prototype.translate = function(e) {
+      var id;
       e.preventDefault();
-      return this.model.save({
-        duplicate: true
-      }).done(function(model) {
-        return window.location = "en/admin/experiences/" + model.id + "/edit";
+      id = this.model.id;
+      return $.post("/api/experiences/" + id + "/duplicate").done(function(model) {
+        return window.location = "/en/admin/experiences/" + model.id + "/edit";
       });
     };
 

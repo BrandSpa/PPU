@@ -33,9 +33,11 @@ $ ->
 
     translate: (e) ->
       e.preventDefault()
-      @model.save duplicate: true
-        .done (model) ->
-          window.location = "en/admin/experiences/#{model.id}/edit"
+      id = @model.id
+
+      $.post "/api/experiences/#{id}/duplicate"
+      .done (model) ->
+        window.location = "/en/admin/experiences/#{model.id}/edit"
 
   class ppu.admin.ExperiencesView extends Backbone.View
     el: $ "#experiences-dasboard"

@@ -10,8 +10,11 @@ Rails.application.routes.draw do
     post "posts/:id/duplicate", to: 'posts#duplicate'
     post "posts/:id/featured", to: 'posts#featured'
 
-    resources :galleries
     resources :experiences
+    post "experiences/:id/duplicate", to: 'experiences#duplicate'
+
+    resources :galleries
+
     resources :curriculums
     resources :contacts
 
@@ -78,7 +81,7 @@ Rails.application.routes.draw do
       get "the-actual-co/:id/edit", to: "posts#the_actual_co_edit"
       get "the-actual-co", to: "posts#the_actual_co"
     end
-    
+
   end
 
   get "get-token", to: 'sessions#get_token_fb'
