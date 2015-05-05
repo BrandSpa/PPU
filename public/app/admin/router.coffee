@@ -1,6 +1,7 @@
 $ ->
   class ppu.admin.Router extends Backbone.Router
     routes:
+
       'dashboard': 'dashboard'
 
       #Lawyers
@@ -39,147 +40,53 @@ $ ->
       'en/admin/experiences/:id/edit': 'editExperience'
 
     dashboard: ->
-      ppu.lawyers = new ppu.Lawyers
-      ppu.lawyers.fetch reset: true
-      ppu.admin.lawyers= new ppu.admin.LawyersView collection: ppu.lawyers
-      ppu.admin.lawyersFilters = new ppu.admin.LawyersFilters
-
-    post: ->
-      ppu.posts = new ppu.Posts
-      ppu.posts.fetch reset: true, data: the_actual_ch: 0, the_actual_co: 0
-      ppu.admin.posts = new ppu.admin.PostsView collection: ppu.posts
-      ppu.admin.postsFilters = new ppu.admin.PostsFilters
-
-    createPost: (lang) ->
-      ppu.admin.post = new ppu.Post
-      ppu.admin.postCreate = new ppu.admin.PostCreate model: ppu.admin.post
-      ppu.admin.postCreate.render()
-
-      ppu.categories = new ppu.Categories
-      ppu.categories.fetch reset: true
-      ppu.admin.categoriesCheckboxnew = new ppu.admin.CategoriesCheckbox collection: ppu.categories
-
-      ppu.admin.galleries = new  ppu.admin.Galleries
-      ppu.admin.galleries.fetch reset: true, data: name: "post_header"
-
-    editPost: (id) ->
-      ppu.admin.post = new ppu.Post id: id
-      ppu.admin.post.fetch data: lang: app.lang
-      ppu.admin.postEdit = new ppu.admin.PostEdit model: ppu.admin.post
-
-      ppu.admin.galleries = new  ppu.admin.Galleries
-      ppu.admin.galleries.fetch reset: true, data: name: "post_header"
-
-    theActual: ->
-      ppu.posts = new ppu.Posts
-      ppu.posts.fetch reset: true, data: the_actual_ch: 1
-      ppu.admin.posts = new ppu.admin.TheActualViews collection: ppu.posts
-      ppu.admin.postsFilters = new ppu.admin.PostsFilters
-
-    createTheActual: ->
-      ppu.admin.post = new ppu.Post
-      ppu.admin.postCreate = new ppu.admin.TheActualCreate model: ppu.admin.post
-      ppu.admin.postCreate.render()
-
-      ppu.categories = new ppu.Categories
-      ppu.categories.fetch reset: true
-      ppu.admin.categoriesCheckboxnew = new ppu.admin.CategoriesCheckbox collection: ppu.categories
-
-      ppu.admin.galleries = new  ppu.admin.Galleries
-      ppu.admin.galleries.fetch reset: true, data: name: "post_header"
-
-    editTheActual: (id) ->
-      ppu.admin.post = new ppu.Post id: id
-      ppu.admin.post.fetch data: lang: app.lang
-      ppu.admin.postEdit = new ppu.admin.PostEdit model: ppu.admin.post
-
-      ppu.admin.galleries = new  ppu.admin.Galleries
-      ppu.admin.galleries.fetch reset: true, data: name: "post_header"
-
-    theActualCo: ->
-      ppu.posts = new ppu.Posts
-      ppu.posts.fetch reset: true, data: the_actual_co: 1
-      ppu.admin.posts = new ppu.admin.TheActualCoViews collection: ppu.posts
-      ppu.admin.postsFilters = new ppu.admin.PostsFilters
-
-    createTheActualCo: ->
-      ppu.admin.post = new ppu.Post
-      ppu.admin.postCreate = new ppu.admin.TheActualCoCreate model: ppu.admin.post
-      ppu.admin.postCreate.render()
-
-      ppu.categories = new ppu.Categories
-      ppu.categories.fetch reset: true
-      ppu.admin.categoriesCheckboxnew = new ppu.admin.CategoriesCheckbox collection: ppu.categories
-
-      ppu.admin.galleries = new  ppu.admin.Galleries
-      ppu.admin.galleries.fetch reset: true, data: name: "post_header"
-
-    editTheActualCo: (id) ->
-      ppu.admin.post = new ppu.Post id: id
-      ppu.admin.post.fetch data: lang: app.lang
-      ppu.admin.postEdit = new ppu.admin.PostEdit model: ppu.admin.post
-
-      ppu.admin.galleries = new  ppu.admin.Galleries
-      ppu.admin.galleries.fetch reset: true, data: name: "post_header"
+      ppu.admin.LawyersController.index()
 
     lawyer: ->
-      ppu.lawyers = new ppu.Lawyers
-      ppu.lawyers.fetch reset: true
-      ppu.admin.lawyers= new ppu.admin.LawyersView collection: ppu.lawyers
-      ppu.admin.lawyersFilters = new ppu.admin.LawyersFilters
+      ppu.admin.LawyersController.show()
 
     createLawyer: (lang) ->
-      ppu.lawyer =  new ppu.Lawyer
-      ppu.lawyerCreateForm = new ppu.LawyerCreateForm model: ppu.lawyer
-      ppu.lawyerCreateForm.render()
-
-      ppu.categories = new ppu.Categories
-      ppu.categories.fetch reset: true
-      ppu.admin.categoriesCheckboxnew = new ppu.admin.CategoriesCheckbox collection: ppu.categories
-
-      ppu.lawyerCreate = new ppu.LawyerCreateView
+      ppu.admin.LawyersController.create()
 
     editLawyer: (id) ->
-      $("#lawyer-create").remove()
-      ppu.lawyer = new ppu.Lawyer id: id
-      ppu.lawyer.fetch data: lang: app.lang
-      view = new ppu.LawyerEditView model: ppu.lawyer
+      ppu.admin.LawyersController.edit(id)
 
-      mixins.renderCollection(ppu.LawyerEducations, ppu.LawyerEducationsEdit, lawyer_id: id)
-      mixins.renderCollection(ppu.LawyerArticles, ppu.LawyerArticlesEdit, lawyer_id: id)
-      mixins.renderCollection(ppu.LawyerJobs, ppu.LawyerJobsEdit, lawyer_id: id)
-      mixins.renderCollection(ppu.LawyerRecognitions, ppu.LawyerRecognitionsEdit, lawyer_id: id)
-      mixins.renderCollection(ppu.LawyerInstitutions, ppu.LawyerInstitutionsEdit, lawyer_id: id)
-      mixins.renderCollection(ppu.LawyerLanguages, ppu.LawyerLanguagesEdit, lawyer_id: id)
-      mixins.renderCollection(ppu.LawyerPharases, ppu.LawyerPharasesEdit, lawyer_id: id)
-      mixins.renderCollection(ppu.LawyerAwards, ppu.LawyerAwardsEdit, lawyer_id: id)
-      mixins.renderCollection(ppu.LawyerAcademics, ppu.LawyerAcademicsEdit, lawyer_id: id)
+    post: ->
+      ppu.admin.PostsController.index()
+
+    createPost: (lang) ->
+      ppu.admin.PostsController.create()
+
+    editPost: (id) ->
+      ppu.admin.PostsController.edit()
+
+    theActual: ->
+      ppu.admin.TheActualChController.index()
+
+    createTheActual: ->
+      ppu.admin.TheActualChController.create()
+
+    editTheActual: (id) ->
+      ppu.admin.TheActualChController.edit(id)
+
+    theActualCo: ->
+      ppu.admin.TheActualCoController.index()
+
+    createTheActualCo: ->
+      ppu.admin.TheActualCoController.edit(id)
+
+    editTheActualCo: (id) ->
+      ppu.admin.TheActualCoController.edit(id)
 
     experience: ->
-      ppu.experiences = new ppu.Experiences
-      ppu.experiences.fetch reset: true
-      ppu.admin.experiences = new ppu.admin.ExperiencesView collection: ppu.experiences
-      ppu.admin.experiencesFilters = new ppu.admin.ExperiencesFilters
+      ppu.admin.ExperiencesController.index()
 
     createExperience: (lang) ->
-      ppu.admin.experience = new ppu.Experience
-      ppu.admin.experienceCreate = new ppu.admin.ExperienceCreate model: ppu.admin.experience
-      ppu.admin.experienceCreate.render()
-
-      ppu.categories = new ppu.Categories
-      ppu.categories.fetch reset: true
-      ppu.admin.categoriesCheckboxnew = new ppu.admin.CategoriesCheckbox collection: ppu.categories
-
-      ppu.admin.galleries = new  ppu.admin.Galleries
-      ppu.admin.galleries.fetch reset: true, data: name: "company_logo"
+      ppu.admin.ExperiencesController.create()
 
     editExperience: (id) ->
-      ppu.admin.experience = new ppu.Experience id: id
-      ppu.admin.experience.fetch data: lang: app.lang
-      ppu.admin.experienceEdit = new ppu.admin.ExperienceEdit model: ppu.admin.experience
+      ppu.admin.ExperiencesController.edit(id)
 
-      ppu.admin.galleries = new  ppu.admin.Galleries
-      ppu.admin.galleries.fetch reset: true, data: name: "company_logo"
 
   ppu.admin.router = new ppu.admin.Router
   Backbone.history.start pushState: true

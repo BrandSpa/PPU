@@ -8,13 +8,13 @@ gulp.task('dependecies-admin-js', function() {
   gulp.src([
     'bower_components/jquery/dist/jquery.min.js',
 
-    "node_modules/jquery-ui/jquery-ui.js",
+    "bower_components/jquery-ui/jquery-ui.js",
 
     "node_modules/bootstrap/dist/js/bootstrap.min.js",
 
     "bower_components/jquery.serializeJSON/jquery.serializejson.min.js",
 
-    "node_modules/handlebars/handlebars.min.js",
+    "node_modules/handlebars/dist/handlebars.min.js",
 
     "node_modules/underscore/underscore-min.js",
 

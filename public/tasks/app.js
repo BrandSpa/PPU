@@ -4,7 +4,6 @@ var gutil     = require('gulp-util');
 var coffee    = require('gulp-coffee');
 var concat    = require('gulp-concat');
 
-
 // convert to js and contact all javascripts files
 gulp.task('app', function() {
 

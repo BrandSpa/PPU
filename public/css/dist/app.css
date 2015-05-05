@@ -174,6 +174,22 @@
   #work-with-us .top {
     padding: 0; }
 
+#filters-modal .modal-content {
+  background: transparent !important;
+  box-shadow: none;
+  color: #fff;
+  border: none; }
+#filters-modal .modal-header {
+  background: transparent !important;
+  color: #fff; }
+#filters-modal .form-control {
+  background: transparent;
+  color: #fff;
+  border: none;
+  border-bottom: 1px solid #00A1B1;
+  border-radius: 0;
+  -webkit-appearance: none; }
+
 /* Large desktops and laptops */
 /* Portrait tablets and medium desktops */
 /* Portrait tablets and small desktops */
@@ -360,22 +376,6 @@
   font-size: 1em;
   line-height: 1.7em;
   margin-bottom: 15px; }
-
-#filters-modal .modal-content {
-  background: transparent !important;
-  box-shadow: none;
-  color: #fff;
-  border: none; }
-#filters-modal .modal-header {
-  background: transparent !important;
-  color: #fff; }
-#filters-modal .form-control {
-  background: transparent;
-  color: #fff;
-  border: none;
-  border-bottom: 1px solid #00A1B1;
-  border-radius: 0;
-  -webkit-appearance: none; }
 
 /* Large desktops and laptops */
 /* Portrait tablets and medium desktops */
@@ -765,40 +765,6 @@
 /* Portrait tablets and small desktops */
 /* Landscape phones and portrait tablets */
 /* Landscape phones and smaller */
-#pro-bono h2 {
-  font-size: 1.5em;
-  color: #002855;
-  margin-bottom: 30px; }
-#pro-bono p {
-  font-weight: 400; }
-
-#carousel-probono-foundations {
-  margin-top: 60px; }
-  #carousel-probono-foundations ul {
-    list-style: none;
-    width: 100%;
-    margin-left: 80px; }
-    @media (max-width: 767px) {
-      #carousel-probono-foundations ul {
-        margin: 0 auto;
-        display: block; } }
-    @media (min-width: 992px) and (max-width: 1199px), (min-width: 1200px) {
-      #carousel-probono-foundations ul li {
-        float: left;
-        padding-left: 15px; } }
-    @media (max-width: 767px) {
-      #carousel-probono-foundations ul li {
-        margin-bottom: 10px;
-        margin-left: 80px; } }
-    #carousel-probono-foundations ul li img {
-      width: 150px;
-      display: block; }
-
-/* Large desktops and laptops */
-/* Portrait tablets and medium desktops */
-/* Portrait tablets and small desktops */
-/* Landscape phones and portrait tablets */
-/* Landscape phones and smaller */
 #posts-featured {
   margin-bottom: 15px; }
 
@@ -1182,6 +1148,40 @@
     margin-right: 3px; }
     #post-detail .date i:nth-child(2) {
       margin-left: 10px; }
+
+/* Large desktops and laptops */
+/* Portrait tablets and medium desktops */
+/* Portrait tablets and small desktops */
+/* Landscape phones and portrait tablets */
+/* Landscape phones and smaller */
+#pro-bono h2 {
+  font-size: 1.5em;
+  color: #002855;
+  margin-bottom: 30px; }
+#pro-bono p {
+  font-weight: 400; }
+
+#carousel-probono-foundations {
+  margin-top: 60px; }
+  #carousel-probono-foundations ul {
+    list-style: none;
+    width: 100%;
+    margin-left: 80px; }
+    @media (max-width: 767px) {
+      #carousel-probono-foundations ul {
+        margin: 0 auto;
+        display: block; } }
+    @media (min-width: 992px) and (max-width: 1199px), (min-width: 1200px) {
+      #carousel-probono-foundations ul li {
+        float: left;
+        padding-left: 15px; } }
+    @media (max-width: 767px) {
+      #carousel-probono-foundations ul li {
+        margin-bottom: 10px;
+        margin-left: 80px; } }
+    #carousel-probono-foundations ul li img {
+      width: 150px;
+      display: block; }
 
 /* Large desktops and laptops */
 /* Portrait tablets and medium desktops */

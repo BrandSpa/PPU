@@ -43,7 +43,12 @@ gulp.task('app-admin', function() {
     'app/admin/the_actual_co_create.coffee',
     'app/admin/gallery.coffee',
     'app/admin/experience.coffee',
-    'app/admin/router.coffee'
+    'app/admin/router.coffee',
+
+    //Controllers
+    'app/admin/controllers/lawyers.coffee',
+    'app/admin/controllers/posts.coffee',
+    'app/admin/controllers/the_actual_ch.coffee',
     ])
   .pipe(coffee({bare: true}).on('error', gutil.log))
   .pipe(concat('app-admin.js'))
