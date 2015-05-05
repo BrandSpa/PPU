@@ -20,6 +20,7 @@
   "license": "ISC",
   "dependencies": {
     "chai": "^2.3.0",
+    "jquery-serializejson": "^2.5.0",
     "mocha": "^2.2.4",
     "supertest": "^0.15.0"
   }

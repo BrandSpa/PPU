@@ -261,23 +261,6 @@ mixins.lawyerRelationshipViews = {
     'click .open-modal-create': 'openCreate',
     "sortstop": "stop"
   },
-  stop: function(event, ui) {
-    var id, pos, that;
-    pos = ui.item.index();
-    id = $(ui.item).data('id');
-    that = this;
-    return $.map($(this.el).find('tbody tr'), function(el) {
-      var model;
-      pos = $(el).index();
-      id = $(el).data('id');
-      model = that.collection.get(id);
-      return model.save({
-        fields: {
-          position: pos
-        }
-      });
-    });
-  },
   initialize: function() {
     this.listenTo(this.collection, 'reset', this.renderCollection);
     return this.listenTo(this.collection, 'add', this.renderCollection);
@@ -296,6 +279,22 @@ mixins.lawyerRelationshipViews = {
     this.$el.find('table').append(view.render().el);
     return this.$el.find('.sortable').sortable();
   },
+  stop: function(event, ui) {
+    var _this, list;
+    _this = this;
+    list = $(this.el).find('tbody tr');
+    return $.map(list, function(el) {
+      var id, model, pos;
+      pos = $(el).index();
+      id = $(el).data('id');
+      model = _this.collection.get(id);
+      return model.save({
+        fields: {
+          position: pos
+        }
+      });
+    });
+  },
   openCreate: function(e) {
     var lawyer_id, view;
     e.preventDefault();
@@ -306,18 +305,6 @@ mixins.lawyerRelationshipViews = {
     });
     return view.render(lawyer_id);
   }
-};
-
-mixins.renderCollection = function(collection_name, view_name, data) {
-  var collection, view;
-  collection = new collection_name;
-  collection.fetch({
-    reset: true,
-    data: data
-  });
-  return view = new view_name({
-    collection: collection
-  });
 };
 
 mixins.lawyerRelationshipModalCreate = {
@@ -333,14 +320,26 @@ mixins.lawyerRelationshipModalCreate = {
     data = {
       lawyer_id: lawyer_id
     };
-    this.$el.find('.modal-body').html('');
+    this.$el.find('.modal-body').empty();
     source = $(this.template).html();
     template = Handlebars.compile(source);
     this.$el.find('.modal-body').html(template(data));
-    $(this.el).modal({
+    this.openModal();
+    return this.appendDatePicker();
+  },
+  openModal: function() {
+    return $(this.el).modal({
       backdrop: 'static'
     });
-    return ppu.appendDatePickerYear(this.el);
+  },
+  appendDatePicker: function() {
+    return $(this.el).find('.datepicker-year').datepicker({
+      format: 'yyyy',
+      viewMode: "years",
+      minViewMode: "years",
+      language: 'es',
+      autoclose: true
+    });
   },
   create: function(e) {
     var $form, data, el, lawyer_id;
@@ -349,6 +348,9 @@ mixins.lawyerRelationshipModalCreate = {
     lawyer_id = el.data('lawyer_id');
     $form = this.$el.find('form');
     data = new FormData($form[0]);
+    return this.store(data);
+  },
+  store: function(data) {
     return this.model.save(data, $.extend({}, ppu.ajaxOptions("POST", data)));
   },
   created: function(model) {
@@ -373,7 +375,7 @@ mixins.lawyerRelationshipModalEdit = {
   },
   render: function() {
     var source, template;
-    this.$el.find('.modal-body').html('');
+    this.$el.find('.modal-body').empty();
     source = $(this.template).html();
     template = Handlebars.compile(source);
     this.$el.find('.modal-body').html(template(this.model.toJSON()));

@@ -32,7 +32,6 @@ gulp.task('app-admin', function() {
     'app/views/lawyer/job.coffee',
     'app/views/lawyer/recognition.coffee',
 
-
     // Views admin
     'app/admin/category.coffee',
     'app/admin/lawyer.coffee',
@@ -48,7 +47,9 @@ gulp.task('app-admin', function() {
     //Controllers
     'app/admin/controllers/lawyers.coffee',
     'app/admin/controllers/posts.coffee',
+    'app/admin/controllers/experiences.coffee',
     'app/admin/controllers/the_actual_ch.coffee',
+    'app/admin/controllers/the_actual_co.coffee',
     ])
   .pipe(coffee({bare: true}).on('error', gutil.log))
   .pipe(concat('app-admin.js'))

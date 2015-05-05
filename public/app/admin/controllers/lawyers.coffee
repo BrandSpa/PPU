@@ -23,21 +23,67 @@ ppu.admin.LawyersController = {
 
     ppu.lawyerCreate = new ppu.LawyerCreateView
 
+  editEducations: (id) ->
+    collection = new ppu.LawyerEducations
+    collection.fetch reset: true, data: lawyer_id: id
+    view = new ppu.LawyerEducationsEdit collection: collection
+
+  editArticles: (id) ->
+    collection = new ppu.LawyerArticles
+    collection.fetch reset: true, data: lawyer_id: id
+    view = new ppu.LawyerArticlesEdit collection: collection
+
+  editJobs: (id) ->
+    collection = new ppu.LawyerJobs
+    collection.fetch reset: true, data: lawyer_id: id
+    view = new ppu.LawyerJobsEdit collection: collection
+
+  editRecognitions: (id) ->
+    collection = new ppu.LawyerRecognitions
+    collection.fetch reset: true, data: lawyer_id: id
+    view = new ppu.LawyerRecognitionsEdit collection: collection
+
+  editInstitutions: (id) ->
+    collection = new ppu.LawyerInstitutions
+    collection.fetch reset: true, data: lawyer_id: id
+    view = new ppu.LawyerInstitutionsEdit collection: collection
+
+  editLanguages: (id) ->
+    collection = new ppu.LawyerLanguages
+    collection.fetch reset: true, data: lawyer_id: id
+    view = new ppu.LawyerLanguagesEdit collection: collection
+
+  editPharases: (id) ->
+    collection = new ppu.LawyerPharases
+    collection.fetch reset: true, data: lawyer_id: id
+    view = new ppu.LawyerPharasesEdit collection: collection
+
+  editAwards: (id) ->
+    collection = new ppu.LawyerAwards
+    collection.fetch reset: true, data: lawyer_id: id
+    view = new ppu.LawyerAwardsEdit collection: collection
+
+  editAcademics: (id) ->
+    collection = new ppu.LawyerAcademics
+    collection.fetch reset: true, data: lawyer_id: id
+    view = new ppu.LawyerAcademicsEdit collection: collection
+
   edit: (id) ->
     $("#lawyer-create").remove()
     ppu.lawyer = new ppu.Lawyer id: id
     ppu.lawyer.fetch data: lang: app.lang
     view = new ppu.LawyerEditView model: ppu.lawyer
 
-    mixins.renderCollection(ppu.LawyerEducations, ppu.LawyerEducationsEdit, lawyer_id: id)
-    mixins.renderCollection(ppu.LawyerArticles, ppu.LawyerArticlesEdit, lawyer_id: id)
-    mixins.renderCollection(ppu.LawyerJobs, ppu.LawyerJobsEdit, lawyer_id: id)
-    mixins.renderCollection(ppu.LawyerRecognitions, ppu.LawyerRecognitionsEdit, lawyer_id: id)
-    mixins.renderCollection(ppu.LawyerInstitutions, ppu.LawyerInstitutionsEdit, lawyer_id: id)
-    mixins.renderCollection(ppu.LawyerLanguages, ppu.LawyerLanguagesEdit, lawyer_id: id)
-    mixins.renderCollection(ppu.LawyerPharases, ppu.LawyerPharasesEdit, lawyer_id: id)
-    mixins.renderCollection(ppu.LawyerAwards, ppu.LawyerAwardsEdit, lawyer_id: id)
-    mixins.renderCollection(ppu.LawyerAcademics, ppu.LawyerAcademicsEdit, lawyer_id: id)
+    @editEducations(id)
+    @editArticles(id)
+    @editJobs(id)
+    @editRecognitions(id)
+    @editInstitutions(id)
+    @editLanguages(id)
+    @editPharases(id)
+    @editAwards(id)
+    @editAcademics(id)
+
 
 
 }

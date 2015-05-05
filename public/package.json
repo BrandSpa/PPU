@@ -5,6 +5,7 @@
   "dependencies": {
     "backbone": "^1.1.2",
     "bootstrap": "^3.3.4",
+    "bootstrap-datepicker": "^1.4.0",
     "gulp": "",
     "gulp-coffee": "",
     "gulp-concat": "",
@@ -16,6 +17,7 @@
     "gulp-util": "",
     "handlebars": "^3.0.3",
     "jquery": "^2.1.4",
+    "jquery-serializejson": "^2.5.0",
     "jquery-ui": "^1.10.5",
     "nprogress": "^0.1.6",
     "summernote": "^0.6.6",

@@ -2,6 +2,7 @@
 <html>
 <head>
   <title>PPU - ADMIN</title>
+
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,500,700' rel='stylesheet' type='text/css'>
@@ -9,7 +10,8 @@
   <link rel="stylesheet" href="/css/bootstrap.min.css">
 
   <link href='/css/dist/app.css' rel='stylesheet' type='text/css' media="screen, print">
-  <link rel="stylesheet" href="/bower_components/bootstrap-datepicker/css/datepicker3.css">
+
+  <link rel="stylesheet" href="/node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker3.css">
   <link rel="stylesheet" href="/bower_components/toastr/toastr.min.css">
   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" />
   <link rel="stylesheet" href="/bower_components/summernote/dist/summernote.css">
@@ -86,30 +88,29 @@
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
+
 <% if user_signed_in? %>
 <div class="sidebar hidden-xs hidden-sm">
   <ul>
     <li><a href="/dashboard">Abogados</a></li>
-        <li><a href="/admin/lawyers/new">Crear Abogado</a></li>
-        <li><a href="/admin/posts">Noticias</a></li>
-        <li><a href="/admin/posts/new">Crear Noticia</a></li>
-        <li><a href="/admin/experiences">Experiencia</a></li>
-        <li><a href="/admin/experiences/new">Crear Experiencia</a></li>
-        <li><a href="/admin/the-actual">El Actual Chile</a></li>
-        <li><a href="/admin/the-actual/new">Crear El Actual Chile</a></li>
-        <li><a href="/admin/the-actual-co">El Actual Colombia</a></li>
-        <li><a href="/admin/the-actual-co/new">Crear El Actual Colombia</a></li>
-        <li><a href="/users/sign_out">Salir</a></li>
+    <li><a href="/admin/lawyers/new">Crear Abogado</a></li>
+    <li><a href="/admin/posts">Noticias</a></li>
+    <li><a href="/admin/posts/new">Crear Noticia</a></li>
+    <li><a href="/admin/experiences">Experiencia</a></li>
+    <li><a href="/admin/experiences/new">Crear Experiencia</a></li>
+    <li><a href="/admin/the-actual">El Actual Chile</a></li>
+    <li><a href="/admin/the-actual/new">Crear El Actual Chile</a></li>
+    <li><a href="/admin/the-actual-co">El Actual Colombia</a></li>
+    <li><a href="/admin/the-actual-co/new">Crear El Actual Colombia</a></li>
+    <li><a href="/users/sign_out">Salir</a></li>
   </ul>
 </div>
 <% end %>
-<div class="wrap">
 
+<div class="wrap">
   <%= yield %>
 </div>
 
-  <%= render "partials/share_modal" %>
-  <script src="/bower_components/jquery/dist/jquery.min.js"></script>
   <script src="/js/dist/dependencies-admin.js"></script>
   <script src="/js/fb.js"></script>
   <script src="/js/dist/app-admin.js"></script>

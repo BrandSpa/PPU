@@ -34,16 +34,6 @@ mixins.lawyerRelationshipViews =
     'click .open-modal-create' : 'openCreate'
     "sortstop": "stop"
 
-  stop: (event, ui) ->
-    pos = ui.item.index()
-    id = $(ui.item).data('id')
-    that = @
-    $.map $(@el).find('tbody tr'), (el) ->
-      pos = $(el).index()
-      id = $(el).data('id')
-      model = that.collection.get(id)
-      model.save fields: position: pos
-
   initialize: ->
     @listenTo(@collection, 'reset', @renderCollection)
     @listenTo(@collection, 'add', @renderCollection)
@@ -59,16 +49,26 @@ mixins.lawyerRelationshipViews =
     @$el.find('table').append( view.render().el )
     @$el.find('.sortable').sortable()
 
+  # on event stop reorder list
+  stop: (event, ui) ->
+    _this = @
+    list = $(@el).find('tbody tr')
+
+    $.map list, (el) ->
+      pos = $(el).index()
+      id = $(el).data('id')
+
+      model = _this.collection.get(id)
+      model.save fields: position: pos
+
   openCreate: (e)->
     e.preventDefault()
+
+    # get id from url or from model
     lawyer_id = ppu.currentLawyerId || @collection.models[0].get('lawyer_id')
+
     view = new @modal model: new @collection.model, collection: @collection
     view.render(lawyer_id)
-
-mixins.renderCollection = (collection_name, view_name, data) ->
-  collection = new collection_name
-  collection.fetch reset: true, data: data
-  view = new view_name collection: collection
 
 mixins.lawyerRelationshipModalCreate =
   events:
@@ -78,23 +78,47 @@ mixins.lawyerRelationshipModalCreate =
   initialize: ->
     @listenTo(@model, 'sync', @created)
 
+  # compile template and append to el
   render: (lawyer_id) ->
     data = lawyer_id: lawyer_id
-    @$el.find('.modal-body').html('')
+
+    @$el.find('.modal-body').empty()
+
     source = $(@template).html()
     template = Handlebars.compile(source)
-    @$el.find('.modal-body').html template(data)
-    $(@el).modal backdrop: 'static'
-    ppu.appendDatePickerYear(@el)
 
+    @$el.find('.modal-body').html template(data)
+
+    @openModal()
+    @appendDatePicker()
+
+  #open modal
+  openModal: ->
+    $(@el).modal backdrop: 'static'
+
+  # append datapicker plugin
+  appendDatePicker: ->
+    $(@el).find('.datepicker-year').datepicker
+      format: 'yyyy'
+      viewMode: "years"
+      minViewMode: "years"
+      language: 'es'
+      autoclose: true
+
+  # get data
   create: (e) ->
     e.preventDefault()
     el = $(e.currentTarget)
     lawyer_id = el.data('lawyer_id')
     $form = @$el.find('form')
     data = new FormData($form[0])
+    @store(data)
+
+  # send data to server
+  store: (data) ->
     @model.save data, $.extend({}, ppu.ajaxOptions("POST", data))
 
+  # close modal
   created: (model) ->
     if model.id
       @collection.add(model)
@@ -113,7 +137,8 @@ mixins.lawyerRelationshipModalEdit =
     @listenTo(@model, 'sync', @updated)
 
   render: () ->
-    @$el.find('.modal-body').html('')
+    @$el.find('.modal-body').empty()
+
     source = $(@template).html()
     template = Handlebars.compile(source)
     @$el.find('.modal-body').html template( @model.toJSON() )

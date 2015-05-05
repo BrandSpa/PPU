@@ -261,23 +261,6 @@ mixins.lawyerRelationshipViews = {
     'click .open-modal-create': 'openCreate',
     "sortstop": "stop"
   },
-  stop: function(event, ui) {
-    var id, pos, that;
-    pos = ui.item.index();
-    id = $(ui.item).data('id');
-    that = this;
-    return $.map($(this.el).find('tbody tr'), function(el) {
-      var model;
-      pos = $(el).index();
-      id = $(el).data('id');
-      model = that.collection.get(id);
-      return model.save({
-        fields: {
-          position: pos
-        }
-      });
-    });
-  },
   initialize: function() {
     this.listenTo(this.collection, 'reset', this.renderCollection);
     return this.listenTo(this.collection, 'add', this.renderCollection);
@@ -296,6 +279,22 @@ mixins.lawyerRelationshipViews = {
     this.$el.find('table').append(view.render().el);
     return this.$el.find('.sortable').sortable();
   },
+  stop: function(event, ui) {
+    var _this, list;
+    _this = this;
+    list = $(this.el).find('tbody tr');
+    return $.map(list, function(el) {
+      var id, model, pos;
+      pos = $(el).index();
+      id = $(el).data('id');
+      model = _this.collection.get(id);
+      return model.save({
+        fields: {
+          position: pos
+        }
+      });
+    });
+  },
   openCreate: function(e) {
     var lawyer_id, view;
     e.preventDefault();
@@ -306,18 +305,6 @@ mixins.lawyerRelationshipViews = {
     });
     return view.render(lawyer_id);
   }
-};
-
-mixins.renderCollection = function(collection_name, view_name, data) {
-  var collection, view;
-  collection = new collection_name;
-  collection.fetch({
-    reset: true,
-    data: data
-  });
-  return view = new view_name({
-    collection: collection
-  });
 };
 
 mixins.lawyerRelationshipModalCreate = {
@@ -333,14 +320,26 @@ mixins.lawyerRelationshipModalCreate = {
     data = {
       lawyer_id: lawyer_id
     };
-    this.$el.find('.modal-body').html('');
+    this.$el.find('.modal-body').empty();
     source = $(this.template).html();
     template = Handlebars.compile(source);
     this.$el.find('.modal-body').html(template(data));
-    $(this.el).modal({
+    this.openModal();
+    return this.appendDatePicker();
+  },
+  openModal: function() {
+    return $(this.el).modal({
       backdrop: 'static'
     });
-    return ppu.appendDatePickerYear(this.el);
+  },
+  appendDatePicker: function() {
+    return $(this.el).find('.datepicker-year').datepicker({
+      format: 'yyyy',
+      viewMode: "years",
+      minViewMode: "years",
+      language: 'es',
+      autoclose: true
+    });
   },
   create: function(e) {
     var $form, data, el, lawyer_id;
@@ -349,6 +348,9 @@ mixins.lawyerRelationshipModalCreate = {
     lawyer_id = el.data('lawyer_id');
     $form = this.$el.find('form');
     data = new FormData($form[0]);
+    return this.store(data);
+  },
+  store: function(data) {
     return this.model.save(data, $.extend({}, ppu.ajaxOptions("POST", data)));
   },
   created: function(model) {
@@ -373,7 +375,7 @@ mixins.lawyerRelationshipModalEdit = {
   },
   render: function() {
     var source, template;
-    this.$el.find('.modal-body').html('');
+    this.$el.find('.modal-body').empty();
     source = $(this.template).html();
     template = Handlebars.compile(source);
     this.$el.find('.modal-body').html(template(this.model.toJSON()));
@@ -4339,7 +4341,7 @@ $(function() {
     };
 
     Router.prototype.editPost = function(id) {
-      return ppu.admin.PostsController.edit();
+      return ppu.admin.PostsController.edit(id);
     };
 
     Router.prototype.theActual = function() {
@@ -4359,7 +4361,7 @@ $(function() {
     };
 
     Router.prototype.createTheActualCo = function() {
-      return ppu.admin.TheActualCoController.edit(id);
+      return ppu.admin.TheActualCoController.create();
     };
 
     Router.prototype.editTheActualCo = function(id) {
@@ -4423,6 +4425,123 @@ ppu.admin.LawyersController = {
     });
     return ppu.lawyerCreate = new ppu.LawyerCreateView;
   },
+  editEducations: function(id) {
+    var collection, view;
+    collection = new ppu.LawyerEducations;
+    collection.fetch({
+      reset: true,
+      data: {
+        lawyer_id: id
+      }
+    });
+    return view = new ppu.LawyerEducationsEdit({
+      collection: collection
+    });
+  },
+  editArticles: function(id) {
+    var collection, view;
+    collection = new ppu.LawyerArticles;
+    collection.fetch({
+      reset: true,
+      data: {
+        lawyer_id: id
+      }
+    });
+    return view = new ppu.LawyerArticlesEdit({
+      collection: collection
+    });
+  },
+  editJobs: function(id) {
+    var collection, view;
+    collection = new ppu.LawyerJobs;
+    collection.fetch({
+      reset: true,
+      data: {
+        lawyer_id: id
+      }
+    });
+    return view = new ppu.LawyerJobsEdit({
+      collection: collection
+    });
+  },
+  editRecognitions: function(id) {
+    var collection, view;
+    collection = new ppu.LawyerRecognitions;
+    collection.fetch({
+      reset: true,
+      data: {
+        lawyer_id: id
+      }
+    });
+    return view = new ppu.LawyerRecognitionsEdit({
+      collection: collection
+    });
+  },
+  editInstitutions: function(id) {
+    var collection, view;
+    collection = new ppu.LawyerInstitutions;
+    collection.fetch({
+      reset: true,
+      data: {
+        lawyer_id: id
+      }
+    });
+    return view = new ppu.LawyerInstitutionsEdit({
+      collection: collection
+    });
+  },
+  editLanguages: function(id) {
+    var collection, view;
+    collection = new ppu.LawyerLanguages;
+    collection.fetch({
+      reset: true,
+      data: {
+        lawyer_id: id
+      }
+    });
+    return view = new ppu.LawyerLanguagesEdit({
+      collection: collection
+    });
+  },
+  editPharases: function(id) {
+    var collection, view;
+    collection = new ppu.LawyerPharases;
+    collection.fetch({
+      reset: true,
+      data: {
+        lawyer_id: id
+      }
+    });
+    return view = new ppu.LawyerPharasesEdit({
+      collection: collection
+    });
+  },
+  editAwards: function(id) {
+    var collection, view;
+    collection = new ppu.LawyerAwards;
+    collection.fetch({
+      reset: true,
+      data: {
+        lawyer_id: id
+      }
+    });
+    return view = new ppu.LawyerAwardsEdit({
+      collection: collection
+    });
+  },
+  editAcademics: function(id) {
+    var collection, view;
+    collection = new ppu.LawyerAcademics;
+    collection.fetch({
+      reset: true,
+      data: {
+        lawyer_id: id
+      }
+    });
+    return view = new ppu.LawyerAcademicsEdit({
+      collection: collection
+    });
+  },
   edit: function(id) {
     var view;
     $("#lawyer-create").remove();
@@ -4437,33 +4556,15 @@ ppu.admin.LawyersController = {
     view = new ppu.LawyerEditView({
       model: ppu.lawyer
     });
-    mixins.renderCollection(ppu.LawyerEducations, ppu.LawyerEducationsEdit, {
-      lawyer_id: id
-    });
-    mixins.renderCollection(ppu.LawyerArticles, ppu.LawyerArticlesEdit, {
-      lawyer_id: id
-    });
-    mixins.renderCollection(ppu.LawyerJobs, ppu.LawyerJobsEdit, {
-      lawyer_id: id
-    });
-    mixins.renderCollection(ppu.LawyerRecognitions, ppu.LawyerRecognitionsEdit, {
-      lawyer_id: id
-    });
-    mixins.renderCollection(ppu.LawyerInstitutions, ppu.LawyerInstitutionsEdit, {
-      lawyer_id: id
-    });
-    mixins.renderCollection(ppu.LawyerLanguages, ppu.LawyerLanguagesEdit, {
-      lawyer_id: id
-    });
-    mixins.renderCollection(ppu.LawyerPharases, ppu.LawyerPharasesEdit, {
-      lawyer_id: id
-    });
-    mixins.renderCollection(ppu.LawyerAwards, ppu.LawyerAwardsEdit, {
-      lawyer_id: id
-    });
-    return mixins.renderCollection(ppu.LawyerAcademics, ppu.LawyerAcademicsEdit, {
-      lawyer_id: id
-    });
+    this.editEducations(id);
+    this.editArticles(id);
+    this.editJobs(id);
+    this.editRecognitions(id);
+    this.editInstitutions(id);
+    this.editLanguages(id);
+    this.editPharases(id);
+    this.editAwards(id);
+    return this.editAcademics(id);
   }
 };
 
@@ -4525,6 +4626,60 @@ ppu.admin.PostsController = {
   }
 };
 
+ppu.admin.ExperiencesController = {
+  index: function() {
+    ppu.experiences = new ppu.Experiences;
+    ppu.experiences.fetch({
+      reset: true
+    });
+    ppu.admin.experiences = new ppu.admin.ExperiencesView({
+      collection: ppu.experiences
+    });
+    return ppu.admin.experiencesFilters = new ppu.admin.ExperiencesFilters;
+  },
+  create: function() {
+    ppu.admin.experience = new ppu.Experience;
+    ppu.admin.experienceCreate = new ppu.admin.ExperienceCreate({
+      model: ppu.admin.experience
+    });
+    ppu.admin.experienceCreate.render();
+    ppu.categories = new ppu.Categories;
+    ppu.categories.fetch({
+      reset: true
+    });
+    ppu.admin.categoriesCheckboxnew = new ppu.admin.CategoriesCheckbox({
+      collection: ppu.categories
+    });
+    ppu.admin.galleries = new ppu.admin.Galleries;
+    return ppu.admin.galleries.fetch({
+      reset: true,
+      data: {
+        name: "company_logo"
+      }
+    });
+  },
+  edit: function() {
+    ppu.admin.experience = new ppu.Experience({
+      id: id
+    });
+    ppu.admin.experience.fetch({
+      data: {
+        lang: app.lang
+      }
+    });
+    ppu.admin.experienceEdit = new ppu.admin.ExperienceEdit({
+      model: ppu.admin.experience
+    });
+    ppu.admin.galleries = new ppu.admin.Galleries;
+    return ppu.admin.galleries.fetch({
+      reset: true,
+      data: {
+        name: "company_logo"
+      }
+    });
+  }
+};
+
 ppu.admin.TheActualChController = {
   index: function() {
     ppu.posts = new ppu.Posts;
@@ -4561,6 +4716,63 @@ ppu.admin.TheActualChController = {
     });
   },
   edit: function(id) {
+    ppu.admin.post = new ppu.Post({
+      id: id
+    });
+    ppu.admin.post.fetch({
+      data: {
+        lang: app.lang
+      }
+    });
+    ppu.admin.postEdit = new ppu.admin.PostEdit({
+      model: ppu.admin.post
+    });
+    ppu.admin.galleries = new ppu.admin.Galleries;
+    return ppu.admin.galleries.fetch({
+      reset: true,
+      data: {
+        name: "post_header"
+      }
+    });
+  }
+};
+
+ppu.admin.TheActualCoController = {
+  index: function() {
+    ppu.posts = new ppu.Posts;
+    ppu.posts.fetch({
+      reset: true,
+      data: {
+        the_actual_co: 1
+      }
+    });
+    ppu.admin.posts = new ppu.admin.TheActualCoViews({
+      collection: ppu.posts
+    });
+    return ppu.admin.postsFilters = new ppu.admin.PostsFilters;
+  },
+  create: function() {
+    ppu.admin.post = new ppu.Post;
+    ppu.admin.postCreate = new ppu.admin.TheActualCoCreate({
+      model: ppu.admin.post
+    });
+    ppu.admin.postCreate.render();
+    ppu.categories = new ppu.Categories;
+    ppu.categories.fetch({
+      reset: true
+    });
+    ppu.admin.categoriesCheckboxnew = new ppu.admin.CategoriesCheckbox({
+      collection: ppu.categories
+    });
+    ppu.admin.galleries = new ppu.admin.Galleries;
+    return ppu.admin.galleries.fetch({
+      reset: true,
+      data: {
+        name: "post_header"
+      }
+    });
+  },
+  edit: function() {
     ppu.admin.post = new ppu.Post({
       id: id
     });

@@ -58,7 +58,7 @@ $ ->
       ppu.admin.PostsController.create()
 
     editPost: (id) ->
-      ppu.admin.PostsController.edit()
+      ppu.admin.PostsController.edit(id)
 
     theActual: ->
       ppu.admin.TheActualChController.index()
@@ -73,7 +73,7 @@ $ ->
       ppu.admin.TheActualCoController.index()
 
     createTheActualCo: ->
-      ppu.admin.TheActualCoController.edit(id)
+      ppu.admin.TheActualCoController.create()
 
     editTheActualCo: (id) ->
       ppu.admin.TheActualCoController.edit(id)
