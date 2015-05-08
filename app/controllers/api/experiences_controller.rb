@@ -10,12 +10,13 @@ class Api::ExperiencesController < ApplicationController
 		collection = entity.with_relationships.lang(lang).paginate(paginate).order(date: :desc)
 		collection = filters( params, collection)
 
-		render json: collection.to_json(:include => [
-			:translations,
-			:translation,
-			{:categories => {:only => [:id, :name]} },
-			:lawyers,
-			:gallery
+		render json: collection.to_json( :except => [:keywords, :updated_at],
+			:include => [
+				{ :translations => {:only => [:id, :slug]} },
+				{ :categories => {:only => [:id, :name]} },
+				{ :gallery =>  {:only => :img_name} },
+				:lawyers,
+				:translation
 			]);
 	end
 
@@ -29,12 +30,13 @@ class Api::ExperiencesController < ApplicationController
 			model = entity.with_relationships.find_by(slug: params[:id])
 		end
 
-		render json: model.to_json(:include => [
-			:translations,
-			:translation,
-			:categories,
-			:lawyers,
-			:gallery
+		render json: model.to_json(:except => [:keywords],
+			:include => [
+				:translations,
+				:translation,
+				{:categories => {:except => [:description]} },
+				:lawyers,
+				:gallery
 		])
 
 	end

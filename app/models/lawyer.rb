@@ -109,8 +109,10 @@ class Lawyer < ActiveRecord::Base
       "Partner"
     elsif position == "Especialista"
       "Specialist"
-    else
+    elsif position == "Senior Counsel"
       "Senior Counsel"
+    elsif position == "Consultor Extranjero"
+      "Foreign Consultant"
     end
   end
 

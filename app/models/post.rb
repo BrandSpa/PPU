@@ -45,7 +45,7 @@ class Post < ActiveRecord::Base
   scope :not_featured, -> { where(featured: nil) }
 
   # order by featured asc
-  scope :featured_order, -> (val) { order("posts.featured #{val}") }
+  scope :featured_order, -> (val) { order(featured: :asc) }
 
   # get model by published
   scope :published, -> (val) { where("posts.published = ?", val) }

@@ -5,10 +5,6 @@ $ ->
 
     initialize: ->
       @listenTo(@collection, 'reset', @render)
-      @getTitle()
-
-    getTitle: ->
-      $("#top-bar").html $("#category-title").html()
 
     renderOne: (model) ->
       ppu.categoryView = new ppu.CategoryView model: model

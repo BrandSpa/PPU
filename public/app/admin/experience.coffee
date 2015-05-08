@@ -125,9 +125,16 @@ $ ->
       source = @template.html()
       template = Handlebars.compile(source)
       @$el.find('.panel-body').html template()
-      ppu.appendDatePicker(@el)
+      @addDataPicker()
 
       ppu.appendSummernoteExperience(@el)
+
+    addDataPicker: ->
+      $(@el).find('.datepicker').datepicker
+        orientation: "bottom left"
+        format: 'dd/mm/yyyy'
+        language: 'es'
+        autoclose: true
 
     store: ->
       $form = @$el.find('form')
@@ -182,10 +189,18 @@ $ ->
       source = @template.html()
       template = Handlebars.compile(source)
       @$el.find('.panel-body').html template( @model.toJSON() )
-      ppu.appendDatePicker(@el)
       ppu.appendSummernote(@el)
+
+      @addDataPicker()
       @getCategories()
       @showLawyers()
+
+    addDataPicker: ->
+      $(@el).find('.datepicker').datepicker
+        orientation: "bottom"
+        format: 'dd/mm/yyyy'
+        language: 'es'
+        autoclose: true
 
     update: (e) ->
       e.preventDefault()

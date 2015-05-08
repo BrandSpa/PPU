@@ -15,7 +15,7 @@ $ ->
       "click .unpublish": "unpublish"
       "click .change-featured": "changeFeatured"
       "click .publish-on-social-network": "publishFb"
-      "click .featured": "featured"
+      "click .highlight": "featured"
       "click .unhighlight": "unhighlight"
       "click .translate": "translate"
 
@@ -261,7 +261,7 @@ $ ->
     redirectTo: ->
       window.location = '/admin/posts'
 
-    # get categories 
+    # get categories
     getCategories: ->
       ppu.categories = new ppu.Categories
       el = @$el

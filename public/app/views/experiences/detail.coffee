@@ -6,10 +6,6 @@ $ ->
 
     initialize: ->
       @listenTo(@model, "change", @render)
-      @getTitle()
-
-    getTitle: ->
-      $("#top-bar").html $("#experience-detail-title").html()
 
     render: ->
       template = app.compile(@template)

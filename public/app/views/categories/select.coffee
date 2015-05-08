@@ -2,6 +2,7 @@ $ ->
 
   class ppu.CategoriesList extends Backbone.View
     el: $ "#categories-list"
+    
     template: $ "#categories-list-template"
 
     initialize: ->

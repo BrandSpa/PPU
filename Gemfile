@@ -9,7 +9,6 @@ gem 'mysql2'
 # Use for cache
 gem 'dalli'
 
-
 #use for work with facebook api
 gem 'fb_graph'
 

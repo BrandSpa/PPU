@@ -1,4 +1,5 @@
 ppu.PostsController = {
+  
   index: ->
     ppu.posts = new ppu.Posts
 
@@ -21,4 +22,6 @@ ppu.PostsController = {
     ppu.post.fetch()
     ppu.postDetailView = new ppu.PostDetailView model: ppu.post
     ppu.postsRelated = new ppu.PostsRelated collection: ppu.posts
+    $("#top-bar").html $("#post-detail-title").html()
+
 }

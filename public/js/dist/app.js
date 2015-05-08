@@ -633,24 +633,24 @@ ppu.Curriculum = (function(superClass) {
 
   Curriculum.prototype.urlRoot = "/api/curriculums";
 
-  ppu.Curriculums = (function(superClass1) {
-    extend(Curriculums, superClass1);
-
-    function Curriculums() {
-      return Curriculums.__super__.constructor.apply(this, arguments);
-    }
-
-    Curriculums.prototype.url = "/api/curriculums";
-
-    Curriculums.prototype.model = ppu.Curriculum;
-
-    return Curriculums;
-
-  })(Backbone.Collection);
-
   return Curriculum;
 
 })(Backbone.Model);
+
+ppu.Curriculums = (function(superClass) {
+  extend(Curriculums, superClass);
+
+  function Curriculums() {
+    return Curriculums.__super__.constructor.apply(this, arguments);
+  }
+
+  Curriculums.prototype.url = "/api/curriculums";
+
+  Curriculums.prototype.model = ppu.Curriculum;
+
+  return Curriculums;
+
+})(Backbone.Collection);
 
 var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
   hasProp = {}.hasOwnProperty;
@@ -894,12 +894,7 @@ $(function() {
     CategoriesView.prototype.el = $("#categories");
 
     CategoriesView.prototype.initialize = function() {
-      this.listenTo(this.collection, 'reset', this.render);
-      return this.getTitle();
-    };
-
-    CategoriesView.prototype.getTitle = function() {
-      return $("#top-bar").html($("#category-title").html());
+      return this.listenTo(this.collection, 'reset', this.render);
     };
 
     CategoriesView.prototype.renderOne = function(model) {
@@ -936,12 +931,7 @@ $(function() {
     CategoryDetail.prototype.template = $("#category-detail-template");
 
     CategoryDetail.prototype.initialize = function() {
-      this.listenTo(this.model, "change", this.render);
-      return this.getTitle();
-    };
-
-    CategoryDetail.prototype.getTitle = function() {
-      return $("#top-bar").html($("#category-detail-title").html());
+      return this.listenTo(this.model, "change", this.render);
     };
 
     CategoryDetail.prototype.render = function() {
@@ -1120,26 +1110,20 @@ $(function() {
     LawyerDetailView.prototype.template = $('#lawyer-template');
 
     LawyerDetailView.prototype.initialize = function() {
-      this.listenTo(this.model, 'change', this.render);
-      this.getTitle();
-      return this.model.fetch();
-    };
-
-    LawyerDetailView.prototype.getTitle = function() {
-      return $("#top-bar").html($("#lawyer-detail-title").html());
+      return this.listenTo(this.model, 'change', this.render);
     };
 
     LawyerDetailView.prototype.render = function() {
       var template;
       template = app.compile(this.template);
       $(this.el).html(template(this.model.toJSON()));
-      return this.getImgs();
+      return this.resizeImages();
     };
 
-    LawyerDetailView.prototype.getImgs = function() {
-      var h;
-      h = this.$el.find('.award img');
-      return _.each(h, function(e) {
+    LawyerDetailView.prototype.resizeImages = function() {
+      var images;
+      images = this.$el.find('.award img');
+      return _.each(images, function(e) {
         return $(e).load(function(a) {
           if ($(this).height() > 90) {
             return $(this).css('height', '90px');
@@ -1708,12 +1692,7 @@ $(function() {
     PostDetailView.prototype.template = $("#post-detail-template");
 
     PostDetailView.prototype.initialize = function() {
-      this.listenTo(this.model, "change", this.render);
-      return this.getTitle();
-    };
-
-    PostDetailView.prototype.getTitle = function() {
-      return $("#top-bar").html($("#post-detail-title").html());
+      return this.listenTo(this.model, "change", this.render);
     };
 
     PostDetailView.prototype.render = function() {
@@ -2007,12 +1986,7 @@ $(function() {
     ExperienceDetailView.prototype.template = $("#experience-detail-template");
 
     ExperienceDetailView.prototype.initialize = function() {
-      this.listenTo(this.model, "change", this.render);
-      return this.getTitle();
-    };
-
-    ExperienceDetailView.prototype.getTitle = function() {
-      return $("#top-bar").html($("#experience-detail-title").html());
+      return this.listenTo(this.model, "change", this.render);
     };
 
     ExperienceDetailView.prototype.render = function() {
@@ -2968,9 +2942,10 @@ ppu.PostsController = {
     ppu.postDetailView = new ppu.PostDetailView({
       model: ppu.post
     });
-    return ppu.postsRelated = new ppu.PostsRelated({
+    ppu.postsRelated = new ppu.PostsRelated({
       collection: ppu.posts
     });
+    return $("#top-bar").html($("#post-detail-title").html());
   }
 };
 
@@ -2983,13 +2958,15 @@ ppu.LawyersController = {
     ppu.lawyersFilters = new ppu.LawyersFilters;
     return ppu.filtersMobile = new ppu.FiltersMobile;
   },
-  show: function() {
+  show: function(slug) {
     ppu.lawyer = new ppu.Lawyer({
       id: slug
     });
-    return ppu.LawyerDetailView = new ppu.LawyerDetailView({
+    ppu.LawyerDetailView = new ppu.LawyerDetailView({
       model: ppu.lawyer
     });
+    ppu.lawyer.fetch();
+    return $("#top-bar").html($("#lawyer-detail-title").html());
   }
 };
 
@@ -2999,9 +2976,10 @@ ppu.CategoriesController = {
     ppu.categories.fetch({
       reset: true
     });
-    return ppu.categoriesView = new ppu.CategoriesView({
+    ppu.categoriesView = new ppu.CategoriesView({
       collection: ppu.categories
     });
+    return $("#top-bar").html($("#category-title").html());
   },
   show: function(slug) {
     ppu.category = new ppu.Category({
@@ -3016,9 +2994,10 @@ ppu.CategoriesController = {
       collection: ppu.categories
     });
     ppu.lawyers = new ppu.Lawyers;
-    return ppu.lawyersRelated = new ppu.lawyersRelatedCategory({
+    ppu.lawyersRelated = new ppu.lawyersRelatedCategory({
       collection: ppu.lawyers
     });
+    return $("#top-bar").html($("#category-detail-title").html());
   }
 };
 
@@ -3030,21 +3009,24 @@ ppu.ExperiencesController = {
     ppu.experiences.fetch({
       reset: true
     });
-    return ppu.experiencesView = new ppu.ExperiencesView({
-      collection: ppu.experiences
-    });
-  },
-  show: function(slug) {
-    ppu.experiencesFilters = new ppu.ExperiencesFilters;
-    ppu.experiencesFilters.render();
-    ppu.experiences = new ppu.Experiences;
-    ppu.experiences.fetch({
-      reset: true
-    });
     ppu.experiencesView = new ppu.ExperiencesView({
       collection: ppu.experiences
     });
     return ppu.filtersMobile = new ppu.FiltersMobile;
+  },
+  show: function(slug) {
+    ppu.experience = new ppu.Experience({
+      id: slug
+    });
+    ppu.experience.fetch();
+    ppu.experienceDetailView = new ppu.ExperienceDetailView({
+      model: ppu.experience
+    });
+    ppu.experiences = new ppu.Experiences;
+    ppu.experienecesRelated = new ppu.ExperienecesRelated({
+      collection: ppu.experiences
+    });
+    return $("#top-bar").html($("#experience-detail-title").html());
   }
 };
 
@@ -3149,7 +3131,7 @@ $(function() {
     };
 
     Workspace.prototype.area = function(slug) {
-      return ppu.CategoriesController.show();
+      return ppu.CategoriesController.show(slug);
     };
 
     Workspace.prototype.experiences = function() {
@@ -3164,9 +3146,9 @@ $(function() {
       return ppu.curriculumsController.index();
     };
 
-    Workspace.prototype.us = function() {};
-
-    ppu.UsController.index();
+    Workspace.prototype.us = function() {
+      return ppu.UsController.index();
+    };
 
     Workspace.prototype.probono = function() {
       return ppu.ProbonoController.index();

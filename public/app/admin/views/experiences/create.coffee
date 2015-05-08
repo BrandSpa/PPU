@@ -2,7 +2,7 @@ $ ->
   class ppu.admin.ExperienceCreate extends Backbone.View
     el: $ "#experience-create"
     template: $ "#experience-create-template"
-    events: 
+    events:
       "click button.store": "store"
       "click .open-gallery": "openGallery"
       "keydown input[name='query']": "searchLawyer"
@@ -19,8 +19,13 @@ $ ->
       template = Handlebars.compile(source)
       @$el.find('.panel-body').html template()
       ppu.appendDatePicker(@el)
-      
       ppu.appendSummernoteExperience(@el)
+
+    addDataPicker: ->
+      $('.datepicker').datepicker
+        format: 'dd/mm/yyyy'
+        language: 'es'
+        autoclose: true
 
     store: ->
       $form = @$el.find('form')
@@ -30,7 +35,7 @@ $ ->
       data.append("fields[lang]", app.lang)
       options = ppu.ajaxOptions("Post", data)
       @model.save data, $.extend({}, options)
-    
+
     stored: (model) ->
       window.location = "/dashboard" if model
 

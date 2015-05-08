@@ -1,22 +1,30 @@
 <% content_for :head do %>
+
  <title>Philippi Prietocarrizosa &Uría - <%= @post.title %></title>
+
   <meta name="description" content="<%= @post.excerpt.truncate(170) %>">
-  <meta property="og:title" content="Philippi Prietocarrizosa &Uría - <%= @post.title %>" /> 
-  <meta property="og:description" content="<%= @post.excerpt.truncate(170) %>" /> 
+  <meta property="og:title" content="Philippi Prietocarrizosa &Uría - <%= @post.title %>" />
+  <meta property="og:description" content="<%= @post.excerpt.truncate(170) %>" />
+
   <%if @post.gallery %>
-  <meta property="og:image" content="<%= @post.gallery.img_name.url %>" />
+    <meta property="og:image" content="<%= @post.gallery.img_name.url %>" />
   <% else %>
-  <meta property="og:image" content="<%= @post.img_name.url %>" />
+    <meta property="og:image" content="<%= @post.img_name.url %>" />
   <% end %>
+
 <% end %>
 
-<div id="experience">
-	
-  
+<div id="experience"></div>
+
+<div class="related-title">
+  <h3><%= t("Experience") %> <%= t("related")%></h3>
 </div>
-<div class="related-title"><h3><%= t("Experience") %> <%= t("related")%></h3></div>  
-<div id="experiences-related">
-  
-</div>
+
+<div id="experiences-related"> </div>
+
 <%= render "/experiences/partials/experiences" %>
 <%= render "/experiences/partials/experience" %>
+
+<script id="experience-detail-title" type="text/x-handlebars-template">
+	<h1><a href="/experiencias"><%= t("Experience") %></a></h1>
+</script>

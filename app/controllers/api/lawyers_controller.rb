@@ -28,20 +28,39 @@ class Api::LawyersController < ApplicationController
       model = entity.lang(lang).relationships.find_by(slug: id)
 
       render json: model.to_json(
-      :include => [
-        :translations,
-        :translation,
-        :academics,
-        :articles,
-        :awards,
-        :educations,
-        :institutions,
-        :jobs,
-        :languages,
-        :phrases,
-        :recognitions,
-        :categories,
-        :posts])
+        :include => [
+          { :translations => {:only => [:id, :slug]} } ,
+          :translation,
+          { :academics => {
+            :except => [:created_at, :updated_at]
+          }},
+          { :articles => {
+            :except => [:created_at, :updated_at]
+          }},
+          { :awards => {
+            :except => [:created_at, :updated_at]
+          }},
+          { :educations => {
+            :except => [:created_at, :updated_at]
+          }},
+          { :institutions => {
+            :except => [:created_at, :updated_at]
+          }},
+          { :jobs => {
+            :except => [:created_at, :updated_at]
+          }},
+          { :languages => {
+            :except => [:created_at, :updated_at]
+          }},
+          { :phrases => {
+            :except => [:created_at, :updated_at]
+          }},
+          { :recognitions => {
+            :except => [:created_at, :updated_at]
+          }},
+          :categories,
+          :posts
+        ])
     end
   end
 
@@ -67,7 +86,7 @@ class Api::LawyersController < ApplicationController
       render json: model.errors.messages, status: 400
     end
   end
-  
+
   # get model and duplicate it
   def duplicate
     id = params[:id]

@@ -1,5 +1,4 @@
 $ ->
-
   class ppu.ExperiencesView extends Backbone.View
     el: $ "#experiences"
 

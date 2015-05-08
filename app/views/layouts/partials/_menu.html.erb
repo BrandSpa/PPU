@@ -8,8 +8,14 @@
     <li><a data-url="/nosotros" href="/nosotros"><%= t("Us") %></a></li>
     <li><a data-url="/probono" href="/probono">Probono</a></li>
     <li><a data-url="/trabaje-con-nosotros" href="/trabaje-con-nosotros"><%= t("Work with Us") %></a></li>
-    <li><a  data-url="/el-actual" href="/el-actual">El Actual Chile</a></li>
-    <li><a  data-url="/el-actual-colombia" href="/el-actual-colombia">El Actual Colombia</a></li>
+    <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">El actual</a>
+          <ul class="dropdown-menu" style="background: #002855; width: 100%" role="menu">
+            <li><a href="/el-actual">Chile</a></li>
+            <li><a  href="/el-actual-colombia">Colombia</a></li>
+          </ul>
+        </li>
+
   </ul>
-  
+
 </div>

@@ -1,6 +1,6 @@
 $ ->
   class ppu.Workspace extends Backbone.Router
-    
+
     routes:
       # Posts
       "" : "posts"
@@ -66,7 +66,7 @@ $ ->
       ppu.CategoriesController.index()
 
     area: (slug)->
-      ppu.CategoriesController.show()
+      ppu.CategoriesController.show(slug)
 
     experiences: () ->
       ppu.ExperiencesController.index()
@@ -78,7 +78,7 @@ $ ->
       ppu.curriculumsController.index()
 
     us: ->
-    ppu.UsController.index()
+      ppu.UsController.index()
 
     probono: ->
       ppu.ProbonoController.index()

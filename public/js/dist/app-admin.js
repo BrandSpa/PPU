@@ -2463,7 +2463,7 @@ $(function() {
       "click .unpublish": "unpublish",
       "click .change-featured": "changeFeatured",
       "click .publish-on-social-network": "publishFb",
-      "click .featured": "featured",
+      "click .highlight": "featured",
       "click .unhighlight": "unhighlight",
       "click .translate": "translate"
     };
@@ -3962,8 +3962,17 @@ $(function() {
       source = this.template.html();
       template = Handlebars.compile(source);
       this.$el.find('.panel-body').html(template());
-      ppu.appendDatePicker(this.el);
+      this.addDataPicker();
       return ppu.appendSummernoteExperience(this.el);
+    };
+
+    ExperienceCreate.prototype.addDataPicker = function() {
+      return $(this.el).find('.datepicker').datepicker({
+        orientation: "bottom left",
+        format: 'dd/mm/yyyy',
+        language: 'es',
+        autoclose: true
+      });
     };
 
     ExperienceCreate.prototype.store = function() {
@@ -4050,10 +4059,19 @@ $(function() {
       source = this.template.html();
       template = Handlebars.compile(source);
       this.$el.find('.panel-body').html(template(this.model.toJSON()));
-      ppu.appendDatePicker(this.el);
       ppu.appendSummernote(this.el);
+      this.addDataPicker();
       this.getCategories();
       return this.showLawyers();
+    };
+
+    ExperienceEdit.prototype.addDataPicker = function() {
+      return $(this.el).find('.datepicker').datepicker({
+        orientation: "bottom",
+        format: 'dd/mm/yyyy',
+        language: 'es',
+        autoclose: true
+      });
     };
 
     ExperienceEdit.prototype.update = function(e) {
@@ -4658,7 +4676,7 @@ ppu.admin.ExperiencesController = {
       }
     });
   },
-  edit: function() {
+  edit: function(id) {
     ppu.admin.experience = new ppu.Experience({
       id: id
     });

@@ -14,6 +14,7 @@ es:
   partner: "Socio"
   associated: "Asociado"
   lawyer: "Abogado"
+  foreign_consultant: "Consultor Extranjero"
   specialist: "Especialista"
   practice_areas: "Áreas de práctica"
   article: "Publicaciones"
@@ -185,7 +186,7 @@ es:
     format: ! '%{message}'
     messages:
       accepted: debe ser aceptado
-      blank: no puede estar en blanco 
+      blank: no puede estar en blanco
       confirmation: no coincide con la confirmación
       empty: no puede estar vacío
       equal_to: debe ser igual a %{count}

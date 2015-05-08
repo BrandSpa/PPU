@@ -2,7 +2,7 @@ $ ->
   class ppu.admin.ExperienceEdit extends Backbone.View
     el: $ "#experience-edit"
     template: $ "#experience-create-template"
-    events: 
+    events:
       "click button.update": "update"
       "click .open-gallery": "openGallery"
       "keydown input[name='query']": "searchLawyer"
@@ -19,10 +19,17 @@ $ ->
       source = @template.html()
       template = Handlebars.compile(source)
       @$el.find('.panel-body').html template( @model.toJSON() )
-      ppu.appendDatePicker(@el)
+      @addDataPicker()
       ppu.appendSummernote(@el)
       @getCategories()
       @showLawyers()
+
+    addDataPicker: ->
+      $(@el).find('.datepicker').datepicker
+        format: 'dd/mm/yyyy'
+        language: 'es'
+        autoclose: true
+
 
     update: (e) ->
       e.preventDefault()

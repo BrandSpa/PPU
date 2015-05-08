@@ -17,7 +17,7 @@ ppu.admin.ExperiencesController = {
     ppu.admin.galleries = new  ppu.admin.Galleries
     ppu.admin.galleries.fetch reset: true, data: name: "company_logo"
 
-  edit: ->
+  edit: (id) ->
     ppu.admin.experience = new ppu.Experience id: id
     ppu.admin.experience.fetch data: lang: app.lang
     ppu.admin.experienceEdit = new ppu.admin.ExperienceEdit model: ppu.admin.experience

@@ -19,15 +19,18 @@ class Api::PostsController < ApplicationController
     collection = filters( params, collection )
 
     render json: collection.to_json(
-    :except => [
-      :keywords,
-      :content
-    ],
-    :include => [
-      {:translations => {:only => :id }},
-      :translation,
-      :lawyers,
-      {:gallery => {:only => :img_name }}
+      :except => [
+        :keywords,
+        :content,
+        :updated_at
+      ],
+      :include => [
+        {:translations => {
+          :only => [:id, :slug] }
+          },
+        :translation,
+        :lawyers,
+        {:gallery => {:only => :img_name }}
     ])
 
   end
@@ -94,6 +97,8 @@ class Api::PostsController < ApplicationController
   def featured
     id = params[:id]
 
+    unfeatured()
+
     model = Post.find(id)
 
     translation = model.translations
@@ -104,11 +109,13 @@ class Api::PostsController < ApplicationController
       translation.update(featured: 3)
     end
 
+    render json: model
+
   end
 
   # unfeatured all posts
   def unfeatured
-    collection = Post.where(featured: 3, the_actual: false, the_actual: nil)
+    collection = Post.where(featured: 3, the_actual_ch: 0, the_actual_co: 0 )
 
     collection.each do |model|
       model.update(featured: '')
@@ -119,6 +126,7 @@ class Api::PostsController < ApplicationController
         translation.update(featured: '')
       end
     end
+
   end
 
   # Validate if the param is a number
