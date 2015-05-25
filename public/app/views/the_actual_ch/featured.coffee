@@ -7,7 +7,7 @@ $ ->
       "click": "open"
 
     open: ->
-      window.location = "/posts/#{@model.get('slug')}"
+      window.location = "/el-actual/#{@model.get('slug')}"
 
     render: ->
       template = app.compile(@template)

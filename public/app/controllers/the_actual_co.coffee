@@ -10,7 +10,8 @@ ppu.TheActualCoController = {
   show: (slug) ->
     ppu.post = new ppu.Post id: slug
     ppu.posts = new ppu.Posts
-    ppu.post.fetch()
+  
     ppu.postDetailView = new ppu.TheActualCoDetailView model: ppu.post
+    ppu.post.fetch()
     ppu.postsRelated = new ppu.PostsRelated collection: ppu.posts
 }

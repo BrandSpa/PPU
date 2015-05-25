@@ -2201,7 +2201,7 @@ $(function() {
     };
 
     TheActualFeaturedView.prototype.open = function() {
-      return window.location = "/posts/" + (this.model.get('slug'));
+      return window.location = "/el-actual/" + (this.model.get('slug'));
     };
 
     TheActualFeaturedView.prototype.render = function() {
@@ -2503,7 +2503,7 @@ $(function() {
     };
 
     TheActualCoView.prototype.open = function() {
-      return window.location = "/el-actual/" + (this.model.get('slug'));
+      return window.location = "/el-actual-colombia/" + (this.model.get('slug'));
     };
 
     TheActualCoView.prototype.render = function() {
@@ -2532,7 +2532,7 @@ $(function() {
     };
 
     TheActualCoFeaturedView.prototype.open = function() {
-      return window.location = "/posts/" + (this.model.get('slug'));
+      return window.location = "/el-actual-colombia/" + (this.model.get('slug'));
     };
 
     TheActualCoFeaturedView.prototype.render = function() {
@@ -2567,7 +2567,7 @@ $(function() {
     };
 
     TheActualCoFeaturedView.prototype.open = function() {
-      return window.location = "/posts/" + (this.model.get('slug'));
+      return window.location = "/el-actual-colombia/" + (this.model.get('slug'));
     };
 
     TheActualCoFeaturedView.prototype.render = function() {
@@ -2904,10 +2904,10 @@ ppu.TheActualCoController = {
       id: slug
     });
     ppu.posts = new ppu.Posts;
-    ppu.post.fetch();
     ppu.postDetailView = new ppu.TheActualCoDetailView({
       model: ppu.post
     });
+    ppu.post.fetch();
     return ppu.postsRelated = new ppu.PostsRelated({
       collection: ppu.posts
     });
