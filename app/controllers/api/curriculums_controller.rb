@@ -8,6 +8,7 @@ class Api::CurriculumsController < ApplicationController
 		if model.valid?
 			render json: model
       CurriculumMailer.notification(model, "seleccionco@ppulegal.com").deliver
+      CurriculumMailer.notification(model, "alejandro@brandspa.com").deliver
 		else
 			render json: model.errors, status: 400
 		end
