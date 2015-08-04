@@ -7,8 +7,14 @@ class Api::CurriculumsController < ApplicationController
 
 		if model.valid?
 			render json: model
-      CurriculumMailer.notification(model, "seleccionco@ppulegal.com").deliver
-      CurriculumMailer.notification(model, "alejandro@brandspa.com").deliver
+			if model.country == 'Chile'
+				CurriculumMailer.notification(model, "alejandro@brandspa.com").deliver
+				CurriculumMailer.notification(model, "seleccioncl@ppulegal.com").deliver
+			else
+				CurriculumMailer.notification(model, "alejandro@brandspa.com").deliver
+				CurriculumMailer.notification(model, "seleccionco@ppulegal.com").deliver
+			end
+
 		else
 			render json: model.errors, status: 400
 		end
