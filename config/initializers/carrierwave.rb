@@ -6,10 +6,11 @@ CarrierWave.configure do |config|
     :aws_secret_access_key  => 'YrPtRF4S6kZ32L5qyQ9ryjF6b8DTymN5L4Uyx/ZA',
     :region                 => 'us-east-1',
   }
-
   config.fog_directory  = 'ppu-web'
-  
-  config.fog_public     = true
+  config.fog_attributes = {
+    'Cache-Control' => "max-age=#{365.day.to_i}",
+    'Expires' => "#{365.day.to_i}"
+  }
 end
 
 module CarrierWave

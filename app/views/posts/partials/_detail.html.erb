@@ -1,27 +1,34 @@
 <script id="post-detail-template" type="text/x-handlebars-template">
   <div class="post-header">
-
-    {{#if gallery}}
-      <img src="{{ gallery.img_name.url }}" alt="{{ title }}" class="hidden-xs">
-    {{else}}
-      <img src="{{ img_name.url }}" alt="{{ title }}" class="hidden-xs">
-    {{/if}}
-
-    <h1>{{ title }}</h1>
+    <div class="thumb-container">
+      {{#if gallery}}
+        <img src="{{ gallery.img_name.url }}" alt="{{ title }}" class="hidden-xs">
+      {{else}}
+        <img src="{{ img_name.url }}" alt="{{ title }}" class="hidden-xs">
+      {{/if}}
+    </div>
+    <div class="data">
+      <h1>{{ title }}</h1>
 
     {{#if lawyers}}
+      <ul class="lawyers">
       {{#each lawyers}}
-        <h5><a href="/abogados/{{ slug }}">{{name}} {{lastname}}</a></h5>
+        <li><a href="/abogados/{{ slug }}">{{name}} {{lastname}}</a></li>
       {{/each}}
+      </ul>
     {{else}}
       <h5>{{ author }}</h5>
     {{/if}}
 
-    <div class="categories">
-      {{#each categories }}
-        <span>{{ name }}</span>
-      {{/each}}
+      <div class="categories">
+        <ul>
+        {{#each categories }}
+          <li>{{ name }}</li>
+        {{/each}}
+        </ul>
+      </div>
     </div>
+
 
     <div class="post-social">
       <a class="share" href="https://twitter.com/intent/tweet?text={{ title }}&url=http://ppulegal.com/posts/{{ slug }}"><i class="fa fa-twitter-square"></i></a>
