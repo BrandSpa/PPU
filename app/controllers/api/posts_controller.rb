@@ -32,7 +32,6 @@ class Api::PostsController < ApplicationController
         :lawyers,
         {:gallery => {:only => :img_name }}
     ])
-    fresh_when etag:
   end
 
   # get model by id or slug
