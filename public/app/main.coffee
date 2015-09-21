@@ -52,6 +52,7 @@ ppu.appendDatePicker = (el) ->
 
 ppu.appendSelect = (el) ->
  $(el).find('.selectpicker').selectpicker()
+
 ppu.appendCheck = (el) ->
   $(el).find("input").iCheck labelHover: false, cursor: true, checkboxClass: 'icheckbox_square-blue'
 
@@ -99,7 +100,6 @@ ppu.appendForm = (el, template)->
   temp = app.compile(template)
   $(temp()).appendTo($(el).find('.fields')).hide().slideDown()
   ppu.appendDatePickerYear(el)
-
 
 ppu.ajaxOptions = (type, data) ->
   type: type
