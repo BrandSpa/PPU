@@ -14,7 +14,7 @@ $ ->
       else
         position = "Socio"
 
-      @collection.fetch reset: true, data: lang: app.lang, category: category, position: position
+      @collection.fetch reset: true, data: lang: app.lang, category: category, position: position, published:1
 
     render: ->
       template = app.compile(@template)

@@ -1313,7 +1313,8 @@ $(function() {
         data: {
           lang: app.lang,
           category: category,
-          position: position
+          position: position,
+          published: 1
         }
       });
     };
