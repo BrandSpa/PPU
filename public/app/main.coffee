@@ -1,4 +1,4 @@
-window.ppu = 
+window.ppu =
   admin: {}
 
 window.mixins = {}
@@ -117,17 +117,17 @@ ppu.saveMultipeForms = (el, model, lawyer_id) ->
     model.save data, $.extend({}, ppu.ajaxOptions("POST", data))
 
 $(window).on "scroll", _.throttle (event) =>
- 
+
   body = document.body
   tolerance = 200
   threshold = body.scrollHeight - window.innerHeight - tolerance
-  
+
   if $(window).scrollTop() > threshold
     app.pubsub.trigger("general:scroll")
 , 1000
-    
 
-$('.carousel').carousel interval: 2000
+
+$('.carousel').carousel interval: 7000
 
 $('.popver').popover()
 
@@ -146,7 +146,7 @@ $(document).find('.datepicker').datepicker
   format: 'yyyy'
   language: 'es'
   autoclose: true
-  
+
 if ($(window).width() < 768)
   app.topPadding = 200
 else if ($(window).width() > 768 &&  $(window).width() <= 992)

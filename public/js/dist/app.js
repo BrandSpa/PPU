@@ -173,7 +173,7 @@ $(window).on("scroll", _.throttle((function(_this) {
 })(this), 1000));
 
 $('.carousel').carousel({
-  interval: 2000
+  interval: 7000
 });
 
 $('.popver').popover();
