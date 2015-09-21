@@ -156,8 +156,6 @@ else if ($(window).width() > 992 &&  $(window).width() <= 1200)
 else
   app.topPadding = 35
 
-console.log $(document)
-
 $(document).scroll () ->
   if $(window).scrollTop() > app.topPadding
     $(".top-bar-container").addClass("to-top")

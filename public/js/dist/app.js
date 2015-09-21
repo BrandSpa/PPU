@@ -208,8 +208,6 @@ if ($(window).width() < 768) {
   app.topPadding = 35;
 }
 
-console.log($(document));
-
 $(document).scroll(function() {
   if ($(window).scrollTop() > app.topPadding) {
     return $(".top-bar-container").addClass("to-top");
