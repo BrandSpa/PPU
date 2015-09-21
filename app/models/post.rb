@@ -100,7 +100,7 @@ class Post < ActiveRecord::Base
 
     # remove html tags from content and passes to excerpt field
     def add_excerpt
-      self.excerpt = Sanitize.fragment(self.content, :elements => ['&amp;'])
+      self.excerpt = Sanitize.fragment(self.content).gsub('&amp;','&')
     end
 
     # convert spaces for dashes in title and passes to slug field

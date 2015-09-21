@@ -27,4 +27,3 @@ Handlebars.registerHelper 'getLangDomain', (url, block) ->
     return "en.ppulegal.com/#{url}#{block}"
   else
     return "http://ppulegal.com/#{url}#{block}"
-  
