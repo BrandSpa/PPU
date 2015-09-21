@@ -408,11 +408,11 @@ Handlebars.registerHelper('checked', function(val1, val2) {
 });
 
 Handlebars.registerHelper('shortenText', function(text, block) {
-  return text.substring(0, 95) + " ...";
+  return text.replace('&amp;', '&').substring(0, 95) + " ...";
 });
 
 Handlebars.registerHelper('shortenText2', function(text, block) {
-  return text.substring(0, 190);
+  return text.substring(0, 190).replace('&amp;', '&');
 });
 
 Handlebars.registerHelper('dateFormat', function(context, block) {
