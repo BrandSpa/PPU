@@ -14,6 +14,7 @@ $ ->
     initialize: ->
       @filtersAplied = {lang: app.lang}
       app.pubsub.on("general:scroll", @paginate, @)
+      app.pubsub.on("apply:filters", @filterBy, @)
       @offset = 20
 
     render: ->

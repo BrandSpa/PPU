@@ -16,7 +16,7 @@ $ ->
         the_actual_ch: 0
         the_actual_co: 0
       }
-
+      app.pubsub.on("apply:filters", @filterBy, @)
       app.pubsub.on("general:scroll", @paginate, @)
       @offset = 20
 

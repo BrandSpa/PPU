@@ -807,6 +807,14 @@ $(function() {
       return app.pubsub.on("filters:showPosition", this.showPosition, this);
     };
 
+    FiltersMobile.prototype.filterBy = function(data) {
+      data = _.extend({
+        paginate: 0
+      }, data);
+      data = _.extend(this.filtersAplied, data);
+      return app.pubsub.trigger("posts:filter", data);
+    };
+
     FiltersMobile.prototype.applyFilters = function(e) {
       e.preventDefault();
       app.pubsub.trigger("apply:filters", this.filters);
@@ -1047,11 +1055,10 @@ $(function() {
           order_by_spanish: ""
         });
       }
-      this.collection.fetch({
+      return this.collection.fetch({
         reset: true,
         data: data
       });
-      return app.pubsub.on("apply:filters", this.filterCollection, this);
     };
 
     LawyersView.prototype.filterCollection = function(filters) {
@@ -1168,8 +1175,20 @@ $(function() {
       };
       this.order_by();
       this.$el.data("filtersAplied", this.filtersAplied);
+      app.pubsub.on("apply:filters", this.filterBy, this);
       app.pubsub.on("general:scroll", this.paginate, this);
       return app.pubsub.trigger("filters:showPosition");
+    };
+
+    LawyersFilters.prototype.filterBy = function(data) {
+      data = _.extend({
+        paginate: 0
+      }, data);
+      data = _.extend(this.filtersAplied, data);
+      return ppu.lawyers.fetch({
+        reset: true,
+        data: data
+      });
     };
 
     LawyersFilters.prototype.order_by = function() {
@@ -1209,70 +1228,45 @@ $(function() {
     };
 
     LawyersFilters.prototype.byPosition = function(e) {
-      var data, val;
+      var val;
       val = $(e.currentTarget).find('select').val();
-      data = _.extend(this.filtersAplied, {
-        paginate: 0,
+      return this.filterBy({
         position: val
-      });
-      return ppu.lawyers.fetch({
-        reset: true,
-        data: data
       });
     };
 
     LawyersFilters.prototype.byCountry = function(e) {
-      var data, val;
+      var val;
       val = $(e.currentTarget).find('select').val();
-      data = _.extend(this.filtersAplied, {
-        paginate: 0,
+      return this.filterBy({
         country: val
-      });
-      return ppu.lawyers.fetch({
-        reset: true,
-        data: data
       });
     };
 
     LawyersFilters.prototype.byCategory = function(e) {
-      var data, val;
+      var val;
       val = $(e.currentTarget).find('select').val();
-      data = _.extend(this.filtersAplied, {
-        paginate: 0,
+      return this.filterBy({
         category: val
-      });
-      return ppu.lawyers.fetch({
-        reset: true,
-        data: data
       });
     };
 
     LawyersFilters.prototype.byQuery = function(e) {
-      var data, val;
+      var val;
       val = $(e.currentTarget).val();
       if (val.length >= 1) {
-        data = _.extend(this.filtersAplied, {
-          paginate: 0,
+        return this.filterBy({
           search: val
-        });
-        return ppu.lawyers.fetch({
-          reset: true,
-          data: data
         });
       }
     };
 
     LawyersFilters.prototype.bySearch = function(e) {
-      var data, val;
+      var val;
       e.preventDefault();
       val = $(e.currentTarget).find(".query").val();
-      data = _.extend(this.filtersAplied, {
-        paginate: 0,
+      return this.filterBy({
         search: val
-      });
-      return ppu.lawyers.fetch({
-        reset: true,
-        data: data
       });
     };
 
@@ -1443,8 +1437,7 @@ $(function() {
     PostsView.prototype.initialize = function() {
       this.listenTo(this.collection, 'reset', this.render);
       this.listenTo(this.collection, 'add', this.renderOne);
-      app.pubsub.on("posts:filter", this.filterCollection, this);
-      return app.pubsub.on("apply:filters", this.filterCollection, this);
+      return app.pubsub.on("posts:filter", this.filterCollection, this);
     };
 
     PostsView.prototype.filterCollection = function(filters) {
@@ -1587,6 +1580,7 @@ $(function() {
         the_actual_ch: 0,
         the_actual_co: 0
       };
+      app.pubsub.on("apply:filters", this.filterBy, this);
       app.pubsub.on("general:scroll", this.paginate, this);
       return this.offset = 20;
     };
@@ -1812,8 +1806,7 @@ $(function() {
     ExperiencesView.prototype.initialize = function() {
       this.listenTo(this.collection, 'reset', this.render);
       this.listenTo(this.collection, 'add', this.renderOne);
-      app.pubsub.bind("experiences:filter", this.filterCollection, this);
-      return app.pubsub.on("apply:filters", this.filterCollection, this);
+      return app.pubsub.bind("experiences:filter", this.filterCollection, this);
     };
 
     ExperiencesView.prototype.filterCollection = function(filters) {
@@ -1874,6 +1867,7 @@ $(function() {
         lang: app.lang
       };
       app.pubsub.on("general:scroll", this.paginate, this);
+      app.pubsub.on("apply:filters", this.filterBy, this);
       return this.offset = 20;
     };
 

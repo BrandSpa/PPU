@@ -8,7 +8,6 @@ $ ->
       @listenTo(@collection, 'add', @renderOne)
 
       app.pubsub.on("posts:filter", @filterCollection, @)
-      app.pubsub.on("apply:filters", @filterCollection, @)
 
     filterCollection: (filters) ->
       filters = _.extend(lang: app.lang, filters)

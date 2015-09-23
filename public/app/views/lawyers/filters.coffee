@@ -16,8 +16,14 @@ $ ->
       @filtersAplied = {lang: app.lang, published: 1}
       @order_by()
       @$el.data("filtersAplied", @filtersAplied)
+      app.pubsub.on("apply:filters", @filterBy, @)
       app.pubsub.on("general:scroll", @paginate, @)
       app.pubsub.trigger("filters:showPosition")
+
+    filterBy: (data)->
+      data = _.extend(paginate: 0, data)
+      data = _.extend(@filtersAplied, data)
+      ppu.lawyers.fetch reset: true, data: data
 
     order_by: ->
       if app.lang == "en"
@@ -40,27 +46,22 @@ $ ->
 
     byPosition: (e) ->
       val = $(e.currentTarget).find('select').val()
-      data = _.extend(@filtersAplied, paginate: 0, position: val)
-      ppu.lawyers.fetch reset: true, data: data
+      @filterBy(position: val)
 
     byCountry: (e) ->
       val = $(e.currentTarget).find('select').val()
-      data = _.extend(@filtersAplied,paginate: 0,  country: val)
-      ppu.lawyers.fetch reset: true, data: data
+      @filterBy(country: val)
 
     byCategory: (e) ->
       val = $(e.currentTarget).find('select').val()
-      data = _.extend(@filtersAplied, paginate: 0, category: val)
-      ppu.lawyers.fetch reset: true, data: data
+      @filterBy(category: val)
 
     byQuery: (e) ->
       val = $(e.currentTarget).val()
       if val.length >= 1
-        data = _.extend(@filtersAplied,paginate: 0, search: val)
-        ppu.lawyers.fetch reset: true, data: data
+        @filterBy(search: val)
 
     bySearch: (e) ->
       e.preventDefault()
       val = $(e.currentTarget).find(".query").val()
-      data = _.extend(@filtersAplied, paginate: 0, search: val)
-      ppu.lawyers.fetch reset: true, data: data
+      @filterBy(search: val)

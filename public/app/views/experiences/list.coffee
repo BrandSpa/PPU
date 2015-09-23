@@ -6,7 +6,6 @@ $ ->
       @listenTo(@collection, 'reset', @render)
       @listenTo(@collection, 'add', @renderOne)
       app.pubsub.bind("experiences:filter", @filterCollection, @)
-      app.pubsub.on("apply:filters", @filterCollection, @)
 
     filterCollection: (filters) ->
       @collection.fetch reset: true, lang: app.lang, data: filters

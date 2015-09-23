@@ -12,7 +12,6 @@ $ ->
       else
         data = _.extend published: 1, order_by_spanish: ""
       @collection.fetch reset: true, data: data
-      app.pubsub.on("apply:filters", @filterCollection, @)
 
     filterCollection: (filters) ->
       filters = _.extend({lang: app.lang}, filters)
