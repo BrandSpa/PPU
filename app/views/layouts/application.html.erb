@@ -1,30 +1,51 @@
 <!DOCTYPE html>
-<html lang="<%= I18n.locale %>" id="ppu">
+<html lang="<%= I18n.locale %>">
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="fragment" content="!">
-  <% if content_for?(:head) %>
-  <%= yield :head %>
-  <% else %>
-   <title>Philippi Prietocarrizosa &Uría - El estudio iberoamericano</title>
-  <meta name="description" content="Firma con 14 áreas de práctica; Con oficinas en Chile, Colombia. España, Portugal, Sao Paulo, Nueva York, Pekín, Londres y Bruselas.">
+  <title>Philippi Prietocarrizosa &Uría - El estudio iberoamericano</title>
   <meta property="og:title" content="Philippi Prietocarrizosa &Uría" />
   <meta property="og:description" content="Firma con 14 áreas de práctica; Con oficinas en Chile, Colombia. España, Portugal, Sao Paulo, Nueva York, Pekín, Londres y Bruselas." />
   <meta property="og:image" content="http://ppulegal.com/img/Logo@2x.png" />
-  <% end %>
-
   <meta name="google-site-verification" content="4GUiw0dN2Jayfkka5UpWpjcoQILQb1xnGTdS885FdJg" />
-
   <link rel="alternate" href="en.ppulegal.com" hreflang="en" />
   <link rel="alternate" href="www.ppulegal.com" hreflang="es" />
   <link rel="icon" type="image/png" href="/img/favicon.png" />
-
   <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css' media="screen, print">
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/css/bootstrap-select.min.css"> <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css" media="screen, print"/>
-  <link href='/css/dist/app.css' rel='stylesheet' type='text/css' media="screen, print">
+ <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css" media="screen, print"/>
+   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.3.15/slick.css" />
+ <link rel="stylesheet" href="/css/default.css" media="screen, print"/>
+  <link href='/css/dist/theme.css' rel='stylesheet' type='text/css' media="screen, print">
   <link rel="stylesheet" href="/bower_components/fontawesome/css/font-awesome.min.css" media="screen, print"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/loaders.css/0.1.1/loaders.min.css">
+  <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 
+  <style>
+  .example-enter {
+    opacity: 0.5;
+    z-index: 2;
+    position: absolute;
+  }
+
+  .example-enter.example-enter-active {
+    opacity: 1;
+    position: relative;
+    transform: translateX(0);
+    transition: opacity .5s ease-in;
+  }
+
+  .example-leave {
+    opacity: 0.1;
+    z-index: -1;
+    position: absolute;
+  }
+
+  .example-leave.example-leave-active {
+    opacity: 0;
+    transition: all 100ms ease-in;
+  }
+
+  </style>
   <!--[if lt IE 9]>
    <iframe src="http://browsehappy.com/" width="100%" height="800px" frameborder="0"></iframe>
      <style>
@@ -37,260 +58,17 @@
   <%= csrf_meta_tags %>
 
 </head>
-<body id="ppu-app" data-paginate="true">
-<script>
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '594890600612824',
-      xfbml      : true,
-      version    : 'v2.2'
-    });
-  };
+<body>
+  <script src="/js/dist/react-app.js"></script>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "//connect.facebook.net/en_US/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
-</script>
-  <div class="container app-container">
-
- <%= render("layouts/partials/menu_responsive") %>
- <%= render("layouts/partials/filters_mobile") %>
-
-  <div class="row">
-
-  <%= render("layouts/partials/menu") %>
-
-    <div class="top-bar-container">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-2"></div>
-          <div class="col-lg-9  col-md-12 col-sm-12 col-xs-12">
-            <div id="top-bar"></div>
-          </div>
-          <div class="col-lg-1 visible-lg change-lang-container">
-            <a href="#" class="change-lang-page"><%= t('page_lang') %></a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-lg-10 col-md-12" id="yield-container">
-      <%= yield %>
-    </div>
-
-    <div class="footer-container">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-2"></div>
-          <div class="col-lg-10">
-            <div id="footer">
-              <div  class="collapse" id="footer-content">
-                   <a href="#footer-content" class="open-contact" data-toggle="collapse"><%= t("contact") %> <i class="fa fa-chevron-down"></i></a>
-              <a href="#footer-content" class="close-footer" data-toggle="collapse"><i class="fa fa-times"></i></a>
-
-              <hr>
-              <div class="row">
-                <div class="col-lg-6">
-
-                  <div id="city-info">
-                     <div class="row">
-                      <div class="col-lg-3">
-                        <h4>Santiago de Chile</h4>
-                      </div>
-                      <div class="col-lg-8">
-                        <span>El Golf 40 Piso 20</span>
-                        <span>Las Condes C.P. 7550107</span>
-                        <span>Tel: +562 23643700</span>
-                        <span>Fax: +562 23643796</span>
-                        <span>infoCL@ppulegal.com</span>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-lg-3">
-                        <h4>Barranquilla</h4>
-                      </div>
-                      <div class="col-lg-8">
-                        <span>Calle 77B # 59-61 Oficina 1202</span>
-                        <span>Centro Empresarial Las Américas II</span>
-                        <span>Tel.: +575 3694040</span>
-                        <span>Fax: +575 3694140</span>
-                        <span>infoCO@ppulegal.com</span>
-                      </div>
-                    </div>
-
-                    <div class="row">
-                      <div class="col-lg-3">
-                        <h4>Bogotá</h4>
-                      </div>
-                      <div class="col-lg-8">
-                        <span>Carrera 9 # 74-08 Oficina 105</span>
-                        <span>Tel.: +571 3268600</span>
-                        <span>Fax: +571 3268610</span>
-                        <span>infoCO@ppulegal.com</span>
-                      </div>
-                    </div>
-
-                  </div>
-                </div>
-
-              <div class="col-lg-6">
-                <h5 class="form_thanks hidden"><%= t("form_thanks") %></h5>
-                <form action="#" class="form-horizontal">
-                  <div class="form-group">
-                    <label for="fields[country]" class="col-sm-2 control-label"><%= t("form_footer.country") %></label>
-
-                    <div class="col-sm-10 country-container">
-                      <select name="fields[country]" class="selectpicker">
-                        <option value=""><%= t('form_footer.select_country')%></option>
-                        <option value="Colombia">Colombia</option>
-                        <option value="Chile">Chile</option>
-
-                      </select>
-                    </div>
-                  </div>
-
-                <div class="form-group">
-                  <label for="fields[name]" class="col-sm-2 control-label"><%= t("form_footer.name") %></label>
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control" name="fields[name]">
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label for="fields[lastname]" class="col-sm-2 control-label"><%= t("form_footer.lastname") %></label>
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control" name="fields[lastname]">
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label for="fields[email]" class="col-sm-2 control-label">Email</label>
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control" name="fields[email]">
-                  </div>
-                </div>
-
-                 <div class="form-group">
-                  <label for="fields[email]" class="col-sm-2 control-label"><%= t("form_footer.message") %></label>
-                  <div class="col-sm-10">
-                    <textarea name="fields[message]" rows="3" class="form-control"></textarea>
-                  </div>
-                </div>
-
-                 <div class="form-group">
-                  <a href="#" class="btn btn-info pull-right contact-save"><i class="fa fa-chevron-right"></i></a>
-                </div>
-              </form>
-              </div>
-              </div>
-
-            </div>
-
-             <a href="#footer-content" class="open-contact open-contact-footer" data-toggle="collapse"><%= t("contact") %> <i class="fa fa-chevron-up"></i></a>
-              <div class="pull-right">
-                <a href="#" class="policy"><%= t('data_processing_policy') %></a>
-              </div>
-              <ul class="social">
-                    <li><a href="https://www.linkedin.com/company/1426675?trk=tyah&trkInfo=tarId%3A1420095055704%2Ctas%3Aphilippi%20prie%2Cidx%3A2-1-6" target="new"><i class="fa fa-linkedin"></i></a></li>
-                    <li><a href="https://www.facebook.com/prietocarrizosa.abogados?fref=ts" target="new"><i class="fa fa-facebook"></i></a></li>
-                    <li><a href="https://twitter.com/ppulegal" target="new"><i class="fa fa-twitter"></i></a></li>
-
-                    <li><a href="https://plus.google.com/109929769911906216381" rel="publisher" target="new"><i class="fa fa-google-plus"></i></a></li>
-                  </ul>
-
-            </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<%= render "partials/select_categories" %>
-<%= render "partials/share_modal" %>
-
-<script src="/js/dist/min/dependencies.js"></script>
-
-<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/js/bootstrap-select.min.js"></script>
-
-<script src="/js/dist/app.js"></script>
-
-<script src="/js/twt.js"></script>
-<script src="/js/fb.js"></script>
-
-<script>
-  app.lang = "<%= I18n.locale %>";
-  app.hostname = window.location.hostname;
-  app.pathname = window.location.pathname;
-  function goBack() {
-    window.location = document.URL;
-  }
-  moment.locale(app.lang);
-</script>
-
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-56938300-2', 'auto');
-  ga('send', 'pageview');
-</script>
-
-
-<script>
-  (function() {
-  if (window.__twitterIntentHandler) return;
-  var intentRegex = /twitter\.com(\:\d{2,4})?\/intent\/(\w+)/,
-      windowOptions = 'scrollbars=yes,resizable=yes,toolbar=no,location=yes',
-      width = 550,
-      height = 420,
-      winHeight = screen.height,
-      winWidth = screen.width;
-
-  function handleIntent(e) {
-    e = e || window.event;
-    var target = e.target || e.srcElement,
-        m, left, top;
-
-    while (target && target.nodeName.toLowerCase() !== 'a') {
-      target = target.parentNode;
-    }
-
-    if (target && target.nodeName.toLowerCase() === 'a' && target.href) {
-      m = target.href.match(intentRegex);
-      if (m) {
-        left = Math.round((winWidth / 2) - (width / 2));
-        top = 0;
-
-        if (winHeight > height) {
-          top = Math.round((winHeight / 2) - (height / 2));
-        }
-
-        window.open(target.href, 'intent', windowOptions + ',width=' + width +
-                                           ',height=' + height + ',left=' + left + ',top=' + top);
-        e.returnValue = false;
-        e.preventDefault && e.preventDefault();
-      }
-    }
-  }
-
-  if (document.addEventListener) {
-    document.addEventListener('click', handleIntent, false);
-  } else if (document.attachEvent) {
-    document.attachEvent('onclick', handleIntent);
-  }
-  window.__twitterIntentHandler = true;
-}());
-</script>
-
+    ga('create', 'UA-56938300-2', 'auto');
+    ga('send', 'pageview');
+  </script>
 
 </body>
 </html>

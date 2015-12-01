@@ -14,6 +14,7 @@ body
 	font-family: $lato
 	font-weight: normal
 	padding-top: 30px
+	padding-bottom: 60px
 
 	@media #{$desktop}
 		padding-top: 0
@@ -31,6 +32,11 @@ a
 		text-decoration: none
 		border: none
 
+.container
+	@media #{$desktop-lg}
+		padding: 0 !important
+
+
 .ball-pulse > div
 	background: $color-darkBlue !important
 
@@ -38,9 +44,35 @@ a
 	@media #{$desktop}, #{$desktop-lg}
 		padding-bottom: 50px
 
+.slick-slider
+	margin: 0
+	width: 100%
+
+.slick-next
+	right: 15px
+	&:before
+		color: rgba(0,0,0, .7)
+		font-size: 32px
+		opacity: 0.1
+
+.slick-prev
+	left: 15px
+	&:before
+		color: rgba(0,0,0, .7)
+		font-size: 32px
+		opacity: 0.1
+
+.slick-slide
+	margin: 0
+	padding: 0
+	width: 100%
+
+	img
+		width: 100%
+		margin: 0
+		padding: 0
+
 #yield-container
-	@media #{$desktop-lg}
-		margin-top: 65px
 
 .panel
 	border-radius: 0
@@ -237,11 +269,9 @@ select
 	li
 		background: #002855
 		list-style: none
-		padding: 15px 30px
 		transition: 500ms all
-		&:hover
-			border-left: 4px solid #00A1B1
-		&.active
+
+		>.active
 			border-left: 4px solid #00A1B1
 
 		&:nth-child(2)
@@ -255,6 +285,11 @@ select
 			color: #fff
 			font-size: 14px
 			font-weight: 300
+			width: 100%
+			padding: 15px 30px
+			display: block
+			&:hover
+				color: #00A1B1
 
 		.dropdown-menu
 			li
@@ -277,22 +312,35 @@ select
 	z-index: 999
 	transition: all 500ms
 
-	@media #{$desktop-lg}
-		padding: 0 15px 0 0 !important
-		position: fixed
-
 	@media #{$mobile}
 		min-width: 100%
 
 .to-top
 	top: 0
 	transition: all 500ms
-	@media #{$mobile}, #{$tablet}, #{$desktop}
-		position: fixed
+	position: fixed
+
+	@media #{$mobile}
+		left: 0
+
+	.container
+		@media (max-width: 991px) and (min-width: 768px), #{$desktop}
+			padding-left: 0 !important
+			padding-right: 30px !important
 
 #top-bar
 	background: #002855
 	height: auto
+	width: 100%
+
+	.container
+		padding: 0 15px 0 15px
+		width: 100%
+	.back
+		float: left
+		color: #00A1B1
+		font-size: 2em
+		padding: 5px 0 0 15px
 
 	@media #{$desktop-lg}
 		height: 50px
@@ -326,7 +374,6 @@ select
 		background: transparent
 		color: #fff
 		border: none
-		padding-top: 13px
 		font-size: 1em
 		font-weight: 400
 		padding-right: 20px
@@ -351,7 +398,8 @@ select
 		padding-left: 0
 		@media #{$mobile}
 			display: none
-
+	.query
+		padding-top: 11px
 	.category
 		float: right
 		height: 50px
@@ -370,10 +418,10 @@ select
 	.countries
 		float: right
 		height: 50px
-		padding: 0 15px 0 0
+		padding: 0
 		border-left: 1px solid #fff
 		background: $color-darkBlue
-		text-align: center
+		text-align: left
 
 		@media #{$mobile}
 			padding: 0
@@ -800,3 +848,16 @@ select
 			opacity: .7
 			margin: 0
 			border-radius: 0
+
+@import admin
+@import category
+@import curriculum
+@import experience
+@import filters
+@import lawyer
+@import menu
+@import post
+@import probono
+@import responsive
+@import us
+@import work_with_us

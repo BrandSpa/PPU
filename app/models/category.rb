@@ -9,11 +9,10 @@ class Category < ActiveRecord::Base
 
   has_and_belongs_to_many :posts
 
-  has_and_belongs_to_many :experiences, -> { order "date DESC" }
+  has_and_belongs_to_many :experiences, -> {order "id DESC"}
 
   belongs_to :gallery
 
-	# Scopes
   scope :lang, -> (lang){ where(lang: lang) }
 
 end

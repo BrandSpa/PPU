@@ -39,6 +39,10 @@ Rails.application.routes.draw do
 
     resources :contacts
 
+    resources :sliders
+
+    resources :pages
+
     # lawyers relationships
     namespace :lawyrs do
       resources :academics
@@ -97,6 +101,8 @@ Rails.application.routes.draw do
       resources :lawyers
       resources :experiences
 
+      get "/probono", to: "posts#base"
+      get "/nosotros", to: "posts#base"
       get "the-actual/new", to: "posts#the_actual_new"
       get "the-actual/:id/edit", to: "posts#the_actual_edit"
       get "the-actual", to: "posts#the_actual"

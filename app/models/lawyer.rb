@@ -64,6 +64,8 @@ class Lawyer < ActiveRecord::Base
 
   scope :search, -> (keyword){ where("lawyers.name LIKE ? OR lawyers.lastname LIKE ? OR lawyers.keywords LIKE ?", "%#{keyword}%", "%#{keyword}%", "%#{keyword}%") }
 
+  scope :keyword, -> (keyword){ where("lawyers.name LIKE ? OR lawyers.lastname LIKE ? OR lawyers.keywords LIKE ?", "%#{keyword}%", "%#{keyword}%", "%#{keyword}%") }
+
   scope :paginate, -> (paginate) { limit(20).offset(paginate) }
 
   scope :has_translation, -> (slug) { where(slug: slug).count }

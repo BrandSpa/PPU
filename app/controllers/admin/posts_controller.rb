@@ -2,7 +2,7 @@ class Admin::PostsController < ApplicationController
   before_action :authenticate_user!
   layout "admin"
 
-  def index 
+  def index
   end
 
   def the_actual
@@ -14,4 +14,6 @@ class Admin::PostsController < ApplicationController
   def the_actual_edit
   end
 
+  def base
+  end
 end

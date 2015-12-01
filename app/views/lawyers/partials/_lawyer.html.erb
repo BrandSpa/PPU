@@ -1,4 +1,4 @@
- <script id="lawyer-template" type="text/x-handlebars-template"> 
+ <script id="lawyer-template" type="text/x-handlebars-template">
   <div class="lawyer-header">
     <div class="content-left">
       <p>{{ position }}</p>
@@ -34,14 +34,14 @@
 
         <a href="/abogados/{{ id }}/vcard" class="btn btn-primary btn-vcard" target="_new"><%= t('Download')%> </br>VCard</a>
       </div>
-      
+
     </div>
   </div>
 
   <p class="lawyer-description">{{ description }}</p>
   <div class="row">
     <div class="col-lg-6 lawyer-left">
-    
+
       <h3><i class="fa fa-briefcase"></i> <%= t('general_information') %></h3>
       {{#if categories}}
       <h4><%= t('practice_areas') %></h4>
@@ -124,7 +124,7 @@
       {{#if awards}}
       <h3><i class="fa fa-bookmark-o"></i> <%= t('award') %></h3>
       {{#each awards}}
-      
+
       <div class="award">
         {{#if img_name.url}}
         <div class="img-container">
@@ -152,12 +152,12 @@
           {{else}}
             <p>{{ title }}</p>
           {{/if}}
-      
-      {{/if}}  
+
+      {{/if}}
       </div>
       {{/each}}
 
-      
+
 
     </div>
 
