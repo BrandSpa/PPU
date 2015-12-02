@@ -29,9 +29,25 @@ module.exports = React.createClass({
     var settings = {
       autoplay: true,
       infinite: true,
-      speed: 1200,
-      slidesToShow: 3,
-      slidesToScroll: 3
+      speed: 2000,
+      slidesToShow: 4,
+      slidesToScroll: 4,
+      responsive: [
+        {
+          breakpoint: 600,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 2
+          }
+        },
+        {
+          breakpoint: 480,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1
+          }
+        }
+      ]
     };
 
     var awards = this.state.awards.map(function(item) {

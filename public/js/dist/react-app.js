@@ -59926,6 +59926,11 @@ module.exports = {
     lawyerType: "Tipo abogado",
     recognitions: "Reconocimientos",
     networks: "Redes",
+    name: "Nombre",
+    lastname: "Apellido",
+    message: "Mensaje",
+    send: "Enviar",
+    selectCountry: "Seleccionar país",
     post: {
       readPost: "Leer Noticia"
     },
@@ -59948,6 +59953,11 @@ module.exports = {
     lawyerType: "Lawyer type",
     recognitions: "Recognitions",
     networks: "Networks",
+    name: "Name",
+    lastname: "Lastname",
+    message: "Message",
+    send: "Send",
+    selectCountry: "Select country",
     post: {
       readPost: "Read Post"
     },
@@ -60650,6 +60660,18 @@ var ContactForm = require('footer_contact_form.jsx');
 var trans = require('langs/app');
 
 module.exports = React.createClass({displayName: "exports",
+  getInitialState: function() {
+    return {
+      showContact: false
+    }
+  },
+
+  toggleContact: function(e) {
+    e.preventDefault();
+    this.setState({
+      showContact: this.state.showContact ? false : true
+    });
+  },
 
   render: function() {
     return (
@@ -60659,9 +60681,8 @@ module.exports = React.createClass({displayName: "exports",
           React.createElement("div", {className: "col-lg-2"}), 
           React.createElement("div", {className: "col-lg-10"}, 
             React.createElement("div", {id: "footer"}, 
-              React.createElement("div", {className: "collapse", id: "footer-content"}, 
-                  React.createElement("a", {href: "#footer-content", className: "open-contact", "data-toggle": "collapse"}, "Contact ", React.createElement("i", {className: "fa fa-chevron-down"})), 
-              React.createElement("a", {href: "#footer-content", className: "close-footer", "data-toggle": "collapse"}, React.createElement("i", {className: "fa fa-times"})), 
+              React.createElement("div", {className: this.state.showContact ? "collapse in" : "collapse", id: "footer-content"}, 
+                React.createElement("a", {href: "#footer-content", className: "close-footer", onClick: this.toggleContact}, React.createElement("i", {className: "fa fa-times"})), 
 
               React.createElement("hr", null), 
               React.createElement("div", {className: "row"}, 
@@ -60708,15 +60729,16 @@ module.exports = React.createClass({displayName: "exports",
                   )
                 ), 
 
-              React.createElement("div", {className: "col-lg-6"}, 
-                React.createElement("h5", {className: "form_thanks hidden"}, trans.formThanks), 
-                React.createElement(ContactForm, null)
-              )
+                React.createElement("div", {className: "col-lg-6"}, 
+                  React.createElement(ContactForm, null)
+                )
               )
 
             ), 
 
-             React.createElement("a", {href: "#footer-content", className: "open-contact open-contact-footer", "data-toggle": "collapse"}, trans.contact, " ", React.createElement("i", {className: "fa fa-chevron-up"})), 
+             React.createElement("a", {
+              href: "#", 
+              className: "open-contact open-contact-footer", onClick: this.toggleContact}, trans.contact, " ", React.createElement("i", {className: this.state.showContact ? "fa fa-chevron-down" : "fa fa-chevron-up"})), 
               React.createElement("div", {className: "pull-right"}, 
                 React.createElement("a", {href: "#", className: "policy"}, trans.dataProcessingPolicy)
               ), 
@@ -60736,62 +60758,133 @@ module.exports = React.createClass({displayName: "exports",
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 'use strict';
 var React = require('react');
+var trans = require('langs/app');
+var Select = require('react-select');
+var request = require('superagent');
+var $ = require('jquery');
 
 module.exports = React.createClass({displayName: "exports",
+  getInitialState: function() {
+    return {
+      country: null,
+      name: null,
+      lastname: null,
+      email: null,
+      message: null,
+      showMessage: false
+    }
+  },
+
+  selectCountry: function(value) {
+    this.setState({country: value});
+  },
+
+  handleChange: function() {
+    var data = {
+      name: React.findDOMNode(this.refs.name).value,
+      lastname: React.findDOMNode(this.refs.lastname).value,
+      email: React.findDOMNode(this.refs.email).value,
+      message: React.findDOMNode(this.refs.message).value
+    }
+    this.setState(data);
+  },
+
+  handleSubmit: function(e) {
+    e.preventDefault();
+    var csrf = $("meta[name='csrf-token']").attr("content");
+
+    request
+    .post('/api/contacts')
+    .set('X-CSRF-Token', csrf)
+    .send(this.state)
+    .end(function(err, res) {
+      this.setState({showMessage: true});
+    }.bind(this));
+  },
 
   render: function() {
+    var cityOptions = [
+      {value: 'Colombia', label: 'Colombia'},
+      {value: 'Chile', label: 'Chile'}
+    ];
+
     return (
-     React.createElement("form", {action: "#", className: "form-horizontal"}, 
-     React.createElement("div", {className: "form-group"}, 
-     React.createElement("label", {for: "fields[country]", className: "col-sm-2 control-label"}, "country"), 
+      React.createElement("div", null, 
+      React.createElement("h5", {className: this.state.showMessage ? "form_thanks" : "hidden"}, trans.formThanks), 
+       React.createElement("form", {action: "#", className: this.state.showMessage ? "hidden" : "form-horizontal"}, 
+       React.createElement("div", {className: "form-group"}, 
+         React.createElement("label", {className: "col-sm-2 control-label"}, trans.country), 
 
-     React.createElement("div", {className: "col-sm-10 country-container"}, 
-     React.createElement("select", {name: "fields[country]", className: "selectpicker"}, 
-       React.createElement("option", {value: ""}, "select_country"), 
-       React.createElement("option", {value: "Colombia"}, "Colombia"), 
-       React.createElement("option", {value: "Chile"}, "Chile")
-     )
-     )
-     ), 
+         React.createElement("div", {className: "col-sm-10 select-country"}, 
+          React.createElement(Select, {
+            name: "country", 
+            placeholder: trans.selectCountry, 
+            options: cityOptions, 
+            onChange: this.selectCountry, 
+            value: this.state.country}
+            )
+         )
+       ), 
 
-     React.createElement("div", {className: "form-group"}, 
-     React.createElement("label", {for: "fields[name]", className: "col-sm-2 control-label"}, "form_footer.name"), 
-      React.createElement("div", {className: "col-sm-10"}, 
-      React.createElement("input", {type: "text", className: "form-control", name: "fields[name]"})
-     )
-     ), 
+       React.createElement("div", {className: "form-group"}, 
+         React.createElement("label", {className: "col-sm-2 control-label"}, trans.name), 
+          React.createElement("div", {className: "col-sm-10"}, 
+            React.createElement("input", {
+              ref: "name", 
+              type: "text", 
+              className: "form-control", 
+               onChange: this.handleChange}
+            )
+         )
+       ), 
 
-     React.createElement("div", {className: "form-group"}, 
-      React.createElement("label", {for: "fields[lastname]", className: "col-sm-2 control-label"}, "form_footer.lastname"), 
-       React.createElement("div", {className: "col-sm-10"}, 
-       React.createElement("input", {type: "text", className: "form-control", name: "fields[lastname]"})
+       React.createElement("div", {className: "form-group"}, 
+        React.createElement("label", {className: "col-sm-2 control-label"}, trans.lastname), 
+         React.createElement("div", {className: "col-sm-10"}, 
+          React.createElement("input", {
+            ref: "lastname", 
+            type: "text", 
+            className: "form-control", 
+            onChange: this.handleChange}
+          )
+         )
+       ), 
+
+       React.createElement("div", {className: "form-group"}, 
+        React.createElement("label", {className: "col-sm-2 control-label"}, "Email"), 
+         React.createElement("div", {className: "col-sm-10"}, 
+          React.createElement("input", {
+            ref: "email", 
+            type: "text", 
+            className: "form-control", 
+            onChange: this.handleChange}
+          )
+         )
+       ), 
+
+        React.createElement("div", {className: "form-group"}, 
+          React.createElement("label", {className: "col-sm-2 control-label"}, trans.message), 
+          React.createElement("div", {className: "col-sm-10"}, 
+            React.createElement("textarea", {
+            ref: "message", 
+            rows: "3", 
+            className: "form-control", 
+            onChange: this.handleChange})
+          )
+        ), 
+
+         React.createElement("div", {className: "form-group"}, 
+          React.createElement("button", {
+            className: "btn btn-info pull-right contact-save", onClick: this.handleSubmit}, trans.send)
+         )
        )
-     ), 
-
-     React.createElement("div", {className: "form-group"}, 
-      React.createElement("label", {for: "fields[email]", className: "col-sm-2 control-label"}, "Email"), 
-       React.createElement("div", {className: "col-sm-10"}, 
-        React.createElement("input", {type: "text", className: "form-control", name: "fields[email]"})
-       )
-     ), 
-
-     React.createElement("div", {className: "form-group"}, 
-     React.createElement("label", {for: "fields[email]", className: "col-sm-2 control-label"}), 
-       React.createElement("div", {className: "col-sm-10"}, 
-        React.createElement("textarea", {name: "fields[message]", rows: "3", className: "form-control"})
-       )
-     ), 
-
-     React.createElement("div", {className: "form-group"}, 
-      React.createElement("a", {href: "#", className: "btn btn-info pull-right contact-save"}, React.createElement("i", {className: "fa fa-chevron-right"}))
-     )
      )
     );
   }
 });
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/react/views/footer_contact_form.jsx","/react/views")
-},{"_process":5,"buffer":1,"react":342}],363:[function(require,module,exports){
+},{"_process":5,"buffer":1,"jquery":34,"langs/app":347,"react":342,"react-select":160,"superagent":343}],363:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 'use strict';
 var React = require('react');
@@ -61339,21 +61432,35 @@ var Waypoint = require('react-waypoint');
 var Lawyer = require('views/lawyers/lawyer.jsx');
 var TopBar = require('views/top_bar.jsx');
 var trans = require('langs/app');
+var getLang = require('utils/get_lang');
 
 module.exports = React.createClass({displayName: "exports",
   getInitialState: function() {
+    var orderby = {
+      order_by_spanish: '',
+      order_by_english: null
+    }
+
+    if(getLang == "en") {
+      var orderby = {
+        order_by_spanish: null,
+        order_by_english: ''
+      }
+     }
+
     return {
       lawyers: [],
       loaded: false,
-      filters: {
+      filters: _.extend({
         published: 1,
-        order_by_spanish: '',
         paginate: 0
-      }
+      }, orderby)
     }
   },
 
   componentDidMount: function() {
+
+    console.log(this.state.filters);
     this.fetch();
   },
 
@@ -61428,7 +61535,7 @@ module.exports = React.createClass({displayName: "exports",
 });
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/react/views/lawyers/section.jsx","/react/views/lawyers")
-},{"_process":5,"buffer":1,"langs/app":347,"lodash":35,"react":342,"react-waypoint":183,"superagent":343,"views/lawyers/lawyer.jsx":375,"views/top_bar.jsx":389}],377:[function(require,module,exports){
+},{"_process":5,"buffer":1,"langs/app":347,"lodash":35,"react":342,"react-waypoint":183,"superagent":343,"utils/get_lang":352,"views/lawyers/lawyer.jsx":375,"views/top_bar.jsx":389}],377:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 'use strict';
 var React = require('react');
@@ -61458,7 +61565,9 @@ module.exports = React.createClass({displayName: "exports",
     return (
       React.createElement("div", {id: "nav-main-container", className: "col-lg-2 visible-lg"}, 
         React.createElement("ul", {className: "nav-main col-lg-1"}, 
-          React.createElement(Link, {to: '/'}, React.createElement("img", {src: "/img/Logo@2x.png", alt: "", className: "img-responsive"})), 
+          React.createElement(Link, {to: '/'}, 
+            React.createElement("img", {src: "/img/Logo@2x.png", alt: "ppu logo", className: "img-responsive"})
+          ), 
           React.createElement("li", null, 
             React.createElement(Link, {
               to: '/abogados', 
@@ -62592,8 +62701,6 @@ module.exports = React.createClass({displayName: "exports",
             )
 
             )
-
-
           )
         ), 
 
@@ -62641,9 +62748,25 @@ module.exports = React.createClass({displayName: "exports",
     var settings = {
       autoplay: true,
       infinite: true,
-      speed: 1200,
-      slidesToShow: 3,
-      slidesToScroll: 3
+      speed: 2000,
+      slidesToShow: 4,
+      slidesToScroll: 4,
+      responsive: [
+        {
+          breakpoint: 600,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 2
+          }
+        },
+        {
+          breakpoint: 480,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1
+          }
+        }
+      ]
     };
 
     var awards = this.state.awards.map(function(item) {

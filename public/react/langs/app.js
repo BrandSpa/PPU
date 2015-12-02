@@ -18,6 +18,11 @@ module.exports = {
     lawyerType: "Tipo abogado",
     recognitions: "Reconocimientos",
     networks: "Redes",
+    name: "Nombre",
+    lastname: "Apellido",
+    message: "Mensaje",
+    send: "Enviar",
+    selectCountry: "Seleccionar país",
     post: {
       readPost: "Leer Noticia"
     },
@@ -40,6 +45,11 @@ module.exports = {
     lawyerType: "Lawyer type",
     recognitions: "Recognitions",
     networks: "Networks",
+    name: "Name",
+    lastname: "Lastname",
+    message: "Message",
+    send: "Send",
+    selectCountry: "Select country",
     post: {
       readPost: "Read Post"
     },

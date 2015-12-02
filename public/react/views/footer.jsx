@@ -5,6 +5,18 @@ var ContactForm = require('footer_contact_form.jsx');
 var trans = require('langs/app');
 
 module.exports = React.createClass({
+  getInitialState: function() {
+    return {
+      showContact: false
+    }
+  },
+
+  toggleContact: function(e) {
+    e.preventDefault();
+    this.setState({
+      showContact: this.state.showContact ? false : true
+    });
+  },
 
   render: function() {
     return (
@@ -14,9 +26,8 @@ module.exports = React.createClass({
           <div className="col-lg-2"></div>
           <div className="col-lg-10">
             <div id="footer">
-              <div  className="collapse" id="footer-content">
-                  <a href="#footer-content" className="open-contact" data-toggle="collapse">Contact <i className="fa fa-chevron-down"></i></a>
-              <a href="#footer-content" className="close-footer" data-toggle="collapse"><i className="fa fa-times"></i></a>
+              <div className={this.state.showContact ? "collapse in" : "collapse"} id="footer-content">
+                <a href="#footer-content" className="close-footer" onClick={this.toggleContact}><i className="fa fa-times"></i></a>
 
               <hr/>
               <div className="row">
@@ -63,15 +74,16 @@ module.exports = React.createClass({
                   </div>
                 </div>
 
-              <div className="col-lg-6">
-                <h5 className="form_thanks hidden">{trans.formThanks}</h5>
-                <ContactForm />
-              </div>
+                <div className="col-lg-6">
+                  <ContactForm />
+                </div>
               </div>
 
             </div>
 
-             <a href="#footer-content" className="open-contact open-contact-footer" data-toggle="collapse">{trans.contact} <i className="fa fa-chevron-up"></i></a>
+             <a
+              href="#"
+              className="open-contact open-contact-footer" onClick={this.toggleContact}>{trans.contact} <i className={this.state.showContact ? "fa fa-chevron-down" : "fa fa-chevron-up" }></i></a>
               <div className="pull-right">
                 <a href="#" className="policy">{trans.dataProcessingPolicy}</a>
               </div>

@@ -26,6 +26,6 @@ class Api::ContactsController < ApplicationController
 		end
 
 		def entity_params
-			params.require(:fields).permit(:name, :lastname, :email, :message, :country)
+			params.permit(:name, :lastname, :email, :message, :country)
 		end
 end

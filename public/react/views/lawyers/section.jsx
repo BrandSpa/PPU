@@ -6,21 +6,35 @@ var Waypoint = require('react-waypoint');
 var Lawyer = require('views/lawyers/lawyer.jsx');
 var TopBar = require('views/top_bar.jsx');
 var trans = require('langs/app');
+var getLang = require('utils/get_lang');
 
 module.exports = React.createClass({
   getInitialState: function() {
+    var orderby = {
+      order_by_spanish: '',
+      order_by_english: null
+    }
+
+    if(getLang == "en") {
+      var orderby = {
+        order_by_spanish: null,
+        order_by_english: ''
+      }
+     }
+
     return {
       lawyers: [],
       loaded: false,
-      filters: {
+      filters: _.extend({
         published: 1,
-        order_by_spanish: '',
         paginate: 0
-      }
+      }, orderby)
     }
   },
 
   componentDidMount: function() {
+
+    console.log(this.state.filters);
     this.fetch();
   },
 

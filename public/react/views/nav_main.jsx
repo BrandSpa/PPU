@@ -26,7 +26,9 @@ module.exports = React.createClass({
     return (
       <div id="nav-main-container" className="col-lg-2 visible-lg">
         <ul className="nav-main col-lg-1">
-          <Link to={'/'}><img src="/img/Logo@2x.png" alt="" className="img-responsive" /></Link>
+          <Link to={'/'}>
+            <img src="/img/Logo@2x.png" alt="ppu logo" className="img-responsive" />
+          </Link>
           <li>
             <Link
               to={'/abogados'}
