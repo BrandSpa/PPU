@@ -15,6 +15,7 @@ var experiences = require('views/experiences/section.jsx');
 var experience = require('views/experience/section.jsx');
 var probono = require('views/probono/section.jsx');
 var us = require('views/us/section.jsx');
+var recruiment = require('views/recruiment/section.jsx');
 var theActual = require('views/posts/the_actual.jsx');
 var theActualColombia = require('views/posts/the_actual_colombia.jsx');
 
@@ -30,6 +31,7 @@ React.render((
       <Route path="/experencias/:slug" component={experience} />
       <Route path="/nosotros" component={us} />
       <Route path="/probono" component={probono}/>
+      <Route path="/trabaje-con-nosotros" component={recruiment}/>
       <Route path="/el-actual" component={theActual} />
       <Route path="/el-actual-colombia" component={theActualColombia} />
     </Route>
