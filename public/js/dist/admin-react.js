@@ -263,9 +263,11 @@ module.exports = React.createClass({displayName: "exports",
     .get('/api/pages')
     .query({page: 'probono'})
     .end(function(err, res) {
-      this.setState({
-        content: res.body
-      });
+      if(res.body) {
+        this.setState({
+          content: res.body
+        });
+      }
     }.bind(this));
   },
 
@@ -1135,9 +1137,11 @@ module.exports = React.createClass({displayName: "exports",
     .get('/api/pages')
     .query({page: 'us'})
     .end(function(err, res) {
-      this.setState({
-        content: res.body || {}
-      });
+      if(res.body) {
+        this.setState({
+          content: res.body || {}
+        });
+      }
     }.bind(this));
   },
 
