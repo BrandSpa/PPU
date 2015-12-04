@@ -32,9 +32,11 @@ module.exports = React.createClass({
     .get('/api/pages')
     .query({page: 'us'})
     .end(function(err, res) {
-      this.setState({
-        content: res.body || {}
-      });
+      if(res.body) {
+        this.setState({
+          content: res.body || {}
+        });
+      }
     }.bind(this));
   },
 
