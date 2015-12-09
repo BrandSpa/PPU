@@ -63206,7 +63206,7 @@ module.exports = React.createClass({displayName: "exports",
 
   var networks= this.state.awards.map(function(item) {
     return (
-        React.createElement("img", {src: item.slider_image.url, alt: item.text, width: "150"})
+        React.createElement("img", {key: item.id, src: item.slider_image.url, alt: item.text, width: "150"})
       )
     });
 

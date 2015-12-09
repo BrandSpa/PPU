@@ -29,7 +29,7 @@ module.exports = React.createClass({
 
   var networks= this.state.awards.map(function(item) {
     return (
-        <img src={item.slider_image.url} alt={item.text} width="150"/>
+        <img key={item.id} src={item.slider_image.url} alt={item.text} width="150"/>
       )
     });
 
