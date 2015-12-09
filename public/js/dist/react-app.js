@@ -59906,7 +59906,7 @@ React.render((
 ), document.body);
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/react/app.js","/react")
-},{"_process":5,"buffer":1,"history":20,"jquery":34,"react":342,"react-router":134,"views/app.jsx":353,"views/area/section.jsx":354,"views/areas/section.jsx":356,"views/experience/section.jsx":357,"views/experiences/section.jsx":359,"views/lawyer/section.jsx":373,"views/lawyers/section.jsx":376,"views/post/section.jsx":380,"views/posts/the_actual.jsx":386,"views/posts/the_actual_colombia.jsx":387,"views/probono/section.jsx":388,"views/recruiment/section.jsx":389,"views/us/section.jsx":395}],347:[function(require,module,exports){
+},{"_process":5,"buffer":1,"history":20,"jquery":34,"react":342,"react-router":134,"views/app.jsx":353,"views/area/section.jsx":354,"views/areas/section.jsx":356,"views/experience/section.jsx":357,"views/experiences/section.jsx":359,"views/lawyer/section.jsx":375,"views/lawyers/section.jsx":378,"views/post/section.jsx":382,"views/posts/the_actual.jsx":388,"views/posts/the_actual_colombia.jsx":389,"views/probono/section.jsx":390,"views/recruiment/section.jsx":391,"views/us/section.jsx":397}],347:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 'use strict';
 var getLang = require('get_lang');
@@ -60151,7 +60151,7 @@ module.exports = React.createClass({displayName: "exports",
 });
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/react/views/app.jsx","/react/views")
-},{"_process":5,"buffer":1,"react":342,"react-helmet":39,"views/footer.jsx":361,"views/nav_main.jsx":377,"views/nav_mobile.jsx":378,"views/posts/section.jsx":384}],354:[function(require,module,exports){
+},{"_process":5,"buffer":1,"react":342,"react-helmet":39,"views/footer.jsx":361,"views/nav_main.jsx":379,"views/nav_mobile.jsx":380,"views/posts/section.jsx":386}],354:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 'use strict';
 var React = require('react');
@@ -60268,7 +60268,7 @@ module.exports = React.createClass({displayName: "exports",
 });
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/react/views/area/section.jsx","/react/views/area")
-},{"_process":5,"buffer":1,"langs/area":348,"react":342,"react-helmet":39,"superagent":343,"utils/get_lang":352,"views/experiences/experience.jsx":358,"views/lawyers/lawyer.jsx":375,"views/top_bar.jsx":391}],355:[function(require,module,exports){
+},{"_process":5,"buffer":1,"langs/area":348,"react":342,"react-helmet":39,"superagent":343,"utils/get_lang":352,"views/experiences/experience.jsx":358,"views/lawyers/lawyer.jsx":377,"views/top_bar.jsx":393}],355:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 'use strict';
 var React = require('react');
@@ -60349,7 +60349,7 @@ module.exports = React.createClass({displayName: "exports",
 });
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/react/views/areas/section.jsx","/react/views/areas")
-},{"_process":5,"buffer":1,"langs/app":347,"lodash":35,"react":342,"superagent":343,"views/areas/area.jsx":355,"views/top_bar.jsx":391}],357:[function(require,module,exports){
+},{"_process":5,"buffer":1,"langs/app":347,"lodash":35,"react":342,"superagent":343,"views/areas/area.jsx":355,"views/top_bar.jsx":393}],357:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 'use strict';
 var React = require('react');
@@ -60469,7 +60469,7 @@ module.exports = React.createClass({displayName: "exports",
 });
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/react/views/experience/section.jsx","/react/views/experience")
-},{"_process":5,"buffer":1,"experiences/experience.jsx":358,"langs/experience":350,"moment":36,"react":342,"react-helmet":39,"superagent":343,"utils/get_lang":352,"views/top_bar.jsx":391}],358:[function(require,module,exports){
+},{"_process":5,"buffer":1,"experiences/experience.jsx":358,"langs/experience":350,"moment":36,"react":342,"react-helmet":39,"superagent":343,"utils/get_lang":352,"views/top_bar.jsx":393}],358:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 'use strict';
 var React = require('react');
@@ -60609,7 +60609,7 @@ module.exports = React.createClass({displayName: "exports",
 });
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/react/views/experiences/section.jsx","/react/views/experiences")
-},{"_process":5,"buffer":1,"langs/app":347,"lodash":35,"react":342,"react-waypoint":183,"superagent":343,"views/experiences/experience.jsx":358,"views/top_bar.jsx":391}],360:[function(require,module,exports){
+},{"_process":5,"buffer":1,"langs/app":347,"lodash":35,"react":342,"react-waypoint":183,"superagent":343,"views/experiences/experience.jsx":358,"views/top_bar.jsx":393}],360:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 'use strict';
 var React = require('react');
@@ -60958,6 +60958,43 @@ module.exports = React.createClass({displayName: "exports",
   },
 
   render: function() {
+    var link;
+
+    var nodes = this.props.collection.map(function(item) {
+      return
+        if(item.file_name.url) {
+          React.createElement("a", {href: item.file_name.url, target: "_new"}, item.title)
+        } else {
+          if(link) {
+            React.createElement("a", {href: item.link, target: "_new"}, item.title)
+          } else {
+            React.createElement("p", null, title)
+          }
+        }
+    });
+
+    return (
+      React.createElement("div", null, 
+        nodes
+      )
+    );
+  }
+});
+
+}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/react/views/lawyer/article.jsx","/react/views/lawyer")
+},{"_process":5,"buffer":1,"react":342}],366:[function(require,module,exports){
+(function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
+'use strict';
+var React = require('react');
+
+module.exports = React.createClass({displayName: "exports",
+  getDefaultProps: function() {
+    return {
+      collection: []
+    }
+  },
+
+  render: function() {
     var awardNodes = this.props.collection.map(function(model) {
       return (
         React.createElement("div", {className: "award"}, 
@@ -60978,7 +61015,7 @@ module.exports = React.createClass({displayName: "exports",
 });
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/react/views/lawyer/award.jsx","/react/views/lawyer")
-},{"_process":5,"buffer":1,"react":342}],366:[function(require,module,exports){
+},{"_process":5,"buffer":1,"react":342}],367:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 'use strict';
 var React = require('react');
@@ -61007,7 +61044,7 @@ module.exports = React.createClass({displayName: "exports",
 });
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/react/views/lawyer/categories.jsx","/react/views/lawyer")
-},{"_process":5,"buffer":1,"react":342}],367:[function(require,module,exports){
+},{"_process":5,"buffer":1,"react":342}],368:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 'use strict';
 var React = require('react');
@@ -61042,35 +61079,6 @@ module.exports = React.createClass({displayName: "exports",
 });
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/react/views/lawyer/conference.jsx","/react/views/lawyer")
-},{"_process":5,"buffer":1,"react":342}],368:[function(require,module,exports){
-(function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
-'use strict';
-var React = require('react');
-
-module.exports = React.createClass({displayName: "exports",
-  getDefaultProps: function() {
-    return {
-      collection: []
-    }
-  },
-
-  render: function() {
-    var nodes = this.props.collection.map(function(model) {
-      return (React.createElement("li", null,  model.title ? model.title + " ," : "", " ",  model.institution, " ",  model.year));
-    });
-
-    return (
-      React.createElement("div", null, 
-        React.createElement("h4", null, this.props.title), 
-        React.createElement("ul", null, 
-          nodes
-        )
-      )
-    );
-  }
-});
-
-}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/react/views/lawyer/education.jsx","/react/views/lawyer")
 },{"_process":5,"buffer":1,"react":342}],369:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 'use strict';
@@ -61099,8 +61107,37 @@ module.exports = React.createClass({displayName: "exports",
   }
 });
 
-}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/react/views/lawyer/language.jsx","/react/views/lawyer")
+}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/react/views/lawyer/education.jsx","/react/views/lawyer")
 },{"_process":5,"buffer":1,"react":342}],370:[function(require,module,exports){
+(function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
+'use strict';
+var React = require('react');
+
+module.exports = React.createClass({displayName: "exports",
+  getDefaultProps: function() {
+    return {
+      collection: []
+    }
+  },
+
+  render: function() {
+    var nodes = this.props.collection.map(function(model) {
+      return (React.createElement("li", null,  model.title ? model.title + " ," : "", " ",  model.institution, " ",  model.year));
+    });
+
+    return (
+      React.createElement("div", null, 
+        React.createElement("h4", null, this.props.title), 
+        React.createElement("ul", null, 
+          nodes
+        )
+      )
+    );
+  }
+});
+
+}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/react/views/lawyer/language.jsx","/react/views/lawyer")
+},{"_process":5,"buffer":1,"react":342}],371:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 'use strict';
 var React = require('react');
@@ -61132,7 +61169,7 @@ module.exports = React.createClass({displayName: "exports",
 });
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/react/views/lawyer/membership.jsx","/react/views/lawyer")
-},{"_process":5,"buffer":1,"react":342}],371:[function(require,module,exports){
+},{"_process":5,"buffer":1,"react":342}],372:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 'use strict';
 var React = require('react');
@@ -61168,7 +61205,35 @@ module.exports = React.createClass({displayName: "exports",
 });
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/react/views/lawyer/phrase.jsx","/react/views/lawyer")
-},{"_process":5,"buffer":1,"react":342}],372:[function(require,module,exports){
+},{"_process":5,"buffer":1,"react":342}],373:[function(require,module,exports){
+(function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
+'use strict';
+var React = require('react');
+
+module.exports = React.createClass({displayName: "exports",
+   getDefaultProps: function() {
+    return {
+      collection: []
+    }
+  },
+
+  render: function() {
+    var nodes = this.props.collection.map(function(item) {
+      return (
+        React.createElement("a", {href: "/posts/" + item.slug, target: "_new"}, item.title)
+      )
+    });
+
+    return (
+      React.createElement("div", null, 
+        nodes
+      )
+    );
+  }
+});
+
+}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/react/views/lawyer/post.jsx","/react/views/lawyer")
+},{"_process":5,"buffer":1,"react":342}],374:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 'use strict';
 var React = require('react');
@@ -61197,7 +61262,7 @@ module.exports = React.createClass({displayName: "exports",
 });
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/react/views/lawyer/professional_experience.jsx","/react/views/lawyer")
-},{"_process":5,"buffer":1,"react":342}],373:[function(require,module,exports){
+},{"_process":5,"buffer":1,"react":342}],375:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 'use strict';
 var React = require('react');
@@ -61214,6 +61279,8 @@ var Academic = require('views/lawyer/academic.jsx');
 var Language = require('views/lawyer/language.jsx');
 var Phrase = require('views/lawyer/phrase.jsx');
 var Award = require('views/lawyer/award.jsx');
+var Post = require('views/lawyer/post.jsx');
+var Article = require('views/lawyer/article.jsx');
 var TopBar = require('views/top_bar.jsx');
 
 module.exports = React.createClass({displayName: "exports",
@@ -61312,6 +61379,9 @@ module.exports = React.createClass({displayName: "exports",
               collection: lawyer.phrases}
             )
 
+
+
+
           ), 
 
           React.createElement("div", {className: "col-lg-6 lawyer-right"}, 
@@ -61319,7 +61389,17 @@ module.exports = React.createClass({displayName: "exports",
             React.createElement(Award, {
               collection: lawyer.awards}
             ), 
-            React.createElement("h3", null, React.createElement("i", {className: "icon ion-ios-paper"}), " ", transLawyer.publications)
+            React.createElement("h3", null, React.createElement("i", {className: "icon ion-ios-paper"}), " ", transLawyer.publications), 
+
+            React.createElement(Post, {
+              title: '', 
+              collection: lawyer.posts}
+            ), 
+
+            React.createElement(Article, {
+              title: '', 
+              collection: lawyer.articles}
+            )
           )
 
         )
@@ -61331,7 +61411,7 @@ module.exports = React.createClass({displayName: "exports",
 });
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/react/views/lawyer/section.jsx","/react/views/lawyer")
-},{"_process":5,"buffer":1,"langs/app":347,"langs/lawyer":351,"react":342,"superagent":343,"views/lawyer/academic.jsx":364,"views/lawyer/award.jsx":365,"views/lawyer/categories.jsx":366,"views/lawyer/conference.jsx":367,"views/lawyer/education.jsx":368,"views/lawyer/language.jsx":369,"views/lawyer/membership.jsx":370,"views/lawyer/phrase.jsx":371,"views/lawyer/professional_experience.jsx":372,"views/lawyer/social.jsx":374,"views/top_bar.jsx":391}],374:[function(require,module,exports){
+},{"_process":5,"buffer":1,"langs/app":347,"langs/lawyer":351,"react":342,"superagent":343,"views/lawyer/academic.jsx":364,"views/lawyer/article.jsx":365,"views/lawyer/award.jsx":366,"views/lawyer/categories.jsx":367,"views/lawyer/conference.jsx":368,"views/lawyer/education.jsx":369,"views/lawyer/language.jsx":370,"views/lawyer/membership.jsx":371,"views/lawyer/phrase.jsx":372,"views/lawyer/post.jsx":373,"views/lawyer/professional_experience.jsx":374,"views/lawyer/social.jsx":376,"views/top_bar.jsx":393}],376:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 'use strict';
 var React = require('react');
@@ -61375,7 +61455,7 @@ module.exports = React.createClass({displayName: "exports",
 });
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/react/views/lawyer/social.jsx","/react/views/lawyer")
-},{"_process":5,"buffer":1,"react":342}],375:[function(require,module,exports){
+},{"_process":5,"buffer":1,"react":342}],377:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 'use strict';
 var React = require('react');
@@ -61424,7 +61504,7 @@ module.exports = React.createClass({displayName: "exports",
 });
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/react/views/lawyers/lawyer.jsx","/react/views/lawyers")
-},{"_process":5,"buffer":1,"react":342}],376:[function(require,module,exports){
+},{"_process":5,"buffer":1,"react":342}],378:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 'use strict';
 var React = require('react');
@@ -61535,7 +61615,7 @@ module.exports = React.createClass({displayName: "exports",
 });
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/react/views/lawyers/section.jsx","/react/views/lawyers")
-},{"_process":5,"buffer":1,"langs/app":347,"lodash":35,"react":342,"react-waypoint":183,"superagent":343,"utils/get_lang":352,"views/lawyers/lawyer.jsx":375,"views/top_bar.jsx":391}],377:[function(require,module,exports){
+},{"_process":5,"buffer":1,"langs/app":347,"lodash":35,"react":342,"react-waypoint":183,"superagent":343,"utils/get_lang":352,"views/lawyers/lawyer.jsx":377,"views/top_bar.jsx":393}],379:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 'use strict';
 var React = require('react');
@@ -61617,7 +61697,7 @@ module.exports = React.createClass({displayName: "exports",
 });
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/react/views/nav_main.jsx","/react/views")
-},{"_process":5,"buffer":1,"langs/app":347,"react":342,"react-router":134}],378:[function(require,module,exports){
+},{"_process":5,"buffer":1,"langs/app":347,"react":342,"react-router":134}],380:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 'use strict';
 var React = require('react');
@@ -61682,7 +61762,7 @@ module.exports = React.createClass({displayName: "exports",
 });
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/react/views/nav_mobile.jsx","/react/views")
-},{"_process":5,"buffer":1,"langs/app":347,"react":342,"utils/get_lang":352}],379:[function(require,module,exports){
+},{"_process":5,"buffer":1,"langs/app":347,"react":342,"utils/get_lang":352}],381:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 'use strict';
 var React = require('react');
@@ -61710,7 +61790,7 @@ module.exports = React.createClass({displayName: "exports",
 });
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/react/views/post/categories.jsx","/react/views/post")
-},{"_process":5,"buffer":1,"react":342}],380:[function(require,module,exports){
+},{"_process":5,"buffer":1,"react":342}],382:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 'use strict';
 var React = require('react');
@@ -61791,7 +61871,7 @@ module.exports = React.createClass({displayName: "exports",
 });
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/react/views/post/section.jsx","/react/views/post")
-},{"_process":5,"buffer":1,"langs/app":347,"react":342,"react-helmet":39,"superagent":343,"views/post/categories.jsx":379,"views/post/social.jsx":381,"views/top_bar.jsx":391}],381:[function(require,module,exports){
+},{"_process":5,"buffer":1,"langs/app":347,"react":342,"react-helmet":39,"superagent":343,"views/post/categories.jsx":381,"views/post/social.jsx":383,"views/top_bar.jsx":393}],383:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 'use strict';
 var React = require('react');
@@ -61831,7 +61911,7 @@ module.exports = React.createClass({displayName: "exports",
 });
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/react/views/post/social.jsx","/react/views/post")
-},{"_process":5,"buffer":1,"react":342}],382:[function(require,module,exports){
+},{"_process":5,"buffer":1,"react":342}],384:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 'use strict';
 var React = require('react');
@@ -61884,7 +61964,7 @@ module.exports = React.createClass({displayName: "exports",
 });
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/react/views/posts/post.jsx","/react/views/posts")
-},{"_process":5,"buffer":1,"react":342,"superagent":343,"views/posts/share_hover.jsx":385}],383:[function(require,module,exports){
+},{"_process":5,"buffer":1,"react":342,"superagent":343,"views/posts/share_hover.jsx":387}],385:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 'use strict';
 var React = require('react');
@@ -61930,7 +62010,7 @@ module.exports = React.createClass({displayName: "exports",
 });
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/react/views/posts/post_featured.jsx","/react/views/posts")
-},{"_process":5,"buffer":1,"react":342,"react-helmet":39,"superagent":343,"views/posts/share_hover.jsx":385}],384:[function(require,module,exports){
+},{"_process":5,"buffer":1,"react":342,"react-helmet":39,"superagent":343,"views/posts/share_hover.jsx":387}],386:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 'use strict';
 var React = require('react');
@@ -62061,7 +62141,7 @@ module.exports = React.createClass({displayName: "exports",
 });
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/react/views/posts/section.jsx","/react/views/posts")
-},{"_process":5,"buffer":1,"langs/app":347,"lodash":35,"react":342,"react-waypoint":183,"superagent":343,"views/lawyers/lawyer.jsx":375,"views/posts/post.jsx":382,"views/posts/post_featured.jsx":383,"views/top_bar.jsx":391}],385:[function(require,module,exports){
+},{"_process":5,"buffer":1,"langs/app":347,"lodash":35,"react":342,"react-waypoint":183,"superagent":343,"views/lawyers/lawyer.jsx":377,"views/posts/post.jsx":384,"views/posts/post_featured.jsx":385,"views/top_bar.jsx":393}],387:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 'use strict';
 var React = require('react');
@@ -62105,7 +62185,7 @@ module.exports = React.createClass({displayName: "exports",
 });
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/react/views/posts/share_hover.jsx","/react/views/posts")
-},{"_process":5,"buffer":1,"langs/app":347,"react":342}],386:[function(require,module,exports){
+},{"_process":5,"buffer":1,"langs/app":347,"react":342}],388:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 'use strict';
 var React = require('react');
@@ -62236,7 +62316,7 @@ module.exports = React.createClass({displayName: "exports",
 });
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/react/views/posts/the_actual.jsx","/react/views/posts")
-},{"_process":5,"buffer":1,"langs/app":347,"lodash":35,"react":342,"react-waypoint":183,"superagent":343,"views/lawyers/lawyer.jsx":375,"views/posts/post.jsx":382,"views/posts/post_featured.jsx":383,"views/top_bar.jsx":391}],387:[function(require,module,exports){
+},{"_process":5,"buffer":1,"langs/app":347,"lodash":35,"react":342,"react-waypoint":183,"superagent":343,"views/lawyers/lawyer.jsx":377,"views/posts/post.jsx":384,"views/posts/post_featured.jsx":385,"views/top_bar.jsx":393}],389:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 'use strict';
 var React = require('react');
@@ -62367,7 +62447,7 @@ module.exports = React.createClass({displayName: "exports",
 });
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/react/views/posts/the_actual_colombia.jsx","/react/views/posts")
-},{"_process":5,"buffer":1,"langs/app":347,"lodash":35,"react":342,"react-waypoint":183,"superagent":343,"views/lawyers/lawyer.jsx":375,"views/posts/post.jsx":382,"views/posts/post_featured.jsx":383,"views/top_bar.jsx":391}],388:[function(require,module,exports){
+},{"_process":5,"buffer":1,"langs/app":347,"lodash":35,"react":342,"react-waypoint":183,"superagent":343,"views/lawyers/lawyer.jsx":377,"views/posts/post.jsx":384,"views/posts/post_featured.jsx":385,"views/top_bar.jsx":393}],390:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 'use strict';
 var React = require('react');
@@ -62505,7 +62585,7 @@ module.exports = React.createClass({displayName: "exports",
 });
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/react/views/probono/section.jsx","/react/views/probono")
-},{"_process":5,"buffer":1,"get_lang":352,"react":342,"react-slick":168,"superagent":343,"views/top_bar.jsx":391}],389:[function(require,module,exports){
+},{"_process":5,"buffer":1,"get_lang":352,"react":342,"react-slick":168,"superagent":343,"views/top_bar.jsx":393}],391:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 'use strict';
 var React = require('react');
@@ -62612,7 +62692,7 @@ module.exports = React.createClass({displayName: "exports",
 });
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/react/views/recruiment/section.jsx","/react/views/recruiment")
-},{"_process":5,"buffer":1,"get_lang":352,"langs/app":347,"langs/areas":349,"react":342,"superagent":343,"views/recruiment/stepForm.jsx":390,"views/top_bar.jsx":391}],390:[function(require,module,exports){
+},{"_process":5,"buffer":1,"get_lang":352,"langs/app":347,"langs/areas":349,"react":342,"superagent":343,"views/recruiment/stepForm.jsx":392,"views/top_bar.jsx":393}],392:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 'use strict';
 var React = require('react');
@@ -62783,7 +62863,7 @@ module.exports = React.createClass({displayName: "exports",
 });
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/react/views/recruiment/stepForm.jsx","/react/views/recruiment")
-},{"_process":5,"buffer":1,"langs/app":347,"langs/areas":349,"react":342,"react-select":160}],391:[function(require,module,exports){
+},{"_process":5,"buffer":1,"langs/app":347,"langs/areas":349,"react":342,"react-select":160}],393:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 'use strict';
 var React = require('react');
@@ -62991,7 +63071,7 @@ module.exports = React.createClass({displayName: "exports",
 });
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/react/views/top_bar.jsx","/react/views")
-},{"_process":5,"buffer":1,"jquery":34,"langs/app":347,"langs/areas":349,"langs/lawyer":351,"lodash":35,"react":342,"react-select":160,"utils/get_lang":352}],392:[function(require,module,exports){
+},{"_process":5,"buffer":1,"jquery":34,"langs/app":347,"langs/areas":349,"langs/lawyer":351,"lodash":35,"react":342,"react-select":160,"utils/get_lang":352}],394:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 'use strict';
 var React = require('react');
@@ -63065,7 +63145,7 @@ module.exports = React.createClass({displayName: "exports",
 });
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/react/views/us/awards.jsx","/react/views/us")
-},{"_process":5,"buffer":1,"react":342,"react-slick":168,"superagent":343}],393:[function(require,module,exports){
+},{"_process":5,"buffer":1,"react":342,"react-slick":168,"superagent":343}],395:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 'use strict';
 var React = require('react');
@@ -63111,7 +63191,7 @@ module.exports = React.createClass({displayName: "exports",
 });
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/react/views/us/networks.jsx","/react/views/us")
-},{"_process":5,"buffer":1,"react":342,"react-slick":168,"superagent":343}],394:[function(require,module,exports){
+},{"_process":5,"buffer":1,"react":342,"react-slick":168,"superagent":343}],396:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 'use strict';
 var React = require('react');
@@ -63165,7 +63245,7 @@ module.exports = React.createClass({displayName: "exports",
 });
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/react/views/us/phrases.jsx","/react/views/us")
-},{"_process":5,"buffer":1,"react":342,"react-slick":168,"superagent":343}],395:[function(require,module,exports){
+},{"_process":5,"buffer":1,"react":342,"react-slick":168,"superagent":343}],397:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 'use strict';
 var React = require('react');
@@ -63254,4 +63334,4 @@ module.exports = React.createClass({displayName: "exports",
 });
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/react/views/us/section.jsx","/react/views/us")
-},{"_process":5,"buffer":1,"get_lang":352,"langs/app":347,"react":342,"react-slick":168,"superagent":343,"views/top_bar.jsx":391,"views/us/awards.jsx":392,"views/us/networks.jsx":393,"views/us/phrases.jsx":394}]},{},[346]);
+},{"_process":5,"buffer":1,"get_lang":352,"langs/app":347,"react":342,"react-slick":168,"superagent":343,"views/top_bar.jsx":393,"views/us/awards.jsx":394,"views/us/networks.jsx":395,"views/us/phrases.jsx":396}]},{},[346]);

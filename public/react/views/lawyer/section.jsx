@@ -13,6 +13,8 @@ var Academic = require('views/lawyer/academic.jsx');
 var Language = require('views/lawyer/language.jsx');
 var Phrase = require('views/lawyer/phrase.jsx');
 var Award = require('views/lawyer/award.jsx');
+var Post = require('views/lawyer/post.jsx');
+var Article = require('views/lawyer/article.jsx');
 var TopBar = require('views/top_bar.jsx');
 
 module.exports = React.createClass({
@@ -111,6 +113,9 @@ module.exports = React.createClass({
               collection={lawyer.phrases}
             />
 
+
+
+
           </div>
 
           <div className="col-lg-6 lawyer-right">
@@ -119,6 +124,16 @@ module.exports = React.createClass({
               collection={lawyer.awards}
             />
             <h3><i className="icon ion-ios-paper"></i> {transLawyer.publications}</h3>
+
+            <Post
+              title={''}
+              collection={lawyer.posts}
+            />
+
+            <Article
+              title={''}
+              collection={lawyer.articles}
+            />
           </div>
 
         </div>
