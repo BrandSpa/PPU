@@ -61461,8 +61461,6 @@ module.exports = React.createClass({displayName: "exports",
   },
 
   componentDidMount: function() {
-
-    console.log(this.state.filters);
     this.fetch();
   },
 
