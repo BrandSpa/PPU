@@ -39,9 +39,9 @@ module.exports = React.createClass({
     }
 
     if(lawyer.img_name) {
-      lawyerImage =  <img src={ lawyer.img_name.url } alt={ lawyer.name +" "+ lawyer.lastname } />;
+      lawyerImage = lawyer.img_name.url;
     } else {
-      lawyerImage = <img src={"/img/lawyer_placeholder.jpg"} alt={ lawyer.name +" "+ lawyer.lastname } />;
+      lawyerImage = "/img/lawyer_placeholder.jpg";
     }
 
     return (
@@ -52,7 +52,7 @@ module.exports = React.createClass({
 
       <div id="lawyer">
         <div className="lawyer-header">
-          {lawyerImage}
+          <img src={lawyerImage} alt={ lawyer.name +" "+ lawyer.lastname } />
           <div className="content-left">
             <p>{lawyer.position}</p>
             <h1>{lawyer.name} {lawyer.lastname}</h1>

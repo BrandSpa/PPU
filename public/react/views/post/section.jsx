@@ -32,11 +32,10 @@ module.exports = React.createClass({
     }
 
     if(post.gallery) {
-      postImage = (<img  src={post.gallery.img_name.url } alt={ post.title } className="hidden-xs" />);
+      postImage = post.gallery.img_name.url;
     } else if(post.img_name){
-      postImage = (<img  src={ post.img_name.url } alt={ post.title } className="hidden-xs" />);
+      postImage = post.img_name.url;
     }
-
 
     return (
       <div>
@@ -45,7 +44,8 @@ module.exports = React.createClass({
           meta={[
               {"name": "description", "content": " Noticias y actualidad de temas legales. Firma con 13 áreas de práctica; Con oficinas en Chile, Colombia. España, Portugal, Sao Paulo, Nueva York, Pekín, Londres y Bruselas."},
               {"name": "og:title", "content": "Philippi Prietocarrizosa &Uría - Noticias"},
-              {"name": "og:description", "content": " Noticias y actualidad de temas legales. Firma con 13 áreas de práctica; Con oficinas en Chile, Colombia. España, Portugal, Sao Paulo, Nueva York, Pekín, Londres y Bruselas."}
+              {"name": "og:description", "content": " Noticias y actualidad de temas legales. Firma con 13 áreas de práctica; Con oficinas en Chile, Colombia. España, Portugal, Sao Paulo, Nueva York, Pekín, Londres y Bruselas."},
+              {"name": "og:image", "content": postImage}
           ]}
         />
       <TopBar title={trans.news} hidden back />
@@ -53,7 +53,7 @@ module.exports = React.createClass({
       <div id="post-detail">
       <div className="post-header">
         <div className="thumb-container">
-          {postImage}
+          <img  src={postImage} alt={ post.title } className="hidden-xs" />
         </div>
 
         <div className="data">

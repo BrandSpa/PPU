@@ -61240,9 +61240,9 @@ module.exports = React.createClass({displayName: "exports",
     }
 
     if(lawyer.img_name) {
-      lawyerImage =  React.createElement("img", {src:  lawyer.img_name.url, alt:  lawyer.name +" "+ lawyer.lastname});
+      lawyerImage = lawyer.img_name.url;
     } else {
-      lawyerImage = React.createElement("img", {src: "/img/lawyer_placeholder.jpg", alt:  lawyer.name +" "+ lawyer.lastname});
+      lawyerImage = "/img/lawyer_placeholder.jpg";
     }
 
     return (
@@ -61253,7 +61253,7 @@ module.exports = React.createClass({displayName: "exports",
 
       React.createElement("div", {id: "lawyer"}, 
         React.createElement("div", {className: "lawyer-header"}, 
-          lawyerImage, 
+          React.createElement("img", {src: lawyerImage, alt:  lawyer.name +" "+ lawyer.lastname}), 
           React.createElement("div", {className: "content-left"}, 
             React.createElement("p", null, lawyer.position), 
             React.createElement("h1", null, lawyer.name, " ", lawyer.lastname), 
@@ -61746,11 +61746,10 @@ module.exports = React.createClass({displayName: "exports",
     }
 
     if(post.gallery) {
-      postImage = (React.createElement("img", {src: post.gallery.img_name.url, alt:  post.title, className: "hidden-xs"}));
+      postImage = post.gallery.img_name.url;
     } else if(post.img_name){
-      postImage = (React.createElement("img", {src:  post.img_name.url, alt:  post.title, className: "hidden-xs"}));
+      postImage = post.img_name.url;
     }
-
 
     return (
       React.createElement("div", null, 
@@ -61759,7 +61758,8 @@ module.exports = React.createClass({displayName: "exports",
           meta: [
               {"name": "description", "content": " Noticias y actualidad de temas legales. Firma con 13 áreas de práctica; Con oficinas en Chile, Colombia. España, Portugal, Sao Paulo, Nueva York, Pekín, Londres y Bruselas."},
               {"name": "og:title", "content": "Philippi Prietocarrizosa &Uría - Noticias"},
-              {"name": "og:description", "content": " Noticias y actualidad de temas legales. Firma con 13 áreas de práctica; Con oficinas en Chile, Colombia. España, Portugal, Sao Paulo, Nueva York, Pekín, Londres y Bruselas."}
+              {"name": "og:description", "content": " Noticias y actualidad de temas legales. Firma con 13 áreas de práctica; Con oficinas en Chile, Colombia. España, Portugal, Sao Paulo, Nueva York, Pekín, Londres y Bruselas."},
+              {"name": "og:image", "content": postImage}
           ]}
         ), 
       React.createElement(TopBar, {title: trans.news, hidden: true, back: true}), 
@@ -61767,7 +61767,7 @@ module.exports = React.createClass({displayName: "exports",
       React.createElement("div", {id: "post-detail"}, 
       React.createElement("div", {className: "post-header"}, 
         React.createElement("div", {className: "thumb-container"}, 
-          postImage
+          React.createElement("img", {src: postImage, alt:  post.title, className: "hidden-xs"})
         ), 
 
         React.createElement("div", {className: "data"}, 
