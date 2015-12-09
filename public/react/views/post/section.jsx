@@ -15,7 +15,6 @@ module.exports = React.createClass({
   },
 
   componentDidMount: function() {
-    console.log(this.props);
     request
     .get('/api/posts/' + this.props.params.slug)
     .end(function(err, res) {

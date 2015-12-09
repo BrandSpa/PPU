@@ -61731,7 +61731,6 @@ module.exports = React.createClass({displayName: "exports",
   },
 
   componentDidMount: function() {
-    console.log(this.props);
     request
     .get('/api/posts/' + this.props.params.slug)
     .end(function(err, res) {
@@ -61853,7 +61852,6 @@ module.exports = React.createClass({displayName: "exports",
   },
 
   render: function() {
-    console.log('call it');
     var post = this.props.post;
     var postImage;
 

@@ -15,7 +15,6 @@ module.exports = React.createClass({
   },
 
   render: function() {
-    console.log('call it');
     var post = this.props.post;
     var postImage;
 
