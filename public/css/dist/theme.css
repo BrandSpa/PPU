@@ -2081,6 +2081,10 @@ select .form-control {
   width: 100%;
   margin-bottom: 15px;
   padding-bottom: 15px; }
+  #work-with-us .Select-placeholder {
+    color: #111; }
+  #work-with-us .Select-control {
+    border: 1px #ddd solid; }
   #work-with-us .video {
     padding-top: 15px;
     width: 70%;

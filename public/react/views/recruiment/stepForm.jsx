@@ -72,7 +72,7 @@ module.exports = React.createClass({
 
     return (
       <div>
-        <form action="#" className="form">
+        <form action="#" className="form form-recruitment">
           <div className={stepOne ? "step-1 row" : "hidden"}>
             <div className="form-group col-md-6">
               <label htmlFor="">{trans.name}</label>
@@ -103,12 +103,20 @@ module.exports = React.createClass({
 
               <div className="form-group col-md-6">
                 <label htmlFor="">Nivel inglés hablado</label>
-                <Select ref="speakEnglishLevel" options={englishOptions} />
+                <Select
+                  ref="speakEnglishLevel"
+                  options={englishOptions}
+                  placeholder="Seleccionar nivel"
+                  />
               </div>
 
               <div className="form-group col-md-6">
                 <label htmlFor="">Nivel inglés escrito</label>
-                <Select ref="writeEnglishLevel" options={englishOptions} />
+                <Select
+                  ref="writeEnglishLevel"
+                  options={englishOptions}
+                  placeholder="Seleccionar nivel"
+                  />
               </div>
 
               <div className="form-group col-md-6">
