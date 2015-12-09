@@ -60387,7 +60387,7 @@ module.exports = React.createClass({displayName: "exports",
         model: res.body,
         filters: {
           without: res.body.id,
-          category: res.body.categories[0].name
+          category: res.body.categories[0] ? res.body.categories[0].name : null
         }
       });
       this.getRelated();
