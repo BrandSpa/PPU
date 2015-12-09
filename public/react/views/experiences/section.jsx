@@ -65,7 +65,7 @@ module.exports = React.createClass({
     var  experienceNodes = this.state.experiences.map(function(experience, i) {
       return (
         <Experience
-          key={i}
+          key={experience.id}
           model={experience}
           history={this.props.history}
         />

@@ -28,7 +28,7 @@ React.render((
       <Route path="/areas" component={areas} />
       <Route path="/areas/:slug" component={area} />
       <Route path="/experiencias" component={experiences} />
-      <Route path="/experencias/:slug" component={experience} />
+      <Route path="/experiencias/:slug" component={experience} />
       <Route path="/nosotros" component={us} />
       <Route path="/probono" component={probono}/>
       <Route path="/trabaje-con-nosotros" component={recruiment}/>

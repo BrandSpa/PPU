@@ -59892,7 +59892,7 @@ React.render((
       React.createElement(Route, {path: "/areas", component: areas}), 
       React.createElement(Route, {path: "/areas/:slug", component: area}), 
       React.createElement(Route, {path: "/experiencias", component: experiences}), 
-      React.createElement(Route, {path: "/experencias/:slug", component: experience}), 
+      React.createElement(Route, {path: "/experiencias/:slug", component: experience}), 
       React.createElement(Route, {path: "/nosotros", component: us}), 
       React.createElement(Route, {path: "/probono", component: probono}), 
       React.createElement(Route, {path: "/trabaje-con-nosotros", component: recruiment}), 
@@ -60584,7 +60584,7 @@ module.exports = React.createClass({displayName: "exports",
     var  experienceNodes = this.state.experiences.map(function(experience, i) {
       return (
         React.createElement(Experience, {
-          key: i, 
+          key: experience.id, 
           model: experience, 
           history: this.props.history}
         )
@@ -60623,30 +60623,30 @@ module.exports = React.createClass({displayName: "exports",
 
     return (
       React.createElement("div", {className: "share-hover"}, 
-       React.createElement("a", {href: "/experencias/" + model.slug}, React.createElement("h3", null, trans.post.readPost, " +")), 
+       React.createElement("a", {href: "/experiencias/" + model.slug}, React.createElement("h3", null, trans.post.readPost, " +")), 
           React.createElement("h4", null, trans.share, "  ", React.createElement("i", {class: "fa fa-share-alt"})), 
 
         React.createElement("a", {
           className: "share", 
-          href: "https://twitter.com/intent/tweet?text=" +model.title + "&url=http://ppulegal.com/experencias/" + model.slug}, React.createElement("i", {className: "fa fa-twitter-square"})
+          href: "https://twitter.com/intent/tweet?text=" +model.title + "&url=http://ppulegal.com/experiencias/" + model.slug}, React.createElement("i", {className: "fa fa-twitter-square"})
         ), 
 
         React.createElement("a", {
           className: "share", 
-          href: "http://www.linkedin.com/shareArticle?mini=true&url=http://ppulegal.com/experencias/" + model.slug
+          href: "http://www.linkedin.com/shareArticle?mini=true&url=http://ppulegal.com/experiencias/" + model.slug
         }, React.createElement("i", {className: "fa fa-linkedin-square"})
         ), 
 
         React.createElement("a", {
           className: "share", 
-          href: "https://plus.google.com/share?url=http://ppulegal.com/experencias/" + model.slug
+          href: "https://plus.google.com/share?url=http://ppulegal.com/experiencias/" + model.slug
         }, 
         React.createElement("i", {className: "fa fa-google-plus-square"})
         ), 
 
       React.createElement("a", {
         className: "share", 
-        href: "https://www.facebook.com/sharer/sharer.php?u=http://ppulegal.com/experencias/" + model.slug
+        href: "https://www.facebook.com/sharer/sharer.php?u=http://ppulegal.com/experiencias/" + model.slug
         }, React.createElement("i", {className: "fa fa-facebook-square"}))
       )
     );
