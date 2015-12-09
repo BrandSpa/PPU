@@ -13,7 +13,7 @@ module.exports = React.createClass({
     return {
       content: {
         id: null,
-        page: 'recruiment_two',
+        page: 'recruitment_two',
         text_es: null,
         title_es: null,
         text_en: null,

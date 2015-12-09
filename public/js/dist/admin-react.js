@@ -695,7 +695,7 @@ module.exports = React.createClass({displayName: "exports",
     return {
       content: {
         id: null,
-        page: 'recruiment_three',
+        page: 'recruitment_three',
         text_es: null,
         title_es: null,
         text_en: null,
@@ -809,7 +809,7 @@ module.exports = React.createClass({displayName: "exports",
     return {
       content: {
         id: null,
-        page: 'recruiment_two',
+        page: 'recruitment_two',
         text_es: null,
         title_es: null,
         text_en: null,

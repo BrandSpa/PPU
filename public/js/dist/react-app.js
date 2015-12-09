@@ -62517,20 +62517,85 @@ var TopBar = require('views/top_bar.jsx');
 var trans = require('langs/app');
 var areas = require('langs/areas');
 var StepForm = require('views/recruiment/stepForm.jsx');
+var request = require('superagent');
+var getLang = require('get_lang');
 
 module.exports = React.createClass({displayName: "exports",
   getInitialState: function() {
     return {
+      video: {},
+      textOne: {},
+      textTwo: {},
+      textThree: {}
     }
   },
 
+  componentDidMount: function() {
+    this. getVideo();
+    this. getTextOne();
+    this. getTextTwo();
+    this. getTextThree();
+  },
+
+  getVideo: function() {
+    request
+    .get('/api/pages')
+    .query({page: 'recruiment_video'})
+    .end(function(err, res) {
+      this.setState({
+        video: res.body
+      })
+    }.bind(this));
+  },
+
+  getTextOne: function() {
+    request
+    .get('/api/pages')
+    .query({page: 'recruitment_one'})
+    .end(function(err, res) {
+      this.setState({
+        textOne: res.body
+      })
+    }.bind(this));
+  },
+
+  getTextTwo: function() {
+    request
+    .get('/api/pages')
+    .query({page: 'recruitment_two'})
+    .end(function(err, res) {
+      this.setState({
+        textTwo: res.body
+      })
+    }.bind(this));
+  },
+
+  getTextThree: function() {
+    request
+    .get('/api/pages')
+    .query({page: 'recruitment_three'})
+    .end(function(err, res) {
+      this.setState({
+        textThree: res.body
+      })
+    }.bind(this));
+  },
 
   render: function() {
     return (
       React.createElement("div", null, 
         React.createElement(TopBar, {title: trans.recruitment, hidden: true}), 
         React.createElement("div", {id: "work-with-us"}, 
-          React.createElement(StepForm, null)
+
+          React.createElement("div", {dangerouslySetInnerHTML: {__html: this.state.video["text_es"]}}), 
+          React.createElement(StepForm, null), 
+          React.createElement("h4", null, this.state.textOne["title_" + getLang]), 
+          React.createElement("div", {dangerouslySetInnerHTML: {__html: this.state.textOne["text_" + getLang]}}), 
+          React.createElement("h4", null, this.state.textTwo["title_" + getLang]), 
+          React.createElement("div", {dangerouslySetInnerHTML: {__html: this.state.textTwo["text_" + getLang]}}), 
+          React.createElement("h4", null, this.state.textThree["title_" + getLang]), 
+          React.createElement("div", {dangerouslySetInnerHTML: {__html: this.state.textThree["text_" + getLang]}})
+
         )
       )
     );
@@ -62538,7 +62603,7 @@ module.exports = React.createClass({displayName: "exports",
 });
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/react/views/recruiment/section.jsx","/react/views/recruiment")
-},{"_process":5,"buffer":1,"langs/app":347,"langs/areas":349,"react":342,"views/recruiment/stepForm.jsx":390,"views/top_bar.jsx":391}],390:[function(require,module,exports){
+},{"_process":5,"buffer":1,"get_lang":352,"langs/app":347,"langs/areas":349,"react":342,"superagent":343,"views/recruiment/stepForm.jsx":390,"views/top_bar.jsx":391}],390:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 'use strict';
 var React = require('react');
