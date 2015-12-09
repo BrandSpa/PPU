@@ -62531,10 +62531,10 @@ module.exports = React.createClass({displayName: "exports",
   },
 
   componentDidMount: function() {
-    this. getVideo();
-    this. getTextOne();
-    this. getTextTwo();
-    this. getTextThree();
+    this.getVideo();
+    this.getTextOne();
+    this.getTextTwo();
+    this.getTextThree();
   },
 
   getVideo: function() {
