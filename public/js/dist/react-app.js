@@ -62437,7 +62437,7 @@ module.exports = React.createClass({displayName: "exports",
 
     var sliderCompanies = this.state.sliderCompanies.map(function(slide) {
       return (
-        React.createElement("div", {key: slide.id}, 
+        React.createElement("div", {key: slide.id, style: {padding: '0 30px'}}, 
           React.createElement("img", {src: slide.slider_image.url, width: "200"})
         )
       );
@@ -62692,7 +62692,7 @@ module.exports = React.createClass({displayName: "exports",
 
     return (
       React.createElement("div", null, 
-        React.createElement("form", {action: "#", className: "form"}, 
+        React.createElement("form", {action: "#", className: "form form-recruitment"}, 
           React.createElement("div", {className: stepOne ? "step-1 row" : "hidden"}, 
             React.createElement("div", {className: "form-group col-md-6"}, 
               React.createElement("label", {htmlFor: ""}, trans.name), 

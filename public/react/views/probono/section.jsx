@@ -62,7 +62,7 @@ module.exports = React.createClass({
 
     var sliderCompanies = this.state.sliderCompanies.map(function(slide) {
       return (
-        <div key={slide.id}>
+        <div key={slide.id} style={{padding: '0 30px'}}>
           <img src={slide.slider_image.url} width="200"/>
         </div>
       );
