@@ -87,9 +87,10 @@ module.exports = React.createClass({
 
           <div dangerouslySetInnerHTML={{__html: this.state.video["text_es"]}} />
           <div className="col-lg-12">
-          <StepForm />
+
             <h4>{this.state.textOne["title_" + getLang]}</h4>
             <div dangerouslySetInnerHTML={{__html: this.state.textOne["text_" + getLang]}} />
+            <StepForm />
             <h4>{this.state.textTwo["title_" + getLang]}</h4>
             <div dangerouslySetInnerHTML={{__html: this.state.textTwo["text_" + getLang]}} />
             <h4>{this.state.textThree["title_" + getLang]}</h4>
