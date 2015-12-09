@@ -40,6 +40,17 @@ a {
   .container {
     padding: 0 !important; } }
 
+.dropdown-menu {
+  box-shadow: none; }
+  .dropdown-menu li {
+    background: #fff !important;
+    padding: 0 !important;
+    border-bottom: 1px solid #ddd; }
+    .dropdown-menu li a {
+      font-weight: 400 !important;
+      padding: 0;
+      color: #002855 !important; }
+
 .ball-pulse > div {
   background: #002855 !important; }
 
@@ -243,8 +254,6 @@ select .form-control {
     transition: 500ms all; }
     .nav-main li > .active {
       border-left: 4px solid #00A1B1; }
-    .nav-main li:nth-child(2) {
-      padding-top: 15px !important; }
     .nav-main li:last-child, .nav-main li:nth-child(8) {
       margin-bottom: 15px;
       margin-top: 15px; }
