@@ -1,5 +1,6 @@
 'use strict';
 var React = require('react');
+var Helmet = require('react-helmet');
 var TopBar = require('views/top_bar.jsx');
 var trans = require('langs/app');
 var areas = require('langs/areas');
@@ -82,6 +83,15 @@ module.exports = React.createClass({
   render: function() {
     return (
       <div>
+      <Helmet
+          title={"Philippi Prietocarrizosa &Uría - Trabaje con nosotros"}
+          meta={[
+              {"name": "description", "content": "Buscamos profesionales que combinen el talento con la disciplina, personas que estén comprometidas con su profesión, con ganas de aprender y hacerse una carrera junto a los mejores abogados de la región. Bolsa de empleo. Vacantes."},
+              {"name": "og:title", "content": "Philippi Prietocarrizosa &Uría - Trabaje con nosotros"},
+              {"name": "og:description", "content": "Buscamos profesionales que combinen el talento con la disciplina, personas que estén comprometidas con su profesión, con ganas de aprender y hacerse una carrera junto a los mejores abogados de la región. Bolsa de empleo. Vacantes."}
+          ]}
+        />
+
         <TopBar title={trans.recruitment} hidden />
         <div id="work-with-us" >
 

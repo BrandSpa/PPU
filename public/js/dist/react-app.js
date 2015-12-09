@@ -60435,7 +60435,8 @@ module.exports = React.createClass({displayName: "exports",
           meta: [
               {"name": "description", "content": model.excerpt},
               {"name": "og:title", "content": "Philippi Prietocarrizosa &Uría - " + model.title},
-              {"name": "og:description", "content": model.excerpt}
+              {"name": "og:description", "content": model.excerpt},
+              {"name": "og:image", "content": model.img_name.url}
           ]}
         ), 
 
@@ -62461,6 +62462,7 @@ module.exports = React.createClass({displayName: "exports",
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 'use strict';
 var React = require('react');
+var Helmet = require('react-helmet');
 var Slider = require('react-slick');
 var request = require('superagent');
 var getLang = require('get_lang');
@@ -62566,14 +62568,20 @@ module.exports = React.createClass({displayName: "exports",
         slidesToScroll: 1
       }
     }
-    // You can unslick at a given breakpoint now by adding:
-    // settings: "unslick"
-    // instead of a settings object
   ]
     };
 
     return (
       React.createElement("div", null, 
+      React.createElement(Helmet, {
+          title: "Philippi Prietocarrizosa &Uría - Probono", 
+          meta: [
+              {"name": "description", "content": "Nuestros abogados se han comprometido con la Fundación ProBono en Chile y en Colombia a trabajar 20 horas anuales cada uno, asesorando jurídicamente en forma gratuita a instituciones sin fines de lucro dedicadas a educación, vivienda, salud, extrema pobreza, cultura y rescate patrimonial, emprendimiento y medioambiente."},
+              {"name": "og:title", "content": "Philippi Prietocarrizosa &Uría - Probono"},
+              {"name": "og:description", "content": "Nuestros abogados se han comprometido con la Fundación ProBono en Chile y en Colombia a trabajar 20 horas anuales cada uno, asesorando jurídicamente en forma gratuita a instituciones sin fines de lucro dedicadas a educación, vivienda, salud, extrema pobreza, cultura y rescate patrimonial, emprendimiento y medioambiente."}
+          ]}
+        ), 
+
       React.createElement(TopBar, {title: "Probono", hidden: true}), 
         React.createElement("div", {className: "padding-top"}), 
         React.createElement("div", {id: "pro-bono"}, 
@@ -62595,10 +62603,11 @@ module.exports = React.createClass({displayName: "exports",
 });
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/react/views/probono/section.jsx","/react/views/probono")
-},{"_process":5,"buffer":1,"get_lang":352,"react":342,"react-slick":168,"superagent":343,"views/top_bar.jsx":393}],391:[function(require,module,exports){
+},{"_process":5,"buffer":1,"get_lang":352,"react":342,"react-helmet":39,"react-slick":168,"superagent":343,"views/top_bar.jsx":393}],391:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 'use strict';
 var React = require('react');
+var Helmet = require('react-helmet');
 var TopBar = require('views/top_bar.jsx');
 var trans = require('langs/app');
 var areas = require('langs/areas');
@@ -62681,6 +62690,15 @@ module.exports = React.createClass({displayName: "exports",
   render: function() {
     return (
       React.createElement("div", null, 
+      React.createElement(Helmet, {
+          title: "Philippi Prietocarrizosa &Uría - Trabaje con nosotros", 
+          meta: [
+              {"name": "description", "content": "Buscamos profesionales que combinen el talento con la disciplina, personas que estén comprometidas con su profesión, con ganas de aprender y hacerse una carrera junto a los mejores abogados de la región. Bolsa de empleo. Vacantes."},
+              {"name": "og:title", "content": "Philippi Prietocarrizosa &Uría - Trabaje con nosotros"},
+              {"name": "og:description", "content": "Buscamos profesionales que combinen el talento con la disciplina, personas que estén comprometidas con su profesión, con ganas de aprender y hacerse una carrera junto a los mejores abogados de la región. Bolsa de empleo. Vacantes."}
+          ]}
+        ), 
+
         React.createElement(TopBar, {title: trans.recruitment, hidden: true}), 
         React.createElement("div", {id: "work-with-us"}, 
 
@@ -62702,7 +62720,7 @@ module.exports = React.createClass({displayName: "exports",
 });
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/react/views/recruiment/section.jsx","/react/views/recruiment")
-},{"_process":5,"buffer":1,"get_lang":352,"langs/app":347,"langs/areas":349,"react":342,"superagent":343,"views/recruiment/stepForm.jsx":392,"views/top_bar.jsx":393}],392:[function(require,module,exports){
+},{"_process":5,"buffer":1,"get_lang":352,"langs/app":347,"langs/areas":349,"react":342,"react-helmet":39,"superagent":343,"views/recruiment/stepForm.jsx":392,"views/top_bar.jsx":393}],392:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 'use strict';
 var React = require('react');
@@ -63267,6 +63285,7 @@ var request = require('superagent');
 var getLang = require('get_lang');
 var TopBar = require('views/top_bar.jsx');
 var trans = require('langs/app');
+var Helmet = require('react-helmet');
 
 module.exports = React.createClass({displayName: "exports",
   getInitialState: function() {
@@ -63323,8 +63342,19 @@ module.exports = React.createClass({displayName: "exports",
 
     return (
       React.createElement("div", null, 
+      React.createElement(Helmet, {
+          title: "Philippi Prietocarrizosa &Uría - Nosotros", 
+          meta: [
+              {"name": "description", "content": "Philippi, Prietocarrizosa & Uría es la primera gran firma iberoamericana, resultado de la fusión entre el estudio chileno Philippi, Yrarrázaval, Pulido & Brunner y la firma colombiana Prietocarrizosa, en lo que supone la primera unión en Latinoamérica de dos estudios líderes en sus respectivos países. La prestigiosa firma de España y Portugal, Uría Menéndez, se ha asociado al nuevo estudio"},
+              {"name": "og:title", "content": "Philippi Prietocarrizosa &Uría - Nosotros"},
+              {"name": "og:description", "content": "Philippi, Prietocarrizosa & Uría es la primera gran firma iberoamericana, resultado de la fusión entre el estudio chileno Philippi, Yrarrázaval, Pulido & Brunner y la firma colombiana Prietocarrizosa, en lo que supone la primera unión en Latinoamérica de dos estudios líderes en sus respectivos países. La prestigiosa firma de España y Portugal, Uría Menéndez, se ha asociado al nuevo estudio"}
+          ]}
+        ), 
+
         React.createElement(TopBar, {title: trans.aboutUs, hidden: true}), 
+
         React.createElement("div", {className: "padding-top"}), 
+
           React.createElement("div", {id: "us"}, 
             React.createElement(Slider, React.__spread({},  settings), 
               sliderMain
@@ -63344,4 +63374,4 @@ module.exports = React.createClass({displayName: "exports",
 });
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/react/views/us/section.jsx","/react/views/us")
-},{"_process":5,"buffer":1,"get_lang":352,"langs/app":347,"react":342,"react-slick":168,"superagent":343,"views/top_bar.jsx":393,"views/us/awards.jsx":394,"views/us/networks.jsx":395,"views/us/phrases.jsx":396}]},{},[346]);
+},{"_process":5,"buffer":1,"get_lang":352,"langs/app":347,"react":342,"react-helmet":39,"react-slick":168,"superagent":343,"views/top_bar.jsx":393,"views/us/awards.jsx":394,"views/us/networks.jsx":395,"views/us/phrases.jsx":396}]},{},[346]);

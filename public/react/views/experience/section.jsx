@@ -82,7 +82,8 @@ module.exports = React.createClass({
           meta={[
               {"name": "description", "content": model.excerpt},
               {"name": "og:title", "content": "Philippi Prietocarrizosa &Uría - " + model.title},
-              {"name": "og:description", "content": model.excerpt}
+              {"name": "og:description", "content": model.excerpt},
+              {"name": "og:image", "content": model.img_name.url}
           ]}
         />
 

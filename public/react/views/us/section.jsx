@@ -8,6 +8,7 @@ var request = require('superagent');
 var getLang = require('get_lang');
 var TopBar = require('views/top_bar.jsx');
 var trans = require('langs/app');
+var Helmet = require('react-helmet');
 
 module.exports = React.createClass({
   getInitialState: function() {
@@ -64,8 +65,19 @@ module.exports = React.createClass({
 
     return (
       <div>
+      <Helmet
+          title={"Philippi Prietocarrizosa &Uría - Nosotros"}
+          meta={[
+              {"name": "description", "content": "Philippi, Prietocarrizosa & Uría es la primera gran firma iberoamericana, resultado de la fusión entre el estudio chileno Philippi, Yrarrázaval, Pulido & Brunner y la firma colombiana Prietocarrizosa, en lo que supone la primera unión en Latinoamérica de dos estudios líderes en sus respectivos países. La prestigiosa firma de España y Portugal, Uría Menéndez, se ha asociado al nuevo estudio"},
+              {"name": "og:title", "content": "Philippi Prietocarrizosa &Uría - Nosotros"},
+              {"name": "og:description", "content": "Philippi, Prietocarrizosa & Uría es la primera gran firma iberoamericana, resultado de la fusión entre el estudio chileno Philippi, Yrarrázaval, Pulido & Brunner y la firma colombiana Prietocarrizosa, en lo que supone la primera unión en Latinoamérica de dos estudios líderes en sus respectivos países. La prestigiosa firma de España y Portugal, Uría Menéndez, se ha asociado al nuevo estudio"}
+          ]}
+        />
+
         <TopBar title={trans.aboutUs} hidden />
+
         <div className="padding-top"></div>
+
           <div id="us">
             <Slider {...settings}>
               {sliderMain}

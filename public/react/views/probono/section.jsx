@@ -1,5 +1,6 @@
 'use strict';
 var React = require('react');
+var Helmet = require('react-helmet');
 var Slider = require('react-slick');
 var request = require('superagent');
 var getLang = require('get_lang');
@@ -105,14 +106,20 @@ module.exports = React.createClass({
         slidesToScroll: 1
       }
     }
-    // You can unslick at a given breakpoint now by adding:
-    // settings: "unslick"
-    // instead of a settings object
   ]
     };
 
     return (
       <div>
+      <Helmet
+          title={"Philippi Prietocarrizosa &Uría - Probono"}
+          meta={[
+              {"name": "description", "content": "Nuestros abogados se han comprometido con la Fundación ProBono en Chile y en Colombia a trabajar 20 horas anuales cada uno, asesorando jurídicamente en forma gratuita a instituciones sin fines de lucro dedicadas a educación, vivienda, salud, extrema pobreza, cultura y rescate patrimonial, emprendimiento y medioambiente."},
+              {"name": "og:title", "content": "Philippi Prietocarrizosa &Uría - Probono"},
+              {"name": "og:description", "content": "Nuestros abogados se han comprometido con la Fundación ProBono en Chile y en Colombia a trabajar 20 horas anuales cada uno, asesorando jurídicamente en forma gratuita a instituciones sin fines de lucro dedicadas a educación, vivienda, salud, extrema pobreza, cultura y rescate patrimonial, emprendimiento y medioambiente."}
+          ]}
+        />
+
       <TopBar title="Probono" hidden />
         <div className="padding-top"></div>
         <div id="pro-bono">
