@@ -62599,14 +62599,15 @@ module.exports = React.createClass({displayName: "exports",
         React.createElement("div", {id: "work-with-us"}, 
 
           React.createElement("div", {dangerouslySetInnerHTML: {__html: this.state.video["text_es"]}}), 
+          React.createElement("div", {className: "col-lg-12"}, 
           React.createElement(StepForm, null), 
-          React.createElement("h4", null, this.state.textOne["title_" + getLang]), 
-          React.createElement("div", {dangerouslySetInnerHTML: {__html: this.state.textOne["text_" + getLang]}}), 
-          React.createElement("h4", null, this.state.textTwo["title_" + getLang]), 
-          React.createElement("div", {dangerouslySetInnerHTML: {__html: this.state.textTwo["text_" + getLang]}}), 
-          React.createElement("h4", null, this.state.textThree["title_" + getLang]), 
-          React.createElement("div", {dangerouslySetInnerHTML: {__html: this.state.textThree["text_" + getLang]}})
-
+            React.createElement("h4", null, this.state.textOne["title_" + getLang]), 
+            React.createElement("div", {dangerouslySetInnerHTML: {__html: this.state.textOne["text_" + getLang]}}), 
+            React.createElement("h4", null, this.state.textTwo["title_" + getLang]), 
+            React.createElement("div", {dangerouslySetInnerHTML: {__html: this.state.textTwo["text_" + getLang]}}), 
+            React.createElement("h4", null, this.state.textThree["title_" + getLang]), 
+            React.createElement("div", {dangerouslySetInnerHTML: {__html: this.state.textThree["text_" + getLang]}})
+          )
         )
       )
     );

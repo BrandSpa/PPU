@@ -83,17 +83,18 @@ module.exports = React.createClass({
     return (
       <div>
         <TopBar title={trans.recruitment} hidden />
-        <div id="work-with-us">
+        <div id="work-with-us" >
 
           <div dangerouslySetInnerHTML={{__html: this.state.video["text_es"]}} />
+          <div className="col-lg-12">
           <StepForm />
-          <h4>{this.state.textOne["title_" + getLang]}</h4>
-          <div dangerouslySetInnerHTML={{__html: this.state.textOne["text_" + getLang]}} />
-          <h4>{this.state.textTwo["title_" + getLang]}</h4>
-          <div dangerouslySetInnerHTML={{__html: this.state.textTwo["text_" + getLang]}} />
-          <h4>{this.state.textThree["title_" + getLang]}</h4>
-          <div dangerouslySetInnerHTML={{__html: this.state.textThree["text_" + getLang]}} />
-
+            <h4>{this.state.textOne["title_" + getLang]}</h4>
+            <div dangerouslySetInnerHTML={{__html: this.state.textOne["text_" + getLang]}} />
+            <h4>{this.state.textTwo["title_" + getLang]}</h4>
+            <div dangerouslySetInnerHTML={{__html: this.state.textTwo["text_" + getLang]}} />
+            <h4>{this.state.textThree["title_" + getLang]}</h4>
+            <div dangerouslySetInnerHTML={{__html: this.state.textThree["text_" + getLang]}} />
+          </div>
         </div>
       </div>
     );

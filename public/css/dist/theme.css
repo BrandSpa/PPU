@@ -1979,7 +1979,9 @@ select .form-control {
 /* Landscape phones and portrait tablets */
 /* Landscape phones and smaller */
 #us {
-  background: #fff; }
+  background: #fff;
+  margin-bottom: 15px;
+  padding-bottom: 15px; }
   #us .content {
     padding: 30px; }
     @media (max-width: 767px) {
@@ -2074,7 +2076,11 @@ select .form-control {
 /* Landscape phones and portrait tablets */
 /* Landscape phones and smaller */
 #work-with-us {
-  text-align: center; }
+  text-align: center;
+  float: left;
+  width: 100%;
+  margin-bottom: 15px;
+  padding-bottom: 15px; }
   #work-with-us .video {
     padding-top: 15px;
     width: 70%;
