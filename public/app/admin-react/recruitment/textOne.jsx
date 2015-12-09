@@ -48,8 +48,6 @@ module.exports = React.createClass({
       text_es: values.text
     });
 
-    console.log(data);
-
     if(this.state.content.id) {
       this.update(data);
     } else {
@@ -62,8 +60,6 @@ module.exports = React.createClass({
       title_en: values.title,
       text_en: values.text
     });
-
-    console.log(data);
 
     if(this.state.content.id) {
       this.update(data);
@@ -83,7 +79,6 @@ module.exports = React.createClass({
   },
 
   store: function(data) {
-    console.log(data);
     request
       .post('/api/pages')
       .set('X-CSRF-Token', this.state.csrf)
@@ -99,12 +94,14 @@ module.exports = React.createClass({
         <div className="panel-body">
 
           <h5>Texto Uno</h5>
+          <b>Español</b>
           <TextEditor
             onChange={this.handleTextEs}
             title={this.state.content.title_es}
             text={this.state.content.text_es}
           />
-
+          <hr/>
+          <b>Inglés</b>
           <TextEditor
             onChange={this.handleTextEn}
             title={this.state.content.title_en}

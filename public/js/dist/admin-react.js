@@ -326,13 +326,14 @@ module.exports = React.createClass({displayName: "exports",
       React.createElement("div", {className: "panel"}, 
         React.createElement("div", {className: "panel-body"}, 
         React.createElement(SliderMain, null), 
-
+        React.createElement("b", null, "Español"), 
           React.createElement(TextEditor, {
             onChange: this.handleTextEs, 
             title: this.state.content.title_es, 
             text: this.state.content.text_es}
           ), 
-
+          React.createElement("hr", null), 
+          React.createElement("b", null, "Inglés"), 
           React.createElement(TextEditor, {
             onChange: this.handleTextEn, 
             title: this.state.content.title_en, 
@@ -609,8 +610,6 @@ module.exports = React.createClass({displayName: "exports",
       text_es: values.text
     });
 
-    console.log(data);
-
     if(this.state.content.id) {
       this.update(data);
     } else {
@@ -623,8 +622,6 @@ module.exports = React.createClass({displayName: "exports",
       title_en: values.title,
       text_en: values.text
     });
-
-    console.log(data);
 
     if(this.state.content.id) {
       this.update(data);
@@ -644,7 +641,6 @@ module.exports = React.createClass({displayName: "exports",
   },
 
   store: function(data) {
-    console.log(data);
     request
       .post('/api/pages')
       .set('X-CSRF-Token', this.state.csrf)
@@ -660,12 +656,14 @@ module.exports = React.createClass({displayName: "exports",
         React.createElement("div", {className: "panel-body"}, 
 
           React.createElement("h5", null, "Texto Uno"), 
+          React.createElement("b", null, "Español"), 
           React.createElement(TextEditor, {
             onChange: this.handleTextEs, 
             title: this.state.content.title_es, 
             text: this.state.content.text_es}
           ), 
-
+          React.createElement("hr", null), 
+          React.createElement("b", null, "Inglés"), 
           React.createElement(TextEditor, {
             onChange: this.handleTextEn, 
             title: this.state.content.title_en, 
@@ -774,12 +772,14 @@ module.exports = React.createClass({displayName: "exports",
       React.createElement("div", {className: "panel"}, 
         React.createElement("div", {className: "panel-body"}, 
           React.createElement("h5", null, "Texto tres"), 
+          React.createElement("b", null, "Español"), 
           React.createElement(TextEditor, {
             onChange: this.handleTextEs, 
             title: this.state.content.title_es, 
             text: this.state.content.text_es}
           ), 
-
+          React.createElement("hr", null), 
+          React.createElement("b", null, "Inglés"), 
           React.createElement(TextEditor, {
             onChange: this.handleTextEn, 
             title: this.state.content.title_en, 
@@ -888,12 +888,14 @@ module.exports = React.createClass({displayName: "exports",
       React.createElement("div", {className: "panel"}, 
         React.createElement("div", {className: "panel-body"}, 
           React.createElement("h5", null, "Texto dos"), 
+          React.createElement("b", null, "Español"), 
           React.createElement(TextEditor, {
             onChange: this.handleTextEs, 
             title: this.state.content.title_es, 
             text: this.state.content.text_es}
           ), 
-
+          React.createElement("hr", null), 
+          React.createElement("b", null, "Inglés"), 
           React.createElement(TextEditor, {
             onChange: this.handleTextEn, 
             title: this.state.content.title_en, 
@@ -971,8 +973,8 @@ module.exports = React.createClass({displayName: "exports",
   render: function() {
     return (
       React.createElement("div", null, 
+        React.createElement("h5", null, "Video"), 
         React.createElement("div", {className: "form-group"}, 
-          React.createElement("label", {htmlFor: ""}, "Video embed"), 
           React.createElement("input", {ref: "text", type: "text", className: "form-control", placeholder: "<iframe src=\"https://player.vimeo.com/video/115685496\" width=\"500\" height=\"209\" frameborder=\"0\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>", onChange: this.handleChange, value: this.state.text_es})
         )
       )
@@ -1208,13 +1210,14 @@ module.exports = React.createClass({displayName: "exports",
       React.createElement("div", {className: "panel"}, 
         React.createElement("div", {className: "panel-body"}, 
           React.createElement(SliderMain, null), 
-
+            React.createElement("b", null, "Español"), 
            React.createElement(TextEditor, {
               onChange: this.handleTextEs, 
               title: this.state.content.title_es, 
               text: this.state.content.text_es}
             ), 
-
+            React.createElement("hr", null), 
+          React.createElement("b", null, "Inglés"), 
             React.createElement(TextEditor, {
               onChange: this.handleTextEn, 
               title: this.state.content.title_en, 

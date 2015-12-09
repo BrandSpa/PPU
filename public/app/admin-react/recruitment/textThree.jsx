@@ -92,12 +92,14 @@ module.exports = React.createClass({
       <div className="panel">
         <div className="panel-body">
           <h5>Texto tres</h5>
+          <b>Español</b>
           <TextEditor
             onChange={this.handleTextEs}
             title={this.state.content.title_es}
             text={this.state.content.text_es}
           />
-
+          <hr/>
+          <b>Inglés</b>
           <TextEditor
             onChange={this.handleTextEn}
             title={this.state.content.title_en}

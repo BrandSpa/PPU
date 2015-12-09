@@ -61,8 +61,8 @@ module.exports = React.createClass({
   render: function() {
     return (
       <div>
+        <h5>Video</h5>
         <div className="form-group">
-          <label htmlFor="">Video embed</label>
           <input ref="text" type="text" className="form-control" placeholder='<iframe src="https://player.vimeo.com/video/115685496" width="500" height="209" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>' onChange={this.handleChange} value={this.state.text_es} />
         </div>
       </div>
