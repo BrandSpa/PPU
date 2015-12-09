@@ -20,7 +20,7 @@ var Router = Backbone.Router.extend({
       );
     },
 
-    'admin/recruitment': function() {
+    'admin/trabaje-con-nosotros': function() {
       React.render(
         <Recruitment />,
         document.getElementById('wrap')

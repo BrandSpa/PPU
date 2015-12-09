@@ -993,7 +993,7 @@ var Router = Backbone.Router.extend({
       );
     },
 
-    'admin/recruitment': function() {
+    'admin/trabaje-con-nosotros': function() {
       React.render(
         React.createElement(Recruitment, null),
         document.getElementById('wrap')
