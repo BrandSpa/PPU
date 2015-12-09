@@ -1,6 +1,7 @@
 'use strict';
 var React = require('react');
 var request = require('superagent');
+var Helmet = require('react-helmet');
 var trans = require('langs/app');
 var transLawyer = require('langs/lawyer');
 var Social = require('views/lawyer/social.jsx');
@@ -48,6 +49,15 @@ module.exports = React.createClass({
 
     return (
       <div>
+      <Helmet
+          title={"Philippi Prietocarrizosa &Uría - " + lawyer.name +" "+ lawyer.lastname}
+          meta={[
+              {"name": "description", "content": lawyer.description},
+              {"name": "og:title", "content": "Philippi Prietocarrizosa &Uría - " + lawyer.name +" "+ lawyer.lastname},
+              {"name": "og:description", "content": lawyer.description},
+              {"name": "og:image", "content": lawyerImage}
+          ]}
+        />
       <TopBar title={trans.lawyers} hidden={true} back />
 
       <div className="padding-top"></div>

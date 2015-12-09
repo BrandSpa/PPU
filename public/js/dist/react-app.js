@@ -61267,6 +61267,7 @@ module.exports = React.createClass({displayName: "exports",
 'use strict';
 var React = require('react');
 var request = require('superagent');
+var Helmet = require('react-helmet');
 var trans = require('langs/app');
 var transLawyer = require('langs/lawyer');
 var Social = require('views/lawyer/social.jsx');
@@ -61314,6 +61315,15 @@ module.exports = React.createClass({displayName: "exports",
 
     return (
       React.createElement("div", null, 
+      React.createElement(Helmet, {
+          title: "Philippi Prietocarrizosa &Uría - " + lawyer.name +" "+ lawyer.lastname, 
+          meta: [
+              {"name": "description", "content": lawyer.description},
+              {"name": "og:title", "content": "Philippi Prietocarrizosa &Uría - " + lawyer.name +" "+ lawyer.lastname},
+              {"name": "og:description", "content": lawyer.description},
+              {"name": "og:image", "content": lawyerImage}
+          ]}
+        ), 
       React.createElement(TopBar, {title: trans.lawyers, hidden: true, back: true}), 
 
       React.createElement("div", {className: "padding-top"}), 
@@ -61411,7 +61421,7 @@ module.exports = React.createClass({displayName: "exports",
 });
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/react/views/lawyer/section.jsx","/react/views/lawyer")
-},{"_process":5,"buffer":1,"langs/app":347,"langs/lawyer":351,"react":342,"superagent":343,"views/lawyer/academic.jsx":364,"views/lawyer/article.jsx":365,"views/lawyer/award.jsx":366,"views/lawyer/categories.jsx":367,"views/lawyer/conference.jsx":368,"views/lawyer/education.jsx":369,"views/lawyer/language.jsx":370,"views/lawyer/membership.jsx":371,"views/lawyer/phrase.jsx":372,"views/lawyer/post.jsx":373,"views/lawyer/professional_experience.jsx":374,"views/lawyer/social.jsx":376,"views/top_bar.jsx":393}],376:[function(require,module,exports){
+},{"_process":5,"buffer":1,"langs/app":347,"langs/lawyer":351,"react":342,"react-helmet":39,"superagent":343,"views/lawyer/academic.jsx":364,"views/lawyer/article.jsx":365,"views/lawyer/award.jsx":366,"views/lawyer/categories.jsx":367,"views/lawyer/conference.jsx":368,"views/lawyer/education.jsx":369,"views/lawyer/language.jsx":370,"views/lawyer/membership.jsx":371,"views/lawyer/phrase.jsx":372,"views/lawyer/post.jsx":373,"views/lawyer/professional_experience.jsx":374,"views/lawyer/social.jsx":376,"views/top_bar.jsx":393}],376:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 'use strict';
 var React = require('react');
