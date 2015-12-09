@@ -11,12 +11,12 @@ module.exports = React.createClass({
     }
   },
 
-
   render: function() {
     return (
       <div>
         <TopBar title={trans.recruitment} hidden />
         <div id="work-with-us">
+
           <StepForm />
         </div>
       </div>

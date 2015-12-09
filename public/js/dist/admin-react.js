@@ -594,17 +594,22 @@ module.exports = React.createClass({displayName: "exports",
     .get('/api/pages')
     .query({page: 'recruitment_one'})
     .end(function(err, res) {
-      this.setState({
-        content: res.body || {}
-      });
+      if(res.body) {
+        this.setState({
+          content: res.body || {}
+        });
+      }
     }.bind(this));
   },
 
   handleTextEs: function(values) {
+    console.log('content: ', this.state.content);
     var data = _.extend(this.state.content, {
       title_es: values.title,
       text_es: values.text
     });
+
+    console.log(data);
 
     if(this.state.content.id) {
       this.update(data);
@@ -618,6 +623,8 @@ module.exports = React.createClass({displayName: "exports",
       title_en: values.title,
       text_en: values.text
     });
+
+    console.log(data);
 
     if(this.state.content.id) {
       this.update(data);
@@ -637,6 +644,7 @@ module.exports = React.createClass({displayName: "exports",
   },
 
   store: function(data) {
+    console.log(data);
     request
       .post('/api/pages')
       .set('X-CSRF-Token', this.state.csrf)
@@ -707,9 +715,11 @@ module.exports = React.createClass({displayName: "exports",
     .get('/api/pages')
     .query({page: 'recruitment_three'})
     .end(function(err, res) {
-      this.setState({
-        content: res.body || {}
-      });
+      if(res.body) {
+        this.setState({
+          content: res.body || {}
+        });
+      }
     }.bind(this));
   },
 
@@ -819,9 +829,11 @@ module.exports = React.createClass({displayName: "exports",
     .get('/api/pages')
     .query({page: 'recruitment_two'})
     .end(function(err, res) {
-      this.setState({
-        content: res.body || {}
-      });
+      if(res.body) {
+        this.setState({
+          content: res.body || {}
+        });
+      }
     }.bind(this));
   },
 
