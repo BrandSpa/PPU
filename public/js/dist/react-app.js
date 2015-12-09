@@ -62219,7 +62219,7 @@ module.exports = React.createClass({displayName: "exports",
 
     return (
       React.createElement("div", null, 
-        React.createElement(TopBar, {title: trans.news, onFilter: this.handleFilter}), 
+        React.createElement(TopBar, {title: "El Actual Chile", onFilter: this.handleFilter}), 
 
         React.createElement("div", {id: "posts", className: "padding-top"}, 
           postNodes
@@ -62350,7 +62350,7 @@ module.exports = React.createClass({displayName: "exports",
 
     return (
       React.createElement("div", null, 
-        React.createElement(TopBar, {title: trans.news, onFilter: this.handleFilter}), 
+        React.createElement(TopBar, {title: "El Actual Colombia", onFilter: this.handleFilter}), 
 
         React.createElement("div", {id: "posts", className: "padding-top"}, 
           postNodes

@@ -108,7 +108,7 @@ module.exports = React.createClass({
 
     return (
       <div>
-        <TopBar title={trans.news} onFilter={this.handleFilter} />
+        <TopBar title="El Actual Colombia" onFilter={this.handleFilter} />
 
         <div id="posts" className="padding-top">
           {postNodes}
