@@ -29,9 +29,11 @@ module.exports = React.createClass({
     .get('/api/pages')
     .query({page: 'recruiment_video'})
     .end(function(err, res) {
-      this.setState({
-        video: res.body
-      })
+      if(res.body) {
+        this.setState({
+          video: res.body
+        })
+      }
     }.bind(this));
   },
 
@@ -40,9 +42,12 @@ module.exports = React.createClass({
     .get('/api/pages')
     .query({page: 'recruitment_one'})
     .end(function(err, res) {
-      this.setState({
-        textOne: res.body
-      })
+      if(res.body) {
+        this.setState({
+         textOne: res.body
+        })
+      }
+
     }.bind(this));
   },
 
@@ -51,9 +56,12 @@ module.exports = React.createClass({
     .get('/api/pages')
     .query({page: 'recruitment_two'})
     .end(function(err, res) {
-      this.setState({
-        textTwo: res.body
-      })
+      if(res.body) {
+        this.setState({
+          textTwo: res.body
+        })
+      }
+
     }.bind(this));
   },
 
@@ -62,9 +70,12 @@ module.exports = React.createClass({
     .get('/api/pages')
     .query({page: 'recruitment_three'})
     .end(function(err, res) {
-      this.setState({
-        textThree: res.body
-      })
+      if(res.body) {
+        this.setState({
+          textThree: res.body
+        })
+      }
+
     }.bind(this));
   },
 
