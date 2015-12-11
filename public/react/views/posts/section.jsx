@@ -93,10 +93,10 @@ module.exports = React.createClass({
 
     var postNodes =  this.state.posts.map(function(post, i) {
       if(i === 0) {
-        return <PostFeatured post={post} history={this.props.history} />
+        return <PostFeatured key={post.id} post={post} history={this.props.history} />
       }
 
-      return <Post key={post.id} post={post} history={this.props.history} />
+      return <Post key={i} post={post} history={this.props.history} />
     }.bind(this));
 
 

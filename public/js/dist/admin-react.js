@@ -9,34 +9,34 @@ module.exports = React.createClass({displayName: "exports",
   getInitialState: function() {
     return {
       title: null,
-      text: null
+      text: null,
+      textLoad: null
     }
   },
 
   handleTextChange: function(txt) {
-    var values = _.extend(this.state, {text: txt});
-
+    var values = _.extend(this.state, {text: txt, textLoad: 'Guardando...'});
     this.setState(values);
     this.props.onChange(values);
   },
 
   componentWillReceiveProps: function(props) {
-    this.setState({title: props.title, text: props.text});
+    this.setState({title: props.title, text: props.text, textLoad: null});
   },
 
   handleChange: function(txt) {
     var title = React.findDOMNode(this.refs.title).value;
-    var values = _.extend(this.state, {title: title});
+    var values = _.extend(this.state, {title: title, textLoad: 'Guardando...'});
 
     this.setState(values);
     this.props.onChange(values);
   },
 
 
-
   render: function() {
     return (
       React.createElement("div", {className: "col-lg-12 form-group"}, 
+        React.createElement("label", {htmlFor: "", styles: this.state.textLoad ? {color: '#fff'} : {color: '#111'}}, this.state.textLoad), 
         React.createElement("input", {
           ref: "title", 
           type: "text", 
@@ -1032,34 +1032,34 @@ module.exports = React.createClass({displayName: "exports",
   getInitialState: function() {
     return {
       title: null,
-      text: null
+      text: null,
+      textLoad: null
     }
   },
 
   handleTextChange: function(txt) {
-    var values = _.extend(this.state, {text: txt});
-
+    var values = _.extend(this.state, {text: txt, textLoad: 'Guardando...'});
     this.setState(values);
     this.props.onChange(values);
   },
 
   componentWillReceiveProps: function(props) {
-    this.setState({title: props.title, text: props.text});
+    this.setState({title: props.title, text: props.text, textLoad: null});
   },
 
   handleChange: function(txt) {
     var title = React.findDOMNode(this.refs.title).value;
-    var values = _.extend(this.state, {title: title});
+    var values = _.extend(this.state, {title: title, textLoad: 'Guardando...'});
 
     this.setState(values);
     this.props.onChange(values);
   },
 
 
-
   render: function() {
     return (
       React.createElement("div", {className: "col-lg-12 form-group"}, 
+        React.createElement("label", {htmlFor: "", styles: this.state.textLoad ? {color: '#fff'} : {color: '#111'}}, this.state.textLoad), 
         React.createElement("input", {
           ref: "title", 
           type: "text", 
@@ -1137,7 +1137,6 @@ module.exports = React.createClass({displayName: "exports",
         text_en: null,
         title_en: null,
       },
-
       csrf: $("meta[name='csrf-token']").attr("content")
     }
   },

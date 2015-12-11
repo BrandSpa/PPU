@@ -62121,7 +62121,7 @@ module.exports = React.createClass({displayName: "exports",
         return React.createElement(PostFeatured, {post: post, history: this.props.history})
       }
 
-      return React.createElement(Post, {key: post.id, post: post, history: this.props.history})
+      return React.createElement(Post, {key: i, post: post, history: this.props.history})
     }.bind(this));
 
 

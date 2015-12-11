@@ -18,7 +18,6 @@ module.exports = React.createClass({
         text_en: null,
         title_en: null,
       },
-
       csrf: $("meta[name='csrf-token']").attr("content")
     }
   },
