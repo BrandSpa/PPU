@@ -37,6 +37,16 @@
 		height: 155px
 		position: relative
 
+		&:hover
+			background: $color-darkBlue
+			h3
+				color: $color-green
+			p
+				color: #fff
+
+			.footer
+				background: $color-darkBlue
+
 		@media #{$mobile}
 			width: 70%
 
@@ -47,12 +57,13 @@
 			width: 65%
 			height: 100px
 		+share_social
-		
+
 		h3
-			font-size: .9em
-			line-height: 1.4em 
+			font-size: 1em
+			line-height: 1.4em
 			font-weight: bold
-			margin: 15px 0 15px 0
+			margin: 0 0 5px 0
+			color: $color-darkBlue
 
 			@media #{$mobile-xs}
 				padding: 0
@@ -61,7 +72,7 @@
 				margin: 0 0 15px 0
 			a
 				color: $color-darkBlue
-				
+
 		p
 			color: $color-gray
 			font-size: 0.9em
@@ -93,7 +104,7 @@
 			font-style: italic
 			i
 				padding-right: 3px
-			
+
 
 .experience-header
 	background: $color-darkBlue
@@ -102,11 +113,11 @@
 	width: 100%
 	margin-bottom: 30px
 	padding-left: 30px
-	
+
 	@media #{$mobile}
 		padding-left: 15px
 		padding-bottom: 15px
-	
+
 	.year
 		margin: 15px 0 7px 0
 		display: block
@@ -116,7 +127,7 @@
 		float: right
 		height: 150px
 		margin-left: 30px
-		
+
 	h1
 		padding: 0 60px 15px 0
 		margin: 0

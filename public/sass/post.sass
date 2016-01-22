@@ -41,7 +41,17 @@
 		position: relative
 		overflow: hidden
 
-		+share_social
+		&:hover
+			background: $color-darkBlue
+
+			h3
+				a
+					color: #fff
+			p
+				color: #fff
+
+			.footer
+				background: $color-darkBlue
 
 		.footer
 			position: absolute
@@ -71,7 +81,7 @@
 
 		p
 			color: #7F7F7F
-			font-size: 1em
+			font-size: .9em
 			line-height: 170%
 			margin: 10px 0 10px 0
 			@media #{$mobile}
@@ -80,18 +90,14 @@
 		.date
 			font-size: 0.8em
 			font-style: italic
-			color: #7F7F7F
+			color: #d1d1d1
 
 		.country
 			font-size: 0.8em
 			font-style: italic
-			color: #7F7F7F
-			margin-right: 10px
-
-		.date
-			font-size: 0.8em
-			color: $color-gray
-			font-style: italic
+			color: #d1d1d1
+			margin-right: 7px
+			font-weight: bold
 
 		.share
 			font-size: 0.8em
@@ -182,6 +188,8 @@
 			top: 0
 			bottom: 0
 			left: -100px
+			&:hover
+				opacity: .8
 
 
 	.content
@@ -191,8 +199,19 @@
 		height: 180px
 		float: left
 		position: relative
+		transition: all 300ms linear
 
-		+share_social
+		&:hover
+			.footer
+				transition: all 100ms linear
+				background: none,linear-gradient(180deg,rgba(0, 39, 86, 0) 0,#002756 50%)
+			h3
+				a
+					color: $color-green
+			p
+				color: #fff
+
+			background: $color-darkBlue
 
 		@media #{$mobile}
 			height: 135px
@@ -217,7 +236,7 @@
 				font-size: .9em
 
 		p
-			font-size: 1em
+			font-size: .9em
 			line-height: 150%
 			padding: 7px 0 7px 0
 			margin: 0
@@ -234,14 +253,15 @@
 
 		.date
 			font-size: 0.8em
-			color: #7F7F7F
+			color: #c1c1c1
 			font-style: italic
 
 		.country
 			font-size: 0.8em
 			font-style: italic
-			color: #7F7F7F
-			margin-right: 10px
+			color: #c1c1c1
+			margin-right: 7px
+			font-weight: bold
 
 .post-header
 	background: $color-darkBlue
@@ -391,9 +411,10 @@
 
 	.date
 		font-size: .8em
-		color: #7F7F7F
+		color: #d1d1d1
 		font-style: italic
 		padding-bottom: 15px
+
 		i
 			margin-right: 3px
 			&:nth-child(2)

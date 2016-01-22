@@ -3,6 +3,7 @@ var React = require('react');
 var Helmet = require('react-helmet');
 var request = require('superagent');
 var ShareHover = require('views/posts/share_hover.jsx');
+var PostDate = require('components/date.jsx');
 
 module.exports = React.createClass({
   openPost: function() {
@@ -26,13 +27,11 @@ module.exports = React.createClass({
         </div>
 
         <div className="content">
-          <ShareHover model={post} />
-
           <h3><a href={"/posts/" + post.slug }>{post.title}</a></h3>
-          <p>{post.excerpt.replace('&amp;', '&').substring(0, 95) + " ..."}</p>
+          <p>{post.excerpt.replace('&amp;', '&').substring(0, 300) + " ..."}</p>
           <div className="footer">
-            <span className="country"><i className="icon ion-earth"></i> {post.country}</span>
-            <span className="date"><i className="icon ion-calendar"></i> {post.date}</span>
+            <span className="country">{post.country}</span>
+            <PostDate date={post.date} />
           </div>
         </div>
 

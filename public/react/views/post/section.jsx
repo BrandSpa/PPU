@@ -19,7 +19,9 @@ module.exports = React.createClass({
     .get('/api/posts/' + this.props.params.slug)
     .end(function(err, res) {
       this.setState({post: res.body});
+
     }.bind(this));
+
   },
 
   render: function() {

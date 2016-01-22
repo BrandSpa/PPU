@@ -1,12 +1,17 @@
 'use strict';
 var React = require('react');
 var Social = require('views/experiences/social.jsx');
+var PostDate = require('components/date.jsx');
 
 module.exports = React.createClass({
   getDefaultProps: function() {
     return {
       model: {}
     }
+  },
+
+  open: function(model) {
+    this.props.history.pushState(null, '/experiencias/' + model.slug);
   },
 
   render: function() {
@@ -20,19 +25,18 @@ module.exports = React.createClass({
     }
 
     return (
-      <div className="col-sm-6 col-xs-12 experience-item">
+      <div className="col-sm-6 col-xs-12 experience-item" onClick={this.open.bind(null, model)}>
         <div className="img-container">
           {modelImage}
         </div>
 
         <div className="content">
-          <Social model={model} />
           <h3>{model.title}</h3>
           <p>{model.excerpt}</p>
 
           <div className="footer">
-            <span className="country"><i className="fa fa-globe"></i> {model.country}</span>
-            <span className="date"><i className="fa fa-calendar-o"></i> {model.date}</span>
+            <span className="country">{model.country}</span>
+            <PostDate date={model.date} />
           </div>
         </div>
       </div>

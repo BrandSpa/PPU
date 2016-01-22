@@ -3,11 +3,14 @@ var React = require('react');
 var Select = require('react-select');
 var trans = require('langs/app');
 var areas = require('langs/areas');
+var $ = require('jquery');
 
 module.exports = React.createClass({
   getInitialState: function() {
     return {
       step: 1,
+      formData: new FormData(),
+      data: {}
     }
   },
 
@@ -15,40 +18,34 @@ module.exports = React.createClass({
 
   },
 
-    next: function(e) {
+  handleChange: function(e){
+    var name = $(e.target).attr('name');
+    var val = $(e.target).val();
+    this.state.formData.append(name, val);
+  },
+
+  handleFile: function(e) {
+   var name = $(e.target).attr('name');
+    var file = $(e.target)[0].files[0];
+    this.state.formData.append(name, file);
+  },
+
+  handleSubmit: function(e) {
     e.preventDefault();
-    if(this.state.step < 3) {
-       this.setState({
-      step: this.state.step + 1
+
+    $.ajax({
+      url: "/api/curriculums",
+      type: 'POST',
+      data: this.state.formData,
+      processData: false,
+      contentType: false
+      })
+    .then(function(res) {
+      return next(res);
     });
-    }
-
-  },
-
-  prev: function(e) {
-    e.preventDefault();
-    if(this.state.step > 1) {
-      this.setState({
-        step: this.state.step - 1
-      });
-    }
-
-  },
-
-  handleChange: function(){
-    var data = {
-      name: React.findDOMNode(this.refs.name).value,
-      lastname: React.findDOMNode(this.refs.lastname).value,
-      birthday: React.findDOMNode(this.refs.birthday).value,
-      university: React.findDOMNode(this.refs.university).value,
-      graduationYear: React.findDOMNode(this.refs.graduationYear).value
-    }
   },
 
   render: function() {
-     var stepOne = false;
-    var stepTwo = false;
-    var stepThree = false;
 
     var areaOptions = areas.map(function(item) {
       return {label: item, value: item};
@@ -58,75 +55,69 @@ module.exports = React.createClass({
       return {label: item, value: item};
     });
 
-    var trueFalseOptions = ['Si', 'No'].map(function(item) {
+
+
+
+    var universityOptions = [
+    'Universidad de Los Andes',
+    'Colegio de Nuestra Señora Universidad del  Rosario',
+    'Universidad Externado de Colombia',
+    'Pontificia Universidad Javeriana',
+    'Otras / Escriba Cual. (Otro campo)'
+    ].map(function(item) {
       return {label: item, value: item};
     });
 
-   if(this.state.step == 1) {
-    stepOne = true;
-   } else if(this.state.step == 2) {
-    stepTwo = true;
-   } else if(this.state.step == 3) {
-    stepThree = true
-   }
-
     return (
       <div>
-        <form action="#" className="form form-recruitment">
-          <div className={stepOne ? "step-1 row" : "hidden"}>
+        <form action="#" className="form form-recruitment" onSubmit={this.handleSubmit}>
+          <div className="row">
             <div className="form-group col-md-6">
               <label htmlFor="">{trans.name}</label>
-              <input ref="name" type="text" className="form-control" onChange={this.handleChange}/>
+              <input name="name" type="text" className="form-control" onChange={this.handleChange}/>
             </div>
 
             <div className="form-group col-md-6">
               <label htmlFor="">{trans.lastname}</label>
-              <input ref="lastname" type="text" className="form-control" onChange={this.handleChange}/>
+              <input name="lastname" type="text" className="form-control" onChange={this.handleChange}/>
             </div>
 
             <div className="form-group col-md-6">
               <label>Fecha nacimiento</label>
-              <input ref="birthday" type="text" placeholder="02/10/1885" className="form-control" onChange={this.handleChange}/>
+              <input name="birthday" type="text" placeholder="02/10/1885" className="form-control" onChange={this.handleChange}/>
             </div>
-          </div>
 
-          <div className={stepTwo ? "step-2 row": "hidden"}>
+              <div className="form-group col-md-6">
+                <label htmlFor="">Año Egreso Pre-grado</label>
+                <input name="graduationYear" type="text" className="form-control" onChange={this.handleChange}/>
+              </div>
+
+              </div>
+
+              <div className="row">
               <div className="form-group col-md-6">
                 <label htmlFor="">Universidad</label>
-                <input ref="university" type="text"  className="form-control" onChange={this.handleChange}/>
-              </div>
-
-              <div className="form-group col-md-6">
-                <label htmlFor="">Año Egreso Pre grado</label>
-                <input ref="graduationYear" type="text" className="form-control" onChange={this.handleChange}/>
-              </div>
-
-              <div className="form-group col-md-6">
-                <label htmlFor="">Nivel inglés hablado</label>
                 <Select
-                  ref="speakEnglishLevel"
-                  options={englishOptions}
-                  placeholder="Seleccionar nivel"
+                  name="university"
+                  options={ universityOptions}
+                  placeholder="Seleccionar universidad"
                   />
               </div>
 
               <div className="form-group col-md-6">
-                <label htmlFor="">Nivel inglés escrito</label>
+                <label htmlFor="">Otra Universidad</label>
+                <input name="Another_university" type="text"  className="form-control" onChange={this.handleChange}/>
+              </div>
+              </div>
+
+              <div className="row">
+                   <div className="form-group col-md-6">
+                <label htmlFor="">Nivel inglés</label>
                 <Select
-                  ref="writeEnglishLevel"
+                  name="speakEnglishLevel"
                   options={englishOptions}
                   placeholder="Seleccionar nivel"
                   />
-              </div>
-
-              <div className="form-group col-md-6">
-                <label htmlFor="">Examen de Grado rendido</label>
-                <Select options={trueFalseOptions} />
-              </div>
-
-              <div className="form-group col-md-6">
-                  <label htmlFor="">Práctica profesional terminada</label>
-                  <Select options={trueFalseOptions} />
               </div>
 
               <div className="form-group col-md-6">
@@ -135,32 +126,44 @@ module.exports = React.createClass({
                     options={areaOptions}
                     multi={true}
                     onChange={this.onChangePreferredArea}
+                    placeholder="Seleccionar áreas"
                   />
               </div>
-            </div>
+              </div>
 
-            <div className={stepThree ? "step-3 row": "hidden"}>
+              <div className="row">
+                 <div className="form-group col-md-6">
+                <label htmlFor="">Examen de Grado rendido</label>
+                <br/>
+                <label htmlFor="grade_approved" className="checkbox-inline">
+                  <input type="radio" name="grade_approved" value="si"/>  Si
+                </label>
+
+                <label htmlFor="grade_approved" className="checkbox-inline">
+                   <input type="radio" name="grade_approved" value="no"/> No
+                </label>
+
+              </div>
+              </div>
+              <div className="row">
               <div className="form-group col-md-6">
-                <label htmlFor="">CV</label>
-                <input ref="cv" type="file"/>
+                <label htmlFor="">Currículum</label>
+                <input name="cv" name="cv" onChange={this.handleFile} type="file" />
               </div>
 
               <div className="form-group col-md-6">
                 <label htmlFor="">Certificado de ranking de egreso</label>
-                <input ref="certificationRanking" type="file"/>
+                <input name="certificationRanking" name="certificationRanking" onChange={this.handleFile} type="file" />
               </div>
 
               <div className="form-group col-md-6">
                 <label htmlFor="">Concentración de notas</label>
-                <input ref="gatheringNotes" type="file"/>
+                <input name="gatheringNotes" name="gatheringNotes" onChange={this.handleFile} type="file" />
               </div>
             </div>
-
+            <button className="btn send-cv">Enviar</button>
           </form>
-          <div className="btn-group">
-            <button onClick={this.prev} className="btn btn-primary">Atrás</button>
-            <button onClick={this.next} className="btn btn-primary">Siguiente</button>
-          </div>
+
         </div>
     );
   }

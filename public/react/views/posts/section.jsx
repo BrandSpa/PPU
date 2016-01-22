@@ -114,10 +114,6 @@ module.exports = React.createClass({
           {postNodes}
         </div>
 
-        <div id="lawyers">
-         {lawyerNodes}
-        </div>
-
         <div style={{'float': 'left', 'width': '100%'}}>
           {this.state.loaded ? <Waypoint onEnter={this.loadMore} threshold={2} /> : ''}
         </div>
