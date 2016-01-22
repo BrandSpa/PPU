@@ -62972,17 +62972,17 @@ module.exports = React.createClass({displayName: "exports",
               ), 
               React.createElement("div", {className: "row"}, 
               React.createElement("div", {className: "form-group col-md-6"}, 
-                React.createElement("label", {htmlFor: ""}, "Currículum"), 
+                React.createElement("label", {htmlFor: ""}, "Currículum (pdf, docx)"), 
                 React.createElement("input", {name: "cv", name: "cv", onChange: this.handleFile, type: "file"})
               ), 
 
               React.createElement("div", {className: "form-group col-md-6"}, 
-                React.createElement("label", {htmlFor: ""}, "Certificado de ranking de egreso"), 
+                React.createElement("label", {htmlFor: ""}, "Certificado de ranking de egreso (pdf, docx)"), 
                 React.createElement("input", {name: "certificationRanking", name: "certificationRanking", onChange: this.handleFile, type: "file"})
               ), 
 
               React.createElement("div", {className: "form-group col-md-6"}, 
-                React.createElement("label", {htmlFor: ""}, "Concentración de notas"), 
+                React.createElement("label", {htmlFor: ""}, "Concentración de notas / egreso (pdf, docx) "), 
                 React.createElement("input", {name: "gatheringNotes", name: "gatheringNotes", onChange: this.handleFile, type: "file"})
               )
             ), 

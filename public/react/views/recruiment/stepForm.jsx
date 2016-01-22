@@ -147,17 +147,17 @@ module.exports = React.createClass({
               </div>
               <div className="row">
               <div className="form-group col-md-6">
-                <label htmlFor="">Currículum</label>
+                <label htmlFor="">Currículum (pdf, docx)</label>
                 <input name="cv" name="cv" onChange={this.handleFile} type="file" />
               </div>
 
               <div className="form-group col-md-6">
-                <label htmlFor="">Certificado de ranking de egreso</label>
+                <label htmlFor="">Certificado de ranking de egreso (pdf, docx)</label>
                 <input name="certificationRanking" name="certificationRanking" onChange={this.handleFile} type="file" />
               </div>
 
               <div className="form-group col-md-6">
-                <label htmlFor="">Concentración de notas</label>
+                <label htmlFor="">Concentración de notas / egreso (pdf, docx) </label>
                 <input name="gatheringNotes" name="gatheringNotes" onChange={this.handleFile} type="file" />
               </div>
             </div>
