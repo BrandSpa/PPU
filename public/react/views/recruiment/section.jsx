@@ -100,6 +100,7 @@ module.exports = React.createClass({
 
             <h4>{this.state.textOne["title_" + getLang]}</h4>
             <div dangerouslySetInnerHTML={{__html: this.state.textOne["text_" + getLang]}} />
+            <br/>
             <StepForm />
             <h4>{this.state.textTwo["title_" + getLang]}</h4>
             <div dangerouslySetInnerHTML={{__html: this.state.textTwo["text_" + getLang]}} />

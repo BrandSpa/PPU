@@ -62243,10 +62243,6 @@ module.exports = React.createClass({displayName: "exports",
           postNodes
         ), 
 
-        React.createElement("div", {id: "lawyers"}, 
-         lawyerNodes
-        ), 
-
         React.createElement("div", {style: {'float': 'left', 'width': '100%'}}, 
           this.state.loaded ? React.createElement(Waypoint, {onEnter: this.loadMore, threshold: 2}) : ''
         )
@@ -62811,6 +62807,7 @@ module.exports = React.createClass({displayName: "exports",
 
             React.createElement("h4", null, this.state.textOne["title_" + getLang]), 
             React.createElement("div", {dangerouslySetInnerHTML: {__html: this.state.textOne["text_" + getLang]}}), 
+            React.createElement("br", null), 
             React.createElement(StepForm, null), 
             React.createElement("h4", null, this.state.textTwo["title_" + getLang]), 
             React.createElement("div", {dangerouslySetInnerHTML: {__html: this.state.textTwo["text_" + getLang]}}), 
