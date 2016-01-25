@@ -27,6 +27,20 @@ class Api::CurriculumsController < ApplicationController
 		end
 
 		def curriculum_params
-			params.require(:fields).permit(:country, :name, :file_name)
+			params.permit(
+				:country,
+				:name,
+				:lastname,
+				:file_name,
+				:birthday,
+				:graduation_year,
+				:university_colombia,
+				:university_chile,
+				:english,
+				:areas,
+				:grade_approved,
+				:certification_ranking,
+				:gathering_notes
+			)
 		end
 end

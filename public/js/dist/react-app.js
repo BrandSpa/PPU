@@ -62701,16 +62701,19 @@ module.exports = React.createClass({displayName: "exports",
       gatheringNotes: null,
      },
      selects: {
-      englishLevel: null,
+      english: null,
       university: null,
+      areas: null
      },
       data: {}
     }
   },
 
-  onChangePreferredArea: function(values) {
-
-  },
+handleSelect: function(e, a) {
+  var obj = {};
+  obj[e] = a;
+  this.setState({selects: _.extend(this.state.selects, obj)});
+},
 
   handleChange: function(e){
     var name = $(e.target).attr('name');
@@ -62731,6 +62734,12 @@ module.exports = React.createClass({displayName: "exports",
     e.preventDefault();
     var form = $(e.target)[0];
     var formData = new FormData(form);
+    $.ajaxSetup({
+      headers: {
+        'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+      }
+    });
+
 
     $.ajax({
       url: "/api/curriculums",
@@ -62745,7 +62754,6 @@ module.exports = React.createClass({displayName: "exports",
   },
 
   render: function() {
-
     var areaOptions = areas.map(function(item) {
       return {label: item, value: item};
     });
@@ -62755,11 +62763,11 @@ module.exports = React.createClass({displayName: "exports",
     });
 
     var universityOptions = [
-    'Universidad de Los Andes',
-    'Colegio de Nuestra Señora Universidad del  Rosario',
-    'Universidad Externado de Colombia',
-    'Pontificia Universidad Javeriana',
-    'Otras / Escriba Cual. (Otro campo)'
+      'Universidad de Los Andes',
+      'Colegio de Nuestra Señora Universidad del  Rosario',
+      'Universidad Externado de Colombia',
+      'Pontificia Universidad Javeriana',
+      'Otras / Escriba Cual. (Otro campo)'
     ].map(function(item) {
       return {label: item, value: item};
     });
@@ -62770,22 +62778,38 @@ module.exports = React.createClass({displayName: "exports",
           React.createElement("div", {className: "row"}, 
             React.createElement("div", {className: "form-group col-md-6"}, 
               React.createElement("label", {htmlFor: ""}, trans.name), 
-              React.createElement("input", {name: "name", type: "text", className: "form-control", onChange: this.handleChange})
+              React.createElement("input", {
+                name: "name", 
+                type: "text", 
+                className: "form-control", onChange: this.handleChange})
             ), 
 
             React.createElement("div", {className: "form-group col-md-6"}, 
               React.createElement("label", {htmlFor: ""}, trans.lastname), 
-              React.createElement("input", {name: "lastname", type: "text", className: "form-control", onChange: this.handleChange})
+              React.createElement("input", {
+              name: "lastname", 
+              type: "text", 
+              className: "form-control", 
+              onChange: this.handleChange})
             ), 
 
             React.createElement("div", {className: "form-group col-md-6"}, 
               React.createElement("label", null, "Fecha nacimiento"), 
-              React.createElement("input", {name: "birthday", type: "text", placeholder: "02/10/1885", className: "form-control", onChange: this.handleChange})
+              React.createElement("input", {
+              name: "birthday", 
+              type: "text", 
+              placeholder: "02/10/1885", 
+              className: "form-control", 
+              onChange: this.handleChange})
             ), 
 
               React.createElement("div", {className: "form-group col-md-6"}, 
                 React.createElement("label", {htmlFor: ""}, "Año Egreso Pre-grado"), 
-                React.createElement("input", {name: "graduationYear", type: "text", className: "form-control", onChange: this.handleChange})
+                React.createElement("input", {
+                  name: "graduation_year", 
+                  type: "text", 
+                  className: "form-control", 
+                  onChange: this.handleChange})
               )
 
               ), 
@@ -62794,15 +62818,21 @@ module.exports = React.createClass({displayName: "exports",
               React.createElement("div", {className: "form-group col-md-6"}, 
                 React.createElement("label", {htmlFor: ""}, "Universidad *Aplica Colombia"), 
                 React.createElement(Select, {
-                  name: "university", 
+                  name: "university_colombia", 
                   options:  universityOptions, 
-                  placeholder: "Seleccionar universidad"}
+                  placeholder: "Seleccionar universidad", 
+                  onChange: this.handleSelect.bind(null, "university"), 
+                  value: this.state.selects.university}
                   )
               ), 
 
               React.createElement("div", {className: "form-group col-md-6"}, 
                 React.createElement("label", {htmlFor: ""}, "Universidad *Aplica Chile"), 
-                React.createElement("input", {name: "Another_university", type: "text", className: "form-control", onChange: this.handleChange})
+                React.createElement("input", {
+                  name: "university_chile", 
+                  type: "text", 
+                  className: "form-control", 
+                  onChange: this.handleChange})
               )
               ), 
 
@@ -62810,19 +62840,24 @@ module.exports = React.createClass({displayName: "exports",
                    React.createElement("div", {className: "form-group col-md-6"}, 
                 React.createElement("label", {htmlFor: ""}, "Nivel inglés"), 
                 React.createElement(Select, {
-                  name: "englishLevel", 
+                  name: "english", 
                   options: englishOptions, 
-                  placeholder: "Seleccionar nivel"}
+                  placeholder: "Seleccionar nivel", 
+                  onChange: this.handleSelect.bind(null, "english"), 
+                  value: this.state.selects.english}
                   )
               ), 
 
               React.createElement("div", {className: "form-group col-md-6"}, 
                   React.createElement("label", {htmlFor: ""}, "Áreas de Preferencia"), 
                   React.createElement(Select, {
+                    name: "areas", 
                     options: areaOptions, 
                     multi: true, 
                     onChange: this.onChangePreferredArea, 
-                    placeholder: "Seleccionar áreas"}
+                    placeholder: "Seleccionar áreas", 
+                    onChange: this.handleSelect.bind(null, "areas"), 
+                    value: this.state.selects.areas}
                   )
               )
               ), 
@@ -62841,20 +62876,33 @@ module.exports = React.createClass({displayName: "exports",
 
               )
               ), 
+
               React.createElement("div", {className: "row"}, 
               React.createElement("div", {className: "form-group col-md-6"}, 
                 React.createElement("label", {htmlFor: ""}, "Currículum (pdf, docx)"), 
-                React.createElement("input", {name: "cv", ref: "cv", onChange: this.handleFile, type: "file"})
+                React.createElement("input", {
+                  name: "file_name", 
+                  ref: "cv", 
+                  onChange: this.handleFile, 
+                  type: "file"})
               ), 
 
               React.createElement("div", {className: "form-group col-md-6"}, 
                 React.createElement("label", {htmlFor: ""}, "Certificado de ranking de egreso (pdf, docx)"), 
-                React.createElement("input", {name: "certificationRanking", ref: "certificationRanking", onChange: this.handleFile, type: "file"})
+                React.createElement("input", {
+                name: "certification_ranking", 
+                ref: "certificationRanking", 
+                onChange: this.handleFile, 
+                type: "file"})
               ), 
 
               React.createElement("div", {className: "form-group col-md-6"}, 
                 React.createElement("label", {htmlFor: ""}, "Concentración de notas / egreso (pdf, docx) "), 
-                React.createElement("input", {name: "gatheringNotes", ref: "gatheringNotes", onChange: this.handleFile, type: "file"})
+                React.createElement("input", {
+                  name: "gathering_notes", 
+                  ref: "gatheringNotes", 
+                  onChange: this.handleFile, 
+                  type: "file"})
               )
             ), 
             React.createElement("button", {className: "btn send-cv"}, "Enviar")

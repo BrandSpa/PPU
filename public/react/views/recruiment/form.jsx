@@ -15,16 +15,19 @@ module.exports = React.createClass({
       gatheringNotes: null,
      },
      selects: {
-      englishLevel: null,
+      english: null,
       university: null,
+      areas: null
      },
       data: {}
     }
   },
 
-  onChangePreferredArea: function(values) {
-
-  },
+handleSelect: function(e, a) {
+  var obj = {};
+  obj[e] = a;
+  this.setState({selects: _.extend(this.state.selects, obj)});
+},
 
   handleChange: function(e){
     var name = $(e.target).attr('name');
@@ -45,6 +48,12 @@ module.exports = React.createClass({
     e.preventDefault();
     var form = $(e.target)[0];
     var formData = new FormData(form);
+    $.ajaxSetup({
+      headers: {
+        'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+      }
+    });
+
 
     $.ajax({
       url: "/api/curriculums",
@@ -59,7 +68,6 @@ module.exports = React.createClass({
   },
 
   render: function() {
-
     var areaOptions = areas.map(function(item) {
       return {label: item, value: item};
     });
@@ -69,11 +77,11 @@ module.exports = React.createClass({
     });
 
     var universityOptions = [
-    'Universidad de Los Andes',
-    'Colegio de Nuestra Señora Universidad del  Rosario',
-    'Universidad Externado de Colombia',
-    'Pontificia Universidad Javeriana',
-    'Otras / Escriba Cual. (Otro campo)'
+      'Universidad de Los Andes',
+      'Colegio de Nuestra Señora Universidad del  Rosario',
+      'Universidad Externado de Colombia',
+      'Pontificia Universidad Javeriana',
+      'Otras / Escriba Cual. (Otro campo)'
     ].map(function(item) {
       return {label: item, value: item};
     });
@@ -84,22 +92,38 @@ module.exports = React.createClass({
           <div className="row">
             <div className="form-group col-md-6">
               <label htmlFor="">{trans.name}</label>
-              <input name="name" type="text" className="form-control" onChange={this.handleChange}/>
+              <input
+                name="name"
+                type="text"
+                className="form-control" onChange={this.handleChange}/>
             </div>
 
             <div className="form-group col-md-6">
               <label htmlFor="">{trans.lastname}</label>
-              <input name="lastname" type="text" className="form-control" onChange={this.handleChange}/>
+              <input
+              name="lastname"
+              type="text"
+              className="form-control"
+              onChange={this.handleChange}/>
             </div>
 
             <div className="form-group col-md-6">
               <label>Fecha nacimiento</label>
-              <input name="birthday" type="text" placeholder="02/10/1885" className="form-control" onChange={this.handleChange}/>
+              <input
+              name="birthday"
+              type="text"
+              placeholder="02/10/1885"
+              className="form-control"
+              onChange={this.handleChange}/>
             </div>
 
               <div className="form-group col-md-6">
                 <label htmlFor="">Año Egreso Pre-grado</label>
-                <input name="graduationYear" type="text" className="form-control" onChange={this.handleChange}/>
+                <input
+                  name="graduation_year"
+                  type="text"
+                  className="form-control"
+                  onChange={this.handleChange}/>
               </div>
 
               </div>
@@ -108,15 +132,21 @@ module.exports = React.createClass({
               <div className="form-group col-md-6">
                 <label htmlFor="">Universidad *Aplica Colombia</label>
                 <Select
-                  name="university"
+                  name="university_colombia"
                   options={ universityOptions}
                   placeholder="Seleccionar universidad"
+                  onChange={this.handleSelect.bind(null, "university")}
+                  value={this.state.selects.university}
                   />
               </div>
 
               <div className="form-group col-md-6">
                 <label htmlFor="">Universidad *Aplica Chile</label>
-                <input name="Another_university" type="text"  className="form-control" onChange={this.handleChange}/>
+                <input
+                  name="university_chile"
+                  type="text"
+                  className="form-control"
+                  onChange={this.handleChange}/>
               </div>
               </div>
 
@@ -124,19 +154,24 @@ module.exports = React.createClass({
                    <div className="form-group col-md-6">
                 <label htmlFor="">Nivel inglés</label>
                 <Select
-                  name="englishLevel"
+                  name="english"
                   options={englishOptions}
                   placeholder="Seleccionar nivel"
+                  onChange={this.handleSelect.bind(null, "english")}
+                  value={this.state.selects.english}
                   />
               </div>
 
               <div className="form-group col-md-6">
                   <label htmlFor="">Áreas de Preferencia</label>
                   <Select
+                    name="areas"
                     options={areaOptions}
                     multi={true}
                     onChange={this.onChangePreferredArea}
                     placeholder="Seleccionar áreas"
+                    onChange={this.handleSelect.bind(null, "areas")}
+                    value={this.state.selects.areas}
                   />
               </div>
               </div>
@@ -155,20 +190,33 @@ module.exports = React.createClass({
 
               </div>
               </div>
+
               <div className="row">
               <div className="form-group col-md-6">
                 <label htmlFor="">Currículum (pdf, docx)</label>
-                <input name="cv" ref="cv" onChange={this.handleFile} type="file" />
+                <input
+                  name="file_name"
+                  ref="cv"
+                  onChange={this.handleFile}
+                  type="file" />
               </div>
 
               <div className="form-group col-md-6">
                 <label htmlFor="">Certificado de ranking de egreso (pdf, docx)</label>
-                <input name="certificationRanking" ref="certificationRanking" onChange={this.handleFile} type="file" />
+                <input
+                name="certification_ranking"
+                ref="certificationRanking"
+                onChange={this.handleFile}
+                type="file" />
               </div>
 
               <div className="form-group col-md-6">
                 <label htmlFor="">Concentración de notas / egreso (pdf, docx) </label>
-                <input name="gatheringNotes" ref="gatheringNotes" onChange={this.handleFile} type="file" />
+                <input
+                  name="gathering_notes"
+                  ref="gatheringNotes"
+                  onChange={this.handleFile}
+                  type="file" />
               </div>
             </div>
             <button className="btn send-cv">Enviar</button>

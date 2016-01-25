@@ -125,11 +125,64 @@
                         <table>
                             <tr>
                                 <td align="center">
+                                <h4>Nombre</h4>
                                   <p>
-                                    <%= @curriculum.name %> - <%= @curriculum.country %>
+                                    <%= @curriculum.name %> <%= @curriculum.lastname %>
                                   </p>
+
+                                  <h4>Fecha nacimiento</h4>
+                                  <p>
+                                    <%= @curriculum.birthday %>
+                                  </p>
+
+                                  <h4>Año Egreso Pre-grado</h4>
+                                  <p>
+                                    <%= @curriculum.graduation_year %>
+                                  </p>
+
+                                  <h4>Universidad Colombia</h4>
+                                  <p>
+                                    <%= @curriculum.university_colombia %>
+                                  </p>
+
+                                  <h4>Universidad Chile</h4>
+                                  <p>
+                                    <%= @curriculum.university_chile %>
+                                  </p>
+
+                                  <h4>Inglés</h4>
+                                  <p>
+                                    <%= @curriculum.english %>
+                                  </p>
+                                  <h4>Áreas de Preferencia</h4>
+                                  <p>
+                                    <%= @curriculum.areas %>
+                                  </p>
+
+                                  <h4>Examen de Grado rendido</h4>
+                                  <p>
+                                    <%= @curriculum.grade_approved %>
+                                  </p>
+
+                                  <h4>CV</h4>
+                                  <p>
+                                    <a href="<%= @curriculum.file_name.url %>" class="button">Descargar</a>
+                                  </p>
+
+                                  <h4>Certificado de ranking de egreso</h4>
+                                  <p>
+                                    <a href="<%= @curriculum.certification_ranking.url %>" class="button">Descargar</a>
+                                  </p>
+
+
+                                  <h4>Concentración de notas / egreso</h4>
+                                  <p>
+                                    <a href="<%= @curriculum.gathering_notes.url %>" class="button">Descargar</a>
+                                  </p>
+
+
                                     <p>
-                                        <a href="<%= @curriculum.file_name.url %>" class="button">Descargar</a>
+
                                     </p>
                                 </td>
                             </tr>
