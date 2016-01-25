@@ -6,6 +6,7 @@ var Categories = require('views/post/categories.jsx');
 var request = require('superagent');
 var Social = require('views/post/social.jsx');
 var TopBar = require('views/top_bar.jsx');
+var PostDate = require('components/date.jsx');
 
 module.exports = React.createClass({
   getInitialState: function() {
@@ -55,7 +56,7 @@ module.exports = React.createClass({
       <div id="post-detail">
       <div className="post-header">
         <div className="thumb-container">
-          <img  src={postImage} alt={ post.title } className="hidden-xs" />
+          <img  src={postImage} alt={ post.title }/>
         </div>
 
         <div className="data">
@@ -68,7 +69,7 @@ module.exports = React.createClass({
 
   <div className="content">
     <div className="date">
-      <i className="fa fa-globe"></i> {post.country } <i className="fa fa-calendar-o"></i> {post.date}
+      {post.country }  <PostDate date={post.date} />
     </div>
     <div dangerouslySetInnerHTML={{__html: post.content}} />
   </div>

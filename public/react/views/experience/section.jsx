@@ -92,7 +92,6 @@ module.exports = React.createClass({
         <div id="experience" className="padding-top">
           <div className="experience-header">
             <img src={model.img_name.url} alt={model.name} />
-            <span className="year">{model.country} - {moment(model.date).format('YYYY')}</span>
             <h1>{model.title}</h1>
             <span className="company-name">{model.company_name}</span>
             <span className="company-web">
@@ -101,6 +100,7 @@ module.exports = React.createClass({
           </div>
 
           <div className="content">
+           <span className="year">{model.country} - {moment(model.date).format('YYYY')}</span>
             <div dangerouslySetInnerHTML={{__html: model.content}} />
           </div>
 
