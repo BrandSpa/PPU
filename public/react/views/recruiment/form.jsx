@@ -4,12 +4,20 @@ var Select = require('react-select');
 var trans = require('langs/app');
 var areas = require('langs/areas');
 var $ = require('jquery');
+var _ = require('lodash');
 
 module.exports = React.createClass({
   getInitialState: function() {
     return {
-      step: 1,
-      formData: new FormData(),
+     files: {
+      cv: null,
+      certificationRanking: null,
+      gatheringNotes: null,
+     },
+     selects: {
+      englishLevel: null,
+      university: null,
+     },
       data: {}
     }
   },
@@ -21,22 +29,27 @@ module.exports = React.createClass({
   handleChange: function(e){
     var name = $(e.target).attr('name');
     var val = $(e.target).val();
-    this.state.formData.append(name, val);
+
   },
 
   handleFile: function(e) {
    var name = $(e.target).attr('name');
     var file = $(e.target)[0].files[0];
-    this.state.formData.append(name, file);
+    var obj = {};
+    obj[name] = file;
+
+    this.setState({files: _.extend(this.state.files, obj)});
   },
 
   handleSubmit: function(e) {
     e.preventDefault();
+    var form = $(e.target)[0];
+    var formData = new FormData(form);
 
     $.ajax({
       url: "/api/curriculums",
       type: 'POST',
-      data: this.state.formData,
+      data: formData,
       processData: false,
       contentType: false
       })
@@ -54,9 +67,6 @@ module.exports = React.createClass({
     var englishOptions = ['basico', 'intermedio', 'avanzado'].map(function(item) {
       return {label: item, value: item};
     });
-
-
-
 
     var universityOptions = [
     'Universidad de Los Andes',
@@ -96,7 +106,7 @@ module.exports = React.createClass({
 
               <div className="row">
               <div className="form-group col-md-6">
-                <label htmlFor="">Universidad</label>
+                <label htmlFor="">Universidad *Aplica Colombia</label>
                 <Select
                   name="university"
                   options={ universityOptions}
@@ -105,7 +115,7 @@ module.exports = React.createClass({
               </div>
 
               <div className="form-group col-md-6">
-                <label htmlFor="">Otra Universidad</label>
+                <label htmlFor="">Universidad *Aplica Chile</label>
                 <input name="Another_university" type="text"  className="form-control" onChange={this.handleChange}/>
               </div>
               </div>
@@ -114,7 +124,7 @@ module.exports = React.createClass({
                    <div className="form-group col-md-6">
                 <label htmlFor="">Nivel inglés</label>
                 <Select
-                  name="speakEnglishLevel"
+                  name="englishLevel"
                   options={englishOptions}
                   placeholder="Seleccionar nivel"
                   />
@@ -148,17 +158,17 @@ module.exports = React.createClass({
               <div className="row">
               <div className="form-group col-md-6">
                 <label htmlFor="">Currículum (pdf, docx)</label>
-                <input name="cv" name="cv" onChange={this.handleFile} type="file" />
+                <input name="cv" ref="cv" onChange={this.handleFile} type="file" />
               </div>
 
               <div className="form-group col-md-6">
                 <label htmlFor="">Certificado de ranking de egreso (pdf, docx)</label>
-                <input name="certificationRanking" name="certificationRanking" onChange={this.handleFile} type="file" />
+                <input name="certificationRanking" ref="certificationRanking" onChange={this.handleFile} type="file" />
               </div>
 
               <div className="form-group col-md-6">
                 <label htmlFor="">Concentración de notas / egreso (pdf, docx) </label>
-                <input name="gatheringNotes" name="gatheringNotes" onChange={this.handleFile} type="file" />
+                <input name="gatheringNotes" ref="gatheringNotes" onChange={this.handleFile} type="file" />
               </div>
             </div>
             <button className="btn send-cv">Enviar</button>

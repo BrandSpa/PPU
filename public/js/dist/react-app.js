@@ -59965,7 +59965,7 @@ React.render((
 ), document.body);
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/react/app.js","/react")
-},{"_process":37,"buffer":2,"history":18,"jquery":33,"react":343,"react-router":135,"views/app.jsx":355,"views/area/section.jsx":356,"views/areas/section.jsx":358,"views/experience/section.jsx":359,"views/experiences/section.jsx":361,"views/lawyer/section.jsx":377,"views/lawyers/section.jsx":380,"views/post/section.jsx":384,"views/posts/the_actual.jsx":390,"views/posts/the_actual_colombia.jsx":391,"views/probono/section.jsx":392,"views/recruiment/section.jsx":393,"views/us/section.jsx":399}],348:[function(require,module,exports){
+},{"_process":37,"buffer":2,"history":18,"jquery":33,"react":343,"react-router":135,"views/app.jsx":355,"views/area/section.jsx":356,"views/areas/section.jsx":358,"views/experience/section.jsx":359,"views/experiences/section.jsx":361,"views/lawyer/section.jsx":377,"views/lawyers/section.jsx":380,"views/post/section.jsx":384,"views/posts/the_actual.jsx":390,"views/posts/the_actual_colombia.jsx":391,"views/probono/section.jsx":392,"views/recruiment/section.jsx":394,"views/us/section.jsx":399}],348:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 'use strict';
 var React = require('react');
@@ -62686,11 +62686,195 @@ module.exports = React.createClass({displayName: "exports",
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 'use strict';
 var React = require('react');
+var Select = require('react-select');
+var trans = require('langs/app');
+var areas = require('langs/areas');
+var $ = require('jquery');
+var _ = require('lodash');
+
+module.exports = React.createClass({displayName: "exports",
+  getInitialState: function() {
+    return {
+     files: {
+      cv: null,
+      certificationRanking: null,
+      gatheringNotes: null,
+     },
+     selects: {
+      englishLevel: null,
+      university: null,
+     },
+      data: {}
+    }
+  },
+
+  onChangePreferredArea: function(values) {
+
+  },
+
+  handleChange: function(e){
+    var name = $(e.target).attr('name');
+    var val = $(e.target).val();
+
+  },
+
+  handleFile: function(e) {
+   var name = $(e.target).attr('name');
+    var file = $(e.target)[0].files[0];
+    var obj = {};
+    obj[name] = file;
+
+    this.setState({files: _.extend(this.state.files, obj)});
+  },
+
+  handleSubmit: function(e) {
+    e.preventDefault();
+    var form = $(e.target)[0];
+    var formData = new FormData(form);
+
+    $.ajax({
+      url: "/api/curriculums",
+      type: 'POST',
+      data: formData,
+      processData: false,
+      contentType: false
+      })
+    .then(function(res) {
+      return next(res);
+    });
+  },
+
+  render: function() {
+
+    var areaOptions = areas.map(function(item) {
+      return {label: item, value: item};
+    });
+
+    var englishOptions = ['basico', 'intermedio', 'avanzado'].map(function(item) {
+      return {label: item, value: item};
+    });
+
+    var universityOptions = [
+    'Universidad de Los Andes',
+    'Colegio de Nuestra Señora Universidad del  Rosario',
+    'Universidad Externado de Colombia',
+    'Pontificia Universidad Javeriana',
+    'Otras / Escriba Cual. (Otro campo)'
+    ].map(function(item) {
+      return {label: item, value: item};
+    });
+
+    return (
+      React.createElement("div", null, 
+        React.createElement("form", {action: "#", className: "form form-recruitment", onSubmit: this.handleSubmit}, 
+          React.createElement("div", {className: "row"}, 
+            React.createElement("div", {className: "form-group col-md-6"}, 
+              React.createElement("label", {htmlFor: ""}, trans.name), 
+              React.createElement("input", {name: "name", type: "text", className: "form-control", onChange: this.handleChange})
+            ), 
+
+            React.createElement("div", {className: "form-group col-md-6"}, 
+              React.createElement("label", {htmlFor: ""}, trans.lastname), 
+              React.createElement("input", {name: "lastname", type: "text", className: "form-control", onChange: this.handleChange})
+            ), 
+
+            React.createElement("div", {className: "form-group col-md-6"}, 
+              React.createElement("label", null, "Fecha nacimiento"), 
+              React.createElement("input", {name: "birthday", type: "text", placeholder: "02/10/1885", className: "form-control", onChange: this.handleChange})
+            ), 
+
+              React.createElement("div", {className: "form-group col-md-6"}, 
+                React.createElement("label", {htmlFor: ""}, "Año Egreso Pre-grado"), 
+                React.createElement("input", {name: "graduationYear", type: "text", className: "form-control", onChange: this.handleChange})
+              )
+
+              ), 
+
+              React.createElement("div", {className: "row"}, 
+              React.createElement("div", {className: "form-group col-md-6"}, 
+                React.createElement("label", {htmlFor: ""}, "Universidad *Aplica Colombia"), 
+                React.createElement(Select, {
+                  name: "university", 
+                  options:  universityOptions, 
+                  placeholder: "Seleccionar universidad"}
+                  )
+              ), 
+
+              React.createElement("div", {className: "form-group col-md-6"}, 
+                React.createElement("label", {htmlFor: ""}, "Universidad *Aplica Chile"), 
+                React.createElement("input", {name: "Another_university", type: "text", className: "form-control", onChange: this.handleChange})
+              )
+              ), 
+
+              React.createElement("div", {className: "row"}, 
+                   React.createElement("div", {className: "form-group col-md-6"}, 
+                React.createElement("label", {htmlFor: ""}, "Nivel inglés"), 
+                React.createElement(Select, {
+                  name: "englishLevel", 
+                  options: englishOptions, 
+                  placeholder: "Seleccionar nivel"}
+                  )
+              ), 
+
+              React.createElement("div", {className: "form-group col-md-6"}, 
+                  React.createElement("label", {htmlFor: ""}, "Áreas de Preferencia"), 
+                  React.createElement(Select, {
+                    options: areaOptions, 
+                    multi: true, 
+                    onChange: this.onChangePreferredArea, 
+                    placeholder: "Seleccionar áreas"}
+                  )
+              )
+              ), 
+
+              React.createElement("div", {className: "row"}, 
+                 React.createElement("div", {className: "form-group col-md-6"}, 
+                React.createElement("label", {htmlFor: ""}, "Examen de Grado rendido"), 
+                React.createElement("br", null), 
+                React.createElement("label", {htmlFor: "grade_approved", className: "checkbox-inline"}, 
+                  React.createElement("input", {type: "radio", name: "grade_approved", value: "si"}), "  Si"
+                ), 
+
+                React.createElement("label", {htmlFor: "grade_approved", className: "checkbox-inline"}, 
+                   React.createElement("input", {type: "radio", name: "grade_approved", value: "no"}), " No"
+                )
+
+              )
+              ), 
+              React.createElement("div", {className: "row"}, 
+              React.createElement("div", {className: "form-group col-md-6"}, 
+                React.createElement("label", {htmlFor: ""}, "Currículum (pdf, docx)"), 
+                React.createElement("input", {name: "cv", ref: "cv", onChange: this.handleFile, type: "file"})
+              ), 
+
+              React.createElement("div", {className: "form-group col-md-6"}, 
+                React.createElement("label", {htmlFor: ""}, "Certificado de ranking de egreso (pdf, docx)"), 
+                React.createElement("input", {name: "certificationRanking", ref: "certificationRanking", onChange: this.handleFile, type: "file"})
+              ), 
+
+              React.createElement("div", {className: "form-group col-md-6"}, 
+                React.createElement("label", {htmlFor: ""}, "Concentración de notas / egreso (pdf, docx) "), 
+                React.createElement("input", {name: "gatheringNotes", ref: "gatheringNotes", onChange: this.handleFile, type: "file"})
+              )
+            ), 
+            React.createElement("button", {className: "btn send-cv"}, "Enviar")
+          )
+
+        )
+    );
+  }
+});
+
+}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/react/views/recruiment/form.jsx","/react/views/recruiment")
+},{"_process":37,"buffer":2,"jquery":33,"langs/app":349,"langs/areas":351,"lodash":34,"react":343,"react-select":161}],394:[function(require,module,exports){
+(function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
+'use strict';
+var React = require('react');
 var Helmet = require('react-helmet');
 var TopBar = require('views/top_bar.jsx');
 var trans = require('langs/app');
 var areas = require('langs/areas');
-var StepForm = require('views/recruiment/stepForm.jsx');
+var Form = require('views/recruiment/form.jsx');
 var request = require('superagent');
 var getLang = require('get_lang');
 
@@ -62780,19 +62964,22 @@ module.exports = React.createClass({displayName: "exports",
 
         React.createElement(TopBar, {title: trans.recruitment, hidden: true}), 
         React.createElement("div", {id: "work-with-us"}, 
-
           React.createElement("div", {dangerouslySetInnerHTML: {__html: this.state.video["text_es"]}}), 
-          React.createElement("div", {className: "col-lg-12"}, 
+            React.createElement("div", {className: "col-lg-12"}, 
 
-            React.createElement("h4", null, this.state.textOne["title_" + getLang]), 
-            React.createElement("div", {dangerouslySetInnerHTML: {__html: this.state.textOne["text_" + getLang]}}), 
-            React.createElement("br", null), 
-            React.createElement(StepForm, null), 
-            React.createElement("h4", null, this.state.textTwo["title_" + getLang]), 
-            React.createElement("div", {dangerouslySetInnerHTML: {__html: this.state.textTwo["text_" + getLang]}}), 
-            React.createElement("h4", null, this.state.textThree["title_" + getLang]), 
-            React.createElement("div", {dangerouslySetInnerHTML: {__html: this.state.textThree["text_" + getLang]}})
-          )
+              React.createElement("h4", null, this.state.textOne["title_" + getLang]), 
+              React.createElement("div", {dangerouslySetInnerHTML: {__html: this.state.textOne["text_" + getLang]}}), 
+
+              React.createElement("br", null), 
+
+              React.createElement(Form, null), 
+
+              React.createElement("h4", null, this.state.textTwo["title_" + getLang]), 
+              React.createElement("div", {dangerouslySetInnerHTML: {__html: this.state.textTwo["text_" + getLang]}}), 
+
+              React.createElement("h4", null, this.state.textThree["title_" + getLang]), 
+              React.createElement("div", {dangerouslySetInnerHTML: {__html: this.state.textThree["text_" + getLang]}})
+            )
         )
       )
     );
@@ -62800,181 +62987,7 @@ module.exports = React.createClass({displayName: "exports",
 });
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/react/views/recruiment/section.jsx","/react/views/recruiment")
-},{"_process":37,"buffer":2,"get_lang":354,"langs/app":349,"langs/areas":351,"react":343,"react-helmet":40,"superagent":344,"views/recruiment/stepForm.jsx":394,"views/top_bar.jsx":395}],394:[function(require,module,exports){
-(function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
-'use strict';
-var React = require('react');
-var Select = require('react-select');
-var trans = require('langs/app');
-var areas = require('langs/areas');
-var $ = require('jquery');
-
-module.exports = React.createClass({displayName: "exports",
-  getInitialState: function() {
-    return {
-      step: 1,
-      formData: new FormData(),
-      data: {}
-    }
-  },
-
-  onChangePreferredArea: function(values) {
-
-  },
-
-  handleChange: function(e){
-    var name = $(e.target).attr('name');
-    var val = $(e.target).val();
-    this.state.formData.append(name, val);
-  },
-
-  handleFile: function(e) {
-   var name = $(e.target).attr('name');
-    var file = $(e.target)[0].files[0];
-    this.state.formData.append(name, file);
-  },
-
-  handleSubmit: function(e) {
-    e.preventDefault();
-
-    $.ajax({
-      url: "/api/curriculums",
-      type: 'POST',
-      data: this.state.formData,
-      processData: false,
-      contentType: false
-      })
-    .then(function(res) {
-      return next(res);
-    });
-  },
-
-  render: function() {
-
-    var areaOptions = areas.map(function(item) {
-      return {label: item, value: item};
-    });
-
-    var englishOptions = ['basico', 'intermedio', 'avanzado'].map(function(item) {
-      return {label: item, value: item};
-    });
-
-
-
-
-    var universityOptions = [
-    'Universidad de Los Andes',
-    'Colegio de Nuestra Señora Universidad del  Rosario',
-    'Universidad Externado de Colombia',
-    'Pontificia Universidad Javeriana',
-    'Otras / Escriba Cual. (Otro campo)'
-    ].map(function(item) {
-      return {label: item, value: item};
-    });
-
-    return (
-      React.createElement("div", null, 
-        React.createElement("form", {action: "#", className: "form form-recruitment", onSubmit: this.handleSubmit}, 
-          React.createElement("div", {className: "row"}, 
-            React.createElement("div", {className: "form-group col-md-6"}, 
-              React.createElement("label", {htmlFor: ""}, trans.name), 
-              React.createElement("input", {name: "name", type: "text", className: "form-control", onChange: this.handleChange})
-            ), 
-
-            React.createElement("div", {className: "form-group col-md-6"}, 
-              React.createElement("label", {htmlFor: ""}, trans.lastname), 
-              React.createElement("input", {name: "lastname", type: "text", className: "form-control", onChange: this.handleChange})
-            ), 
-
-            React.createElement("div", {className: "form-group col-md-6"}, 
-              React.createElement("label", null, "Fecha nacimiento"), 
-              React.createElement("input", {name: "birthday", type: "text", placeholder: "02/10/1885", className: "form-control", onChange: this.handleChange})
-            ), 
-
-              React.createElement("div", {className: "form-group col-md-6"}, 
-                React.createElement("label", {htmlFor: ""}, "Año Egreso Pre-grado"), 
-                React.createElement("input", {name: "graduationYear", type: "text", className: "form-control", onChange: this.handleChange})
-              )
-
-              ), 
-
-              React.createElement("div", {className: "row"}, 
-              React.createElement("div", {className: "form-group col-md-6"}, 
-                React.createElement("label", {htmlFor: ""}, "Universidad"), 
-                React.createElement(Select, {
-                  name: "university", 
-                  options:  universityOptions, 
-                  placeholder: "Seleccionar universidad"}
-                  )
-              ), 
-
-              React.createElement("div", {className: "form-group col-md-6"}, 
-                React.createElement("label", {htmlFor: ""}, "Otra Universidad"), 
-                React.createElement("input", {name: "Another_university", type: "text", className: "form-control", onChange: this.handleChange})
-              )
-              ), 
-
-              React.createElement("div", {className: "row"}, 
-                   React.createElement("div", {className: "form-group col-md-6"}, 
-                React.createElement("label", {htmlFor: ""}, "Nivel inglés"), 
-                React.createElement(Select, {
-                  name: "speakEnglishLevel", 
-                  options: englishOptions, 
-                  placeholder: "Seleccionar nivel"}
-                  )
-              ), 
-
-              React.createElement("div", {className: "form-group col-md-6"}, 
-                  React.createElement("label", {htmlFor: ""}, "Áreas de Preferencia"), 
-                  React.createElement(Select, {
-                    options: areaOptions, 
-                    multi: true, 
-                    onChange: this.onChangePreferredArea, 
-                    placeholder: "Seleccionar áreas"}
-                  )
-              )
-              ), 
-
-              React.createElement("div", {className: "row"}, 
-                 React.createElement("div", {className: "form-group col-md-6"}, 
-                React.createElement("label", {htmlFor: ""}, "Examen de Grado rendido"), 
-                React.createElement("br", null), 
-                React.createElement("label", {htmlFor: "grade_approved", className: "checkbox-inline"}, 
-                  React.createElement("input", {type: "radio", name: "grade_approved", value: "si"}), "  Si"
-                ), 
-
-                React.createElement("label", {htmlFor: "grade_approved", className: "checkbox-inline"}, 
-                   React.createElement("input", {type: "radio", name: "grade_approved", value: "no"}), " No"
-                )
-
-              )
-              ), 
-              React.createElement("div", {className: "row"}, 
-              React.createElement("div", {className: "form-group col-md-6"}, 
-                React.createElement("label", {htmlFor: ""}, "Currículum (pdf, docx)"), 
-                React.createElement("input", {name: "cv", name: "cv", onChange: this.handleFile, type: "file"})
-              ), 
-
-              React.createElement("div", {className: "form-group col-md-6"}, 
-                React.createElement("label", {htmlFor: ""}, "Certificado de ranking de egreso (pdf, docx)"), 
-                React.createElement("input", {name: "certificationRanking", name: "certificationRanking", onChange: this.handleFile, type: "file"})
-              ), 
-
-              React.createElement("div", {className: "form-group col-md-6"}, 
-                React.createElement("label", {htmlFor: ""}, "Concentración de notas / egreso (pdf, docx) "), 
-                React.createElement("input", {name: "gatheringNotes", name: "gatheringNotes", onChange: this.handleFile, type: "file"})
-              )
-            ), 
-            React.createElement("button", {className: "btn send-cv"}, "Enviar")
-          )
-
-        )
-    );
-  }
-});
-
-}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/react/views/recruiment/stepForm.jsx","/react/views/recruiment")
-},{"_process":37,"buffer":2,"jquery":33,"langs/app":349,"langs/areas":351,"react":343,"react-select":161}],395:[function(require,module,exports){
+},{"_process":37,"buffer":2,"get_lang":354,"langs/app":349,"langs/areas":351,"react":343,"react-helmet":40,"superagent":344,"views/recruiment/form.jsx":393,"views/top_bar.jsx":395}],395:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 'use strict';
 var React = require('react');

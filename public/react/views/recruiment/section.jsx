@@ -4,7 +4,7 @@ var Helmet = require('react-helmet');
 var TopBar = require('views/top_bar.jsx');
 var trans = require('langs/app');
 var areas = require('langs/areas');
-var StepForm = require('views/recruiment/stepForm.jsx');
+var Form = require('views/recruiment/form.jsx');
 var request = require('superagent');
 var getLang = require('get_lang');
 
@@ -94,19 +94,22 @@ module.exports = React.createClass({
 
         <TopBar title={trans.recruitment} hidden />
         <div id="work-with-us" >
-
           <div dangerouslySetInnerHTML={{__html: this.state.video["text_es"]}} />
-          <div className="col-lg-12">
+            <div className="col-lg-12">
 
-            <h4>{this.state.textOne["title_" + getLang]}</h4>
-            <div dangerouslySetInnerHTML={{__html: this.state.textOne["text_" + getLang]}} />
-            <br/>
-            <StepForm />
-            <h4>{this.state.textTwo["title_" + getLang]}</h4>
-            <div dangerouslySetInnerHTML={{__html: this.state.textTwo["text_" + getLang]}} />
-            <h4>{this.state.textThree["title_" + getLang]}</h4>
-            <div dangerouslySetInnerHTML={{__html: this.state.textThree["text_" + getLang]}} />
-          </div>
+              <h4>{this.state.textOne["title_" + getLang]}</h4>
+              <div dangerouslySetInnerHTML={{__html: this.state.textOne["text_" + getLang]}} />
+
+              <br/>
+
+              <Form />
+
+              <h4>{this.state.textTwo["title_" + getLang]}</h4>
+              <div dangerouslySetInnerHTML={{__html: this.state.textTwo["text_" + getLang]}} />
+
+              <h4>{this.state.textThree["title_" + getLang]}</h4>
+              <div dangerouslySetInnerHTML={{__html: this.state.textThree["text_" + getLang]}} />
+            </div>
         </div>
       </div>
     );
