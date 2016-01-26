@@ -63,8 +63,8 @@ handleSelect: function(e, a) {
       contentType: false
       })
     .then(function(res) {
-      return next(res);
-    });
+      this.props.onSubmit();
+    }.bind(this));
   },
 
   render: function() {

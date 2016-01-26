@@ -12,17 +12,8 @@ module.exports = React.createClass({
   getInitialState: function() {
     return {
       video: {},
-      textOne: {},
-      textTwo: {},
-      textThree: {}
+      hideForm: false
     }
-  },
-
-  componentDidMount: function() {
-    this.getVideo();
-    this.getTextOne();
-    this.getTextTwo();
-    this.getTextThree();
   },
 
   getVideo: function() {
@@ -38,46 +29,8 @@ module.exports = React.createClass({
     }.bind(this));
   },
 
-  getTextOne: function() {
-    request
-    .get('/api/pages')
-    .query({page: 'recruitment_one'})
-    .end(function(err, res) {
-      if(res.body) {
-        this.setState({
-         textOne: res.body
-        })
-      }
+  handleSubmit: function() {
 
-    }.bind(this));
-  },
-
-  getTextTwo: function() {
-    request
-    .get('/api/pages')
-    .query({page: 'recruitment_two'})
-    .end(function(err, res) {
-      if(res.body) {
-        this.setState({
-          textTwo: res.body
-        })
-      }
-
-    }.bind(this));
-  },
-
-  getTextThree: function() {
-    request
-    .get('/api/pages')
-    .query({page: 'recruitment_three'})
-    .end(function(err, res) {
-      if(res.body) {
-        this.setState({
-          textThree: res.body
-        })
-      }
-
-    }.bind(this));
   },
 
   render: function() {
@@ -101,9 +54,12 @@ module.exports = React.createClass({
               <div dangerouslySetInnerHTML={{__html: this.state.textOne["text_" + getLang]}} />
 
               <br/>
-
-              <Form />
-
+              <div className={this.state.hideForm ? "hidden": ""}>
+                <Form onSubmit={this.handleSubmit} />
+              </div>
+              <div className={this.state.hideForm ? "": "hidden"}>
+                <h5 className="form_thanks">Gracias por comunicarse con nostros, pronto nos pondremos en contacto con usted.</h5>
+              </div>
               <h4>{this.state.textTwo["title_" + getLang]}</h4>
               <div dangerouslySetInnerHTML={{__html: this.state.textTwo["text_" + getLang]}} />
 
