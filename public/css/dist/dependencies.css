@@ -7046,9 +7046,6 @@ button.close {
   src: url("../font/TheMix_LT_500_.eot?#iefix") format("embedded-opentype"), url("../font/TheMix_LT_500_.woff") format("woff"), url("../font/TheMix_LT_500_.svg#TheMix_LT_500_") format("svg");
   font-weight: normal;
   font-style: normal; }
-html {
-  overflow-y: scroll; }
-
 body {
   background: #E4E6EB;
   font-size: 14px;
