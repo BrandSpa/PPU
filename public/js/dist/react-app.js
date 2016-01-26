@@ -62930,25 +62930,59 @@ module.exports = React.createClass({displayName: "exports",
   getInitialState: function() {
     return {
       video: {},
-      hideForm: false
+      textOne: {},
+      textTwo: {},
+      textThree: {}
     }
   },
 
-  getVideo: function() {
+  componentDidMount: function() {
+    this.getVideo();
+    this.getTextOne();
+    this.getTextTwo();
+    this.getTextThree();
+  },
+
+  updateState: function(url, query, fieldToUpdate) {
+    var objToUpdate = {};
+
     request
-    .get('/api/pages')
-    .query({page: 'recruiment_video'})
+    .get(url)
+    .query(query)
     .end(function(err, res) {
       if(res.body) {
-        this.setState({
-          video: res.body
-        })
+        objToUpdate[fieldToUpdate] = res.body;
+        this.setState(objToUpdate)
       }
     }.bind(this));
   },
 
-  handleSubmit: function() {
+  getVideo: function() {
+    var url = '/api/pages';
+    var query = {page: 'recruiment_video'};
+    var field = "video";
+    this.updateState(url, query, field);
+  },
 
+  getTextOne: function() {
+    var url = '/api/pages';
+    var query = {page: 'recruitment_one'};
+    var field = "textOne";
+    this.updateState(url, query, field);
+  },
+
+  getTextTwo: function() {
+    var url = '/api/pages';
+    var query = {page: 'recruitment_two'};
+    var field = "textTwo";
+    this.updateState(url, query, field);
+  },
+
+  getTextThree: function() {
+     var url = '/api/pages';
+    var query = {page: 'recruitment_three'};
+    var field = "textThree";
+    this.updateState(url, query, field);
   },
 
   render: function() {
@@ -62972,12 +63006,9 @@ module.exports = React.createClass({displayName: "exports",
               React.createElement("div", {dangerouslySetInnerHTML: {__html: this.state.textOne["text_" + getLang]}}), 
 
               React.createElement("br", null), 
-              React.createElement("div", {className: this.state.hideForm ? "hidden": ""}, 
-                React.createElement(Form, {onSubmit: this.handleSubmit})
-              ), 
-              React.createElement("div", {className: this.state.hideForm ? "": "hidden"}, 
-                React.createElement("h5", {className: "form_thanks"}, "Gracias por comunicarse con nostros, pronto nos pondremos en contacto con usted.")
-              ), 
+
+              React.createElement(Form, null), 
+
               React.createElement("h4", null, this.state.textTwo["title_" + getLang]), 
               React.createElement("div", {dangerouslySetInnerHTML: {__html: this.state.textTwo["text_" + getLang]}}), 
 

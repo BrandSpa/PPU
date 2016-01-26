@@ -12,25 +12,60 @@ module.exports = React.createClass({
   getInitialState: function() {
     return {
       video: {},
-      hideForm: false
+      textOne: {},
+      textTwo: {},
+      textThree: {},
+      showForm: false
     }
   },
 
-  getVideo: function() {
+  componentDidMount: function() {
+    this.getVideo();
+    this.getTextOne();
+    this.getTextTwo();
+    this.getTextThree();
+  },
+
+  updateState: function(url, query, fieldToUpdate) {
+    var objToUpdate = {};
+
     request
-    .get('/api/pages')
-    .query({page: 'recruiment_video'})
+    .get(url)
+    .query(query)
     .end(function(err, res) {
       if(res.body) {
-        this.setState({
-          video: res.body
-        })
+        objToUpdate[fieldToUpdate] = res.body;
+        this.setState(objToUpdate)
       }
     }.bind(this));
   },
 
-  handleSubmit: function() {
+  getVideo: function() {
+    var url = '/api/pages';
+    var query = {page: 'recruiment_video'};
+    var field = "video";
+    this.updateState(url, query, field);
+  },
 
+  getTextOne: function() {
+    var url = '/api/pages';
+    var query = {page: 'recruitment_one'};
+    var field = "textOne";
+    this.updateState(url, query, field);
+  },
+
+  getTextTwo: function() {
+    var url = '/api/pages';
+    var query = {page: 'recruitment_two'};
+    var field = "textTwo";
+    this.updateState(url, query, field);
+  },
+
+  getTextThree: function() {
+     var url = '/api/pages';
+    var query = {page: 'recruitment_three'};
+    var field = "textThree";
+    this.updateState(url, query, field);
   },
 
   render: function() {
@@ -47,24 +82,36 @@ module.exports = React.createClass({
 
         <TopBar title={trans.recruitment} hidden />
         <div id="work-with-us" >
-          <div dangerouslySetInnerHTML={{__html: this.state.video["text_es"]}} />
+          <div
+            dangerouslySetInnerHTML={{__html: this.state.video["text_es"]}}
+          />
             <div className="col-lg-12">
 
               <h4>{this.state.textOne["title_" + getLang]}</h4>
-              <div dangerouslySetInnerHTML={{__html: this.state.textOne["text_" + getLang]}} />
+              <div
+                dangerouslySetInnerHTML={{__html: this.state.textOne["text_" + getLang]}}
+              />
 
               <br/>
-              <div className={this.state.hideForm ? "hidden": ""}>
+
+              <div className={this.showForm ? "hidden" : ""}>
                 <Form onSubmit={this.handleSubmit} />
               </div>
-              <div className={this.state.hideForm ? "": "hidden"}>
-                <h5 className="form_thanks">Gracias por comunicarse con nostros, pronto nos pondremos en contacto con usted.</h5>
+
+              <div className={this.showForm ? "" : "hidden"}>
+              <h4>Gracias por comunicarse con nostros, pronto nos pondremos en contacto con usted.</h4>
               </div>
+
+
               <h4>{this.state.textTwo["title_" + getLang]}</h4>
-              <div dangerouslySetInnerHTML={{__html: this.state.textTwo["text_" + getLang]}} />
+              <div
+                dangerouslySetInnerHTML={{__html: this.state.textTwo["text_" + getLang]}}
+              />
 
               <h4>{this.state.textThree["title_" + getLang]}</h4>
-              <div dangerouslySetInnerHTML={{__html: this.state.textThree["text_" + getLang]}} />
+              <div
+                dangerouslySetInnerHTML={{__html: this.state.textThree["text_" + getLang]}}
+              />
             </div>
         </div>
       </div>
