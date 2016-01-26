@@ -6,6 +6,8 @@
 	src: url("../font/TheMix_LT_500_.eot?#iefix") format("embedded-opentype"), url("../font/TheMix_LT_500_.woff") format("woff"), url("../font/TheMix_LT_500_.svg#TheMix_LT_500_") format("svg")
 	font-weight: normal
 	font-style: normal
+html
+	overflow-y: scroll
 
 body
 	background: #E4E6EB
@@ -273,13 +275,15 @@ select
 		background: #fff
 		display: block
 
+
 	li
 		background: #002855
 		list-style: none
-		transition: 500ms all
+		transition: 300ms all
 
 		>.active
 			border-left: 4px solid #00A1B1
+			color: #00A1B1
 
 		&:nth-child(2)
 			padding-top: 15px !important
@@ -295,8 +299,10 @@ select
 			width: 100%
 			padding: 15px 30px
 			display: block
+			transition: 300ms all
 			&:hover
 				color: #00A1B1
+				border-left: 4px solid #00A1B1
 
 		.dropdown-menu
 			li

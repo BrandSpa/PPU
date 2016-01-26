@@ -10,6 +10,9 @@
   src: url("../font/TheMix_LT_500_.eot?#iefix") format("embedded-opentype"), url("../font/TheMix_LT_500_.woff") format("woff"), url("../font/TheMix_LT_500_.svg#TheMix_LT_500_") format("svg");
   font-weight: normal;
   font-style: normal; }
+html {
+  overflow-y: scroll; }
+
 body {
   background: #E4E6EB;
   font-size: 14px;
@@ -247,9 +250,10 @@ select .form-control {
   .nav-main li {
     background: #002855;
     list-style: none;
-    transition: 500ms all; }
+    transition: 300ms all; }
     .nav-main li > .active {
-      border-left: 4px solid #00A1B1; }
+      border-left: 4px solid #00A1B1;
+      color: #00A1B1; }
     .nav-main li:nth-child(2) {
       padding-top: 15px !important; }
     .nav-main li:last-child, .nav-main li:nth-child(8) {
@@ -261,9 +265,11 @@ select .form-control {
       font-weight: 300;
       width: 100%;
       padding: 15px 30px;
-      display: block; }
+      display: block;
+      transition: 300ms all; }
       .nav-main li a:hover {
-        color: #00A1B1; }
+        color: #00A1B1;
+        border-left: 4px solid #00A1B1; }
     .nav-main li .dropdown-menu li {
       padding: 15px 0;
       margin: 0; }
