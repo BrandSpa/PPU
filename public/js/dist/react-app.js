@@ -60555,6 +60555,9 @@ module.exports = React.createClass({displayName: "exports",
 var React = require('react');
 var Social = require('views/experiences/social.jsx');
 var PostDate = require('components/date.jsx');
+var moment = require('moment');
+var getLang = require('utils/get_lang');
+require('moment/locale/es');
 
 module.exports = React.createClass({displayName: "exports",
   getDefaultProps: function() {
@@ -60577,6 +60580,8 @@ module.exports = React.createClass({displayName: "exports",
       modelImage = (React.createElement("img", {src:  model.img_name.url, alt:  model.title}));
     }
 
+    var date = moment(model.date).locale(getLang).format("YYYY");
+
     return (
       React.createElement("div", {className: "col-sm-6 col-xs-12 experience-item", onClick: this.open.bind(null, model)}, 
         React.createElement("div", {className: "img-container"}, 
@@ -60589,7 +60594,7 @@ module.exports = React.createClass({displayName: "exports",
 
           React.createElement("div", {className: "footer"}, 
             React.createElement("span", {className: "country"}, model.country), 
-            React.createElement(PostDate, {date: model.date})
+            React.createElement("span", {className: "date"}, date)
           )
         )
       )
@@ -60598,7 +60603,7 @@ module.exports = React.createClass({displayName: "exports",
 });
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/react/views/experiences/experience.jsx","/react/views/experiences")
-},{"_process":37,"buffer":2,"components/date.jsx":348,"react":343,"views/experiences/social.jsx":362}],361:[function(require,module,exports){
+},{"_process":37,"buffer":2,"components/date.jsx":348,"moment":36,"moment/locale/es":35,"react":343,"utils/get_lang":354,"views/experiences/social.jsx":362}],361:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 'use strict';
 var React = require('react');

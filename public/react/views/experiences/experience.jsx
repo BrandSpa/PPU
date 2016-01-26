@@ -2,6 +2,9 @@
 var React = require('react');
 var Social = require('views/experiences/social.jsx');
 var PostDate = require('components/date.jsx');
+var moment = require('moment');
+var getLang = require('utils/get_lang');
+require('moment/locale/es');
 
 module.exports = React.createClass({
   getDefaultProps: function() {
@@ -24,6 +27,8 @@ module.exports = React.createClass({
       modelImage = (<img  src={ model.img_name.url } alt={ model.title } />);
     }
 
+    var date = moment(model.date).locale(getLang).format("YYYY");
+
     return (
       <div className="col-sm-6 col-xs-12 experience-item" onClick={this.open.bind(null, model)}>
         <div className="img-container">
@@ -36,7 +41,7 @@ module.exports = React.createClass({
 
           <div className="footer">
             <span className="country">{model.country}</span>
-            <PostDate date={model.date} />
+            <span className="date">{date}</span>
           </div>
         </div>
       </div>

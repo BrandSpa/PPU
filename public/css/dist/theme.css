@@ -993,7 +993,8 @@ select .form-control {
     float: left;
     width: 65%;
     height: 155px;
-    position: relative; }
+    position: relative;
+    transition: all 100ms linear; }
     .experience-item .content:hover {
       background: #002855; }
       .experience-item .content:hover h3 {
@@ -1001,7 +1002,7 @@ select .form-control {
       .experience-item .content:hover p {
         color: #fff; }
       .experience-item .content:hover .footer {
-        background: #002855; }
+        background: none, linear-gradient(180deg, rgba(0, 39, 86, 0) 0, #002756 50%); }
     @media (max-width: 767px) {
       .experience-item .content {
         width: 70%; } }
@@ -1225,7 +1226,7 @@ select .form-control {
   .lawyer-item:hover {
     cursor: pointer; }
     .lawyer-item:hover .content {
-      transition: all 300ms linear;
+      transition: all 100ms linear;
       background: #002855;
       color: #fff; }
       .lawyer-item:hover .content .position {
@@ -1602,11 +1603,11 @@ select .form-control {
     .post-main-featured-item .content:hover {
       background: #002855; }
       .post-main-featured-item .content:hover h3 a {
-        color: #fff; }
+        color: #00A1B1; }
       .post-main-featured-item .content:hover p {
         color: #fff; }
       .post-main-featured-item .content:hover .footer {
-        background: #002855; }
+        background: none, linear-gradient(180deg, rgba(0, 39, 86, 0) 0, #002756 50%); }
     .post-main-featured-item .content .footer {
       position: absolute;
       width: 100%;
@@ -1736,11 +1737,10 @@ select .form-control {
     height: 180px;
     float: left;
     position: relative;
-    transition: all 300ms linear; }
+    transition: all 100ms linear; }
     .post-item .content:hover, .post-featured-item .content:hover {
       background: #002855; }
       .post-item .content:hover .footer, .post-featured-item .content:hover .footer {
-        transition: all 100ms linear;
         background: none, linear-gradient(180deg, rgba(0, 39, 86, 0) 0, #002756 50%); }
       .post-item .content:hover h3 a, .post-featured-item .content:hover h3 a {
         color: #00A1B1; }
