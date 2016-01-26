@@ -19,7 +19,8 @@ module.exports = React.createClass({
       university: null,
       areas: null
      },
-      data: {}
+      data: {},
+      sendText: "Enviar"
     }
   },
 
@@ -59,13 +60,18 @@ handleSelect: function(e, a) {
       type: 'POST',
       data: formData,
       processData: false,
-      contentType: false
+      contentType: false,
+      beforeSend: this.handleLoading
     })
     .then(function(res) {
       console.log(this);
       this.props.onSubmit();
     }.bind(this));
 
+  },
+
+  handleLoading: function() {
+    this.setState({sendText: "Enviando..."});
   },
 
   render: function() {
@@ -220,7 +226,8 @@ handleSelect: function(e, a) {
                   type="file" />
               </div>
             </div>
-            <button className="btn send-cv">Enviar</button>
+
+            <button className="btn send-cv" >{this.state.sendText}</button>
           </form>
 
         </div>
