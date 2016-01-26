@@ -22,7 +22,6 @@ module.exports = React.createClass({
     }
   },
 
-
   componentDidMount: function() {
     window.addEventListener('scroll', this.handleScroll.bind(this));
   },
@@ -122,10 +121,10 @@ module.exports = React.createClass({
     var pathname = this.props.pathname || window.location.pathname;
     if(getLang === 'es')
     {
-      link = this.props.link || "http://en." + window.location.hostname + ":3000" + pathname;
+      link = this.props.link || "http://en." + window.location.hostname + pathname;
       lang = <a href={link} className="change-lang-page">English</a>;
     } else {
-      link = this.props.link || "http://" + window.location.hostname.replace('en.', '') + ":3000" + pathname;
+      link = this.props.link || "http://" + window.location.hostname.replace('en.', '') + pathname;
       lang = <a href={link} className="change-lang-page">Español</a>;
     }
 

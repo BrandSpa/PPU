@@ -63081,7 +63081,6 @@ module.exports = React.createClass({displayName: "exports",
     }
   },
 
-
   componentDidMount: function() {
     window.addEventListener('scroll', this.handleScroll.bind(this));
   },
@@ -63181,10 +63180,10 @@ module.exports = React.createClass({displayName: "exports",
     var pathname = this.props.pathname || window.location.pathname;
     if(getLang === 'es')
     {
-      link = this.props.link || "http://en." + window.location.hostname + ":3000" + pathname;
+      link = this.props.link || "http://en." + window.location.hostname + pathname;
       lang = React.createElement("a", {href: link, className: "change-lang-page"}, "English");
     } else {
-      link = this.props.link || "http://" + window.location.hostname.replace('en.', '') + ":3000" + pathname;
+      link = this.props.link || "http://" + window.location.hostname.replace('en.', '') + pathname;
       lang = React.createElement("a", {href: link, className: "change-lang-page"}, "Español");
     }
 
