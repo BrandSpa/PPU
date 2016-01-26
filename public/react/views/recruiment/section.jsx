@@ -68,6 +68,10 @@ module.exports = React.createClass({
     this.updateState(url, query, field);
   },
 
+  handleSubmit: function() {
+    this.setState({showForm: this.state.showForm ? false : true});
+  },
+
   render: function() {
     return (
       <div>
@@ -94,11 +98,11 @@ module.exports = React.createClass({
 
               <br/>
 
-              <div className={this.showForm ? "hidden" : ""}>
+              <div className={this.state.showForm ? "hidden" : ""}>
                 <Form onSubmit={this.handleSubmit} />
               </div>
 
-              <div className={this.showForm ? "" : "hidden"}>
+              <div className={this.state.showForm ? "" : "hidden"}>
               <h4>Gracias por comunicarse con nostros, pronto nos pondremos en contacto con usted.</h4>
               </div>
 

@@ -54,17 +54,18 @@ handleSelect: function(e, a) {
       }
     });
 
-
     $.ajax({
       url: "/api/curriculums",
       type: 'POST',
       data: formData,
       processData: false,
       contentType: false
-      })
+    })
     .then(function(res) {
+      console.log(this);
       this.props.onSubmit();
     }.bind(this));
+
   },
 
   render: function() {

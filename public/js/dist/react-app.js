@@ -62740,17 +62740,18 @@ handleSelect: function(e, a) {
       }
     });
 
-
     $.ajax({
       url: "/api/curriculums",
       type: 'POST',
       data: formData,
       processData: false,
       contentType: false
-      })
+    })
     .then(function(res) {
+      console.log(this);
       this.props.onSubmit();
     }.bind(this));
+
   },
 
   render: function() {
@@ -62932,7 +62933,8 @@ module.exports = React.createClass({displayName: "exports",
       video: {},
       textOne: {},
       textTwo: {},
-      textThree: {}
+      textThree: {},
+      showForm: false
     }
   },
 
@@ -62985,6 +62987,10 @@ module.exports = React.createClass({displayName: "exports",
     this.updateState(url, query, field);
   },
 
+  handleSubmit: function() {
+    this.setState({showForm: this.state.showForm ? false : true});
+  },
+
   render: function() {
     return (
       React.createElement("div", null, 
@@ -62999,21 +63005,36 @@ module.exports = React.createClass({displayName: "exports",
 
         React.createElement(TopBar, {title: trans.recruitment, hidden: true}), 
         React.createElement("div", {id: "work-with-us"}, 
-          React.createElement("div", {dangerouslySetInnerHTML: {__html: this.state.video["text_es"]}}), 
+          React.createElement("div", {
+            dangerouslySetInnerHTML: {__html: this.state.video["text_es"]}}
+          ), 
             React.createElement("div", {className: "col-lg-12"}, 
 
               React.createElement("h4", null, this.state.textOne["title_" + getLang]), 
-              React.createElement("div", {dangerouslySetInnerHTML: {__html: this.state.textOne["text_" + getLang]}}), 
+              React.createElement("div", {
+                dangerouslySetInnerHTML: {__html: this.state.textOne["text_" + getLang]}}
+              ), 
 
               React.createElement("br", null), 
 
-              React.createElement(Form, null), 
+              React.createElement("div", {className: this.state.showForm ? "hidden" : ""}, 
+                React.createElement(Form, {onSubmit: this.handleSubmit})
+              ), 
+
+              React.createElement("div", {className: this.state.showForm ? "" : "hidden"}, 
+              React.createElement("h4", null, "Gracias por comunicarse con nostros, pronto nos pondremos en contacto con usted.")
+              ), 
+
 
               React.createElement("h4", null, this.state.textTwo["title_" + getLang]), 
-              React.createElement("div", {dangerouslySetInnerHTML: {__html: this.state.textTwo["text_" + getLang]}}), 
+              React.createElement("div", {
+                dangerouslySetInnerHTML: {__html: this.state.textTwo["text_" + getLang]}}
+              ), 
 
               React.createElement("h4", null, this.state.textThree["title_" + getLang]), 
-              React.createElement("div", {dangerouslySetInnerHTML: {__html: this.state.textThree["text_" + getLang]}})
+              React.createElement("div", {
+                dangerouslySetInnerHTML: {__html: this.state.textThree["text_" + getLang]}}
+              )
             )
         )
       )
