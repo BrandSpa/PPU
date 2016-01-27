@@ -175,7 +175,6 @@ handleSelect: function(e, a) {
                     name="areas"
                     options={areaOptions}
                     multi={true}
-                    onChange={this.onChangePreferredArea}
                     placeholder="Seleccionar áreas"
                     onChange={this.handleSelect.bind(null, "areas")}
                     value={this.state.selects.areas}
