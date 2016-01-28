@@ -4,10 +4,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="fragment" content="!">
   <title>Philippi Prietocarrizosa &Uría - El estudio iberoamericano</title>
+
+  <% if content_for?(:head) %>
+  <%= yield :head %>
+  <% else %>
+  <meta name="description" content="Firma con 14 áreas de práctica; Con oficinas en Chile, Colombia. España, Portugal, Sao Paulo, Nueva York, Pekín, Londres y Bruselas.">
   <meta property="og:title" content="Philippi Prietocarrizosa &Uría" />
-  <meta property="og:description" content="Firma con 14 áreas de práctica; Con oficinas en Chile, Colombia. España, Portugal, Sao Paulo, Nueva York, Pekín, Londres y Bruselas." />
+  <meta property="og:description" content="Firma con 14 áreas de práctica; Con oficinas en Chile, Colombia. España, Portugal, Sao Paulo, Nueva York, Pekín, Londres y Brusela" />
   <meta property="og:image" content="http://ppulegal.com/img/Logo@2x.png" />
-  <meta name="google-site-verification" content="4GUiw0dN2Jayfkka5UpWpjcoQILQb1xnGTdS885FdJg" />
+  <% end %>
 
   <link rel="alternate" href="en.ppulegal.com" hreflang="en" />
   <link rel="alternate" href="www.ppulegal.com" hreflang="es" />
@@ -18,6 +23,7 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<%= yield %>
   <script src="/js/dist/react-app.js"></script>
   <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
