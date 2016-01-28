@@ -45,9 +45,9 @@ module.exports = React.createClass({
        <Helmet
           title={"Philippi Prietocarrizosa &Uría - " + post.title}
           meta={[
-              {"name": "description", "content": " Noticias y actualidad de temas legales. Firma con 13 áreas de práctica; Con oficinas en Chile, Colombia. España, Portugal, Sao Paulo, Nueva York, Pekín, Londres y Bruselas."},
-              {"name": "og:title", "content": "Philippi Prietocarrizosa &Uría - Noticias"},
-              {"name": "og:description", "content": " Noticias y actualidad de temas legales. Firma con 13 áreas de práctica; Con oficinas en Chile, Colombia. España, Portugal, Sao Paulo, Nueva York, Pekín, Londres y Bruselas."},
+              {"name": "description", "content": post.excerpt},
+              {"name": "og:title", "content": "Philippi Prietocarrizosa &Uría - " + post.title},
+              {"name": "og:description", "content": post.excerpt},
               {"name": "og:image", "content": postImage}
           ]}
         />
