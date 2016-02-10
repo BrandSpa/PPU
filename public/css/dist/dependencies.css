@@ -7485,6 +7485,9 @@ select .form-control {
   position: fixed;
   bottom: 0;
   color: #fff; }
+  @media (max-width: 767px), (max-width: 480px) {
+    .footer-container .container {
+      padding: 0 !important; } }
   @media (min-width: 1200px) {
     .footer-container {
       padding: 0 15px 0 0 !important; } }

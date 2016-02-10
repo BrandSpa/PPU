@@ -503,6 +503,9 @@ select
 	position: fixed
 	bottom: 0
 	color: #fff
+	.container
+		@media #{$mobile}, #{$mobile-xs}
+			padding: 0 !important
 
 	@media #{$desktop-lg}
 		padding: 0 15px 0 0 !important
