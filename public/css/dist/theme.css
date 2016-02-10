@@ -1434,6 +1434,9 @@ select .form-control {
     color: #00A1B1; }
   #lawyer ul {
     padding-left: 45px; }
+    @media (max-width: 480px), (max-width: 767px) {
+      #lawyer ul {
+        padding-right: 45px; } }
   #lawyer h4 {
     padding-left: 30px;
     font-size: 1.1em; }
