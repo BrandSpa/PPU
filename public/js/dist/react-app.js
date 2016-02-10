@@ -60140,7 +60140,7 @@ module.exports = {
     conferences: "Conferencias",
     memberships: "Membresías",
     languages: "Idiomas",
-    academicActivities: "Academic Activities",
+    academicActivities: "Actividades Académicas",
     awardsRecognitions: " Premios y Reconocimientos",
     publications: "Publicaciones",
     generalInformation: "Información general",
@@ -61466,7 +61466,7 @@ module.exports = React.createClass({displayName: "exports",
             ), 
 
             React.createElement(Academic, {
-              title: transLawyer.academic, 
+              title: transLawyer.academicActivities, 
               collection: lawyer.academics}
             ), 
 

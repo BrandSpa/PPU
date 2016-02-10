@@ -109,7 +109,7 @@ module.exports = React.createClass({
             />
 
             <Academic
-              title={transLawyer.academic}
+              title={transLawyer.academicActivities}
               collection={lawyer.academics}
             />
 

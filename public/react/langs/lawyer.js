@@ -7,7 +7,7 @@ module.exports = {
     conferences: "Conferencias",
     memberships: "Membresías",
     languages: "Idiomas",
-    academicActivities: "Academic Activities",
+    academicActivities: "Actividades Académicas",
     awardsRecognitions: " Premios y Reconocimientos",
     publications: "Publicaciones",
     generalInformation: "Información general",
