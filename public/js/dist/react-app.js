@@ -63214,7 +63214,10 @@ module.exports = React.createClass({displayName: "exports",
           ), 
 
             React.createElement("h1", null, this.props.title), 
-             React.createElement("a", {href: "#", className: "open-filters", onClick: this.toggleFilters}, React.createElement("i", {className: "fa fa-bars"}), " filtrar"), 
+             React.createElement("a", {
+             href: "#", 
+              className: this.props.hidden ? 'hidden' : 'open-filters', 
+              onClick: this.toggleFilters}, React.createElement("i", {className: "fa fa-bars"}), " filtrar"), 
 
           React.createElement("div", {className: this.props.hidden ? 'hidden' : '', style: this.state.showFilters ? {background: '#002855', 'float': 'left', 'width': '100%', margin: '15px 0', 'display': 'block'} : {}}, 
 

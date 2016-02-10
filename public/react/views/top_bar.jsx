@@ -144,7 +144,10 @@ module.exports = React.createClass({
           </a>
 
             <h1>{this.props.title}</h1>
-             <a href="#" className="open-filters" onClick={this.toggleFilters}><i className="fa fa-bars"></i> filtrar</a>
+             <a
+             href="#"
+              className={this.props.hidden ? 'hidden' : 'open-filters'}
+              onClick={this.toggleFilters}><i className="fa fa-bars"></i> filtrar</a>
 
           <div className={this.props.hidden ? 'hidden' : ''} style={this.state.showFilters ? {background: '#002855', 'float': 'left', 'width': '100%', margin: '15px 0', 'display': 'block'} : {}}>
 
