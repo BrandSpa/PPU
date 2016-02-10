@@ -110,7 +110,6 @@ module.exports = React.createClass({
       lawyerTrans.lawyer,
       lawyerTrans.seniorCounsel,
       lawyerTrans.partner,
-      lawyerTrans.associated,
       lawyerTrans.foreignConsultant,
       lawyerTrans.specialist,
     ];
