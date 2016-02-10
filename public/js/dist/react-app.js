@@ -61825,12 +61825,24 @@ module.exports = React.createClass({displayName: "exports",
   },
 
   render: function() {
+    var lang;
+    var link;
+    var pathname = this.props.pathname || window.location.pathname;
+    if(getLang === 'es')
+    {
+      link = this.props.link || "http://en." + window.location.hostname + pathname;
+      lang = React.createElement("a", {href: link, className: "change-lang-page"}, "English");
+    } else {
+      link = this.props.link || "http://" + window.location.hostname.replace('en.', '') + pathname;
+      lang = React.createElement("a", {href: link, className: "change-lang-page"}, "Español");
+    }
+
     return (
       React.createElement("div", {className: "col-md-12"}, 
       React.createElement("nav", {className: "navbar navbar-default navbar-app hidden-lg", role: "navigation", id: "nav-responsive"}, 
         React.createElement("div", {className: "container-fluid"}, 
         React.createElement("div", {className: "navbar-header"}, 
-        React.createElement("a", {href: "#", className: "change-lang-page"}, "español"), 
+        lang, 
         React.createElement("button", {type: "button", className: "navbar-toggle collapsed", onClick: this.toggleShowNavbar}, 
          React.createElement("span", null, "Menú"), " ", React.createElement("i", {className: "fa fa-bars"})
        ), 
@@ -63253,6 +63265,7 @@ module.exports = React.createClass({displayName: "exports",
           React.createElement("div", {className: "col-lg-1 visible-lg change-lang-container"}, 
           lang
           )
+
           )
         )
       )

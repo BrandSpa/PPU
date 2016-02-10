@@ -195,6 +195,7 @@ module.exports = React.createClass({
           <div className="col-lg-1 visible-lg change-lang-container">
           {lang}
           </div>
+
           </div>
         </div>
       </div>

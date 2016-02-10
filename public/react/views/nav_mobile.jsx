@@ -25,12 +25,24 @@ module.exports = React.createClass({
   },
 
   render: function() {
+    var lang;
+    var link;
+    var pathname = this.props.pathname || window.location.pathname;
+    if(getLang === 'es')
+    {
+      link = this.props.link || "http://en." + window.location.hostname + pathname;
+      lang = <a href={link} className="change-lang-page">English</a>;
+    } else {
+      link = this.props.link || "http://" + window.location.hostname.replace('en.', '') + pathname;
+      lang = <a href={link} className="change-lang-page">Español</a>;
+    }
+
     return (
       <div className="col-md-12">
       <nav className="navbar navbar-default navbar-app hidden-lg" role="navigation" id="nav-responsive">
         <div className="container-fluid">
         <div className="navbar-header">
-        <a href="#" className="change-lang-page">español</a>
+        {lang}
         <button type="button" className="navbar-toggle collapsed" onClick={this.toggleShowNavbar}>
          <span>Menú</span> <i className="fa fa-bars"></i>
        </button>
