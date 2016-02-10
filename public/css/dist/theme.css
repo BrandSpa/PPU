@@ -1482,6 +1482,9 @@ select .form-control {
     float: left;
     margin-bottom: 5px; }
 
+.award img {
+  max-width: 100%; }
+
 /* Large desktops and laptops */
 /* Portrait tablets and medium desktops */
 /* Portrait tablets and small desktops */
