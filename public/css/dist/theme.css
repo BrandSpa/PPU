@@ -304,7 +304,9 @@ select .form-control {
 #top-bar {
   background: #002855;
   height: auto;
-  width: 100%; }
+  width: 100%;
+  position: relative;
+  z-index: 1; }
   #top-bar .container {
     padding: 0 15px 0 15px;
     width: 100%; }
