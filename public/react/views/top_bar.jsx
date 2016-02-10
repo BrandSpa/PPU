@@ -146,7 +146,7 @@ module.exports = React.createClass({
             <h1>{this.props.title}</h1>
              <a href="#" className="open-filters" onClick={this.toggleFilters}><i className="fa fa-bars"></i> filtrar</a>
 
-          <div className={this.props.hidden ? 'hidden' : ''} style={this.state.showFilters ? {background: '#002855', 'float': 'left', 'width': '100%', margin: '30px 0', 'display': 'block'} : {'display': 'none'}}>
+          <div className={this.props.hidden ? 'hidden' : ''} style={this.state.showFilters ? {background: '#002855', 'float': 'left', 'width': '100%', margin: '15px 0', 'display': 'block'} : {}}>
 
             <form className={this.state.showFilters ? "" : "form-group search"}>
               <input
