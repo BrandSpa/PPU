@@ -18,7 +18,7 @@ module.exports = React.createClass({
           if(item.link) {
             return <a href={item.link} target="_new">{item.title}</a>
           } else {
-             return <p>{title}</p>
+             return <p>{item.title}</p>
           }
 
         }
