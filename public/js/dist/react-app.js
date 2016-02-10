@@ -63153,8 +63153,11 @@ module.exports = React.createClass({displayName: "exports",
     this.filter({position: val});
   },
 
-  toggleFilters: function() {
-    this.setState({showFilters: this.state.showFilters ? false : true});
+  toggleFilters: function(e) {
+    e.preventDefault();
+    this.setState({
+      showFilters: this.state.showFilters ? false : true
+    });
   },
 
   goBack: function(e) {

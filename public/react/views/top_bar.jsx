@@ -85,7 +85,9 @@ module.exports = React.createClass({
 
   toggleFilters: function(e) {
     e.preventDefault();
-    this.setState({showFilters: this.state.showFilters ? false : true});
+    this.setState({
+      showFilters: this.state.showFilters ? false : true
+    });
   },
 
   goBack: function(e) {
