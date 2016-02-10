@@ -61084,11 +61084,13 @@ module.exports = React.createClass({displayName: "exports",
   },
 
   render: function() {
+
     var awardNodes = this.props.collection.map(function(model) {
       return (
         React.createElement("div", {className: "award"}, 
         React.createElement("div", {className: "img-container"}, 
-          React.createElement("img", {src: model.img_name.url, alt: model.title})
+          React.createElement("img", {src: model.img_name.url, className: model.img_name.url ? "" : "hidden"})
+
         ), 
         React.createElement("h5", null, model.title)
       )
