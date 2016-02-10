@@ -12,11 +12,15 @@ module.exports = React.createClass({
     var link;
 
     var nodes = this.props.collection.map(function(item) {
-      return
         if(item.file_name.url) {
-          <a href={item.file_name.url} target="_new">{item.title}</a>
+          return <a href={item.file_name.url} target="_new">{item.title}</a>
         } else {
-            <p>{title}</p>
+          if(item.link) {
+            return <a href={item.link} target="_new">{item.title}</a>
+          } else {
+             return <p>{title}</p>
+          }
+
         }
     });
 

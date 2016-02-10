@@ -61050,11 +61050,15 @@ module.exports = React.createClass({displayName: "exports",
     var link;
 
     var nodes = this.props.collection.map(function(item) {
-      return
         if(item.file_name.url) {
-          React.createElement("a", {href: item.file_name.url, target: "_new"}, item.title)
+          return React.createElement("a", {href: item.file_name.url, target: "_new"}, item.title)
         } else {
-            React.createElement("p", null, title)
+          if(item.link) {
+            return React.createElement("a", {href: item.link, target: "_new"}, item.title)
+          } else {
+             return React.createElement("p", null, title)
+          }
+
         }
     });
 
