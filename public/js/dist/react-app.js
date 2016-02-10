@@ -61054,11 +61054,7 @@ module.exports = React.createClass({displayName: "exports",
         if(item.file_name.url) {
           React.createElement("a", {href: item.file_name.url, target: "_new"}, item.title)
         } else {
-          if(item.link) {
-            React.createElement("a", {href: item.link, target: "_new"}, item.title)
-          } else {
             React.createElement("p", null, title)
-          }
         }
     });
 
