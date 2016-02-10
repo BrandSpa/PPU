@@ -8287,6 +8287,9 @@ select .form-control {
     margin-right: 15px;
     z-index: 3;
     position: relative; }
+    @media (max-width: 767px), (max-width: 480px) {
+      .lawyer-item .img-container {
+        width: auto; } }
   .lawyer-item img {
     -webkit-filter: grayscale(100%);
     filter: grayscale(100%);
