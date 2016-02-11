@@ -7072,9 +7072,11 @@ a {
     text-decoration: none;
     border: none; }
 
-@media (min-width: 1200px) {
-  .container {
-    padding: 0 !important; } }
+.container {
+  transition: all 500ms; }
+  @media (min-width: 1200px) {
+    .container {
+      padding: 0 !important; } }
 
 .dropdown-menu li {
   background: #fff !important;

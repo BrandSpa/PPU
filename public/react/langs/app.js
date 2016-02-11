@@ -4,7 +4,7 @@ var getLang = require('get_lang');
 module.exports = {
   es: {
     close: "Cerrar",
-    filter: "Filrar",
+    filter: "Filtrar",
     menu: "Menú",
     search: "Buscar",
     country: "País",
