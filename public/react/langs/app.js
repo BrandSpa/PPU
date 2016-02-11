@@ -3,6 +3,9 @@ var getLang = require('get_lang');
 
 module.exports = {
   es: {
+    close: "Cerrar",
+    filter: "Filrar",
+    menu: "Menú",
     search: "Buscar",
     country: "País",
     areas: "Áreas",
@@ -30,6 +33,9 @@ module.exports = {
   },
 
   en: {
+    close: "Close",
+    filter: "Filter",
+    menu: "Menu",
     search: "Search",
     country: "Country",
     areas: "Areas",

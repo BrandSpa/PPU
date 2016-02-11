@@ -59992,6 +59992,9 @@ var getLang = require('get_lang');
 
 module.exports = {
   es: {
+    close: "Cerrar",
+    filter: "Filrar",
+    menu: "Menú",
     search: "Buscar",
     country: "País",
     areas: "Áreas",
@@ -60019,6 +60022,9 @@ module.exports = {
   },
 
   en: {
+    close: "Close",
+    filter: "Filter",
+    menu: "Menu",
     search: "Search",
     country: "Country",
     areas: "Areas",
@@ -61846,7 +61852,7 @@ module.exports = React.createClass({displayName: "exports",
         React.createElement("div", {className: "navbar-header"}, 
         lang, 
         React.createElement("button", {type: "button", className: "navbar-toggle collapsed", onClick: this.toggleShowNavbar}, 
-         React.createElement("span", null, "Menú"), " ", React.createElement("i", {className: "fa fa-bars"})
+         React.createElement("span", null, trans.menu), " ", React.createElement("i", {className: "fa fa-bars"})
        ), 
 
        React.createElement("a", {href: "/", className: "navbar-brand"}, React.createElement("img", {src: "/img/LogoSolo@2x.png", alt: "", className: "img-responsive"}))
@@ -61863,7 +61869,6 @@ module.exports = React.createClass({displayName: "exports",
         React.createElement("li", null, React.createElement("a", {href: "/el-actual"}, "El Actual Chile")), 
         React.createElement("li", null, React.createElement("a", {href: "/el-actual-colombia"}, "El Actual Colombia"))
       )
-
       )
       )
     )
@@ -63218,7 +63223,8 @@ module.exports = React.createClass({displayName: "exports",
              React.createElement("a", {
              href: "#", 
               className: this.props.hidden ? 'hidden' : 'open-filters', 
-              onClick: this.toggleFilters}, React.createElement("i", {className: "fa fa-bars"}), " filtrar"), 
+              onClick: this.toggleFilters}, 
+              React.createElement("i", {className: this.state.showFilters ? "fa fa-times" : "fa fa-bars"}), " ", this.state.showFilters ? trans.close : trans.filter), 
 
           React.createElement("div", {className: this.props.hidden ? 'hidden' : '', style: this.state.showFilters ? {background: '#002855', 'float': 'left', 'width': '100%', margin: '15px 0', 'display': 'block'} : {}}, 
 

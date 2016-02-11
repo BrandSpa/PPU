@@ -480,6 +480,9 @@ select
 		display: none
 		float: right
 		color: #fff
+		transition: all 500ms
+		i
+			transition: all 500ms
 		@media #{$mobile}
 			display: block
 
@@ -726,11 +729,13 @@ select
 .social
 	margin-right: 60px
 	float: right
-	@media #{$mobile}
+
+	@media #{$mobile}, #{$mobile-xs}
 		float: none
 		margin: 10px auto
 		display: block
-		width: 100px
+		width: 100%
+
 	li
 		display: inline-block
 		margin-left: 15px

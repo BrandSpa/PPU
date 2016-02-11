@@ -425,7 +425,10 @@ select .form-control {
     margin: 15px 15px 0 0;
     display: none;
     float: right;
-    color: #fff; }
+    color: #fff;
+    transition: all 500ms; }
+    #top-bar .open-filters i {
+      transition: all 500ms; }
     @media (max-width: 767px) {
       #top-bar .open-filters {
         display: block; } }
@@ -638,12 +641,12 @@ select .form-control {
 .social {
   margin-right: 60px;
   float: right; }
-  @media (max-width: 767px) {
+  @media (max-width: 767px), (max-width: 480px) {
     .social {
       float: none;
       margin: 10px auto;
       display: block;
-      width: 100px; } }
+      width: 100%; } }
   .social li {
     display: inline-block;
     margin-left: 15px; }

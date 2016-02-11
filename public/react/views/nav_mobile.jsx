@@ -44,7 +44,7 @@ module.exports = React.createClass({
         <div className="navbar-header">
         {lang}
         <button type="button" className="navbar-toggle collapsed" onClick={this.toggleShowNavbar}>
-         <span>Menú</span> <i className="fa fa-bars"></i>
+         <span>{trans.menu}</span> <i className="fa fa-bars"></i>
        </button>
 
        <a href="/" className="navbar-brand"><img src="/img/LogoSolo@2x.png" alt="" className="img-responsive" /></a>
@@ -61,7 +61,6 @@ module.exports = React.createClass({
         <li><a href="/el-actual">El Actual Chile</a></li>
         <li><a href="/el-actual-colombia">El Actual Colombia</a></li>
       </ul>
-
       </div>
       </div>
     </nav>
