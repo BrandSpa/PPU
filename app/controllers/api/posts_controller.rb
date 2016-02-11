@@ -70,7 +70,12 @@ class Api::PostsController < ApplicationController
   def update
     id = params[:id]
 
+
     model = entity.get_relationships().find_by(id: id)
+
+    if params[:remove_img_name]
+      model.remove_img_name!
+    end
 
     model.update(model_params)
 
@@ -151,6 +156,8 @@ class Api::PostsController < ApplicationController
         :content,
         :content_plain,
         :img_name,
+        :remove_img_name,
+        :remove_gallery,
         :slug,
         :keywords,
         :gallery_id,

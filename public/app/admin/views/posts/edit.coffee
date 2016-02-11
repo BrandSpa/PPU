@@ -23,6 +23,11 @@ $ ->
       @getCategories()
       @showLawyers()
 
+    removeImage: ->
+
+    removeGalleryImage: ->
+      $(@el).find('.gallery_id').val("")
+
     update: (e) ->
       e.preventDefault()
       that = @
@@ -31,8 +36,9 @@ $ ->
       data = new FormData($form[0])
       data.append("fields[content]", content)
       options = ppu.ajaxOptions("PUT", data)
-      @model.save data, $.extend({}, options)
-        .done (model) ->
+      console.log(options)
+      # @model.save data, $.extend({}, options)
+      #   .done (model) ->
           # that.updated(model, that)
 
     updated: (model, that) ->

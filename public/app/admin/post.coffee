@@ -216,6 +216,8 @@ $ ->
   class ppu.admin.PostEdit extends Backbone.View
     el: $ "#post-edit"
     template: $ "#post-create-template"
+    removeImg: false
+    removeGallery: false
 
     # jquery events
     events:
@@ -224,6 +226,8 @@ $ ->
       "keydown input[name='query']": "searchLawyer"
       "change .form-control": "removeError"
       "keydown .form-control": "removeError"
+      "click .remove-img": "removeImg"
+      "click .remove-gallery": "removeGallery"
 
     # Start to listen events when the view it's initialize
     initialize: ->
@@ -241,13 +245,31 @@ $ ->
       @getCategories()
       @showLawyers()
 
+    removeImg: (e) ->
+      e.preventDefault()
+      @removeImg = true
+      $(@el).find('.img-name').remove()
+
+    removeGallery: (e)->
+      e.preventDefault()
+      @removeGallery = true
+      $(@el).find('.gallery-img').remove()
+
     # send data modified to server
     update: (e) ->
       e.preventDefault()
       that = @
+
       $form = @$el.find('form')
       content = $(@el).find('.summernote').code()
       data = new FormData($form[0])
+
+      if @removeImg == true
+        data.append("fields[remove_img_name]", true)
+
+      if @removeGallery == true
+        data.append("fields[gallery_id]", null)
+
       data.append("fields[content]", content)
       options = ppu.ajaxOptions("PUT", data)
       @model.save data, $.extend({}, options)
@@ -288,7 +310,6 @@ $ ->
     appendSelectedGallery: (gallery_id) ->
       $(@el).find('.gallery_id').val(gallery_id)
       ppu.admin.galleryPostModal.closeModal()
-
 
     searchLawyer: (e) ->
       query = $(e.currentTarget).val()

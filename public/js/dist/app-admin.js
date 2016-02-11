@@ -173,7 +173,7 @@ $(window).on("scroll", _.throttle((function(_this) {
 })(this), 1000));
 
 $('.carousel').carousel({
-  interval: 2000
+  interval: 7000
 });
 
 $('.popver').popover();
@@ -207,8 +207,6 @@ if ($(window).width() < 768) {
 } else {
   app.topPadding = 35;
 }
-
-console.log($(document));
 
 $(document).scroll(function() {
   if ($(window).scrollTop() > app.topPadding) {
@@ -410,11 +408,11 @@ Handlebars.registerHelper('checked', function(val1, val2) {
 });
 
 Handlebars.registerHelper('shortenText', function(text, block) {
-  return text.substring(0, 95) + " ...";
+  return text.replace('&amp;', '&').substring(0, 95) + " ...";
 });
 
 Handlebars.registerHelper('shortenText2', function(text, block) {
-  return text.substring(0, 190);
+  return text.substring(0, 190).replace('&amp;', '&');
 });
 
 Handlebars.registerHelper('dateFormat', function(context, block) {
@@ -2804,12 +2802,18 @@ $(function() {
 
     PostEdit.prototype.template = $("#post-create-template");
 
+    PostEdit.prototype.removeImg = false;
+
+    PostEdit.prototype.removeGallery = false;
+
     PostEdit.prototype.events = {
       "click button.update": "update",
       "click .open-gallery": "openGallery",
       "keydown input[name='query']": "searchLawyer",
       "change .form-control": "removeError",
-      "keydown .form-control": "removeError"
+      "keydown .form-control": "removeError",
+      "click .remove-img": "removeImg",
+      "click .remove-gallery": "removeGallery"
     };
 
     PostEdit.prototype.initialize = function() {
@@ -2829,6 +2833,18 @@ $(function() {
       return this.showLawyers();
     };
 
+    PostEdit.prototype.removeImg = function(e) {
+      e.preventDefault();
+      this.removeImg = true;
+      return $(this.el).find('.img-name').remove();
+    };
+
+    PostEdit.prototype.removeGallery = function(e) {
+      e.preventDefault();
+      this.removeGallery = true;
+      return $(this.el).find('.gallery-img').remove();
+    };
+
     PostEdit.prototype.update = function(e) {
       var $form, content, data, options, that;
       e.preventDefault();
@@ -2836,6 +2852,12 @@ $(function() {
       $form = this.$el.find('form');
       content = $(this.el).find('.summernote').code();
       data = new FormData($form[0]);
+      if (this.removeImg === true) {
+        data.append("fields[remove_img_name]", true);
+      }
+      if (this.removeGallery === true) {
+        data.append("fields[gallery_id]", null);
+      }
       data.append("fields[content]", content);
       options = ppu.ajaxOptions("PUT", data);
       return this.model.save(data, $.extend({}, options)).done(function(model) {
