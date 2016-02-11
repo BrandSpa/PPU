@@ -61942,7 +61942,7 @@ module.exports = React.createClass({displayName: "exports",
       lawyers = React.createElement("lawyers", {collection: post.lawyers})
     }
 
-    if(post.img_name) {
+    if(post.img_name && post.img_name.url) {
       postImage = post.img_name.url;
     } else if(post.gallery && post.gallery.img_name) {
       postImage = post.gallery.img_name.url;
