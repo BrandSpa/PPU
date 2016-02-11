@@ -60006,7 +60006,7 @@ module.exports = {
     practiceAreas: "Áreas de Práctica",
     experience: "Experiencia",
     aboutUs: "Nosotros",
-    recruitment: "Trabaje con nosotros",
+    recruitment: "Trabaje Con Nosotros",
     lawyerType: "Tipo abogado",
     recognitions: "Reconocimientos",
     networks: "Redes",
@@ -61930,9 +61930,7 @@ module.exports = React.createClass({displayName: "exports",
     .get('/api/posts/' + this.props.params.slug)
     .end(function(err, res) {
       this.setState({post: res.body});
-
     }.bind(this));
-
   },
 
   render: function() {
@@ -61944,10 +61942,10 @@ module.exports = React.createClass({displayName: "exports",
       lawyers = React.createElement("lawyers", {collection: post.lawyers})
     }
 
-    if(post.gallery) {
-      postImage = post.gallery.img_name.url;
-    } else if(post.img_name){
+    if(post.img_name) {
       postImage = post.img_name.url;
+    } else if(post.gallery && post.gallery.img_name) {
+      postImage = post.gallery.img_name.url;
     }
 
     return (

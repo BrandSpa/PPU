@@ -95,8 +95,14 @@ class Post < ActiveRecord::Base
   before_save :add_excerpt
   before_save :add_slug
   before_save :add_keywords
+  before_save :remove_gallery
 
   private
+    def remove_gallery
+      if self.img_name
+        self.gallery = nil
+      end
+    end
 
     # remove html tags from content and passes to excerpt field
     def add_excerpt

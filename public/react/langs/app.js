@@ -17,7 +17,7 @@ module.exports = {
     practiceAreas: "Áreas de Práctica",
     experience: "Experiencia",
     aboutUs: "Nosotros",
-    recruitment: "Trabaje con nosotros",
+    recruitment: "Trabaje Con Nosotros",
     lawyerType: "Tipo abogado",
     recognitions: "Reconocimientos",
     networks: "Redes",

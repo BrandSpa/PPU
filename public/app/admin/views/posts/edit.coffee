@@ -2,7 +2,7 @@ $ ->
   class ppu.admin.PostEdit extends Backbone.View
     el: $ "#post-edit"
     template: $ "#post-create-template"
-    events: 
+    events:
       "click button.update": "update"
       "click .open-gallery": "openGallery"
       "keydown input[name='query']": "searchLawyer"
@@ -33,14 +33,14 @@ $ ->
       options = ppu.ajaxOptions("PUT", data)
       @model.save data, $.extend({}, options)
         .done (model) ->
-          that.updated(model, that)
+          # that.updated(model, that)
 
     updated: (model, that) ->
       window.location = "/admin/posts/#{model.id}/edit"
 
     redirectTo: ->
       window.location = '/admin/posts'
-          
+
     getCategories: ->
       ppu.categories = new ppu.Categories
       el = @$el

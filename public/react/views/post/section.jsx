@@ -20,9 +20,7 @@ module.exports = React.createClass({
     .get('/api/posts/' + this.props.params.slug)
     .end(function(err, res) {
       this.setState({post: res.body});
-
     }.bind(this));
-
   },
 
   render: function() {
@@ -34,10 +32,10 @@ module.exports = React.createClass({
       lawyers = <lawyers collection={post.lawyers}/>
     }
 
-    if(post.gallery) {
-      postImage = post.gallery.img_name.url;
-    } else if(post.img_name){
+    if(post.img_name) {
       postImage = post.img_name.url;
+    } else if(post.gallery && post.gallery.img_name) {
+      postImage = post.gallery.img_name.url;
     }
 
     return (
