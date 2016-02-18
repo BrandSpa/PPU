@@ -29,7 +29,9 @@ module.exports = React.createClass({
     var lawyers = (<h5>{ post.author }</h5>);
 
     if(post && post.lawyers) {
-      lawyers = <lawyers collection={post.lawyers}/>
+      lawyers = post.lawyers.map(function(lawyer) {
+        return (<h5><a href={"/abogados/" + lawyer.slug}>{lawyer.name} {lawyer.lastname}</a></h5>);
+      });
     }
 
     if(post.img_name && post.img_name.url) {

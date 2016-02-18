@@ -13,8 +13,10 @@
          <option value="Global">Global</option>
          <option value="Chile">Chile</option>
          <option value="Colombia">Colombia</option>
+         <option value="Perú">Perú</option>
        </select>
      </div>
+
      <div class="form-group col-lg-6">
       <input type="text" name="fields[date]" placeholder="Fecha" value="{{dateFormat date format="DD/MM/YYYY"}}" class="form-control datepicker">
     </div>
@@ -39,7 +41,7 @@
   </div>
 
   <div class="row">
-   
+
     <div class="form-group col-lg-3">
       <a href="#" class="btn btn-info btn-xl open-gallery">Seleccionar imagen</a>
       <input type="hidden" name="fields[gallery_id]" class="gallery_id" value="{{ gallery_id }}">
@@ -47,7 +49,7 @@
 
     {{#if gallery.img_name }}
     <div class="col-lg-3">
-      <img src="{{ gallery.img_name.url}}" alt="" class="img-responsive"> 
+      <img src="{{ gallery.img_name.url}}" alt="" class="img-responsive">
     </div>
     {{/if}}
 
@@ -56,14 +58,14 @@
     </div>
     {{#if img_name }}
     <div class="col-lg-3">
-      <img src="{{ img_name.url }}" alt="" class="img-responsive"> 
+      <img src="{{ img_name.url }}" alt="" class="img-responsive">
     </div>
     {{/if}}
 
   </div>
   <div class="row">
     <div id="categories-checkbox">
-      
+
     </div>
   </div>
 
@@ -74,17 +76,18 @@
 
     </div>
     <div class="col-lg-6">
-      
+
       <p></p>
-      <table id="lawyers-result" class="table"> </table> 
+      <table id="lawyers-result" class="table"> </table>
     </div>
     <div class="col-lg-6">
-      <table id="lawyers-selected" class="table"> 
+      <table id="lawyers-selected" class="table">
         <tbody></tbody>
       </table>
     </div>
   </div>
 </form>
+
 <div class="row" >
   <div class="col-lg-12">
     {{#if id}}

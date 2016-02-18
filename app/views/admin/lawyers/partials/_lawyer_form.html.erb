@@ -1,7 +1,7 @@
 <script type="text/x-handlebars-template" id="lawyer-form-template">
   <form action=""   enctype="multipart/form-data">
     <div class="row">
-    <div class="form-group col-lg-12">
+    <div class="form-group col-lg-6">
       <select name="fields[country]" class="form-control" id="">
        {{#if country}}
         <option value="{{country}}">{{country}}</option>
@@ -11,19 +11,22 @@
         <option value="Chile">Chile</option>
         <option value="Colombia">Colombia</option>
         <option value="España">España</option>
+        <option value="Perú">Perú</option>
       </select>
     </div>
   </div>
   <hr>
+
   <div class="row">
     <div class="form-group col-lg-12">
       <label for="file">Adjuntar Foto de perfil</label>
-
       <input type="file" name="fields[img_name]" class='form-control'>
       <span>El formato de la fotografía debe ser cuadradro y de mínimo 500 x 500 pixeles</span>
     </div>
   </div>
+
 <hr>
+
   <div class="row">
     <div class="form-group col-lg-6">
     <label>Nombre</label>
@@ -50,7 +53,7 @@
     <label for="">Teléfono</label>
       <input type="text" name="fields[phone]" class="form-control" placeholder="ej: +571 3268606" value="{{ phone }}">
       <span>
-      Incluir indicativo +571 para Bogotá,  +575 para Barranquilla y +562 para Santiago, seguido por su número directo. </span>
+      Incluir indicativo +571 para Bogotá,  +575 para Barranquilla y +562 para Santiago, Perú +51 seguido por su número directo. </span>
     </div>
     </div>
     <hr>

@@ -61939,7 +61939,9 @@ module.exports = React.createClass({displayName: "exports",
     var lawyers = (React.createElement("h5", null,  post.author));
 
     if(post && post.lawyers) {
-      lawyers = React.createElement("lawyers", {collection: post.lawyers})
+      lawyers = post.lawyers.map(function(lawyer) {
+        return (React.createElement("h5", null, React.createElement("a", {href: "/abogados/" + lawyer.slug}, lawyer.name, " ", lawyer.lastname)));
+      });
     }
 
     if(post.img_name && post.img_name.url) {
@@ -63172,7 +63174,8 @@ module.exports = React.createClass({displayName: "exports",
   render: function() {
     var cityOptions = [
       {value: 'Colombia', label: 'Colombia'},
-      {value: 'Chile', label: 'Chile'}
+      {value: 'Chile', label: 'Chile'},
+      {value: 'Perú', label: 'Perú'},
     ];
 
     var areas = areaOptions.map(function(area) {
