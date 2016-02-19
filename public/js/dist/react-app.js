@@ -60508,10 +60508,8 @@ module.exports = React.createClass({displayName: "exports",
     }.bind(this));
     var imgUrl;
 
-    if (model && model.img_name) {
+    if (model.img_name.url) {
       imgUrl = model.img_name.url;
-    } else {
-      imgUrl = model.img_name.url
     }
 
     if(model.translations && model.translations.slug) {
