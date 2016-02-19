@@ -60506,6 +60506,13 @@ module.exports = React.createClass({displayName: "exports",
         )
       );
     }.bind(this));
+    var imgUrl;
+
+    if (model.img_name.url) {
+      imgUrl = model.img_name.url;
+    } else {
+      imgUrl = model.img_name.url
+    }
 
     if(model.translations && model.translations.slug) {
       link = model.translations.slug;
@@ -60531,7 +60538,7 @@ module.exports = React.createClass({displayName: "exports",
 
         React.createElement("div", {id: "experience", className: "padding-top"}, 
           React.createElement("div", {className: "experience-header"}, 
-            React.createElement("img", {src: model.img_name.url, alt: model.name}), 
+            React.createElement("img", {src: imgUrl, alt: model.name}), 
             React.createElement("h1", null, model.title), 
             React.createElement("span", {className: "company-name"}, model.company_name), 
             React.createElement("span", {className: "company-web"}, 
@@ -60544,6 +60551,7 @@ module.exports = React.createClass({displayName: "exports",
             React.createElement("div", {dangerouslySetInnerHTML: {__html: model.content}})
           )
         ), 
+
         React.createElement("div", {className: "related-title"}, 
           React.createElement("h3", null, trans.related)
         ), 
