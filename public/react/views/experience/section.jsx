@@ -22,13 +22,17 @@ module.exports = React.createClass({
     }
   },
 
-  componentDidMount: function() {
-    this.fetch();
+  componentWillReceiveProps: function(props) {
+    this.fetch(props.params.slug);
   },
 
-  fetch: function() {
+  componentDidMount: function() {
+    this.fetch(this.props.params.slug);
+  },
+
+  fetch: function(slug) {
      request
-    .get('/api/experiences/' + this.props.params.slug)
+    .get('/api/experiences/' + slug)
     .end(function(err, res) {
       this.setState({
         model: res.body,
@@ -103,7 +107,6 @@ module.exports = React.createClass({
            <span className="year">{model.country} - {moment(model.date).format('YYYY')}</span>
             <div dangerouslySetInnerHTML={{__html: model.content}} />
           </div>
-
         </div>
         <div className="related-title">
           <h3>{trans.related}</h3>

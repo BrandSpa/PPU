@@ -60458,13 +60458,17 @@ module.exports = React.createClass({displayName: "exports",
     }
   },
 
-  componentDidMount: function() {
-    this.fetch();
+  componentWillReceiveProps: function(props) {
+    this.fetch(props.params.slug);
   },
 
-  fetch: function() {
+  componentDidMount: function() {
+    this.fetch(this.props.params.slug);
+  },
+
+  fetch: function(slug) {
      request
-    .get('/api/experiences/' + this.props.params.slug)
+    .get('/api/experiences/' + slug)
     .end(function(err, res) {
       this.setState({
         model: res.body,
@@ -60539,7 +60543,6 @@ module.exports = React.createClass({displayName: "exports",
            React.createElement("span", {className: "year"}, model.country, " - ", moment(model.date).format('YYYY')), 
             React.createElement("div", {dangerouslySetInnerHTML: {__html: model.content}})
           )
-
         ), 
         React.createElement("div", {className: "related-title"}, 
           React.createElement("h3", null, trans.related)
