@@ -60528,7 +60528,7 @@ module.exports = React.createClass({displayName: "exports",
               {"name": "description", "content": model.excerpt},
               {"name": "og:title", "content": "Philippi Prietocarrizosa &Uría - " + model.title},
               {"name": "og:description", "content": model.excerpt},
-              {"name": "og:image", "content": model.img_name.url}
+              {"name": "og:image", "content": imgUrl}
           ]}
         ), 
 
