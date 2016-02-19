@@ -60506,7 +60506,7 @@ module.exports = React.createClass({displayName: "exports",
     }.bind(this));
     var imgUrl;
 
-    if (model.img_name && model.img_name.url) {
+    if (model && model.img_name) {
       imgUrl = model.img_name.url;
     } else {
       imgUrl = model.img_name.url
