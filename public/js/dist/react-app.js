@@ -60506,10 +60506,13 @@ module.exports = React.createClass({displayName: "exports",
         )
       );
     }.bind(this));
+
     var imgUrl;
 
     if (model.img_name && model.img_name.url) {
       imgUrl = model.img_name.url;
+    } else if(model.gallery && model.gallery.img_name) {
+      imgUrl =  model.gallery.img_name.url;
     }
 
     if(model.translations && model.translations.slug) {
