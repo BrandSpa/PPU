@@ -72,7 +72,7 @@ module.exports = React.createClass({
     }.bind(this));
     var imgUrl;
 
-    if (model.img_name.url) {
+    if (model.img_name && model.img_name.url) {
       imgUrl = model.img_name.url;
     }
 
