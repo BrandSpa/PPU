@@ -11,7 +11,9 @@ var TopBar = require('views/top_bar.jsx');
 module.exports = React.createClass({
   getInitialState: function() {
     return {
-      model: {},
+      model: {
+        img_name: null
+      },
       experiences: [],
       filters: {
         without: null,
