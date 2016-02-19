@@ -11,9 +11,7 @@ var TopBar = require('views/top_bar.jsx');
 module.exports = React.createClass({
   getInitialState: function() {
     return {
-      model: {
-        img_name: {}
-      },
+      model: {},
       experiences: [],
       filters: {
         without: null,
@@ -72,7 +70,7 @@ module.exports = React.createClass({
     }.bind(this));
     var imgUrl;
 
-    if (model.img_name.url) {
+    if (model.img_name && model.img_name.url) {
       imgUrl = model.img_name.url;
     } else {
       imgUrl = model.img_name.url
@@ -102,7 +100,7 @@ module.exports = React.createClass({
 
         <div id="experience" className="padding-top">
           <div className="experience-header">
-            <img src={imgUrl} alt={model.name} />
+            <img src={imgUrl} />
             <h1>{model.title}</h1>
             <span className="company-name">{model.company_name}</span>
             <span className="company-web">

@@ -60447,9 +60447,7 @@ var TopBar = require('views/top_bar.jsx');
 module.exports = React.createClass({displayName: "exports",
   getInitialState: function() {
     return {
-      model: {
-        img_name: {}
-      },
+      model: {},
       experiences: [],
       filters: {
         without: null,
@@ -60508,7 +60506,7 @@ module.exports = React.createClass({displayName: "exports",
     }.bind(this));
     var imgUrl;
 
-    if (model.img_name.url) {
+    if (model.img_name && model.img_name.url) {
       imgUrl = model.img_name.url;
     } else {
       imgUrl = model.img_name.url
@@ -60538,7 +60536,7 @@ module.exports = React.createClass({displayName: "exports",
 
         React.createElement("div", {id: "experience", className: "padding-top"}, 
           React.createElement("div", {className: "experience-header"}, 
-            React.createElement("img", {src: imgUrl, alt: model.name}), 
+            React.createElement("img", {src: imgUrl}), 
             React.createElement("h1", null, model.title), 
             React.createElement("span", {className: "company-name"}, model.company_name), 
             React.createElement("span", {className: "company-web"}, 
