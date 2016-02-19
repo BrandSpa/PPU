@@ -32,7 +32,7 @@ module.exports = React.createClass({
         href={"https://www.facebook.com/sharer/sharer.php?u=http://ppulegal.com/abogados/" + model.slug}
         ><i className="fa fa-facebook-square"></i></a>
 
-        <a href="/abogados/202/vcard" className="btn btn-primary btn-vcard" target="_new">Download<br/>VCard</a>
+        <a href={"/abogados/"+ model.id +"/vcard"} className="btn btn-primary btn-vcard" target="_new">Download<br/>VCard</a>
       </div>
 
     );

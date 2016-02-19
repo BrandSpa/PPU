@@ -61552,7 +61552,7 @@ module.exports = React.createClass({displayName: "exports",
         href: "https://www.facebook.com/sharer/sharer.php?u=http://ppulegal.com/abogados/" + model.slug
         }, React.createElement("i", {className: "fa fa-facebook-square"})), 
 
-        React.createElement("a", {href: "/abogados/202/vcard", className: "btn btn-primary btn-vcard", target: "_new"}, "Download", React.createElement("br", null), "VCard")
+        React.createElement("a", {href: "/abogados/"+ model.id +"/vcard", className: "btn btn-primary btn-vcard", target: "_new"}, "Download", React.createElement("br", null), "VCard")
       )
 
     );
