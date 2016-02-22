@@ -10,17 +10,26 @@ $mobile: "(max-width: 767px)"
 $mobile-xs: "(max-width: 480px)"
 
 #ppu-admin
+	.navbar-collapse
+		background: #fff !important
+
+		padding: 0
+
 	.navbar-admin
 		border: none
-		background: #002855 !important
+		background: #fff !important
+		border-bottom: 2px solid  #002855
 	.navbar-header
-		background: #002855 !important
+		color: #0299A8
+		span
+			color: #002855
 		.navbar-brand
-			background: #002855 !important
-			color: #fff !important
+			color: #0299A8 !important
+
 		.navbar-collapse
-			background: #002855 !important
-			
+			background: #fff !important
+
+
 			li
 				&>a
 					color: #fff !important
@@ -49,4 +58,4 @@ $mobile-xs: "(max-width: 480px)"
 	margin-left: 215px
 	margin-right: 15px
 	@media #{$mobile}, #{$mobile-xs}
-		margin-left: 15px 
+		margin-left: 15px

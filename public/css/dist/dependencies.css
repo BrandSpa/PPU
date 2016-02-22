@@ -7828,16 +7828,21 @@ select .form-control {
 /* Portrait tablets and small desktops */
 /* Landscape phones and portrait tablets */
 /* Landscape phones and smaller */
+#ppu-admin .navbar-collapse {
+  background: #fff !important;
+  padding: 0; }
 #ppu-admin .navbar-admin {
   border: none;
-  background: #002855 !important; }
+  background: #fff !important;
+  border-bottom: 2px solid #002855; }
 #ppu-admin .navbar-header {
-  background: #002855 !important; }
+  color: #0299A8; }
+  #ppu-admin .navbar-header span {
+    color: #002855; }
   #ppu-admin .navbar-header .navbar-brand {
-    background: #002855 !important;
-    color: #fff !important; }
+    color: #0299A8 !important; }
   #ppu-admin .navbar-header .navbar-collapse {
-    background: #002855 !important; }
+    background: #fff !important; }
     #ppu-admin .navbar-header .navbar-collapse li > a {
       color: #fff !important; }
 
