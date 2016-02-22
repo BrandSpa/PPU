@@ -7,6 +7,7 @@
 	margin-bottom: 15px
 	overflow: hidden
 	cursor: pointer
+
 	@media #{$tablet}
 		height: 124px
 	@media #{$mobile-xs}
@@ -23,6 +24,9 @@
 		img
 			max-width: 100%
 
+			@media #{$desktop}, #{$desktop-lg}
+				min-height: 160px
+
 		@media #{$mobile}
 			width: 30%
 
@@ -37,6 +41,7 @@
 		height: 155px
 		position: relative
 		transition: all 100ms linear
+		float: left
 
 		&:hover
 			background: $color-darkBlue
@@ -112,7 +117,6 @@
 	color: #fff
 	float: left
 	width: 100%
-	margin-bottom: 30px
 	padding-left: 0
 
 
@@ -169,3 +173,6 @@
 	margin-bottom: 15px
 
 
+.experience-item
+	.content
+		float: left

@@ -4,9 +4,11 @@ var request = require('superagent');
 var Helmet = require('react-helmet');
 var getLang = require('utils/get_lang');
 var Experience = require('experiences/experience.jsx');
+var Lawyer = require('views/lawyers/lawyer.jsx');
 var moment = require('moment');
 var trans = require('langs/experience');
 var TopBar = require('views/top_bar.jsx');
+var _ = require('lodash');
 
 module.exports = React.createClass({
   getInitialState: function() {
@@ -60,6 +62,17 @@ module.exports = React.createClass({
     var model = this.state.model;
     var img;
     var link;
+    var lawyerNodes;
+    var title;
+
+    if(model.lawyers) {
+      lawyerNodes = model.lawyers.map(function(lawyer, i) {
+        return (<Lawyer key={i} lawyer={lawyer} history={this.props.history} />);
+      }.bind(this));
+      if(!_.isEmpty(model.lawyers)) {
+        title = trans.contact;
+      }
+    }
 
     var experienceNodes = this.state.experiences.map(function(experience, i) {
       return (
@@ -111,15 +124,23 @@ module.exports = React.createClass({
             </span>
           </div>
 
-          <div className="content">
+          <div className="content col-lg-12">
            <span className="year">{model.country} - {moment(model.date).format('YYYY')}</span>
             <div dangerouslySetInnerHTML={{__html: model.content}} />
+
+            <h4>{title}</h4>
+
+            <div className="lawyers">
+            {lawyerNodes}
+            </div>
+
           </div>
         </div>
 
         <div className="related-title">
           <h3>{trans.related}</h3>
         </div>
+
         <div id="experiences-related">
           {experienceNodes}
         </div>

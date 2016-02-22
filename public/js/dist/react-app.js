@@ -60123,12 +60123,14 @@ var getLang = require('utils/get_lang');
 module.exports = {
   es: {
     name: 'Experiencia',
-    related: 'Experiencia relacionadas'
+    related: 'Experiencia relacionadas',
+    contact: 'Contacto'
   },
 
   en: {
     name: 'Experience',
-    related: 'Experience related'
+    related: 'Experience related',
+    contact: 'Contact'
   }
 }[getLang];
 
@@ -60440,9 +60442,11 @@ var request = require('superagent');
 var Helmet = require('react-helmet');
 var getLang = require('utils/get_lang');
 var Experience = require('experiences/experience.jsx');
+var Lawyer = require('views/lawyers/lawyer.jsx');
 var moment = require('moment');
 var trans = require('langs/experience');
 var TopBar = require('views/top_bar.jsx');
+var _ = require('lodash');
 
 module.exports = React.createClass({displayName: "exports",
   getInitialState: function() {
@@ -60496,6 +60500,18 @@ module.exports = React.createClass({displayName: "exports",
     var model = this.state.model;
     var img;
     var link;
+    var lawyerNodes;
+    var title;
+
+    if(model.lawyers) {
+      lawyerNodes = model.lawyers.map(function(lawyer, i) {
+        return (React.createElement(Lawyer, {key: i, lawyer: lawyer, history: this.props.history}));
+      }.bind(this));
+      if(!_.isEmpty(model.lawyers)) {
+        title = trans.contact;
+      }
+
+    }
 
     var experienceNodes = this.state.experiences.map(function(experience, i) {
       return (
@@ -60547,15 +60563,23 @@ module.exports = React.createClass({displayName: "exports",
             )
           ), 
 
-          React.createElement("div", {className: "content"}, 
+          React.createElement("div", {className: "content col-lg-12"}, 
            React.createElement("span", {className: "year"}, model.country, " - ", moment(model.date).format('YYYY')), 
-            React.createElement("div", {dangerouslySetInnerHTML: {__html: model.content}})
+            React.createElement("div", {dangerouslySetInnerHTML: {__html: model.content}}), 
+
+            React.createElement("h4", null, title), 
+
+            React.createElement("div", {className: "lawyers"}, 
+            lawyerNodes
+            )
+
           )
         ), 
 
         React.createElement("div", {className: "related-title"}, 
           React.createElement("h3", null, trans.related)
         ), 
+
         React.createElement("div", {id: "experiences-related"}, 
           experienceNodes
         )
@@ -60565,7 +60589,7 @@ module.exports = React.createClass({displayName: "exports",
 });
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/react/views/experience/section.jsx","/react/views/experience")
-},{"_process":37,"buffer":2,"experiences/experience.jsx":360,"langs/experience":352,"moment":36,"react":343,"react-helmet":40,"superagent":344,"utils/get_lang":354,"views/top_bar.jsx":395}],360:[function(require,module,exports){
+},{"_process":37,"buffer":2,"experiences/experience.jsx":360,"langs/experience":352,"lodash":34,"moment":36,"react":343,"react-helmet":40,"superagent":344,"utils/get_lang":354,"views/lawyers/lawyer.jsx":379,"views/top_bar.jsx":395}],360:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 'use strict';
 var React = require('react');
@@ -60829,6 +60853,16 @@ module.exports = React.createClass({displayName: "exports",
                         React.createElement("span", null, "Carrera 9 # 74-08 Oficina 105"), 
                         React.createElement("span", null, "Tel.: +571 3268600"), 
                         React.createElement("span", null, "Fax: +571 3268610"), 
+                        React.createElement("span", null, "infoCO@ppulegal.com")
+                      )
+                    ), 
+                     React.createElement("div", {className: "row"}, 
+                      React.createElement("div", {className: "col-lg-3"}, 
+                        React.createElement("h4", null, "Lima")
+                      ), 
+                      React.createElement("div", {className: "col-lg-8"}, 
+                        React.createElement("span", null, "Av. Santa Cruz No. 888  Piso 4"), 
+                        React.createElement("span", null, "Tel.: +511 513-7200"), 
                         React.createElement("span", null, "infoCO@ppulegal.com")
                       )
                     )

@@ -3,7 +3,7 @@ var gulp = require('gulp');
 var minifyCss = require('gulp-minify-css');
 var concat = require('gulp-concat');
 
-gulp.task('concact_dependencies', function() {
+gulp.task('concat_dependencies', function() {
   gulp.src([
     'node_modules/bootstrap/dist/css/bootstrap.css',
     'css/default.css',

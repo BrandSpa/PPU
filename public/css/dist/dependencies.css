@@ -8030,6 +8030,9 @@ select .form-control {
     background: #fff; }
     .experience-item .img-container img {
       max-width: 100%; }
+      @media (min-width: 992px) and (max-width: 1199px), (min-width: 1200px) {
+        .experience-item .img-container img {
+          min-height: 160px; } }
     @media (max-width: 767px) {
       .experience-item .img-container {
         width: 30%; } }
@@ -8043,7 +8046,8 @@ select .form-control {
     width: 65%;
     height: 155px;
     position: relative;
-    transition: all 100ms linear; }
+    transition: all 100ms linear;
+    float: left; }
     .experience-item .content:hover {
       background: #002855; }
       .experience-item .content:hover h3 {
@@ -8147,7 +8151,6 @@ select .form-control {
   color: #fff;
   float: left;
   width: 100%;
-  margin-bottom: 30px;
   padding-left: 0; }
   @media (max-width: 767px) {
     .experience-header {
@@ -8197,6 +8200,9 @@ select .form-control {
   font-size: 1em;
   line-height: 1.7em;
   margin-bottom: 15px; }
+
+.experience-item .content {
+  float: left; }
 
 #filters-modal .modal-content {
   background: transparent !important;
