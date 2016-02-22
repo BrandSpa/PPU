@@ -60510,7 +60510,6 @@ module.exports = React.createClass({displayName: "exports",
       if(!_.isEmpty(model.lawyers)) {
         title = trans.contact;
       }
-
     }
 
     var experienceNodes = this.state.experiences.map(function(experience, i) {
@@ -60946,7 +60945,8 @@ module.exports = React.createClass({displayName: "exports",
   render: function() {
     var cityOptions = [
       {value: 'Colombia', label: 'Colombia'},
-      {value: 'Chile', label: 'Chile'}
+      {value: 'Chile', label: 'Chile'},
+      {value: 'Perú', label: 'Perú'}
     ];
 
     return (
