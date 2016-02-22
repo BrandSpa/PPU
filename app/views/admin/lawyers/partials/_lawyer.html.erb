@@ -10,7 +10,9 @@
    <img src="{{img_name.url}}" width="250" class="pull-right">
    {{/if}}
  </div>
+
  <p class="lawyer-description">{{ description }}</p>
+
  <a href="#" class="btn btn-info open-edit-lawyer">Editar información & áreas</a>
  {{#if translations}}
    <a href="/en/admin/lawyers/{{ translations.id }}/edit" class="btn btn-warning ">Editar Ingles</a>
@@ -21,4 +23,11 @@
        <a href="#" class="btn btn-primary confirm-translate">Crear perfil en inglés</a>
      {{/if}}
   {{/if}}
+
+   {{#if published}}
+      <a href="#" class="btn btn-success unpublish">Publicado</a>
+    {{else}}
+      <a href="#" class="btn btn-default publish">Publicar</a>
+    {{/if}}
+
 </script>

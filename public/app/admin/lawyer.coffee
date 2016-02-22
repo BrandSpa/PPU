@@ -121,6 +121,9 @@ $ ->
       "change .change-level": 'toggleDescriptionByLevel'
       "change .change-position": 'toggleDescriptionByPosition'
       "change .change-position": 'toggleDescriptionByPosition'
+      "click .publish": "publish"
+      "click .unpublish": "unpublish"
+
 
     initialize: ->
       @listenTo @model, "error", @renderErrors, @
@@ -162,6 +165,20 @@ $ ->
     stored: (model)->
       window.location = "/admin/lawyers/#{model.id}/edit"
 
+    publish: (e) ->
+      e.preventDefault()
+      @model.save fields: published: true
+      id = @model.get('translations').id
+      $.ajax url: "/api/lawyers/#{id}", type: 'PUT', data: fields: published: true
+
+    unpublish: (e) ->
+      e.preventDefault()
+      @model.save fields: published: false
+      id = @model.get('translations').id
+      $.ajax url: "/api/lawyers/#{id}", type: 'PUT', data: fields: published: false
+
+
+
   class ppu.LawyerCreateView extends Backbone.View
     el: $ "#lawyer-create"
 
@@ -171,12 +188,14 @@ $ ->
       "keydown .form-control": "removeError"
       "change .form-control": "removeError"
 
+
     initialize: ->
       ppu.appendDatePickerYear(@el)
 
     store: (e) ->
       e.preventDefault()
       ppu.lawyerCreateForm.store()
+
 
   class ppu.lawyerEdit extends Backbone.View
     el: $ "#lawyer-edit-modal"
@@ -185,6 +204,7 @@ $ ->
       "click .lawyer-edit-update": "update"
       "click .modal-close": "close"
       "keydown .form-control": "removeError"
+
 
     initialize: ->
       @listenTo @model, 'error', @renderErrors
@@ -238,6 +258,8 @@ $ ->
       e.preventDefault()
       @closeModal()
 
+
+
   class ppu.LawyerEditView extends Backbone.View
     el: $ '.container-lawyer'
     template: $ '#lawyer-template'
@@ -246,6 +268,8 @@ $ ->
       'click .open-share': 'openShare'
       "click .confirm-translate": "confirmTranslate"
       "click .translate": "translate"
+      "click .publish": "publish"
+      "click .unpublish": "unpublish"
 
     initialize: ->
       @listenTo(@model, 'change', @render)
@@ -284,6 +308,18 @@ $ ->
 
     openShare: (e) ->
       $('#share-modal').modal()
+
+    publish: (e) ->
+      e.preventDefault()
+      @model.save fields: published: true
+      id = @model.get('translations').id
+      $.ajax url: "/api/lawyers/#{id}", type: 'PUT', data: fields: published: true
+
+    unpublish: (e) ->
+      e.preventDefault()
+      @model.save fields: published: false
+      id = @model.get('translations').id
+      $.ajax url: "/api/lawyers/#{id}", type: 'PUT', data: fields: published: false
 
   class ppu.lawyerConfirmTranslate extends Backbone.View
     el: $ "#confirm-translate-modal"

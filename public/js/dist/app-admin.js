@@ -2134,7 +2134,9 @@ $(function() {
     LawyerCreateForm.prototype.events = {
       "change .change-level": 'toggleDescriptionByLevel',
       "change .change-position": 'toggleDescriptionByPosition',
-      "change .change-position": 'toggleDescriptionByPosition'
+      "change .change-position": 'toggleDescriptionByPosition',
+      "click .publish": "publish",
+      "click .unpublish": "unpublish"
     };
 
     LawyerCreateForm.prototype.initialize = function() {
@@ -2189,6 +2191,46 @@ $(function() {
 
     LawyerCreateForm.prototype.stored = function(model) {
       return window.location = "/admin/lawyers/" + model.id + "/edit";
+    };
+
+    LawyerCreateForm.prototype.publish = function(e) {
+      var id;
+      e.preventDefault();
+      this.model.save({
+        fields: {
+          published: true
+        }
+      });
+      id = this.model.get('translations').id;
+      return $.ajax({
+        url: "/api/lawyers/" + id,
+        type: 'PUT',
+        data: {
+          fields: {
+            published: true
+          }
+        }
+      });
+    };
+
+    LawyerCreateForm.prototype.unpublish = function(e) {
+      var id;
+      e.preventDefault();
+      this.model.save({
+        fields: {
+          published: false
+        }
+      });
+      id = this.model.get('translations').id;
+      return $.ajax({
+        url: "/api/lawyers/" + id,
+        type: 'PUT',
+        data: {
+          fields: {
+            published: false
+          }
+        }
+      });
     };
 
     return LawyerCreateForm;
@@ -2327,7 +2369,9 @@ $(function() {
       'click .open-edit-lawyer': 'openEdit',
       'click .open-share': 'openShare',
       "click .confirm-translate": "confirmTranslate",
-      "click .translate": "translate"
+      "click .translate": "translate",
+      "click .publish": "publish",
+      "click .unpublish": "unpublish"
     };
 
     LawyerEditView.prototype.initialize = function() {
@@ -2379,6 +2423,46 @@ $(function() {
 
     LawyerEditView.prototype.openShare = function(e) {
       return $('#share-modal').modal();
+    };
+
+    LawyerEditView.prototype.publish = function(e) {
+      var id;
+      e.preventDefault();
+      this.model.save({
+        fields: {
+          published: true
+        }
+      });
+      id = this.model.get('translations').id;
+      return $.ajax({
+        url: "/api/lawyers/" + id,
+        type: 'PUT',
+        data: {
+          fields: {
+            published: true
+          }
+        }
+      });
+    };
+
+    LawyerEditView.prototype.unpublish = function(e) {
+      var id;
+      e.preventDefault();
+      this.model.save({
+        fields: {
+          published: false
+        }
+      });
+      id = this.model.get('translations').id;
+      return $.ajax({
+        url: "/api/lawyers/" + id,
+        type: 'PUT',
+        data: {
+          fields: {
+            published: false
+          }
+        }
+      });
     };
 
     return LawyerEditView;
