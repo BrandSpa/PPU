@@ -60862,7 +60862,7 @@ module.exports = React.createClass({displayName: "exports",
                       React.createElement("div", {className: "col-lg-8"}, 
                         React.createElement("span", null, "Av. Santa Cruz No. 888  Piso 4"), 
                         React.createElement("span", null, "Tel.: +511 513-7200"), 
-                        React.createElement("span", null, "infoCO@ppulegal.com")
+                        React.createElement("span", null, "infoPE@ppulegal.com")
                       )
                     )
 

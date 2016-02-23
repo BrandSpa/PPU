@@ -77,7 +77,7 @@ module.exports = React.createClass({
                       <div className="col-lg-8">
                         <span>Av. Santa Cruz No. 888  Piso 4</span>
                         <span>Tel.: +511 513-7200</span>
-                        <span>infoCO@ppulegal.com</span>
+                        <span>infoPE@ppulegal.com</span>
                       </div>
                     </div>
 

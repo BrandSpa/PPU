@@ -767,6 +767,15 @@ select .form-control {
   z-index: 3; }
 .select-country .Select-placeholder {
   padding-top: 12px; }
+.select-country .Select-menu-outer {
+  border: 1px solid #007C96 !important;
+  right: 0 !important;
+  left: 0 !important; }
+.select-country .Select-option {
+  border-bottom: 1px solid #007C96 !important;
+  margin: 0;
+  border-radius: 0;
+  padding: 10px 10px; }
 
 .form-recruitment .form-group {
   text-align: left; }
