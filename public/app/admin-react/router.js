@@ -5,6 +5,7 @@ var Us = require('us/section.jsx');
 var Recruitment = require('recruitment/section.jsx');
 var Posts = require('posts/section.jsx');
 var Lawyers = require('lawyers/section.jsx');
+var Sidebar = require('sidebar.jsx');
 
 var Router = Backbone.Router.extend({
   routes: {
@@ -46,5 +47,10 @@ var Router = Backbone.Router.extend({
 });
 
 var Route = new Router;
+
+React.render(
+        <Sidebar />,
+        document.getElementById('admin-sidebar')
+);
 
 Backbone.history.start({pushState: true});

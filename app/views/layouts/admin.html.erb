@@ -41,6 +41,11 @@
   .panel-heading {
     padding-bottom: 0;
   }
+
+  .active {
+    color: #0299A8 !important;
+    border-left: 3px solid #0299A8;
+  }
   </style>
 
   <%= csrf_meta_tags %>
@@ -100,23 +105,8 @@
 </nav>
 
 <% if user_signed_in? %>
-<div class="sidebar hidden-xs hidden-sm">
-  <ul>
-    <li><a href="/dashboard">Abogados</a></li>
-    <li><a href="/admin/lawyers/new">Crear Abogado</a></li>
-    <li><a href="/admin/posts2">Noticias</a></li>
-    <li><a href="/admin/posts/new">Crear Noticia</a></li>
-    <li><a href="/admin/experiences">Experiencias</a></li>
-    <li><a href="/admin/experiences/new">Crear Experiencia</a></li>
-    <li><a href="/admin/the-actual">El Actual Chile</a></li>
-    <li><a href="/admin/the-actual/new">Crear El Actual Chile</a></li>
-    <li><a href="/admin/the-actual-co">El Actual Colombia</a></li>
-    <li><a href="/admin/the-actual-co/new">Crear El Actual Colombia</a></li>
-    <li><a href="/admin/nosotros">Nosotros</a></li>
-    <li><a href="/admin/probono">Probono</a></li>
-    <li><a href="/admin/trabaje-con-nosotros">Trabaje con Nosotros</a></li>
-    <li><a href="/users/sign_out">Salir</a></li>
-  </ul>
+<div id="admin-sidebar" class="sidebar hidden-xs hidden-sm">
+
 </div>
 <% end %>
 
