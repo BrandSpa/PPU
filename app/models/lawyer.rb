@@ -107,7 +107,7 @@ class Lawyer < ActiveRecord::Base
   def self.translate_position(position)
     if position == "Abogado"
       "Lawyer"
-    if position == "Asociado"
+    elsif position == "Asociado"
       "Associate"
     elsif position == "Socio"
       "Partner"
@@ -118,7 +118,6 @@ class Lawyer < ActiveRecord::Base
     elsif position == "Consultor Extranjero"
       "Foreign Consultant"
     end
-
   end
 
   def self.duplicate(model)
