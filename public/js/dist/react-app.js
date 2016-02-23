@@ -60123,13 +60123,13 @@ var getLang = require('utils/get_lang');
 module.exports = {
   es: {
     name: 'Experiencia',
-    related: 'Experiencia relacionadas',
+    related: 'Experiencias relacionadas',
     contact: 'Contacto'
   },
 
   en: {
     name: 'Experience',
-    related: 'Experience related',
+    related: 'Experiences related',
     contact: 'Contact'
   }
 }[getLang];
