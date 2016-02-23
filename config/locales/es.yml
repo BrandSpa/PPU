@@ -12,8 +12,8 @@ es:
   Lawyers: "Abogados"
   senior_counsel: Senior Counsel
   partner: "Socio"
-  associated: "Asociado"
-  lawyer: "Abogado"
+  associate: "Asociado"
+  lawyer: "Asociado"
   foreign_consultant: "Consultor Extranjero"
   specialist: "Especialista"
   practice_areas: "Áreas de práctica"

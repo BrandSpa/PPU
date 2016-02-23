@@ -107,7 +107,8 @@ class Lawyer < ActiveRecord::Base
   def self.translate_position(position)
     if position == "Abogado"
       "Lawyer"
-    elsif position == "Socio"
+    if position == "Asociado"
+    elsif position == "Associate"
       "Partner"
     elsif position == "Especialista"
       "Specialist"

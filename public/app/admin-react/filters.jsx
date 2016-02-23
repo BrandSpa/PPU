@@ -10,7 +10,8 @@ module.exports = React.createClass({
         keyword: null,
         country: null,
         category: null,
-        position: null
+        position: null,
+        lang: null
       }
     }
   },
@@ -44,6 +45,10 @@ module.exports = React.createClass({
     this.filter({position: val});
   },
 
+  filterLang: function(val) {
+    if(val === '') val = null;
+    this.filter({lang: val});
+  },
 
   render: function() {
     var countriesOptions = [
@@ -51,6 +56,12 @@ module.exports = React.createClass({
       {value: 'Chile', label: 'Chile'},
       {value: 'Perú', label: 'Perú'},
     ];
+
+    var langs = [
+      {value: 'es', label: 'Español'},
+      {value: 'en', label: 'Ingles'}
+    ];
+
     var areasOptions = [
       "Corporativo / M&A",
       "Competencia",
@@ -102,6 +113,17 @@ module.exports = React.createClass({
                   placeholder={"Seleccionar Área"}
                   options={areas}
                   onChange={this.filterArea}
+                  value={this.state.filters.category}
+                />
+            </div>
+
+            <div className={"col-sm-3 lang"}>
+              <Select
+                  ref="lang"
+                  name="form-field-name"
+                  placeholder={"Seleccionar Languaje"}
+                  options={langs}
+                  onChange={this.filterLang}
                   value={this.state.filters.category}
                 />
             </div>

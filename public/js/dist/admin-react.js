@@ -118,7 +118,8 @@ module.exports = React.createClass({displayName: "exports",
         keyword: null,
         country: null,
         category: null,
-        position: null
+        position: null,
+        lang: null
       }
     }
   },
@@ -152,6 +153,10 @@ module.exports = React.createClass({displayName: "exports",
     this.filter({position: val});
   },
 
+  filterLang: function(val) {
+    if(val === '') val = null;
+    this.filter({lang: val});
+  },
 
   render: function() {
     var countriesOptions = [
@@ -159,6 +164,12 @@ module.exports = React.createClass({displayName: "exports",
       {value: 'Chile', label: 'Chile'},
       {value: 'Perú', label: 'Perú'},
     ];
+
+    var langs = [
+      {value: 'es', label: 'Español'},
+      {value: 'en', label: 'Ingles'}
+    ];
+
     var areasOptions = [
       "Corporativo / M&A",
       "Competencia",
@@ -210,6 +221,17 @@ module.exports = React.createClass({displayName: "exports",
                   placeholder: "Seleccionar Área", 
                   options: areas, 
                   onChange: this.filterArea, 
+                  value: this.state.filters.category}
+                )
+            ), 
+
+            React.createElement("div", {className: "col-sm-3 lang"}, 
+              React.createElement(Select, {
+                  ref: "lang", 
+                  name: "form-field-name", 
+                  placeholder: "Seleccionar Languaje", 
+                  options: langs, 
+                  onChange: this.filterLang, 
                   value: this.state.filters.category}
                 )
             )
@@ -329,10 +351,10 @@ module.exports = React.createClass({displayName: "exports",
           React.createElement("a", {href: "/admin/posts/"+ post.id +"/edit", className: "btn btn-default btn-xs"}, " ", React.createElement("i", {className: "fa fa-pencil-square-o"}), " Editar ")
         ), 
 
-
         React.createElement("td", null, 
           btnTrans
         ), 
+
         React.createElement("td", null, 
           React.createElement("a", {
             className: "btn btn-xs", 
