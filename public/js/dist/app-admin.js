@@ -4190,7 +4190,7 @@ $(function() {
       options = ppu.ajaxOptions("PUT", data);
       return this.model.save(data, $.extend({}, options)).done(function(model) {
         if (model) {
-          return window.location = "/dashboard";
+          return window.location = "/experiences";
         }
       });
     };

@@ -212,7 +212,7 @@ $ ->
       @model.save data, $.extend({}, options)
         .done (model) ->
           if model
-            window.location = "/dashboard"
+            window.location = "/experiences"
 
     getCategories: ->
       ppu.categories = new ppu.Categories
