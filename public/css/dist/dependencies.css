@@ -7616,9 +7616,10 @@ select .form-control {
   #footer .close-footer {
     position: absolute;
     right: 30px;
-    top: 15px; }
+    top: 7px; }
     #footer .close-footer i {
-      font-size: 1.3em; }
+      font-size: 1.3em;
+      font-weight: 200; }
   #footer h3 {
     font-size: 1.3em; }
   #footer hr {
@@ -7804,9 +7805,7 @@ select .form-control {
 .select-country .Select-placeholder {
   padding-top: 12px; }
 .select-country .Select-menu-outer {
-  border: 1px solid #007C96 !important;
-  right: 0 !important;
-  left: 0 !important; }
+  border: 1px solid #007C96 !important; }
 .select-country .Select-option {
   border-bottom: 1px solid #007C96 !important;
   margin: 0;
