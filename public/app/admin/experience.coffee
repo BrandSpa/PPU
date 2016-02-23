@@ -146,7 +146,7 @@ $ ->
       @model.save data, $.extend({}, options)
 
     stored: (model) ->
-      window.location = "/experiencias/" + model.attributes.slug if model
+      window.location = "/admin/experiences" if model
 
     showErrors: (model, b) ->
       _.each b.responseJSON, (error) ->
