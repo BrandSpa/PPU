@@ -116,7 +116,13 @@ module.exports = React.createClass({
     ];
 
     var lawyerTypes = lawyerTypesOptions.map(function(option) {
-      return {value: option, label: option};
+      if(option == "Abogado") {
+        return {value: option, label: "Asociado"};
+      } else if(option == "Lawyer") {
+        return {value: option, label: "Associate"};
+      } else {
+        return {value: option, label: option};
+      }
     });
 
     var lang;

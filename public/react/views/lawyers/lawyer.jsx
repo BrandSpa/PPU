@@ -16,6 +16,7 @@ module.exports = React.createClass({
   render: function() {
     var lawyer = this.props.lawyer;
     var lawyerImage;
+    var position = lawyer.position;
 
     if(lawyer.translation) {
       lawyerImage = <img src={lawyer.translation.img_name.url } alt={ lawyer.name +" "+ lawyer.lastname +"translation"} />;
@@ -27,13 +28,19 @@ module.exports = React.createClass({
       lawyerImage = <img src={"/img/lawyer_placeholder.jpg"} alt={ lawyer.name +" "+ lawyer.lastname } />;
     }
 
+    if(position == "Abogado") {
+      position = "Asociado";
+    } else if(position == "Lawyer") {
+      position = "Associate";
+    }
+
     return (
       <div className="col-sm-6 col-xs-12 lawyer-item" onClick={this.open}>
       <div className="img-container">
         {lawyerImage}
       </div>
         <div className="content">
-          <span className="position">{ lawyer.position }</span>
+          <span className="position">{ position }</span>
           <h3>{ lawyer.name +" "+ lawyer.lastname }</h3>
           <span className="country">{ lawyer.country }</span>
           <a href={"tel:" + lawyer.phone } className="phone">{ lawyer.phone }</a>

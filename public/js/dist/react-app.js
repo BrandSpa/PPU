@@ -61626,6 +61626,7 @@ module.exports = React.createClass({displayName: "exports",
   render: function() {
     var lawyer = this.props.lawyer;
     var lawyerImage;
+    var position = lawyer.position;
 
     if(lawyer.translation) {
       lawyerImage = React.createElement("img", {src: lawyer.translation.img_name.url, alt:  lawyer.name +" "+ lawyer.lastname +"translation"});
@@ -61637,13 +61638,19 @@ module.exports = React.createClass({displayName: "exports",
       lawyerImage = React.createElement("img", {src: "/img/lawyer_placeholder.jpg", alt:  lawyer.name +" "+ lawyer.lastname});
     }
 
+    if(position == "Abogado") {
+      position = "Asociado";
+    } else if(position == "Lawyer") {
+      position = "Associate";
+    }
+
     return (
       React.createElement("div", {className: "col-sm-6 col-xs-12 lawyer-item", onClick: this.open}, 
       React.createElement("div", {className: "img-container"}, 
         lawyerImage
       ), 
         React.createElement("div", {className: "content"}, 
-          React.createElement("span", {className: "position"},  lawyer.position), 
+          React.createElement("span", {className: "position"},  position ), 
           React.createElement("h3", null,  lawyer.name +" "+ lawyer.lastname), 
           React.createElement("span", {className: "country"},  lawyer.country), 
           React.createElement("a", {href: "tel:" + lawyer.phone, className: "phone"},  lawyer.phone), 
@@ -61677,7 +61684,8 @@ module.exports = React.createClass({displayName: "exports",
     if(getLang == "en") {
       var orderby = {
         order_by_spanish: null,
-        order_by_english: ''
+        order_by_english: '',
+        lang: 'en'
       }
      }
 
@@ -63237,7 +63245,13 @@ module.exports = React.createClass({displayName: "exports",
     ];
 
     var lawyerTypes = lawyerTypesOptions.map(function(option) {
-      return {value: option, label: option};
+      if(option == "Abogado") {
+        return {value: option, label: "Asociado"};
+      } else if(option == "Lawyer") {
+        return {value: option, label: "Associate"};
+      } else {
+        return {value: option, label: option};
+      }
     });
 
     var lang;

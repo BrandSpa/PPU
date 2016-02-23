@@ -18,7 +18,8 @@ module.exports = React.createClass({
     if(getLang == "en") {
       var orderby = {
         order_by_spanish: null,
-        order_by_english: ''
+        order_by_english: '',
+        lang: 'en'
       }
      }
 
