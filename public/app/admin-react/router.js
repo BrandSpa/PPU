@@ -4,6 +4,7 @@ var Probono = require('probono/section.jsx');
 var Us = require('us/section.jsx');
 var Recruitment = require('recruitment/section.jsx');
 var Posts = require('posts/section.jsx');
+var Lawyers = require('lawyers/section.jsx');
 
 var Router = Backbone.Router.extend({
   routes: {
@@ -31,6 +32,13 @@ var Router = Backbone.Router.extend({
     'admin/posts2': function() {
       React.render(
         <Posts />,
+        document.getElementById('wrap')
+      );
+    },
+
+    'admin/lawyers2': function() {
+      React.render(
+        <Lawyers />,
         document.getElementById('wrap')
       );
     },

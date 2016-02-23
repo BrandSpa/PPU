@@ -11,7 +11,8 @@ module.exports = React.createClass({
         country: null,
         category: null,
         position: null,
-        lang: null
+        lang: null,
+        paginate: 0
       }
     }
   },
@@ -79,6 +80,18 @@ module.exports = React.createClass({
       "Resolución de Conflictos"
       ];
 
+    var positionOptions = [
+      "Asociado",
+      "Senior Counsel",
+      "Socio",
+      "Consultor Extranjero",
+      "Especialista"
+    ];
+
+    var positions = positionOptions.map(function(area) {
+      return {value: area, label: area};
+    });
+
     var areas = areasOptions.map(function(area) {
       return {value: area, label: area};
     });
@@ -117,15 +130,25 @@ module.exports = React.createClass({
                 />
             </div>
 
-            <div className={"col-sm-3 lang"}>
+            <div className={this.props.position ? "hidden" : "col-sm-3 lang"}>
               <Select
                   ref="lang"
                   name="form-field-name"
                   placeholder={"Seleccionar Languaje"}
                   options={langs}
                   onChange={this.filterLang}
-                  value={this.state.filters.category}
+                  value={this.state.filters.lang}
                 />
+            </div>
+
+            <div className={this.props.position ? "col-sm-3 position" : "hidden"}>
+                <Select
+                  name="form-field-name"
+                  placeholder={"Seleccionar Cargo"}
+                  options={positions}
+                  onChange={this.filterLawyerType}
+                  value={this.state.filters.position}
+                  />
             </div>
 
       </div>
