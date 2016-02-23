@@ -23,7 +23,7 @@ module.exports = React.createClass({
           className="share"
           href={"https://plus.google.com/share?url=http://ppulegal.com/posts/" + model.slug }
         >
-        <i className="fa fa-google-plus-square"></i>
+          <i className="fa fa-google-plus-square"></i>
         </a>
 
       <a

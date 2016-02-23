@@ -60861,6 +60861,7 @@ module.exports = React.createClass({displayName: "exports",
                       ), 
                       React.createElement("div", {className: "col-lg-8"}, 
                         React.createElement("span", null, "Av. Santa Cruz No. 888  Piso 4"), 
+                        React.createElement("span", null, "Miraflores"), 
                         React.createElement("span", null, "Tel.: +511 513-7200"), 
                         React.createElement("span", null, "infoPE@ppulegal.com")
                       )
@@ -62071,7 +62072,7 @@ module.exports = React.createClass({displayName: "exports",
           className: "share", 
           href: "https://plus.google.com/share?url=http://ppulegal.com/posts/" + model.slug
         }, 
-        React.createElement("i", {className: "fa fa-google-plus-square"})
+          React.createElement("i", {className: "fa fa-google-plus-square"})
         ), 
 
       React.createElement("a", {
@@ -63318,6 +63319,7 @@ module.exports = React.createClass({displayName: "exports",
                   value: this.state.filters.category}
                 )
             ), 
+
             React.createElement("div", {className: this.props.position ? "" : "hidden"}, 
               React.createElement("div", {className: this.state.showFilters ? "" : "col-sm-3 position"}, 
                 React.createElement(Select, {

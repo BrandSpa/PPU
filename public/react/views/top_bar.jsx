@@ -189,6 +189,7 @@ module.exports = React.createClass({
                   value={this.state.filters.category}
                 />
             </div>
+
             <div className={this.props.position ? "" : "hidden"}>
               <div className={this.state.showFilters ? "" : "col-sm-3 position"}>
                 <Select

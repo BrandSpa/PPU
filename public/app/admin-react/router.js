@@ -3,6 +3,7 @@ var React = require('react');
 var Probono = require('probono/section.jsx');
 var Us = require('us/section.jsx');
 var Recruitment = require('recruitment/section.jsx');
+var Posts = require('posts/section.jsx');
 
 var Router = Backbone.Router.extend({
   routes: {
@@ -23,6 +24,13 @@ var Router = Backbone.Router.extend({
     'admin/trabaje-con-nosotros': function() {
       React.render(
         <Recruitment />,
+        document.getElementById('wrap')
+      );
+    },
+
+    'admin/posts2': function() {
+      React.render(
+        <Posts />,
         document.getElementById('wrap')
       );
     },

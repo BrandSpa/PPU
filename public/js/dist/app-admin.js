@@ -4094,7 +4094,7 @@ $(function() {
 
     ExperienceCreate.prototype.stored = function(model) {
       if (model) {
-        return window.location = "/dashboard";
+        return window.location = "/experiencias/" + model.attributes.slug;
       }
     };
 

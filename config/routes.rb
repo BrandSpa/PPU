@@ -102,6 +102,7 @@ Rails.application.routes.draw do
       resources :experiences
 
       get "/probono", to: "posts#base"
+      get "/posts2", to: "posts#base"
       get "/nosotros", to: "posts#base"
       get "/trabaje-con-nosotros", to: "posts#base"
       get "the-actual/new", to: "posts#the_actual_new"

@@ -37,7 +37,7 @@ $ ->
       @model.save data, $.extend({}, options)
 
     stored: (model) ->
-      window.location = "/dashboard" if model
+      window.location = "/experiencias/" + model.slug if model
 
     openGallery: (e) ->
       e.preventDefault()
