@@ -93,9 +93,14 @@ handleSelect: function(e, a) {
     });
 
     var showColombia = false;
+    var showPeru = false;
 
     if(this.props.country == "Colombia") {
       showColombia = true;
+    }
+
+    if(this.props.country == "Perú") {
+      showPeru = true;
     }
 
     return (
@@ -187,7 +192,7 @@ handleSelect: function(e, a) {
               </div>
 
               <div className="row">
-                 <div className="form-group col-md-6">
+                 <div className={showPeru ? "hidden" : "form-group col-md-6"}>
                 <label htmlFor="">Examen de Grado rendido</label>
                 <br/>
                 <label htmlFor="grade_approved" className="checkbox-inline">
@@ -211,7 +216,7 @@ handleSelect: function(e, a) {
                   type="file" />
               </div>
 
-              <div className="form-group col-md-6">
+              <div className={showPeru ? "hidden" : "form-group col-md-6"}>
                 <label htmlFor="">Certificado de ranking de egreso (pdf, docx)</label>
                 <input
                 name="certification_ranking"
@@ -220,7 +225,7 @@ handleSelect: function(e, a) {
                 type="file" />
               </div>
 
-              <div className="form-group col-md-6">
+              <div className={showPeru ? "hidden" : "form-group col-md-6"}>
                 <label htmlFor="">Concentración de notas / egreso (pdf, docx) </label>
                 <input
                   name="gathering_notes"
