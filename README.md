@@ -17,6 +17,7 @@ Ubuntu 14.04](https://gorails.com/deploy/ubuntu/14.04)
 - Amazon s3: used for upload media
 
 ## Frontend
+- React
 - Coffeescript
 - Backbone
 - Underscore
