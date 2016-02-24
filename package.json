@@ -24,6 +24,7 @@
     "commander": "^2.9.0",
     "jquery-serializejson": "^2.5.0",
     "mocha": "^2.2.4",
+    "shelljs": "^0.6.0",
     "supertest": "^0.15.0"
   }
 }

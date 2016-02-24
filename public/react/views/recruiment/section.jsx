@@ -108,8 +108,6 @@ module.exports = React.createClass({
 
               <br/>
 
-              <h4>{this.state.textTwo["title_" + getLang]}</h4>
-
               <h4 className="title-form">Por favor seleccione el país en el que desea aplicar</h4>
 
               <div
@@ -146,7 +144,7 @@ module.exports = React.createClass({
               <h4>Gracias por comunicarse con nostros, pronto nos pondremos en contacto con usted.</h4>
 
               </div>
-
+              <h4>{this.state.textTwo["title_" + getLang]}</h4>
               <div
                 dangerouslySetInnerHTML={{__html: this.state.textTwo["text_" + getLang]}}
               />
