@@ -63100,16 +63100,17 @@ module.exports = React.createClass({displayName: "exports",
 
               React.createElement("br", null), 
 
+              React.createElement("h4", null, this.state.textTwo["title_" + getLang]), 
+
               React.createElement("div", {className: this.state.showForm ? "hidden" : ""}, 
                 React.createElement(Form, {onSubmit: this.handleSubmit})
               ), 
-
+              React.createElement("h4", {className: "title-form"}, "Por favor seleccione el país en el que desea aplicar"), 
               React.createElement("div", {className: this.state.showForm ? "" : "hidden"}, 
               React.createElement("h4", null, "Gracias por comunicarse con nostros, pronto nos pondremos en contacto con usted.")
               ), 
 
 
-              React.createElement("h4", null, this.state.textTwo["title_" + getLang]), 
               React.createElement("div", {
                 dangerouslySetInnerHTML: {__html: this.state.textTwo["text_" + getLang]}}
               ), 

@@ -125,6 +125,11 @@
                         <table>
                             <tr>
                                 <td align="center">
+                                <h5>País</h5>
+                                <p>
+                                  <%= @curriculum.country %>
+                                </p>
+
                                 <h5>Nombre</h5>
                                   <p>
                                     <%= @curriculum.name %> <%= @curriculum.lastname %>
@@ -140,14 +145,15 @@
                                     <%= @curriculum.graduation_year %>
                                   </p>
 
-                                  <h5>Universidad Colombia</h5>
+                                  <h5>Universidad</h5>
                                   <p>
-                                    <%= @curriculum.university_colombia %>
-                                  </p>
+                                    <% if @curriculum.university_colombia %>
+                                      <%=  @curriculum.university_colombia %>
+                                    <% end %>
 
-                                  <h5>Universidad Chile</h5>
-                                  <p>
-                                    <%= @curriculum.university_chile %>
+                                    <% if @curriculum.university_chile %>
+                                      <%= @curriculum.university_chile %>
+                                    <% end %>
                                   </p>
 
                                   <h5>Inglés</h5>

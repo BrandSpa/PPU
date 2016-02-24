@@ -914,6 +914,31 @@ select
 		&:before
 			font-size: 40px
 
+h4.title-form
+	border: none !important
+	margin: 10px 0 !important
+
+
+.select-country-btns
+	border-bottom: 1px solid #ccc
+	border-top: 1px solid #ccc
+	margin-bottom: 30px
+	.btn
+		padding: 10px 0
+		border-radius: 0
+		&:focus, &:hover
+			background: transparent
+			outline: none
+			box-shadow: none
+			color: $color-green
+			border-color: $color-green
+	.active
+		background: transparent
+		border: none
+		border-bottom: 3px solid $color-green
+		box-shadow: none
+		color: $color-green
+
 @import admin
 @import category
 @import curriculum

@@ -7,6 +7,7 @@ var areas = require('langs/areas');
 var Form = require('views/recruiment/form.jsx');
 var request = require('superagent');
 var getLang = require('get_lang');
+var $ = require('jquery');
 
 module.exports = React.createClass({
   getInitialState: function() {
@@ -15,7 +16,8 @@ module.exports = React.createClass({
       textOne: {},
       textTwo: {},
       textThree: {},
-      showForm: false
+      showForm: false,
+      country: "Colombia"
     }
   },
 
@@ -24,6 +26,14 @@ module.exports = React.createClass({
     this.getTextOne();
     this.getTextTwo();
     this.getTextThree();
+  },
+
+  selectCountry: function(e, t) {
+    e.preventDefault();
+    $('.select-country-btns').find('button').removeClass('active');
+    $(e.currentTarget).addClass('active');
+    var val = $(e.currentTarget).text();
+    this.setState({country: val});
   },
 
   updateState: function(url, query, fieldToUpdate) {
@@ -98,16 +108,45 @@ module.exports = React.createClass({
 
               <br/>
 
+              <h4>{this.state.textTwo["title_" + getLang]}</h4>
+
+              <h4 className="title-form">Por favor seleccione el país en el que desea aplicar</h4>
+
+              <div
+                className="btn-group btn-group-justified select-country-btns"
+                role="group">
+
+                <div className="btn-group" role="group">
+                  <button
+                    type="button"
+                    className="btn btn-default active"
+                    onClick={this.selectCountry}>Colombia</button>
+                </div>
+
+                <div className="btn-group" role="group">
+                  <button
+                    type="button"
+                    className="btn btn-default"
+                    onClick={this.selectCountry}>Chile</button>
+                </div>
+
+                <div className="btn-group" role="group">
+                  <button
+                    type="button"
+                    className="btn btn-default"
+                    onClick={this.selectCountry}>Perú</button>
+                </div>
+              </div>
+
               <div className={this.state.showForm ? "hidden" : ""}>
-                <Form onSubmit={this.handleSubmit} />
+                <Form onSubmit={this.handleSubmit} country={this.state.country} />
               </div>
 
               <div className={this.state.showForm ? "" : "hidden"}>
               <h4>Gracias por comunicarse con nostros, pronto nos pondremos en contacto con usted.</h4>
+
               </div>
 
-
-              <h4>{this.state.textTwo["title_" + getLang]}</h4>
               <div
                 dangerouslySetInnerHTML={{__html: this.state.textTwo["text_" + getLang]}}
               />

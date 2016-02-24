@@ -64,7 +64,6 @@ handleSelect: function(e, a) {
       beforeSend: this.handleLoading
     })
     .then(function(res) {
-      console.log(this);
       this.props.onSubmit();
     }.bind(this));
 
@@ -93,9 +92,16 @@ handleSelect: function(e, a) {
       return {label: item, value: item};
     });
 
+    var showColombia = false;
+
+    if(this.props.country == "Colombia") {
+      showColombia = true;
+    }
+
     return (
       <div>
         <form action="#" className="form form-recruitment" onSubmit={this.handleSubmit}>
+          <input name="country" type="hidden" value={this.props.country}/>
           <div className="row">
             <div className="form-group col-md-6">
               <label htmlFor="">{trans.name}</label>
@@ -124,7 +130,7 @@ handleSelect: function(e, a) {
               onChange={this.handleChange}/>
             </div>
 
-              <div className="form-group col-md-6">
+            <div className="form-group col-md-6">
                 <label htmlFor="">Año Egreso Pre-grado</label>
                 <input
                   name="graduation_year"
@@ -134,10 +140,9 @@ handleSelect: function(e, a) {
               </div>
 
               </div>
-
               <div className="row">
-              <div className="form-group col-md-6">
-                <label htmlFor="">Universidad *Aplica Colombia</label>
+              <div className={showColombia ? "form-group col-md-6" : "hidden"}>
+                <label htmlFor="">Universidad</label>
                 <Select
                   name="university_colombia"
                   options={ universityOptions}
@@ -147,17 +152,16 @@ handleSelect: function(e, a) {
                   />
               </div>
 
-              <div className="form-group col-md-6">
-                <label htmlFor="">Universidad *Aplica Chile</label>
+              <div className={showColombia ? "hidden" : "form-group col-md-6"}>
+                <label htmlFor="">Universidad</label>
                 <input
                   name="university_chile"
                   type="text"
                   className="form-control"
                   onChange={this.handleChange}/>
               </div>
-              </div>
 
-              <div className="row">
+
                    <div className="form-group col-md-6">
                 <label htmlFor="">Nivel inglés</label>
                 <Select

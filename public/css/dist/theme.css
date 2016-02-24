@@ -795,6 +795,30 @@ select .form-control {
   .slick-list .slick-next:before {
     font-size: 40px; }
 
+h4.title-form {
+  border: none !important;
+  margin: 10px 0 !important; }
+
+.select-country-btns {
+  border-bottom: 1px solid #ccc;
+  border-top: 1px solid #ccc;
+  margin-bottom: 30px; }
+  .select-country-btns .btn {
+    padding: 10px 0;
+    border-radius: 0; }
+    .select-country-btns .btn:focus, .select-country-btns .btn:hover {
+      background: transparent;
+      outline: none;
+      box-shadow: none;
+      color: #00A1B1;
+      border-color: #00A1B1; }
+  .select-country-btns .active {
+    background: transparent;
+    border: none;
+    border-bottom: 3px solid #00A1B1;
+    box-shadow: none;
+    color: #00A1B1; }
+
 /* Large desktops and laptops */
 /* Portrait tablets and medium desktops */
 /* Portrait tablets and small desktops */
