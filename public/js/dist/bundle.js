@@ -59402,7 +59402,7 @@ handleSelect: function(e, a) {
               ), 
 
               React.createElement("div", {className: "form-group col-md-6"}, 
-                React.createElement("label", {htmlFor: ""}, "Universidad"), 
+                React.createElement("label", {htmlFor: ""}, showColombia ? "Otra Universidad" : "Universidad"), 
                 React.createElement("input", {
                   name: "university_chile", 
                   type: "text", 
