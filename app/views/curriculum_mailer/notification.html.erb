@@ -170,22 +170,26 @@
                                     <%= @curriculum.grade_approved %>
                                   </p>
 
+                                  <% if @curriculum.file_name.url %>
                                   <h5>CV</h5>
                                   <p>
                                     <a href="<%= @curriculum.file_name.url %>" class="button">Descargar</a>
                                   </p>
+                                  <% end %>
 
+                                  <% if @curriculum.certification_ranking.url %>
                                   <h5>Certificado de ranking de egreso</h5>
                                   <p>
                                     <a href="<%= @curriculum.certification_ranking.url %>" class="button">Descargar</a>
                                   </p>
+                                  <% end %>
 
-
+                                  <% if @curriculum.gathering_notes.url %>
                                   <h5>Concentración de notas / egreso</h5>
                                   <p>
                                     <a href="<%= @curriculum.gathering_notes.url %>" class="button">Descargar</a>
                                   </p>
-
+                                  <% end %>
 
                                     <p>
 
