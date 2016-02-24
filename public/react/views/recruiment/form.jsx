@@ -152,7 +152,7 @@ handleSelect: function(e, a) {
                   />
               </div>
 
-              <div className={showColombia ? "hidden" : "form-group col-md-6"}>
+              <div className={"form-group col-md-6"}>
                 <label htmlFor="">Universidad</label>
                 <input
                   name="university_chile"

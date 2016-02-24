@@ -59401,7 +59401,7 @@ handleSelect: function(e, a) {
                   )
               ), 
 
-              React.createElement("div", {className: showColombia ? "hidden" : "form-group col-md-6"}, 
+              React.createElement("div", {className: "form-group col-md-6"}, 
                 React.createElement("label", {htmlFor: ""}, "Universidad"), 
                 React.createElement("input", {
                   name: "university_chile", 
