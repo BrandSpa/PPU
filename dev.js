@@ -27,8 +27,10 @@ function serverMessages(err, stdout, stderr) {
 localExec(localFlow, function (err, stdout, stderr) {
   if (err) console.error(err);
   console.log(stdout);
+
+  serverExec(serverFlow, 'deploy@104.131.161.42', serverMessages);
 });
 
-serverExec(serverFlow, 'deploy@104.131.161.42', serverMessages);
+
 
 
