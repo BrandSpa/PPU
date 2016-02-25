@@ -8,10 +8,15 @@ var serverFlow = [
   "cd apps/ppu-pruebas",
   "touch random.js",
   "git add -A",
-  "git commit -m 'last update from server on "+ now +"'",
+  "git commit -m 'last update from server at "+ now +"'",
   "git pull origin master"
 ].join(' && ');
 
+var localFlow = [
+  "git add -A",
+  "git commit -m 'last update from local at "+ now +"'",
+  "git push origin master"
+].join(' && ');
 
 function serverMessages(err, stdout, stderr) {
   if(err) console.log("error: ", err);
@@ -19,7 +24,7 @@ function serverMessages(err, stdout, stderr) {
   console.log("stdout: ", stdout);
 }
 
-localExec('git add -A && git commit -m "last update from local"', function (err, stdout, stderr) {
+localExec(localFlow, function (err, stdout, stderr) {
   if (err) console.error(err);
   console.log(stdout);
 });
