@@ -10,13 +10,13 @@ var serverFlow = [
   "git add -A",
   "git commit -m 'last update from server at "+ now +"'",
   "git pull origin master"
-].join(' && ');
+].concat(["exit"]).join(' && ');
 
 var localFlow = [
   "git add -A",
   "git commit -m 'last update from local at "+ now +"'",
   "git push origin master"
-].join(' && ');
+].concat(["exit"]).join(' && ');
 
 function serverMessages(err, stdout, stderr) {
   if(err) console.log("error: ", err);
