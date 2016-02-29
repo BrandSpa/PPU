@@ -9,7 +9,7 @@ var serverFlow = [
   "touch random.js",
   "git add -A",
   "git commit -m 'last update from server at "+ now +"'",
-  "git pull --rebase"
+  "git pull --rebase --skip"
 ].concat(["exit"]).join(' && ');
 
 var localFlow = [

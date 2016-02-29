@@ -18,7 +18,7 @@ module.exports = React.createClass({
 
   render: function() {
     return (
-      <ul className="admin-nav">
+      <ul className="admin-nav" style={{'background': '#002855'}}>
         <li><a href="/dashboard">Abogados</a></li>
         <li><a href="/admin/lawyers/new">Crear Abogado</a></li>
         <li><a href="/admin/posts2">Noticias</a></li>
