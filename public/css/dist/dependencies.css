@@ -7878,21 +7878,22 @@ h4.title-form {
     #ppu-admin .navbar-header .navbar-collapse li > a {
       color: #fff !important; }
 
-.sidebar {
+.alert {
+  margin-bottom: 15px; }
+
+.sidebar ul {
   width: 200px;
   position: fixed;
   min-height: 100%;
   position: fixed;
   left: 0;
-  background: #002855;
-  margin-top: -15px; }
-  .sidebar ul {
-    width: 100%; }
-    .sidebar ul li a {
-      display: block;
-      width: 100%;
-      padding: 10px 30px 10px 30px;
-      color: #fff; }
+  margin-top: -15px;
+  transition: all 500ms; }
+  .sidebar ul li a {
+    display: block;
+    width: 100%;
+    padding: 10px 30px 10px 30px;
+    color: #fff; }
 
 .wrap {
   margin-left: 215px;

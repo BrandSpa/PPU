@@ -6,6 +6,7 @@ var Recruitment = require('recruitment/section.jsx');
 var Posts = require('posts/section.jsx');
 var Lawyers = require('lawyers/section.jsx');
 var Sidebar = require('sidebar.jsx');
+var Login = require('login.jsx');
 
 var Router = Backbone.Router.extend({
   routes: {
@@ -43,14 +44,24 @@ var Router = Backbone.Router.extend({
         document.getElementById('wrap')
       );
     },
+
+    'users/sign_in': function() {
+      React.render(
+        <Login />,
+        document.getElementById('wrap')
+      );
+    }
   }
 });
 
 var Route = new Router;
 
-React.render(
-        <Sidebar />,
-        document.getElementById('admin-sidebar')
-);
+if(window.location.pathname != "/users/sign_in") {
+   React.render(
+    <Sidebar />,
+    document.getElementById('admin-sidebar')
+  );
+}
+
 
 Backbone.history.start({pushState: true});
