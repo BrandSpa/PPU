@@ -57400,19 +57400,7 @@ module.exports = React.createClass({displayName: "exports",
                         React.createElement("span", null, "Fax: +571 3268610"), 
                         React.createElement("span", null, "infoCO@ppulegal.com")
                       )
-                    ), 
-                     React.createElement("div", {className: "row"}, 
-                      React.createElement("div", {className: "col-lg-3"}, 
-                        React.createElement("h4", null, "Lima")
-                      ), 
-                      React.createElement("div", {className: "col-lg-8"}, 
-                        React.createElement("span", null, "Av. Santa Cruz No. 888  Piso 4"), 
-                        React.createElement("span", null, "Miraflores"), 
-                        React.createElement("span", null, "Tel.: +511 513-7200"), 
-                        React.createElement("span", null, "infoPE@ppulegal.com")
-                      )
                     )
-
                   )
                 ), 
 
