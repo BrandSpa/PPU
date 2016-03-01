@@ -99,8 +99,7 @@ module.exports = React.createClass({
   render: function() {
     var cityOptions = [
       {value: 'Colombia', label: 'Colombia'},
-      {value: 'Chile', label: 'Chile'},
-      {value: 'Perú', label: 'Perú'},
+      {value: 'Chile', label: 'Chile'}
     ];
 
     var areas = areaOptions.map(function(area) {
