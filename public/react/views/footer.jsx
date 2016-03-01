@@ -70,18 +70,6 @@ module.exports = React.createClass({
                         <span>infoCO@ppulegal.com</span>
                       </div>
                     </div>
-                     <div className="row">
-                      <div className="col-lg-3">
-                        <h4>Lima</h4>
-                      </div>
-                      <div className="col-lg-8">
-                        <span>Av. Santa Cruz No. 888  Piso 4</span>
-                        <span>Miraflores</span>
-                        <span>Tel.: +511 513-7200</span>
-                        <span>infoPE@ppulegal.com</span>
-                      </div>
-                    </div>
-
                   </div>
                 </div>
 
