@@ -25,6 +25,7 @@
     "jquery-serializejson": "^2.5.0",
     "mocha": "^2.2.4",
     "moment": "^2.11.2",
+    "mongoose": "^4.4.5",
     "shelljs": "^0.6.0",
     "supertest": "^0.15.0"
   }
