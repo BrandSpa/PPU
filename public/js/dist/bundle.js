@@ -59609,13 +59609,6 @@ module.exports = React.createClass({displayName: "exports",
                     type: "button", 
                     className: "btn btn-default", 
                     onClick: this.selectCountry}, "Chile")
-                ), 
-
-                React.createElement("div", {className: "btn-group", role: "group"}, 
-                  React.createElement("button", {
-                    type: "button", 
-                    className: "btn btn-default", 
-                    onClick: this.selectCountry}, "Perú")
                 )
               ), 
 
