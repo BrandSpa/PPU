@@ -56826,6 +56826,7 @@ module.exports = React.createClass({displayName: "exports",
   fetch: function() {
      request
     .get('/api/categories/' + this.props.params.slug)
+    .query({'lang': getLang})
     .end(function(err, res) {
       this.setState({model: res.body});
       this.fetchLawyersRelated(res.body.name);
@@ -56833,12 +56834,17 @@ module.exports = React.createClass({displayName: "exports",
   },
 
   fetchLawyersRelated: function(category) {
+    var position = 'Socio';
+    if(getLang == 'en') {
+      position = "Partner";
+    }
+
     request
       .get('/api/lawyers')
       .query({
         lang: getLang,
         category: category,
-        position: 'Socio',
+        position: position,
         published: 1
       })
       .end(function(err, res) {
@@ -56882,7 +56888,7 @@ module.exports = React.createClass({displayName: "exports",
           ]}
         ), 
 
-        React.createElement(TopBar, {title: trans.name, hidden: true, back: true, link: link}), 
+        React.createElement(TopBar, {title: trans.name, hidden: true, back: true, pathname: "/areas/" + link}), 
 
         React.createElement("div", {id: "category", className: "padding-top"}, 
         React.createElement("div", {className: "category-header"}, 
@@ -56954,7 +56960,7 @@ var _ = require('lodash');
 var TopBar = require('views/top_bar.jsx');
 var trans = require('langs/app');
 var Area = require('views/areas/area.jsx');
-
+var getLang = require('utils/get_lang');
 module.exports = React.createClass({displayName: "exports",
   getInitialState: function() {
     return {
@@ -56965,6 +56971,7 @@ module.exports = React.createClass({displayName: "exports",
   componentDidMount: function() {
     request
       .get('/api/categories')
+      .query({'lang': getLang})
       .end(function(err, res) {
         this.setState({
           areas: this.state.areas.concat(res.body)
@@ -56989,7 +56996,7 @@ module.exports = React.createClass({displayName: "exports",
   }
 });
 
-},{"langs/app":345,"lodash":30,"react":339,"superagent":340,"views/areas/area.jsx":353,"views/top_bar.jsx":391}],355:[function(require,module,exports){
+},{"langs/app":345,"lodash":30,"react":339,"superagent":340,"utils/get_lang":350,"views/areas/area.jsx":353,"views/top_bar.jsx":391}],355:[function(require,module,exports){
 'use strict';
 var React = require('react');
 var request = require('superagent');
@@ -57061,6 +57068,7 @@ module.exports = React.createClass({displayName: "exports",
       lawyerNodes = model.lawyers.map(function(lawyer, i) {
         return (React.createElement(Lawyer, {key: i, lawyer: lawyer, history: this.props.history}));
       }.bind(this));
+
       if(!_.isEmpty(model.lawyers)) {
         title = trans.contact;
       }
@@ -57104,7 +57112,7 @@ module.exports = React.createClass({displayName: "exports",
           ]}
         ), 
 
-        React.createElement(TopBar, {title: trans.name, hidden: true, back: true, link: link}), 
+        React.createElement(TopBar, {title: trans.name, hidden: true, back: true, pathname: "/experiencias/" + link}), 
 
         React.createElement("div", {id: "experience", className: "padding-top"}, 
           React.createElement("div", {className: "experience-header"}, 
@@ -57123,7 +57131,7 @@ module.exports = React.createClass({displayName: "exports",
             React.createElement("h4", null, title), 
 
             React.createElement("div", {className: "lawyers"}, 
-            lawyerNodes
+              lawyerNodes
             )
 
           )
@@ -57142,7 +57150,7 @@ module.exports = React.createClass({displayName: "exports",
 });
 
 },{"experiences/experience.jsx":356,"langs/experience":348,"lodash":30,"moment":32,"react":339,"react-helmet":36,"superagent":340,"utils/get_lang":350,"views/lawyers/lawyer.jsx":375,"views/top_bar.jsx":391}],356:[function(require,module,exports){
-'use strict';
+ 'use strict';
 var React = require('react');
 var Social = require('views/experiences/social.jsx');
 var PostDate = require('components/date.jsx');
@@ -57202,6 +57210,7 @@ var Waypoint = require('react-waypoint');
 var Experience = require('views/experiences/experience.jsx');
 var TopBar = require('views/top_bar.jsx');
 var _ = require('lodash');
+var getLang = require('utils/get_lang');
 
 module.exports = React.createClass({displayName: "exports",
   getInitialState: function() {
@@ -57246,6 +57255,7 @@ module.exports = React.createClass({displayName: "exports",
   handleFilter: function(filters) {
     var query = _.extend(this.state.filters, filters);
     query = _.extend(query, {paginate: 0});
+
     request
       .get('/api/experiences')
       .query(query)
@@ -57274,6 +57284,7 @@ module.exports = React.createClass({displayName: "exports",
           title: trans.experience, 
           onFilter: this.handleFilter}
           ), 
+
         React.createElement("div", {id: "experiences", className: "padding-top"}, 
           experienceNodes, 
           React.createElement("div", {style: {'float': 'left', 'width': '100%'}}, 
@@ -57286,7 +57297,7 @@ module.exports = React.createClass({displayName: "exports",
   }
 });
 
-},{"langs/app":345,"lodash":30,"react":339,"react-waypoint":180,"superagent":340,"views/experiences/experience.jsx":356,"views/top_bar.jsx":391}],358:[function(require,module,exports){
+},{"langs/app":345,"lodash":30,"react":339,"react-waypoint":180,"superagent":340,"utils/get_lang":350,"views/experiences/experience.jsx":356,"views/top_bar.jsx":391}],358:[function(require,module,exports){
 'use strict';
 var React = require('react');
 var trans = require('langs/app');
@@ -59760,8 +59771,8 @@ module.exports = React.createClass({displayName: "exports",
     var lang;
     var link;
     var pathname = this.props.pathname || window.location.pathname;
-    if(getLang === 'es')
-    {
+
+    if(getLang === 'es') {
       link = this.props.link || "http://en." + window.location.hostname + pathname;
       lang = React.createElement("a", {href: link, className: "change-lang-page"}, "English");
     } else {

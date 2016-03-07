@@ -1,4 +1,4 @@
-'use strict';
+ 'use strict';
 var React = require('react');
 var Social = require('views/experiences/social.jsx');
 var PostDate = require('components/date.jsx');

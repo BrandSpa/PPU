@@ -26,6 +26,7 @@ module.exports = React.createClass({
   fetch: function() {
      request
     .get('/api/categories/' + this.props.params.slug)
+    .query({'lang': getLang})
     .end(function(err, res) {
       this.setState({model: res.body});
       this.fetchLawyersRelated(res.body.name);
@@ -33,12 +34,17 @@ module.exports = React.createClass({
   },
 
   fetchLawyersRelated: function(category) {
+    var position = 'Socio';
+    if(getLang == 'en') {
+      position = "Partner";
+    }
+
     request
       .get('/api/lawyers')
       .query({
         lang: getLang,
         category: category,
-        position: 'Socio',
+        position: position,
         published: 1
       })
       .end(function(err, res) {
@@ -82,7 +88,7 @@ module.exports = React.createClass({
           ]}
         />
 
-        <TopBar title={trans.name} hidden back link={link} />
+        <TopBar title={trans.name} hidden back pathname={"/areas/" + link} />
 
         <div id="category" className="padding-top">
         <div className="category-header">

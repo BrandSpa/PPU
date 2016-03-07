@@ -69,6 +69,7 @@ module.exports = React.createClass({
       lawyerNodes = model.lawyers.map(function(lawyer, i) {
         return (<Lawyer key={i} lawyer={lawyer} history={this.props.history} />);
       }.bind(this));
+
       if(!_.isEmpty(model.lawyers)) {
         title = trans.contact;
       }
@@ -112,7 +113,7 @@ module.exports = React.createClass({
           ]}
         />
 
-        <TopBar title={trans.name} hidden back link={link} />
+        <TopBar title={trans.name} hidden back pathname={"/experiencias/" + link} />
 
         <div id="experience" className="padding-top">
           <div className="experience-header">
@@ -131,7 +132,7 @@ module.exports = React.createClass({
             <h4>{title}</h4>
 
             <div className="lawyers">
-            {lawyerNodes}
+              {lawyerNodes}
             </div>
 
           </div>

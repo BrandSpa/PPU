@@ -121,8 +121,8 @@ module.exports = React.createClass({
     var lang;
     var link;
     var pathname = this.props.pathname || window.location.pathname;
-    if(getLang === 'es')
-    {
+
+    if(getLang === 'es') {
       link = this.props.link || "http://en." + window.location.hostname + pathname;
       lang = <a href={link} className="change-lang-page">English</a>;
     } else {

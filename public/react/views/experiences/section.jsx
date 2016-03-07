@@ -6,6 +6,7 @@ var Waypoint = require('react-waypoint');
 var Experience = require('views/experiences/experience.jsx');
 var TopBar = require('views/top_bar.jsx');
 var _ = require('lodash');
+var getLang = require('utils/get_lang');
 
 module.exports = React.createClass({
   getInitialState: function() {
@@ -50,6 +51,7 @@ module.exports = React.createClass({
   handleFilter: function(filters) {
     var query = _.extend(this.state.filters, filters);
     query = _.extend(query, {paginate: 0});
+
     request
       .get('/api/experiences')
       .query(query)
@@ -78,6 +80,7 @@ module.exports = React.createClass({
           title={trans.experience}
           onFilter={this.handleFilter}
           />
+
         <div id="experiences" className="padding-top">
           {experienceNodes}
           <div style={{'float': 'left', 'width': '100%'}}>
