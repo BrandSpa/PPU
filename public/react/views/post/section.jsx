@@ -27,10 +27,16 @@ module.exports = React.createClass({
     var post = this.state.post;
     var postImage;
     var lawyers = (<h5>{ post.author }</h5>);
-
+    var count;
+    var divider = "|";
     if(post && post.lawyers) {
-      lawyers = post.lawyers.map(function(lawyer) {
-        return (<h5><a href={"/abogados/" + lawyer.slug}>{lawyer.name} {lawyer.lastname}</a></h5>);
+      count = post.lawyers.length - 1;
+      lawyers = post.lawyers.map(function(lawyer, i) {
+        if(count > 0 && i < count) {
+          return (<h5><a href={"/abogados/" + lawyer.slug}>{lawyer.name} {lawyer.lastname}</a>{divider}</h5>  );
+        } else {
+          return (<h5><a href={"/abogados/" + lawyer.slug}>{lawyer.name} {lawyer.lastname}</a></h5>  );
+        }
       });
     }
 

@@ -8918,7 +8918,7 @@ h4.title-form {
           width: 100%;
           margin: auto; } }
   .post-header .data {
-    width: 50%;
+    width: 60%;
     float: left;
     padding-left: 15px; }
     @media (max-width: 767px) {
@@ -9012,7 +9012,11 @@ h4.title-form {
 
 #post-detail h5 {
   text-transform: uppercase;
-  font-size: 0.9em; }
+  font-size: 0.9em;
+  float: left;
+  margin: 5px; }
+  #post-detail h5 a {
+    padding-right: 5px; }
 #post-detail .lawyers li {
   text-transform: uppercase;
   font-size: 0.9em;

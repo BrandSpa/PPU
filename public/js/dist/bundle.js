@@ -58495,10 +58495,16 @@ module.exports = React.createClass({displayName: "exports",
     var post = this.state.post;
     var postImage;
     var lawyers = (React.createElement("h5", null,  post.author));
-
+    var count;
+    var divider = "|";
     if(post && post.lawyers) {
-      lawyers = post.lawyers.map(function(lawyer) {
-        return (React.createElement("h5", null, React.createElement("a", {href: "/abogados/" + lawyer.slug}, lawyer.name, " ", lawyer.lastname)));
+      count = post.lawyers.length - 1;
+      lawyers = post.lawyers.map(function(lawyer, i) {
+        if(count > 0 && i < count) {
+          return (React.createElement("h5", null, React.createElement("a", {href: "/abogados/" + lawyer.slug}, lawyer.name, " ", lawyer.lastname), divider)  );
+        } else {
+          return (React.createElement("h5", null, React.createElement("a", {href: "/abogados/" + lawyer.slug}, lawyer.name, " ", lawyer.lastname))  );
+        }
       });
     }
 
