@@ -287,14 +287,19 @@
 				margin: auto
 
 	.data
-		width: 60%
+		width: 80%
 		float: left
 		padding-left: 15px
+
+		@media #{$tablet}, #{$desktop}
+			width: 70%
 
 		@media #{$mobile}
 			width: 100%
 
 	.categories
+		width: 100%
+		float: left
 		ul
 			li
 				list-style: none
@@ -400,7 +405,7 @@
 		text-transform: uppercase
 		font-size: .9em
 		float: left
-		margin: 5px
+		margin: 5px 5px 5px 0
 		a
 			padding-right: 5px
 
@@ -411,9 +416,6 @@
 			list-style: none
 			a
 				color: #00A1B1
-
-
-
 	.content
 		float: left
 		width: 100%
@@ -422,7 +424,21 @@
 		@media #{$mobile}
 			padding: 15px !important
 
+		.meta
+			float: left
+			width: 100%
+
+	.post-social
+		width: 50%
+		float: right
+		text-align: right
+		a
+			color: $color-darkBlue
+			margin-right: 12px
+			font-size: 24px
+
 	.date
+		float: left
 		font-size: .8em
 		color: #d1d1d1
 		font-style: italic

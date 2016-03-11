@@ -58537,14 +58537,18 @@ module.exports = React.createClass({displayName: "exports",
           React.createElement("h1", null, post.title), 
           lawyers, 
           React.createElement(Categories, {collection: post.categories})
-        ), 
-        React.createElement(Social, {model: post})
+        )
       ), 
 
   React.createElement("div", {className: "content"}, 
-    React.createElement("div", {className: "date"}, 
+  React.createElement("div", {className: "meta"}, 
+     React.createElement("div", {className: "date"}, 
       post.country, "  ", React.createElement(PostDate, {date: post.date})
     ), 
+     React.createElement(Social, {model: post})
+  ), 
+
+
     React.createElement("div", {dangerouslySetInnerHTML: {__html: post.content}})
   )
   )

@@ -70,13 +70,17 @@ module.exports = React.createClass({
           {lawyers}
           <Categories collection={post.categories} />
         </div>
-        <Social model={post} />
       </div>
 
   <div className="content">
-    <div className="date">
+  <div className="meta">
+     <div className="date">
       {post.country }  <PostDate date={post.date} />
     </div>
+     <Social model={post} />
+  </div>
+
+
     <div dangerouslySetInnerHTML={{__html: post.content}} />
   </div>
   </div>

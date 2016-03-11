@@ -8918,15 +8918,21 @@ h4.title-form {
           width: 100%;
           margin: auto; } }
   .post-header .data {
-    width: 60%;
+    width: 80%;
     float: left;
     padding-left: 15px; }
+    @media (min-width: 768px) and (max-width: 991px), (min-width: 992px) and (max-width: 1199px) {
+      .post-header .data {
+        width: 70%; } }
     @media (max-width: 767px) {
       .post-header .data {
         width: 100%; } }
-  .post-header .categories ul li {
-    list-style: none;
-    font-weight: 200; }
+  .post-header .categories {
+    width: 100%;
+    float: left; }
+    .post-header .categories ul li {
+      list-style: none;
+      font-weight: 200; }
   .post-header .post-social {
     width: 20%;
     float: left;
@@ -9014,7 +9020,7 @@ h4.title-form {
   text-transform: uppercase;
   font-size: 0.9em;
   float: left;
-  margin: 5px; }
+  margin: 5px 5px 5px 0; }
   #post-detail h5 a {
     padding-right: 5px; }
 #post-detail .lawyers li {
@@ -9031,7 +9037,19 @@ h4.title-form {
   @media (max-width: 767px) {
     #post-detail .content {
       padding: 15px !important; } }
+  #post-detail .content .meta {
+    float: left;
+    width: 100%; }
+#post-detail .post-social {
+  width: 50%;
+  float: right;
+  text-align: right; }
+  #post-detail .post-social a {
+    color: #002855;
+    margin-right: 12px;
+    font-size: 24px; }
 #post-detail .date {
+  float: left;
   font-size: 0.8em;
   color: #d1d1d1;
   font-style: italic;
