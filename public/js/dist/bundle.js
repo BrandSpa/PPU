@@ -57008,6 +57008,7 @@ var moment = require('moment');
 var trans = require('langs/experience');
 var TopBar = require('views/top_bar.jsx');
 var _ = require('lodash');
+var areaOptions = require('langs/areas');
 
 module.exports = React.createClass({displayName: "exports",
   getInitialState: function() {
@@ -57018,7 +57019,8 @@ module.exports = React.createClass({displayName: "exports",
       experiences: [],
       filters: {
         without: null,
-        category: null
+        category: null,
+        en: getLang
       }
     }
   },
@@ -57031,15 +57033,30 @@ module.exports = React.createClass({displayName: "exports",
     this.fetch(this.props.params.slug);
   },
 
+  getCategory(exp) {
+    if(exp.categories[0] && exp.categories[0].name) {
+      return exp.categories[0].name;
+    }
+
+    if(exp.translation && exp.translation.categories) {
+     var i =  areaOptions.indexOf(exp.translation.categories[0].name);
+
+     return areaOptions[i];
+    }
+  },
+
   fetch: function(slug) {
+    var category;
      request
     .get('/api/experiences/' + slug)
     .end(function(err, res) {
+      category = this.getCategory(res.body);
+
       this.setState({
         model: res.body,
         filters: {
           without: res.body.id,
-          category: res.body.categories[0] ? res.body.categories[0].name : ""
+          category: category
         }
       });
       this.getRelated();
@@ -57149,7 +57166,7 @@ module.exports = React.createClass({displayName: "exports",
   }
 });
 
-},{"experiences/experience.jsx":356,"langs/experience":348,"lodash":30,"moment":32,"react":339,"react-helmet":36,"superagent":340,"utils/get_lang":350,"views/lawyers/lawyer.jsx":375,"views/top_bar.jsx":391}],356:[function(require,module,exports){
+},{"experiences/experience.jsx":356,"langs/areas":347,"langs/experience":348,"lodash":30,"moment":32,"react":339,"react-helmet":36,"superagent":340,"utils/get_lang":350,"views/lawyers/lawyer.jsx":375,"views/top_bar.jsx":391}],356:[function(require,module,exports){
  'use strict';
 var React = require('react');
 var Social = require('views/experiences/social.jsx');
@@ -58542,9 +58559,10 @@ module.exports = React.createClass({displayName: "exports",
 
   React.createElement("div", {className: "content"}, 
   React.createElement("div", {className: "meta"}, 
-     React.createElement("div", {className: "date"}, 
-      post.country, "  ", React.createElement(PostDate, {date: post.date})
+     React.createElement("div", null, 
+      React.createElement("span", {className: "country"}, post.country), " ", React.createElement(PostDate, {date: post.date})
     ), 
+
      React.createElement(Social, {model: post})
   ), 
 

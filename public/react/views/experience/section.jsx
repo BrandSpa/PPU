@@ -9,6 +9,7 @@ var moment = require('moment');
 var trans = require('langs/experience');
 var TopBar = require('views/top_bar.jsx');
 var _ = require('lodash');
+var areaOptions = require('langs/areas');
 
 module.exports = React.createClass({
   getInitialState: function() {
@@ -19,7 +20,8 @@ module.exports = React.createClass({
       experiences: [],
       filters: {
         without: null,
-        category: null
+        category: null,
+        en: getLang
       }
     }
   },
@@ -32,15 +34,30 @@ module.exports = React.createClass({
     this.fetch(this.props.params.slug);
   },
 
+  getCategory(exp) {
+    if(exp.categories[0] && exp.categories[0].name) {
+      return exp.categories[0].name;
+    }
+
+    if(exp.translation && exp.translation.categories) {
+     var i =  areaOptions.indexOf(exp.translation.categories[0].name);
+
+     return areaOptions[i];
+    }
+  },
+
   fetch: function(slug) {
+    var category;
      request
     .get('/api/experiences/' + slug)
     .end(function(err, res) {
+      category = this.getCategory(res.body);
+
       this.setState({
         model: res.body,
         filters: {
           without: res.body.id,
-          category: res.body.categories[0] ? res.body.categories[0].name : ""
+          category: category
         }
       });
       this.getRelated();

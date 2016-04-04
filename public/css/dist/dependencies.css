@@ -9048,15 +9048,16 @@ h4.title-form {
     color: #002855;
     margin-right: 12px;
     font-size: 24px; }
-#post-detail .date {
+#post-detail .date, #post-detail .country {
+  margin-right: 5px;
   float: left;
   font-size: 0.8em;
-  color: #d1d1d1;
+  color: #ccc;
   font-style: italic;
   padding-bottom: 15px; }
-  #post-detail .date i {
+  #post-detail .date i, #post-detail .country i {
     margin-right: 3px; }
-    #post-detail .date i:nth-child(2) {
+    #post-detail .date i:nth-child(2), #post-detail .country i:nth-child(2) {
       margin-left: 10px; }
 
 /* Large desktops and laptops */

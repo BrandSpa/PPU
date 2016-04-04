@@ -74,9 +74,10 @@ module.exports = React.createClass({
 
   <div className="content">
   <div className="meta">
-     <div className="date">
-      {post.country }  <PostDate date={post.date} />
+     <div>
+      <span className="country">{post.country}</span> <PostDate date={post.date} />
     </div>
+
      <Social model={post} />
   </div>
 

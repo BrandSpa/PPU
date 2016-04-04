@@ -1,22 +1,20 @@
-# PPU
+PPU
 web app for ppu news about all legal issues and experience.
 
-## Deployment
+Deployment
 - VPS
 - Git
 - Nginx
 - Rbenv
-- Ruby
+- Ruby // https://gorails.com/deploy/ubuntu/14.04
 - Passenger
 - Mysql
 
-[Deploy Ruby On Rails on
-Ubuntu 14.04](https://gorails.com/deploy/ubuntu/14.04)
-## Backend
+Backend
 - Ruby on rails 4.1.2: used for api and templates container
 - Amazon s3: used for upload media
 
-## Frontend
+Frontend
 - React
 - Coffeescript
 - Backbone
