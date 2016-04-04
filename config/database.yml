@@ -7,8 +7,9 @@ default: &default
 
 development:
   <<: *default
-  database: ppu_development
+  database: ppu_pruebas
   username: root
+  password: PpU-Serv3R+SqL_2014
 
 test:
   <<: *default
