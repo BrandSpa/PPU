@@ -7,9 +7,8 @@ default: &default
 
 development:
   <<: *default
-  database: ppu_pruebas
+  database: ppu_development
   username: root
-  password: PpU-Serv3R+SqL_2014
 
 test:
   <<: *default
@@ -19,7 +18,5 @@ production:
   adapter: mysql2
   encoding: utf8
   pool: 5
-  database: ppu_production
+  database: ppu_development
   username: root
-  password: PpU-Serv3R+SqL_2014
-  host: 127.0.0.1
