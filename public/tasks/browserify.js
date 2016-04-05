@@ -1,6 +1,7 @@
 'use strict';
 var watchify = require('watchify');
 var browserify = require('browserify');
+var babelify = require('babelify');
 var gulp = require('gulp');
 var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
@@ -26,7 +27,10 @@ var customOpts = {
 };
 
 var opts = lodash.assign({}, watchify.args, customOpts);
-var b = watchify(browserify(opts));
+var b = watchify(
+  browserify(opts)
+  .transform("babelify", {presets: ["es2015", "react"]})
+);
 b.transform(reactify);
 
 gulp.task('js', bundle); // so you can run `gulp js` to build the file

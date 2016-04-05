@@ -65,6 +65,7 @@ Rails.application.routes.draw do
     resources :posts
 
     get "", to: 'posts#index'
+    get "contacto", to: 'posts#index'
 
     get "el-actual", to: 'posts#the_actual'
 

@@ -127,6 +127,13 @@ module.exports = React.createClass({
                     className="btn btn-default"
                     onClick={this.selectCountry}>Chile</button>
                 </div>
+                
+                <div className="btn-group" role="group">
+                  <button
+                    type="button"
+                    className="btn btn-default"
+                    onClick={this.selectCountry}>Perú</button>
+                </div>
               </div>
 
               <div className={this.state.showForm ? "hidden" : ""}>
