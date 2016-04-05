@@ -6,6 +6,7 @@ var $ = require('jquery');
 var _ = require('lodash');
 var Form = require('contact/form.jsx');
 var countriesInfo = require('utils/countries_info');
+var gmapsStyle = require('utils/gmaps_styles');
 
 module.exports = React.createClass({
 
@@ -15,7 +16,8 @@ module.exports = React.createClass({
          el: '#map',
          zoom: 5,
          lat: 4.6577943,
-         lng: -74.0575952
+         lng: -74.0575952,
+         styles: gmapsStyle
       },
       map: null,
       country: 'colombia'
@@ -49,7 +51,8 @@ module.exports = React.createClass({
          el: '#map',
          zoom: 5,
          lat: 4.6577943,
-         lng: -74.0575952
+         lng: -74.0575952,
+         styles: gmapsStyle
       }, country);
     }
 
@@ -58,7 +61,8 @@ module.exports = React.createClass({
          el: '#map',
          zoom: 15,
          lat: -33.4161579,
-         lng:-70.5945958
+         lng:-70.5945958,
+         styles: gmapsStyle
       }, country);
     }
 
@@ -67,7 +71,8 @@ module.exports = React.createClass({
          el: '#map',
          zoom: 15,
          lat: -12.1659004,
-         lng: -76.9508611
+         lng: -76.9508611,
+         styles: gmapsStyle
       }, country);
     }
   },
@@ -141,7 +146,7 @@ module.exports = React.createClass({
             </div>
           </div>
           <div className="col-md-5">
-            <div style={{ padding: '30px', background: '#19A1B2'}}>
+            <div style={{ padding: '30px', background: '#19A1B2', 'minHeight': '500px'}}>
             {countryData}
 
             </div>
