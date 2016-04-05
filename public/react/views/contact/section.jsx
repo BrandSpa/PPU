@@ -38,6 +38,8 @@ module.exports = React.createClass({
 
   selectCountry(e) {
     e.preventDefault();
+    $('.select-country-btns').find('button').removeClass('active');
+    $(e.currentTarget).addClass('active');
     var country = $(e.currentTarget).text().toLowerCase().replace('ú', 'u');
     this.setState({country: country});
     $("#map").empty();
