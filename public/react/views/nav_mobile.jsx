@@ -57,6 +57,7 @@ module.exports = React.createClass({
         <li><a href="/nosotros">{trans.aboutUs}</a></li>
         <li><a href="/experiencias">{trans.experience}</a></li>
         <li><a href="/trabaje-con-nosotros">{trans.recruitment}</a></li>
+        <li><a href="/contacto">{trans.contact}</a></li>
         <li><a href="/probono">Probono</a></li>
         <li><a href="/el-actual">El Actual Chile</a></li>
         <li><a href="/el-actual-colombia">El Actual Colombia</a></li>

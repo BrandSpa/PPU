@@ -61783,6 +61783,17 @@ module.exports = React.createClass({
         ),
         React.createElement(
           'li',
+          null,
+          React.createElement(
+            Link,
+            {
+              to: '/contacto',
+              activeClassName: 'active' },
+            trans.contact
+          )
+        ),
+        React.createElement(
+          'li',
           { className: this.state.showSubMenu ? "dropdown open" : "dropdown" },
           React.createElement(
             'a',
@@ -61948,6 +61959,15 @@ module.exports = React.createClass({
                   'a',
                   { href: '/trabaje-con-nosotros' },
                   trans.recruitment
+                )
+              ),
+              React.createElement(
+                'li',
+                null,
+                React.createElement(
+                  'a',
+                  { href: '/contacto' },
+                  trans.contact
                 )
               ),
               React.createElement(
@@ -63547,7 +63567,7 @@ module.exports = React.createClass({
   },
 
   render: function render() {
-    var cityOptions = [{ value: 'Colombia', label: 'Colombia' }, { value: 'Chile', label: 'Chile' }];
+    var cityOptions = [{ value: 'Colombia', label: 'Colombia' }, { value: 'Chile', label: 'Chile' }, { value: 'Perú', label: 'Perú' }];
 
     var areas = areaOptions.map(function (area) {
       return { value: area, label: area };

@@ -64,6 +64,13 @@ module.exports = React.createClass({
               to={'/trabaje-con-nosotros'}
               activeClassName="active">{trans.recruitment}</Link>
           </li>
+
+          <li>
+            <Link
+              to={'/contacto'}
+              activeClassName="active">{trans.contact}</Link>
+          </li>
+
           <li className={this.state.showSubMenu ? "dropdown open" : "dropdown"}>
             <a href="#" onClick={this.showSubMenu}>El Actual <i className={this.state.showSubMenu ? "fa fa-angle-up" :"fa fa-angle-down"}></i></a>
               <ul className="dropdown-menu" style={{background: "#fff", width: "100%"}} role="menu">
