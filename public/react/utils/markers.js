@@ -23,7 +23,7 @@ module.exports = {
       lat: -33.4161579,
       lng: -70.5945958,
        infoWindow: {
-         content: '<p>El Golf 40, Las Condes,Región Metropolitana,Chile</p>'
+         content: '<p>El Golf 40 Piso 20, Las Condes C.P. 7550107, Santiago de Chile</p>'
        }
      }
   ],
@@ -32,7 +32,7 @@ module.exports = {
       lat: -12.1659004,
       lng: -76.9508611,
        infoWindow: {
-         content: '<p>Lima</p>'
+         content: '<p>Av. Santa Cruz No. 888 Piso 4, Lima</p>'
        }
      }
 
