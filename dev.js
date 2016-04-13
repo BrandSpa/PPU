@@ -30,7 +30,3 @@ localExec(localFlow, function (err, stdout, stderr) {
 
   serverExec(serverFlow, 'deploy@104.131.161.42', serverMessages);
 });
-
-
-
-

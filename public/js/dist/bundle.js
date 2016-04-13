@@ -60361,6 +60361,11 @@ module.exports = React.createClass({
               'div',
               { id: 'footer' },
               React.createElement(
+                'a',
+                { href: 'http://brandspa.com', target: '_blank', style: 'float:right; padding-right: 30px' },
+                React.createElement('img', { width: '20', src: 'http://brandspa.com/wp-content/uploads/GotaGreen.svg', alt: 'brandspa' })
+              ),
+              React.createElement(
                 'div',
                 { className: 'pull-right' },
                 React.createElement(

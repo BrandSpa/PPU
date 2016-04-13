@@ -25,7 +25,10 @@ module.exports = React.createClass({
         <div className="row">
           <div className="col-lg-2"></div>
           <div className="col-lg-10">
-            <div id="footer">    
+            <div id="footer">
+            <a href="http://brandspa.com" target="_blank" style="float:right; padding-right: 30px" >
+                <img width="20" src="http://brandspa.com/wp-content/uploads/GotaGreen.svg" alt="brandspa" />
+              </a>
               <div className="pull-right">
                 <a href="#" className="policy">{trans.dataProcessingPolicy}</a>
               </div>
