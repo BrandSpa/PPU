@@ -26,7 +26,7 @@ module.exports = React.createClass({
           <div className="col-lg-2"></div>
           <div className="col-lg-10">
             <div id="footer">
-            <a href="http://brandspa.com" target="_blank" style={{'float': 'right', 'paddingRight': '30px'}} >
+            <a href="http://brandspa.com" target="_blank" style={{'float': 'right', 'paddingLeft': '15px'}} >
                 <img width="20" src="http://brandspa.com/wp-content/uploads/GotaGreen.svg" alt="brandspa" />
               </a>
               <div className="pull-right">
