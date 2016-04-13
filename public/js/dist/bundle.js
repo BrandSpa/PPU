@@ -60365,15 +60365,10 @@ module.exports = React.createClass({
                 { href: 'http://brandspa.com', target: '_blank', style: { 'float': 'right', 'paddingLeft': '15px', opacity: '.3' } },
                 React.createElement('img', { width: '20', src: 'http://brandspa.com/wp-content/uploads/GotaWhite.svg', alt: 'brandspa' })
               ),
-              React.createElement(Social, null),
               React.createElement(
                 'div',
                 { className: 'pull-left' },
-                React.createElement(
-                  'a',
-                  { href: '#', className: 'policy' },
-                  trans.dataProcessingPolicy
-                )
+                React.createElement(Social, null)
               )
             )
           )

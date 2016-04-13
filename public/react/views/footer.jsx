@@ -29,11 +29,8 @@ module.exports = React.createClass({
             <a href="http://brandspa.com" target="_blank" style={{'float': 'right', 'paddingLeft': '15px', opacity: '.3'}} >
                 <img width="20" src="http://brandspa.com/wp-content/uploads/GotaWhite.svg" alt="brandspa" />
               </a>
-
-              <Social />
-
               <div className="pull-left">
-                <a href="#" className="policy">{trans.dataProcessingPolicy}</a>
+                <Social />
               </div>
             </div>
             </div>
