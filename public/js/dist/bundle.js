@@ -60362,7 +60362,7 @@ module.exports = React.createClass({
               { id: 'footer' },
               React.createElement(
                 'a',
-                { href: 'http://brandspa.com', target: '_blank', style: 'float:right; padding-right: 30px' },
+                { href: 'http://brandspa.com', target: '_blank', style: { 'float': 'right', 'paddingRight': '30px' } },
                 React.createElement('img', { width: '20', src: 'http://brandspa.com/wp-content/uploads/GotaGreen.svg', alt: 'brandspa' })
               ),
               React.createElement(
