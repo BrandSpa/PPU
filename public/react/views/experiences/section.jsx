@@ -17,7 +17,8 @@ module.exports = React.createClass({
         category: null,
         country: null,
         keyword: null,
-        paginate: 0
+        paginate: 0,
+        published: 1
       }
     }
   },
