@@ -58951,11 +58951,13 @@ module.exports = function(arr, fn, initial){
 'use strict';
 
 var React = require('react');
+var Render = require('react-dom');
 var $ = require('jquery');
 var createHistory = require('history').createHistory;
 var ReactRouter = require('react-router');
 var Router = ReactRouter.Router;
 var Route = ReactRouter.Route;
+
 var App = require('views/app.jsx');
 var Post = require('views/post/section.jsx');
 var lawyers = require('views/lawyers/section.jsx');
@@ -58971,7 +58973,7 @@ var theActual = require('views/posts/the_actual.jsx');
 var theActualColombia = require('views/posts/the_actual_colombia.jsx');
 var contact = require('views/contact/section.jsx');
 
-React.render(React.createElement(
+Render(React.createElement(
   Router,
   { history: createHistory() },
   React.createElement(
@@ -58995,7 +58997,7 @@ React.render(React.createElement(
 ), document.body);
 
 
-},{"history":18,"jquery":31,"react":325,"react-router":136,"views/app.jsx":343,"views/area/section.jsx":344,"views/areas/section.jsx":346,"views/contact/section.jsx":348,"views/experience/section.jsx":349,"views/experiences/section.jsx":351,"views/lawyer/section.jsx":367,"views/lawyers/section.jsx":370,"views/post/section.jsx":374,"views/posts/the_actual.jsx":380,"views/posts/the_actual_colombia.jsx":381,"views/probono/section.jsx":382,"views/recruiment/section.jsx":384,"views/us/section.jsx":389}],333:[function(require,module,exports){
+},{"history":18,"jquery":31,"react":325,"react-dom":35,"react-router":136,"views/app.jsx":343,"views/area/section.jsx":344,"views/areas/section.jsx":346,"views/contact/section.jsx":348,"views/experience/section.jsx":349,"views/experiences/section.jsx":351,"views/lawyer/section.jsx":367,"views/lawyers/section.jsx":370,"views/post/section.jsx":374,"views/posts/the_actual.jsx":380,"views/posts/the_actual_colombia.jsx":381,"views/probono/section.jsx":382,"views/recruiment/section.jsx":384,"views/us/section.jsx":389}],333:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
