@@ -36,6 +36,8 @@ class Experience < ActiveRecord::Base
 
   scope :without, -> (id) { where.not(id: id) }
 
+	scope :published, -> (val) { where(published: val) }
+
 	# validate title exists
 	validates :title, :presence => {message: "Título no puede estar en blanco"}
 
@@ -69,7 +71,7 @@ class Experience < ActiveRecord::Base
   before_save :add_keywords
 
   private
-	
+
     def add_excerpt
       self.excerpt = Sanitize.fragment(self.content)
     end
