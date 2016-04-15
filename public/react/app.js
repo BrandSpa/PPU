@@ -1,6 +1,6 @@
 'use strict';
 var React = require('react');
-var Render = require('react-dom');
+var ReactDOM = require('react-dom');
 var $ = require('jquery');
 var createHistory = require('history').createHistory;
 var ReactRouter = require('react-router');
@@ -22,7 +22,7 @@ var theActual = require('views/posts/the_actual.jsx');
 var theActualColombia = require('views/posts/the_actual_colombia.jsx');
 var contact = require('views/contact/section.jsx');
 
-Render((
+ReactDOM.render((
   <Router history={ createHistory() }>
     <Route path="/" component={App}>
       <Route path="/posts/:slug" component={Post} />
