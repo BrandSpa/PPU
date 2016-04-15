@@ -25,7 +25,7 @@ module.exports = React.createClass({
 
   componentDidMount: function() {
     var query = this.state.filters;
-    
+
     request
     .get('/api/experiences')
     .query(query)
