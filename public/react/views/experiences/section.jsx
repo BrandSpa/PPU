@@ -26,6 +26,7 @@ module.exports = React.createClass({
   componentDidMount: function() {
     request
     .get('/api/experiences')
+    .query(query)
     .end(function(err, res) {
       this.setState({
         experiences: res.body,

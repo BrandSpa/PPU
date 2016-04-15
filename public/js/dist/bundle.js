@@ -61228,7 +61228,7 @@ module.exports = React.createClass({
   },
 
   componentDidMount: function componentDidMount() {
-    request.get('/api/experiences').end(function (err, res) {
+    request.get('/api/experiences').query(query).end(function (err, res) {
       this.setState({
         experiences: res.body,
         loaded: true
