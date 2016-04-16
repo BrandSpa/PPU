@@ -34,7 +34,7 @@ module.exports = React.createClass({
     request
     .post("/api/experiences/" + this.state.model.id + "/duplicate")
     .set('X-CSRF-Token', this.state.token)
-    .end(function(res) {
+    .end(function(err, res) {
       window.location = "/en/admin/experiences/" + res.body.id + "/edit";
     });
   },
