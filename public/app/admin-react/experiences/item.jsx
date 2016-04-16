@@ -22,8 +22,9 @@ module.exports = React.createClass({
     var published = !model.published;
     var data = _.extend(model, {published: published});
     this.update(model.id, data, true);
+    
     if(model.translations && model.translations.id) {
-      this.update(model.id, {published: published}, null);
+      this.update(model.translations.id, {published: published}, null);
     }
 
   },
