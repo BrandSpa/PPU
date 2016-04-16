@@ -60,9 +60,11 @@ module.exports = React.createClass({
 
     if(this.state.content.id) {
       this.update(data);
+
     } else {
       this.store(data);
     }
+      this.setState({content: data});
   },
 
   update: function(data) {
@@ -71,7 +73,7 @@ module.exports = React.createClass({
       .set('X-CSRF-Token', this.state.csrf)
       .send(data)
       .end(function(err, res) {
-        this.setState({content: res.body});
+
       }.bind(this));
   },
 
@@ -81,7 +83,7 @@ module.exports = React.createClass({
       .set('X-CSRF-Token', this.state.csrf)
       .send(data)
       .end(function(err, res) {
-        this.setState({content: res.body});
+
       }.bind(this));
   },
 

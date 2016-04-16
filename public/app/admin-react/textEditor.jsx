@@ -12,21 +12,11 @@ module.exports = React.createClass({
     }
   },
 
-  componentDidMount: function() {
-     this.refs.textContent.blur(function() {
-      console.log('blur');
-     });
-  },
-
   handleTextChange: function(txt) {
     var values = _.extend(this.state, {text: txt, textLoad: 'Guardando...'});
     this.setState(values);
+    this.props.onChange(values);
   },
-
-  handleTitleBlur: function() {
-    this.props.onChange(this.state);
-  },
-
 
   componentWillReceiveProps: function(props) {
     this.setState({title: props.title, text: props.text, textLoad: null});
@@ -35,7 +25,9 @@ module.exports = React.createClass({
   handleChange: function(txt) {
     var title = React.findDOMNode(this.refs.title).value;
     var values = _.extend(this.state, {title: title, textLoad: 'Guardando...'});
+
     this.setState(values);
+    this.props.onChange(values);
   },
 
   render: function() {
@@ -50,11 +42,9 @@ module.exports = React.createClass({
           placeholder="título"
           value={this.state.title}
           onChange={this.handleChange}
-          onBlur={this.handleTitleBlur}
         />
 
         <ReactQuill
-          ref="textContent"
           value={this.state.text}
           theme="snow"
           onChange={this.handleTextChange}

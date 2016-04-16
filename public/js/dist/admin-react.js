@@ -14,21 +14,11 @@ module.exports = React.createClass({displayName: "exports",
     }
   },
 
-  componentDidMount: function() {
-     this.refs.textContent.blur(function() {
-      console.log('blur');
-     });
-  },
-
   handleTextChange: function(txt) {
     var values = _.extend(this.state, {text: txt, textLoad: 'Guardando...'});
     this.setState(values);
+    this.props.onChange(values);
   },
-
-  handleTitleBlur: function() {
-    this.props.onChange(this.state);
-  },
-
 
   componentWillReceiveProps: function(props) {
     this.setState({title: props.title, text: props.text, textLoad: null});
@@ -37,7 +27,9 @@ module.exports = React.createClass({displayName: "exports",
   handleChange: function(txt) {
     var title = React.findDOMNode(this.refs.title).value;
     var values = _.extend(this.state, {title: title, textLoad: 'Guardando...'});
+
     this.setState(values);
+    this.props.onChange(values);
   },
 
   render: function() {
@@ -51,12 +43,10 @@ module.exports = React.createClass({displayName: "exports",
           className: "form-control", 
           placeholder: "título", 
           value: this.state.title, 
-          onChange: this.handleChange, 
-          onBlur: this.handleTitleBlur}
+          onChange: this.handleChange}
         ), 
 
         React.createElement(ReactQuill, {
-          ref: "textContent", 
           value: this.state.text, 
           theme: "snow", 
           onChange: this.handleTextChange}
@@ -1709,21 +1699,11 @@ module.exports = React.createClass({displayName: "exports",
     }
   },
 
-  componentDidMount: function() {
-     this.refs.textContent.blur(function() {
-      console.log('blur');
-     });
-  },
-
   handleTextChange: function(txt) {
     var values = _.extend(this.state, {text: txt, textLoad: 'Guardando...'});
     this.setState(values);
+    this.props.onChange(values);
   },
-
-  handleTitleBlur: function() {
-    this.props.onChange(this.state);
-  },
-
 
   componentWillReceiveProps: function(props) {
     this.setState({title: props.title, text: props.text, textLoad: null});
@@ -1732,7 +1712,9 @@ module.exports = React.createClass({displayName: "exports",
   handleChange: function(txt) {
     var title = React.findDOMNode(this.refs.title).value;
     var values = _.extend(this.state, {title: title, textLoad: 'Guardando...'});
+
     this.setState(values);
+    this.props.onChange(values);
   },
 
   render: function() {
@@ -1746,12 +1728,10 @@ module.exports = React.createClass({displayName: "exports",
           className: "form-control", 
           placeholder: "título", 
           value: this.state.title, 
-          onChange: this.handleChange, 
-          onBlur: this.handleTitleBlur}
+          onChange: this.handleChange}
         ), 
 
         React.createElement(ReactQuill, {
-          ref: "textContent", 
           value: this.state.text, 
           theme: "snow", 
           onChange: this.handleTextChange}
@@ -1861,9 +1841,11 @@ module.exports = React.createClass({displayName: "exports",
 
     if(this.state.content.id) {
       this.update(data);
+
     } else {
       this.store(data);
     }
+      this.setState({content: data});
   },
 
   update: function(data) {
@@ -1872,7 +1854,7 @@ module.exports = React.createClass({displayName: "exports",
       .set('X-CSRF-Token', this.state.csrf)
       .send(data)
       .end(function(err, res) {
-        this.setState({content: res.body});
+
       }.bind(this));
   },
 
@@ -1882,7 +1864,7 @@ module.exports = React.createClass({displayName: "exports",
       .set('X-CSRF-Token', this.state.csrf)
       .send(data)
       .end(function(err, res) {
-        this.setState({content: res.body});
+
       }.bind(this));
   },
 
