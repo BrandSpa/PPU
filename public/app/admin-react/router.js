@@ -5,6 +5,7 @@ var Us = require('us/section.jsx');
 var Recruitment = require('recruitment/section.jsx');
 var Posts = require('posts/section.jsx');
 var Lawyers = require('lawyers/section.jsx');
+var Experiences = require('experiences/section.jsx');
 var Sidebar = require('sidebar.jsx');
 var Login = require('login.jsx');
 
@@ -41,6 +42,13 @@ var Router = Backbone.Router.extend({
     'admin/lawyers2': function() {
       React.render(
         <Lawyers />,
+        document.getElementById('wrap')
+      );
+    },
+
+    'admin/experiences2': function() {
+      React.render(
+        <Experiences />,
         document.getElementById('wrap')
       );
     },
