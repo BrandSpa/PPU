@@ -2643,8 +2643,9 @@ var customStyle = {
     top                        : '100px',
     left                       : 0,
     right                      : 0,
-    width: '500px',
-    height: '500px',
+     margin: '0 auto',
+    width: '300px',
+    height: '200px',
     border                     : '1px solid #ccc',
     background                 : '#fff',
     overflow                   : 'auto',
@@ -2664,7 +2665,7 @@ module.exports = React.createClass({displayName: "exports",
         isOpen: show, 
         style: customStyle
       }, 
-        React.createElement("button", {className: "btn btn-danger", onClick: this.props.onContinue}, "Continuar"), 
+        React.createElement("button", {className: "btn btn-danger", onClick: this.props.onContinue}, "Continuar"), " ", React.createElement("span", null, "|"), 
         React.createElement("button", {className: "btn btn-default", onClick: this.props.onCancel}, "Cancelar")
       )
     )
