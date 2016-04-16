@@ -23,14 +23,14 @@ module.exports = React.createClass({
     var model = this.props.model;
     var published = !model.published;
     var data = _.extend(model, {published: published});
-    this.update(model.id, data);
+    this.update(model.id, data, true);
 
     if(model.translations && model.translations.id) {
-      this.update(model.translations.id, {published: published});
+      this.update(model.translations.id, {published: published}, null);
     }
 
     if(model.translation && model.translation.id) {
-      this.update(model.translation.id, {published: published});
+      this.update(model.translation.id, {published: published}, null);
     }
 
   },
@@ -41,7 +41,10 @@ module.exports = React.createClass({
     .set('X-CSRF-Token', this.state.token)
     .send({fields:  data})
     .end(function(err, res) {
-      this.setState({model: _.extend(this.props.model, res.body)});
+      if(updateState) {
+        this.setState({model: _.extend(this.props.model, res.body)});
+      }
+
     }.bind(this));
   },
 
