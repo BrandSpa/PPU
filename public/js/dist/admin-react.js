@@ -160,10 +160,12 @@ module.exports = React.createClass({displayName: "exports",
 
     if(model.translations && model.translations.id) {
       translation = ( React.createElement("a", {href: "/admin/experiences/"+model.translations.id+"/edit", className: "btn btn-xs"}, "Editar Traducción"));
-    } else {
-      translation = (React.createElement("button", {className: "btn btn-xs", onClick: this.translate}, "Traducir"));
     }
     
+    if(!model.translations && model.lang != 'en') {
+      translation = (React.createElement("button", {className: "btn btn-xs", onClick: this.translate}, "Traducir"));
+    }
+
     return (
       React.createElement("tr", null, 
         React.createElement("td", null, model.company_name, " - ", model.title), 

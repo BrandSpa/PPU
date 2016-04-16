@@ -52,10 +52,12 @@ module.exports = React.createClass({
 
     if(model.translations && model.translations.id) {
       translation = ( <a href={"/admin/experiences/"+model.translations.id+"/edit"} className="btn btn-xs">Editar Traducción</a>);
-    } else {
-      translation = (<button className="btn btn-xs" onClick={this.translate}>Traducir</button>);
     }
     
+    if(!model.translations && model.lang != 'en') {
+      translation = (<button className="btn btn-xs" onClick={this.translate}>Traducir</button>);
+    }
+
     return (
       <tr>
         <td>{model.company_name} - {model.title}</td>
