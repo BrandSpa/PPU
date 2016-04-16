@@ -30,7 +30,7 @@ module.exports = React.createClass({
 
   update: function(id, data, updateState) {
     request
-    .put('/api/experiences/' + model.id)
+    .put('/api/experiences/' + id)
     .set('X-CSRF-Token', this.state.token)
     .send({fields:  data})
     .end(function(err, res) {
