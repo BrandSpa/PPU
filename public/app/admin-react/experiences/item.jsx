@@ -54,7 +54,7 @@ module.exports = React.createClass({
     .set('X-CSRF-Token', this.state.token)
     .end(function(err, res) {
       window.location = "/en/admin/experiences/" + res.body.id + "/edit";
-    });
+    });textEditor.jsx
   },
 
   showVerification: function() {
@@ -87,7 +87,7 @@ module.exports = React.createClass({
     }
 
     if(model.translations && model.translations.id) {
-      translation = ( <a href={"/admin/experiences/"+model.translations.id+"/edit"} className="btn btn-xs">Editar Traducción</a>);
+      translation = ( <a href={"/en/admin/experiences/"+model.translations.id+"/edit"} className="btn btn-xs">Editar Traducción</a>);
     }
 
     if(!model.translations && model.lang != 'en') {

@@ -134,7 +134,7 @@ module.exports = React.createClass({
               <Select
                   ref="lang"
                   name="form-field-name"
-                  placeholder={"Seleccionar Languaje"}
+                  placeholder={"Seleccionar Lenguaje"}
                   options={langs}
                   onChange={this.filterLang}
                   value={this.state.filters.lang}

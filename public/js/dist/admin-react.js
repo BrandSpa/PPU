@@ -103,7 +103,7 @@ module.exports = React.createClass({displayName: "exports",
     .set('X-CSRF-Token', this.state.token)
     .end(function(err, res) {
       window.location = "/en/admin/experiences/" + res.body.id + "/edit";
-    });
+    });textEditor.jsx
   },
 
   showVerification: function() {
@@ -136,7 +136,7 @@ module.exports = React.createClass({displayName: "exports",
     }
 
     if(model.translations && model.translations.id) {
-      translation = ( React.createElement("a", {href: "/admin/experiences/"+model.translations.id+"/edit", className: "btn btn-xs"}, "Editar Traducción"));
+      translation = ( React.createElement("a", {href: "/en/admin/experiences/"+model.translations.id+"/edit", className: "btn btn-xs"}, "Editar Traducción"));
     }
 
     if(!model.translations && model.lang != 'en') {
@@ -396,7 +396,7 @@ module.exports = React.createClass({displayName: "exports",
               React.createElement(Select, {
                   ref: "lang", 
                   name: "form-field-name", 
-                  placeholder: "Seleccionar Languaje", 
+                  placeholder: "Seleccionar Lenguaje", 
                   options: langs, 
                   onChange: this.filterLang, 
                   value: this.state.filters.lang}
