@@ -155,8 +155,7 @@ module.exports = React.createClass({displayName: "exports",
 
     return (
       React.createElement("tr", null, 
-        React.createElement("td", null, model.name, " ", model.lastname), 
-        React.createElement("td", null, model.position), 
+        React.createElement("td", null, model.company, " - ", model.title), 
         React.createElement("td", null, model.country), 
         React.createElement("td", null, 
           React.createElement("a", {href: "#", className: "btn btn-xs " + classPublished, onClick: this.togglePublish}, textPublished)

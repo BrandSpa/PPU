@@ -114,6 +114,7 @@ class Api::ExperiencesController < ApplicationController
 			:date,
 			:title,
 			:content,
+			:published,
 			:category_ids => [],
 			:lawyer_ids => [])
 		end

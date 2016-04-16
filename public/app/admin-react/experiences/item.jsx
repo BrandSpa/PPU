@@ -47,8 +47,7 @@ module.exports = React.createClass({
 
     return (
       <tr>
-        <td>{model.name} {model.lastname}</td>
-        <td>{model.position}</td>
+        <td>{model.company} - {model.title}</td>
         <td>{model.country}</td>
         <td>
           <a href="#" className={"btn btn-xs " + classPublished} onClick={this.togglePublish}>{textPublished}</a>
