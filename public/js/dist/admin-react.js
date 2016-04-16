@@ -14,11 +14,21 @@ module.exports = React.createClass({displayName: "exports",
     }
   },
 
+  componentDidMount: function() {
+     this.textContent.blur(function() {
+      console.log('blur');
+     });
+  },
+
   handleTextChange: function(txt) {
     var values = _.extend(this.state, {text: txt, textLoad: 'Guardando...'});
     this.setState(values);
-    this.props.onChange(values);
   },
+
+  handleTitleBlur: function() {
+    this.props.onChange(this.state);
+  },
+
 
   componentWillReceiveProps: function(props) {
     this.setState({title: props.title, text: props.text, textLoad: null});
@@ -27,9 +37,7 @@ module.exports = React.createClass({displayName: "exports",
   handleChange: function(txt) {
     var title = React.findDOMNode(this.refs.title).value;
     var values = _.extend(this.state, {title: title, textLoad: 'Guardando...'});
-
     this.setState(values);
-    this.props.onChange(values);
   },
 
   render: function() {
@@ -43,10 +51,12 @@ module.exports = React.createClass({displayName: "exports",
           className: "form-control", 
           placeholder: "título", 
           value: this.state.title, 
-          onChange: this.handleChange}
+          onChange: this.handleChange, 
+          onBlur: this.handleTitleBlur}
         ), 
 
         React.createElement(ReactQuill, {
+          ref: "textContent", 
           value: this.state.text, 
           theme: "snow", 
           onChange: this.handleTextChange}
@@ -1699,11 +1709,21 @@ module.exports = React.createClass({displayName: "exports",
     }
   },
 
+  componentDidMount: function() {
+     this.textContent.blur(function() {
+      console.log('blur');
+     });
+  },
+
   handleTextChange: function(txt) {
     var values = _.extend(this.state, {text: txt, textLoad: 'Guardando...'});
     this.setState(values);
-    this.props.onChange(values);
   },
+
+  handleTitleBlur: function() {
+    this.props.onChange(this.state);
+  },
+
 
   componentWillReceiveProps: function(props) {
     this.setState({title: props.title, text: props.text, textLoad: null});
@@ -1712,9 +1732,7 @@ module.exports = React.createClass({displayName: "exports",
   handleChange: function(txt) {
     var title = React.findDOMNode(this.refs.title).value;
     var values = _.extend(this.state, {title: title, textLoad: 'Guardando...'});
-
     this.setState(values);
-    this.props.onChange(values);
   },
 
   render: function() {
@@ -1728,10 +1746,12 @@ module.exports = React.createClass({displayName: "exports",
           className: "form-control", 
           placeholder: "título", 
           value: this.state.title, 
-          onChange: this.handleChange}
+          onChange: this.handleChange, 
+          onBlur: this.handleTitleBlur}
         ), 
 
         React.createElement(ReactQuill, {
+          ref: "textContent", 
           value: this.state.text, 
           theme: "snow", 
           onChange: this.handleTextChange}
