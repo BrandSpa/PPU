@@ -31,9 +31,8 @@ module.exports = React.createClass({
   },
 
   translate: function(model) {
-    var id = model.id;
     request
-    .post("/api/experiences/" + id + "/duplicate")
+    .post("/api/experiences/" + this.state.model.id + "/duplicate")
     .set('X-CSRF-Token', this.state.token)
     .end(function(res) {
       window.location = "/en/admin/experiences/" + res.body.id + "/edit";
@@ -54,12 +53,12 @@ module.exports = React.createClass({
     if(model.translations && model.translations.id) {
       translation = ( <a href={"/admin/models/"+model.translations.id+"/edit"} className="btn btn-xs">Editar Traducción</a>);
     } else {
-      translation = (<button className="btn btn-xs" onClick={this.translate.bind(model)}>Traducir</button>);
+      translation = (<button className="btn btn-xs" onClick={this.translate}>Traducir</button>);
     }
 
     return (
       <tr>
-        <td>{model.company} - {model.title}</td>
+        <td>{model.company_name} - {model.title}</td>
         <td>{model.country}</td>
         <td>
           <a href="#" className={"btn btn-xs " + classPublished} onClick={this.togglePublish}>{textPublished}</a>
