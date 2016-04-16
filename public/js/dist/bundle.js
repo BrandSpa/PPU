@@ -58994,7 +58994,7 @@ ReactDOM.render(React.createElement(
     React.createElement(Route, { path: '/el-actual-colombia', component: theActualColombia })
   ),
   React.createElement(Route, { path: '/admin' })
-), document.body);
+), document.getElementById('app'));
 
 
 },{"history":18,"jquery":31,"react":325,"react-dom":35,"react-router":136,"views/app.jsx":343,"views/area/section.jsx":344,"views/areas/section.jsx":346,"views/contact/section.jsx":348,"views/experience/section.jsx":349,"views/experiences/section.jsx":351,"views/lawyer/section.jsx":367,"views/lawyers/section.jsx":370,"views/post/section.jsx":374,"views/posts/the_actual.jsx":380,"views/posts/the_actual_colombia.jsx":381,"views/probono/section.jsx":382,"views/recruiment/section.jsx":384,"views/us/section.jsx":389}],333:[function(require,module,exports){

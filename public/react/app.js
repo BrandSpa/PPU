@@ -43,4 +43,4 @@ ReactDOM.render((
     <Route path="/admin">
     </Route>
   </Router>
-), document.body);
+), document.getElementById('app'));
