@@ -104,7 +104,8 @@ class Api::ExperiencesController < ApplicationController
 		# params accepted
 		def experience_params
 
-			params.require(:fields).permit(
+			params.require(:fields)
+			.permit(
 			:gallery_id,
 			:country,
 			:img_name,
