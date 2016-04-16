@@ -50,9 +50,9 @@ module.exports = React.createClass({
     }.bind(this));
   },
 
-  removeItem: function(model) {
+  removeItem: function(id) {
     var without = _.reject(this.state.experiences, function(experience) {
-      return experience.id == model.id;
+      return experience.id == id;
     });
     this.setState({experiences: without});
   },

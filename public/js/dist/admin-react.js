@@ -79,7 +79,7 @@ module.exports = React.createClass({displayName: "exports",
     }
 
     if(model.translation && model.translation.id) {
-      this.update(model.translations.id, {published: published}, null);
+      this.update(model.translation.id, {published: published}, null);
     }
 
   },
@@ -111,12 +111,28 @@ module.exports = React.createClass({displayName: "exports",
   },
 
   handleContinue: function() {
+
+    var model = this.state.model;
+
+    this.destroy(model.id);
+
+    if(model.translations && model.translations.id) {
+      this.destroy(model.translations.id);
+    }
+
+    if(model.translation && model.translation.id) {
+      this.destroy(model.translation.id);
+    }
+
+  },
+
+  destroy: function(id) {
     request
-    .del("/api/experiences/" + this.state.model.id )
+    .del("/api/experiences/" + id )
     .set('X-CSRF-Token', this.state.token)
     .end(function(err, res) {
       this.handleCancel();
-      this.props.onDestroy(this.state.model);
+      this.props.onDestroy(id);
     }.bind(this));
   },
 
@@ -223,9 +239,9 @@ module.exports = React.createClass({displayName: "exports",
     }.bind(this));
   },
 
-  removeItem: function(model) {
+  removeItem: function(id) {
     var without = _.reject(this.state.experiences, function(experience) {
-      return experience.id == model.id;
+      return experience.id == id;
     });
     this.setState({experiences: without});
   },

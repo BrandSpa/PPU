@@ -30,7 +30,7 @@ module.exports = React.createClass({
     }
 
     if(model.translation && model.translation.id) {
-      this.update(model.translations.id, {published: published}, null);
+      this.update(model.translation.id, {published: published}, null);
     }
 
   },
@@ -62,12 +62,28 @@ module.exports = React.createClass({
   },
 
   handleContinue: function() {
+
+    var model = this.state.model;
+
+    this.destroy(model.id);
+
+    if(model.translations && model.translations.id) {
+      this.destroy(model.translations.id);
+    }
+
+    if(model.translation && model.translation.id) {
+      this.destroy(model.translation.id);
+    }
+
+  },
+
+  destroy: function(id) {
     request
-    .del("/api/experiences/" + this.state.model.id )
+    .del("/api/experiences/" + id )
     .set('X-CSRF-Token', this.state.token)
     .end(function(err, res) {
       this.handleCancel();
-      this.props.onDestroy(this.state.model);
+      this.props.onDestroy(id);
     }.bind(this));
   },
 
