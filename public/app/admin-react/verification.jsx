@@ -18,7 +18,7 @@ var customStyle = {
     left                       : 0,
     right                      : 0,
      margin: '0 auto',
-    width: '300px',
+    width: '320px',
     height: '200px',
     border                     : '1px solid #ccc',
     background                 : '#fff',
@@ -39,6 +39,7 @@ module.exports = React.createClass({
         isOpen={show}
         style={customStyle}
       >
+      <div style={{width: '300px', margin: '0 auto'}}></div>
         <button className="btn btn-danger" onClick={this.props.onContinue}>Continuar</button> <span>&nbsp;</span>
         <button className="btn btn-default" onClick={this.props.onCancel}>Cancelar</button>
       </Modal>
