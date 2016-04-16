@@ -15,7 +15,7 @@ module.exports = React.createClass({displayName: "exports",
   },
 
   componentDidMount: function() {
-     this.textContent.blur(function() {
+     this.refs.textContent.blur(function() {
       console.log('blur');
      });
   },
@@ -1710,7 +1710,7 @@ module.exports = React.createClass({displayName: "exports",
   },
 
   componentDidMount: function() {
-     this.textContent.blur(function() {
+     this.refs.textContent.blur(function() {
       console.log('blur');
      });
   },
