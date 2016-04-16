@@ -66,7 +66,7 @@ module.exports = React.createClass({
     .del("/api/experiences/" + this.state.model.id )
     .set('X-CSRF-Token', this.state.token)
     .end(function(err, res) {
-      if(err) return console.log(err.body);
+      this.handleCancel();
       this.props.onDestroy(this.state.model);
     });
   },
