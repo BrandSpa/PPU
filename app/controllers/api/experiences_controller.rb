@@ -7,7 +7,7 @@ class Api::ExperiencesController < ApplicationController
 	def index
 		lang = params[:lang] || I18n.locale
     paginate = params[:paginate] || 0
-		collection = entity.with_relationships.lang(lang).paginate(paginate).order(date: :desc).order(id: :desc)
+		collection = entity.with_relationships.lang(lang).paginate(paginate).order(id: :desc).order(date: :desc)
 		collection = filters( params, collection)
 
 		render json: collection.to_json( :except => [:keywords, :updated_at],
