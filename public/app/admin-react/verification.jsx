@@ -11,17 +11,18 @@ var customStyle = {
     bottom            : 0,
     backgroundColor   : 'rgba(255, 255, 255, 0.75)'
   },
+
   content : {
     position                   : 'absolute',
-    top                        : '40px',
-    left                       : '40px',
-    right                      : '40px',
-    bottom                     : '40px',
+    top                        : '100px',
+    left                       : '0',
+    right                      : '0',
+    width: '200px',
+    height: '200px',
     border                     : '1px solid #ccc',
     background                 : '#fff',
     overflow                   : 'auto',
     WebkitOverflowScrolling    : 'touch',
-    borderRadius               : '4px',
     outline                    : 'none',
     padding                    : '20px'
 
@@ -37,8 +38,8 @@ module.exports = React.createClass({
         isOpen={show}
         style={customStyle}
       >
-        <button onClick={this.props.onContinue}>Continuar</button>
-        <button onClick={this.props.onCancel}>Cancelar</button>
+        <button className="btn btn-danger" onClick={this.props.onContinue}>Continuar</button>
+        <button className="btn btn-default" onClick={this.props.onCancel}>Cancelar</button>
       </Modal>
     )
 
