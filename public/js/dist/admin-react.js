@@ -127,14 +127,25 @@ module.exports = React.createClass({displayName: "exports",
   togglePublish: function(e) {
     e.preventDefault();
     var model = this.props.model;
-    var data = _.extend(model, {published: !model.published});
+    var published = !model.published;
+    var data = _.extend(model, {published: published});
+    this.update(model.id, data, true);
+    if(model.translations && model.translations.id) {
+      this.update(model.id, {published: published}, null);
+    }
 
+  },
+
+  update: function(id, data, updateState) {
     request
     .put('/api/experiences/' + model.id)
     .set('X-CSRF-Token', this.state.token)
     .send({fields:  data})
     .end(function(err, res) {
-      this.setState({model: _.extend(this.props.model, res.body)});
+      if(updateState) {
+        this.setState({model: _.extend(this.props.model, res.body)});
+      }
+
     }.bind(this));
   },
 
@@ -161,7 +172,7 @@ module.exports = React.createClass({displayName: "exports",
     if(model.translations && model.translations.id) {
       translation = ( React.createElement("a", {href: "/admin/experiences/"+model.translations.id+"/edit", className: "btn btn-xs"}, "Editar Traducción"));
     }
-    
+
     if(!model.translations && model.lang != 'en') {
       translation = (React.createElement("button", {className: "btn btn-xs", onClick: this.translate}, "Traducir"));
     }
@@ -174,7 +185,7 @@ module.exports = React.createClass({displayName: "exports",
           React.createElement("a", {href: "#", className: "btn btn-xs " + classPublished, onClick: this.togglePublish}, textPublished)
         ), 
 
-        React.createElement("td", null, React.createElement("a", {href: "/admin/models/"+model.id+"/edit", className: "btn btn-xs"}, "Editar")), 
+        React.createElement("td", null, React.createElement("a", {href: "/admin/experiences/"+model.id+"/edit", className: "btn btn-xs"}, "Editar")), 
         React.createElement("td", null, 
           translation
         )
