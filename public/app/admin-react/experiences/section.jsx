@@ -60,7 +60,7 @@ module.exports = React.createClass({
   render: function() {
     var experiences = this.state.experiences.map(function(model) {
       return (<Item key={model.id} model={model} onDestroy={this.removeItem} />);
-    });
+    }.bind(this));
 
     return (
       <div className="panel">

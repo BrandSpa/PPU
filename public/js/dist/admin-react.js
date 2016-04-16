@@ -287,7 +287,7 @@ module.exports = React.createClass({displayName: "exports",
   render: function() {
     var experiences = this.state.experiences.map(function(model) {
       return (React.createElement(Item, {key: model.id, model: model, onDestroy: this.removeItem}));
-    });
+    }.bind(this));
 
     return (
       React.createElement("div", {className: "panel"}, 
