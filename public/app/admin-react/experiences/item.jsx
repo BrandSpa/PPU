@@ -55,7 +55,7 @@ module.exports = React.createClass({
     } else {
       translation = (<button className="btn btn-xs" onClick={this.translate}>Traducir</button>);
     }
-
+    
     return (
       <tr>
         <td>{model.company_name} - {model.title}</td>

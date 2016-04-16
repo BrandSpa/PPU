@@ -61,7 +61,7 @@ module.exports = React.createClass({
           <h4>Experiencias</h4>
         </div>
         <div className="panel-body">
-        <Filters onFilter={this.filter} position />
+        <Filters onFilter={this.filter} />
       <br/>
           <div className="table-responsive">
               <table className="table table-striped">
