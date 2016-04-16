@@ -68,7 +68,7 @@ module.exports = React.createClass({
     .end(function(err, res) {
       this.handleCancel();
       this.props.onDestroy(this.state.model);
-    });
+    }.bind(this));
   },
 
   handleCancel: function() {

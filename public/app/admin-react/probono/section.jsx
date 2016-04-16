@@ -2,7 +2,7 @@
 var React = require('react');
 var request = require('superagent');
 var $ = require('jquery');
-var TextEditor = require('TextEditor.jsx');
+var TextEditor = require('textEditor.jsx');
 var SliderMain = require('probono/sliderMain.jsx');
 var SliderCompanies = require('probono/SliderCompanies.jsx');
 

@@ -1,5 +1,6 @@
 var Backbone = require('backbone');
 var React = require('react');
+var ReactDOM = require('react-dom');
 var Probono = require('probono/section.jsx');
 var Us = require('us/section.jsx');
 var Recruitment = require('recruitment/section.jsx');
@@ -11,50 +12,48 @@ var Login = require('login.jsx');
 
 var Router = Backbone.Router.extend({
   routes: {
+
     'admin/probono': function() {
-      React.render(
-        <Probono />,
-        document.getElementById('wrap')
-      );
+      ReactDOM.render(<Probono />, document.getElementById('wrap'));
     },
 
     'admin/nosotros': function() {
-      React.render(
+      ReactDOM.render(
         <Us />,
         document.getElementById('wrap')
       );
     },
 
     'admin/trabaje-con-nosotros': function() {
-      React.render(
+      ReactDOM.render(
         <Recruitment />,
         document.getElementById('wrap')
       );
     },
 
     'admin/posts2': function() {
-      React.render(
+      ReactDOM.render(
         <Posts />,
         document.getElementById('wrap')
       );
     },
 
     'admin/lawyers2': function() {
-      React.render(
+      ReactDOM.render(
         <Lawyers />,
         document.getElementById('wrap')
       );
     },
 
     'admin/experiences2': function() {
-      React.render(
+      ReactDOM.render(
         <Experiences />,
         document.getElementById('wrap')
       );
     },
 
     'users/sign_in': function() {
-      React.render(
+      ReactDOM.render(
         <Login />,
         document.getElementById('wrap')
       );
@@ -65,7 +64,7 @@ var Router = Backbone.Router.extend({
 var Route = new Router;
 
 if(window.location.pathname != "/users/sign_in") {
-   React.render(
+   ReactDOM.render(
     <Sidebar />,
     document.getElementById('admin-sidebar')
   );
