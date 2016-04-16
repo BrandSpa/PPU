@@ -23,11 +23,12 @@ class Api::ExperiencesController < ApplicationController
 	# get category by id or slug
 	def show
 		id = params[:id]
+		lang = params[:lang] || I18n.locale
 
 		if is_a_number?(id)
 			model = entity.with_relationships.find_by(id: params[:id])
 		else
-			model = entity.with_relationships.find_by(slug: params[:id])
+			model = entity.with_relationships.lang(lang).find_by(slug: params[:id])
 		end
 
 		render json: model.to_json(:except => [:keywords],
