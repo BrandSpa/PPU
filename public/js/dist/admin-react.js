@@ -177,7 +177,7 @@ module.exports = React.createClass({displayName: "exports",
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 'use strict';
 var React = require('react');
-var Lawyer = require('experiences/item.jsx');
+var Item = require('experiences/item.jsx');
 var request = require('superagent');
 var _ = require('underscore');
 var Filters = require('filters.jsx');
@@ -228,8 +228,8 @@ module.exports = React.createClass({displayName: "exports",
   },
 
   render: function() {
-    var experiences = this.state.experiences.map(function(lawyer) {
-      return (React.createElement(Lawyer, {key: lawyer.id, lawyer: lawyer}));
+    var experiences = this.state.experiences.map(function(model) {
+      return (React.createElement(Item, {key: model.id, model: model}));
     });
 
     return (

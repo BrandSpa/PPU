@@ -1,6 +1,6 @@
 'use strict';
 var React = require('react');
-var Lawyer = require('experiences/item.jsx');
+var Item = require('experiences/item.jsx');
 var request = require('superagent');
 var _ = require('underscore');
 var Filters = require('filters.jsx');
@@ -51,8 +51,8 @@ module.exports = React.createClass({
   },
 
   render: function() {
-    var experiences = this.state.experiences.map(function(lawyer) {
-      return (<Lawyer key={lawyer.id} lawyer={lawyer} />);
+    var experiences = this.state.experiences.map(function(model) {
+      return (<Item key={model.id} model={model} />);
     });
 
     return (
