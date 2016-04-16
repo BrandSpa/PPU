@@ -159,11 +159,11 @@ module.exports = React.createClass({displayName: "exports",
     }
 
     if(model.translations && model.translations.id) {
-      translation = ( React.createElement("a", {href: "/admin/models/"+model.translations.id+"/edit", className: "btn btn-xs"}, "Editar Traducción"));
+      translation = ( React.createElement("a", {href: "/admin/experiences/"+model.translations.id+"/edit", className: "btn btn-xs"}, "Editar Traducción"));
     } else {
       translation = (React.createElement("button", {className: "btn btn-xs", onClick: this.translate}, "Traducir"));
     }
-
+    
     return (
       React.createElement("tr", null, 
         React.createElement("td", null, model.company_name, " - ", model.title), 
@@ -248,7 +248,7 @@ module.exports = React.createClass({displayName: "exports",
           React.createElement("h4", null, "Experiencias")
         ), 
         React.createElement("div", {className: "panel-body"}, 
-        React.createElement(Filters, {onFilter: this.filter, position: true}), 
+        React.createElement(Filters, {onFilter: this.filter}), 
       React.createElement("br", null), 
           React.createElement("div", {className: "table-responsive"}, 
               React.createElement("table", {className: "table table-striped"}, 
