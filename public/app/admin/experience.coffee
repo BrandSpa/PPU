@@ -25,11 +25,11 @@ $ ->
 
     publish: (e) ->
       e.preventDefault()
-      @model.save fields: published: true
+      @model.save fields: _.extend(@model,  published: true)
 
     unpublish: (e) ->
       e.preventDefault()
-      @model.save fields: published: false
+      @model.save fields: _.extend(@model,  published: true)
 
     translate: (e) ->
       e.preventDefault()

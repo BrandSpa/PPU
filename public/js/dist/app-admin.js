@@ -3887,18 +3887,18 @@ $(function() {
     ExperienceView.prototype.publish = function(e) {
       e.preventDefault();
       return this.model.save({
-        fields: {
+        fields: _.extend(this.model, {
           published: true
-        }
+        })
       });
     };
 
     ExperienceView.prototype.unpublish = function(e) {
       e.preventDefault();
       return this.model.save({
-        fields: {
-          published: false
-        }
+        fields: _.extend(this.model, {
+          published: true
+        })
       });
     };
 
