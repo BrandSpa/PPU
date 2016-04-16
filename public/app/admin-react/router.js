@@ -70,5 +70,4 @@ if(window.location.pathname != "/users/sign_in") {
   );
 }
 
-
 Backbone.history.start({pushState: true});
