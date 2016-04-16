@@ -39,7 +39,7 @@ module.exports = React.createClass({
         isOpen={show}
         style={customStyle}
       >
-        <button className="btn btn-danger" onClick={this.props.onContinue}>Continuar</button> <span>|</span>
+        <button className="btn btn-danger" onClick={this.props.onContinue}>Continuar</button> <span>&nbsp;</span>
         <button className="btn btn-default" onClick={this.props.onCancel}>Cancelar</button>
       </Modal>
     )
