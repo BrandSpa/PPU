@@ -50,6 +50,7 @@ module.exports = React.createClass({
     } else {
       this.store(data);
     }
+    this.setState({content: data});
   },
 
   handleTextEn: function(values) {

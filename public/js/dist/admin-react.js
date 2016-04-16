@@ -869,6 +869,7 @@ module.exports = React.createClass({displayName: "exports",
     } else {
       this.store(data);
     }
+    this.setState({content: data});
   },
 
   handleTextEn: function(values) {
@@ -884,6 +885,7 @@ module.exports = React.createClass({displayName: "exports",
     } else {
       this.store(data);
     }
+    this.setState({content: data});
   },
 
   update: function(data) {
@@ -892,7 +894,7 @@ module.exports = React.createClass({displayName: "exports",
       .set('X-CSRF-Token', this.state.csrf)
       .send(data)
       .end(function(err, res) {
-        this.setState({content: res.body});
+
       }.bind(this));
   },
 
@@ -902,7 +904,7 @@ module.exports = React.createClass({displayName: "exports",
       .set('X-CSRF-Token', this.state.csrf)
       .send(data)
       .end(function(err, res) {
-        this.setState({content: res.body});
+
       }.bind(this));
   },
 
@@ -1831,6 +1833,7 @@ module.exports = React.createClass({displayName: "exports",
     } else {
       this.store(data);
     }
+    this.setState({content: data});
   },
 
   handleTextEn: function(values) {
