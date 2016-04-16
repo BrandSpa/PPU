@@ -138,6 +138,16 @@ module.exports = React.createClass({displayName: "exports",
     }.bind(this));
   },
 
+  translate: function() {
+    var id = model.id;
+    request
+    .post("/api/experiences/" + id + "/duplicate")
+    .end(function(res) {
+      window.location = "/en/admin/experiences/" + res.body.id + "/edit";
+    });
+
+  },
+
   render: function() {
     var translation;
     var model = this.state.model;
@@ -151,6 +161,8 @@ module.exports = React.createClass({displayName: "exports",
 
     if(model.translations && model.translations.id) {
       translation = ( React.createElement("a", {href: "/admin/models/"+model.translations.id+"/edit", className: "btn btn-xs"}, "Editar Traducción"));
+    } else {
+      translation = (React.createElement("button", {className: "btn btn-xs", onClick: this.translate.bind(null, model)}, "Traducir"));
     }
 
     return (
