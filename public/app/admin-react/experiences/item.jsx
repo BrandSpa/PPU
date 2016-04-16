@@ -57,6 +57,10 @@ module.exports = React.createClass({
     });
   },
 
+  showVerification: function() {
+    this.setState({showVerification: true});
+  },
+
   handleContinue: function() {
     request
     .del("/api/experiences/" + this.state.model.id )
@@ -102,7 +106,7 @@ module.exports = React.createClass({
           {translation}
         </td>
 
-        <td><a href={"#"} className="btn btn-xs btn-danger">Eliminar</a></td>
+        <td><button onClick={this.showVerification} className="btn btn-xs btn-danger">Eliminar</button></td>
 
         <Verification
           show={this.state.showVerification}

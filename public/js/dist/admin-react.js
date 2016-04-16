@@ -165,6 +165,10 @@ module.exports = React.createClass({displayName: "exports",
     });
   },
 
+  showVerification: function() {
+    this.setState({showVerification: true});
+  },
+
   handleContinue: function() {
     request
     .del("/api/experiences/" + this.state.model.id )
@@ -210,7 +214,7 @@ module.exports = React.createClass({displayName: "exports",
           translation
         ), 
 
-        React.createElement("td", null, React.createElement("a", {href: "#", className: "btn btn-xs btn-danger"}, "Eliminar")), 
+        React.createElement("td", null, React.createElement("button", {onClick: this.showVerification, className: "btn btn-xs btn-danger"}, "Eliminar")), 
 
         React.createElement(Verification, {
           show: this.state.showVerification, 
