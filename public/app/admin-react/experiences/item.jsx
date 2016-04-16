@@ -30,7 +30,7 @@ module.exports = React.createClass({
     }.bind(this));
   },
 
-  translate: function() {
+  translate: function(model) {
     var id = model.id;
     request
     .post("/api/experiences/" + id + "/duplicate")

@@ -138,7 +138,7 @@ module.exports = React.createClass({displayName: "exports",
     }.bind(this));
   },
 
-  translate: function() {
+  translate: function(model) {
     var id = model.id;
     request
     .post("/api/experiences/" + id + "/duplicate")
