@@ -3,12 +3,14 @@ var React = require('react');
 var _ = require('underscore');
 var request = require('superagent');
 var $ = require('jquery');
+var Verification = require('verification.jsx');
 
 module.exports = React.createClass({
   getInitialState: function() {
     return {
       model: {},
-      token: $("meta[name='csrf-token']").attr("content")
+      token: $("meta[name='csrf-token']").attr("content"),
+      showVerification: false
     }
   },
 
@@ -55,6 +57,19 @@ module.exports = React.createClass({
     });
   },
 
+  handleContinue: function() {
+    request
+    .del("/api/experiences/" + this.state.model.id )
+    .end(function(err, res) {
+      if(err) return console.log(err.body);
+      this.props.onDestroy(this.state.model);
+    });
+  },
+
+  handleCancel: function() {
+    this.setState({showVerification: false});
+  },
+
   render: function() {
     var translation;
     var model = this.state.model;
@@ -87,6 +102,13 @@ module.exports = React.createClass({
           {translation}
         </td>
 
+        <td><a href={"#"} className="btn btn-xs btn-danger">Eliminar</a></td>
+
+        <Verification
+          show={this.state.showVerification}
+          onContinue={this.handleContinue}
+          onCancel={this.handleCancel}
+          />
       </tr>
     );
   }
