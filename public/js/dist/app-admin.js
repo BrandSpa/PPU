@@ -3887,18 +3887,14 @@ $(function() {
     ExperienceView.prototype.publish = function(e) {
       e.preventDefault();
       return this.model.save({
-        fields: _.extend(this.model, {
-          published: true
-        })
+        published: true
       });
     };
 
     ExperienceView.prototype.unpublish = function(e) {
       e.preventDefault();
       return this.model.save({
-        fields: _.extend(this.model, {
-          published: true
-        })
+        published: true
       });
     };
 
@@ -4098,7 +4094,7 @@ $(function() {
 
     ExperienceCreate.prototype.stored = function(model) {
       if (model) {
-        return window.location = "/admin/experiences";
+        return window.location = "/admin/experiences2";
       }
     };
 
@@ -4194,7 +4190,7 @@ $(function() {
       options = ppu.ajaxOptions("PUT", data);
       return this.model.save(data, $.extend({}, options)).done(function(model) {
         if (model) {
-          return window.location = "/admin/experiences";
+          return window.location = "/admin/experiences2";
         }
       });
     };

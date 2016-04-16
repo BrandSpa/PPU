@@ -146,7 +146,7 @@ $ ->
       @model.save data, $.extend({}, options)
 
     stored: (model) ->
-      window.location = "/admin/experiences" if model
+      window.location = "/admin/experiences2" if model
 
     showErrors: (model, b) ->
       _.each b.responseJSON, (error) ->
@@ -212,7 +212,7 @@ $ ->
       @model.save data, $.extend({}, options)
         .done (model) ->
           if model
-            window.location = "/admin/experiences"
+            window.location = "/admin/experiences2"
 
     getCategories: ->
       ppu.categories = new ppu.Categories
