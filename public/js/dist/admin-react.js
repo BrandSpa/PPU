@@ -2654,14 +2654,16 @@ module.exports = React.createClass({displayName: "exports",
 
   render: function() {
     var show = this.props.show;
-
-    React.createElement(Modal, {
-      isOpen: show, 
-      style: customStyle
-    }, 
-      React.createElement("button", {onClick: this.props.onContinue}, "Continuar"), 
-      React.createElement("button", {onClick: this.props.onCancel}, "Cancelar")
+    return (
+      React.createElement(Modal, {
+        isOpen: show, 
+        style: customStyle
+      }, 
+        React.createElement("button", {onClick: this.props.onContinue}, "Continuar"), 
+        React.createElement("button", {onClick: this.props.onCancel}, "Cancelar")
+      )
     )
+
   }
 });
 

@@ -32,13 +32,15 @@ module.exports = React.createClass({
 
   render: function() {
     var show = this.props.show;
+    return (
+      <Modal
+        isOpen={show}
+        style={customStyle}
+      >
+        <button onClick={this.props.onContinue}>Continuar</button>
+        <button onClick={this.props.onCancel}>Cancelar</button>
+      </Modal>
+    )
 
-    <Modal
-      isOpen={show}
-      style={customStyle}
-    >
-      <button onClick={this.props.onContinue}>Continuar</button>
-      <button onClick={this.props.onCancel}>Cancelar</button>
-    </Modal>
   }
 });
