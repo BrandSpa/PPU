@@ -43,10 +43,11 @@ module.exports = React.createClass({
     .send(this.state)
     .end(function(errs, res) {
       if(errs) {
-        console.log(res.body);
+
         _.keys(res.body).map(function(err) {
           $('input[name="' + err +'"], textarea[name="' + err +'"]').addClass('error');
         });
+
         return;
       };
       this.setState({showMessage: true});
