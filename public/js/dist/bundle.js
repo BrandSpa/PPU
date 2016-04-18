@@ -65431,10 +65431,6 @@ module.exports = React.createClass({
     return React.createElement(
       'div',
       null,
-      React.createElement(Helmet, {
-        title: "Philippi Prietocarrizosa &Uría - Nosotros",
-        meta: [{ "name": "description", "content": "Philippi, Prietocarrizosa & Uría es la primera gran firma iberoamericana, resultado de la fusión entre el estudio chileno Philippi, Yrarrázaval, Pulido & Brunner y la firma colombiana Prietocarrizosa, en lo que supone la primera unión en Latinoamérica de dos estudios líderes en sus respectivos países. La prestigiosa firma de España y Portugal, Uría Menéndez, se ha asociado al nuevo estudio" }, { "name": "og:title", "content": "Philippi Prietocarrizosa &Uría - Nosotros" }, { "name": "og:description", "content": "Philippi, Prietocarrizosa & Uría es la primera gran firma iberoamericana, resultado de la fusión entre el estudio chileno Philippi, Yrarrázaval, Pulido & Brunner y la firma colombiana Prietocarrizosa, en lo que supone la primera unión en Latinoamérica de dos estudios líderes en sus respectivos países. La prestigiosa firma de España y Portugal, Uría Menéndez, se ha asociado al nuevo estudio" }]
-      }),
       React.createElement(TopBar, { title: trans.aboutUs, hidden: true }),
       React.createElement('div', { className: 'padding-top' }),
       React.createElement(
