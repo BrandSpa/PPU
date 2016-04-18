@@ -108,6 +108,7 @@ app.uploadPhotoSummernote = function(file, editor, welEditable) {
     contentType: false,
     processData: false,
     success: function(url) {
+      editor = $.summernote.eventHandler.getEditor();
       return editor.insertImage(welEditable, url);
     }
   });

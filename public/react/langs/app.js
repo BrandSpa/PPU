@@ -26,6 +26,12 @@ module.exports = {
     message: "Mensaje",
     send: "Enviar",
     selectCountry: "Seleccionar país",
+    birthDay: "Fecha de nacimiento",
+    university: "Universidad",
+    anotherUniversity: "Otra Universidad",
+    englishLevel: "English Level",
+    AreasOfPreference: "Áreas de Preferencia",
+    gradeExamGiven: "Examen de Grado rendido",
     post: {
       readPost: "Leer Noticia"
     },

@@ -80,6 +80,7 @@ app.uploadPhotoSummernote = (file, editor, welEditable) ->
     contentType: false
     processData: false
     success: (url) ->
+      editor = $.summernote.eventHandler.getEditor()
       editor.insertImage(welEditable, url)
 
 app.uploadPhotoSummernoteExperience = (file, editor, welEditable) ->
