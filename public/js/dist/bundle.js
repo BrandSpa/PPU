@@ -61154,7 +61154,7 @@ module.exports = React.createClass({
       if (errs) {
         console.log(res.body);
         _.keys(res.body).map(function (err) {
-          $('input[name="' + err + '"]').addClass('error');
+          $('input[name="' + err + '"]', 'textarea[name="' + err + '"]').addClass('error');
         });
         return;
       };
