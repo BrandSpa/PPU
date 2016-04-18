@@ -5,6 +5,7 @@ var trans = require('langs/app');
 var Select = require('react-select');
 var request = require('superagent');
 var $ = require('jquery');
+var _ = require('underscore');
 
 module.exports = React.createClass({
   getInitialState: function() {
@@ -43,8 +44,8 @@ module.exports = React.createClass({
     .end(function(errs, res) {
       if(errs) {
         console.log(res.body);
-        res.body.body.map(function(err) {
-          console.log(this.refs[err]);
+        _.keys(res.body).map(function(err) {
+          $(this.refs[err]).addClass('error');
         });
       };
       this.setState({showMessage: true});
