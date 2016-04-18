@@ -7679,7 +7679,7 @@ select .form-control {
 
 .social {
   margin-right: 60px;
-  float: right; }
+  float: left; }
   @media (max-width: 767px), (max-width: 480px) {
     .social {
       float: none;
@@ -8005,6 +8005,9 @@ h4.title-form {
   color: #5F5F5F;
   font-size: 1em;
   line-height: 200%; }
+  @media (max-width: 767px) {
+    .content {
+      float: left; } }
   .content h4 {
     color: #002855;
     margin: 30px 0 30px 0; }
@@ -8027,6 +8030,10 @@ h4.title-form {
       margin: 0; }
     #lawyers-related .lawyer-item .content .country {
       font-size: 0.9em; }
+
+@media (max-width: 767px), (min-width: 768px) and (max-width: 991px) {
+  #experience .content {
+    float: left; } }
 
 /* Large desktops and laptops */
 /* Portrait tablets and medium desktops */
