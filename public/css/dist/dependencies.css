@@ -7299,7 +7299,7 @@ select .form-control {
       font-size: 14px;
       font-weight: 300;
       width: 100%;
-      padding: 15px 30px;
+      padding: 10px 30px;
       display: block;
       transition: 300ms all; }
       .nav-main li a:hover {
