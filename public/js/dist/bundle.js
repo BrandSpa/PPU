@@ -60780,7 +60780,7 @@ module.exports = {
     fax: 'Fax: +562 23643796',
     mail: 'infoCL@ppulegal.com'
   }],
-  peru: [{
+  perú: [{
     city: 'Lima',
     address: 'Av. Santa Cruz No. 888 Piso 4',
     address2: 'Miraflores',
@@ -61325,7 +61325,7 @@ module.exports = React.createClass({
     e.preventDefault();
     $('.select-country-btns').find('button').removeClass('active');
     $(e.currentTarget).addClass('active');
-    var country = $(e.currentTarget).text().toLowerCase().replace('ú', 'u');
+    var country = $(e.currentTarget).text().toLowerCase();
     this.setState({ country: country });
     $("#map").empty();
 

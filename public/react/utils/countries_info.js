@@ -27,7 +27,7 @@ chile: [
       mail: 'infoCL@ppulegal.com'
     }
   ],
-  peru: [
+  perú: [
     {
       city: 'Lima',
       address: 'Av. Santa Cruz No. 888 Piso 4',
