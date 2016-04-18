@@ -4,7 +4,7 @@ var _ = require('underscore');
 var request = require('superagent');
 var $ = require('jquery');
 var Verification = require('verification.jsx');
-var lang = require('get_lang');
+var lang = require('../get_lang');
 
 module.exports = React.createClass({
   getInitialState: function() {
