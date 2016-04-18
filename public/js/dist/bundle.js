@@ -61156,6 +61156,7 @@ module.exports = React.createClass({
         _.keys(res.body).map(function (err) {
           $('input[name="' + err + '"]').addClass('error');
         });
+        return;
       };
       this.setState({ showMessage: true });
     }.bind(this));
