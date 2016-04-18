@@ -68,7 +68,7 @@ module.exports = React.createClass({
       }, country);
     }
 
-    if(country == 'peru') {
+    if(country == 'perú') {
       this.setMap({
          el: '#map',
          zoom: 15,
