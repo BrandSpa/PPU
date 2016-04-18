@@ -126,7 +126,8 @@ handleSelect: function(e, a) {
             </div>
 
             <div className="form-group col-md-6">
-              <label>Fecha nacimiento</label>
+
+              <label>{trans.birthDay}</label>
               <input
               name="birthday"
               type="text"
@@ -136,7 +137,7 @@ handleSelect: function(e, a) {
             </div>
 
             <div className="form-group col-md-6">
-                <label htmlFor="">Año Egreso Pre-grado</label>
+                <label htmlFor="">{trans.PregradeYearGraduation}</label>
                 <input
                   name="graduation_year"
                   type="text"
@@ -147,7 +148,7 @@ handleSelect: function(e, a) {
               </div>
               <div className="row">
               <div className={showColombia ? "form-group col-md-6" : "hidden"}>
-                <label htmlFor="">Universidad</label>
+                <label htmlFor="">{trans.university}</label>
                 <Select
                   name="university_colombia"
                   options={ universityOptions}
@@ -158,7 +159,7 @@ handleSelect: function(e, a) {
               </div>
 
               <div className={"form-group col-md-6"}>
-                <label htmlFor="">{showColombia ? "Otra Universidad" : "Universidad"}</label>
+                <label htmlFor="">{showColombia ? trans.anotherUniversity : trans.university}</label>
                 <input
                   name="university_chile"
                   type="text"
@@ -168,7 +169,7 @@ handleSelect: function(e, a) {
 
 
                    <div className="form-group col-md-6">
-                <label htmlFor="">Nivel inglés</label>
+                <label htmlFor="">{trans.englishLevel}</label>
                 <Select
                   name="english"
                   options={englishOptions}
@@ -179,7 +180,7 @@ handleSelect: function(e, a) {
               </div>
 
               <div className="form-group col-md-6">
-                  <label htmlFor="">Áreas de Preferencia</label>
+                  <label htmlFor="">{trans.areasOfPreference}</label>
                   <Select
                     name="areas"
                     options={areaOptions}
@@ -193,7 +194,7 @@ handleSelect: function(e, a) {
 
               <div className="row">
                  <div className={showPeru ? "hidden" : "form-group col-md-6"}>
-                <label htmlFor="">Examen de Grado rendido</label>
+                <label htmlFor="">{trans.gradeExamGiven}</label>
                 <br/>
                 <label htmlFor="grade_approved" className="checkbox-inline">
                   <input type="radio" name="grade_approved" value="si"/>  Si
@@ -208,7 +209,7 @@ handleSelect: function(e, a) {
 
               <div className="row">
               <div className="form-group col-md-6">
-                <label htmlFor="">Currículum (pdf, docx)</label>
+                <label htmlFor="">{trans.resume} (pdf, docx)</label>
                 <input
                   name="file_name"
                   ref="cv"
@@ -217,7 +218,7 @@ handleSelect: function(e, a) {
               </div>
 
               <div className={showPeru ? "hidden" : "form-group col-md-6"}>
-                <label htmlFor="">Certificado de ranking de egreso (pdf, docx)</label>
+                <label htmlFor="">{trans.rankingCertificate} (pdf, docx)</label>
                 <input
                 name="certification_ranking"
                 ref="certificationRanking"
@@ -226,7 +227,7 @@ handleSelect: function(e, a) {
               </div>
 
               <div className={showPeru ? "hidden" : "form-group col-md-6"}>
-                <label htmlFor="">Concentración de notas / egreso (pdf, docx) </label>
+                <label htmlFor="">{trans.concentrationNotes} (pdf, docx) </label>
                 <input
                   name="gathering_notes"
                   ref="gatheringNotes"

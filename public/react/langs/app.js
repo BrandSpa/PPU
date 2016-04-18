@@ -29,9 +29,13 @@ module.exports = {
     birthDay: "Fecha de nacimiento",
     university: "Universidad",
     anotherUniversity: "Otra Universidad",
-    englishLevel: "English Level",
-    AreasOfPreference: "Áreas de Preferencia",
+    englishLevel: "Nivel inglés",
+    areasOfPreference: "Áreas de Preferencia",
     gradeExamGiven: "Examen de Grado rendido",
+    rankingCertificate: "Certificado de ranking de egreso",
+    concentrationNotes: "Concentración de notas / egreso",
+    PregradeYearGraduation: "Año Egreso Pre-grado",
+    resume: "Currículum",
     post: {
       readPost: "Leer Noticia"
     },
@@ -62,6 +66,16 @@ module.exports = {
     message: "Message",
     send: "Send",
     selectCountry: "Select country",
+    birthDay: "Birth Day",
+    university: "University",
+    anotherUniversity: "Another University",
+    englishLevel: "English Level",
+    areasOfPreference: "Areas Of Preference",
+    gradeExamGiven: "Grade Exam Given",
+    rankingCertificate: "Ranking Certificate",
+    concentrationNotes: "Concentration Notes",
+    PregradeYearGraduation: "Pre-grade year Graduation",
+    resume: "Resume",
     post: {
       readPost: "Read Post"
     },

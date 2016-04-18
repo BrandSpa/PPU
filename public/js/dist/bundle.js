@@ -60604,9 +60604,13 @@ module.exports = {
     birthDay: "Fecha de nacimiento",
     university: "Universidad",
     anotherUniversity: "Otra Universidad",
-    englishLevel: "English Level",
-    AreasOfPreference: "Áreas de Preferencia",
+    englishLevel: "Nivel inglés",
+    areasOfPreference: "Áreas de Preferencia",
     gradeExamGiven: "Examen de Grado rendido",
+    rankingCertificate: "Certificado de ranking de egreso",
+    concentrationNotes: "Concentración de notas / egreso",
+    PregradeYearGraduation: "Año Egreso Pre-grado",
+    resume: "Currículum",
     post: {
       readPost: "Leer Noticia"
     },
@@ -60637,6 +60641,16 @@ module.exports = {
     message: "Message",
     send: "Send",
     selectCountry: "Select country",
+    birthDay: "Birth Day",
+    university: "University",
+    anotherUniversity: "Another University",
+    englishLevel: "English Level",
+    areasOfPreference: "Areas Of Preference",
+    gradeExamGiven: "Grade Exam Given",
+    rankingCertificate: "Ranking Certificate",
+    concentrationNotes: "Concentration Notes",
+    PregradeYearGraduation: "Pre-grade year Graduation",
+    resume: "Resume",
     post: {
       readPost: "Read Post"
     },
@@ -64567,7 +64581,7 @@ module.exports = React.createClass({
             React.createElement(
               'label',
               null,
-              'Fecha nacimiento'
+              trans.birthDay
             ),
             React.createElement('input', {
               name: 'birthday',
@@ -64582,7 +64596,7 @@ module.exports = React.createClass({
             React.createElement(
               'label',
               { htmlFor: '' },
-              'Año Egreso Pre-grado'
+              trans.PregradeYearGraduation
             ),
             React.createElement('input', {
               name: 'graduation_year',
@@ -64600,7 +64614,7 @@ module.exports = React.createClass({
             React.createElement(
               'label',
               { htmlFor: '' },
-              'Universidad'
+              trans.university
             ),
             React.createElement(Select, {
               name: 'university_colombia',
@@ -64616,7 +64630,7 @@ module.exports = React.createClass({
             React.createElement(
               'label',
               { htmlFor: '' },
-              showColombia ? "Otra Universidad" : "Universidad"
+              showColombia ? trans.anotherUniversity : trans.university
             ),
             React.createElement('input', {
               name: 'university_chile',
@@ -64630,7 +64644,7 @@ module.exports = React.createClass({
             React.createElement(
               'label',
               { htmlFor: '' },
-              'Nivel inglés'
+              trans.englishLevel
             ),
             React.createElement(Select, {
               name: 'english',
@@ -64646,7 +64660,7 @@ module.exports = React.createClass({
             React.createElement(
               'label',
               { htmlFor: '' },
-              'Áreas de Preferencia'
+              trans.areasOfPreference
             ),
             React.createElement(Select, {
               name: 'areas',
@@ -64667,7 +64681,7 @@ module.exports = React.createClass({
             React.createElement(
               'label',
               { htmlFor: '' },
-              'Examen de Grado rendido'
+              trans.gradeExamGiven
             ),
             React.createElement('br', null),
             React.createElement(
@@ -64693,7 +64707,8 @@ module.exports = React.createClass({
             React.createElement(
               'label',
               { htmlFor: '' },
-              'Currículum (pdf, docx)'
+              trans.resume,
+              ' (pdf, docx)'
             ),
             React.createElement('input', {
               name: 'file_name',
@@ -64707,7 +64722,8 @@ module.exports = React.createClass({
             React.createElement(
               'label',
               { htmlFor: '' },
-              'Certificado de ranking de egreso (pdf, docx)'
+              trans.rankingCertificate,
+              ' (pdf, docx)'
             ),
             React.createElement('input', {
               name: 'certification_ranking',
@@ -64721,7 +64737,8 @@ module.exports = React.createClass({
             React.createElement(
               'label',
               { htmlFor: '' },
-              'Concentración de notas / egreso (pdf, docx) '
+              trans.concentrationNotes,
+              ' (pdf, docx) '
             ),
             React.createElement('input', {
               name: 'gathering_notes',
