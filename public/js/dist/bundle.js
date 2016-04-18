@@ -59601,8 +59601,8 @@ module.exports = React.createClass({
 
     request.post('/api/contacts').set('X-CSRF-Token', csrf).send(this.state).end(function (errs, res) {
       if (errs) {
-        console.log(errs);
-        errs.body.map(function (err) {
+        console.log(res.body);
+        res.body.body.map(function (err) {
           console.log(this.refs[err]);
         });
       };
