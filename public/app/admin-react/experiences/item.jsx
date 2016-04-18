@@ -4,7 +4,6 @@ var _ = require('underscore');
 var request = require('superagent');
 var $ = require('jquery');
 var Verification = require('verification.jsx');
-var lang = require('../get_lang');
 
 module.exports = React.createClass({
   getInitialState: function() {
@@ -112,7 +111,7 @@ module.exports = React.createClass({
       translation = (<button className="btn btn-xs" onClick={this.translate}>Traducir</button>);
     }
 
-    if(lang == 'en') {
+    if(model.lang == 'en') {
       editUrl = '/en' + editUrl;
     }
 
