@@ -65,7 +65,7 @@ module.exports = React.createClass({
 
     return (
       <div>
-  
+
         <TopBar title={trans.aboutUs} hidden />
 
         <div className="padding-top"></div>

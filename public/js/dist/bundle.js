@@ -60854,10 +60854,6 @@ module.exports = React.createClass({
     return React.createElement(
       'div',
       { className: 'container app-container' },
-      React.createElement(Helmet, {
-        title: 'Philippi Prietocarrizosa &Uría - Noticias',
-        meta: [{ "name": "description", "content": " Noticias y actualidad de temas legales. Firma con 13 áreas de práctica; Con oficinas en Chile, Colombia. España, Portugal, Sao Paulo, Nueva York, Pekín, Londres y Bruselas." }, { "name": "og:title", "content": "Philippi Prietocarrizosa &Uría - Noticias" }, { "name": "og:description", "content": " Noticias y actualidad de temas legales. Firma con 13 áreas de práctica; Con oficinas en Chile, Colombia. España, Portugal, Sao Paulo, Nueva York, Pekín, Londres y Bruselas." }]
-      }),
       React.createElement(
         'div',
         { className: 'row' },
