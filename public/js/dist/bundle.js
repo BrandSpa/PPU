@@ -59561,6 +59561,7 @@ module.exports = React.createClass({
 'use strict';
 
 var React = require('react');
+var ReactDOM = require('react-dom');
 var trans = require('langs/app');
 var Select = require('react-select');
 var request = require('superagent');
@@ -59586,10 +59587,10 @@ module.exports = React.createClass({
 
   handleChange: function handleChange() {
     var data = {
-      name: React.findDOMNode(this.refs.name).value,
-      lastname: React.findDOMNode(this.refs.lastname).value,
-      email: React.findDOMNode(this.refs.email).value,
-      message: React.findDOMNode(this.refs.message).value
+      name: ReactDOM.findDOMNode(this.refs.name).value,
+      lastname: ReactDOM.findDOMNode(this.refs.lastname).value,
+      email: ReactDOM.findDOMNode(this.refs.email).value,
+      message: ReactDOM.findDOMNode(this.refs.message).value
     };
     this.setState(data);
   },
@@ -59598,8 +59599,12 @@ module.exports = React.createClass({
     e.preventDefault();
     var csrf = $("meta[name='csrf-token']").attr("content");
 
-    request.post('/api/contacts').set('X-CSRF-Token', csrf).send(this.state).end(function (err, res) {
-      if (err) console.log(err.data);
+    request.post('/api/contacts').set('X-CSRF-Token', csrf).send(this.state).end(function (errs, res) {
+      if (errs) {
+        errs.body.map(function (err) {
+          console.log(this.refs[err]);
+        });
+      };
       this.setState({ showMessage: true });
     }.bind(this));
   },
@@ -59694,7 +59699,7 @@ module.exports = React.createClass({
 });
 
 
-},{"jquery":31,"langs/app":334,"react":325,"react-select":144,"superagent":326}],348:[function(require,module,exports){
+},{"jquery":31,"langs/app":334,"react":325,"react-dom":35,"react-select":144,"superagent":326}],348:[function(require,module,exports){
 'use strict';
 'use srict';
 

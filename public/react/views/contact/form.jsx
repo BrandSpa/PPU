@@ -1,5 +1,6 @@
 'use strict';
 var React = require('react');
+var ReactDOM = require('react-dom');
 var trans = require('langs/app');
 var Select = require('react-select');
 var request = require('superagent');
@@ -23,10 +24,10 @@ module.exports = React.createClass({
 
   handleChange: function() {
     var data = {
-      name: React.findDOMNode(this.refs.name).value,
-      lastname: React.findDOMNode(this.refs.lastname).value,
-      email: React.findDOMNode(this.refs.email).value,
-      message: React.findDOMNode(this.refs.message).value
+      name: ReactDOM.findDOMNode(this.refs.name).value,
+      lastname: ReactDOM.findDOMNode(this.refs.lastname).value,
+      email: ReactDOM.findDOMNode(this.refs.email).value,
+      message: ReactDOM.findDOMNode(this.refs.message).value
     }
     this.setState(data);
   },
@@ -39,8 +40,12 @@ module.exports = React.createClass({
     .post('/api/contacts')
     .set('X-CSRF-Token', csrf)
     .send(this.state)
-    .end(function(err, res) {
-      if(err) console.log(err.data);
+    .end(function(errs, res) {
+      if(errs) {
+        errs.body.map(function(err) {
+          console.log(this.refs[err]);
+        });
+      };
       this.setState({showMessage: true});
     }.bind(this));
   },
@@ -56,7 +61,6 @@ module.exports = React.createClass({
       <div>
       <h5 className={this.state.showMessage ? "form_thanks" : "hidden"}>{trans.formThanks}</h5>
        <form action="#" className={this.state.showMessage ? "hidden" : "form-horizontal" }>
-
 
        <div className="form-group">
 
@@ -98,6 +102,7 @@ module.exports = React.createClass({
             className="form-control"
             onChange={this.handleChange}></textarea>
         </div>
+
 
          <div className="form-group">
           <button
