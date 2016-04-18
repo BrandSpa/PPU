@@ -7,13 +7,13 @@ class Api::ContactsController < ApplicationController
     if model.valid?
       render json: model, status: 200
 
-      if model.country == "Colombia"
+      if model.country == "colombia"
         ContactMailer.notification(model, "infoco@ppulegal.com").deliver
-         ContactMailer.notification(model, "alejandro@brandspa.com").deliver
-      elsif model.country == "Chile"
+        ContactMailer.notification(model, "alejandro@brandspa.com").deliver
+      elsif model.country == "chile"
         ContactMailer.notification(model, "infocl@ppulegal.com").deliver
          ContactMailer.notification(model, "alejandro@brandspa.com").deliver
-      elsif model.country == "Perú"
+      elsif model.country == "perú"
         ContactMailer.notification(model, "infope@ppulegal.com").deliver
         ContactMailer.notification(model, "alejandro@brandspa.com").deliver
 			else

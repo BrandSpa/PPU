@@ -61153,6 +61153,9 @@ module.exports = React.createClass({
   componentDidMount: function componentDidMount() {
     this.setState({ country: this.props.country });
   },
+  componentWillReceiveProps: function componentWillReceiveProps(props) {
+    this.setState({ country: props.country });
+  },
 
 
   handleChange: function handleChange() {

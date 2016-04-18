@@ -23,6 +23,10 @@ module.exports = React.createClass({
     this.setState({country: this.props.country});
   },
 
+  componentWillReceiveProps(props) {
+    this.setState({country: props.country});
+  },
+
   handleChange: function() {
     var data = {
       name: ReactDOM.findDOMNode(this.refs.name).value,
