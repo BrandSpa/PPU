@@ -72,6 +72,9 @@ app.uploadPhotoSummernote = (file, editor, welEditable) ->
   data = new FormData()
   data.append("gallery[name]", "post_content")
   data.append("gallery[img_name]", file)
+
+  console.log(file, editor, welEditable)
+
   $.ajax
     data: data,
     type: "POST",
