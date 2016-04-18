@@ -1,21 +1,21 @@
 <% content_for :head do %>
- <title>Philippi Prietocarrizosa &Uría - <%= @lawyer.position %> <%= @lawyer.name %> <%= @lawyer.lastname %></title>
-  <meta property="og:title" content="<%= @lawyer.position %> <%= @lawyer.name %> <%= @lawyer.lastname %>" /> 
+ <title>Philippi Prietocarrizosa Ferrero DU & Uría - <%= @lawyer.position %> <%= @lawyer.name %> <%= @lawyer.lastname %></title>
+  <meta property="og:title" content="<%= @lawyer.position %> <%= @lawyer.name %> <%= @lawyer.lastname %>" />
 
   <%if @lawyer.description %>
   <meta name="description" content="<%= @lawyer.description %>">
-  <meta property="og:description" content="<%= @lawyer.description %>" /> 
+  <meta property="og:description" content="<%= @lawyer.description %>" />
   <% else %>
     <meta name="description" content="<%= @lawyer.description %>">
-    <meta property="og:description" content="<%= @lawyer.description %>" /> 
+    <meta property="og:description" content="<%= @lawyer.description %>" />
   <% end %>
-  
+
   <% if @lawyer.img_name %>
     <meta property="og:image" content="<%= @lawyer.img_name.url %>" />
   <% else %>
     <meta property="og:image" content="http://ppulegal.com/img/lawyer_placeholder.jpg" />
   <%end%>
- 
+
 <% end %>
 
 <div id="lawyer"></div>
