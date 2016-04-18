@@ -8211,9 +8211,6 @@ h4.title-form {
     float: left;
     height: 180px;
     margin-right: 30px; }
-    @media (max-width: 767px) {
-      .experience-header img {
-        display: none; } }
   .experience-header h1 {
     padding: 30px 60px 15px 0;
     margin: 0;
