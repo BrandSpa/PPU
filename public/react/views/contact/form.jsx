@@ -45,7 +45,7 @@ module.exports = React.createClass({
       if(errs) {
         console.log(res.body);
         _.keys(res.body).map(function(err) {
-          $(this.refs[err]).addClass('error');
+          $('input[name="' + err +'"]').addClass('error');
         });
       };
       this.setState({showMessage: true});
@@ -69,6 +69,7 @@ module.exports = React.createClass({
             <label>{trans.name}</label>
             <input
               ref="name"
+              name="name"
               type="text"
               className="form-control"
                onChange={this.handleChange}
@@ -79,6 +80,7 @@ module.exports = React.createClass({
           <label >{trans.lastname}</label>
           <input
             ref="lastname"
+            name="lastname"
             type="text"
             className="form-control"
             onChange={this.handleChange}
@@ -89,6 +91,7 @@ module.exports = React.createClass({
           <label>Email</label>
           <input
             ref="email"
+            name="email"
             type="text"
             className="form-control"
             onChange={this.handleChange}
@@ -100,6 +103,7 @@ module.exports = React.createClass({
             <label >{trans.message}</label>
             <textarea
             ref="message"
+            name="message"
             rows="5"
             className="form-control"
             onChange={this.handleChange}></textarea>
