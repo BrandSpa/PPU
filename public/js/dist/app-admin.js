@@ -80,9 +80,8 @@ ppu.appendCheck = function(el) {
 ppu.appendSummernote = function(el) {
   return $(el).find('.summernote').summernote({
     fontname: ['Lato'],
-    onImageUpload: function(files, editor, welEditable) {
-      console.log(editor, welEditable);
-      return app.uploadPhotoSummernote(files[0], editor, welEditable);
+    onImageUpload: function(files) {
+      return app.uploadPhotoSummernote(files[0]);
     }
   });
 };
@@ -102,7 +101,6 @@ app.uploadPhotoSummernote = function(file, editor, welEditable) {
   data = new FormData();
   data.append("gallery[name]", "post_content");
   data.append("gallery[img_name]", file);
-  console.log(file, editor, welEditable);
   return $.ajax({
     data: data,
     type: "POST",
@@ -111,7 +109,10 @@ app.uploadPhotoSummernote = function(file, editor, welEditable) {
     contentType: false,
     processData: false,
     success: function(url) {
-      return editor.insertImage(welEditable, url);
+      var imgNode;
+      imgNode = document.createElement("IMG");
+      imgNode.src = url;
+      return $(document).find('.summernote').summernote('insertNode', imgNode);
     }
   });
 };

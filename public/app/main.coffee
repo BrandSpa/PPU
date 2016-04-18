@@ -59,9 +59,8 @@ ppu.appendCheck = (el) ->
 ppu.appendSummernote = (el) ->
    $(el).find('.summernote').summernote
     fontname: ['Lato'],
-    onImageUpload: (files, editor, welEditable) ->
-      console.log(editor, welEditable)
-      app.uploadPhotoSummernote(files[0], editor, welEditable)
+    onImageUpload: (files) ->
+      app.uploadPhotoSummernote(files[0])
 
 ppu.appendSummernoteExperience = (el) ->
   editor = $(el).find('.summernote').summernote
@@ -74,8 +73,6 @@ app.uploadPhotoSummernote = (file, editor, welEditable) ->
   data.append("gallery[name]", "post_content")
   data.append("gallery[img_name]", file)
 
-  console.log(file, editor, welEditable)
-
   $.ajax
     data: data,
     type: "POST",
@@ -84,7 +81,9 @@ app.uploadPhotoSummernote = (file, editor, welEditable) ->
     contentType: false
     processData: false
     success: (url) ->
-      editor.insertImage(welEditable, url)
+      imgNode = document.createElement("IMG")
+      imgNode.src = url
+      $(document).find('.summernote').summernote('insertNode', imgNode);
 
 app.uploadPhotoSummernoteExperience = (file, editor, welEditable) ->
   data = new FormData()
