@@ -1,8 +1,8 @@
 <% content_for :head do %>
- <title>Philippi Prietocarrizosa &Uría - <%= @category.name %></title>
+ <title>Philippi Prietocarrizosa Ferrero DU & Uría - <%= @category.name %></title>
   <meta name="description" content="<%= @category.description %>">
-  <meta property="og:title" content="Philippi Prietocarrizosa &Uría - <%= @category.name %>" />
-  <meta property="og:description" content="<%= @category.description %>" /> 
+  <meta property="og:title" content="Philippi Prietocarrizosa Ferrero DU & Uría - <%= @category.name %>" />
+  <meta property="og:description" content="<%= @category.description %>" />
   <%if @category.gallery %>
   <meta property="og:image" content="<%= @category.gallery.img_name.url %>" />
   <% else %>
@@ -11,7 +11,7 @@
 <% end %>
 
 <div id="category">
-	
+
 </div>
 <%= render "categories/partials/detail" %>
 <%= render "categories/partials/lawyers_related" %>
