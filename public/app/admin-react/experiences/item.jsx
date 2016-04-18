@@ -4,6 +4,7 @@ var _ = require('underscore');
 var request = require('superagent');
 var $ = require('jquery');
 var Verification = require('verification.jsx');
+var lang = require('get_lang');
 
 module.exports = React.createClass({
   getInitialState: function() {
@@ -96,6 +97,7 @@ module.exports = React.createClass({
     var model = this.state.model;
     var classPublished;
     var textPublished = "Publicar";
+    var editUrl = "/admin/experiences/"+model.id+"/edit";
 
     if(model.published) {
       classPublished = "btn-success";
@@ -110,6 +112,10 @@ module.exports = React.createClass({
       translation = (<button className="btn btn-xs" onClick={this.translate}>Traducir</button>);
     }
 
+    if(lang == 'en') {
+      editUrl = '/en' + editUrl;
+    }
+
     return (
       <tr>
         <td>{model.company_name} - {model.title}</td>
@@ -118,7 +124,7 @@ module.exports = React.createClass({
           <a href="#" className={"btn btn-xs " + classPublished} onClick={this.togglePublish}>{textPublished}</a>
         </td>
 
-        <td><a href={"/admin/experiences/"+model.id+"/edit"} className="btn btn-xs">Editar</a></td>
+        <td><a href={editUrl} className="btn btn-xs">Editar</a></td>
         <td>
           {translation}
         </td>
