@@ -29,9 +29,9 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     address:              'smtp.sendgrid.net',
     port:                 587,
-    domain:               'example.com',
-    user_name:            'Durd3n_99',
-    password:             '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',
+    domain:               'ppulegal.com',
+    user_name:            'brandspa',
+    password:             'Durd3n_99',
     authentication:       'plain',
     enable_starttls_auto: true  }
 
