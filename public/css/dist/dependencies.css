@@ -7306,7 +7306,7 @@ select .form-control {
         color: #00A1B1;
         border-left: 4px solid #00A1B1; }
     .nav-main li .dropdown-menu li {
-      padding: 15px 0;
+      padding: 0;
       margin: 0; }
       .nav-main li .dropdown-menu li a:hover {
         background: transparent;
