@@ -60,6 +60,7 @@ ppu.appendSummernote = (el) ->
    $(el).find('.summernote').summernote
     fontname: ['Lato'],
     onImageUpload: (files, editor, welEditable) ->
+      console.log(file, editor, welEditable)
       app.uploadPhotoSummernote(files[0], editor, welEditable)
 
 ppu.appendSummernoteExperience = (el) ->
