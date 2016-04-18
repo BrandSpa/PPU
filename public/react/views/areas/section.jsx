@@ -6,6 +6,7 @@ var TopBar = require('views/top_bar.jsx');
 var trans = require('langs/app');
 var Area = require('views/areas/area.jsx');
 var getLang = require('utils/get_lang');
+
 module.exports = React.createClass({
   getInitialState: function() {
     return {

@@ -7,6 +7,8 @@ var _ = require('lodash');
 var Form = require('contact/form.jsx');
 var countriesInfo = require('utils/countries_info');
 var gmapsStyle = require('utils/gmaps_styles');
+var TopBar = require('views/top_bar.jsx');
+var trans = require('langs/app');
 
 module.exports = React.createClass({
 
@@ -110,6 +112,9 @@ module.exports = React.createClass({
 
   })
     return (
+      <div>
+        <TopBar title={trans.contact} hidden={true} />
+
       <div id="contact" style={{background: '#fff', paddingTop: '30px'}}>
       <div
         className="btn-group btn-group-justified select-country-btns"
@@ -152,6 +157,7 @@ module.exports = React.createClass({
             </div>
           </div>
         </div>
+      </div>
       </div>
     )
   }

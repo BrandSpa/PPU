@@ -59520,6 +59520,7 @@ var TopBar = require('views/top_bar.jsx');
 var trans = require('langs/app');
 var Area = require('views/areas/area.jsx');
 var getLang = require('utils/get_lang');
+
 module.exports = React.createClass({
   displayName: 'exports',
 
@@ -59598,6 +59599,7 @@ module.exports = React.createClass({
     var csrf = $("meta[name='csrf-token']").attr("content");
 
     request.post('/api/contacts').set('X-CSRF-Token', csrf).send(this.state).end(function (err, res) {
+      if (err) console.log(err.data);
       this.setState({ showMessage: true });
     }.bind(this));
   },
@@ -59704,6 +59706,8 @@ var _ = require('lodash');
 var Form = require('contact/form.jsx');
 var countriesInfo = require('utils/countries_info');
 var gmapsStyle = require('utils/gmaps_styles');
+var TopBar = require('views/top_bar.jsx');
+var trans = require('langs/app');
 
 module.exports = React.createClass({
   displayName: 'exports',
@@ -59855,70 +59859,75 @@ module.exports = React.createClass({
     });
     return React.createElement(
       'div',
-      { id: 'contact', style: { background: '#fff', paddingTop: '30px' } },
+      null,
+      React.createElement(TopBar, { title: trans.contact, hidden: true }),
       React.createElement(
         'div',
-        {
-          className: 'btn-group btn-group-justified select-country-btns',
-          role: 'group'
-        },
+        { id: 'contact', style: { background: '#fff', paddingTop: '30px' } },
         React.createElement(
           'div',
-          { className: 'btn-group', role: 'group' },
-          React.createElement(
-            'button',
-            {
-              type: 'button',
-              className: 'btn btn-default active',
-              onClick: this.selectCountry },
-            'Colombia'
-          )
-        ),
-        React.createElement(
-          'div',
-          { className: 'btn-group', role: 'group' },
-          React.createElement(
-            'button',
-            {
-              type: 'button',
-              className: 'btn btn-default',
-              onClick: this.selectCountry },
-            'Chile'
-          )
-        ),
-        React.createElement(
-          'div',
-          { className: 'btn-group', role: 'group' },
-          React.createElement(
-            'button',
-            {
-              type: 'button',
-              className: 'btn btn-default',
-              onClick: this.selectCountry },
-            'Perú'
-          )
-        )
-      ),
-      React.createElement('div', { id: 'map', style: { width: '100%', height: '400px', paddingTop: '30px' } }),
-      React.createElement(
-        'div',
-        { className: 'row' },
-        React.createElement(
-          'div',
-          { className: 'col-md-7' },
+          {
+            className: 'btn-group btn-group-justified select-country-btns',
+            role: 'group'
+          },
           React.createElement(
             'div',
-            { style: { padding: '30px' } },
-            React.createElement(Form, null)
-          )
-        ),
-        React.createElement(
-          'div',
-          { className: 'col-md-5' },
+            { className: 'btn-group', role: 'group' },
+            React.createElement(
+              'button',
+              {
+                type: 'button',
+                className: 'btn btn-default active',
+                onClick: this.selectCountry },
+              'Colombia'
+            )
+          ),
           React.createElement(
             'div',
-            { style: { padding: '30px', background: '#19A1B2', 'minHeight': '500px' } },
-            countryData
+            { className: 'btn-group', role: 'group' },
+            React.createElement(
+              'button',
+              {
+                type: 'button',
+                className: 'btn btn-default',
+                onClick: this.selectCountry },
+              'Chile'
+            )
+          ),
+          React.createElement(
+            'div',
+            { className: 'btn-group', role: 'group' },
+            React.createElement(
+              'button',
+              {
+                type: 'button',
+                className: 'btn btn-default',
+                onClick: this.selectCountry },
+              'Perú'
+            )
+          )
+        ),
+        React.createElement('div', { id: 'map', style: { width: '100%', height: '400px', paddingTop: '30px' } }),
+        React.createElement(
+          'div',
+          { className: 'row' },
+          React.createElement(
+            'div',
+            { className: 'col-md-7' },
+            React.createElement(
+              'div',
+              { style: { padding: '30px' } },
+              React.createElement(Form, null)
+            )
+          ),
+          React.createElement(
+            'div',
+            { className: 'col-md-5' },
+            React.createElement(
+              'div',
+              { style: { padding: '30px', background: '#19A1B2', 'minHeight': '500px' } },
+              countryData
+            )
           )
         )
       )
@@ -59927,7 +59936,7 @@ module.exports = React.createClass({
 });
 
 
-},{"contact/form.jsx":347,"gmaps":2,"jquery":31,"lodash":32,"react":325,"utils/countries_info":339,"utils/gmaps_styles":341,"utils/markers":342}],349:[function(require,module,exports){
+},{"contact/form.jsx":347,"gmaps":2,"jquery":31,"langs/app":334,"lodash":32,"react":325,"utils/countries_info":339,"utils/gmaps_styles":341,"utils/markers":342,"views/top_bar.jsx":385}],349:[function(require,module,exports){
 'use strict';
 
 var React = require('react');

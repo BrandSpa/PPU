@@ -40,6 +40,7 @@ module.exports = React.createClass({
     .set('X-CSRF-Token', csrf)
     .send(this.state)
     .end(function(err, res) {
+      if(err) console.log(err.data);
       this.setState({showMessage: true});
     }.bind(this));
   },
@@ -59,7 +60,7 @@ module.exports = React.createClass({
 
        <div className="form-group">
 
-             <label>{trans.name}</label>
+            <label>{trans.name}</label>
             <input
               ref="name"
               type="text"
