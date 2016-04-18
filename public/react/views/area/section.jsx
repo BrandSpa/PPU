@@ -79,15 +79,7 @@ module.exports = React.createClass({
 
     return (
       <div>
-      <Helmet
-          title={"Philippi Prietocarrizosa &Uría - " + model.name}
-          meta={[
-              {"name": "description", "content": model.excerpt},
-              {"name": "og:title", "content": "Philippi Prietocarrizosa &Uría - " + model.name},
-              {"name": "og:description", "content": model.excerpt}
-          ]}
-        />
-
+  
         <TopBar title={trans.name} hidden back pathname={"/areas/" + link} />
 
         <div id="category" className="padding-top">
