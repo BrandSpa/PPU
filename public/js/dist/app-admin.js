@@ -87,7 +87,8 @@ ppu.appendSummernote = function(el) {
 };
 
 ppu.appendSummernoteExperience = function(el) {
-  return $(el).find('.summernote').summernote({
+  var editor;
+  return editor = $(el).find('.summernote').summernote({
     fontNames: ['Lato'],
     onImageUpload: function(files, editor, welEditable) {
       return app.uploadPhotoSummernoteExperience(files[0], editor, welEditable);
@@ -108,7 +109,6 @@ app.uploadPhotoSummernote = function(file, editor, welEditable) {
     contentType: false,
     processData: false,
     success: function(url) {
-      editor = $.summernote.eventHandler.getEditor();
       return editor.insertImage(welEditable, url);
     }
   });

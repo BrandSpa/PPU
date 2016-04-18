@@ -63,7 +63,7 @@ ppu.appendSummernote = (el) ->
       app.uploadPhotoSummernote(files[0], editor, welEditable)
 
 ppu.appendSummernoteExperience = (el) ->
-  $(el).find('.summernote').summernote
+  editor = $(el).find('.summernote').summernote
     fontNames: ['Lato'],
     onImageUpload: (files, editor, welEditable) ->
       app.uploadPhotoSummernoteExperience(files[0], editor, welEditable)
@@ -80,7 +80,6 @@ app.uploadPhotoSummernote = (file, editor, welEditable) ->
     contentType: false
     processData: false
     success: (url) ->
-      editor = $.summernote.eventHandler.getEditor()
       editor.insertImage(welEditable, url)
 
 app.uploadPhotoSummernoteExperience = (file, editor, welEditable) ->
