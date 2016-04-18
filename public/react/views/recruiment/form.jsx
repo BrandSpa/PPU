@@ -20,7 +20,7 @@ module.exports = React.createClass({
       areas: null
      },
       data: {},
-      sendText: "Enviar"
+      sendText: trans.send
     }
   },
 
@@ -63,7 +63,10 @@ handleSelect: function(e, a) {
       contentType: false,
       beforeSend: this.handleLoading
     })
-    .then(function(res) {
+    .then(function(err, res) {
+      if(err) {
+        console.log(res.body);
+      }
       this.props.onSubmit();
     }.bind(this));
 

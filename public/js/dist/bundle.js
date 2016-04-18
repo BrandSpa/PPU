@@ -60601,6 +60601,7 @@ module.exports = {
     message: "Mensaje",
     send: "Enviar",
     selectCountry: "Seleccionar país",
+    selectMessage: "Por favor seleccione el país en el que desea aplicar",
     birthDay: "Fecha de nacimiento",
     university: "Universidad",
     anotherUniversity: "Otra Universidad",
@@ -60641,6 +60642,7 @@ module.exports = {
     message: "Message",
     send: "Send",
     selectCountry: "Select country",
+    selectMessage: "Please select the country in which you want to apply",
     birthDay: "Birth Day",
     university: "University",
     anotherUniversity: "Another University",
@@ -64464,7 +64466,7 @@ module.exports = React.createClass({
         areas: null
       },
       data: {},
-      sendText: "Enviar"
+      sendText: trans.send
     };
   },
 
@@ -64505,7 +64507,10 @@ module.exports = React.createClass({
       processData: false,
       contentType: false,
       beforeSend: this.handleLoading
-    }).then(function (res) {
+    }).then(function (err, res) {
+      if (err) {
+        console.log(res.body);
+      }
       this.props.onSubmit();
     }.bind(this));
   },
@@ -64869,7 +64874,7 @@ module.exports = React.createClass({
           React.createElement(
             'h4',
             { className: 'title-form' },
-            'Por favor seleccione el país en el que desea aplicar'
+            trans.selectMessage
           ),
           React.createElement(
             'div',

@@ -85,7 +85,7 @@ module.exports = React.createClass({
   render: function() {
     return (
       <div>
-    
+
 
         <TopBar title={trans.recruitment} hidden />
         <div id="work-with-us" >
@@ -101,7 +101,7 @@ module.exports = React.createClass({
 
               <br/>
 
-              <h4 className="title-form">Por favor seleccione el país en el que desea aplicar</h4>
+              <h4 className="title-form">{trans.selectMessage}</h4>
 
               <div
                 className="btn-group btn-group-justified select-country-btns"
