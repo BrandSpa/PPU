@@ -62778,10 +62778,6 @@ module.exports = React.createClass({
     return React.createElement(
       'div',
       null,
-      React.createElement(Helmet, {
-        title: "Philippi Prietocarrizosa &Uría - " + lawyer.name + " " + lawyer.lastname,
-        meta: [{ "name": "description", "content": lawyer.description }, { "name": "og:title", "content": "Philippi Prietocarrizosa &Uría - " + lawyer.name + " " + lawyer.lastname }, { "name": "og:description", "content": lawyer.description }, { "name": "og:image", "content": lawyerImage }]
-      }),
       React.createElement(TopBar, { title: trans.lawyers, hidden: true, back: true }),
       React.createElement('div', { className: 'padding-top' }),
       React.createElement(
