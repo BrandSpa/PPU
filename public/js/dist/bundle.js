@@ -64401,10 +64401,6 @@ module.exports = React.createClass({
     return React.createElement(
       'div',
       null,
-      React.createElement(Helmet, {
-        title: "Philippi Prietocarrizosa &Uría - Probono",
-        meta: [{ "name": "description", "content": "Nuestros abogados se han comprometido con la Fundación ProBono en Chile y en Colombia a trabajar 20 horas anuales cada uno, asesorando jurídicamente en forma gratuita a instituciones sin fines de lucro dedicadas a educación, vivienda, salud, extrema pobreza, cultura y rescate patrimonial, emprendimiento y medioambiente." }, { "name": "og:title", "content": "Philippi Prietocarrizosa &Uría - Probono" }, { "name": "og:description", "content": "Nuestros abogados se han comprometido con la Fundación ProBono en Chile y en Colombia a trabajar 20 horas anuales cada uno, asesorando jurídicamente en forma gratuita a instituciones sin fines de lucro dedicadas a educación, vivienda, salud, extrema pobreza, cultura y rescate patrimonial, emprendimiento y medioambiente." }]
-      }),
       React.createElement(TopBar, { title: 'Probono', hidden: true }),
       React.createElement('div', { className: 'padding-top' }),
       React.createElement(
@@ -64842,10 +64838,6 @@ module.exports = React.createClass({
     return React.createElement(
       'div',
       null,
-      React.createElement(Helmet, {
-        title: "Philippi Prietocarrizosa &Uría - Trabaje con nosotros",
-        meta: [{ "name": "description", "content": "Buscamos profesionales que combinen el talento con la disciplina, personas que estén comprometidas con su profesión, con ganas de aprender y hacerse una carrera junto a los mejores abogados de la región. Bolsa de empleo. Vacantes." }, { "name": "og:title", "content": "Philippi Prietocarrizosa &Uría - Trabaje con nosotros" }, { "name": "og:description", "content": "Buscamos profesionales que combinen el talento con la disciplina, personas que estén comprometidas con su profesión, con ganas de aprender y hacerse una carrera junto a los mejores abogados de la región. Bolsa de empleo. Vacantes." }]
-      }),
       React.createElement(TopBar, { title: trans.recruitment, hidden: true }),
       React.createElement(
         'div',

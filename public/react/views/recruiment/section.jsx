@@ -85,14 +85,7 @@ module.exports = React.createClass({
   render: function() {
     return (
       <div>
-      <Helmet
-          title={"Philippi Prietocarrizosa &Uría - Trabaje con nosotros"}
-          meta={[
-              {"name": "description", "content": "Buscamos profesionales que combinen el talento con la disciplina, personas que estén comprometidas con su profesión, con ganas de aprender y hacerse una carrera junto a los mejores abogados de la región. Bolsa de empleo. Vacantes."},
-              {"name": "og:title", "content": "Philippi Prietocarrizosa &Uría - Trabaje con nosotros"},
-              {"name": "og:description", "content": "Buscamos profesionales que combinen el talento con la disciplina, personas que estén comprometidas con su profesión, con ganas de aprender y hacerse una carrera junto a los mejores abogados de la región. Bolsa de empleo. Vacantes."}
-          ]}
-        />
+    
 
         <TopBar title={trans.recruitment} hidden />
         <div id="work-with-us" >
@@ -127,7 +120,7 @@ module.exports = React.createClass({
                     className="btn btn-default"
                     onClick={this.selectCountry}>Chile</button>
                 </div>
-                
+
                 <div className="btn-group" role="group">
                   <button
                     type="button"
