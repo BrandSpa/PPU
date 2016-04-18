@@ -81,7 +81,7 @@ ppu.appendSummernote = function(el) {
   return $(el).find('.summernote').summernote({
     fontname: ['Lato'],
     onImageUpload: function(files, editor, welEditable) {
-      console.log(file, editor, welEditable);
+      console.log(editor, welEditable);
       return app.uploadPhotoSummernote(files[0], editor, welEditable);
     }
   });
