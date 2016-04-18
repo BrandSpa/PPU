@@ -61626,10 +61626,6 @@ module.exports = React.createClass({
     return React.createElement(
       'div',
       null,
-      React.createElement(Helmet, {
-        title: "Philippi Prietocarrizosa &Uría - " + model.title,
-        meta: [{ "name": "description", "content": model.excerpt }, { "name": "og:title", "content": "Philippi Prietocarrizosa &Uría - " + model.title }, { "name": "og:description", "content": model.excerpt }, { "name": "og:image", "content": imgUrl }]
-      }),
       React.createElement(TopBar, { title: trans.name, hidden: true, back: true, pathname: "/experiencias/" + link }),
       React.createElement(
         'div',

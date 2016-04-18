@@ -120,15 +120,7 @@ module.exports = React.createClass({
 
     return (
       <div>
-        <Helmet
-          title={"Philippi Prietocarrizosa &Uría - " + model.title}
-          meta={[
-              {"name": "description", "content": model.excerpt},
-              {"name": "og:title", "content": "Philippi Prietocarrizosa &Uría - " + model.title},
-              {"name": "og:description", "content": model.excerpt},
-              {"name": "og:image", "content": imgUrl}
-          ]}
-        />
+      
 
         <TopBar title={trans.name} hidden back pathname={"/experiencias/" + link} />
 
