@@ -147,7 +147,7 @@ module.exports = React.createClass({
         <div className="row" >
           <div className="col-md-7">
             <div style={{ padding: '30px'}}>
-            <Form />
+            <Form country={this.state.country} />
             </div>
           </div>
           <div className="col-md-5">

@@ -19,8 +19,8 @@ module.exports = React.createClass({
     }
   },
 
-  selectCountry: function(value) {
-    this.setState({country: value});
+  componentDidMount() {
+    this.setState({country: this.props.country});
   },
 
   handleChange: function() {
@@ -59,11 +59,7 @@ module.exports = React.createClass({
   },
 
   render: function() {
-    var cityOptions = [
-      {value: 'Colombia', label: 'Colombia'},
-      {value: 'Chile', label: 'Chile'},
-      {value: 'Perú', label: 'Perú'}
-    ];
+
 
     return (
       <div>

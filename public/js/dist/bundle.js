@@ -61150,9 +61150,10 @@ module.exports = React.createClass({
     };
   },
 
-  selectCountry: function selectCountry(value) {
-    this.setState({ country: value });
+  componentDidMount: function componentDidMount() {
+    this.setState({ country: this.props.country });
   },
+
 
   handleChange: function handleChange() {
     var data = {
@@ -61186,7 +61187,6 @@ module.exports = React.createClass({
   },
 
   render: function render() {
-    var cityOptions = [{ value: 'Colombia', label: 'Colombia' }, { value: 'Chile', label: 'Chile' }, { value: 'Perú', label: 'Perú' }];
 
     return React.createElement(
       'div',
@@ -61502,7 +61502,7 @@ module.exports = React.createClass({
             React.createElement(
               'div',
               { style: { padding: '30px' } },
-              React.createElement(Form, null)
+              React.createElement(Form, { country: this.state.country })
             )
           ),
           React.createElement(
