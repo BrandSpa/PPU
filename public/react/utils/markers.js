@@ -27,7 +27,7 @@ module.exports = {
        }
      }
   ],
-  peru: [
+  perú: [
     {
       lat: -12.1659004,
       lng: -76.9508611,

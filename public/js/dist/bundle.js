@@ -60839,7 +60839,7 @@ module.exports = {
       content: '<p>El Golf 40 Piso 20, Las Condes C.P. 7550107, Santiago de Chile</p>'
     }
   }],
-  peru: [{
+  perú: [{
     lat: -12.1659004,
     lng: -76.9508611,
     infoWindow: {
