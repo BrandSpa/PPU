@@ -8374,7 +8374,8 @@ h4.title-form {
     z-index: 1; }
     @media (max-width: 767px) {
       .lawyer-item .content {
-        padding: 0; } }
+        padding: 0;
+        float: none; } }
     .lawyer-item .content .position {
       color: #5F5F5F; }
       @media (max-width: 767px) {
