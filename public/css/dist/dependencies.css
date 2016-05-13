@@ -7938,6 +7938,9 @@ h4.title-form {
     z-index: 2;
     position: relative;
     overflow: hidden; }
+    @media (max-width: 767px) {
+      .category-item .content {
+        float: none; } }
     .category-item .content .footer {
       position: absolute;
       bottom: 0;
