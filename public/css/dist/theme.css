@@ -1219,7 +1219,7 @@ h4.title-form {
 .experience-item .content {
   float: left; }
 
-#experience .content {
+#experience > .content {
   float: left; }
 #experience .lawyer-item {
   float: left; }
