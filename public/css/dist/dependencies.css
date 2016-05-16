@@ -8019,8 +8019,7 @@ h4.title-form {
     list-style: none;
     border-bottom: 1px solid #f5f5f5;
     padding: 15px;
-    font-size: 1.1em; }
-  .content #categories-list li:first-child {
+    font-size: 1.1em;
     padding-top: 0; }
 
 #lawyers-related .lawyer-item {
@@ -8033,10 +8032,6 @@ h4.title-form {
       margin: 0; }
     #lawyers-related .lawyer-item .content .country {
       font-size: 0.9em; }
-
-@media (max-width: 767px), (min-width: 768px) and (max-width: 991px) {
-  #experience .content {
-    float: left; } }
 
 /* Large desktops and laptops */
 /* Portrait tablets and medium desktops */
@@ -8261,6 +8256,8 @@ h4.title-form {
   float: left; }
 
 #experience .content {
+  float: left; }
+#experience .lawyer-item {
   float: left; }
 
 #filters-modal .modal-content {
