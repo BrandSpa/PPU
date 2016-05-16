@@ -1224,6 +1224,9 @@ h4.title-form {
 .experience-item .content {
   float: left; }
 
+#experience .content {
+  float: left; }
+
 #filters-modal .modal-content {
   background: transparent !important;
   box-shadow: none;
