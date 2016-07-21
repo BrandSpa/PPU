@@ -1,0 +1,50 @@
+'use strict';
+const React = require('react');
+const Modal = require('react-modal');
+
+const customStyle = {
+  overlay : {
+    position          : 'fixed',
+    top               : 0,
+    left              : 0,
+    right             : 0,
+    bottom            : 0,
+    backgroundColor   : 'rgba(255, 255, 255, 0.75)'
+  },
+
+  content : {
+    position                   : 'absolute',
+    top                        : '100px',
+    left                       : 0,
+    right                      : 0,
+     margin: '0 auto',
+    width: '320px',
+    height: '200px',
+    border                     : '1px solid #ccc',
+    background                 : '#fff',
+    overflow                   : 'auto',
+    WebkitOverflowScrolling    : 'touch',
+    outline                    : 'none',
+    padding                    : '20px'
+
+  }
+};
+
+module.exports = React.createClass({
+
+  render() {
+    const show = this.props.show;
+    return (
+      <Modal
+        isOpen={show}
+        style={customStyle}
+      >
+        <div style={{width: '230px', margin: '0 auto'}}>
+          <button className="btn btn-danger" onClick={this.props.onContinue}>Continuar</button> <span>&nbsp;</span>
+          <button className="btn btn-default" onClick={this.props.onCancel}>Cancelar</button>
+        </div>
+      </Modal>
+    )
+
+  }
+});

@@ -23,4 +23,13 @@ class PostsController < ApplicationController
     @post = Post.find_by(slug: id)
   end
 
+
+  def the_actual_pe
+  end
+
+  def the_actual_pe_detail
+    id = params[:id]
+    @post = Post.find_by(slug: id)
+  end
+
 end

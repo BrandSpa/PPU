@@ -114,6 +114,11 @@ Rails.application.routes.draw do
       get "the-actual-co/new", to: "posts#the_actual_co_new"
       get "the-actual-co/:id/edit", to: "posts#the_actual_co_edit"
       get "the-actual-co", to: "posts#the_actual_co"
+      get "the-actual-pe/new", to: "posts#base"
+      get "the-actual-pe/:id/edit", to: "posts#the_actual_pe_edit"
+      get "the-actual-pe", to: "posts#the_actual_co"
+
+
     end
 
   end

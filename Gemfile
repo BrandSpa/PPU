@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 gem 'rails', '4.1.2'
 
 # Use mysql as the database for Active Record
-gem 'mysql2'
+gem 'mysql2', '~> 0.3.21'
 
 # Use for cache
 gem 'dalli'

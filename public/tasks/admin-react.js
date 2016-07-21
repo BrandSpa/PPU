@@ -2,20 +2,19 @@
 var gulp = require('gulp');
 var browserify = require('browserify');
 var source = require('vinyl-source-stream');
-var reactify = require('reactify');
+var reactify = require('babelify');
 
 gulp.task('admin-react', function () {
   var options = {
     insertGlobals: true,
     paths: [
       './node_modules',
-      './app',
-      './app/admin-react'
+      './admin-react'
     ]
   };
 
- browserify('./app/admin-react/router.js', options)
-    .transform(reactify)
+ browserify('./admin-react/router.js', options)
+    .transform("babelify", {presets: ["es2015", "react"]})
     .bundle()
     .on('error', function(err) {
       console.log(err.toString());
