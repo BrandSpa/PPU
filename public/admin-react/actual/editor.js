@@ -4,12 +4,13 @@ import jQuery from 'jquery';
 window.$ = window.jQuery = jQuery;
 import summernote from 'summernote';
 import uid from 'uid';
+require('summernote/lang/summernote-es-ES');
 require('bootstrap');
 
 export default React.createClass({
   getDefaultProps() {
       return {
-        defaultValue: "what"
+        defaultValue: ""
       }
   },
 
@@ -31,6 +32,7 @@ export default React.createClass({
 
   componentDidMount() {
     let editor = $(`.${this.state.id}`).summernote({
+      lang: 'es-ES',
       callbacks: {
         onChange: (contents) => {
           if(typeof this.props.onChange === 'function') {

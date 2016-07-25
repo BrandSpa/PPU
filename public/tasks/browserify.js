@@ -52,3 +52,7 @@ function bundle() {
 }
 
 gulp.task('compile', bundle);
+
+gulp.task('app:watch', function () {
+  gulp.watch('./react/**/*.js', ['compile']);
+});

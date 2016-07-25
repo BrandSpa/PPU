@@ -22,3 +22,7 @@ gulp.task('admin-react', function () {
     .pipe(source('admin-react.js'))
     .pipe(gulp.dest('js/dist'));
 });
+
+gulp.task('admin:watch', function () {
+  gulp.watch('./admin-react/**/*.js', ['admin-react']);
+});
