@@ -18,7 +18,19 @@ export default React.createClass({
       });
   },
 
+  componentWillReceiveProps(props) {
+    if(props.categories) {
+      this.setState({selected: this.getIds(props.categories)});
+    }
+
+  },
+
+  getIds(categories) {
+    return categories.map(cat => cat.id);
+  },
+
   add(e) {
+    e.preventDefault();
     let val = parseInt(e.currentTarget.value);
     let categories = this.state.selected;
     let index = categories.indexOf(val);
@@ -28,16 +40,16 @@ export default React.createClass({
     } else {
       categories = categories.filter(cat => cat !== val);
     }
-
+    this.setState({selected: categories});
     this.props.onChange(categories);
 
-    this.setState({selected: categories});
+
   },
 
   render() {
 
     let options = this.state.categories.map(category => {
-      
+
     let selected = false;
 
     if(this.state.selected.indexOf(category.id) !== -1) {

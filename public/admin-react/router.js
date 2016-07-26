@@ -47,6 +47,10 @@ const Router = Backbone.Router.extend({
 
     'admin/the-actual-pe/new': function() {
       ReactDOM.render(<ActualCreate />, wrap);
+    },
+
+    'admin/posts2/:id/edit': function(id) {
+      ReactDOM.render(<ActualCreate post_id={id} />, wrap);
     }
   }
 });

@@ -104,6 +104,7 @@ Rails.application.routes.draw do
 
       get "/probono", to: "posts#base"
       get "/posts2", to: "posts#base"
+      get "/posts2/:id/edit", to: "posts#base"
       get "/experiences2", to: "posts#base"
       get "/lawyers2", to: "posts#base"
       get "/nosotros", to: "posts#base"

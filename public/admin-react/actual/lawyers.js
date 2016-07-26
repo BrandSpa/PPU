@@ -20,8 +20,13 @@ export default React.createClass({
     }
   },
 
+  componentWillReceiveProps(props) {
+    if(props.lawyers) {
+      this.setState({lawyers: props.lawyers});
+    }
+  },
+
   search() {
-    // /api/lawyers?search=alejandr
     let query = this.refs.lawyer.value;
 
     request
@@ -42,7 +47,7 @@ export default React.createClass({
 
   handleChange(lawyers) {
     if(typeof this.props.onChange === 'function') {
-      this.props.onChange(this.getLawyerIds(lawyers));
+      this.props.onChange(lawyers, this.getLawyerIds(lawyers));
     }
   },
 

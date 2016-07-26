@@ -9,7 +9,8 @@ gulp.task('admin-react', function () {
     insertGlobals: true,
     paths: [
       './node_modules',
-      './admin-react'
+      './admin-react',
+      './admin-react/lib'
     ]
   };
 

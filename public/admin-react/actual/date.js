@@ -24,12 +24,14 @@ export default React.createClass({
   getInitialState() {
     return {
       id: `flatpickr-${ uid() }`,
-      lastDate: ''
+      lastDate: '',
+			once: false
     }
   },
 
   getDefaultProps() {
     return {
+			picker: null,
       id: ``,
       styles: '',
       placeholder: '',
@@ -55,10 +57,26 @@ export default React.createClass({
   },
 
   componentDidMount() {
-    let props = this.props;
-    console.log(this.props.default);
+		this.setPicker();
+  },
 
-    flatpickr(`#${this.state.id}`, {
+	shouldComponenetUpdate() {
+		return false;
+	},
+
+	componentWillReceiveProps(props) {
+		let input = document.getElementById(this.state.id);
+		input.value = props.default;
+		if(!this.state.once) {
+			this.setPicker();
+			this.setState({once: true});
+		}
+	},
+
+	setPicker() {
+		let props = this.props;
+
+		let picker = flatpickr(`#${this.state.id}`, {
       enableTime: props.enableTime,
       time_24hr: props.time_24hr,
       altFormat: props.altFormat,
@@ -67,7 +85,9 @@ export default React.createClass({
       defaultDate: props.default,
       onChange: this.handleChange
     });
-  },
+
+		this.setState({picker});
+	},
 
   render() {
     return (

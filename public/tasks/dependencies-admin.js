@@ -29,10 +29,10 @@ gulp.task('dependecies-admin-js', function() {
     "node_modules/backbone/backbone-min.js",
 
     // Datepicker
-    "bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.js",
+    "bower_components/bootstrap-datepicker/js/bootstrap-datepicker.js",
 
     // translation of datepicker
-    "bower_components/bootstrap-datepicker/dist/locales/bootstrap-datepicker.es.min.js",
+    // "bower_components/bootstrap-datepicker/js/locales/bootstrap-datepicker.es.min.js",
 
     // WYSIWYG Editor
     "node_modules/summernote/dist/summernote.min.js",

@@ -31,7 +31,18 @@ exports.default = _React2.default.createClass({
       _this.setState({ categories: res.body });
     });
   },
+  componentWillReceiveProps: function componentWillReceiveProps(props) {
+    if (props.categories) {
+      this.setState({ selected: this.getIds(props.categories) });
+    }
+  },
+  getIds: function getIds(categories) {
+    return categories.map(function (cat) {
+      return cat.id;
+    });
+  },
   add: function add(e) {
+    e.preventDefault();
     var val = parseInt(e.currentTarget.value);
     var categories = this.state.selected;
     var index = categories.indexOf(val);
@@ -43,10 +54,8 @@ exports.default = _React2.default.createClass({
         return cat !== val;
       });
     }
-
-    this.props.onChange(categories);
-
     this.setState({ selected: categories });
+    this.props.onChange(categories);
   },
   render: function render() {
     var _this2 = this;
@@ -132,11 +141,13 @@ exports.default = _React2.default.createClass({
   getInitialState: function getInitialState() {
     return {
       id: 'flatpickr-' + (0, _uid2.default)(),
-      lastDate: ''
+      lastDate: '',
+      once: false
     };
   },
   getDefaultProps: function getDefaultProps() {
     return {
+      picker: null,
       id: '',
       styles: '',
       placeholder: '',
@@ -159,10 +170,23 @@ exports.default = _React2.default.createClass({
     this.triggerChange(dateObj, dateStr);
   },
   componentDidMount: function componentDidMount() {
+    this.setPicker();
+  },
+  shouldComponenetUpdate: function shouldComponenetUpdate() {
+    return false;
+  },
+  componentWillReceiveProps: function componentWillReceiveProps(props) {
+    var input = document.getElementById(this.state.id);
+    input.value = props.default;
+    if (!this.state.once) {
+      this.setPicker();
+      this.setState({ once: true });
+    }
+  },
+  setPicker: function setPicker() {
     var props = this.props;
-    console.log(this.props.default);
 
-    (0, _flatpickr2.default)('#' + this.state.id, {
+    var picker = (0, _flatpickr2.default)('#' + this.state.id, {
       enableTime: props.enableTime,
       time_24hr: props.time_24hr,
       altFormat: props.altFormat,
@@ -171,6 +195,8 @@ exports.default = _React2.default.createClass({
       defaultDate: props.default,
       onChange: this.handleChange
     });
+
+    this.setState({ picker: picker });
   },
   render: function render() {
     return _React2.default.createElement('input', {
@@ -224,16 +250,23 @@ exports.default = _React2.default.createClass({
     return {
       id: 'summernote-' + (0, _uid2.default)(),
       editor: {},
-      value: ''
+      value: '',
+      once: false
     };
   },
   shouldComponentUpdate: function shouldComponentUpdate() {
     return false;
   },
   componentWillReceiveProps: function componentWillReceiveProps(props) {
-    this.setState({ value: 'a new value' });
+    if (!this.state.once) {
+      $('.' + this.state.id).summernote('code', props.defaultValue);
+      this.setState({ once: true });
+    }
   },
   componentDidMount: function componentDidMount() {
+    this.mountEditor();
+  },
+  mountEditor: function mountEditor() {
     var _this = this;
 
     var editor = $('.' + this.state.id).summernote({
@@ -251,6 +284,9 @@ exports.default = _React2.default.createClass({
     });
 
     this.setState({ editor: editor });
+  },
+  insertNode: function insertNode(node) {
+    $('.' + this.state.id).summernote('insertText', node);
   },
   insertImage: function insertImage(url) {
     $('.' + this.state.id).summernote('insertImage', url);
@@ -278,9 +314,15 @@ exports.default = _React2.default.createClass({
       return _this2.insertImage(url);
     });
   },
+  destroy: function destroy() {
+    $('.' + this.state.id).summernote('destroy');
+  },
   render: function render() {
 
-    return _React2.default.createElement('div', { className: this.state.id, dangerouslySetInnerHTML: { __html: this.props.defaultValue } });
+    return _React2.default.createElement('div', {
+      className: this.state.id,
+      dangerouslySetInnerHTML: { __html: this.props.defaultValue }
+    });
   }
 });
 
@@ -317,23 +359,45 @@ var _categories = require('actual/categories');
 
 var _categories2 = _interopRequireDefault(_categories);
 
+var _jquery = require('jquery');
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+var _underscore = require('underscore');
+
+var _underscore2 = _interopRequireDefault(_underscore);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 module.exports = _React2.default.createClass({
   displayName: 'exports',
-  componentDidMount: function componentDidMount() {
-    console.log('actual form');
+  componentWillMount: function componentWillMount() {
+
+    if (this.props.post_id) {
+      this.fetch();
+    }
+  },
+  fetch: function fetch() {
+    var _this = this;
+
+    _jquery2.default.ajax({
+      type: 'get',
+      url: '/api/posts/' + this.props.post_id
+    }).then(function (res) {
+      return _this.setState({ fields: _underscore2.default.extend(_this.state.fields, res) });
+    });
   },
   getInitialState: function getInitialState() {
     return {
       content: '',
       showGallery: false,
       image: '',
-      data: {
+      fields: {
         author: '',
         country: '',
         lang: 'es',
         date: '',
+        title: '',
         content: '',
         img_name: '',
         gallery_id: '',
@@ -343,17 +407,75 @@ module.exports = _React2.default.createClass({
     };
   },
   handleChangeText: function handleChangeText(html) {
-    this.setState({ content: html });
+    this.handleChange({ content: html });
   },
   handleSubmit: function handleSubmit(e) {
+    var _this2 = this;
+
     e.preventDefault();
-    this.setState({ content: 'new content!!' });
+    var formData = new FormData();
+    var data = Object.keys(this.state.fields).forEach(function (key) {
+      var val = _this2.state.fields[key];
+
+      if (Array.isArray(val)) {
+        val.forEach(function (i) {
+          return formData.append('fields[' + key + '][]', i);
+        });
+      } else {
+        formData.append('fields[' + key + ']', val);
+      }
+    });
+
+    var token = (0, _jquery2.default)("meta[name='csrf-token']").attr("content");
+
+    if (this.props.post_id) {
+      this.update(formData, token);
+    } else {
+      this.store(formData, token);
+    }
   },
-  handleLawyers: function handleLawyers(lawyer_ids) {
-    console.log(lawyer_ids);
+  update: function update(formData, token) {
+    _jquery2.default.ajax({
+      type: 'put',
+      url: '/api/posts/' + this.props.post_id,
+      data: formData,
+      headers: { 'X-CSRF-Token': token },
+      processData: false,
+      cache: false,
+      contentType: false
+    }).then(function (res) {
+      return console.log(res);
+    });
+  },
+  store: function store(formData, token) {
+    _jquery2.default.ajax({
+      type: 'post',
+      url: '/api/posts',
+      data: formData,
+      headers: { 'X-CSRF-Token': token },
+      processData: false,
+      cache: false,
+      contentType: false
+    }).then(function (res) {
+      console.log(res);
+    });
+  },
+  handleLawyers: function handleLawyers(lawyers, lawyer_ids) {
+    this.handleChange({ lawyers: lawyers, lawyer_ids: lawyer_ids });
+  },
+  handleCategories: function handleCategories(category_ids) {
+    this.handleChange({ category_ids: category_ids });
+  },
+  handleChange: function handleChange(data) {
+    var fields = _underscore2.default.extend(this.state.fields, data);
+    this.setState({ fields: fields });
+  },
+  toggleGallery: function toggleGallery(e) {
+    e.preventDefault();
+    this.setState({ showGallery: !this.state.showGallery });
   },
   render: function render() {
-    var _this = this;
+    var _this3 = this;
 
     return _React2.default.createElement(
       'div',
@@ -373,7 +495,11 @@ module.exports = _React2.default.createClass({
               _React2.default.createElement('input', {
                 type: 'text',
                 className: 'form-control',
-                placeholder: 'Título'
+                placeholder: 'Título',
+                onChange: function onChange(e) {
+                  return _this3.handleChange({ title: e.currentTarget.value });
+                },
+                value: this.state.fields.title
               })
             ),
             _React2.default.createElement(
@@ -382,7 +508,11 @@ module.exports = _React2.default.createClass({
               _React2.default.createElement('input', {
                 type: 'text',
                 className: 'form-control',
-                placeholder: 'Autor'
+                placeholder: 'Autor',
+                onChange: function onChange(e) {
+                  return _this3.handleChange({ author: e.currentTarget.value });
+                },
+                value: this.state.fields.author
               })
             ),
             _React2.default.createElement(
@@ -390,7 +520,7 @@ module.exports = _React2.default.createClass({
               { className: 'form-group col-sm-6' },
               _React2.default.createElement(
                 'select',
-                { className: 'form-control' },
+                { className: 'form-control', value: this.state.fields.lang },
                 _React2.default.createElement(
                   'option',
                   { value: 'es' },
@@ -408,7 +538,7 @@ module.exports = _React2.default.createClass({
               { className: 'form-group col-sm-6' },
               _React2.default.createElement(
                 'select',
-                { className: 'form-control' },
+                { className: 'form-control', value: this.state.fields.country },
                 _React2.default.createElement(
                   'option',
                   { value: 'Colombia' },
@@ -434,19 +564,40 @@ module.exports = _React2.default.createClass({
             _React2.default.createElement(
               'div',
               { className: 'form-group col-sm-6' },
-              _React2.default.createElement(_date2.default, { dateFormat: 'Y/m/d', styles: 'form-control' })
+              _React2.default.createElement(_date2.default, {
+                'default': this.state.fields.date,
+                styles: 'form-control',
+                onChange: function onChange(obj, str) {
+                  return _this3.handleChange({ date: str });
+                }
+              })
             )
           ),
-          _React2.default.createElement(_editor2.default, { onChange: this.handleChangeText, defaultValue: this.state.content }),
-          _React2.default.createElement(_categories2.default, { onChange: function onChange(category_ids) {
-              return _this.setState({ category_ids: category_ids });
-            } })
+          _React2.default.createElement(_editor2.default, {
+            onChange: this.handleChangeText,
+            defaultValue: this.state.fields.content
+          })
         )
       ),
       _React2.default.createElement(
         'div',
         { className: 'row' },
-        _React2.default.createElement('div', { className: 'col-sm-12' }),
+        _React2.default.createElement(
+          'div',
+          { className: 'col-sm-12' },
+          _React2.default.createElement(
+            'div',
+            { className: 'panel' },
+            _React2.default.createElement(
+              'div',
+              { className: 'panel-body' },
+              _React2.default.createElement(_categories2.default, {
+                onChange: this.handleCategories,
+                categories: this.state.fields.categories
+              })
+            )
+          )
+        ),
         _React2.default.createElement(
           'div',
           { className: 'col-sm-6' },
@@ -456,7 +607,10 @@ module.exports = _React2.default.createClass({
             _React2.default.createElement(
               'div',
               { className: 'panel-body' },
-              _React2.default.createElement(_lawyers2.default, { onChange: this.handleLawyers })
+              _React2.default.createElement(_lawyers2.default, {
+                lawyers: this.state.fields.lawyers,
+                onChange: this.handleLawyers
+              })
             )
           )
         ),
@@ -474,16 +628,14 @@ module.exports = _React2.default.createClass({
                 { className: 'form-group' },
                 _React2.default.createElement(
                   'button',
-                  { className: 'btn', onClick: function onClick(e) {
-                      return _this.setState({ showGallery: !_this.state.showGallery });
-                    } },
+                  { className: 'btn', onClick: this.toggleGallery },
                   'Seleccionar Imagén'
                 )
               ),
-              _React2.default.createElement('img', { src: this.state.image ? this.state.image.img_name.url : '' }),
               _React2.default.createElement(_gallery2.default, { onSelect: function onSelect(img) {
-                  return _this.setState({ image: img, showGallery: false });
+                  return _this3.setState({ image: img, showGallery: false });
                 }, show: this.state.showGallery }),
+              _React2.default.createElement('img', { src: this.state.fields.img_name ? this.state.fields.img_name.url : '', className: 'img-responsive' }),
               _React2.default.createElement(_upload2.default, { onChange: function onChange(file) {
                   return console.log(file);
                 } })
@@ -501,7 +653,7 @@ module.exports = _React2.default.createClass({
 });
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/admin-react/actual/form.js","/admin-react/actual")
-},{"React":246,"_process":54,"actual/categories":1,"actual/date":2,"actual/editor":3,"actual/gallery":5,"actual/lawyers":6,"actual/upload":7,"buffer":50}],5:[function(require,module,exports){
+},{"React":246,"_process":54,"actual/categories":1,"actual/date":2,"actual/editor":3,"actual/gallery":5,"actual/lawyers":6,"actual/upload":7,"buffer":50,"jquery":56,"underscore":257}],5:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 'use strict';
 
@@ -596,10 +748,14 @@ exports.default = _React2.default.createClass({
       results: []
     };
   },
+  componentWillReceiveProps: function componentWillReceiveProps(props) {
+    if (props.lawyers) {
+      this.setState({ lawyers: props.lawyers });
+    }
+  },
   search: function search() {
     var _this = this;
 
-    // /api/lawyers?search=alejandr
     var query = this.refs.lawyer.value;
 
     _superagent2.default.get('/api/lawyers').query({ search: query }).end(function (err, res) {
@@ -615,7 +771,7 @@ exports.default = _React2.default.createClass({
   },
   handleChange: function handleChange(lawyers) {
     if (typeof this.props.onChange === 'function') {
-      this.props.onChange(this.getLawyerIds(lawyers));
+      this.props.onChange(lawyers, this.getLawyerIds(lawyers));
     }
   },
   remove: function remove(lawyer, e) {
@@ -2737,6 +2893,10 @@ var Router = Backbone.Router.extend({
 
     'admin/the-actual-pe/new': function adminTheActualPeNew() {
       ReactDOM.render(React.createElement(ActualCreate, null), wrap);
+    },
+
+    'admin/posts2/:id/edit': function adminPosts2IdEdit(id) {
+      ReactDOM.render(React.createElement(ActualCreate, { post_id: id }), wrap);
     }
   }
 });
