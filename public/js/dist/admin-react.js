@@ -2,53 +2,6 @@
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 'use strict';
 var React = require('react');
-var request = require('superagent');
-var $ = require('jquery');
-
-module.exports = React.createClass({displayName: "exports",
-  handleClick: function() {
-    var content = {
-      title: React.findDOMNode(this.refs.title).value,
-      text: React.findDOMNode(this.refs.text).value,
-      'position': this.props.position,
-      name: this.props.name
-    };
-
-     request
-      .post('/api/sliders')
-      .set('X-CSRF-Token', $("meta[name='csrf-token']").attr("content"))
-      .send(content)
-      .end(function(err, res) {
-        this.props.onAdd(res.body);
-      }.bind(this));
-  },
-
-  render: function() {
-    return (
-      React.createElement("div", null, 
-        React.createElement("div", {className: "form-group col-sm-6"}, 
-          React.createElement("label", {htmlFor: ""}, "Frase"), 
-          React.createElement("input", {ref: "text", type: "text", className: "form-control"})
-        ), 
-
-        React.createElement("div", {className: "form-group col-sm-6"}, 
-          React.createElement("label", {htmlFor: ""}, "Por"), 
-          React.createElement("input", {ref: "title", type: "text", className: "form-control"})
-        ), 
-
-        React.createElement("div", {className: "form-group col-sm-12"}, 
-          React.createElement("button", {onClick: this.handleClick, className: "btn btn-sm pull-right"}, "Guardar")
-        )
-      )
-    );
-  }
-});
-
-}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/app/admin-react/TextSlider.jsx","/app/admin-react")
-},{"_process":34,"buffer":30,"jquery":35,"react":225,"superagent":227}],2:[function(require,module,exports){
-(function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
-'use strict';
-var React = require('react');
 var _ = require('underscore');
 var request = require('superagent');
 var $ = require('jquery');
@@ -145,6 +98,7 @@ module.exports = React.createClass({displayName: "exports",
     var model = this.state.model;
     var classPublished;
     var textPublished = "Publicar";
+    var editUrl = "/admin/experiences/"+model.id+"/edit";
 
     if(model.published) {
       classPublished = "btn-success";
@@ -159,6 +113,10 @@ module.exports = React.createClass({displayName: "exports",
       translation = (React.createElement("button", {className: "btn btn-xs", onClick: this.translate}, "Traducir"));
     }
 
+    if(model.lang == 'en') {
+      editUrl = '/en' + editUrl;
+    }
+
     return (
       React.createElement("tr", null, 
         React.createElement("td", null, model.company_name, " - ", model.title), 
@@ -167,7 +125,7 @@ module.exports = React.createClass({displayName: "exports",
           React.createElement("a", {href: "#", className: "btn btn-xs " + classPublished, onClick: this.togglePublish}, textPublished)
         ), 
 
-        React.createElement("td", null, React.createElement("a", {href: "/admin/experiences/"+model.id+"/edit", className: "btn btn-xs"}, "Editar")), 
+        React.createElement("td", null, React.createElement("a", {href: editUrl, className: "btn btn-xs"}, "Editar")), 
         React.createElement("td", null, 
           translation
         ), 
@@ -185,7 +143,7 @@ module.exports = React.createClass({displayName: "exports",
 });
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/app/admin-react/experiences/item.jsx","/app/admin-react/experiences")
-},{"_process":34,"buffer":30,"jquery":35,"react":225,"superagent":227,"underscore":233,"verification.jsx":28}],3:[function(require,module,exports){
+},{"_process":34,"buffer":30,"jquery":35,"react":225,"superagent":227,"underscore":233,"verification.jsx":28}],2:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 'use strict';
 var React = require('react');
@@ -274,7 +232,7 @@ module.exports = React.createClass({displayName: "exports",
 });
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/app/admin-react/experiences/section.jsx","/app/admin-react/experiences")
-},{"_process":34,"buffer":30,"experiences/item.jsx":2,"filters.jsx":4,"react":225,"superagent":227,"underscore":233}],4:[function(require,module,exports){
+},{"_process":34,"buffer":30,"experiences/item.jsx":1,"filters.jsx":3,"react":225,"superagent":227,"underscore":233}],3:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 'use strict';
 var React = require('react');
@@ -435,7 +393,7 @@ module.exports = React.createClass({displayName: "exports",
 });
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/app/admin-react/filters.jsx","/app/admin-react")
-},{"_process":34,"buffer":30,"react":225,"react-select":65,"underscore":233}],5:[function(require,module,exports){
+},{"_process":34,"buffer":30,"react":225,"react-select":65,"underscore":233}],4:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 'use strict';
 var React = require('react');
@@ -503,7 +461,7 @@ module.exports = React.createClass({displayName: "exports",
 });
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/app/admin-react/lawyers/lawyer.jsx","/app/admin-react/lawyers")
-},{"_process":34,"buffer":30,"jquery":35,"react":225,"superagent":227,"underscore":233}],6:[function(require,module,exports){
+},{"_process":34,"buffer":30,"jquery":35,"react":225,"superagent":227,"underscore":233}],5:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 'use strict';
 var React = require('react');
@@ -585,7 +543,7 @@ module.exports = React.createClass({displayName: "exports",
 });
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/app/admin-react/lawyers/section.jsx","/app/admin-react/lawyers")
-},{"_process":34,"buffer":30,"filters.jsx":4,"lawyers/lawyer.jsx":5,"react":225,"superagent":227,"underscore":233}],7:[function(require,module,exports){
+},{"_process":34,"buffer":30,"filters.jsx":3,"lawyers/lawyer.jsx":4,"react":225,"superagent":227,"underscore":233}],6:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 'use strict';
 var React = require('react');
@@ -649,7 +607,7 @@ module.exports = React.createClass({displayName: "exports",
 });
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/app/admin-react/login.jsx","/app/admin-react")
-},{"_process":34,"buffer":30,"jquery":35,"react":225,"superagent":227}],8:[function(require,module,exports){
+},{"_process":34,"buffer":30,"jquery":35,"react":225,"superagent":227}],7:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 'use strict';
 var React = require('react');
@@ -776,7 +734,7 @@ module.exports = React.createClass({displayName: "exports",
 });
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/app/admin-react/posts/post.jsx","/app/admin-react/posts")
-},{"_process":34,"buffer":30,"jquery":35,"react":225,"superagent":227,"underscore":233}],9:[function(require,module,exports){
+},{"_process":34,"buffer":30,"jquery":35,"react":225,"superagent":227,"underscore":233}],8:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 'use strict';
 var React = require('react');
@@ -860,7 +818,129 @@ module.exports = React.createClass({displayName: "exports",
 });
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/app/admin-react/posts/section.jsx","/app/admin-react/posts")
-},{"_process":34,"buffer":30,"filters.jsx":4,"posts/post.jsx":8,"react":225,"superagent":227}],10:[function(require,module,exports){
+},{"_process":34,"buffer":30,"filters.jsx":3,"posts/post.jsx":7,"react":225,"superagent":227}],9:[function(require,module,exports){
+(function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
+'use strict';
+var React = require('react');
+var request = require('superagent');
+var $ = require('jquery');
+var TextEditor = require('textEditor.jsx');
+var SliderMain = require('probono/sliderMain.jsx');
+var SliderCompanies = require('probono/SliderCompanies.jsx');
+
+module.exports = React.createClass({displayName: "exports",
+  getInitialState: function() {
+    return {
+      content: {
+        id: null,
+        page: 'probono',
+        text_es: null,
+        title_es: null,
+        text_en: null,
+        title_en: null,
+      },
+
+      csrf: $("meta[name='csrf-token']").attr("content")
+    }
+  },
+
+  componentDidMount: function() {
+    this.fetchPageContent();
+  },
+
+  fetchPageContent: function() {
+    request
+    .get('/api/pages')
+    .query({page: 'probono'})
+    .end(function(err, res) {
+      if(res.body) {
+        this.setState({
+          content: res.body
+        });
+      }
+    }.bind(this));
+  },
+
+
+  handleTextEs: function(values) {
+    var data = _.extend(this.state.content, {
+      title_es: values.title,
+      text_es: values.text
+    });
+
+    if(this.state.content.id) {
+      this.update(data);
+    } else {
+      this.store(data);
+    }
+    this.setState({content: data});
+  },
+
+  handleTextEn: function(values) {
+    console.log(values);
+
+    var data = _.extend(this.state.content, {
+      title_en: values.title,
+      text_en: values.text
+    });
+
+    if(this.state.content.id) {
+      this.update(data);
+    } else {
+      this.store(data);
+    }
+    this.setState({content: data});
+  },
+
+  update: function(data) {
+     request
+      .put('/api/pages/' + this.state.content.id)
+      .set('X-CSRF-Token', this.state.csrf)
+      .send(data)
+      .end(function(err, res) {
+
+      }.bind(this));
+  },
+
+  store: function(data) {
+    request
+      .post('/api/pages')
+      .set('X-CSRF-Token', this.state.csrf)
+      .send(data)
+      .end(function(err, res) {
+
+      }.bind(this));
+  },
+
+  render: function() {
+
+    return (
+      React.createElement("div", {className: "panel"}, 
+        React.createElement("div", {className: "panel-body"}, 
+        React.createElement(SliderMain, null), 
+        React.createElement("b", null, "Español"), 
+          React.createElement(TextEditor, {
+            onChange: this.handleTextEs, 
+            title: this.state.content.title_es, 
+            text: this.state.content.text_es}
+          ), 
+          React.createElement("hr", null), 
+          React.createElement("b", null, "Inglés"), 
+          React.createElement(TextEditor, {
+            onChange: this.handleTextEn, 
+            title: this.state.content.title_en, 
+            text: this.state.content.text_en}
+          ), 
+
+          React.createElement(SliderCompanies, null)
+        )
+      )
+    );
+  }
+});
+
+}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/app/admin-react/probono/section.jsx","/app/admin-react/probono")
+},{"_process":34,"buffer":30,"jquery":35,"probono/SliderCompanies.jsx":10,"probono/sliderMain.jsx":11,"react":225,"superagent":227,"textEditor.jsx":20}],10:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 'use strict';
 var React = require('react');
@@ -983,130 +1063,8 @@ module.exports = React.createClass({displayName: "exports",
   }
 });
 
-}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/app/admin-react/probono/SliderCompanies.jsx","/app/admin-react/probono")
-},{"_process":34,"buffer":30,"jquery":35,"probono/upload.jsx":13,"react":225,"sortablejs":226,"superagent":227}],11:[function(require,module,exports){
-(function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
-'use strict';
-var React = require('react');
-var request = require('superagent');
-var $ = require('jquery');
-var TextEditor = require('textEditor.jsx');
-var SliderMain = require('probono/sliderMain.jsx');
-var SliderCompanies = require('probono/SliderCompanies.jsx');
-
-module.exports = React.createClass({displayName: "exports",
-  getInitialState: function() {
-    return {
-      content: {
-        id: null,
-        page: 'probono',
-        text_es: null,
-        title_es: null,
-        text_en: null,
-        title_en: null,
-      },
-
-      csrf: $("meta[name='csrf-token']").attr("content")
-    }
-  },
-
-  componentDidMount: function() {
-    this.fetchPageContent();
-  },
-
-  fetchPageContent: function() {
-    request
-    .get('/api/pages')
-    .query({page: 'probono'})
-    .end(function(err, res) {
-      if(res.body) {
-        this.setState({
-          content: res.body
-        });
-      }
-    }.bind(this));
-  },
-
-
-  handleTextEs: function(values) {
-    var data = _.extend(this.state.content, {
-      title_es: values.title,
-      text_es: values.text
-    });
-
-    if(this.state.content.id) {
-      this.update(data);
-    } else {
-      this.store(data);
-    }
-    this.setState({content: data});
-  },
-
-  handleTextEn: function(values) {
-    console.log(values);
-
-    var data = _.extend(this.state.content, {
-      title_en: values.title,
-      text_en: values.text
-    });
-
-    if(this.state.content.id) {
-      this.update(data);
-    } else {
-      this.store(data);
-    }
-    this.setState({content: data});
-  },
-
-  update: function(data) {
-     request
-      .put('/api/pages/' + this.state.content.id)
-      .set('X-CSRF-Token', this.state.csrf)
-      .send(data)
-      .end(function(err, res) {
-
-      }.bind(this));
-  },
-
-  store: function(data) {
-    request
-      .post('/api/pages')
-      .set('X-CSRF-Token', this.state.csrf)
-      .send(data)
-      .end(function(err, res) {
-
-      }.bind(this));
-  },
-
-  render: function() {
-
-    return (
-      React.createElement("div", {className: "panel"}, 
-        React.createElement("div", {className: "panel-body"}, 
-        React.createElement(SliderMain, null), 
-        React.createElement("b", null, "Español"), 
-          React.createElement(TextEditor, {
-            onChange: this.handleTextEs, 
-            title: this.state.content.title_es, 
-            text: this.state.content.text_es}
-          ), 
-          React.createElement("hr", null), 
-          React.createElement("b", null, "Inglés"), 
-          React.createElement(TextEditor, {
-            onChange: this.handleTextEn, 
-            title: this.state.content.title_en, 
-            text: this.state.content.text_en}
-          ), 
-
-          React.createElement(SliderCompanies, null)
-        )
-      )
-    );
-  }
-});
-
-}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/app/admin-react/probono/section.jsx","/app/admin-react/probono")
-},{"_process":34,"buffer":30,"jquery":35,"probono/SliderCompanies.jsx":10,"probono/sliderMain.jsx":12,"react":225,"superagent":227,"textEditor.jsx":21}],12:[function(require,module,exports){
+}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/app/admin-react/probono/sliderCompanies.jsx","/app/admin-react/probono")
+},{"_process":34,"buffer":30,"jquery":35,"probono/upload.jsx":12,"react":225,"sortablejs":226,"superagent":227}],11:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 'use strict';
 var React = require('react');
@@ -1231,7 +1189,7 @@ module.exports = React.createClass({displayName: "exports",
 });
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/app/admin-react/probono/sliderMain.jsx","/app/admin-react/probono")
-},{"_process":34,"buffer":30,"jquery":35,"probono/upload.jsx":13,"react":225,"sortablejs":226,"superagent":227}],13:[function(require,module,exports){
+},{"_process":34,"buffer":30,"jquery":35,"probono/upload.jsx":12,"react":225,"sortablejs":226,"superagent":227}],12:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 'use strict';
 var React = require('react');
@@ -1266,7 +1224,7 @@ module.exports = React.createClass({displayName: "exports",
 });
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/app/admin-react/probono/upload.jsx","/app/admin-react/probono")
-},{"_process":34,"buffer":30,"jquery":35,"react":225,"superagent":227}],14:[function(require,module,exports){
+},{"_process":34,"buffer":30,"jquery":35,"react":225,"superagent":227}],13:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 'use strict';
 var React = require('react');
@@ -1316,7 +1274,7 @@ module.exports = React.createClass({displayName: "exports",
 });
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/app/admin-react/recruitment/section.jsx","/app/admin-react/recruitment")
-},{"_process":34,"buffer":30,"react":225,"recruitment/textOne.jsx":15,"recruitment/textThree.jsx":16,"recruitment/textTwo.jsx":17,"recruitment/videoEditor.jsx":18,"superagent":227,"textEditor.jsx":21,"us/sliderAwards.jsx":24,"us/sliderMain.jsx":25,"us/sliderNetworks.jsx":26,"us/sliderPhrases.jsx":27}],15:[function(require,module,exports){
+},{"_process":34,"buffer":30,"react":225,"recruitment/textOne.jsx":14,"recruitment/textThree.jsx":15,"recruitment/textTwo.jsx":16,"recruitment/videoEditor.jsx":17,"superagent":227,"textEditor.jsx":20,"us/sliderAwards.jsx":24,"us/sliderMain.jsx":25,"us/sliderNetworks.jsx":26,"us/sliderPhrases.jsx":27}],14:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 'use strict';
 var React = require('react');
@@ -1434,7 +1392,7 @@ module.exports = React.createClass({displayName: "exports",
 });
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/app/admin-react/recruitment/textOne.jsx","/app/admin-react/recruitment")
-},{"_process":34,"buffer":30,"react":225,"recruitment/videoEditor.jsx":18,"superagent":227,"textEditor.jsx":21,"us/sliderAwards.jsx":24,"us/sliderMain.jsx":25,"us/sliderNetworks.jsx":26,"us/sliderPhrases.jsx":27}],16:[function(require,module,exports){
+},{"_process":34,"buffer":30,"react":225,"recruitment/videoEditor.jsx":17,"superagent":227,"textEditor.jsx":20,"us/sliderAwards.jsx":24,"us/sliderMain.jsx":25,"us/sliderNetworks.jsx":26,"us/sliderPhrases.jsx":27}],15:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 'use strict';
 var React = require('react');
@@ -1550,7 +1508,7 @@ module.exports = React.createClass({displayName: "exports",
 });
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/app/admin-react/recruitment/textThree.jsx","/app/admin-react/recruitment")
-},{"_process":34,"buffer":30,"react":225,"recruitment/videoEditor.jsx":18,"superagent":227,"textEditor.jsx":21,"us/sliderAwards.jsx":24,"us/sliderMain.jsx":25,"us/sliderNetworks.jsx":26,"us/sliderPhrases.jsx":27}],17:[function(require,module,exports){
+},{"_process":34,"buffer":30,"react":225,"recruitment/videoEditor.jsx":17,"superagent":227,"textEditor.jsx":20,"us/sliderAwards.jsx":24,"us/sliderMain.jsx":25,"us/sliderNetworks.jsx":26,"us/sliderPhrases.jsx":27}],16:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 'use strict';
 var React = require('react');
@@ -1666,7 +1624,7 @@ module.exports = React.createClass({displayName: "exports",
 });
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/app/admin-react/recruitment/textTwo.jsx","/app/admin-react/recruitment")
-},{"_process":34,"buffer":30,"react":225,"recruitment/videoEditor.jsx":18,"superagent":227,"textEditor.jsx":21,"us/sliderAwards.jsx":24,"us/sliderMain.jsx":25,"us/sliderNetworks.jsx":26,"us/sliderPhrases.jsx":27}],18:[function(require,module,exports){
+},{"_process":34,"buffer":30,"react":225,"recruitment/videoEditor.jsx":17,"superagent":227,"textEditor.jsx":20,"us/sliderAwards.jsx":24,"us/sliderMain.jsx":25,"us/sliderNetworks.jsx":26,"us/sliderPhrases.jsx":27}],17:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 'use strict';
 var React = require('react');
@@ -1741,7 +1699,7 @@ module.exports = React.createClass({displayName: "exports",
 });
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/app/admin-react/recruitment/videoEditor.jsx","/app/admin-react/recruitment")
-},{"_process":34,"buffer":30,"jquery":35,"react":225,"superagent":227}],19:[function(require,module,exports){
+},{"_process":34,"buffer":30,"jquery":35,"react":225,"superagent":227}],18:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 var Backbone = require('backbone');
 var React = require('react');
@@ -1818,7 +1776,7 @@ if(window.location.pathname != "/users/sign_in") {
 Backbone.history.start({pushState: true});
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/app/admin-react/router.js","/app/admin-react")
-},{"_process":34,"backbone":29,"buffer":30,"experiences/section.jsx":3,"lawyers/section.jsx":6,"login.jsx":7,"posts/section.jsx":9,"probono/section.jsx":11,"react":225,"react-dom":36,"recruitment/section.jsx":14,"sidebar.jsx":20,"us/section.jsx":23}],20:[function(require,module,exports){
+},{"_process":34,"backbone":29,"buffer":30,"experiences/section.jsx":2,"lawyers/section.jsx":5,"login.jsx":6,"posts/section.jsx":8,"probono/section.jsx":9,"react":225,"react-dom":36,"recruitment/section.jsx":13,"sidebar.jsx":19,"us/section.jsx":23}],19:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 'use strict';
 var React = require('react');
@@ -1851,6 +1809,8 @@ module.exports = React.createClass({displayName: "exports",
         React.createElement("li", null, React.createElement("a", {href: "/admin/the-actual/new"}, "Crear El Actual Chile")), 
         React.createElement("li", null, React.createElement("a", {href: "/admin/the-actual-co"}, "El Actual Colombia")), 
         React.createElement("li", null, React.createElement("a", {href: "/admin/the-actual-co/new"}, "Crear El Actual Colombia")), 
+        React.createElement("li", null, React.createElement("a", {href: "/admin/the-actual-pe"}, "El Actual Perú")), 
+        React.createElement("li", null, React.createElement("a", {href: "/admin/the-actual-pe/new"}, "Crear El Actual Perú")), 
         React.createElement("li", null, React.createElement("a", {href: "/admin/nosotros"}, "Nosotros")), 
         React.createElement("li", null, React.createElement("a", {href: "/admin/probono"}, "Probono")), 
         React.createElement("li", null, React.createElement("a", {href: "/admin/trabaje-con-nosotros"}, "Trabaje con Nosotros")), 
@@ -1861,7 +1821,7 @@ module.exports = React.createClass({displayName: "exports",
 });
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/app/admin-react/sidebar.jsx","/app/admin-react")
-},{"_process":34,"buffer":30,"jquery":35,"react":225}],21:[function(require,module,exports){
+},{"_process":34,"buffer":30,"jquery":35,"react":225}],20:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 'use strict';
 var React = require('react');
@@ -1920,7 +1880,54 @@ module.exports = React.createClass({displayName: "exports",
 });
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/app/admin-react/textEditor.jsx","/app/admin-react")
-},{"_process":34,"buffer":30,"react":225,"react-quill":61,"underscore":233}],22:[function(require,module,exports){
+},{"_process":34,"buffer":30,"react":225,"react-quill":61,"underscore":233}],21:[function(require,module,exports){
+(function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
+'use strict';
+var React = require('react');
+var request = require('superagent');
+var $ = require('jquery');
+
+module.exports = React.createClass({displayName: "exports",
+  handleClick: function() {
+    var content = {
+      title: React.findDOMNode(this.refs.title).value,
+      text: React.findDOMNode(this.refs.text).value,
+      'position': this.props.position,
+      name: this.props.name
+    };
+
+     request
+      .post('/api/sliders')
+      .set('X-CSRF-Token', $("meta[name='csrf-token']").attr("content"))
+      .send(content)
+      .end(function(err, res) {
+        this.props.onAdd(res.body);
+      }.bind(this));
+  },
+
+  render: function() {
+    return (
+      React.createElement("div", null, 
+        React.createElement("div", {className: "form-group col-sm-6"}, 
+          React.createElement("label", {htmlFor: ""}, "Frase"), 
+          React.createElement("input", {ref: "text", type: "text", className: "form-control"})
+        ), 
+
+        React.createElement("div", {className: "form-group col-sm-6"}, 
+          React.createElement("label", {htmlFor: ""}, "Por"), 
+          React.createElement("input", {ref: "title", type: "text", className: "form-control"})
+        ), 
+
+        React.createElement("div", {className: "form-group col-sm-12"}, 
+          React.createElement("button", {onClick: this.handleClick, className: "btn btn-sm pull-right"}, "Guardar")
+        )
+      )
+    );
+  }
+});
+
+}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/app/admin-react/textSlider.jsx","/app/admin-react")
+},{"_process":34,"buffer":30,"jquery":35,"react":225,"superagent":227}],22:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 'use strict';
 var React = require('react');
@@ -2076,7 +2083,7 @@ module.exports = React.createClass({displayName: "exports",
 });
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/app/admin-react/us/section.jsx","/app/admin-react/us")
-},{"_process":34,"buffer":30,"react":225,"superagent":227,"textEditor.jsx":21,"us/sliderAwards.jsx":24,"us/sliderMain.jsx":25,"us/sliderNetworks.jsx":26,"us/sliderPhrases.jsx":27}],24:[function(require,module,exports){
+},{"_process":34,"buffer":30,"react":225,"superagent":227,"textEditor.jsx":20,"us/sliderAwards.jsx":24,"us/sliderMain.jsx":25,"us/sliderNetworks.jsx":26,"us/sliderPhrases.jsx":27}],24:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 'use strict';
 var React = require('react');
@@ -2578,7 +2585,7 @@ module.exports = React.createClass({displayName: "exports",
 });
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/app/admin-react/us/sliderPhrases.jsx","/app/admin-react/us")
-},{"TextSlider.jsx":1,"_process":34,"buffer":30,"jquery":35,"react":225,"sortablejs":226,"superagent":227}],28:[function(require,module,exports){
+},{"TextSlider.jsx":21,"_process":34,"buffer":30,"jquery":35,"react":225,"sortablejs":226,"superagent":227}],28:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 'use strict';
 var React = require('react');
@@ -54203,4 +54210,4 @@ module.exports = function(arr, fn, initial){
 }.call(this));
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/node_modules/underscore/underscore.js","/node_modules/underscore")
-},{"_process":34,"buffer":30}]},{},[19]);
+},{"_process":34,"buffer":30}]},{},[18]);

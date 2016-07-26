@@ -72,8 +72,10 @@ Rails.application.routes.draw do
     get "el-actual/:id", to: 'posts#the_actual_detail'
 
     get "el-actual-colombia", to: 'posts#the_actual_co'
-
     get "el-actual-colombia/:id", to: 'posts#the_actual_co_detail'
+
+    get "el-actual-peru", to: 'posts#the_actual_pe'
+    get "el-actual-peru/:id", to: 'posts#the_actual_pe_detail'
 
     get "abogados-beta", to: 'lawyers#index'
     get "abogados", to: 'lawyers#index'
@@ -114,6 +116,9 @@ Rails.application.routes.draw do
       get "the-actual-co/new", to: "posts#the_actual_co_new"
       get "the-actual-co/:id/edit", to: "posts#the_actual_co_edit"
       get "the-actual-co", to: "posts#the_actual_co"
+      get "the-actual-pe/new", to: "posts#the_actual_pe_new"
+      get "the-actual-pe/:id/edit", to: "posts#the_actual_pe_edit"
+      get "the-actual-pe", to: "posts#the_actual_pe"
     end
 
   end

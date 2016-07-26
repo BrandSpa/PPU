@@ -60521,6 +60521,7 @@ var us = require('views/us/section.jsx');
 var recruiment = require('views/recruiment/section.jsx');
 var theActual = require('views/posts/the_actual.jsx');
 var theActualColombia = require('views/posts/the_actual_colombia.jsx');
+var theActualColombia = require('views/posts/the_actual_peru.jsx');
 var contact = require('views/contact/section.jsx');
 
 ReactDOM.render(React.createElement(
@@ -60541,13 +60542,14 @@ ReactDOM.render(React.createElement(
     React.createElement(Route, { path: '/trabaje-con-nosotros', component: recruiment }),
     React.createElement(Route, { path: '/contacto', component: contact }),
     React.createElement(Route, { path: '/el-actual', component: theActual }),
-    React.createElement(Route, { path: '/el-actual-colombia', component: theActualColombia })
+    React.createElement(Route, { path: '/el-actual-colombia', component: theActualColombia }),
+    React.createElement(Route, { path: '/el-actual-peru', component: theActualColombia })
   ),
   React.createElement(Route, { path: '/admin' })
 ), document.getElementById('app'));
 
 
-},{"history":18,"jquery":31,"react":325,"react-dom":35,"react-router":136,"views/app.jsx":344,"views/area/section.jsx":345,"views/areas/section.jsx":347,"views/contact/section.jsx":349,"views/experience/section.jsx":350,"views/experiences/section.jsx":352,"views/lawyer/section.jsx":368,"views/lawyers/section.jsx":371,"views/post/section.jsx":375,"views/posts/the_actual.jsx":381,"views/posts/the_actual_colombia.jsx":382,"views/probono/section.jsx":383,"views/recruiment/section.jsx":385,"views/us/section.jsx":390}],334:[function(require,module,exports){
+},{"history":18,"jquery":31,"react":325,"react-dom":35,"react-router":136,"views/app.jsx":344,"views/area/section.jsx":345,"views/areas/section.jsx":347,"views/contact/section.jsx":349,"views/experience/section.jsx":350,"views/experiences/section.jsx":352,"views/lawyer/section.jsx":368,"views/lawyers/section.jsx":371,"views/post/section.jsx":375,"views/posts/the_actual.jsx":381,"views/posts/the_actual_colombia.jsx":382,"views/posts/the_actual_peru.jsx":383,"views/probono/section.jsx":384,"views/recruiment/section.jsx":386,"views/us/section.jsx":391}],334:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -61024,7 +61026,7 @@ module.exports = React.createClass({
 });
 
 
-},{"langs/area":336,"react":325,"react-helmet":38,"superagent":326,"utils/get_lang":341,"views/experiences/experience.jsx":351,"views/lawyers/lawyer.jsx":370,"views/top_bar.jsx":386}],346:[function(require,module,exports){
+},{"langs/area":336,"react":325,"react-helmet":38,"superagent":326,"utils/get_lang":341,"views/experiences/experience.jsx":351,"views/lawyers/lawyer.jsx":370,"views/top_bar.jsx":387}],346:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -61121,7 +61123,7 @@ module.exports = React.createClass({
 });
 
 
-},{"langs/app":335,"lodash":32,"react":325,"superagent":326,"utils/get_lang":341,"views/areas/area.jsx":346,"views/top_bar.jsx":386}],348:[function(require,module,exports){
+},{"langs/app":335,"lodash":32,"react":325,"superagent":326,"utils/get_lang":341,"views/areas/area.jsx":346,"views/top_bar.jsx":387}],348:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -61520,7 +61522,7 @@ module.exports = React.createClass({
 });
 
 
-},{"contact/form.jsx":348,"gmaps":2,"jquery":31,"langs/app":335,"lodash":32,"react":325,"utils/countries_info":340,"utils/gmaps_styles":342,"utils/markers":343,"views/top_bar.jsx":386}],350:[function(require,module,exports){
+},{"contact/form.jsx":348,"gmaps":2,"jquery":31,"langs/app":335,"lodash":32,"react":325,"utils/countries_info":340,"utils/gmaps_styles":342,"utils/markers":343,"views/top_bar.jsx":387}],350:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -61711,7 +61713,7 @@ module.exports = React.createClass({
 });
 
 
-},{"experiences/experience.jsx":351,"langs/areas":337,"langs/experience":338,"lodash":32,"moment":34,"react":325,"react-helmet":38,"superagent":326,"utils/get_lang":341,"views/lawyers/lawyer.jsx":370,"views/top_bar.jsx":386}],351:[function(require,module,exports){
+},{"experiences/experience.jsx":351,"langs/areas":337,"langs/experience":338,"lodash":32,"moment":34,"react":325,"react-helmet":38,"superagent":326,"utils/get_lang":341,"views/lawyers/lawyer.jsx":370,"views/top_bar.jsx":387}],351:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -61882,7 +61884,7 @@ module.exports = React.createClass({
 });
 
 
-},{"langs/app":335,"lodash":32,"react":325,"react-waypoint":168,"superagent":326,"utils/get_lang":341,"views/experiences/experience.jsx":351,"views/top_bar.jsx":386}],353:[function(require,module,exports){
+},{"langs/app":335,"lodash":32,"react":325,"react-waypoint":168,"superagent":326,"utils/get_lang":341,"views/experiences/experience.jsx":351,"views/top_bar.jsx":387}],353:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -62921,7 +62923,7 @@ module.exports = React.createClass({
 });
 
 
-},{"langs/app":335,"langs/lawyer":339,"react":325,"react-helmet":38,"superagent":326,"views/lawyer/academic.jsx":357,"views/lawyer/article.jsx":358,"views/lawyer/award.jsx":359,"views/lawyer/categories.jsx":360,"views/lawyer/conference.jsx":361,"views/lawyer/education.jsx":362,"views/lawyer/language.jsx":363,"views/lawyer/membership.jsx":364,"views/lawyer/phrase.jsx":365,"views/lawyer/post.jsx":366,"views/lawyer/professional_experience.jsx":367,"views/lawyer/social.jsx":369,"views/top_bar.jsx":386}],369:[function(require,module,exports){
+},{"langs/app":335,"langs/lawyer":339,"react":325,"react-helmet":38,"superagent":326,"views/lawyer/academic.jsx":357,"views/lawyer/article.jsx":358,"views/lawyer/award.jsx":359,"views/lawyer/categories.jsx":360,"views/lawyer/conference.jsx":361,"views/lawyer/education.jsx":362,"views/lawyer/language.jsx":363,"views/lawyer/membership.jsx":364,"views/lawyer/phrase.jsx":365,"views/lawyer/post.jsx":366,"views/lawyer/professional_experience.jsx":367,"views/lawyer/social.jsx":369,"views/top_bar.jsx":387}],369:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -63167,7 +63169,7 @@ module.exports = React.createClass({
 });
 
 
-},{"langs/app":335,"lodash":32,"react":325,"react-waypoint":168,"superagent":326,"utils/get_lang":341,"views/lawyers/lawyer.jsx":370,"views/top_bar.jsx":386}],372:[function(require,module,exports){
+},{"langs/app":335,"lodash":32,"react":325,"react-waypoint":168,"superagent":326,"utils/get_lang":341,"views/lawyers/lawyer.jsx":370,"views/top_bar.jsx":387}],372:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -63668,7 +63670,7 @@ module.exports = React.createClass({
 });
 
 
-},{"components/date.jsx":334,"langs/app":335,"react":325,"react-helmet":38,"superagent":326,"views/post/categories.jsx":374,"views/post/social.jsx":376,"views/top_bar.jsx":386}],376:[function(require,module,exports){
+},{"components/date.jsx":334,"langs/app":335,"react":325,"react-helmet":38,"superagent":326,"views/post/categories.jsx":374,"views/post/social.jsx":376,"views/top_bar.jsx":387}],376:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -63983,7 +63985,7 @@ module.exports = React.createClass({
 });
 
 
-},{"langs/app":335,"lodash":32,"react":325,"react-waypoint":168,"superagent":326,"views/lawyers/lawyer.jsx":370,"views/posts/post.jsx":377,"views/posts/post_featured.jsx":378,"views/top_bar.jsx":386}],380:[function(require,module,exports){
+},{"langs/app":335,"lodash":32,"react":325,"react-waypoint":168,"superagent":326,"views/lawyers/lawyer.jsx":370,"views/posts/post.jsx":377,"views/posts/post_featured.jsx":378,"views/top_bar.jsx":387}],380:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -64178,7 +64180,7 @@ module.exports = React.createClass({
 });
 
 
-},{"langs/app":335,"lodash":32,"react":325,"react-waypoint":168,"superagent":326,"views/lawyers/lawyer.jsx":370,"views/posts/post.jsx":377,"views/posts/post_featured.jsx":378,"views/top_bar.jsx":386}],382:[function(require,module,exports){
+},{"langs/app":335,"lodash":32,"react":325,"react-waypoint":168,"superagent":326,"views/lawyers/lawyer.jsx":370,"views/posts/post.jsx":377,"views/posts/post_featured.jsx":378,"views/top_bar.jsx":387}],382:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -64304,7 +64306,134 @@ module.exports = React.createClass({
 });
 
 
-},{"langs/app":335,"lodash":32,"react":325,"react-waypoint":168,"superagent":326,"views/lawyers/lawyer.jsx":370,"views/posts/post.jsx":377,"views/posts/post_featured.jsx":378,"views/top_bar.jsx":386}],383:[function(require,module,exports){
+},{"langs/app":335,"lodash":32,"react":325,"react-waypoint":168,"superagent":326,"views/lawyers/lawyer.jsx":370,"views/posts/post.jsx":377,"views/posts/post_featured.jsx":378,"views/top_bar.jsx":387}],383:[function(require,module,exports){
+'use strict';
+
+var React = require('react');
+var request = require('superagent');
+var _ = require('lodash');
+var Waypoint = require('react-waypoint');
+var Post = require('views/posts/post.jsx');
+var Lawyer = require('views/lawyers/lawyer.jsx');
+var PostFeatured = require('views/posts/post_featured.jsx');
+var TopBar = require('views/top_bar.jsx');
+var trans = require('langs/app');
+
+module.exports = React.createClass({
+  displayName: 'exports',
+
+  getInitialState: function getInitialState() {
+    return {
+      posts: [],
+      lawyers: [],
+      filtersLaywyers: {
+        published: 1,
+        order_by_spanish: '',
+        paginate: 0
+      },
+      filters: {
+        featured_order: 'ASC',
+        published: 1,
+        the_actual_ch: 0,
+        the_actual_co: 0,
+        the_actual_pe: 1,
+        paginate: 0
+      },
+      loaded: false
+    };
+  },
+
+  componentDidMount: function componentDidMount() {
+    this.fetch();
+  },
+
+  fetch: function fetch(filters) {
+    var query = _.extend(this.state.filters, { paginate: 0 });
+
+    request.get('/api/posts').query(query).end(function (err, res) {
+      this.setState({
+        posts: res.body,
+        loaded: true
+      });
+    }.bind(this));
+  },
+
+  fetchLawyers: function fetchLawyers() {
+    var query = _.extend(this.state.filtersLaywyers, { paginate: 0 });
+
+    request.get('/api/lawyers').query(query).end(function (err, res) {
+      this.setState({
+        lawyers: res.body,
+        loaded: true
+      });
+    }.bind(this));
+  },
+
+  loadMore: function loadMore() {
+    var query = this.state.filters;
+    query = _.extend(query, { paginate: query.paginate + 20 });
+
+    request.get('/api/posts').query(query).end(function (err, res) {
+      this.setState({
+        posts: this.state.posts.concat(res.body),
+        loaded: true,
+        filters: query
+      });
+    }.bind(this));
+  },
+
+  handleFilter: function handleFilter(filters) {
+    this.setState({
+      filters: _.extend(this.state.filters, filters),
+      filtersLaywyers: _.extend(this.state.filtersLaywyers, filters),
+      paginate: 0
+    });
+
+    this.fetch();
+  },
+
+  render: function render() {
+    var lawyerNodes;
+
+    var postNodes = this.state.posts.map(function (post, i) {
+      if (i === 0) {
+        return React.createElement(PostFeatured, { post: post, history: this.props.history });
+      }
+
+      return React.createElement(Post, { key: post.id, post: post, history: this.props.history });
+    }.bind(this));
+
+    if (this.state.lawyers.length > 0) {
+      lawyerNodes = this.state.lawyers.map(function (lawyer, i) {
+        return React.createElement(Lawyer, { key: lawyer.id, lawyer: lawyer, history: this.props.history });
+      }.bind(this));
+    }
+
+    return React.createElement(
+      'div',
+      null,
+      React.createElement(TopBar, { title: 'El Actual Perú', onFilter: this.handleFilter }),
+      React.createElement(
+        'div',
+        { id: 'posts', className: 'padding-top' },
+        postNodes
+      ),
+      React.createElement(
+        'div',
+        { id: 'lawyers' },
+        lawyerNodes
+      ),
+      React.createElement(
+        'div',
+        { style: { 'float': 'left', 'width': '100%' } },
+        this.state.loaded ? React.createElement(Waypoint, { onEnter: this.loadMore, threshold: 2 }) : ''
+      )
+    );
+  }
+});
+
+
+},{"langs/app":335,"lodash":32,"react":325,"react-waypoint":168,"superagent":326,"views/lawyers/lawyer.jsx":370,"views/posts/post.jsx":377,"views/posts/post_featured.jsx":378,"views/top_bar.jsx":387}],384:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -64439,7 +64568,7 @@ module.exports = React.createClass({
 });
 
 
-},{"get_lang":341,"react":325,"react-helmet":38,"react-slick":152,"superagent":326,"views/top_bar.jsx":386}],384:[function(require,module,exports){
+},{"get_lang":341,"react":325,"react-helmet":38,"react-slick":152,"superagent":326,"views/top_bar.jsx":387}],385:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -64762,7 +64891,7 @@ module.exports = React.createClass({
 });
 
 
-},{"jquery":31,"langs/app":335,"langs/areas":337,"lodash":32,"react":325,"react-select":144}],385:[function(require,module,exports){
+},{"jquery":31,"langs/app":335,"langs/areas":337,"lodash":32,"react":325,"react-select":144}],386:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -64954,7 +65083,7 @@ module.exports = React.createClass({
 });
 
 
-},{"get_lang":341,"jquery":31,"langs/app":335,"langs/areas":337,"react":325,"react-helmet":38,"superagent":326,"views/recruiment/form.jsx":384,"views/top_bar.jsx":386}],386:[function(require,module,exports){
+},{"get_lang":341,"jquery":31,"langs/app":335,"langs/areas":337,"react":325,"react-helmet":38,"superagent":326,"views/recruiment/form.jsx":385,"views/top_bar.jsx":387}],387:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -65192,7 +65321,7 @@ module.exports = React.createClass({
 });
 
 
-},{"jquery":31,"langs/app":335,"langs/areas":337,"langs/lawyer":339,"lodash":32,"react":325,"react-select":144,"utils/get_lang":341}],387:[function(require,module,exports){
+},{"jquery":31,"langs/app":335,"langs/areas":337,"langs/lawyer":339,"lodash":32,"react":325,"react-select":144,"utils/get_lang":341}],388:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -65268,7 +65397,7 @@ module.exports = React.createClass({
 });
 
 
-},{"react":325,"react-slick":152,"superagent":326}],388:[function(require,module,exports){
+},{"react":325,"react-slick":152,"superagent":326}],389:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -65311,7 +65440,7 @@ module.exports = React.createClass({
 });
 
 
-},{"react":325,"react-slick":152,"superagent":326}],389:[function(require,module,exports){
+},{"react":325,"react-slick":152,"superagent":326}],390:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -65372,7 +65501,7 @@ module.exports = React.createClass({
 });
 
 
-},{"react":325,"react-slick":152,"superagent":326}],390:[function(require,module,exports){
+},{"react":325,"react-slick":152,"superagent":326}],391:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -65472,6 +65601,6 @@ module.exports = React.createClass({
 });
 
 
-},{"get_lang":341,"langs/app":335,"react":325,"react-helmet":38,"react-slick":152,"superagent":326,"views/top_bar.jsx":386,"views/us/awards.jsx":387,"views/us/networks.jsx":388,"views/us/phrases.jsx":389}]},{},[333]);
+},{"get_lang":341,"langs/app":335,"react":325,"react-helmet":38,"react-slick":152,"superagent":326,"views/top_bar.jsx":387,"views/us/awards.jsx":388,"views/us/networks.jsx":389,"views/us/phrases.jsx":390}]},{},[333]);
 
 //# sourceMappingURL=bundle.js.map

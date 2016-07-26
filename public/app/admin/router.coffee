@@ -33,6 +33,12 @@ $ ->
       'en/admin/the-actual-co/:id/edit': 'editTheActualCo'
       'admin/the-actual-co': 'theActualCo'
 
+      #The actual Perú
+      'admin/the-actual-pe/new': 'createTheActualPe'
+      'admin/the-actual-pe/:id/edit': 'editTheActualPe'
+      'en/admin/the-actual-pe/:id/edit': 'editTheActualPe'
+      'admin/the-actual-pe': 'theActualPe'
+
       #Experiences
       'admin/experiences': 'experience'
       'admin/experiences/new': 'createExperience'
@@ -77,6 +83,15 @@ $ ->
 
     editTheActualCo: (id) ->
       ppu.admin.TheActualCoController.edit(id)
+
+    theActualPe: ->
+      ppu.admin.TheActualPeController.index()
+
+    createTheActualPe: ->
+      ppu.admin.TheActualPeController.create()
+
+    editTheActualPe: (id) ->
+      ppu.admin.TheActualPeController.edit(id)
 
     experience: ->
       ppu.admin.ExperiencesController.index()

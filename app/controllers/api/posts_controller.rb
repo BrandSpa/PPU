@@ -168,6 +168,7 @@ class Api::PostsController < ApplicationController
         :the_actual,
         :the_actual_ch,
         :the_actual_co,
+        :the_actual_pe,
         :lawyer_ids => [],
         :category_ids => []
       )

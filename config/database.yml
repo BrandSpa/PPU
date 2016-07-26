@@ -7,7 +7,7 @@ default: &default
 
 development:
   <<: *default
-  database: ppu_development
+  database: ppu_react
   username: root
 
 test:

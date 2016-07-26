@@ -36,10 +36,16 @@ gulp.task('app-admin', function() {
     'app/admin/category.coffee',
     'app/admin/lawyer.coffee',
     'app/admin/post.coffee',
+
     'app/admin/the_actual.coffee',
     'app/admin/the_actual_create.coffee',
+
     'app/admin/the_actual_co.coffee',
     'app/admin/the_actual_co_create.coffee',
+
+    'app/admin/the_actual_pe.coffee',
+    'app/admin/the_actual_pe_create.coffee',
+
     'app/admin/gallery.coffee',
     'app/admin/experience.coffee',
     'app/admin/router.coffee',
@@ -50,6 +56,8 @@ gulp.task('app-admin', function() {
     'app/admin/controllers/experiences.coffee',
     'app/admin/controllers/the_actual_ch.coffee',
     'app/admin/controllers/the_actual_co.coffee',
+    'app/admin/controllers/the_actual_pe.coffee',
+
     ])
   .pipe(coffee({bare: true}).on('error', gutil.log))
   .pipe(concat('app-admin.js'))

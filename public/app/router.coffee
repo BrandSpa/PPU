@@ -23,6 +23,10 @@ $ ->
       "el-actual-colombia" : "theActualCo"
       "el-actual-colombia/:slug" : "theActualCoDetail"
 
+      # The Actual Perú
+      "el-actual-peru" : "theActualCo"
+      "el-actual-peru/:slug" : "theActualCoDetail"
+
       # Areas
       "areas": "areas"
       "areas/:slug": "area"
