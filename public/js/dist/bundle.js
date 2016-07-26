@@ -63315,6 +63315,15 @@ module.exports = React.createClass({
                 { to: "/el-actual-colombia" },
                 'Colombia'
               )
+            ),
+            React.createElement(
+              'li',
+              null,
+              React.createElement(
+                Link,
+                { to: "/el-actual-peru" },
+                'Perú'
+              )
             )
           )
         )
@@ -63489,6 +63498,15 @@ module.exports = React.createClass({
                   'a',
                   { href: '/el-actual-colombia' },
                   'El Actual Colombia'
+                )
+              ),
+              React.createElement(
+                'li',
+                null,
+                React.createElement(
+                  'a',
+                  { href: '/el-actual-peru' },
+                  'El Actual Perú'
                 )
               )
             )

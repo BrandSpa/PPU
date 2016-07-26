@@ -61,6 +61,7 @@ module.exports = React.createClass({
         <li><a href="/probono">Probono</a></li>
         <li><a href="/el-actual">El Actual Chile</a></li>
         <li><a href="/el-actual-colombia">El Actual Colombia</a></li>
+        <li><a href="/el-actual-peru">El Actual Perú</a></li>
       </ul>
       </div>
       </div>

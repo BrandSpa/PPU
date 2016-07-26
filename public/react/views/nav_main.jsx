@@ -76,6 +76,7 @@ module.exports = React.createClass({
               <ul className="dropdown-menu" style={{background: "#fff", width: "100%"}} role="menu">
                 <li><Link to={"/el-actual"}>Chile</Link></li>
                 <li><Link to={"/el-actual-colombia"}>Colombia</Link></li>
+                <li><Link to={"/el-actual-peru"}>Perú</Link></li>
               </ul>
           </li>
         </ul>
