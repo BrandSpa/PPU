@@ -55,7 +55,7 @@ class Post < ActiveRecord::Base
 
   # get model by the actual Colombia
   scope :the_actual_co, -> (val) { where("posts.the_actual_co = ?", val) }
-  
+
   # get model by the actual Perú
   scope :the_actual_pe, -> (val) { where("posts.the_actual_pe = ?", val) }
 

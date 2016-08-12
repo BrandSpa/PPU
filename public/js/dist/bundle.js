@@ -60521,7 +60521,7 @@ var us = require('views/us/section.jsx');
 var recruiment = require('views/recruiment/section.jsx');
 var theActual = require('views/posts/the_actual.jsx');
 var theActualColombia = require('views/posts/the_actual_colombia.jsx');
-var theActualColombia = require('views/posts/the_actual_peru.jsx');
+var theActualPeru = require('views/posts/the_actual_peru.jsx');
 var contact = require('views/contact/section.jsx');
 
 ReactDOM.render(React.createElement(
@@ -60543,7 +60543,7 @@ ReactDOM.render(React.createElement(
     React.createElement(Route, { path: '/contacto', component: contact }),
     React.createElement(Route, { path: '/el-actual', component: theActual }),
     React.createElement(Route, { path: '/el-actual-colombia', component: theActualColombia }),
-    React.createElement(Route, { path: '/el-actual-peru', component: theActualColombia })
+    React.createElement(Route, { path: '/el-actual-peru', component: theActualPeru })
   ),
   React.createElement(Route, { path: '/admin' })
 ), document.getElementById('app'));
