@@ -35,9 +35,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 # use for make v cards
 gem 'vcardigan'
 
-# for reports bugs
-gem "bugsnag"
-
+# use for send uploads to amazon s3
 gem "fog"
 
 # An ActiveRecord extension gem to allow the duplication of associated

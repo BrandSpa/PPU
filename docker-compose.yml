@@ -1,0 +1,21 @@
+version: '2'
+services:
+  db:
+    image: mysql
+    environment:
+     - MYSQL_DATABASE=ppu_react
+     - MYSQL_ROOT_PASSWORD=my-secret-pw
+    volumes:
+     - ~/mysqldata:/var/lib/mysql
+    ports:
+      - "3307:3306"
+
+  rails:
+    build: .
+    command: bundle exec puma -p 4000
+    ports:
+      - "4000:4000"
+    links:
+      - db
+    volumes:
+      - .:/myapp
