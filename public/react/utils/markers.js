@@ -29,8 +29,8 @@ module.exports = {
   ],
   perú: [
     {
-      lat: -12.1659004,
-      lng: -76.9508611,
+      lat: -12.1119603,
+      lng: -77.0382342,
        infoWindow: {
          content: '<p>Av. Santa Cruz No. 888 Piso 4, Lima</p>'
        }
