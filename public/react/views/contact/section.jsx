@@ -72,8 +72,8 @@ module.exports = React.createClass({
       this.setMap({
          el: '#map',
          zoom: 15,
-         lat: -12.1659004,
-         lng: -76.9508611,
+         lat: -12.1125855,
+         lng: -77.038477,
          styles: gmapsStyle
       }, country);
     }
