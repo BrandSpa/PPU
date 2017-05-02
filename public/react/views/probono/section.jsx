@@ -50,21 +50,21 @@ export default React.createClass({
   },
 
   render() {
-    const sliderMain = this.state.sliderMain ?  this.state.sliderMain.map((slide) => {
+    const sliderMain = this.state.sliderMain.map((slide) => {
       return (
         <div key={slide.id}>
           <img src={slide.slider_image.url} className="img-responsive"/>
         </div>
       );
-    }) : [];
+    });
 
-    const sliderCompanies = this.state.sliderCompanies ? this.state.sliderCompanies.map((slide) => {
+    const sliderCompanies = this.state.sliderCompanies.map((slide) => {
       return (
         <div key={slide.id} style={{padding: '0 30px'}}>
           <img src={slide.slider_image.url} width="200"/>
         </div>
       );
-    }) : [];
+    });
 
     const settings1 = {
       autoplay: true,
