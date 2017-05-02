@@ -116,12 +116,12 @@ export default React.createClass({
         <div className="padding-top"></div>
 
         <div id="pro-bono">
-        <div>{sliderMain.length > 0 ?  <Slider {...settings1}> {sliderMain} </Slider> : ''}</div> 
+        <div>{sliderMain.length > 0 ?  <Slider {...settings1}> {sliderMain} </Slider> : <div></div>}</div> 
 
           <div className="content">
             <h2>{ this.state.content["title_" + getLang] }</h2>
             <div dangerouslySetInnerHTML={{__html: this.state.content["text_" + getLang]}} />
-            <div>{ sliderCompanies.length > 0 ? <Slider {...settings2}> {sliderCompanies} </Slider> : '' } </div>
+            <div>{ sliderCompanies.length > 0 ? <Slider {...settings2}> {sliderCompanies} </Slider> : <div></div> } </div>
           </div>
 
         </div>

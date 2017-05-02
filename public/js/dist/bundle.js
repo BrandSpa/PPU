@@ -75258,7 +75258,7 @@
 	            ' ',
 	            sliderMain,
 	            ' '
-	          ) : ''
+	          ) : _react2.default.createElement('div', null)
 	        ),
 	        _react2.default.createElement(
 	          'div',
@@ -75278,7 +75278,7 @@
 	              ' ',
 	              sliderCompanies,
 	              ' '
-	            ) : '',
+	            ) : _react2.default.createElement('div', null),
 	            ' '
 	          )
 	        )
