@@ -75201,7 +75201,7 @@
 	        _react2.default.createElement('img', { src: slide.slider_image.url, width: '200' })
 	      );
 	    });
-	    console.log('probono', this.state.sliderMain.length);
+	    console.log('probono', this.state.sliderMain, this.state.sliderMain.length);
 	    var settings1 = {
 	      autoplay: true,
 	      speed: 900,
