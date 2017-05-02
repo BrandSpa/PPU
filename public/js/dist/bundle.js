@@ -75238,7 +75238,8 @@
 	      }]
 	    };
 
-	    console.log('get map', sliderMain.length);
+	    console.log('get map', sliderMain.length > 0);
+
 	    return _react2.default.createElement(
 	      'div',
 	      null,
@@ -75250,7 +75251,7 @@
 	        _react2.default.createElement(
 	          'div',
 	          null,
-	          this.state.sliderMain.length > 0 ? _react2.default.createElement(
+	          sliderMain.length > 0 ? _react2.default.createElement(
 	            _reactSlick2.default,
 	            settings1,
 	            ' ',

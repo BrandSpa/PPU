@@ -103,10 +103,11 @@ export default React.createClass({
         slidesToScroll: 1
       }
     }
-  ]
-    };
-    
-    console.log('get map', sliderMain.length);
+    ]
+  };
+
+  console.log('get map', sliderMain.length > 0 );
+
     return (
       <div>
       <TopBar title="Probono" hidden />
@@ -114,7 +115,7 @@ export default React.createClass({
         <div className="padding-top"></div>
 
         <div id="pro-bono">
-        <div>{this.state.sliderMain.length > 0 ?  <Slider {...settings1}> {sliderMain} </Slider> : ''}</div> 
+        <div>{sliderMain.length > 0 ?  <Slider {...settings1}> {sliderMain} </Slider> : ''}</div> 
 
           <div className="content">
             <h2>{this.state.content["title_" + getLang]}</h2>
