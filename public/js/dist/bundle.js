@@ -75238,8 +75238,8 @@
 	      }]
 	    };
 
-	    console.log('get map', sliderMain.length > 0);
-	    console.log('get map', sliderCompanies.length > 0);
+	    console.log('get slider main', sliderMain.length > 0);
+	    console.log('get slider companies', sliderCompanies.length > 0);
 
 	    return _react2.default.createElement(
 	      'div',
