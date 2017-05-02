@@ -61,7 +61,7 @@ export default React.createClass({
       )
     });
     
-    console.log(this.state, awards);
+    console.log(this.state.awards > 0);
 
     return (
       <div>
