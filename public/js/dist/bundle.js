@@ -75187,6 +75187,8 @@
 	  },
 	  render: function render() {
 	    var sliderMain = this.state.sliderMain.map(function (slide) {
+	      console.log('slide main', slide);
+
 	      return _react2.default.createElement(
 	        'div',
 	        { key: slide.id },

@@ -51,6 +51,8 @@ export default React.createClass({
 
   render() {
     const sliderMain = this.state.sliderMain.map((slide) => {
+      console.log('slide main', slide);
+      
       return (
         <div key={slide.id}>
           <img src={slide.slider_image.url} className="img-responsive"/>
