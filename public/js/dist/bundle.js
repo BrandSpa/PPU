@@ -77629,12 +77629,12 @@
 	      );
 	    });
 
-	    console.log(this.state.awards > 0);
+	    console.log(this.state.awards, this.state.awards.length > 0);
 
 	    return _react2.default.createElement(
 	      'div',
 	      null,
-	      this.state.awards > 0 ? _react2.default.createElement(
+	      this.state.awards.length > 0 ? _react2.default.createElement(
 	        _reactSlick2.default,
 	        settings,
 	        awards
