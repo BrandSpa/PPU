@@ -75245,6 +75245,7 @@
 	        this.state.sliderMain.length > 0 ? _react2.default.createElement(
 	          _reactSlick2.default,
 	          settings1,
+	          slider1.length > 0 ? slider1 : [],
 	          _react2.default.createElement(
 	            'div',
 	            null,

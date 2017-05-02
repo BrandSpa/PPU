@@ -113,6 +113,7 @@ export default React.createClass({
        	   {
             this.state.sliderMain.length > 0 ? 
               <Slider {...settings1}> 
+              {slider1.length > 0 ? slider1 : [] }
                 <div><img src="/uploads/slider/slider_image/94/probono01__1_.jpg" alt="" className="img-responsive"/></div> 
               </Slider> 
               : <div></div> 
