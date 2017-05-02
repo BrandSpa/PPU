@@ -77628,7 +77628,7 @@
 	        )
 	      );
 	    });
-
+	    console.log(this.state, awards);
 	    return _react2.default.createElement(
 	      'div',
 	      null,

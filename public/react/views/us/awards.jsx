@@ -60,6 +60,8 @@ export default React.createClass({
         </div>
       )
     });
+    
+    console.log(this.state, awards);
 
     return (
       <div>
