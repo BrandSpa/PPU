@@ -88,4 +88,4 @@ $ ->
       ppu.ProbonoController.index()
 
   new ppu.Workspace
-  Backbone.history.start pushState: true
+

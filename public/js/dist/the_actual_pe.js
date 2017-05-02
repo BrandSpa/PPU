@@ -1,21 +1,20 @@
-ppu.admin.PostsController = {
+ppu.admin.TheActualPeController = {
   index: function() {
     ppu.posts = new ppu.Posts;
     ppu.posts.fetch({
       reset: true,
       data: {
-        the_actual_ch: 0,
-        the_actual_co: 0
+        the_actual_pe: 1
       }
     });
-    ppu.admin.posts = new ppu.admin.PostsView({
+    ppu.admin.posts = new ppu.admin.TheActualViews({
       collection: ppu.posts
     });
     return ppu.admin.postsFilters = new ppu.admin.PostsFilters;
   },
   create: function() {
     ppu.admin.post = new ppu.Post;
-    ppu.admin.postCreate = new ppu.admin.PostCreate({
+    ppu.admin.postCreate = new ppu.admin.TheActualPeCreate({
       model: ppu.admin.post
     });
     ppu.admin.postCreate.render();
@@ -34,7 +33,7 @@ ppu.admin.PostsController = {
       }
     });
   },
-  edit: function(id) {
+  edit: function() {
     ppu.admin.post = new ppu.Post({
       id: id
     });

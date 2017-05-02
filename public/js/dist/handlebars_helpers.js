@@ -1,16 +1,16 @@
 Handlebars.registerHelper('checked', function(val1, val2) {
-  var _ref;
-  return (_ref = val1 === val2) != null ? _ref : {
+  var ref;
+  return (ref = val1 === val2) != null ? ref : {
     ' checked="checked"': ''
   };
 });
 
 Handlebars.registerHelper('shortenText', function(text, block) {
-  return text.substring(0, 95) + " ...";
+  return text.replace('&amp;', '&').substring(0, 95) + " ...";
 });
 
 Handlebars.registerHelper('shortenText2', function(text, block) {
-  return text.substring(0, 60) + " ...";
+  return text.substring(0, 190).replace('&amp;', '&');
 });
 
 Handlebars.registerHelper('dateFormat', function(context, block) {
@@ -32,5 +32,13 @@ Handlebars.registerHelper('getYear', function(context, block) {
     return moment(context).format(f);
   } else {
     return context;
+  }
+});
+
+Handlebars.registerHelper('getLangDomain', function(url, block) {
+  if (app.lang === 'en') {
+    return "en.ppulegal.com/" + url + block;
+  } else {
+    return "http://ppulegal.com/" + url + block;
   }
 });

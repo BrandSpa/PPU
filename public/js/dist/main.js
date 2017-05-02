@@ -66,9 +66,7 @@ ppu.appendDatePicker = function(el) {
 };
 
 ppu.appendSelect = function(el) {
-  return $(el).find("select").selectBoxIt({
-    autoWidth: false
-  });
+  return $(el).find('.selectpicker').selectpicker();
 };
 
 ppu.appendCheck = function(el) {
@@ -82,14 +80,15 @@ ppu.appendCheck = function(el) {
 ppu.appendSummernote = function(el) {
   return $(el).find('.summernote').summernote({
     fontname: ['Lato'],
-    onImageUpload: function(files, editor, welEditable) {
-      return app.uploadPhotoSummernote(files[0], editor, welEditable);
+    onImageUpload: function(files) {
+      return app.uploadPhotoSummernote(files[0]);
     }
   });
 };
 
 ppu.appendSummernoteExperience = function(el) {
-  return $(el).find('.summernote').summernote({
+  var editor;
+  return editor = $(el).find('.summernote').summernote({
     fontNames: ['Lato'],
     onImageUpload: function(files, editor, welEditable) {
       return app.uploadPhotoSummernoteExperience(files[0], editor, welEditable);
@@ -110,7 +109,10 @@ app.uploadPhotoSummernote = function(file, editor, welEditable) {
     contentType: false,
     processData: false,
     success: function(url) {
-      return editor.insertImage(welEditable, url);
+      var imgNode;
+      imgNode = document.createElement("IMG");
+      imgNode.src = url;
+      return $(document).find('.summernote').summernote('insertNode', imgNode);
     }
   });
 };
@@ -128,7 +130,6 @@ app.uploadPhotoSummernoteExperience = function(file, editor, welEditable) {
     contentType: false,
     processData: false,
     success: function(url) {
-      console.log(url);
       return editor.insertImage(welEditable, url);
     }
   });
@@ -167,17 +168,16 @@ $(window).on("scroll", _.throttle((function(_this) {
   return function(event) {
     var body, threshold, tolerance;
     body = document.body;
-    tolerance = 100;
+    tolerance = 200;
     threshold = body.scrollHeight - window.innerHeight - tolerance;
-    if (body.scrollTop > threshold) {
-      console.log("scroll");
+    if ($(window).scrollTop() > threshold) {
       return app.pubsub.trigger("general:scroll");
     }
   };
 })(this), 1000));
 
 $('.carousel').carousel({
-  interval: 2000
+  interval: 7000
 });
 
 $('.popver').popover();
@@ -212,7 +212,7 @@ if ($(window).width() < 768) {
   app.topPadding = 35;
 }
 
-$(window).scroll(function() {
+$(document).scroll(function() {
   if ($(window).scrollTop() > app.topPadding) {
     return $(".top-bar-container").addClass("to-top");
   } else {

@@ -1,173 +1,127 @@
-var __hasProp = {}.hasOwnProperty,
-  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  hasProp = {}.hasOwnProperty;
 
 $(function() {
-  ppu.Workspace = (function(_super) {
-    __extends(Workspace, _super);
+  ppu.admin.Router = (function(superClass) {
+    extend(Router, superClass);
 
-    function Workspace() {
-      return Workspace.__super__.constructor.apply(this, arguments);
+    function Router() {
+      return Router.__super__.constructor.apply(this, arguments);
     }
 
-    Workspace.prototype.routes = {
-      "abogados": "lawyers",
-      "abogados/:slug": "lawyer",
-      "experiencias": "experiences",
-      "experiencias/:slug": "experience",
-      "posts": "posts",
-      "": "posts",
-      "posts/:slug": "post",
-      "areas": "areas",
-      "areas/:slug": "area",
-      "trabaje-con-nosotros": "curriculum",
-      "nosotros": "us",
-      "probono": "probono"
+    Router.prototype.routes = {
+      'dashboard': 'dashboard',
+      'crear-abogado': 'createLawyer',
+      "admin/lawyers/new": "createLawyer",
+      "en/admin/lawyers/new": "createLawyer",
+      ':lang/crear-abogado': 'createLawyer',
+      'admin/lawyers/:id/edit': 'editLawyer',
+      "en/admin/lawyers/:id/edit": "editLawyer",
+      'editar-abogado/:id': 'editLawyer',
+      'en/editar-abogado/:id': 'editLawyer',
+      'admin/posts': 'post',
+      'admin/posts/new': 'createPost',
+      'en/admin/posts/new': 'createPost',
+      'admin/posts/:id/edit': 'editPost',
+      'en/admin/posts/:id/edit': 'editPost',
+      'admin/the-actual/new': 'createTheActual',
+      'admin/the-actual/:id/edit': 'editTheActual',
+      'en/admin/the-actual/:id/edit': 'editTheActual',
+      'admin/the-actual': 'theActual',
+      'admin/the-actual-co/new': 'createTheActualCo',
+      'admin/the-actual-co/:id/edit': 'editTheActualCo',
+      'en/admin/the-actual-co/:id/edit': 'editTheActualCo',
+      'admin/the-actual-co': 'theActualCo',
+      'admin/the-actual-pe/new': 'createTheActualPe',
+      'admin/the-actual-pe/:id/edit': 'editTheActualPe',
+      'en/admin/the-actual-pe/:id/edit': 'editTheActualPe',
+      'admin/the-actual-pe': 'theActualPe',
+      'admin/experiences': 'experience',
+      'admin/experiences/new': 'createExperience',
+      'admin/experiences/:id/edit': 'editExperience',
+      'en/admin/experiences/:id/edit': 'editExperience'
     };
 
-    Workspace.prototype.initialize = function() {
-      new ppu.AppView;
-      new ppu.Seo;
-      window.urlTranslation = "";
-      ppu.contact = new ppu.Contact;
-      return ppu.FooterContactCreate = new ppu.FooterContactCreate({
-        model: ppu.contact
-      });
+    Router.prototype.dashboard = function() {
+      return ppu.admin.LawyersController.index();
     };
 
-    Workspace.prototype.lawyers = function(lang) {
-      ppu.lawyers = new ppu.Lawyers;
-      ppu.lawyersView = new ppu.LawyersView({
-        collection: ppu.lawyers
-      });
-      return ppu.lawyersFilters = new ppu.LawyersFilters;
+    Router.prototype.lawyer = function() {
+      return ppu.admin.LawyersController.show();
     };
 
-    Workspace.prototype.lawyer = function(slug) {
-      ppu.lawyer = new ppu.Lawyer({
-        id: slug
-      });
-      return ppu.LawyerDetailView = new ppu.LawyerDetailView({
-        model: ppu.lawyer
-      });
+    Router.prototype.createLawyer = function(lang) {
+      return ppu.admin.LawyersController.create();
     };
 
-    Workspace.prototype.posts = function() {
-      ppu.posts = new ppu.Posts;
-      ppu.posts.fetch({
-        reset: true,
-        data: {
-          published: true,
-          not_featured: true
-        }
-      });
-      ppu.postsView = new ppu.PostsView({
-        collection: ppu.posts
-      });
-      ppu.postsFeatured = new ppu.Posts;
-      ppu.postsFeaturedView = new ppu.PostsFeaturedView({
-        collection: ppu.postsFeatured
-      });
-      ppu.postsFeatured.fetch({
-        reset: true,
-        data: {
-          featured: true
-        }
-      });
-      ppu.postsFilters = new ppu.PostsFilters;
-      ppu.postsFilters.render();
-      return ppu.filtersMobile = new ppu.FiltersMobile;
+    Router.prototype.editLawyer = function(id) {
+      return ppu.admin.LawyersController.edit(id);
     };
 
-    Workspace.prototype.post = function(slug) {
-      ppu.post = new ppu.Post({
-        id: slug
-      });
-      ppu.post.fetch();
-      return ppu.postDetailView = new ppu.PostDetailView({
-        model: ppu.post
-      });
+    Router.prototype.post = function() {
+      return ppu.admin.PostsController.index();
     };
 
-    Workspace.prototype.areas = function() {
-      ppu.categories = new ppu.Categories;
-      ppu.categories.fetch({
-        reset: true
-      });
-      return ppu.categoriesView = new ppu.CategoriesView({
-        collection: ppu.categories
-      });
+    Router.prototype.createPost = function(lang) {
+      return ppu.admin.PostsController.create();
     };
 
-    Workspace.prototype.area = function(slug) {
-      ppu.category = new ppu.Category({
-        id: slug
-      });
-      ppu.category.fetch();
-      ppu.categoryDetail = new ppu.CategoryDetail({
-        model: ppu.category
-      });
-      ppu.categories = new ppu.Categories;
-      ppu.categoriesList = new ppu.CategoriesList({
-        collection: ppu.categories
-      });
-      ppu.lawyers = new ppu.Lawyers;
-      return ppu.lawyersRelated = new ppu.lawyersRelatedCategory({
-        collection: ppu.lawyers
-      });
+    Router.prototype.editPost = function(id) {
+      return ppu.admin.PostsController.edit(id);
     };
 
-    Workspace.prototype.experience = function(slug) {
-      ppu.experience = new ppu.Experience({
-        id: slug
-      });
-      ppu.experience.fetch();
-      return ppu.experienceDetailView = new ppu.ExperienceDetailView({
-        model: ppu.experience
-      });
+    Router.prototype.theActual = function() {
+      return ppu.admin.TheActualChController.index();
     };
 
-    Workspace.prototype.experiences = function() {
-      ppu.experiencesFilters = new ppu.ExperiencesFilters;
-      ppu.experiencesFilters.render();
-      ppu.experiences = new ppu.Experiences;
-      ppu.experiences.fetch({
-        reset: true,
-        data: {
-          published: true,
-          not_featured: true
-        }
-      });
-      return ppu.experiencesView = new ppu.ExperiencesView({
-        collection: ppu.experiences
-      });
+    Router.prototype.createTheActual = function() {
+      return ppu.admin.TheActualChController.create();
     };
 
-    Workspace.prototype.curriculum = function() {
-      var title;
-      ppu.curriculum = new ppu.Curriculum;
-      ppu.curriculumCreate = new ppu.CurriculumCreate({
-        model: ppu.curriculum
-      });
-      title = $("#work-with-title-template").html();
-      return $("#top-bar").html(title);
+    Router.prototype.editTheActual = function(id) {
+      return ppu.admin.TheActualChController.edit(id);
     };
 
-    Workspace.prototype.us = function() {
-      var title;
-      title = $("#us-title-template").html();
-      return $("#top-bar").html(title);
+    Router.prototype.theActualCo = function() {
+      return ppu.admin.TheActualCoController.index();
     };
 
-    Workspace.prototype.probono = function() {
-      var title;
-      title = $("#probono-title-template").html();
-      return $("#top-bar").html(title);
+    Router.prototype.createTheActualCo = function() {
+      return ppu.admin.TheActualCoController.create();
     };
 
-    return Workspace;
+    Router.prototype.editTheActualCo = function(id) {
+      return ppu.admin.TheActualCoController.edit(id);
+    };
+
+    Router.prototype.theActualPe = function() {
+      return ppu.admin.TheActualPeController.index();
+    };
+
+    Router.prototype.createTheActualPe = function() {
+      return ppu.admin.TheActualPeController.create();
+    };
+
+    Router.prototype.editTheActualPe = function(id) {
+      return ppu.admin.TheActualPeController.edit(id);
+    };
+
+    Router.prototype.experience = function() {
+      return ppu.admin.ExperiencesController.index();
+    };
+
+    Router.prototype.createExperience = function(lang) {
+      return ppu.admin.ExperiencesController.create();
+    };
+
+    Router.prototype.editExperience = function(id) {
+      return ppu.admin.ExperiencesController.edit(id);
+    };
+
+    return Router;
 
   })(Backbone.Router);
-  new ppu.Workspace;
+  ppu.admin.router = new ppu.admin.Router;
   return Backbone.history.start({
     pushState: true
   });
