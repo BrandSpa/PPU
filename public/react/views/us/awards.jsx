@@ -61,11 +61,11 @@ export default React.createClass({
       )
     });
     
-    console.log(this.state.awards > 0);
+    console.log(this.state.awards.length > 0);
 
     return (
       <div>
-      {this.state.awards > 0 ?
+      {this.state.awards.length > 0 ?
         <Slider {...settings}>
           {awards}
         </Slider>
