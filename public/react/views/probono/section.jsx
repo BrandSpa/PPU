@@ -106,9 +106,6 @@ export default React.createClass({
     ]
   };
 
-  console.log('get slider main', sliderMain.length > 0 );
-  console.log('get slider companies', sliderCompanies.length > 0 );
-
     return (
       <div>
       <TopBar title="Probono" hidden />
