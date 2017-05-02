@@ -70,7 +70,7 @@ export default React.createClass({
         <div className="padding-top"></div>
 
           <div id="us">
-          {this.state.sliderMain > 0 ? 
+          {this.state.sliderMain.length > 0 ? 
                 <Slider {...settings}>
               {sliderMain}
             </Slider>

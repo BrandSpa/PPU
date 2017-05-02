@@ -43,7 +43,7 @@ export default React.createClass({
 
     return (
       <div>
-        {this.state.usPhrases > 0 ? 
+        {this.state.usPhrases.length > 0 ? 
           <Slider {...settings}>
           {usPhrases}
         </Slider>
