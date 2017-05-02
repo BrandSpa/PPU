@@ -75187,8 +75187,6 @@
 	  },
 	  render: function render() {
 	    var sliderMain = this.state.sliderMain.map(function (slide) {
-	      console.log('slide main', slide);
-
 	      return _react2.default.createElement(
 	        'div',
 	        { key: slide.id },
@@ -75203,7 +75201,7 @@
 	        _react2.default.createElement('img', { src: slide.slider_image.url, width: '200' })
 	      );
 	    });
-	    console.log('probono', this.state.sliderMain, this.state.sliderMain.length);
+
 	    var settings1 = {
 	      autoplay: true,
 	      speed: 900,
@@ -75240,6 +75238,7 @@
 	      }]
 	    };
 
+	    console.log('get map', sliderMain.length);
 	    return _react2.default.createElement(
 	      'div',
 	      null,

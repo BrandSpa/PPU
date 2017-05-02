@@ -51,8 +51,6 @@ export default React.createClass({
 
   render() {
     const sliderMain = this.state.sliderMain.map((slide) => {
-      console.log('slide main', slide);
-      
       return (
         <div key={slide.id}>
           <img src={slide.slider_image.url} className="img-responsive"/>
@@ -67,7 +65,7 @@ export default React.createClass({
         </div>
       );
     });
-    console.log('probono', this.state.sliderMain, this.state.sliderMain.length);
+
     const settings1 = {
       autoplay: true,
       speed: 900,
@@ -107,12 +105,14 @@ export default React.createClass({
     }
   ]
     };
-
+    
+    console.log('get map', sliderMain.length);
     return (
       <div>
       <TopBar title="Probono" hidden />
 
         <div className="padding-top"></div>
+
         <div id="pro-bono">
         <div>{this.state.sliderMain.length > 0 ?  <Slider {...settings1}> {sliderMain} </Slider> : ''}</div> 
 
