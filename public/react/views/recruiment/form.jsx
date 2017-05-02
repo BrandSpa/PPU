@@ -21,15 +21,17 @@ export default React.createClass({
      },
       data: {},
       sendText: trans.send,
-      checked: false
+      checked: false,
+      loading: false,
+      checkedErr: false
     }
   },
 
-handleSelect: function(e, a) {
-  var obj = {};
-  obj[e] = a;
-  this.setState({selects: extend(this.state.selects, obj)});
-},
+  handleSelect: function(e, a) {
+    var obj = {};
+    obj[e] = a;
+    this.setState({selects: extend(this.state.selects, obj)});
+  },
 
   handleChange: function(e){
     var name = $(e.target).attr('name');
@@ -50,31 +52,36 @@ handleSelect: function(e, a) {
     e.preventDefault();
     var form = $(e.target)[0];
     var formData = new FormData(form);
+
     $.ajaxSetup({
       headers: {
         'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
       }
     });
 
-    $.ajax({
-      url: "/api/curriculums",
-      type: 'POST',
-      data: formData,
-      processData: false,
-      contentType: false,
-      beforeSend: this.handleLoading
-    })
-    .then(function(err, res) {
-      if(err) {
-        console.log(res.body);
-      }
-      this.props.onSubmit();
-    }.bind(this));
-
+    if(this.state.checked) {
+      $.ajax({
+        url: "/api/curriculums",
+        type: 'POST',
+        data: formData,
+        processData: false,
+        contentType: false,
+        beforeSend: this.handleLoading
+      })
+      .then(function(err, res) {
+        if(err) {
+          console.log(res.body);
+        }
+        this.props.onSubmit();
+      }.bind(this));
+    } else {
+      this.setState({checkedErr: true});
+    }
+   
   },
 
   handleLoading: function() {
-    this.setState({sendText: "Enviando..."});
+    this.setState({checkedErr: false, loading: true, sendText: "Enviando..."});
   },
 
   toggleChecked(e) {
@@ -251,7 +258,11 @@ handleSelect: function(e, a) {
               </label>
             </div>
 
-            <button className="btn send-cv" >{this.state.sendText}</button>
+            <div className="alert alert-danger" style={ this.state.checkedErr ? {display: 'block'} : {display: 'none'} }>
+              Debe aceptar los terminos & condiciones.
+            </div>
+
+            <button className="btn send-cv" disabled={this.state.loading} >{this.state.sendText}</button>
           </form>
 
         </div>
