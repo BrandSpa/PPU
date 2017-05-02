@@ -75160,8 +75160,8 @@
 	    };
 	  },
 	  componentDidMount: function componentDidMount() {
-	    this.fetchSliders();
 	    this.fetchContent();
+	    this.fetchSliders();
 	  },
 	  fetchSliders: function fetchSliders() {
 	    var _this = this;
@@ -75237,8 +75237,7 @@
 	        }
 	      }]
 	    };
-	    console.log(slider1);
-	    console.log(slider2);
+
 	    return _react2.default.createElement(
 	      'div',
 	      null,
@@ -75247,23 +75246,15 @@
 	      _react2.default.createElement(
 	        'div',
 	        { id: 'pro-bono' },
-	        this.state.sliderMain.length > 0 ? _react2.default.createElement(
-	          _reactSlick2.default,
-	          settings1,
-	          ' ',
-	          slider1,
-	          ' '
-	        ) : _react2.default.createElement('div', null),
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'content' },
-	          this.state.sliderCompanies.length > 0 ? _react2.default.createElement(
-	            _reactSlick2.default,
-	            settings2,
-	            ' ',
-	            slider2,
-	            ' '
-	          ) : _react2.default.createElement('div', null)
+	          _react2.default.createElement(
+	            'h2',
+	            null,
+	            this.state.content["title_" + _get_lang2.default]
+	          ),
+	          _react2.default.createElement('div', { dangerouslySetInnerHTML: { __html: this.state.content["text_" + _get_lang2.default] } })
 	        )
 	      )
 	    );

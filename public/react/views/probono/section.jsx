@@ -15,8 +15,8 @@ export default React.createClass({
   },
 
   componentDidMount() {
-    this.fetchSliders();
     this.fetchContent();
+    this.fetchSliders();
   },
 
   fetchSliders() {
@@ -105,8 +105,7 @@ export default React.createClass({
     }
     ]
   };
-  console.log(slider1);
-  console.log(slider2);
+
     return (
       <div>
       <TopBar title="Probono" hidden />
@@ -115,14 +114,12 @@ export default React.createClass({
 
         <div id="pro-bono">
 
-          {this.state.sliderMain.length > 0 ? 
-            <Slider {...settings1}> {slider1} </Slider> 
-            : <div></div> }
+       
 
           <div className="content">
-            {this.state.sliderCompanies.length > 0 ? 
-              <Slider {...settings2}> {slider2} </Slider> 
-              : <div></div>}
+            <h2>{ this.state.content["title_" + getLang] }</h2>
+            <div dangerouslySetInnerHTML={{__html: this.state.content["text_" + getLang]}} />
+          
           </div>
 
         </div>
