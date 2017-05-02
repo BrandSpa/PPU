@@ -75239,6 +75239,7 @@
 	    };
 
 	    console.log('get map', sliderMain.length > 0);
+	    console.log('get map', sliderCompanies.length > 0);
 
 	    return _react2.default.createElement(
 	      'div',
@@ -75271,7 +75272,7 @@
 	          _react2.default.createElement(
 	            'div',
 	            null,
-	            this.state.sliderCompanies.length > 0 ? _react2.default.createElement(
+	            sliderCompanies.length > 0 ? _react2.default.createElement(
 	              _reactSlick2.default,
 	              settings2,
 	              ' ',

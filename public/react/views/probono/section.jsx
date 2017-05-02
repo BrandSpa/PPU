@@ -107,6 +107,7 @@ export default React.createClass({
   };
 
   console.log('get map', sliderMain.length > 0 );
+  console.log('get map', sliderCompanies.length > 0 );
 
     return (
       <div>
@@ -120,7 +121,7 @@ export default React.createClass({
           <div className="content">
             <h2>{this.state.content["title_" + getLang]}</h2>
             <div dangerouslySetInnerHTML={{__html: this.state.content["text_" + getLang]}} />
-            <div>{ this.state.sliderCompanies.length > 0 ? <Slider {...settings2}> {sliderCompanies} </Slider> : '' } </div>
+            <div>{ sliderCompanies.length > 0 ? <Slider {...settings2}> {sliderCompanies} </Slider> : '' } </div>
           </div>
 
         </div>
