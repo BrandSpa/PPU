@@ -1,16 +1,16 @@
 'use strict';
-var React = require('react');
-var Helmet = require('react-helmet');
-var Footer = require('views/footer.jsx');
-var NavMain = require('views/nav_main.jsx');
-var NavMain = require('views/nav_main.jsx');
-var NavMobile = require('views/nav_mobile.jsx');
-var Posts = require('views/posts/section.jsx');
+import React from 'react';
+import Footer from 'views/footer';
+import NavMain from 'views/nav_main';
+import NavMobile from 'views/nav_mobile';
+import Posts from 'views/posts/section';
 
-module.exports = React.createClass({
-  render: function() {
+export default React.createClass({
+  render() {
     var pathname = this.props.location.pathname;
     window.scrollTo(0, 0);
+
+    console.log(this.props);
 
     return (
       <div className="container app-container">
@@ -20,15 +20,13 @@ module.exports = React.createClass({
           <NavMain />
 
           <div className="col-lg-10" id="yield-container">
-            {this.props.children || <Posts history={this.props.history} />}
+            {this.props.children || <Posts {...this.props} />}
           </div>
 
         </div>
 
         <Footer />
       </div>
-
-
     );
   }
 });

@@ -1,9 +1,8 @@
 'use strict';
-var React = require('react');
-var request = require('superagent');
-var Slider = require('react-slick');
+import React from 'react';
+import request from 'superagent';
 
-module.exports = React.createClass({
+export default React.createClass({
   getInitialState: function() {
     return {
       awards: []

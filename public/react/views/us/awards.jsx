@@ -1,31 +1,31 @@
 'use strict';
-var React = require('react');
-var request = require('superagent');
-var Slider = require('react-slick');
+import React from 'react';
+import request from 'superagent';
+import Slider from 'react-slick';
 
-module.exports = React.createClass({
-  getInitialState: function() {
+export default React.createClass({
+  getInitialState() {
     return {
       awards: []
     }
   },
 
-  componentDidMount: function() {
+  componentDidMount() {
     this.fetch();
   },
 
-  fetch: function() {
+  fetch() {
     request
     .get('/api/sliders')
     .query({name: 'usAwards'})
-    .end(function(err, res) {
+    .end((err, res) => {
       this.setState({
         awards: res.body
       });
-    }.bind(this));
+    });
   },
 
-  render: function() {
+  render() {
     var settings = {
       autoplay: true,
       infinite: true,
@@ -62,9 +62,13 @@ module.exports = React.createClass({
     });
 
     return (
-      <Slider {...settings}>
-        {awards}
-      </Slider>
+      <div>
+      {this.state.awards > 0 ?
+        <Slider {...settings}>
+          {awards}
+        </Slider>
+      : <div></div>}
+      </div>
     )
   }
 });

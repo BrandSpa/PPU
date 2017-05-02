@@ -1,12 +1,12 @@
 'use strict';
-var React = require('react');
-var Select = require('react-select');
-var trans = require('langs/app');
-var areas = require('langs/areas');
-var $ = require('jquery');
-var _ = require('lodash');
+import React from 'react';
+import Select from 'react-select';
+import trans from 'langs/app';
+import areas from 'langs/areas';
+import $ from 'jquery';
+import {extend} from 'lodash';
 
-module.exports = React.createClass({
+export default React.createClass({
   getInitialState: function() {
     return {
      files: {
@@ -27,7 +27,7 @@ module.exports = React.createClass({
 handleSelect: function(e, a) {
   var obj = {};
   obj[e] = a;
-  this.setState({selects: _.extend(this.state.selects, obj)});
+  this.setState({selects: extend(this.state.selects, obj)});
 },
 
   handleChange: function(e){
@@ -42,7 +42,7 @@ handleSelect: function(e, a) {
     var obj = {};
     obj[name] = file;
 
-    this.setState({files: _.extend(this.state.files, obj)});
+    this.setState({files: extend(this.state.files, obj)});
   },
 
   handleSubmit: function(e) {
@@ -237,6 +237,12 @@ handleSelect: function(e, a) {
                   onChange={this.handleFile}
                   type="file" />
               </div>
+            </div>
+
+            <div className="checkbox">
+              <label>
+                <input type="checkbox" /> Mediante el envío de su información, está autorizando a Philippi, Prietocarrizosa, Ferrero DU & Uría S.A.S el tratamiento de sus datos personales para las finalidades dadas a conocer en la Política de Tratamiento de Datos Personales que está disponible en www.ppulegal.com
+              </label>
             </div>
 
             <button className="btn send-cv" >{this.state.sendText}</button>

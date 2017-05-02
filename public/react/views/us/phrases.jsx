@@ -1,9 +1,9 @@
 'use strict';
-var React = require('react');
-var Slider = require('react-slick');
-var request = require('superagent');
+import React from 'react';
+import Slider from 'react-slick';
+import request from 'superagent';
 
-module.exports = React.createClass({
+export default React.createClass({
   getInitialState: function() {
     return {
       usPhrases: []
@@ -42,9 +42,14 @@ module.exports = React.createClass({
     });
 
     return (
-      <Slider {...settings}>
-        {usPhrases}
-      </Slider>
+      <div>
+        {this.state.usPhrases > 0 ? 
+          <Slider {...settings}>
+          {usPhrases}
+        </Slider>
+          : <div></div>}
+      </div>
+    
     );
   }
 });

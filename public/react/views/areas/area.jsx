@@ -1,18 +1,18 @@
 'use strict';
-var React = require('react');
+import React from 'react';
 
-module.exports = React.createClass({
-  getDefaultProps: function() {
+export default React.createClass({
+  getDefaultProps() {
     return {
       area: {}
     }
   },
 
-  open: function() {
+  open() {
     this.props.history.pushState(null, '/areas/' + this.props.area.slug);
   },
 
-  render: function() {
+  render() {
     var area = this.props.area;
 
     return (

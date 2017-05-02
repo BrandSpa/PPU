@@ -1,31 +1,30 @@
 'use strict';
-var React = require('react');
-var request = require('superagent');
-var Helmet = require('react-helmet');
-var trans = require('langs/app');
-var transLawyer = require('langs/lawyer');
-var Social = require('views/lawyer/social.jsx');
-var Categories = require('views/lawyer/categories.jsx');
-var Education = require('views/lawyer/education.jsx');
-var ProfessionalExperience = require('views/lawyer/professional_experience.jsx');
-var Conferences = require('views/lawyer/conference.jsx');
-var Membership = require('views/lawyer/membership.jsx');
-var Academic = require('views/lawyer/academic.jsx');
-var Language = require('views/lawyer/language.jsx');
-var Phrase = require('views/lawyer/phrase.jsx');
-var Award = require('views/lawyer/award.jsx');
-var Post = require('views/lawyer/post.jsx');
-var Article = require('views/lawyer/article.jsx');
-var TopBar = require('views/top_bar.jsx');
+import React from 'react';
+import request from 'superagent';
+import trans from 'langs/app';
+import transLawyer from 'langs/lawyer';
+import Social from 'views/lawyer/social';
+import Categories from 'views/lawyer/categories';
+import Education from 'views/lawyer/education';
+import ProfessionalExperience from 'views/lawyer/professional_experience';
+import Conferences from 'views/lawyer/conference';
+import Membership from 'views/lawyer/membership';
+import Academic from 'views/lawyer/academic';
+import Language from 'views/lawyer/language';
+import Phrase from 'views/lawyer/phrase';
+import Award from 'views/lawyer/award';
+import Post from 'views/lawyer/post';
+import Article from 'views/lawyer/article';
+import TopBar from 'views/top_bar';
 
-module.exports = React.createClass({
-  getInitialState: function() {
+export default React.createClass({
+  getInitialState() {
     return {
       lawyer: {}
     }
   },
 
-  componentDidMount: function() {
+  componentDidMount() {
     request
     .get('/api/lawyers/'+ this.props.params.slug)
     .end(function(err, res){
@@ -33,7 +32,7 @@ module.exports = React.createClass({
     }.bind(this));
   },
 
-  render: function() {
+  render() {
     var lawyer = this.state.lawyer;
     var lawyerImage;
 

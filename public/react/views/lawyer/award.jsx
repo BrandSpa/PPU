@@ -1,14 +1,14 @@
 'use strict';
-var React = require('react');
+import React from 'react';
 
-module.exports = React.createClass({
-  getDefaultProps: function() {
+export default React.createClass({
+  getDefaultProps() {
     return {
       collection: []
     }
   },
 
-  render: function() {
+  render() {
 
     var awardNodes = this.props.collection.map(function(model) {
       return (

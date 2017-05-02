@@ -1,51 +1,50 @@
 'use strict';
-var React = require('react');
-var Slider = require('react-slick');
-var Phrases = require('views/us/phrases.jsx');
-var Awards = require('views/us/awards.jsx');
-var Networks = require('views/us/networks.jsx');
-var request = require('superagent');
-var getLang = require('get_lang');
-var TopBar = require('views/top_bar.jsx');
-var trans = require('langs/app');
-var Helmet = require('react-helmet');
+import React from 'react';
+import Slider from 'react-slick';
+import request from 'superagent';
+import Phrases from 'views/us/phrases';
+import Awards from 'views/us/awards';
+import Networks from 'views/us/networks';
+import getLang from 'get_lang';
+import TopBar from 'views/top_bar';
+import trans from 'langs/app';
 
-module.exports = React.createClass({
-  getInitialState: function() {
+export default React.createClass({
+  getInitialState() {
     return {
       sliderMain: [],
       content: {}
     }
   },
 
-  componentDidMount: function() {
+  componentDidMount() {
     this.fetchSliders();
     this.fetchContent();
   },
 
-  fetchSliders: function() {
+  fetchSliders() {
     request
     .get('/api/sliders')
     .query({name: 'usMain'})
-    .end(function(err, res) {
+    .end((err, res) => {
       this.setState({
         sliderMain: res.body
       });
-    }.bind(this));
+    });
   },
 
-  fetchContent: function() {
+  fetchContent() {
     request
     .get('/api/pages')
     .query({page: 'us'})
-    .end(function(err, res) {
+    .end((err, res) => {
       this.setState({
         content: res.body
       });
-    }.bind(this));
+    });
   },
 
-  render: function() {
+  render() {
 
     var sliderMain = this.state.sliderMain.map(function(slide) {
       return (
@@ -71,9 +70,12 @@ module.exports = React.createClass({
         <div className="padding-top"></div>
 
           <div id="us">
-            <Slider {...settings}>
+          {this.state.sliderMain > 0 ? 
+                <Slider {...settings}>
               {sliderMain}
             </Slider>
+            : <div></div>}
+          
             <div className="content">
               <div dangerouslySetInnerHTML={{__html: this.state.content["text_" + getLang]}} />
             </div>

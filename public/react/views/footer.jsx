@@ -1,10 +1,9 @@
 'use strict';
-var React = require('react');
-var Social = require('footer_social.jsx');
-var ContactForm = require('footer_contact_form.jsx');
-var trans = require('langs/app');
+import React from 'react';
+import Social from './footer_social.jsx';
+import trans from 'langs/app';
 
-module.exports = React.createClass({
+export default React.createClass({
   getInitialState: function() {
     return {
       showContact: false

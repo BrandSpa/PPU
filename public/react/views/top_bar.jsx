@@ -1,15 +1,16 @@
 'use strict';
-var React = require('react');
-var _ = require('lodash');
-var $ = require('jquery');
-var getLang = require('utils/get_lang');
-var trans = require('langs/app');
-var Select = require('react-select');
-var areaOptions = require('langs/areas');
-var lawyerTrans = require('langs/lawyer');
+import React from 'react';
+import {extend, throttle} from 'lodash';
+import $ from 'jquery';
+import getLang from 'utils/get_lang';
+import trans from 'langs/app';
+import Select from 'react-select';
 
-module.exports = React.createClass({
-  getInitialState: function() {
+import areaOptions from 'langs/areas';
+import lawyerTrans from 'langs/lawyer';
+
+export default React.createClass({
+  getInitialState() {
     return {
       toTop: false,
       showFilters: false,
@@ -22,15 +23,15 @@ module.exports = React.createClass({
     }
   },
 
-  componentDidMount: function() {
-    window.addEventListener('scroll', this.handleScroll.bind(this));
+  componentDidMount() {
+    window.addEventListener('scroll', throttle(this.handleScroll, 500) );
   },
 
-  componentWillUnmount: function() {
-    window.removeEventListener('scroll', this.handleScroll.bind(this));
+  componentWillUnmount() {
+    window.removeEventListener('scroll', throttle(this.handleScroll, 500));
   },
 
-  handleScroll: function() {
+  handleScroll() {
     var topPadding;
 
     if ($(window).width() < 768) {
@@ -44,69 +45,62 @@ module.exports = React.createClass({
     }
 
    if(document.body.scrollTop > topPadding || document.documentElement.scrollTop > topPadding) {
-    this.setState({
-      toTop: true
-    });
+    this.setState({ toTop: true });
    } else {
-      this.setState({
-      toTop: false
-    });
+    this.setState({ toTop: false });
    }
   },
 
-  filter: function(newFilter) {
+  filter(newFilter) {
     this.setState({
-      filters: _.extend(this.state.filters, newFilter)
+      filters: extend(this.state.filters, newFilter)
     });
 
     this.props.onFilter(this.state.filters);
   },
 
-  filterQuery: function() {
-    var val = React.findDOMNode(this.refs.query).value;
+  filterQuery(e) {
+    var val = e.currentTarget.value;
     if(val === '') val = null;
     this.filter({keyword: val});
   },
 
-  filterCountry: function(val) {
+  filterCountry(val) {
     if(val === '') val = null;
     this.filter({country: val});
   },
 
-  filterArea: function(val) {
+  filterArea(val) {
     if(val === '') val = null;
     this.filter({category: val});
   },
 
-  filterLawyerType: function(val) {
+  filterLawyerType(val) {
     if(val === '') val = null;
     this.filter({position: val});
   },
 
-  toggleFilters: function(e) {
+  toggleFilters(e) {
     e.preventDefault();
     this.setState({
       showFilters: this.state.showFilters ? false : true
     });
   },
 
-  goBack: function(e) {
+  goBack(e) {
     e.preventDefault();
     window.scrollTo(0, 0);
     window.history.back();
   },
 
-  render: function() {
+  render() {
     var cityOptions = [
       {value: 'Colombia', label: 'Colombia'},
       {value: 'Chile', label: 'Chile'},
       {value: 'Perú', label: 'Perú'}
     ];
 
-    var areas = areaOptions.map(function(area) {
-      return {value: area, label: area};
-    });
-
+    var areas = areaOptions.map(area => ({ value: area, label: area }));
     var lawyerTypesOptions = [
       lawyerTrans.lawyer,
       lawyerTrans.seniorCounsel,
@@ -115,9 +109,10 @@ module.exports = React.createClass({
       lawyerTrans.specialist,
     ];
 
-    var lawyerTypes = lawyerTypesOptions.map(function(option) {
-      return {value: option, label: option};
-    });
+    var lawyerTypes = lawyerTypesOptions.map(option => ({
+      value: option,
+      label: option
+    }));
 
     var lang;
     var link;
@@ -144,11 +139,12 @@ module.exports = React.createClass({
           </a>
 
             <h1>{this.props.title}</h1>
-             <a
+            <a
              href="#"
               className={this.props.hidden ? 'hidden' : 'open-filters'}
               onClick={this.toggleFilters}>
-              <i className={this.state.showFilters ? "fa fa-times" : "fa fa-bars"}></i> {this.state.showFilters ? trans.close : trans.filter}</a>
+              <i className={this.state.showFilters ? "fa fa-times" : "fa fa-bars"}></i> {this.state.showFilters ? trans.close : trans.filter}
+            </a>
 
           <div className={this.props.hidden ? 'hidden' : ''} style={this.state.showFilters ? {background: '#002855', 'float': 'left', 'width': '100%', margin: '15px 0', 'display': 'block'} : {}}>
 
@@ -159,7 +155,7 @@ module.exports = React.createClass({
                 className="form-control query"
                 placeholder={trans.search}
                 onChange={this.filterQuery}
-                value={this.state.filters.keyword}
+                value={this.state.filters.keyword || ''}
                 />
             </form>
 
@@ -169,7 +165,7 @@ module.exports = React.createClass({
                   placeholder={trans.country}
                   options={cityOptions}
                   onChange={this.filterCountry}
-                  value={this.state.filters.country}
+                  value={this.state.filters.country || ''}
               />
             </div>
 
@@ -180,7 +176,7 @@ module.exports = React.createClass({
                   placeholder={trans.areas}
                   options={areas}
                   onChange={this.filterArea}
-                  value={this.state.filters.category}
+                  value={this.state.filters.category || ''}
                 />
             </div>
 
@@ -191,7 +187,7 @@ module.exports = React.createClass({
                   placeholder={trans.lawyerType}
                   options={lawyerTypes}
                   onChange={this.filterLawyerType}
-                  value={this.state.filters.position}
+                  value={this.state.filters.position || ''}
                   />
               </div>
             </div>

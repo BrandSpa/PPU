@@ -1,17 +1,17 @@
 'use strict';
-var React = require('react');
-var ReactRouter = require('react-router');
-var Link = ReactRouter.Link;
-var trans = require('langs/app');
+import React from 'react';
+import {Link} from 'react-router';
 
-module.exports = React.createClass({
-  getInitialState: function() {
+import trans from 'langs/app';
+
+export default React.createClass({
+  getInitialState() {
     return {
       showSubMenu: false
     }
   },
 
-  showSubMenu: function() {
+  showSubMenu() {
     var show;
     if(this.state.showSubMenu) {
       show = false;
@@ -22,7 +22,7 @@ module.exports = React.createClass({
     this.setState({showSubMenu: show});
   },
 
-  render: function() {
+  render() {
     return (
       <div id="nav-main-container" className="col-lg-2 visible-lg">
         <ul className="nav-main col-lg-1">

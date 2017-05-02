@@ -1,10 +1,10 @@
 'use strict';
-var React = require('react');
-var trans = require('langs/app');
+import React from 'react';
+import trans from 'langs/app';
 
-module.exports = React.createClass({
+export default React.createClass({
 
-  render: function() {
+  render() {
     var model = this.props.model;
 
     return (

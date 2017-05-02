@@ -1,9 +1,9 @@
  'use strict';
-var React = require('react');
-var Social = require('views/experiences/social.jsx');
-var PostDate = require('components/date.jsx');
-var moment = require('moment');
-var getLang = require('utils/get_lang');
+import React from 'react';
+import moment from 'moment';
+import getLang from 'utils/get_lang';
+import Social from 'views/experiences/social';
+import PostDate from 'components/date';
 require('moment/locale/es');
 
 module.exports = React.createClass({

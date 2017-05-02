@@ -1,13 +1,12 @@
 'use strict';
-var React = require('react');
-var Helmet = require('react-helmet');
-var Slider = require('react-slick');
-var request = require('superagent');
-var getLang = require('get_lang');
-var TopBar = require('views/top_bar.jsx');
+import React from 'react';
+import Slider from 'react-slick';
+import request from 'superagent';
+import getLang from 'get_lang';
+import TopBar from 'views/top_bar';
 
-module.exports = React.createClass({
-  getInitialState: function() {
+export default React.createClass({
+  getInitialState() {
     return {
       sliderMain: [],
       sliderCompanies: [],
@@ -15,45 +14,43 @@ module.exports = React.createClass({
     }
   },
 
-  componentDidMount: function() {
+  componentDidMount() {
     this.fetchSliders();
     this.fetchContent();
   },
 
-  fetchSliders: function() {
+  fetchSliders() {
     request
     .get('/api/sliders')
     .query({name: 'probonoMain'})
-    .end(function(err, res) {
+    .end((err, res) => {
       this.setState({
         sliderMain: res.body
       });
-    }.bind(this));
+    });
 
-     request
+    request
     .get('/api/sliders')
     .query({name: 'probonoCompanies'})
-    .end(function(err, res) {
+    .end((err, res) => {
       this.setState({
         sliderCompanies: res.body
       });
-    }.bind(this));
+    });
 
   },
 
-  fetchContent: function() {
+  fetchContent() {
     request
     .get('/api/pages')
     .query({page: 'probono'})
-    .end(function(err, res) {
-      this.setState({
-        content: res.body
-      });
-    }.bind(this));
+    .end((err, res) => {
+      this.setState({ content: res.body });
+    });
   },
 
-  render: function() {
-    var sliderMain = this.state.sliderMain.map(function(slide) {
+  render() {
+    const sliderMain = this.state.sliderMain.map((slide) => {
       return (
         <div key={slide.id}>
           <img src={slide.slider_image.url} className="img-responsive"/>
@@ -61,23 +58,22 @@ module.exports = React.createClass({
       );
     });
 
-    var sliderCompanies = this.state.sliderCompanies.map(function(slide) {
+    const sliderCompanies = this.state.sliderCompanies.map((slide) => {
       return (
         <div key={slide.id} style={{padding: '0 30px'}}>
-          
           <img src={slide.slider_image.url} width="200"/>
         </div>
       );
     });
 
-    var settings1 = {
+    const settings1 = {
       autoplay: true,
       speed: 900,
       slidesToShow: 1,
       slidesToScroll: 1
     };
 
-     var settings2 = {
+     const settings2 = {
       autoplay: true,
       infinite: true,
       speed: 800,
@@ -112,19 +108,16 @@ module.exports = React.createClass({
 
     return (
       <div>
-
       <TopBar title="Probono" hidden />
+
         <div className="padding-top"></div>
         <div id="pro-bono">
-          <Slider {...settings1}>
-            {sliderMain}
-          </Slider>
+        <div><Slider {...settings1}> {sliderMain} </Slider></div>
+
           <div className="content">
             <h2>{this.state.content["title_" + getLang]}</h2>
             <div dangerouslySetInnerHTML={{__html: this.state.content["text_" + getLang]}} />
-            <Slider {...settings2}>
-              {sliderCompanies}
-            </Slider>
+            <div><Slider {...settings2}> {sliderCompanies} </Slider> </div>
           </div>
 
         </div>

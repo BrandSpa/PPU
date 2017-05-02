@@ -1,14 +1,13 @@
 'use strict';
-var React = require('react');
-var Helmet = require('react-helmet');
-var trans = require('langs/app');
-var Categories = require('views/post/categories.jsx');
-var request = require('superagent');
-var Social = require('views/post/social.jsx');
-var TopBar = require('views/top_bar.jsx');
-var PostDate = require('components/date.jsx');
+import React from 'react';
+import trans from 'langs/app';
+import request from 'superagent';
+import Categories from 'views/post/categories';
+import Social from 'views/post/social';
+import TopBar from 'views/top_bar';
+import PostDate from 'components/date';
 
-module.exports = React.createClass({
+export default React.createClass({
   getInitialState: function() {
     return {
       post: {}
@@ -48,15 +47,6 @@ module.exports = React.createClass({
 
     return (
       <div>
-       <Helmet
-          title={"Philippi Prietocarrizosa &Uría - " + post.title}
-          meta={[
-              {"name": "description", "content": post.excerpt},
-              {"name": "og:title", "content": "Philippi Prietocarrizosa &Uría - " + post.title},
-              {"name": "og:description", "content": post.excerpt},
-              {"name": "og:image", "content": postImage}
-          ]}
-        />
       <TopBar title={trans.news} hidden back />
       <div className="padding-top"></div>
       <div id="post-detail">

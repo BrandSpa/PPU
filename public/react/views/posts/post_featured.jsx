@@ -1,16 +1,14 @@
 'use strict';
-var React = require('react');
-var Helmet = require('react-helmet');
-var request = require('superagent');
-var ShareHover = require('views/posts/share_hover.jsx');
-var PostDate = require('components/date.jsx');
+import React from 'react';
+import ShareHover from 'views/posts/share_hover';
+import PostDate from 'components/date';
 
-module.exports = React.createClass({
-  openPost: function() {
-    this.props.history.pushState(null, '/posts/' + this.props.post.slug);
+export default React.createClass({
+  openPost() {
+    this.props.router.push('/posts/' + this.props.post.slug);
   },
 
-  render: function() {
+  render() {
      var post = this.props.post;
     var postImage;
 

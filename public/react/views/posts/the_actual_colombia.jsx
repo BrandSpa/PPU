@@ -1,15 +1,15 @@
 'use strict';
-var React = require('react');
-var request = require('superagent');
-var _ = require('lodash');
-var Waypoint = require('react-waypoint');
-var Post = require('views/posts/post.jsx');
-var Lawyer = require('views/lawyers/lawyer.jsx');
-var PostFeatured = require('views/posts/post_featured.jsx');
-var TopBar = require('views/top_bar.jsx');
-var trans = require('langs/app');
+import React from 'react';
+import request from 'superagent';
+import _ from 'lodash';
+import Waypoint from 'react-waypoint';
+import Post from 'views/posts/post.jsx';
+import Lawyer from 'views/lawyers/lawyer.jsx';
+import PostFeatured from 'views/posts/post_featured.jsx';
+import TopBar from 'views/top_bar.jsx';
+import trans from 'langs/app';
 
-module.exports = React.createClass({
+export default React.createClass({
   getInitialState: function() {
     return {
       posts: [],

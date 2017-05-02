@@ -1,15 +1,14 @@
 'use strict';
-var React = require('react');
-var request = require('superagent');
-var Helmet = require('react-helmet');
-var Lawyer = require('views/lawyers/lawyer.jsx');
-var Experience = require('views/experiences/experience.jsx');
-var getLang = require('utils/get_lang');
-var TopBar = require('views/top_bar.jsx');
-var trans = require('langs/area');
+import React from 'react';
+import request from 'superagent';
+import Lawyer from 'views/lawyers/lawyer.jsx';
+import Experience from 'views/experiences/experience.jsx';
+import getLang from 'utils/get_lang';
+import TopBar from 'views/top_bar.jsx';
+import trans from 'langs/area';
 
-module.exports = React.createClass({
-  getInitialState: function() {
+export default React.createClass({
+  getInitialState() {
     return {
       model: {
         gallery: {},
@@ -19,11 +18,11 @@ module.exports = React.createClass({
     }
   },
 
-  componentDidMount: function() {
+  componentDidMount() {
     this.fetch();
   },
 
-  fetch: function() {
+  fetch() {
      request
     .get('/api/categories/' + this.props.params.slug)
     .query({'lang': getLang})
@@ -33,7 +32,7 @@ module.exports = React.createClass({
     }.bind(this));
   },
 
-  fetchLawyersRelated: function(category) {
+  fetchLawyersRelated(category) {
     var position = 'Socio';
     if(getLang == 'en') {
       position = "Partner";
@@ -52,7 +51,7 @@ module.exports = React.createClass({
       }.bind(this));
   },
 
-  render: function() {
+  render() {
     var model = this.state.model;
     var img;
     var link;

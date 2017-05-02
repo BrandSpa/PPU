@@ -1,15 +1,14 @@
 'use strict';
-var React = require('react');
-var Helmet = require('react-helmet');
-var TopBar = require('views/top_bar.jsx');
-var trans = require('langs/app');
-var areas = require('langs/areas');
-var Form = require('views/recruiment/form.jsx');
-var request = require('superagent');
-var getLang = require('get_lang');
-var $ = require('jquery');
+import React from 'react';
+import TopBar from 'views/top_bar';
+import trans from 'langs/app';
+import areas from 'langs/area';
+import Form from 'views/recruiment/form';
+import request from 'superagent';
+import getLang from 'get_lang';
+import $ from 'jquery';
 
-module.exports = React.createClass({
+export default React.createClass({
   getInitialState: function() {
     return {
       video: {},

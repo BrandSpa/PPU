@@ -1,20 +1,20 @@
 'use strict';
-var React = require('react');
-var request = require('superagent');
-var _ = require('lodash');
-var TopBar = require('views/top_bar.jsx');
-var trans = require('langs/app');
-var Area = require('views/areas/area.jsx');
-var getLang = require('utils/get_lang');
+import React from 'react';
+import request from 'superagent';
+import _ from 'lodash';
+import TopBar from 'views/top_bar.jsx';
+import trans from 'langs/app';
+import Area from 'views/areas/area.jsx';
+import getLang from 'utils/get_lang';
 
-module.exports = React.createClass({
-  getInitialState: function() {
+export default React.createClass({
+  getInitialState() {
     return {
       areas: []
     }
   },
 
-  componentDidMount: function() {
+  componentDidMount() {
     request
       .get('/api/categories')
       .query({'lang': getLang})
@@ -25,7 +25,7 @@ module.exports = React.createClass({
       }.bind(this));
   },
 
-  render: function() {
+  render() {
     var areaNodes = this.state.areas.map(function(area) {
       return (<Area key={area.id} area={area} history={this.props.history} />);
     }.bind(this));

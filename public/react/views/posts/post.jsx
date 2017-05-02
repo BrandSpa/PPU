@@ -1,21 +1,21 @@
 'use strict';
-var React = require('react');
-var request = require('superagent');
-var ShareHover = require('views/posts/share_hover.jsx');
-var PostDate = require('components/date.jsx');
+import React from 'react';
+import request from 'superagent';
+import ShareHover from 'views/posts/share_hover';
+import PostDate from 'components/date';
 
-module.exports = React.createClass({
-  getDefautProps: function() {
+export default React.createClass({
+  getDefautProps() {
     return {
       post: {}
     }
   },
 
-  open: function() {
-    this.props.history.pushState(null, '/posts/' + this.props.post.slug);
+  open() {
+    this.props.router.push(`/posts/${this.props.post.slug}`);
   },
 
-  render: function() {
+  render() {
     var post = this.props.post;
     var postImage;
 

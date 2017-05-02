@@ -1,11 +1,12 @@
 'use strict';
-var React = require('react');
-var trans = require('langs/app');
-var Select = require('react-select');
-var request = require('superagent');
-var $ = require('jquery');
+import React from 'react';
+import trans from 'langs/app';
+import Select from 'react-select';
+import request from 'superagent';
+import {extend} from 'lodash';
+import $ from 'jquery';
 
-module.exports = React.createClass({
+export default React.createClass({
   getInitialState: function() {
     return {
       country: null,
@@ -21,13 +22,10 @@ module.exports = React.createClass({
     this.setState({country: value});
   },
 
-  handleChange: function() {
-    var data = {
-      name: React.findDOMNode(this.refs.name).value,
-      lastname: React.findDOMNode(this.refs.lastname).value,
-      email: React.findDOMNode(this.refs.email).value,
-      message: React.findDOMNode(this.refs.message).value
-    }
+  handleChange: function(field, e) {
+    let value = e.currentTarget.value;
+    let data = extend(this.state, [field]: value);
+
     this.setState(data);
   },
 
@@ -76,7 +74,7 @@ module.exports = React.createClass({
               ref="name"
               type="text"
               className="form-control"
-               onChange={this.handleChange}
+               onChange={this.handleChange.bind(null, 'name')}
             />
          </div>
        </div>
@@ -88,7 +86,7 @@ module.exports = React.createClass({
             ref="lastname"
             type="text"
             className="form-control"
-            onChange={this.handleChange}
+            onChange={this.handleChange.bind(null, 'lastname')}
           />
          </div>
        </div>
@@ -100,7 +98,7 @@ module.exports = React.createClass({
             ref="email"
             type="text"
             className="form-control"
-            onChange={this.handleChange}
+            onChange={this.handleChange.bind(null, 'email')}
           />
          </div>
        </div>
@@ -112,13 +110,16 @@ module.exports = React.createClass({
             ref="message"
             rows="3"
             className="form-control"
-            onChange={this.handleChange}></textarea>
+            onChange={this.handleChange.bind(null, 'message')}></textarea>
           </div>
         </div>
 
          <div className="form-group">
           <button
-            className="btn btn-info pull-right contact-save" onClick={this.handleSubmit}>{trans.send}</button>
+            className="btn btn-info pull-right contact-save" 
+            onClick={this.handleSubmit}
+          >{trans.send}
+          </button>
          </div>
        </form>
      </div>

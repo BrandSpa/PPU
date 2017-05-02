@@ -1,14 +1,14 @@
 'use strict';
-var React = require('react');
+import React from 'react';
 
-module.exports = React.createClass({
-   getDefaultProps: function() {
+export default React.createClass({
+   getDefaultProps() {
     return {
       collection: []
     }
   },
 
-  render: function() {
+  render() {
     var nodes = this.props.collection.map(function(item) {
       return (
         <a href={"/posts/" + item.slug } target="_new">{item.title}</a>

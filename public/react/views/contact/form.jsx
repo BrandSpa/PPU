@@ -1,13 +1,13 @@
 'use strict';
-var React = require('react');
-var ReactDOM = require('react-dom');
-var trans = require('langs/app');
-var Select = require('react-select');
-var request = require('superagent');
-var $ = require('jquery');
-var _ = require('underscore');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import trans from 'langs/app';
+import Select from 'react-select';
+import request from 'superagent';
+import $ from 'jquery';
+import {extend, keys} from 'underscore';
 
-module.exports = React.createClass({
+export default React.createClass({
   getInitialState: function() {
     return {
       country: null,
@@ -27,13 +27,9 @@ module.exports = React.createClass({
     this.setState({country: props.country});
   },
 
-  handleChange: function() {
-    var data = {
-      name: ReactDOM.findDOMNode(this.refs.name).value,
-      lastname: ReactDOM.findDOMNode(this.refs.lastname).value,
-      email: ReactDOM.findDOMNode(this.refs.email).value,
-      message: ReactDOM.findDOMNode(this.refs.message).value
-    }
+  handleChange: function(field, e) {
+    let val = e.currentTarget.value;
+    var data = extend(this.state, {[field]: val});
     this.setState(data);
   },
 
@@ -48,7 +44,7 @@ module.exports = React.createClass({
     .end(function(errs, res) {
       if(errs) {
 
-        _.keys(res.body).map(function(err) {
+        keys(res.body).map(function(err) {
           $('input[name="' + err +'"], textarea[name="' + err +'"]').addClass('error');
         });
 
@@ -78,7 +74,7 @@ module.exports = React.createClass({
               name="name"
               type="text"
               className="form-control"
-               onChange={this.handleChange}
+               onChange={this.handleChange.bind(null, 'name')}
             />
          </div>
 
@@ -89,7 +85,7 @@ module.exports = React.createClass({
             name="lastname"
             type="text"
             className="form-control"
-            onChange={this.handleChange}
+            onChange={this.handleChange.bind(null, 'lastname')}
           />
        </div>
 
@@ -100,7 +96,7 @@ module.exports = React.createClass({
             name="email"
             type="text"
             className="form-control"
-            onChange={this.handleChange}
+            onChange={this.handleChange.bind(null, '')}
           />
 
        </div>
@@ -112,7 +108,7 @@ module.exports = React.createClass({
             name="message"
             rows="5"
             className="form-control"
-            onChange={this.handleChange}></textarea>
+            onChange={this.handleChange.bind(null, 'message')}></textarea>
         </div>
 
 

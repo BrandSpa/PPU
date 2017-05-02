@@ -1,30 +1,27 @@
 'use strict';
-var React = require('react');
-var ReactDOM = require('react-dom');
-var $ = require('jquery');
-var createHistory = require('history').createHistory;
-var ReactRouter = require('react-router');
-var Router = ReactRouter.Router;
-var Route = ReactRouter.Route;
+import React from 'react';
+import ReactDOM from 'react-dom';
+import $ from 'jquery';
+import {Router, Route, browserHistory} from 'react-router';
 
-var App = require('views/app.jsx');
-var Post = require('views/post/section.jsx');
-var lawyers = require('views/lawyers/section.jsx');
-var lawyer = require('views/lawyer/section.jsx');
-var areas = require('views/areas/section.jsx');
-var area = require('views/area/section.jsx');
-var experiences = require('views/experiences/section.jsx');
-var experience = require('views/experience/section.jsx');
-var probono = require('views/probono/section.jsx');
-var us = require('views/us/section.jsx');
-var recruiment = require('views/recruiment/section.jsx');
-var theActual = require('views/posts/the_actual.jsx');
-var theActualColombia = require('views/posts/the_actual_colombia.jsx');
-var theActualPeru = require('views/posts/the_actual_peru.jsx');
-var contact = require('views/contact/section.jsx');
+import App from 'views/app';
+import Post from 'views/post/section';
+import lawyers from 'views/lawyers/section';
+import lawyer from 'views/lawyer/section';
+import areas from 'views/areas/section';
+import area from 'views/area/section';
+import experiences from 'views/experiences/section';
+import experience from 'views/experience/section';
+import probono from 'views/probono/section';
+import us from 'views/us/section';
+import recruiment from 'views/recruiment/section';
+import theActual from 'views/posts/the_actual';
+import theActualColombia from 'views/posts/the_actual_colombia';
+import theActualPeru from 'views/posts/the_actual_peru';
+import contact from 'views/contact/section';
 
 ReactDOM.render((
-  <Router history={ createHistory() }>
+  <Router history={ browserHistory }>
     <Route path="/" component={App}>
       <Route path="/posts/:slug" component={Post} />
       <Route path="/abogados" component={lawyers} />
@@ -41,7 +38,6 @@ ReactDOM.render((
       <Route path="/el-actual-colombia" component={theActualColombia} />
       <Route path="/el-actual-peru" component={theActualPeru} />
     </Route>
-
     <Route path="/admin">
     </Route>
   </Router>

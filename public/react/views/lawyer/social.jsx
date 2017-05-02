@@ -1,10 +1,11 @@
 'use strict';
-var React = require('react');
+import React from 'react';
 
-module.exports = React.createClass({
+export default React.createClass({
 
-  render: function() {
-    var model = this.props.model;
+  render() {
+    const {model} = this.props;
+
     return (
         <div className="share-container">
         <a

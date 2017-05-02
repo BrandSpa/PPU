@@ -1,12 +1,12 @@
 'use strict';
-var React = require('react');
-var request = require('superagent');
-var trans = require('langs/app');
-var Waypoint = require('react-waypoint');
-var Experience = require('views/experiences/experience.jsx');
-var TopBar = require('views/top_bar.jsx');
-var _ = require('lodash');
-var getLang = require('utils/get_lang');
+import React from 'react';
+import request from 'superagent';
+import trans from 'langs/app';
+import Waypoint from 'react-waypoint';
+import Experience from 'views/experiences/experience.jsx';
+import TopBar from 'views/top_bar.jsx';
+import _ from 'lodash';
+import getLang from 'utils/get_lang';
 
 module.exports = React.createClass({
   getInitialState: function() {

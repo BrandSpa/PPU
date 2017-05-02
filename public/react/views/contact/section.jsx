@@ -1,16 +1,17 @@
 'use srict';
-var React = require('react');
-var GMaps = require('gmaps');
-var markersOptions = require('utils/markers');
-var $ = require('jquery');
-var _ = require('lodash');
-var Form = require('contact/form.jsx');
-var countriesInfo = require('utils/countries_info');
-var gmapsStyle = require('utils/gmaps_styles');
-var TopBar = require('views/top_bar.jsx');
-var trans = require('langs/app');
+import React from 'react';
+import GMaps from 'gmaps';
+import $ from 'jquery';
+import _ from 'lodash';
+import markersOptions from 'utils/markers';
 
-module.exports = React.createClass({
+import Form from 'views/contact/form.jsx';
+import countriesInfo from 'utils/countries_info';
+import gmapsStyle from 'utils/gmaps_styles';
+import TopBar from 'views/top_bar.jsx';
+import trans from 'langs/app';
+
+export default React.createClass({
 
   getInitialState() {
     return {
@@ -72,11 +73,10 @@ module.exports = React.createClass({
       this.setMap({
          el: '#map',
          zoom: 15,
-         lat: -12.1119603,
-         lng: -77.0382342,
+         lat: -12.1659004,
+         lng: -76.9508611,
          styles: gmapsStyle
       }, country);
-
     }
   },
 

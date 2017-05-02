@@ -1,16 +1,16 @@
 'use strict';
-var React = require('react');
-var getLang = require('utils/get_lang');
-var trans = require('langs/app');
+import React from 'react';
+import getLang from 'utils/get_lang';
+import trans from 'langs/app';
 
-module.exports = React.createClass({
-  getInitialState: function() {
+export default React.createClass({
+  getInitialState() {
     return {
       showNavbar: false
     }
   },
 
-  toggleShowNavbar: function() {
+  toggleShowNavbar() {
     var show = this.state.showNavbar;
 
     if(show) {
@@ -24,7 +24,7 @@ module.exports = React.createClass({
     });
   },
 
-  render: function() {
+  render() {
     var lang;
     var link;
     var pathname = this.props.pathname || window.location.pathname;

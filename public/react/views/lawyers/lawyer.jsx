@@ -1,19 +1,18 @@
 'use strict';
-var React = require('react');
+import React from 'react';
 
-
-module.exports = React.createClass({
-  getDefaultProps: function() {
+export default React.createClass({
+  getDefaultProps() {
     return {
       lawyer: {}
     }
   },
 
-  open: function() {
-    this.props.history.pushState(null, '/abogados/' + this.props.lawyer.slug);
+  open() {
+    this.props.router.push('/abogados/' + this.props.lawyer.slug);
   },
 
-  render: function() {
+  render() {
     var lawyer = this.props.lawyer;
     var lawyerImage;
     var position = lawyer.position;

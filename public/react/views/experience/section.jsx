@@ -1,15 +1,14 @@
 'use strict';
-var React = require('react');
-var request = require('superagent');
-var Helmet = require('react-helmet');
-var getLang = require('utils/get_lang');
-var Experience = require('experiences/experience.jsx');
-var Lawyer = require('views/lawyers/lawyer.jsx');
-var moment = require('moment');
-var trans = require('langs/experience');
-var TopBar = require('views/top_bar.jsx');
-var _ = require('lodash');
-var areaOptions = require('langs/areas');
+import React from 'react';
+import request from 'superagent';
+import getLang from 'utils/get_lang';
+import moment from 'moment';
+import _ from 'lodash';
+import trans from 'langs/experience';
+import Experience from 'views/experiences/experience';
+import Lawyer from 'views/lawyers/lawyer';
+import TopBar from 'views/top_bar';
+import areaOptions from 'langs/areas';
 
 module.exports = React.createClass({
   getInitialState: function() {

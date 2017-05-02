@@ -1,13 +1,18 @@
 
 module.exports = {
-  entry: { "admin-react": "./app/admin-react/router.js" },
+  entry: { 
+    "admin-react": "./app/admin-react/router.js",
+    "bundle": "./react/app.js"
+  },
   output: {
     path: __dirname + '/js/dist',
     filename: "[name].js"
   },
   resolve: {
+    extensions: ['', '.js', '.jsx'],
     root: [
-      __dirname + '/app/admin-react'
+      __dirname + '/app/admin-react',
+      __dirname + '/react'
     ]
   },
   module: {
