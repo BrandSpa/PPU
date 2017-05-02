@@ -75187,7 +75187,11 @@
 	  },
 	  render: function render() {
 	    var slider1 = this.state.sliderMain.map(function (slide) {
-	      return _react2.default.createElement('div', { key: slide.id });
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement('img', { src: slide.slider_image.url, alt: '' })
+	      );
 	    });
 
 	    var slider2 = this.state.sliderCompanies.map(function (slide) {

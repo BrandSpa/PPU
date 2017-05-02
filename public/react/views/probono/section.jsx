@@ -51,7 +51,7 @@ export default React.createClass({
 
   render() {
     let slider1 = this.state.sliderMain.map(function(slide) {
-      return <div key={slide.id}></div>
+      return <div ><img src={slide.slider_image.url} alt=""/></div>
     });
 
     const slider2 = this.state.sliderCompanies.map(function(slide){
