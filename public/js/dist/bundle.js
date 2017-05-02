@@ -75249,7 +75249,7 @@
 	        _react2.default.createElement(
 	          'div',
 	          null,
-	          this.state.sliderMain.length ? _react2.default.createElement(
+	          this.state.sliderMain.length > 0 ? _react2.default.createElement(
 	            _reactSlick2.default,
 	            settings1,
 	            ' ',
@@ -75269,7 +75269,7 @@
 	          _react2.default.createElement(
 	            'div',
 	            null,
-	            this.state.sliderCompanies.length ? _react2.default.createElement(
+	            this.state.sliderCompanies.length > 0 ? _react2.default.createElement(
 	              _reactSlick2.default,
 	              settings2,
 	              ' ',
