@@ -75248,7 +75248,7 @@
 	          _react2.default.createElement(
 	            'div',
 	            null,
-	            _react2.default.createElement('img', { src: '/uploads/slider/slider_image/94/probono01__1_.jpg', alt: '' })
+	            _react2.default.createElement('img', { src: '/uploads/slider/slider_image/94/probono01__1_.jpg', alt: '', className: 'img-responsive' })
 	          )
 	        ) : _react2.default.createElement('div', null),
 	        _react2.default.createElement(
