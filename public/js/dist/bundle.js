@@ -75249,13 +75249,13 @@
 	        _react2.default.createElement(
 	          'div',
 	          null,
-	          _react2.default.createElement(
+	          this.state.sliderMain.length ? _react2.default.createElement(
 	            _reactSlick2.default,
 	            settings1,
 	            ' ',
 	            sliderMain,
 	            ' '
-	          )
+	          ) : ''
 	        ),
 	        _react2.default.createElement(
 	          'div',
@@ -75269,13 +75269,13 @@
 	          _react2.default.createElement(
 	            'div',
 	            null,
-	            _react2.default.createElement(
+	            this.state.sliderCompanies.length ? _react2.default.createElement(
 	              _reactSlick2.default,
 	              settings2,
 	              ' ',
 	              sliderCompanies,
 	              ' '
-	            ),
+	            ) : '',
 	            ' '
 	          )
 	        )
@@ -77438,7 +77438,7 @@
 	      _react2.default.createElement(
 	        'div',
 	        { id: 'us' },
-	        this.state.sliderMain > 0 ? _react2.default.createElement(
+	        this.state.sliderMain.length > 0 ? _react2.default.createElement(
 	          _reactSlick2.default,
 	          settings,
 	          sliderMain
@@ -77538,7 +77538,7 @@
 	    return _react2.default.createElement(
 	      'div',
 	      null,
-	      this.state.usPhrases > 0 ? _react2.default.createElement(
+	      this.state.usPhrases.length > 0 ? _react2.default.createElement(
 	        _reactSlick2.default,
 	        settings,
 	        usPhrases
