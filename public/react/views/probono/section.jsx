@@ -112,7 +112,9 @@ export default React.createClass({
 
        	   {
             this.state.sliderMain.length > 0 ? 
-              <Slider {...settings1}> <div><img src="/uploads/slider/slider_image/94/probono01__1_.jpg" alt=""/></div> </Slider> 
+              <Slider {...settings1}> 
+                <div><img src="/uploads/slider/slider_image/94/probono01__1_.jpg" alt=""/></div> 
+              </Slider> 
               : <div></div> 
           }
 
