@@ -75246,38 +75246,23 @@
 	      _react2.default.createElement(
 	        'div',
 	        { id: 'pro-bono' },
-	        _react2.default.createElement(
-	          'div',
-	          null,
-	          slider1.length > 0 ? _react2.default.createElement(
-	            _reactSlick2.default,
-	            settings1,
-	            ' ',
-	            slider1,
-	            ' '
-	          ) : _react2.default.createElement('div', null)
-	        ),
+	        this.state.sliderMain.length > 0 ? _react2.default.createElement(
+	          _reactSlick2.default,
+	          settings1,
+	          ' ',
+	          slider1,
+	          ' '
+	        ) : _react2.default.createElement('div', null),
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'content' },
-	          _react2.default.createElement(
-	            'h2',
-	            null,
-	            this.state.content["title_" + _get_lang2.default]
-	          ),
-	          _react2.default.createElement('div', { dangerouslySetInnerHTML: { __html: this.state.content["text_" + _get_lang2.default] } }),
-	          _react2.default.createElement(
-	            'div',
-	            null,
-	            slider2.length > 0 ? _react2.default.createElement(
-	              _reactSlick2.default,
-	              settings2,
-	              ' ',
-	              slider2,
-	              ' '
-	            ) : _react2.default.createElement('div', null),
+	          this.state.sliderCompanies.length > 0 ? _react2.default.createElement(
+	            _reactSlick2.default,
+	            settings2,
+	            ' ',
+	            slider2,
 	            ' '
-	          )
+	          ) : _react2.default.createElement('div', null)
 	        )
 	      )
 	    );
@@ -77591,6 +77576,7 @@
 	    });
 	  },
 	  render: function render() {
+
 	    var settings = {
 	      autoplay: true,
 	      infinite: true,

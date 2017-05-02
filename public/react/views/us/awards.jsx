@@ -26,6 +26,7 @@ export default React.createClass({
   },
 
   render() {
+    
     var settings = {
       autoplay: true,
       infinite: true,
