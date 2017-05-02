@@ -75246,7 +75246,11 @@
 	          _reactSlick2.default,
 	          settings1,
 	          ' ',
-	          slider1,
+	          _react2.default.createElement(
+	            'div',
+	            null,
+	            _react2.default.createElement('img', { src: '/uploads/slider/slider_image/94/probono01__1_.jpg', alt: '' })
+	          ),
 	          ' '
 	        ) : _react2.default.createElement('div', null),
 	        _react2.default.createElement(
