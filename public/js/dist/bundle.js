@@ -73302,7 +73302,8 @@
 	        areas: null
 	      },
 	      data: {},
-	      sendText: _app2.default.send
+	      sendText: _app2.default.send,
+	      checked: false
 	    };
 	  },
 
@@ -73354,6 +73355,12 @@
 	  handleLoading: function handleLoading() {
 	    this.setState({ sendText: "Enviando..." });
 	  },
+
+	  toggleChecked: function toggleChecked(e) {
+	    console.log('checked', e.currentTarget.checked);
+	    this.setState({ checked: !this.state.checked });
+	  },
+
 
 	  render: function render() {
 	    var areaOptions = _areas2.default.map(function (item) {
@@ -73594,7 +73601,7 @@
 	          _react2.default.createElement(
 	            'label',
 	            null,
-	            _react2.default.createElement('input', { type: 'checkbox' }),
+	            _react2.default.createElement('input', { type: 'checkbox', onClick: this.toggleChecked }),
 	            ' Mediante el env\xEDo de su informaci\xF3n, est\xE1 autorizando a Philippi, Prietocarrizosa, Ferrero DU & Ur\xEDa S.A.S el tratamiento de sus datos personales para las finalidades dadas a conocer en la Pol\xEDtica de Tratamiento de Datos Personales que est\xE1 disponible en www.ppulegal.com'
 	          )
 	        ),

@@ -20,7 +20,8 @@ export default React.createClass({
       areas: null
      },
       data: {},
-      sendText: trans.send
+      sendText: trans.send,
+      checked: false
     }
   },
 
@@ -74,6 +75,11 @@ handleSelect: function(e, a) {
 
   handleLoading: function() {
     this.setState({sendText: "Enviando..."});
+  },
+
+  toggleChecked(e) {
+    console.log('checked', e.currentTarget.checked);
+    this.setState({checked: !this.state.checked});
   },
 
   render: function() {
@@ -241,7 +247,7 @@ handleSelect: function(e, a) {
 
             <div className="checkbox">
               <label>
-                <input type="checkbox" /> Mediante el envío de su información, está autorizando a Philippi, Prietocarrizosa, Ferrero DU & Uría S.A.S el tratamiento de sus datos personales para las finalidades dadas a conocer en la Política de Tratamiento de Datos Personales que está disponible en www.ppulegal.com
+                <input type="checkbox" onClick={this.toggleChecked}  /> Mediante el envío de su información, está autorizando a Philippi, Prietocarrizosa, Ferrero DU & Uría S.A.S el tratamiento de sus datos personales para las finalidades dadas a conocer en la Política de Tratamiento de Datos Personales que está disponible en www.ppulegal.com
               </label>
             </div>
 
