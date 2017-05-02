@@ -8359,9 +8359,10 @@ h4.title-form {
       .lawyer-item .img-container {
         width: auto; } }
   .lawyer-item img {
-    -webkit-filter: grayscale(100%);
-    filter: grayscale(100%);
-    filter: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><filter id='grayscale'><feColorMatrix type='matrix' values='0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0'/></filter></svg>#grayscale");
+      -webkit-filter: grayscale(100%);
+  -webkit-filter: grayscale(1);
+  filter: grayscale(100%);
+   filter: gray;
     width: 100%; }
     @media (max-width: 767px) {
       .lawyer-item img {
