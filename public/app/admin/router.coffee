@@ -104,4 +104,4 @@ $ ->
 
 
   ppu.admin.router = new ppu.admin.Router
-  Backbone.history.start pushState: true
+  # Backbone.history.start pushState: true

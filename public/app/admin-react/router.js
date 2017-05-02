@@ -69,5 +69,3 @@ if(window.location.pathname != "/users/sign_in") {
     document.getElementById('admin-sidebar')
   );
 }
-
-Backbone.history.start({pushState: true});

@@ -120,6 +120,9 @@
     app.lang = "<%= I18n.locale %>";
     app.hostname = window.location.hostname;
     app.pathname = window.location.pathname;
+    $(function() {
+      Backbone.history.start({pushState: true});
+    })
   </script>
 
 </body>
