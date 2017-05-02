@@ -75237,7 +75237,8 @@
 	        }
 	      }]
 	    };
-
+	    console.log(slider1);
+	    console.log(slider2);
 	    return _react2.default.createElement(
 	      'div',
 	      null,

@@ -105,7 +105,8 @@ export default React.createClass({
     }
     ]
   };
-
+  console.log(slider1);
+  console.log(slider2);
     return (
       <div>
       <TopBar title="Probono" hidden />
@@ -119,8 +120,6 @@ export default React.createClass({
             : <div></div> }
 
           <div className="content">
-           
-
             {this.state.sliderCompanies.length > 0 ? 
               <Slider {...settings2}> {slider2} </Slider> 
               : <div></div>}
