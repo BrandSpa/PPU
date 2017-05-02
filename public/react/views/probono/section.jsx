@@ -50,20 +50,20 @@ export default React.createClass({
   },
 
   render() {
-    const sliderMain = this.state.sliderMain.map((slide) => {
+    const slider1 = this.state.sliderMain.map(function(slide) {
       return (
         <div key={slide.id}>
           <img src={slide.slider_image.url} className="img-responsive"/>
         </div>
-      );
+      )
     });
 
-    const sliderCompanies = this.state.sliderCompanies.map((slide) => {
+    const slider2 = this.state.sliderCompanies.map(function(slide){
       return (
         <div key={slide.id} style={{padding: '0 30px'}}>
           <img src={slide.slider_image.url} width="200"/>
         </div>
-      );
+      )
     });
 
     const settings1 = {
@@ -79,8 +79,8 @@ export default React.createClass({
       speed: 800,
       slidesToShow: 4,
       slidesToScroll: 4,
-        responsive: [
-    {
+      responsive: [
+      {
       breakpoint: 1024,
       settings: {
         slidesToShow: 3,
@@ -116,12 +116,12 @@ export default React.createClass({
         <div className="padding-top"></div>
 
         <div id="pro-bono">
-        <div>{sliderMain.length > 0 ?  <Slider {...settings1}> {sliderMain} </Slider> : <div></div>}</div> 
+          <div>{slider1.length > 0 ?  <Slider {...settings1}> {slider1} </Slider> : <div></div>}</div> 
 
           <div className="content">
             <h2>{ this.state.content["title_" + getLang] }</h2>
             <div dangerouslySetInnerHTML={{__html: this.state.content["text_" + getLang]}} />
-            <div>{ sliderCompanies.length > 0 ? <Slider {...settings2}> {sliderCompanies} </Slider> : <div></div> } </div>
+            <div>{ slider2.length > 0 ? <Slider {...settings2}> {slider2} </Slider> : <div></div> } </div>
           </div>
 
         </div>

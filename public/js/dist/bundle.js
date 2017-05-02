@@ -75186,7 +75186,7 @@
 	    });
 	  },
 	  render: function render() {
-	    var sliderMain = this.state.sliderMain.map(function (slide) {
+	    var slider1 = this.state.sliderMain.map(function (slide) {
 	      return _react2.default.createElement(
 	        'div',
 	        { key: slide.id },
@@ -75194,7 +75194,7 @@
 	      );
 	    });
 
-	    var sliderCompanies = this.state.sliderCompanies.map(function (slide) {
+	    var slider2 = this.state.sliderCompanies.map(function (slide) {
 	      return _react2.default.createElement(
 	        'div',
 	        { key: slide.id, style: { padding: '0 30px' } },
@@ -75252,11 +75252,11 @@
 	        _react2.default.createElement(
 	          'div',
 	          null,
-	          sliderMain.length > 0 ? _react2.default.createElement(
+	          slider1.length > 0 ? _react2.default.createElement(
 	            _reactSlick2.default,
 	            settings1,
 	            ' ',
-	            sliderMain,
+	            slider1,
 	            ' '
 	          ) : _react2.default.createElement('div', null)
 	        ),
@@ -75272,11 +75272,11 @@
 	          _react2.default.createElement(
 	            'div',
 	            null,
-	            sliderCompanies.length > 0 ? _react2.default.createElement(
+	            slider2.length > 0 ? _react2.default.createElement(
 	              _reactSlick2.default,
 	              settings2,
 	              ' ',
-	              sliderCompanies,
+	              slider2,
 	              ' '
 	            ) : _react2.default.createElement('div', null),
 	            ' '
