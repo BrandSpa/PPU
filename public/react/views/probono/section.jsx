@@ -65,7 +65,7 @@ export default React.createClass({
         </div>
       );
     });
-
+    console.log('probono', this.state.sliderMain.length);
     const settings1 = {
       autoplay: true,
       speed: 900,

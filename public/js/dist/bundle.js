@@ -75186,22 +75186,22 @@
 	    });
 	  },
 	  render: function render() {
-	    var sliderMain = this.state.sliderMain ? this.state.sliderMain.map(function (slide) {
+	    var sliderMain = this.state.sliderMain.map(function (slide) {
 	      return _react2.default.createElement(
 	        'div',
 	        { key: slide.id },
 	        _react2.default.createElement('img', { src: slide.slider_image.url, className: 'img-responsive' })
 	      );
-	    }) : [];
+	    });
 
-	    var sliderCompanies = this.state.sliderCompanies ? this.state.sliderCompanies.map(function (slide) {
+	    var sliderCompanies = this.state.sliderCompanies.map(function (slide) {
 	      return _react2.default.createElement(
 	        'div',
 	        { key: slide.id, style: { padding: '0 30px' } },
 	        _react2.default.createElement('img', { src: slide.slider_image.url, width: '200' })
 	      );
-	    }) : [];
-
+	    });
+	    console.log('probono', this.state.sliderMain.length);
 	    var settings1 = {
 	      autoplay: true,
 	      speed: 900,
@@ -77628,8 +77628,6 @@
 	        )
 	      );
 	    });
-
-	    console.log(this.state.awards, this.state.awards.length > 0);
 
 	    return _react2.default.createElement(
 	      'div',
