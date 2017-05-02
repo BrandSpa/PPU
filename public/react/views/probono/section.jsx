@@ -50,7 +50,7 @@ export default React.createClass({
   },
 
   render() {
-    const slider1 = this.state.sliderMain.map(function(slide) {
+    let slider1 = this.state.sliderMain.map(function(slide) {
       return (
         <div key={slide.id}>
           <img src={slide.slider_image.url} className="img-responsive"/>
@@ -114,7 +114,11 @@ export default React.createClass({
 
         <div id="pro-bono">
 
-       
+       	   {
+            this.state.sliderMain.length > 0 ? 
+              <Slider {...settings1}> {slider1} </Slider> 
+              : <div></div> 
+          }
 
           <div className="content">
             <h2>{ this.state.content["title_" + getLang] }</h2>
