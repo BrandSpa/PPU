@@ -97,8 +97,6 @@
 	  ReactDOM.render(React.createElement(Sidebar, null), document.getElementById('admin-sidebar'));
 	}
 
-	Backbone.history.start({ pushState: true });
-
 /***/ }),
 /* 1 */
 /***/ (function(module, exports, __webpack_require__) {

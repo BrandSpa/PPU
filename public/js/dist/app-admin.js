@@ -4789,10 +4789,7 @@ $(function() {
     return Router;
 
   })(Backbone.Router);
-  ppu.admin.router = new ppu.admin.Router;
-  return Backbone.history.start({
-    pushState: true
-  });
+  return ppu.admin.router = new ppu.admin.Router;
 });
 
 ppu.admin.LawyersController = {
