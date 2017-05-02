@@ -75189,7 +75189,7 @@
 	    var slider1 = this.state.sliderMain.map(function (slide) {
 	      return _react2.default.createElement(
 	        'div',
-	        null,
+	        { key: slide.id },
 	        _react2.default.createElement('img', { src: slide.slider_image.url, alt: '' })
 	      );
 	    });
