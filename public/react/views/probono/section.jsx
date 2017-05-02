@@ -114,7 +114,6 @@ export default React.createClass({
             this.state.sliderMain.length > 0 ? 
               <Slider {...settings1}> 
               {slider1.length > 0 ? slider1 : [] }
-                <div><img src="/uploads/slider/slider_image/94/probono01__1_.jpg" alt="" className="img-responsive"/></div> 
               </Slider> 
               : <div></div> 
           }
@@ -122,7 +121,13 @@ export default React.createClass({
           <div className="content">
             <h2>{ this.state.content["title_" + getLang] }</h2>
             <div dangerouslySetInnerHTML={{__html: this.state.content["text_" + getLang]}} />
-          
+            {
+            this.state.sliderCompanies.length > 0 ? 
+              <Slider {...settings2}> 
+              {slider2.length > 0 ? slider2 : [] }
+              </Slider> 
+              : <div></div> 
+            }
           </div>
 
         </div>

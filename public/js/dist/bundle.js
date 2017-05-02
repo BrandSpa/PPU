@@ -75249,12 +75249,7 @@
 	        this.state.sliderMain.length > 0 ? _react2.default.createElement(
 	          _reactSlick2.default,
 	          settings1,
-	          slider1.length > 0 ? slider1 : [],
-	          _react2.default.createElement(
-	            'div',
-	            null,
-	            _react2.default.createElement('img', { src: '/uploads/slider/slider_image/94/probono01__1_.jpg', alt: '', className: 'img-responsive' })
-	          )
+	          slider1.length > 0 ? slider1 : []
 	        ) : _react2.default.createElement('div', null),
 	        _react2.default.createElement(
 	          'div',
@@ -75264,7 +75259,12 @@
 	            null,
 	            this.state.content["title_" + _get_lang2.default]
 	          ),
-	          _react2.default.createElement('div', { dangerouslySetInnerHTML: { __html: this.state.content["text_" + _get_lang2.default] } })
+	          _react2.default.createElement('div', { dangerouslySetInnerHTML: { __html: this.state.content["text_" + _get_lang2.default] } }),
+	          this.state.sliderCompanies.length > 0 ? _react2.default.createElement(
+	            _reactSlick2.default,
+	            settings2,
+	            slider2.length > 0 ? slider2 : []
+	          ) : _react2.default.createElement('div', null)
 	        )
 	      )
 	    );
