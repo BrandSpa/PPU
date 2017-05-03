@@ -42427,7 +42427,7 @@
 	              ),
 	              _react2.default.createElement(
 	                'a',
-	                { href: '/img/politica_tratamiento_de datos_ppu_colombia.pdf', style: { 'float': 'right', 'paddingLeft': '15px', fontSize: '1em' } },
+	                { href: '/img/politica_tratamiento_de datos_ppu_colombia.pdf', style: { 'float': 'right', 'paddingLeft': '15px', fontSize: '.5em', opacity: '.6' } },
 	                'Pol\xEDtica de tratamiento de datos Colombia'
 	              ),
 	              _react2.default.createElement(
