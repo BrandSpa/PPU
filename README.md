@@ -15,7 +15,9 @@ Backend
 - Amazon s3: used for upload media
 
 Frontend
+More info in the file public/package.json
 - React
+- Superagent
 - Coffeescript
 - Backbone
 - Underscore
