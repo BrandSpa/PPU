@@ -18,7 +18,7 @@
 node_modules
 /public/node_modules
 /public/.sass-cache
-/public/uploads/*
+/public/uploads/tmp
 /config/database.yml
 cookbooks
 .vagrant
