@@ -25,10 +25,11 @@ export default React.createClass({
           <div className="col-lg-2"></div>
           <div className="col-lg-10">
             <div id="footer">
-            <a href="/img/politica_tratamiento_de datos_ppu_colombia.pdf" style={{'float': 'right', 'paddingLeft': '15px', opacity: '.3'}}>Política de tratamiento de datos Colombia</a>
+            
             <a href="http://brandspa.com" target="_blank" style={{'float': 'right', 'paddingLeft': '15px', opacity: '.3'}} >
                 <img width="20" src="http://brandspa.com/wp-content/uploads/GotaWhite.svg" alt="brandspa" />
               </a>
+              <a href="/img/politica_tratamiento_de datos_ppu_colombia.pdf" style={{'float': 'right', 'paddingLeft': '15px', fontSize: '1em'}}>Política de tratamiento de datos Colombia</a>
               <div className="pull-left">
                 <Social />
               </div>
