@@ -29,7 +29,7 @@ export default React.createClass({
             <a href="http://brandspa.com" target="_blank" style={{'float': 'right', 'paddingLeft': '15px', opacity: '.3'}} >
                 <img width="20" src="http://brandspa.com/wp-content/uploads/GotaWhite.svg" alt="brandspa" />
               </a>
-              <a href="/img/politica_tratamiento_de datos_ppu_colombia.pdf" style={{'float': 'right', 'paddingLeft': '15px', fontSize: '.5em', opacity: '.6'}}>Política de tratamiento de datos Colombia</a>
+              <a href="/img/politica_tratamiento_de datos_ppu_colombia.pdf" style={{'float': 'right', 'padding': '5px 0 0 15px', fontSize: '.5em', opacity: '.6'}}>Política de tratamiento de datos Colombia</a>
               <div className="pull-left">
                 <Social />
               </div>
