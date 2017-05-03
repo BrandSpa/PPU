@@ -16,6 +16,7 @@ web app for ppu news about all legal issues and experience.
 
 ## Frontend
 More info in the file public/package.json
+
 - React
 - Superagent
 - Coffeescript
