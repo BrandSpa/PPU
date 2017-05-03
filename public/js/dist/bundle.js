@@ -42422,6 +42422,11 @@
 	              { id: 'footer' },
 	              _react2.default.createElement(
 	                'a',
+	                { href: '/img/politica_tratamiento_de datos_ppu_colombia.pdf', style: { 'float': 'right', 'paddingLeft': '15px', opacity: '.3' } },
+	                'Pol\xEDtica de tratamiento de datos Colombia'
+	              ),
+	              _react2.default.createElement(
+	                'a',
 	                { href: 'http://brandspa.com', target: '_blank', style: { 'float': 'right', 'paddingLeft': '15px', opacity: '.3' } },
 	                _react2.default.createElement('img', { width: '20', src: 'http://brandspa.com/wp-content/uploads/GotaWhite.svg', alt: 'brandspa' })
 	              ),
