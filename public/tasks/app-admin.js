@@ -35,6 +35,7 @@ gulp.task('app-admin', function() {
     // Views admin
     'app/admin/category.coffee',
     'app/admin/lawyer.coffee',
+    'app/admin/gallery.coffee',
     'app/admin/post.coffee',
 
     'app/admin/the_actual.coffee',
@@ -45,8 +46,7 @@ gulp.task('app-admin', function() {
 
     'app/admin/the_actual_pe.coffee',
     'app/admin/the_actual_pe_create.coffee',
-
-    'app/admin/gallery.coffee',
+    
     'app/admin/experience.coffee',
     'app/admin/router.coffee',
 
