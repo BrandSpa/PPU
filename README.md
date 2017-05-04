@@ -1,7 +1,7 @@
-PPU
+# PPU
 web app for ppu news about all legal issues and experience.
 
-Deployment
+## Deployment
 - VPS
 - Git
 - Nginx
@@ -10,12 +10,13 @@ Deployment
 - Passenger
 - Mysql
 
-Backend
+## Backend
 - Ruby on rails 4.1.2: used for api and templates container
 - Amazon s3: used for upload media
 
-Frontend
+## Frontend
 More info in the file public/package.json
+
 - React
 - Superagent
 - Coffeescript

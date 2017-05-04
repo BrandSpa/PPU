@@ -2832,6 +2832,7 @@ $(function() {
     PostCreate.prototype.showErrors = function(model, b) {
       return _.each(b.responseJSON, function(error) {
         return _.each(error, function(message) {
+          console.log(message);
           return toastr.error(message);
         });
       });
