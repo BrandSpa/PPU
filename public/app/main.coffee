@@ -15,6 +15,16 @@ app.pubsub = {}
 
 _.extend(app.pubsub, Backbone.Events)
 
+$(document).ajaxSend (e, xhr, options) ->
+  token = $("meta[name='csrf-token']").attr("content")
+  xhr.setRequestHeader("X-CSRF-Token", token)
+  console.log('ajax send', token)
+
+$.ajaxSetup beforeSend: (xhr) ->
+  console.log 'ajax setup'
+  token = $('meta[name=\'csrf-token\']').attr('content')
+  xhr.setRequestHeader('X-CSRF-Token', token)
+
 $(document).ajaxStart (t) ->
   NProgress.start()
 
@@ -134,10 +144,7 @@ $('.carousel').carousel interval: 7000
 
 $('.popver').popover()
 
-$(document).ajaxSend (e, xhr, options) ->
-  token = $("meta[name='csrf-token']").attr("content")
-  xhr.setRequestHeader("X-CSRF-Token", token)
-  console.log('ajax send', token)
+
 
 $(document).find('.datepicker-year').datepicker
   format: 'yyyy'
