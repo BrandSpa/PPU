@@ -20,6 +20,22 @@ app.pubsub = {};
 
 _.extend(app.pubsub, Backbone.Events);
 
+$(document).ajaxSend(function(e, xhr, options) {
+  var token;
+  token = $("meta[name='csrf-token']").attr("content");
+  xhr.setRequestHeader("X-CSRF-Token", token);
+  return console.log('ajax send', token);
+});
+
+$.ajaxSetup({
+  beforeSend: function(xhr) {
+    var token;
+    console.log('ajax setup');
+    token = $('meta[name=\'csrf-token\']').attr('content');
+    return xhr.setRequestHeader('X-CSRF-Token', token);
+  }
+});
+
 $(document).ajaxStart(function(t) {
   return NProgress.start();
 });
@@ -181,13 +197,6 @@ $('.carousel').carousel({
 });
 
 $('.popver').popover();
-
-$(document).ajaxSend(function(e, xhr, options) {
-  var token;
-  token = $("meta[name='csrf-token']").attr("content");
-  xhr.setRequestHeader("X-CSRF-Token", token);
-  return console.log('ajax send', token);
-});
 
 $(document).find('.datepicker-year').datepicker({
   format: 'yyyy',
