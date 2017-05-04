@@ -184,9 +184,9 @@ $('.popver').popover();
 
 $(document).ajaxSend(function(e, xhr, options) {
   var token;
-  console.log('ajax send');
   token = $("meta[name='csrf-token']").attr("content");
-  return xhr.setRequestHeader("X-CSRF-Token", token);
+  xhr.setRequestHeader("X-CSRF-Token", token);
+  return console.log('ajax send', token);
 });
 
 $(document).find('.datepicker-year').datepicker({
