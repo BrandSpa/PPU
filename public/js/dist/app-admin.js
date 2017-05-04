@@ -2608,14 +2608,15 @@ $(function() {
       this.collection.each(function(model) {
         return this.renderOne(model);
       }, this);
-      $("#gallery-post-modal").modal();
-      console.log(this.$el);
-      return this.$el.modal();
+      return $("#gallery-post-modal").modal();
+    };
+
+    GalleryPostModal.prototype.closeModal = function() {
+      return $("#gallery-post-modal").modal('hide');
     };
 
     GalleryPostModal.prototype.close = function(e) {
       e.preventDefault();
-      console.log(this);
       return this.closeModal();
     };
 
