@@ -3,6 +3,7 @@ var React = require('react');
 var _ = require('underscore');
 var request = require('superagent');
 var $ = require('jquery');
+var summernote = require('summernote/dist/summernote');
 
 const PostCreate = React.createClass({
 	getInitialState() {
@@ -22,7 +23,7 @@ const PostCreate = React.createClass({
 	},
 
 	handleChange(field, e) {
-		console.log(e.currentTarget.value);
+		console.log(e.currentTarget.value)
 	},
 
 	render() {
