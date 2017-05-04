@@ -2608,6 +2608,7 @@ $(function() {
       this.collection.each(function(model) {
         return this.renderOne(model);
       }, this);
+      $("#gallery-post-modal").modal();
       console.log(this.$el);
       return this.$el.modal();
     };

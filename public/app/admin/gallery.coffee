@@ -38,7 +38,7 @@ $ ->
       @collection.each (model) ->
         @renderOne(model)
       , @
-      
+      $("#gallery-post-modal").modal()
       console.log(@$el);
       @$el.modal()
      
