@@ -5,7 +5,7 @@ var Probono = require('probono/section.jsx');
 var Us = require('us/section.jsx');
 var Recruitment = require('recruitment/section.jsx');
 var Posts = require('posts/section.jsx');
-var PostsCreate = require('posts/create.js');
+
 var Lawyers = require('lawyers/section.jsx');
 var Experiences = require('experiences/section.jsx');
 var Sidebar = require('sidebar.jsx');
@@ -35,13 +35,6 @@ var Router = Backbone.Router.extend({
     'admin/posts2': function() {
       ReactDOM.render(
         <Posts />,
-        document.getElementById('wrap')
-      );
-    },
-
-    'admin/posts2/new': function() {
-      ReactDOM.render(
-        <PostsCreate />,
         document.getElementById('wrap')
       );
     },
