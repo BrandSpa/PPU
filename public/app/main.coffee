@@ -135,9 +135,9 @@ $('.carousel').carousel interval: 7000
 $('.popver').popover()
 
 $(document).ajaxSend (e, xhr, options) ->
-  console.log('ajax send')
   token = $("meta[name='csrf-token']").attr("content")
   xhr.setRequestHeader("X-CSRF-Token", token)
+  console.log('ajax send', token)
 
 $(document).find('.datepicker-year').datepicker
   format: 'yyyy'
