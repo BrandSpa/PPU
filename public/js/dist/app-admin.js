@@ -165,6 +165,9 @@ ppu.ajaxOptions = function(type, data) {
     processData: false,
     cache: false,
     contentType: false,
+    headers: {
+      'X-CSRF-Token': $('meta[name=\'csrf-token\']').attr('content')
+    },
     beforeSend: function() {
       return console.log('model before send');
     }

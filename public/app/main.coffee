@@ -120,6 +120,7 @@ ppu.ajaxOptions = (type, data) ->
   processData: false
   cache: false
   contentType: false
+  headers:  'X-CSRF-Token': $('meta[name=\'csrf-token\']').attr('content')
   beforeSend: -> 
     console.log('model before send')
 
