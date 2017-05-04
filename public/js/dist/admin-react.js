@@ -53258,6 +53258,9 @@
 		componentDidMount: function componentDidMount() {
 			$('.summernote-editor').summernote();
 		},
+		handleChange: function handleChange(field, e) {
+			console.log(e.currentTarget.value);
+		},
 		render: function render() {
 			return React.createElement(
 				'div',

@@ -21,6 +21,10 @@ const PostCreate = React.createClass({
 		$('.summernote-editor').summernote();
 	},
 
+	handleChange(field, e) {
+		console.log(e.currentTarget.value);
+	},
+
 	render() {
 		return (
 			<div>
