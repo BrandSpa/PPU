@@ -135,6 +135,7 @@ $('.carousel').carousel interval: 7000
 $('.popver').popover()
 
 $(document).ajaxSend (e, xhr, options) ->
+  console.log('ajax send')
   token = $("meta[name='csrf-token']").attr("content")
   xhr.setRequestHeader("X-CSRF-Token", token)
 
