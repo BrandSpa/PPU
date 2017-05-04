@@ -188,6 +188,7 @@ $ ->
     showErrors: (model, b) ->
       _.each b.responseJSON, (error) ->
         _.each error, (message) ->
+          console.log(message)
           toastr.error(message)
 
     getCategories: ->
