@@ -120,6 +120,8 @@ ppu.ajaxOptions = (type, data) ->
   processData: false
   cache: false
   contentType: false
+  beforeSend: -> 
+    console.log('model before send')
 
 ppu.saveMultipeForms = (el, model, lawyer_id) ->
   $forms = $(el).find("form")

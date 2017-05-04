@@ -164,7 +164,10 @@ ppu.ajaxOptions = function(type, data) {
     data: data,
     processData: false,
     cache: false,
-    contentType: false
+    contentType: false,
+    beforeSend: function() {
+      return console.log('model before send');
+    }
   };
 };
 
