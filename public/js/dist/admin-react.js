@@ -53,10 +53,11 @@
 	var Us = __webpack_require__(208);
 	var Recruitment = __webpack_require__(215);
 	var Posts = __webpack_require__(220);
-	var Lawyers = __webpack_require__(229);
-	var Experiences = __webpack_require__(231);
-	var Sidebar = __webpack_require__(250);
-	var Login = __webpack_require__(251);
+	var PostsCreate = __webpack_require__(229);
+	var Lawyers = __webpack_require__(230);
+	var Experiences = __webpack_require__(232);
+	var Sidebar = __webpack_require__(251);
+	var Login = __webpack_require__(252);
 
 	var Router = Backbone.Router.extend({
 	  routes: {
@@ -75,6 +76,10 @@
 
 	    'admin/posts2': function adminPosts2() {
 	      ReactDOM.render(React.createElement(Posts, null), document.getElementById('wrap'));
+	    },
+
+	    'admin/posts2/new': function adminPosts2New() {
+	      ReactDOM.render(React.createElement(PostsCreate, null), document.getElementById('wrap'));
 	    },
 
 	    'admin/lawyers2': function adminLawyers2() {
@@ -53233,7 +53238,55 @@
 	'use strict';
 
 	var React = __webpack_require__(4);
-	var Lawyer = __webpack_require__(230);
+	var _ = __webpack_require__(2);
+	var request = __webpack_require__(187);
+	var $ = __webpack_require__(3);
+
+	var PostCreate = React.createClass({
+		displayName: 'PostCreate',
+		getInitialState: function getInitialState() {
+			return {
+				title: '',
+				content: '',
+				country: '',
+				author: '',
+				date: '',
+				lang: '',
+				lawyers: []
+			};
+		},
+		componentDidMount: function componentDidMount() {
+			$('.summernote-editor').summernote();
+		},
+		render: function render() {
+			return React.createElement(
+				'div',
+				null,
+				React.createElement(
+					'div',
+					{ className: 'form-group' },
+					React.createElement('input', { type: 'text', onChange: this.handleChange.bind(null, 'title'), value: this.state.title })
+				),
+				React.createElement('div', { className: 'summernote-editor' }),
+				React.createElement(
+					'button',
+					null,
+					'Store'
+				)
+			);
+		}
+	});
+
+	module.exports = PostCreate;
+
+/***/ }),
+/* 230 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(4);
+	var Lawyer = __webpack_require__(231);
 	var request = __webpack_require__(187);
 	var _ = __webpack_require__(2);
 	var Filters = __webpack_require__(222);
@@ -53321,7 +53374,7 @@
 	});
 
 /***/ }),
-/* 230 */
+/* 231 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -53421,13 +53474,13 @@
 	});
 
 /***/ }),
-/* 231 */
+/* 232 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var React = __webpack_require__(4);
-	var Item = __webpack_require__(232);
+	var Item = __webpack_require__(233);
 	var request = __webpack_require__(187);
 	var _ = __webpack_require__(2);
 	var Filters = __webpack_require__(222);
@@ -53522,7 +53575,7 @@
 	});
 
 /***/ }),
-/* 232 */
+/* 233 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -53531,7 +53584,7 @@
 	var _ = __webpack_require__(2);
 	var request = __webpack_require__(187);
 	var $ = __webpack_require__(3);
-	var Verification = __webpack_require__(233);
+	var Verification = __webpack_require__(234);
 
 	module.exports = React.createClass({
 	  displayName: 'exports',
@@ -53697,13 +53750,13 @@
 	});
 
 /***/ }),
-/* 233 */
+/* 234 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var React = __webpack_require__(4);
-	var Modal = __webpack_require__(234);
+	var Modal = __webpack_require__(235);
 
 	var customStyle = {
 	  overlay: {
@@ -53770,28 +53823,28 @@
 	});
 
 /***/ }),
-/* 234 */
+/* 235 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(235);
+	module.exports = __webpack_require__(236);
 
 
 
 /***/ }),
-/* 235 */
+/* 236 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {var React = __webpack_require__(4);
 	var ReactDOM = __webpack_require__(39);
-	var PropTypes = __webpack_require__(236);
-	var ExecutionEnvironment = __webpack_require__(238);
-	var ModalPortal = React.createFactory(__webpack_require__(239));
-	var ariaAppHider = __webpack_require__(247);
-	var refCount = __webpack_require__(248);
-	var elementClass = __webpack_require__(249);
+	var PropTypes = __webpack_require__(237);
+	var ExecutionEnvironment = __webpack_require__(239);
+	var ModalPortal = React.createFactory(__webpack_require__(240));
+	var ariaAppHider = __webpack_require__(248);
+	var refCount = __webpack_require__(249);
+	var elementClass = __webpack_require__(250);
 	var renderSubtreeIntoContainer = __webpack_require__(39).unstable_renderSubtreeIntoContainer;
-	var Assign = __webpack_require__(243);
-	var createReactClass = __webpack_require__(244)
+	var Assign = __webpack_require__(244);
+	var createReactClass = __webpack_require__(245)
 
 	var SafeHTMLElement = ExecutionEnvironment.canUseDOM ? window.HTMLElement : {};
 	var AppElement = ExecutionEnvironment.canUseDOM ? document.body : {appendChild: function() {}};
@@ -53951,7 +54004,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
 
 /***/ }),
-/* 236 */
+/* 237 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -53982,13 +54035,13 @@
 	} else {
 	  // By explicitly using `prop-types` you are opting into new production behavior.
 	  // http://fb.me/prop-types-in-prod
-	  module.exports = __webpack_require__(237)();
+	  module.exports = __webpack_require__(238)();
 	}
 
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
 
 /***/ }),
-/* 237 */
+/* 238 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
@@ -54048,7 +54101,7 @@
 
 
 /***/ }),
-/* 238 */
+/* 239 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -54093,15 +54146,15 @@
 
 
 /***/ }),
-/* 239 */
+/* 240 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(4);
 	var div = React.DOM.div;
-	var focusManager = __webpack_require__(240);
-	var scopeTab = __webpack_require__(242);
-	var Assign = __webpack_require__(243);
-	var createReactClass = __webpack_require__(244);
+	var focusManager = __webpack_require__(241);
+	var scopeTab = __webpack_require__(243);
+	var Assign = __webpack_require__(244);
+	var createReactClass = __webpack_require__(245);
 
 	// so that our CSS is statically analyzable
 	var CLASS_NAMES = {
@@ -54305,10 +54358,10 @@
 
 
 /***/ }),
-/* 240 */
+/* 241 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var findTabbable = __webpack_require__(241);
+	var findTabbable = __webpack_require__(242);
 	var focusLaterElements = [];
 	var modalElement = null;
 	var needToFocus = false;
@@ -54379,7 +54432,7 @@
 
 
 /***/ }),
-/* 241 */
+/* 242 */
 /***/ (function(module, exports) {
 
 	/*!
@@ -54435,10 +54488,10 @@
 
 
 /***/ }),
-/* 242 */
+/* 243 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var findTabbable = __webpack_require__(241);
+	var findTabbable = __webpack_require__(242);
 
 	module.exports = function(node, event) {
 	  var tabbable = findTabbable(node);
@@ -54460,7 +54513,7 @@
 
 
 /***/ }),
-/* 243 */
+/* 244 */
 /***/ (function(module, exports) {
 
 	/**
@@ -55103,7 +55156,7 @@
 
 
 /***/ }),
-/* 244 */
+/* 245 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
@@ -55119,7 +55172,7 @@
 	'use strict';
 
 	var React = __webpack_require__(4);
-	var factory = __webpack_require__(245);
+	var factory = __webpack_require__(246);
 
 	// Hack to grab NoopUpdateQueue from isomorphic React
 	var ReactNoopUpdateQueue = new React.Component().updater;
@@ -55132,7 +55185,7 @@
 
 
 /***/ }),
-/* 245 */
+/* 246 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -55147,7 +55200,7 @@
 
 	'use strict';
 
-	var _assign = __webpack_require__(246);
+	var _assign = __webpack_require__(247);
 
 	var emptyObject = __webpack_require__(23);
 	var _invariant = __webpack_require__(11);
@@ -55863,7 +55916,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
 
 /***/ }),
-/* 246 */
+/* 247 */
 /***/ (function(module, exports) {
 
 	/*
@@ -55959,7 +56012,7 @@
 
 
 /***/ }),
-/* 247 */
+/* 248 */
 /***/ (function(module, exports) {
 
 	var _element = typeof document !== 'undefined' ? document.body : null;
@@ -56007,7 +56060,7 @@
 
 
 /***/ }),
-/* 248 */
+/* 249 */
 /***/ (function(module, exports) {
 
 	var modals = [];
@@ -56032,7 +56085,7 @@
 
 
 /***/ }),
-/* 249 */
+/* 250 */
 /***/ (function(module, exports) {
 
 	module.exports = function(opts) {
@@ -56097,7 +56150,7 @@
 
 
 /***/ }),
-/* 250 */
+/* 251 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -56274,7 +56327,7 @@
 	});
 
 /***/ }),
-/* 251 */
+/* 252 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
