@@ -4058,11 +4058,13 @@ $(function() {
       this.collection.each(function(model) {
         return this.renderOne(model);
       }, this);
+      console.log(this.$el);
       return this.$el.modal();
     };
 
     GalleryPostModal.prototype.close = function(e) {
       e.preventDefault();
+      console.log(this);
       return this.closeModal();
     };
 

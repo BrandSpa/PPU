@@ -38,10 +38,13 @@ $ ->
       @collection.each (model) ->
         @renderOne(model)
       , @
+      
+      console.log(@$el);
       @$el.modal()
      
     close: (e) ->
       e.preventDefault()
+      console.log(this);
       @closeModal()
 
   class ppu.admin.GalleryExperienceModal extends Backbone.View
