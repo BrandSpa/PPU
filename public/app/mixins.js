@@ -65,7 +65,7 @@ $(function() {
       this.$el.find("table").append(view.render().el);
       console.log( model.id );
       $(this.el).find(".sortable").sortable();
-      $(this.el).data('id', model.id);
+      $(this.el).attr('data-id', model.id);
     },
 
     stop: function(event, ui) {
