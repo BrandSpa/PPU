@@ -37,7 +37,6 @@ gulp.task('app-admin', function() {
     'app/admin/views/categories/checkbox.js',
     'app/admin/views/categories/checkboxes.js',
 
-    // 'app/admin/views/category.js',
     'app/admin/views/lawyer.js',
     'app/admin/views/gallery.js',
 
@@ -62,6 +61,12 @@ gulp.task('app-admin', function() {
     'app/admin/views/the_actual_pe_create.js',
     
     'app/admin/views/experience.js',
+    'app/admin/views/experience/experience.js',
+    'app/admin/views/experience/experiences.js',
+    'app/admin/views/experience/filters.js',
+    'app/admin/views/experience/create.js',
+    'app/admin/views/experience/edit.js',
+    
     'app/admin/router.js',
 
     //Controllers
