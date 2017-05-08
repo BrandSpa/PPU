@@ -82,7 +82,7 @@ $(function() {
           fields: {
             position: pos
           }
-        }, ppu.ajaxOptions);
+        });
       });
     },
     openCreate: function(e) {

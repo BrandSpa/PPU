@@ -38,10 +38,11 @@ var extend = function(child, parent) {
   _.extend(app.pubsub, Backbone.Events);
 
   $(document).ajaxSend(function(e, xhr, options) {
+    console.log('ajaxSend', e, xhr);
+    
     var token;
     token = $("meta[name='csrf-token']").attr("content");
-    xhr.setRequestHeader("X-CSRF-Token", token);
-    return console.log('ajax send', token);
+    xhr.setRequestHeader('X-CSRF-Token', token);
   });
 
   $.ajaxSetup({
@@ -52,7 +53,7 @@ var extend = function(child, parent) {
       var token;
       console.log($('meta[name=\'csrf-token\']').attr('content'));
       token = $('meta[name=\'csrf-token\']').attr('content');
-      return xhr.setRequestHeader('X-CSRF-Token', token);
+      xhr.setRequestHeader('X-CSRF-Token', token);
     }
   });
 
@@ -158,6 +159,7 @@ var extend = function(child, parent) {
     data = new FormData();
     data.append("gallery[name]", "company_logo");
     data.append("gallery[img_name]", file);
+
     return $.ajax({
       data: data,
       type: "POST",
@@ -341,7 +343,7 @@ $(function() {
           fields: {
             position: pos
           }
-        }, ppu.ajaxOptions);
+        });
       });
     },
     openCreate: function(e) {
