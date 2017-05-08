@@ -83,6 +83,7 @@
       return TheActualView;
 
     })(Backbone.View);
+    
     return ppu.admin.TheActualViews = (function(superClass) {
       extend(TheActualViews, superClass);
 
