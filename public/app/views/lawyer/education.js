@@ -88,7 +88,7 @@ $(function() {
 
     return LawyerEducationModalCreate;
   })(Backbone.View);
-  
+
   ppu.LawyerEducationEditModal = (function(superClass) {
     extend(LawyerEducationEditModal, superClass);
 
@@ -131,7 +131,7 @@ $(function() {
     return LawyerEducationView;
   })(Backbone.View);
 
-  return (ppu.LawyerEducationsEdit = (function(superClass) {
+  ppu.LawyerEducationsEdit = (function(superClass) {
     extend(LawyerEducationsEdit, superClass);
 
     function LawyerEducationsEdit() {
@@ -147,5 +147,6 @@ $(function() {
     _.extend(LawyerEducationsEdit.prototype, mixins.lawyerRelationshipViews);
 
     return LawyerEducationsEdit;
-  })(Backbone.View));
+  })(Backbone.View);
+  
 });
