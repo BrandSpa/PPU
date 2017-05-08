@@ -62,8 +62,8 @@ $(function() {
     renderOne: function(model) {
       var view;
       view = new this.view({ model: model });
-      $(this.el).find("table").append(view.render().el.attr('data-id', model.id));
-      console.log('el', view.render().el.attr('data-id', model.id));
+      $(this.el).find("table").append($(view.render().el).attr('data-id', model.id));
+      console.log('el', $(view.render().el).attr('data-id', model.id));
       $(this.el).find(".sortable").sortable();
 
       $(this.el).attr('data-id', model.id);
