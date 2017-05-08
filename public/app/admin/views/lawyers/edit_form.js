@@ -26,6 +26,7 @@
         ppu.categories = new ppu.Categories;
         el = $(this.el);
         categories = this.model.get('categories');
+        
         return ppu.categories.fetch({
           data: {
             locale: app.lang

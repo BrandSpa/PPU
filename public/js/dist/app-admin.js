@@ -318,10 +318,10 @@ $(function() {
     renderOne: function(model) {
       var view;
       view = new this.view({ model: model });
-      this.$el.find("table").append(view.render().el);
-      console.log( model.id );
+      $(this.el).find("table").append(view.render().el);
+      console.log('el', view.render().el);
       $(this.el).find(".sortable").sortable();
-      console.log($(this.el));
+
       $(this.el).attr('data-id', model.id);
     },
 
@@ -335,7 +335,7 @@ $(function() {
         var id, model, pos;
         pos = $(el).index();
         id = $(el).data("id");
-        console.log(pos, id, _this.collection);
+
         model = _this.collection.get(id);
         
         return model.save({
@@ -2430,6 +2430,7 @@ ppu.LawyerCreateView = (function(superClass) {
         ppu.categories = new ppu.Categories;
         el = $(this.el);
         categories = this.model.get('categories');
+        
         return ppu.categories.fetch({
           data: {
             locale: app.lang
