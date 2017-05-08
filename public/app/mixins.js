@@ -46,8 +46,7 @@ $(function() {
     initialize: function() {
       this.listenTo(this.collection, "reset", this.renderCollection);
       this.listenTo(this.collection, "add", this.renderCollection);
-      	
-      $( this.el ).on( "sortstop", function( event, ui ) { console.log('stop') });
+      $( this.el ).on( "sortstop", this.stop);
     },
 
     renderCollection: function() {
