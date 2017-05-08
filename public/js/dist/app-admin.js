@@ -308,14 +308,15 @@ $(function() {
         return this.renderOne(model);
       }, this);
     },
+
     renderOne: function(model) {
       var view;
-      view = new this.view({
-        model: model
-      });
+      view = new this.view({ model: model });
       this.$el.find('table').append(view.render().el);
+      console.log(this.$el);
       return this.$el.find('.sortable').sortable();
     },
+
     stop: function(event, ui) {
       var _this, list;
       _this = this;
