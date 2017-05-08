@@ -43,7 +43,7 @@ gulp.task('app-admin', function() {
     'app/admin/views/posts/posts.js',
     'app/admin/views/posts/filters.js',
     'app/admin/views/posts/create.js',
-    // 'app/admin/views/posts/edit.js',
+    'app/admin/views/posts/edit.js',
 
     'app/admin/views/the_actual.js',
     'app/admin/views/the_actual_create.js',
