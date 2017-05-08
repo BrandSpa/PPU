@@ -33,11 +33,22 @@ gulp.task('app-admin', function() {
     'app/views/lawyer/recognition.js',
 
     // Views admin
+
     //categories
     'app/admin/views/categories/checkbox.js',
     'app/admin/views/categories/checkboxes.js',
 
+    //lawyers
     'app/admin/views/lawyer.js',
+    'app/admin/views/lawyers/lawyer.js',
+    'app/admin/views/lawyers/lawyers.js',
+    'app/admin/views/lawyers/filters.js',
+    'app/admin/views/lawyers/create_form.js',
+    'app/admin/views/lawyers/create.js',
+    'app/admin/views/lawyers/edit_form.js',
+    'app/admin/views/lawyers/edit.js',
+    'app/admin/views/lawyers/confirmation.js',
+
     'app/admin/views/gallery.js',
 
     //posts
@@ -60,6 +71,7 @@ gulp.task('app-admin', function() {
     'app/admin/views/the_actual_pe.js',
     'app/admin/views/the_actual_pe_create.js',
     
+    'app/admin/models/experience.js',
     'app/admin/views/experience.js',
     'app/admin/views/experiencies/experience.js',
     'app/admin/views/experiencies/experiencies.js',
