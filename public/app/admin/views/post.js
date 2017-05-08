@@ -141,7 +141,7 @@
       return PostLawyersSelect;
 
     })(Backbone.View);
-    
+
     return ppu.admin.PostLawyersSelected = (function(superClass) {
       extend(PostLawyersSelected, superClass);
 
@@ -179,6 +179,7 @@
       return PostLawyersSelected;
 
     })(Backbone.View);
+    
   });
 
 }).call(this);
