@@ -50,7 +50,7 @@ var extend = function(child, parent) {
     },
     beforeSend: function(xhr) {
       var token;
-      console.log('ajax setup');
+      console.log($('meta[name=\'csrf-token\']').attr('content'));
       token = $('meta[name=\'csrf-token\']').attr('content');
       return xhr.setRequestHeader('X-CSRF-Token', token);
     }
