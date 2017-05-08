@@ -2693,6 +2693,7 @@
       return GalleryPostModal;
 
     })(Backbone.View);
+    
     return ppu.admin.GalleryExperienceModal = (function(superClass) {
       extend(GalleryExperienceModal, superClass);
 
@@ -2752,6 +2753,7 @@
       return Post;
 
     })(Backbone.Model);
+
     ppu.Posts = (function(superClass) {
       extend(Posts, superClass);
 
@@ -2766,6 +2768,7 @@
       return Posts;
 
     })(Backbone.Collection);
+
     ppu.admin.PostView = (function(superClass) {
       extend(PostView, superClass);
 
