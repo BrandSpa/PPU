@@ -5,6 +5,7 @@ var extend = function(child, parent) {
   function ctor() {
     this.constructor = child;
   }
+  
   ctor.prototype = parent.prototype;
   child.prototype = new ctor();
   child.__super__ = parent.prototype;
