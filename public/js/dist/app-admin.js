@@ -2693,7 +2693,6 @@
       return GalleryPostModal;
 
     })(Backbone.View);
-    
     return ppu.admin.GalleryExperienceModal = (function(superClass) {
       extend(GalleryExperienceModal, superClass);
 
@@ -2769,251 +2768,9 @@
 
     })(Backbone.Collection);
 
-    ppu.admin.PostView = (function(superClass) {
-      extend(PostView, superClass);
+    
+  
 
-      function PostView() {
-        return PostView.__super__.constructor.apply(this, arguments);
-      }
-
-      PostView.prototype.template = $('#post-admin-template');
-
-      PostView.prototype.tagName = 'tr';
-
-      PostView.prototype.events = {
-        "click .publish": "publish",
-        "click .unpublish": "unpublish",
-        "click .change-featured": "changeFeatured",
-        "click .publish-on-social-network": "publishFb",
-        "click .highlight": "featured",
-        "click .unhighlight": "unhighlight",
-        "click .translate": "translate"
-      };
-
-      PostView.prototype.initialize = function() {
-        return this.listenTo(this.model, "change", this.render);
-      };
-
-      PostView.prototype.render = function() {
-        var source, t;
-        source = this.template.html();
-        t = Handlebars.compile(source);
-        $(this.el).html(t(this.model.toJSON()));
-        return this;
-      };
-
-      PostView.prototype.publish = function(e) {
-        e.preventDefault();
-        return this.model.save({
-          fields: {
-            published: true
-          }
-        });
-      };
-
-      PostView.prototype.featured = function(e) {
-        var id;
-        e.preventDefault();
-        id = this.model.id;
-        return $.post("/api/posts/" + id + "/featured").done(function() {
-          return app.pubsub.trigger('post:unfeatured');
-        });
-      };
-
-      PostView.prototype.publishFb = function(e) {
-        var published, url;
-        e.preventDefault();
-        url = setSubdomain(this.model.get('lang')) + ("posts/" + (this.model.get('slug')));
-        return published = openShare(url);
-      };
-
-      PostView.prototype.unpublish = function(e) {
-        e.preventDefault();
-        return this.model.save({
-          fields: {
-            published: false
-          }
-        });
-      };
-
-      PostView.prototype.translate = function(e) {
-        var id;
-        e.preventDefault();
-        id = this.model.id;
-        return $.post("/api/posts/" + id + "/duplicate").done(function(model) {
-          return window.location = "/en/admin/posts/" + model.id + "/edit";
-        });
-      };
-
-      PostView.prototype.changeFeatured = function(e) {
-        var el;
-        el = $(e.currentTarget).find('input').val();
-        app.pubsub.trigger('post:changeFeatured', el);
-        return this.model.save({
-          fields: {
-            featured: el
-          }
-        });
-      };
-
-      return PostView;
-
-    })(Backbone.View);
-    ppu.admin.PostsView = (function(superClass) {
-      extend(PostsView, superClass);
-
-      function PostsView() {
-        return PostsView.__super__.constructor.apply(this, arguments);
-      }
-
-      PostsView.prototype.el = $("#posts-dasboard");
-
-      PostsView.prototype.initialize = function() {
-        this.listenTo(this.collection, 'reset', this.render);
-        this.listenTo(this.collection, 'add', this.addOne, this);
-        app.pubsub.on("posts:filter", this.filterCollection, this);
-        app.pubsub.on("post:changeFeatured", this.changeFeatured, this);
-        return app.pubsub.on('post:unfeatured', this.pull, this);
-      };
-
-      PostsView.prototype.filterCollection = function(filters) {
-        return this.collection.fetch({
-          reset: true,
-          lang: app.lang,
-          data: filters
-        });
-      };
-
-      PostsView.prototype.pull = function() {
-        return this.collection.fetch({
-          reset: true
-        });
-      };
-
-      PostsView.prototype.changeFeatured = function(val) {
-        var coll;
-        coll = new ppu.Posts;
-        return this.collection.fetch({
-          add: false,
-          data: {
-            is_featured: val
-          }
-        }).done(function(models) {
-          return coll.add(models);
-        });
-      };
-
-      PostsView.prototype.addOne = function(model) {
-        var view;
-        view = new ppu.admin.PostView({
-          model: model
-        });
-        return $(this.el).find('thead').append(view.render().el);
-      };
-
-      PostsView.prototype.render = function() {
-        $(this.el).find('tbody').html('');
-        return this.collection.each(function(model) {
-          var view;
-          view = new ppu.admin.PostView({
-            model: model
-          });
-          return $(this.el).find('tbody').append(view.render().el);
-        }, this);
-      };
-
-      return PostsView;
-
-    })(Backbone.View);
-    ppu.admin.PostsFilters = (function(superClass) {
-      extend(PostsFilters, superClass);
-
-      function PostsFilters() {
-        return PostsFilters.__super__.constructor.apply(this, arguments);
-      }
-
-      PostsFilters.prototype.el = $('.post-filter');
-
-      PostsFilters.prototype.events = {
-        'click .see-more': 'seeMore',
-        'change .country': 'byCountry',
-        'change .category': 'byCategory',
-        'keydown .query': 'byKeyword',
-        'change .by-lang': 'byLang'
-      };
-
-      PostsFilters.prototype.initialize = function() {
-        return this.filtersAplied = {
-          lang: "es",
-          the_actual_ch: 0,
-          the_actual_co: 0
-        };
-      };
-
-      PostsFilters.prototype.render = function() {
-        var template;
-        template = app.compile(this.template);
-        return this.$el.html(template);
-      };
-
-      PostsFilters.prototype.filterBy = function(data) {
-        data = _.extend(this.filtersAplied, data);
-        return app.pubsub.trigger("posts:filter", data);
-      };
-
-      PostsFilters.prototype.seeMore = function(e) {
-        var data, offset;
-        e.preventDefault();
-        offset = $(this.el).data('offset') || 20;
-        data = _.extend(this.filtersAplied, {
-          paginate: offset
-        });
-        ppu.posts.fetch({
-          data: data
-        });
-        return $(this.el).data('offset', offset + 20);
-      };
-
-      PostsFilters.prototype.byCountry = function(e) {
-        var data, el, val;
-        el = $(e.currentTarget);
-        val = el.val();
-        data = _.extend(this.filtersAplied, {
-          country: val
-        });
-        return app.pubsub.trigger("posts:filter", data);
-      };
-
-      PostsFilters.prototype.byCategory = function(e) {
-        var data, val;
-        val = $(e.currentTarget).find('select').val();
-        data = _.extend(this.filtersAplied, {
-          category: val
-        });
-        return app.pubsub.trigger("posts:filter", data);
-      };
-
-      PostsFilters.prototype.byKeyword = function(e) {
-        var val;
-        val = $(e.currentTarget).val();
-        if (val.length >= 1) {
-          return this.filterBy({
-            keyword: val
-          });
-        }
-      };
-
-      PostsFilters.prototype.byLang = function(e) {
-        var val;
-        val = $(e.currentTarget).val();
-        return this.filterBy({
-          lang: val
-        });
-      };
-
-      return PostsFilters;
-
-    })(Backbone.View);
     ppu.admin.PostCreate = (function(superClass) {
       extend(PostCreate, superClass);
 
@@ -3404,6 +3161,262 @@
   });
 
 }).call(this);
+
+$(function() {
+  ppu.admin.PostView = (function(superClass) {
+    extend(PostView, superClass);
+
+    function PostView() {
+      return PostView.__super__.constructor.apply(this, arguments);
+    }
+
+    PostView.prototype.template = $("#post-admin-template");
+
+    PostView.prototype.tagName = "tr";
+
+    PostView.prototype.events = {
+      "click .publish": "publish",
+      "click .unpublish": "unpublish",
+      "click .change-featured": "changeFeatured",
+      "click .publish-on-social-network": "publishFb",
+      "click .highlight": "featured",
+      "click .unhighlight": "unhighlight",
+      "click .translate": "translate"
+    };
+
+    PostView.prototype.initialize = function() {
+      return this.listenTo(this.model, "change", this.render);
+    };
+
+    PostView.prototype.render = function() {
+      var source, t;
+      source = this.template.html();
+      t = Handlebars.compile(source);
+      $(this.el).html(t(this.model.toJSON()));
+      return this;
+    };
+
+    PostView.prototype.publish = function(e) {
+      e.preventDefault();
+      return this.model.save({
+        fields: {
+          published: true
+        }
+      });
+    };
+
+    PostView.prototype.featured = function(e) {
+      var id;
+      e.preventDefault();
+      id = this.model.id;
+      return $.post("/api/posts/" + id + "/featured").done(function() {
+        return app.pubsub.trigger("post:unfeatured");
+      });
+    };
+
+    PostView.prototype.publishFb = function(e) {
+      var published, url;
+      e.preventDefault();
+      url =
+        setSubdomain(this.model.get("lang")) +
+        ("posts/" + this.model.get("slug"));
+      return (published = openShare(url));
+    };
+
+    PostView.prototype.unpublish = function(e) {
+      e.preventDefault();
+      return this.model.save({
+        fields: {
+          published: false
+        }
+      });
+    };
+
+    PostView.prototype.translate = function(e) {
+      var id;
+      e.preventDefault();
+      id = this.model.id;
+      return $.post("/api/posts/" + id + "/duplicate").done(function(model) {
+        return (window.location = "/en/admin/posts/" + model.id + "/edit");
+      });
+    };
+
+    PostView.prototype.changeFeatured = function(e) {
+      var el;
+      el = $(e.currentTarget).find("input").val();
+      app.pubsub.trigger("post:changeFeatured", el);
+      return this.model.save({
+        fields: {
+          featured: el
+        }
+      });
+    };
+
+    return PostView;
+  })(Backbone.View);
+});
+
+$(function() {
+	
+  ppu.admin.PostsView = (function(superClass) {
+    extend(PostsView, superClass);
+
+    function PostsView() {
+      return PostsView.__super__.constructor.apply(this, arguments);
+    }
+
+    PostsView.prototype.el = $("#posts-dasboard");
+
+    PostsView.prototype.initialize = function() {
+      this.listenTo(this.collection, "reset", this.render);
+      this.listenTo(this.collection, "add", this.addOne, this);
+      app.pubsub.on("posts:filter", this.filterCollection, this);
+      app.pubsub.on("post:changeFeatured", this.changeFeatured, this);
+      return app.pubsub.on("post:unfeatured", this.pull, this);
+    };
+
+    PostsView.prototype.filterCollection = function(filters) {
+      return this.collection.fetch({
+        reset: true,
+        lang: app.lang,
+        data: filters
+      });
+    };
+
+    PostsView.prototype.pull = function() {
+      return this.collection.fetch({
+        reset: true
+      });
+    };
+
+    PostsView.prototype.changeFeatured = function(val) {
+      var coll;
+      coll = new ppu.Posts();
+      return this.collection
+        .fetch({
+          add: false,
+          data: {
+            is_featured: val
+          }
+        })
+        .done(function(models) {
+          return coll.add(models);
+        });
+    };
+
+    PostsView.prototype.addOne = function(model) {
+      var view;
+      view = new ppu.admin.PostView({
+        model: model
+      });
+      return $(this.el).find("thead").append(view.render().el);
+    };
+
+    PostsView.prototype.render = function() {
+      $(this.el).find("tbody").html("");
+      return this.collection.each(function(model) {
+        var view;
+        view = new ppu.admin.PostView({
+          model: model
+        });
+        return $(this.el).find("tbody").append(view.render().el);
+      }, this);
+    };
+
+    return PostsView;
+  })(Backbone.View);
+});
+
+$(function() {
+  ppu.admin.PostsFilters = (function(superClass) {
+    extend(PostsFilters, superClass);
+
+    function PostsFilters() {
+      return PostsFilters.__super__.constructor.apply(this, arguments);
+    }
+
+    PostsFilters.prototype.el = $(".post-filter");
+
+    PostsFilters.prototype.events = {
+      "click .see-more": "seeMore",
+      "change .country": "byCountry",
+      "change .category": "byCategory",
+      "keydown .query": "byKeyword",
+      "change .by-lang": "byLang"
+    };
+
+    PostsFilters.prototype.initialize = function() {
+      return (this.filtersAplied = {
+        lang: "es",
+        the_actual_ch: 0,
+        the_actual_co: 0
+      });
+    };
+
+    PostsFilters.prototype.render = function() {
+      var template;
+      template = app.compile(this.template);
+      return this.$el.html(template);
+    };
+
+    PostsFilters.prototype.filterBy = function(data) {
+      data = _.extend(this.filtersAplied, data);
+      return app.pubsub.trigger("posts:filter", data);
+    };
+
+    PostsFilters.prototype.seeMore = function(e) {
+      var data, offset;
+      e.preventDefault();
+      offset = $(this.el).data("offset") || 20;
+      data = _.extend(this.filtersAplied, {
+        paginate: offset
+      });
+      ppu.posts.fetch({
+        data: data
+      });
+      return $(this.el).data("offset", offset + 20);
+    };
+
+    PostsFilters.prototype.byCountry = function(e) {
+      var data, el, val;
+      el = $(e.currentTarget);
+      val = el.val();
+      data = _.extend(this.filtersAplied, {
+        country: val
+      });
+      return app.pubsub.trigger("posts:filter", data);
+    };
+
+    PostsFilters.prototype.byCategory = function(e) {
+      var data, val;
+      val = $(e.currentTarget).find("select").val();
+      data = _.extend(this.filtersAplied, {
+        category: val
+      });
+      return app.pubsub.trigger("posts:filter", data);
+    };
+
+    PostsFilters.prototype.byKeyword = function(e) {
+      var val;
+      val = $(e.currentTarget).val();
+      if (val.length >= 1) {
+        return this.filterBy({
+          keyword: val
+        });
+      }
+    };
+
+    PostsFilters.prototype.byLang = function(e) {
+      var val;
+      val = $(e.currentTarget).val();
+      return this.filterBy({
+        lang: val
+      });
+    };
+
+    return PostsFilters;
+  })(Backbone.View);
+});
 
 // Generated by CoffeeScript 1.12.5
 (function() {
