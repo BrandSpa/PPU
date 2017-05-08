@@ -61,11 +61,11 @@ gulp.task('app-admin', function() {
     'app/admin/views/the_actual_pe_create.js',
     
     'app/admin/views/experience.js',
-    'app/admin/views/experience/experience.js',
-    'app/admin/views/experience/experiences.js',
-    'app/admin/views/experience/filters.js',
-    'app/admin/views/experience/create.js',
-    'app/admin/views/experience/edit.js',
+    'app/admin/views/experiences/experience.js',
+    'app/admin/views/experiences/experiences.js',
+    'app/admin/views/experiences/filters.js',
+    'app/admin/views/experiences/create.js',
+    'app/admin/views/experiences/edit.js',
     
     'app/admin/router.js',
 
