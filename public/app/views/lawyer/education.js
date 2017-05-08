@@ -10,6 +10,7 @@ $(function() {
 
     return LawyerEducation;
   })(Backbone.Model);
+
   ppu.LawyerEducations = (function(superClass) {
     extend(LawyerEducations, superClass);
 
@@ -23,6 +24,7 @@ $(function() {
 
     return LawyerEducations;
   })(Backbone.Collection);
+
   ppu.LawyerEducationCreate = (function(superClass) {
     extend(LawyerEducationCreate, superClass);
 
@@ -60,6 +62,7 @@ $(function() {
 
     return LawyerEducationCreate;
   })(Backbone.View);
+
   ppu.LawyerEducationModalCreate = (function(superClass) {
     extend(LawyerEducationModalCreate, superClass);
 
@@ -85,6 +88,7 @@ $(function() {
 
     return LawyerEducationModalCreate;
   })(Backbone.View);
+  
   ppu.LawyerEducationEditModal = (function(superClass) {
     extend(LawyerEducationEditModal, superClass);
 
@@ -108,6 +112,7 @@ $(function() {
 
     return LawyerEducationEditModal;
   })(Backbone.View);
+
   ppu.LawyerEducationView = (function(superClass) {
     extend(LawyerEducationView, superClass);
 
@@ -125,6 +130,7 @@ $(function() {
 
     return LawyerEducationView;
   })(Backbone.View);
+
   return (ppu.LawyerEducationsEdit = (function(superClass) {
     extend(LawyerEducationsEdit, superClass);
 
