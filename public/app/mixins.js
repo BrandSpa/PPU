@@ -1,4 +1,3 @@
-
 $(function() {
   mixins.lawyerRelationshipView = {
     tagName: "tr",
@@ -7,7 +6,7 @@ $(function() {
       "click .remove": "remove"
     },
     initialize: function() {
-      return this.listenTo(this.model, 'change', this.render);
+      return this.listenTo(this.model, "change", this.render);
     },
     setPosition: function(position) {
       return this.model.save({
@@ -19,7 +18,7 @@ $(function() {
       source = $(this.template).html();
       template = Handlebars.compile(source);
       this.$el.html(template(this.model.toJSON()));
-      this.$el.data('id', this.model.get('id'));
+      this.$el.data("id", this.model.get("id"));
       return this;
     },
     openEdit: function(e) {
@@ -40,15 +39,17 @@ $(function() {
 
   mixins.lawyerRelationshipViews = {
     events: {
-      'click .open-modal-create': 'openCreate',
-      "sortstop": "stop"
+      "click .open-modal-create": "openCreate",
+      sortstop: "stop"
     },
+
     initialize: function() {
-      this.listenTo(this.collection, 'reset', this.renderCollection);
-      return this.listenTo(this.collection, 'add', this.renderCollection);
+      this.listenTo(this.collection, "reset", this.renderCollection);
+      this.listenTo(this.collection, "add", this.renderCollection);
     },
+
     renderCollection: function() {
-      this.$el.find('table tbody').html('');
+      this.$el.find("table tbody").html("");
       return this.collection.each(function(model) {
         return this.renderOne(model);
       }, this);
@@ -57,19 +58,19 @@ $(function() {
     renderOne: function(model) {
       var view;
       view = new this.view({ model: model });
-      this.$el.find('table').append(view.render().el);
-      console.log(this.$el);
-      return this.$el.find('.sortable').sortable();
+      this.$el.find("table").append(view.render().el);
+      console.log(this.$el.find(".sortable"));
+      this.$el.find(".sortable").sortable();
     },
 
     stop: function(event, ui) {
       var _this, list;
       _this = this;
-      list = $(this.el).find('tbody tr');
+      list = $(this.el).find("tbody tr");
       return $.map(list, function(el) {
         var id, model, pos;
         pos = $(el).index();
-        id = $(el).data('id');
+        id = $(el).data("id");
         model = _this.collection.get(id);
         return model.save({
           fields: {
@@ -81,9 +82,10 @@ $(function() {
     openCreate: function(e) {
       var lawyer_id, view;
       e.preventDefault();
-      lawyer_id = ppu.currentLawyerId || this.collection.models[0].get('lawyer_id');
+      lawyer_id =
+        ppu.currentLawyerId || this.collection.models[0].get("lawyer_id");
       view = new this.modal({
-        model: new this.collection.model,
+        model: new this.collection.model(),
         collection: this.collection
       });
       return view.render(lawyer_id);
@@ -96,52 +98,60 @@ $(function() {
       "click .modal-close": "close"
     },
     initialize: function() {
-      return this.listenTo(this.model, 'sync', this.created);
+      return this.listenTo(this.model, "sync", this.created);
     },
+
     render: function(lawyer_id) {
       var data, source, template;
       data = {
         lawyer_id: lawyer_id
       };
-      this.$el.find('.modal-body').empty();
+
+      this.$el.find(".modal-body").empty();
       source = $(this.template).html();
       template = Handlebars.compile(source);
-      this.$el.find('.modal-body').html(template(data));
+      this.$el.find(".modal-body").html(template(data));
       this.openModal();
       return this.appendDatePicker();
     },
+
     openModal: function() {
       return $(this.el).modal({
-        backdrop: 'static'
+        backdrop: "static"
       });
     },
+
     appendDatePicker: function() {
-      return $(this.el).find('.datepicker-year').datepicker({
-        format: 'yyyy',
+      return $(this.el).find(".datepicker-year").datepicker({
+        format: "yyyy",
         viewMode: "years",
         minViewMode: "years",
-        language: 'es',
+        language: "es",
         autoclose: true
       });
     },
+
     create: function(e) {
       var $form, data, el, lawyer_id;
       e.preventDefault();
       el = $(e.currentTarget);
-      lawyer_id = el.data('lawyer_id');
-      $form = this.$el.find('form');
+      lawyer_id = el.data("lawyer_id");
+      $form = this.$el.find("form");
       data = new FormData($form[0]);
       return this.store(data);
     },
+
     store: function(data) {
       return this.model.save(data, $.extend({}, ppu.ajaxOptions("POST", data)));
     },
+
     created: function(model) {
       if (model.id) {
         this.collection.add(model);
         return this.closeModal();
       }
     },
+
     close: function(e) {
       e.preventDefault();
       return this.closeModal();
@@ -153,36 +163,40 @@ $(function() {
       "click .update": "update",
       "click .modal-close": "close"
     },
+
     initialize: function() {
-      return this.listenTo(this.model, 'sync', this.updated);
+      return this.listenTo(this.model, "sync", this.updated);
     },
+
     render: function() {
       var source, template;
-      this.$el.find('.modal-body').empty();
+      this.$el.find(".modal-body").empty();
       source = $(this.template).html();
       template = Handlebars.compile(source);
-      this.$el.find('.modal-body').html(template(this.model.toJSON()));
+      this.$el.find(".modal-body").html(template(this.model.toJSON()));
       $(this.el).modal({
-        backdrop: 'static'
+        backdrop: "static"
       });
       return ppu.appendDatePickerYear(this.el);
     },
+
     update: function(e) {
       var $form, data;
       e.preventDefault();
-      $form = this.$el.find('form');
+      $form = this.$el.find("form");
       data = new FormData($form[0]);
       return this.model.save(data, $.extend({}, ppu.ajaxOptions("PUT", data)));
     },
+
     updated: function(model) {
       if (model.id) {
         return this.closeModal();
       }
     },
+
     close: function(e) {
       e.preventDefault();
       return this.closeModal();
     }
   };
-
 });
