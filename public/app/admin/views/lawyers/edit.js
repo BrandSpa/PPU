@@ -77,7 +77,9 @@ ppu.LawyerEditView = (function(superClass) {
         published: true
       }
     });
+
     id = this.model.get("translations").id;
+    
     return $.ajax({
       url: "/api/lawyers/" + id,
       type: "PUT",
