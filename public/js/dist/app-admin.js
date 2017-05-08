@@ -300,9 +300,12 @@ $(function() {
     },
 
     initialize: function() {
+      var _this = this;
       this.listenTo(this.collection, "reset", this.renderCollection);
       this.listenTo(this.collection, "add", this.renderCollection);
-      $( this.el ).on( "sortstop", this.stop);
+      $( this.el ).on( "sortstop", function(event, ui) {
+        this.stop(event, ui).bind(_this);
+      });
     },
 
     renderCollection: function() {
@@ -325,7 +328,7 @@ $(function() {
       var _this, list;
       _this = this;
       list = $(this.el).find("tbody tr");
-      console.log(list);
+
       return $.map(list, function(el) {
         var id, model, pos;
         pos = $(el).index();
