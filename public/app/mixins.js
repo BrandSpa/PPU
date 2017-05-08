@@ -63,14 +63,10 @@ $(function() {
       var view;
       view = new this.view({ model: model });
       $(this.el).find("table").append($(view.render().el).attr('data-id', model.id));
-      console.log('el', $(view.render().el).attr('data-id', model.id));
       $(this.el).find(".sortable").sortable();
-
-      $(this.el).attr('data-id', model.id);
     },
 
     stop: function(event, ui) {
-      
       var _this, list;
       _this = this;
       list = $(this.el).find("tbody tr");
@@ -86,7 +82,7 @@ $(function() {
           fields: {
             position: pos
           }
-        });
+        }, ppu.ajaxOptions);
       });
     },
     openCreate: function(e) {
