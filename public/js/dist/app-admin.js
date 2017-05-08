@@ -4354,7 +4354,7 @@ ppu.Experiences = (function(superClass) {
 
     })(Backbone.View);
     
-    return ppu.admin.ExperienceLawyersSelected = (function(superClass) {
+    ppu.admin.ExperienceLawyersSelected = (function(superClass) {
       extend(ExperienceLawyersSelected, superClass);
 
       function ExperienceLawyersSelected() {
