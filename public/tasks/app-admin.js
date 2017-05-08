@@ -33,7 +33,11 @@ gulp.task('app-admin', function() {
     'app/views/lawyer/recognition.js',
 
     // Views admin
-    'app/admin/views/category.js',
+    //categories
+    'app/admin/views/categories/checkbox.js',
+    'app/admin/views/categories/checkboxes.js',
+
+    // 'app/admin/views/category.js',
     'app/admin/views/lawyer.js',
     'app/admin/views/gallery.js',
 
