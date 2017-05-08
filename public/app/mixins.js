@@ -63,7 +63,8 @@ $(function() {
       var view;
       view = new this.view({ model: model });
       this.$el.find("table").append(view.render().el);
-      console.log($(this.el).find(".sortable"));
+      console.log( model.id );
+       $(this.el).data('id', model.id);
       $(this.el).find(".sortable").sortable();
     },
 
