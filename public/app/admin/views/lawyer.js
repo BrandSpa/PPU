@@ -43,6 +43,7 @@
             published: true
           }
         });
+
         id = this.model.get('translations').id;
         return $.ajax({
           url: "/api/lawyers/" + id,
@@ -93,6 +94,7 @@
       return LawyerView;
 
     })(Backbone.View);
+
     ppu.admin.LawyersView = (function(superClass) {
       extend(LawyersView, superClass);
 
@@ -583,6 +585,7 @@
       return LawyerEditView;
 
     })(Backbone.View);
+    
     return ppu.lawyerConfirmTranslate = (function(superClass) {
       extend(lawyerConfirmTranslate, superClass);
 
