@@ -11,6 +11,7 @@
       });
       return ppu.admin.experiencesFilters = new ppu.admin.ExperiencesFilters;
     },
+
     create: function() {
       ppu.admin.experience = new ppu.Experience;
       ppu.admin.experienceCreate = new ppu.admin.ExperienceCreate({
@@ -32,6 +33,7 @@
         }
       });
     },
+    
     edit: function(id) {
       ppu.admin.experience = new ppu.Experience({
         id: id

@@ -38,7 +38,7 @@ gulp.task('app-admin', function() {
     'app/admin/views/gallery.js',
 
     //posts
-    'app/admin/views/post.js',
+    'app/admin/models/post.js',
     'app/admin/views/posts/post.js',
     'app/admin/views/posts/posts.js',
     'app/admin/views/posts/filters.js',

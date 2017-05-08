@@ -4,6 +4,7 @@
     hasProp = {}.hasOwnProperty;
 
   $(function() {
+    
     ppu.admin.CategoryCheckbox = (function(superClass) {
       extend(CategoryCheckbox, superClass);
 
@@ -25,6 +26,7 @@
       return CategoryCheckbox;
 
     })(Backbone.View);
+
     return ppu.admin.CategoriesCheckbox = (function(superClass) {
       extend(CategoriesCheckbox, superClass);
 
