@@ -320,9 +320,11 @@ $(function() {
     },
 
     stop: function(event, ui) {
+      console.log('stop');
       var _this, list;
       _this = this;
       list = $(this.el).find("tbody tr");
+
       return $.map(list, function(el) {
         var id, model, pos;
         pos = $(el).index();
