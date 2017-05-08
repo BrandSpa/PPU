@@ -45,6 +45,9 @@ var extend = function(child, parent) {
   });
 
   $.ajaxSetup({
+     headers: {
+      'X-CSRF-Token': $('meta[name=\'csrf-token\']').attr('content')
+    },
     beforeSend: function(xhr) {
       var token;
       console.log('ajax setup');
