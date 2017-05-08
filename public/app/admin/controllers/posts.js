@@ -17,9 +17,11 @@
     },
     create: function() {
       ppu.admin.post = new ppu.Post;
+
       ppu.admin.postCreate = new ppu.admin.PostCreate({
         model: ppu.admin.post
       });
+      
       ppu.admin.postCreate.render();
       ppu.categories = new ppu.Categories;
       ppu.categories.fetch({
