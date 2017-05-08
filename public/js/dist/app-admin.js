@@ -39,7 +39,7 @@ var extend = function(child, parent) {
 
   $(document).ajaxSend(function(e, xhr, options) {
     console.log('ajaxSend', e, xhr);
-    
+
     var token;
     token = $("meta[name='csrf-token']").attr("content");
     xhr.setRequestHeader('X-CSRF-Token', token);
@@ -56,6 +56,19 @@ var extend = function(child, parent) {
       xhr.setRequestHeader('X-CSRF-Token', token);
     }
   });
+
+  var sync = Backbone.sync;
+Backbone.sync = function(method, model, options) {
+  options.beforeSend = function (xhr) {
+    console.log('backbone sync', $('meta[name=\'csrf-token\']').attr('content'));
+      token = $('meta[name=\'csrf-token\']').attr('content');
+      xhr.setRequestHeader('X-CSRF-Token', token);
+  };
+
+  // Update other options here.
+
+  sync(method, model, options);
+};
 
   $(document).ajaxStart(function(t) {
     return NProgress.start();
@@ -338,12 +351,8 @@ $(function() {
         id = $(el).data("id");
 
         model = _this.collection.get(id);
-        
-        return model.save({
-          fields: {
-            position: pos
-          }
-        });
+
+        model.save({ fields: { position: pos } });
       });
     },
     openCreate: function(e) {
@@ -2573,7 +2582,9 @@ ppu.LawyerEditView = (function(superClass) {
         published: true
       }
     });
+
     id = this.model.get("translations").id;
+    
     return $.ajax({
       url: "/api/lawyers/" + id,
       type: "PUT",

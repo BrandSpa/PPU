@@ -77,12 +77,8 @@ $(function() {
         id = $(el).data("id");
 
         model = _this.collection.get(id);
-        
-        return model.save({
-          fields: {
-            position: pos
-          }
-        });
+
+        model.save({ fields: { position: pos } });
       });
     },
     openCreate: function(e) {
