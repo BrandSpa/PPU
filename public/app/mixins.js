@@ -78,6 +78,7 @@ $(function() {
         pos = $(el).index();
         id = $(el).data("id");
         model = _this.collection.get(id);
+        console.log(model);
         return model.save({
           fields: {
             position: pos
