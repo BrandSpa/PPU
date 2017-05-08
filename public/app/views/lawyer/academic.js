@@ -16,6 +16,7 @@
       return LawyerAcademic;
 
     })(Backbone.Model);
+
     ppu.LawyerAcademics = (function(superClass) {
       extend(LawyerAcademics, superClass);
 
@@ -30,6 +31,7 @@
       return LawyerAcademics;
 
     })(Backbone.Collection);
+    
     ppu.LawyerAcademicCreate = (function(superClass) {
       extend(LawyerAcademicCreate, superClass);
 
