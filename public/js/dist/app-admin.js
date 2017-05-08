@@ -401,17 +401,23 @@ $(function() {
       return this.model.save(data, $.extend({}, ppu.ajaxOptions("POST", data)));
     },
 
+    closeModal: function() {
+      $(this.el).modal('hide');
+    },
+
     created: function(model) {
       if (model.id) {
         this.collection.add(model);
-        return this.closeModal();
+        this.closeModal();
       }
     },
 
     close: function(e) {
       e.preventDefault();
-      return this.closeModal();
+      this.closeModal();
     }
+
+    
   };
 
   mixins.lawyerRelationshipModalEdit = {
