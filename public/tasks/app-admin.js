@@ -7,59 +7,59 @@ var concat    = require('gulp-concat');
 // convert to js and contact all javascripts files
 gulp.task('app-admin', function() {
   gulp.src([
-    'app/main.coffee',
-    'app/mixins.coffee',
+    'app/main.js',
+    'app/mixins.js',
 
     // Helpers
-    'app/helpers/handlebars_helpers.coffee',
-    'app/helpers/bb_helpers.coffee',
+    'app/helpers/handlebars_helpers.js',
+    'app/helpers/bb_helpers.js',
 
     // Models
-    'app/models/categories.coffee',
-    'app/models/lawyer.coffee',
+    'app/models/categories.js',
+    'app/models/lawyer.js',
 
     // Views
-    'app/views/categories.coffee',
+    'app/views/categories.js',
 
     // Views Lawyer
-    'app/views/lawyer/article.coffee',
-    'app/views/lawyer/award.coffee',
-    'app/views/lawyer/academic.coffee',
-    'app/views/lawyer/education.coffee',
-    'app/views/lawyer/institution.coffee',
-    'app/views/lawyer/language.coffee',
-    'app/views/lawyer/pharase.coffee',
-    'app/views/lawyer/job.coffee',
-    'app/views/lawyer/recognition.coffee',
+    'app/views/lawyer/article.js',
+    'app/views/lawyer/award.js',
+    'app/views/lawyer/academic.js',
+    'app/views/lawyer/education.js',
+    'app/views/lawyer/institution.js',
+    'app/views/lawyer/language.js',
+    'app/views/lawyer/pharase.js',
+    'app/views/lawyer/job.js',
+    'app/views/lawyer/recognition.js',
 
     // Views admin
-    'app/admin/category.coffee',
-    'app/admin/lawyer.coffee',
-    'app/admin/gallery.coffee',
-    'app/admin/post.coffee',
+    'app/admin/category.js',
+    'app/admin/lawyer.js',
+    'app/admin/gallery.js',
+    'app/admin/post.js',
 
-    'app/admin/the_actual.coffee',
-    'app/admin/the_actual_create.coffee',
+    'app/admin/the_actual.js',
+    'app/admin/the_actual_create.js',
 
-    'app/admin/the_actual_co.coffee',
-    'app/admin/the_actual_co_create.coffee',
+    'app/admin/the_actual_co.js',
+    'app/admin/the_actual_co_create.js',
 
-    'app/admin/the_actual_pe.coffee',
-    'app/admin/the_actual_pe_create.coffee',
+    'app/admin/the_actual_pe.js',
+    'app/admin/the_actual_pe_create.js',
     
-    'app/admin/experience.coffee',
-    'app/admin/router.coffee',
+    'app/admin/experience.js',
+    'app/admin/router.js',
 
     //Controllers
-    'app/admin/controllers/lawyers.coffee',
-    'app/admin/controllers/posts.coffee',
-    'app/admin/controllers/experiences.coffee',
-    'app/admin/controllers/the_actual_ch.coffee',
-    'app/admin/controllers/the_actual_co.coffee',
-    'app/admin/controllers/the_actual_pe.coffee',
+    'app/admin/controllers/lawyers.js',
+    'app/admin/controllers/posts.js',
+    'app/admin/controllers/experiences.js',
+    'app/admin/controllers/the_actual_ch.js',
+    'app/admin/controllers/the_actual_co.js',
+    'app/admin/controllers/the_actual_pe.js',
 
     ])
-  .pipe(coffee({bare: true}).on('error', gutil.log))
+  // .pipe(coffee({bare: true}).on('error', gutil.log))
   .pipe(concat('app-admin.js'))
   .pipe(gulp.dest('js/dist/'));
 });
