@@ -304,7 +304,7 @@ $(function() {
       this.listenTo(this.collection, "reset", this.renderCollection);
       this.listenTo(this.collection, "add", this.renderCollection);
       $( this.el ).on( "sortstop", function(event, ui) {
-        this.stop(event, ui).bind(_this);
+        _this.stop(event, ui).bind(_this);
       });
     },
 
