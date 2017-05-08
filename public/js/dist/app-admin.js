@@ -333,8 +333,9 @@ $(function() {
         var id, model, pos;
         pos = $(el).index();
         id = $(el).data("id");
+        console.log(pos, id, _this.collection);
         model = _this.collection.get(id);
-        console.log(model);
+        
         return model.save({
           fields: {
             position: pos
