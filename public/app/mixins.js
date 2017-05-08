@@ -196,6 +196,10 @@ $(function() {
       return this.model.save(data, $.extend({}, ppu.ajaxOptions("PUT", data)));
     },
 
+    closeModal: function() {
+      $(this.el).modal('hide');
+    },
+
     updated: function(model) {
       if (model.id) {
         return this.closeModal();
