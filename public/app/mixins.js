@@ -59,8 +59,8 @@ $(function() {
       var view;
       view = new this.view({ model: model });
       this.$el.find("table").append(view.render().el);
-      console.log(this.$el.find(".sortable"));
-      this.$el.find(".sortable").sortable();
+      console.log($(this.el).find(".sortable"));
+      $(this.el).find(".sortable").sortable();
     },
 
     stop: function(event, ui) {
