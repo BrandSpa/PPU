@@ -1,7 +1,7 @@
 // Dependencies
 var gulp      = require('gulp');
 var gutil     = require('gulp-util');
-var coffee    = require('gulp-coffee');
+// var coffee    = require('gulp-coffee');
 var concat    = require('gulp-concat');
 
 // convert to js and contact all javascripts files
@@ -33,21 +33,26 @@ gulp.task('app-admin', function() {
     'app/views/lawyer/recognition.js',
 
     // Views admin
-    'app/admin/category.js',
-    'app/admin/lawyer.js',
-    'app/admin/gallery.js',
-    'app/admin/post.js',
+    'app/admin/views/category.js',
+    'app/admin/views/lawyer.js',
+    'app/admin/views/gallery.js',
 
-    'app/admin/the_actual.js',
-    'app/admin/the_actual_create.js',
+    //posts
+    'app/admin/views/post.js',
+    'app/admin/views/posts/post.js',
+    'app/admin/views/posts/posts.js',
+    'app/admin/views/posts/filters.js',
 
-    'app/admin/the_actual_co.js',
-    'app/admin/the_actual_co_create.js',
+    'app/admin/views/the_actual.js',
+    'app/admin/views/the_actual_create.js',
 
-    'app/admin/the_actual_pe.js',
-    'app/admin/the_actual_pe_create.js',
+    'app/admin/views/the_actual_co.js',
+    'app/admin/views/the_actual_co_create.js',
+
+    'app/admin/views/the_actual_pe.js',
+    'app/admin/views/the_actual_pe_create.js',
     
-    'app/admin/experience.js',
+    'app/admin/views/experience.js',
     'app/admin/router.js',
 
     //Controllers
