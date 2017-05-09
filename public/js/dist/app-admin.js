@@ -321,7 +321,7 @@ $(function() {
         id = $(el).data("id");
 
         model = _this.collection.get(id);
-        console.log(model);
+        console.log(model.save);
         model.save({ fields: { position: pos } });
       });
     },
