@@ -274,9 +274,12 @@ var extend = function(child, parent) {
       });
       return view.render();
     },
+
     remove: function(e) {
       e.preventDefault();
-      this.model.destroy();
+      this.model.destroy({ headers: {
+        'X-CSRF-Token': $('meta[name=\'csrf-token\']').attr('content')
+         }}));
       this.$el.fadeOut();
       return this.$el.remove();
     }
@@ -325,7 +328,7 @@ var extend = function(child, parent) {
         var data = { fields: { position: pos } };
         model.save(data, { headers: {
         'X-CSRF-Token': $('meta[name=\'csrf-token\']').attr('content')
-      }});
+         }});
       });
     },
     
