@@ -274,12 +274,13 @@ var extend = function(child, parent) {
       });
       return view.render();
     },
-
+    
     remove: function(e) {
       e.preventDefault();
-      this.model.destroy({ headers: {
+      this.model.destroy(      { headers: {
         'X-CSRF-Token': $('meta[name=\'csrf-token\']').attr('content')
-         }}));
+         }});
+
       this.$el.fadeOut();
       return this.$el.remove();
     }
