@@ -37,46 +37,15 @@ var extend = function(child, parent) {
 
   _.extend(app.pubsub, Backbone.Events);
 
-  $(document).ajaxSend(function(e, xhr, options) {
-    console.log('ajaxSend', e, xhr);
-
-    var token;
-    token = $("meta[name='csrf-token']").attr("content");
-    xhr.setRequestHeader('X-CSRF-Token', token);
-  });
-
   $.ajaxSetup({
      headers: {
       'X-CSRF-Token': $('meta[name=\'csrf-token\']').attr('content')
     },
-    beforeSend: function(xhr) {
-      var token;
-      console.log($('meta[name=\'csrf-token\']').attr('content'));
-      token = $('meta[name=\'csrf-token\']').attr('content');
-      xhr.setRequestHeader('X-CSRF-Token', token);
+    beforeSend: function() {
+      console.log('ajax setup');
     }
   });
 
-  var sync = Backbone.sync;
-Backbone.sync = function(method, model, options) {
-  options.beforeSend = function (xhr) {
-    console.log('backbone sync', $('meta[name=\'csrf-token\']').attr('content'));
-      token = $('meta[name=\'csrf-token\']').attr('content');
-      xhr.setRequestHeader('X-CSRF-Token', token);
-  };
-
-  // Update other options here.
-
-  sync(method, model, options);
-};
-
-  $(document).ajaxStart(function(t) {
-    return NProgress.start();
-  });
-
-  $(document).ajaxStop(function() {
-    return NProgress.done();
-  });
 
   $(".select-cities li a").click(function(e) {
     $(".select-cities li a").removeClass('active');
