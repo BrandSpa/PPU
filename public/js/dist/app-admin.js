@@ -36,8 +36,9 @@ var extend = function(child, parent) {
   app.pubsub = {};
 
   _.extend(app.pubsub, Backbone.Events);
-
-  $.ajaxSetup({
+  
+$(function() {
+    $.ajaxSetup({
     global: true,
      headers: {
       'X-CSRF-Token': $('meta[name=\'csrf-token\']').attr('content')
@@ -46,6 +47,8 @@ var extend = function(child, parent) {
       console.log('ajax setup');
     }
   });
+
+})
 
 
   $(".select-cities li a").click(function(e) {
@@ -321,7 +324,6 @@ $(function() {
         id = $(el).data("id");
 
         model = _this.collection.get(id);
-        console.log(model.save);
         model.save({ fields: { position: pos } });
       });
     },
