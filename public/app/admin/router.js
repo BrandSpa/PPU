@@ -1,4 +1,3 @@
-
   $(function() {
     ppu.admin.Router = (function(superClass) {
       extend(Router, superClass);
@@ -119,7 +118,7 @@
       return Router;
 
     })(Backbone.Router);
-    
-    return ppu.admin.router = new ppu.admin.Router;
+
+     ppu.admin.router = new ppu.admin.Router;
   });
 

@@ -36,8 +36,7 @@ var extend = function(child, parent) {
   app.pubsub = {};
 
   _.extend(app.pubsub, Backbone.Events);
-  
-$(function() {
+
     $.ajaxSetup({
     global: true,
      headers: {
@@ -48,7 +47,6 @@ $(function() {
     }
   });
 
-})
 
 
   $(".select-cities li a").click(function(e) {
