@@ -1,4 +1,4 @@
-$(function() {
+
   mixins.lawyerRelationshipView = {
     tagName: "tr",
     events: {
@@ -77,9 +77,11 @@ $(function() {
         id = $(el).data("id");
 
         model = _this.collection.get(id);
-        model.save({ fields: { position: pos } });
+        var data = { fields: { position: pos } };
+        model.save(data, $.extend({}, ppu.ajaxOptions("PUT", data)));
       });
     },
+    
     openCreate: function(e) {
       var lawyer_id, view;
       e.preventDefault();
@@ -210,4 +212,3 @@ $(function() {
       return this.closeModal();
     }
   };
-});
