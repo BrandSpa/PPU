@@ -38,6 +38,7 @@ var extend = function(child, parent) {
   _.extend(app.pubsub, Backbone.Events);
 
   $.ajaxSetup({
+    global: true,
      headers: {
       'X-CSRF-Token': $('meta[name=\'csrf-token\']').attr('content')
     },
