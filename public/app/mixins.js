@@ -78,7 +78,7 @@
 
         model = _this.collection.get(id);
         var data = { fields: { position: pos } };
-        model.save(data, $.extend({}, ppu.ajaxOptions("PUT", data)));
+        model.save(data, $.extend({contentType: true}, ppu.ajaxOptions("PUT", data)));
       });
     },
     
