@@ -78,7 +78,9 @@
 
         model = _this.collection.get(id);
         var data = { fields: { position: pos } };
-        model.save(data, $.extend({contentType: true}, ppu.ajaxOptions("PUT", data)));
+        model.save(data, { headers: {
+        'X-CSRF-Token': $('meta[name=\'csrf-token\']').attr('content')
+      }});
       });
     },
     
