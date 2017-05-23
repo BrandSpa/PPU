@@ -54,7 +54,7 @@
       };
 
       TheActualCreate.prototype.stored = function(model) {
-        return window.location = "/el-actual/" + (this.model.get('slug'));
+        return window.location = "/posts/" + (this.model.get('slug'));
       };
 
       TheActualCreate.prototype.publishFb = function(model) {
