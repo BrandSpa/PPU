@@ -24,9 +24,11 @@
     openEdit: function(e) {
       var view;
       e.preventDefault();
+      
       view = new this.modal({
         model: this.model
       });
+
       return view.render();
     },
     

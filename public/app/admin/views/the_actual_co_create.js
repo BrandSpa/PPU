@@ -54,7 +54,7 @@
       };
 
       TheActualCoCreate.prototype.stored = function(model) {
-        return window.location = "/el-actual-colombia/" + (this.model.get('slug'));
+        return window.location = "/posts/" + (this.model.get('slug'));
       };
 
       TheActualCoCreate.prototype.publishFb = function(model) {

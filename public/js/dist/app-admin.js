@@ -269,9 +269,11 @@ var extend = function(child, parent) {
     openEdit: function(e) {
       var view;
       e.preventDefault();
+      
       view = new this.modal({
         model: this.model
       });
+
       return view.render();
     },
     
@@ -3665,7 +3667,7 @@ $(function() {
       };
 
       TheActualCreate.prototype.stored = function(model) {
-        return window.location = "/el-actual/" + (this.model.get('slug'));
+        return window.location = "/posts/" + (this.model.get('slug'));
       };
 
       TheActualCreate.prototype.publishFb = function(model) {
@@ -3935,7 +3937,7 @@ $(function() {
       };
 
       TheActualCoCreate.prototype.stored = function(model) {
-        return window.location = "/el-actual-colombia/" + (this.model.get('slug'));
+        return window.location = "/posts/" + (this.model.get('slug'));
       };
 
       TheActualCoCreate.prototype.publishFb = function(model) {
