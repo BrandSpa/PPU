@@ -69,7 +69,7 @@ Rails.application.configure do
       port:                 587,
       domain:               'ppulegal.com',
       user_name:            'alejandro@brandspa.com',
-      password:             'g73AdHj3QBS88zxLdbiXLw',
+      password:             'Durd3n_99',
       authentication:       'plain',
       enable_starttls_auto: true  }
 end
