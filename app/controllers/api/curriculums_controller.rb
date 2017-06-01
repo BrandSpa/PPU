@@ -6,7 +6,7 @@ class Api::CurriculumsController < ApplicationController
 		model = entity.create(curriculum_params)
 
 		if model.valid?
-			render json: model
+
 			if model.country == 'Chile'
 				CurriculumMailer.notification(model, "seleccioncl@ppulegal.com").deliver
 			elsif model.country == 'Colombia'
@@ -16,7 +16,8 @@ class Api::CurriculumsController < ApplicationController
 			else
 				CurriculumMailer.notification(model, "juliana.mogollon@ppulegal.com").deliver
 			end
-
+			
+			render json: model
 		else
 			render json: model.errors, status: 400
 		end
