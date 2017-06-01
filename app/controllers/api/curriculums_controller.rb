@@ -14,7 +14,7 @@ class Api::CurriculumsController < ApplicationController
 			elsif model.country == 'Perú'
 				CurriculumMailer.notification(model, "seleccionpe@ppulegal.com").deliver
 			else
-				CurriculumMailer.notification(model, "seleccionco@ppulegal.com").deliver
+				CurriculumMailer.notification(model, "sylvia.duque@ppulegal.com").deliver
 			end
 
 		else
