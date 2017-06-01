@@ -9,16 +9,12 @@ class Api::CurriculumsController < ApplicationController
 			render json: model
 			if model.country == 'Chile'
 				CurriculumMailer.notification(model, "seleccioncl@ppulegal.com").deliver
-				CurriculumMailer.notification(model, "alejandro@brandspa.com").deliver
 			elsif model.country == 'Colombia'
-				CurriculumMailer.notification(model, "seleccionco@ppulegal.com").deliver
-				CurriculumMailer.notification(model, "alejandro@brandspa.com").deliver
+				CurriculumMailer.notification(model, "sylvia.duque@ppulegal.com").deliver
 			elsif model.country == 'Perú'
 				CurriculumMailer.notification(model, "seleccionpe@ppulegal.com").deliver
-				CurriculumMailer.notification(model, "alejandro@brandspa.com").deliver
 			else
 				CurriculumMailer.notification(model, "seleccionco@ppulegal.com").deliver
-				CurriculumMailer.notification(model, "alejandro@brandspa.com").deliver
 			end
 
 		else

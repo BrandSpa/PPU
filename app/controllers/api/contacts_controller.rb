@@ -9,16 +9,12 @@ class Api::ContactsController < ApplicationController
 
       if model.country == "colombia"
         ContactMailer.notification(model, "infoco@ppulegal.com").deliver
-        ContactMailer.notification(model, "alejandro@brandspa.com").deliver
       elsif model.country == "chile"
         ContactMailer.notification(model, "infocl@ppulegal.com").deliver
-         ContactMailer.notification(model, "alejandro@brandspa.com").deliver
       elsif model.country == "perú"
         ContactMailer.notification(model, "infope@ppulegal.com").deliver
-        ContactMailer.notification(model, "alejandro@brandspa.com").deliver
 			else
 				ContactMailer.notification(model, "infoco@ppulegal.com").deliver
-        ContactMailer.notification(model, "alejandro@brandspa.com").deliver
       end
 
     else
