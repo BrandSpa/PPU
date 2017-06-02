@@ -96,7 +96,7 @@ export default React.createClass({
             name="email"
             type="text"
             className="form-control"
-            onChange={this.handleChange.bind(null, '')}
+            onChange={this.handleChange.bind(null, 'email')}
           />
 
        </div>
