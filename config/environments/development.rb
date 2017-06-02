@@ -30,8 +30,8 @@ Rails.application.configure do
       address:              'smtp.sendgrid.net',
       port:                 587,
       domain:               'ppulegal.com',
-      user_name:            'apikey',
-      password:             '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',
+      user_name:            'brandspa',
+      password:             'Durd3n_99',#'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',
       authentication:       'plain',
       enable_starttls_auto: true  }
 
