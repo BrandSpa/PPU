@@ -83,7 +83,7 @@ module.exports = React.createClass({
 
     if(model.lawyers) {
       lawyerNodes = model.lawyers.map(function(lawyer, i) {
-        return (<Lawyer key={i} lawyer={lawyer} history={this.props.history} />);
+        return (<Lawyer key={i} lawyer={lawyer} router={this.props.router} />);
       }.bind(this));
 
       if(!_.isEmpty(model.lawyers)) {
