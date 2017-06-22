@@ -96,7 +96,7 @@ module.exports = React.createClass({
         <Experience
           key={i}
           model={experience}
-          history={this.props.history}
+          history={this.props.router}
         />
       );
     }.bind(this));
@@ -119,8 +119,6 @@ module.exports = React.createClass({
 
     return (
       <div>
-      
-
         <TopBar title={trans.name} hidden back pathname={"/experiencias/" + link} />
 
         <div id="experience" className="padding-top">
