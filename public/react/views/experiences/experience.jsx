@@ -14,7 +14,8 @@ module.exports = React.createClass({
   },
 
   open: function(model) {
-    this.props.history.pushState(null, '/experiencias/' + model.slug);
+    console.log(this.props.history);
+    this.props.history.push('/experiencias/' + model.slug);
   },
 
   render: function() {
