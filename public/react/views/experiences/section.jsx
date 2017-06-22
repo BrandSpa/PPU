@@ -73,7 +73,7 @@ module.exports = React.createClass({
         <Experience
           key={experience.id}
           model={experience}
-          history={this.props.history}
+          history={this.props.router}
         />
       );
     }.bind(this));
