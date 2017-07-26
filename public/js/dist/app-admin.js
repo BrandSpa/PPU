@@ -4672,8 +4672,7 @@ ppu.admin.ExperienceCreate = (function(superClass) {
     query = $(e.currentTarget).val();
     if (query.length > 3) {
       collection = new ppu.Lawyers();
-      ppu.admin.experienceLawyersSelect = new ppu.admin
-        .ExperienceLawyersSelect({
+      ppu.admin.experienceLawyersSelect = new ppu.admin.ExperienceLawyersSelect({
         collection: collection
       });
       return ppu.admin.experienceLawyersSelect.search(query);
@@ -4795,20 +4794,19 @@ ppu.admin.ExperienceEdit = (function(superClass) {
     return ppu.admin.galleryExperienceModal.closeModal();
   };
 
+
   ExperienceEdit.prototype.searchLawyer = function(e) {
     var collection, query;
-
     query = $(e.currentTarget).val();
-
     if (query.length > 3) {
       collection = new ppu.Lawyers();
-      ppu.admin.ExperienceLawyersSelect = ppu.admin.ExperienceLawyersSelect({
+      ppu.admin.experienceLawyersSelect = new ppu.admin.ExperienceLawyersSelect({
         collection: collection
       });
-
-      return ppu.admin.ExperienceLawyersSelect.search(query);
+      return ppu.admin.experienceLawyersSelect.search(query);
     }
   };
+
 
   return ExperienceEdit;
 })(Backbone.View);
