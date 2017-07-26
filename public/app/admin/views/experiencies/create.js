@@ -88,8 +88,7 @@ ppu.admin.ExperienceCreate = (function(superClass) {
     query = $(e.currentTarget).val();
     if (query.length > 3) {
       collection = new ppu.Lawyers();
-      ppu.admin.experienceLawyersSelect = new ppu.admin
-        .ExperienceLawyersSelect({
+      ppu.admin.experienceLawyersSelect = new ppu.admin.ExperienceLawyersSelect({
         collection: collection
       });
       return ppu.admin.experienceLawyersSelect.search(query);
