@@ -4621,12 +4621,13 @@ ppu.admin.ExperienceCreate = (function(superClass) {
   };
 
   ExperienceCreate.prototype.addDataPicker = function() {
-    return $(this.el).find(".datepicker").datepicker({
-      orientation: "bottom left",
-      format: "dd/mm/yyyy",
-      language: "es",
-      autoclose: true
-    });
+    // return $(this.el).find(".datepicker").datepicker({
+    //   orientation: "bottom left",
+    //   format: "dd/mm/yyyy",
+    //   language: "es",
+    //   autoclose: true
+    // });
+    ppu.appendDatePicker(this.el);
   };
 
   ExperienceCreate.prototype.store = function() {
@@ -4724,12 +4725,13 @@ ppu.admin.ExperienceEdit = (function(superClass) {
   };
 
   ExperienceEdit.prototype.addDataPicker = function() {
-    return $(this.el).find(".datepicker").datepicker({
-      orientation: "bottom left",
-      format: "dd/mm/yyyy",
-      language: "es",
-      autoclose: true
-    });
+    ppu.appendDatePicker(this.el);
+    // return $(this.el).find(".datepicker").datepicker({
+    //   orientation: "bottom left",
+    //   format: "dd/mm/yyyy",
+    //   language: "es",
+    //   autoclose: true
+    // });
   };
 
   ExperienceEdit.prototype.update = function(e) {

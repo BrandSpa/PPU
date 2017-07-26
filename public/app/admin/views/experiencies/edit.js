@@ -40,12 +40,13 @@ ppu.admin.ExperienceEdit = (function(superClass) {
   };
 
   ExperienceEdit.prototype.addDataPicker = function() {
-    return $(this.el).find(".datepicker").datepicker({
-      orientation: "bottom left",
-      format: "dd/mm/yyyy",
-      language: "es",
-      autoclose: true
-    });
+    ppu.appendDatePicker(this.el);
+    // return $(this.el).find(".datepicker").datepicker({
+    //   orientation: "bottom left",
+    //   format: "dd/mm/yyyy",
+    //   language: "es",
+    //   autoclose: true
+    // });
   };
 
   ExperienceEdit.prototype.update = function(e) {
