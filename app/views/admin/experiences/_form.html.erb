@@ -37,6 +37,24 @@
           <input type="text" name="fields[company_web]" placeholder="(URL completa, incluir http://)" value="{{ company_web }}" class="form-control">
         </div>
 
+        {{#if gallery.img_name }}
+        <div class="col-lg-3">
+          <img src="{{ gallery.img_name.url}}" alt="" class="img-responsive">
+        </div>
+
+        {{/if}}
+
+        <div class="form-group col-lg-6">
+          <input type="file" class="form-control" name="fields[img_name]" >
+        </div>
+
+        {{#if img_name }}
+        <div class="col-lg-3">
+          <img src="{{ img_name.url }}" alt="" class="img-responsive">
+        </div>
+        {{/if}}
+
+
         </div>
       </div>
 
@@ -46,24 +64,10 @@
   <div class="row">
 
     <div class="form-group col-lg-3">
-      <a href="#" class="btn btn-info btn-xl open-gallery">Seleccionar logo</a>
+      <!-- <a href="#" class="btn btn-info btn-xl open-gallery">Seleccionar logo</a> -->
       <input type="hidden" name="fields[gallery_id]" class="gallery_id" value="{{ gallery_id }}">
     </div>
 
-    {{#if gallery.img_name }}
-    <div class="col-lg-3">
-      <img src="{{ gallery.img_name.url}}" alt="" class="img-responsive">
-    </div>
-    {{/if}}
-
-    <div class="form-group col-lg-6">
-      <input type="file" class="form-control" name="fields[img_name]" >
-    </div>
-    {{#if img_name }}
-    <div class="col-lg-3">
-      <img src="{{ img_name.url }}" alt="" class="img-responsive">
-    </div>
-    {{/if}}
 
   </div>
   <div class="row">
