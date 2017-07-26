@@ -36,16 +36,6 @@ ppu.admin.ExperienceCreate = (function(superClass) {
     return ppu.appendSummernoteExperience(this.el);
   };
 
-  ExperienceCreate.prototype.addDataPicker = function() {
-    // return $(this.el).find(".datepicker").datepicker({
-    //   orientation: "bottom left",
-    //   format: "dd/mm/yyyy",
-    //   language: "es",
-    //   autoclose: true
-    // });
-    ppu.appendDatePicker(this.el);
-  };
-
   ExperienceCreate.prototype.store = function() {
     var $form, content, data, options;
     $form = this.$el.find("form");

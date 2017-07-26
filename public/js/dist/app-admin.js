@@ -5,7 +5,7 @@ var extend = function(child, parent) {
   function ctor() {
     this.constructor = child;
   }
-  
+
   ctor.prototype = parent.prototype;
   child.prototype = new ctor();
   child.__super__ = parent.prototype;
@@ -241,7 +241,6 @@ var extend = function(child, parent) {
       return $(".top-bar-container").removeClass("to-top");
     }
   });
-
 
 
   mixins.lawyerRelationshipView = {
@@ -4620,16 +4619,6 @@ ppu.admin.ExperienceCreate = (function(superClass) {
     return ppu.appendSummernoteExperience(this.el);
   };
 
-  ExperienceCreate.prototype.addDataPicker = function() {
-    // return $(this.el).find(".datepicker").datepicker({
-    //   orientation: "bottom left",
-    //   format: "dd/mm/yyyy",
-    //   language: "es",
-    //   autoclose: true
-    // });
-    ppu.appendDatePicker(this.el);
-  };
-
   ExperienceCreate.prototype.store = function() {
     var $form, content, data, options;
     $form = this.$el.find("form");
@@ -4722,16 +4711,6 @@ ppu.admin.ExperienceEdit = (function(superClass) {
     ppu.appendDatePicker(this.el);
     this.getCategories();
     return this.showLawyers();
-  };
-
-  ExperienceEdit.prototype.addDataPicker = function() {
-    ppu.appendDatePicker(this.el);
-    // return $(this.el).find(".datepicker").datepicker({
-    //   orientation: "bottom left",
-    //   format: "dd/mm/yyyy",
-    //   language: "es",
-    //   autoclose: true
-    // });
   };
 
   ExperienceEdit.prototype.update = function(e) {
