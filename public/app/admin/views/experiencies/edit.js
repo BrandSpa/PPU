@@ -39,16 +39,6 @@ ppu.admin.ExperienceEdit = (function(superClass) {
     return this.showLawyers();
   };
 
-  ExperienceEdit.prototype.addDataPicker = function() {
-    ppu.appendDatePicker(this.el);
-    // return $(this.el).find(".datepicker").datepicker({
-    //   orientation: "bottom left",
-    //   format: "dd/mm/yyyy",
-    //   language: "es",
-    //   autoclose: true
-    // });
-  };
-
   ExperienceEdit.prototype.update = function(e) {
     var $form, content, data, options;
     e.preventDefault();
