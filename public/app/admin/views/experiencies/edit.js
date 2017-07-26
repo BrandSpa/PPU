@@ -41,7 +41,7 @@ ppu.admin.ExperienceEdit = (function(superClass) {
 
   ExperienceEdit.prototype.addDataPicker = function() {
     return $(this.el).find(".datepicker").datepicker({
-      orientation: "bottom",
+      orientation: "auto left",
       format: "dd/mm/yyyy",
       language: "es",
       autoclose: true

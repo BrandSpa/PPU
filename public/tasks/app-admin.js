@@ -70,7 +70,7 @@ gulp.task('app-admin', function() {
 
     'app/admin/views/the_actual_pe.js',
     'app/admin/views/the_actual_pe_create.js',
-    
+
     'app/admin/models/experience.js',
     'app/admin/views/experience.js',
     'app/admin/views/experiencies/experience.js',
@@ -78,7 +78,7 @@ gulp.task('app-admin', function() {
     'app/admin/views/experiencies/filters.js',
     'app/admin/views/experiencies/create.js',
     'app/admin/views/experiencies/edit.js',
-    
+
     'app/admin/router.js',
 
     //Controllers

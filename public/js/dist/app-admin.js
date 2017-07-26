@@ -4326,7 +4326,7 @@ ppu.Experiences = (function(superClass) {
       return ExperienceSelectLawyers;
 
     })(Backbone.View);
-    
+
     ppu.admin.ExperienceLawyerSelect = (function(superClass) {
       extend(ExperienceLawyerSelect, superClass);
 
@@ -4402,7 +4402,7 @@ ppu.Experiences = (function(superClass) {
       return ExperienceLawyersSelect;
 
     })(Backbone.View);
-    
+
     ppu.admin.ExperienceLawyersSelected = (function(superClass) {
       extend(ExperienceLawyersSelected, superClass);
 
@@ -4726,7 +4726,7 @@ ppu.admin.ExperienceEdit = (function(superClass) {
 
   ExperienceEdit.prototype.addDataPicker = function() {
     return $(this.el).find(".datepicker").datepicker({
-      orientation: "bottom",
+      orientation: "auto left",
       format: "dd/mm/yyyy",
       language: "es",
       autoclose: true

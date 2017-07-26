@@ -32,7 +32,7 @@
       return ExperienceSelectLawyers;
 
     })(Backbone.View);
-    
+
     ppu.admin.ExperienceLawyerSelect = (function(superClass) {
       extend(ExperienceLawyerSelect, superClass);
 
@@ -108,7 +108,7 @@
       return ExperienceLawyersSelect;
 
     })(Backbone.View);
-    
+
     ppu.admin.ExperienceLawyersSelected = (function(superClass) {
       extend(ExperienceLawyersSelected, superClass);
 
