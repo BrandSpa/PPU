@@ -25,8 +25,8 @@ module.exports = React.createClass({
     this.props.onFilter(this.state.filters);
   },
 
-  filterQuery: function() {
-    var val = React.findDOMNode(this.refs.query).value;
+  filterQuery: function(e) {
+    var val = e.currentTarget.value;
     if(val === '') val = null;
     this.filter({keyword: val});
   },

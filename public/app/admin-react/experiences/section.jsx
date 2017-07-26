@@ -24,7 +24,6 @@ module.exports = React.createClass({
     }.bind(this));
   },
 
-
   componentDidMount: function() {
     this.fetch();
   },
