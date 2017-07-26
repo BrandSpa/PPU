@@ -32,7 +32,7 @@ ppu.admin.ExperienceCreate = (function(superClass) {
     source = this.template.html();
     template = Handlebars.compile(source);
     this.$el.find(".panel-body").html(template());
-    this.addDataPicker();
+    ppu.appendDatePicker(this.el);
     return ppu.appendSummernoteExperience(this.el);
   };
 

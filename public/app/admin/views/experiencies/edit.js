@@ -34,7 +34,7 @@ ppu.admin.ExperienceEdit = (function(superClass) {
     template = Handlebars.compile(source);
     this.$el.find(".panel-body").html(template(this.model.toJSON()));
     ppu.appendSummernote(this.el);
-    this.addDataPicker();
+    ppu.appendDatePicker(this.el);
     this.getCategories();
     return this.showLawyers();
   };

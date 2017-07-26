@@ -4616,7 +4616,7 @@ ppu.admin.ExperienceCreate = (function(superClass) {
     source = this.template.html();
     template = Handlebars.compile(source);
     this.$el.find(".panel-body").html(template());
-    this.addDataPicker();
+    ppu.appendDatePicker(this.el);
     return ppu.appendSummernoteExperience(this.el);
   };
 
@@ -4719,7 +4719,7 @@ ppu.admin.ExperienceEdit = (function(superClass) {
     template = Handlebars.compile(source);
     this.$el.find(".panel-body").html(template(this.model.toJSON()));
     ppu.appendSummernote(this.el);
-    this.addDataPicker();
+    ppu.appendDatePicker(this.el);
     this.getCategories();
     return this.showLawyers();
   };
