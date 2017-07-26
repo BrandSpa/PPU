@@ -4797,13 +4797,15 @@ ppu.admin.ExperienceEdit = (function(superClass) {
 
   ExperienceEdit.prototype.searchLawyer = function(e) {
     var collection, query;
+
     query = $(e.currentTarget).val();
+
     if (query.length > 3) {
       collection = new ppu.Lawyers();
-      ppu.admin.ExperienceLawyersSelect = new ppu.admin
-        .ExperienceLawyersSelect({
+      ppu.admin.ExperienceLawyersSelect = ppu.admin.ExperienceLawyersSelect({
         collection: collection
       });
+
       return ppu.admin.ExperienceLawyersSelect.search(query);
     }
   };

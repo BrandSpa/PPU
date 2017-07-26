@@ -14,4 +14,3 @@ gulp.task('sass', function () {
   })
   .pipe(gulp.dest('css/dist/'));
 });
-
