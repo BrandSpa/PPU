@@ -10,7 +10,8 @@ gulp.task('concat_dependencies', function() {
     'css/dist/theme.css',
     'node_modules/font-awesome/css/font-awesome.css',
     'node_modules/loaders.css/loaders.css',
-    'node_modules/ionicons/css/ionicons.css'
+    'node_modules/ionicons/css/ionicons.css',
+    '/node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker3.css'
   ])
   .pipe(concat('dependencies.css'))
   .pipe(gulp.dest('css/dist'));
