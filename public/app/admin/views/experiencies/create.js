@@ -36,7 +36,8 @@ ppu.admin.ExperienceCreate = (function(superClass) {
     return ppu.appendSummernoteExperience(this.el);
   };
 
-  ExperienceCreate.prototype.store = function() {
+  ExperienceCreate.prototype.store = function(e) {
+    e.preventDefault();
     var $form, content, data, options;
     $form = this.$el.find("form");
     content = $(this.el).find(".summernote").code();
