@@ -268,14 +268,14 @@ var extend = function(child, parent) {
     openEdit: function(e) {
       var view;
       e.preventDefault();
-      
+
       view = new this.modal({
         model: this.model
       });
 
       return view.render();
     },
-    
+
     remove: function(e) {
       e.preventDefault();
       this.model.destroy(      { headers: {
@@ -333,7 +333,7 @@ var extend = function(child, parent) {
          }});
       });
     },
-    
+
     openCreate: function(e) {
       var lawyer_id, view;
       e.preventDefault();
@@ -416,7 +416,7 @@ var extend = function(child, parent) {
       this.closeModal();
     }
 
-    
+
   };
 
   mixins.lawyerRelationshipModalEdit = {
@@ -4627,7 +4627,14 @@ ppu.admin.ExperienceCreate = (function(superClass) {
     data.append("fields[content]", content);
     data.append("fields[lang]", app.lang);
     options = ppu.ajaxOptions("Post", data);
-    return this.model.save(data, $.extend({}, options));
+    return this.model.save(data, $.extend({}, options))
+      .done(function(model) {
+        console.log(model);
+        if (model) {
+
+          // return (window.location = "/admin/experiences2");
+        }
+      });
   };
 
   ExperienceCreate.prototype.stored = function(model) {
@@ -4721,11 +4728,12 @@ ppu.admin.ExperienceEdit = (function(superClass) {
     data = new FormData($form[0]);
     data.append("fields[content]", content);
     options = ppu.ajaxOptions("PUT", data);
-    return this.model.save(data, $.extend({}, options)).done(function(model) {
-      if (model) {
-        return (window.location = "/admin/experiences2");
-      }
-    });
+    return this.model.save(data, $.extend({}, options))
+      .done(function(model) {
+        if (model) {
+          return (window.location = "/admin/experiences2");
+        }
+      });
   };
 
   ExperienceEdit.prototype.getCategories = function() {
@@ -5188,18 +5196,25 @@ ppu.admin.ExperienceEdit = (function(superClass) {
 
     create: function() {
       ppu.admin.experience = new ppu.Experience;
+
       ppu.admin.experienceCreate = new ppu.admin.ExperienceCreate({
         model: ppu.admin.experience
       });
+
       ppu.admin.experienceCreate.render();
+
       ppu.categories = new ppu.Categories;
+
       ppu.categories.fetch({
         reset: true
       });
+
       ppu.admin.categoriesCheckboxnew = new ppu.admin.CategoriesCheckbox({
         collection: ppu.categories
       });
+
       ppu.admin.galleries = new ppu.admin.Galleries;
+      
       return ppu.admin.galleries.fetch({
         reset: true,
         data: {
@@ -5207,7 +5222,7 @@ ppu.admin.ExperienceEdit = (function(superClass) {
         }
       });
     },
-    
+
     edit: function(id) {
       ppu.admin.experience = new ppu.Experience({
         id: id

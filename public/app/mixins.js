@@ -24,14 +24,14 @@
     openEdit: function(e) {
       var view;
       e.preventDefault();
-      
+
       view = new this.modal({
         model: this.model
       });
 
       return view.render();
     },
-    
+
     remove: function(e) {
       e.preventDefault();
       this.model.destroy(      { headers: {
@@ -89,7 +89,7 @@
          }});
       });
     },
-    
+
     openCreate: function(e) {
       var lawyer_id, view;
       e.preventDefault();
@@ -172,7 +172,7 @@
       this.closeModal();
     }
 
-    
+
   };
 
   mixins.lawyerRelationshipModalEdit = {
