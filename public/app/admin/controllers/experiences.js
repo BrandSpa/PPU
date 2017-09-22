@@ -14,18 +14,25 @@
 
     create: function() {
       ppu.admin.experience = new ppu.Experience;
+
       ppu.admin.experienceCreate = new ppu.admin.ExperienceCreate({
         model: ppu.admin.experience
       });
+
       ppu.admin.experienceCreate.render();
+
       ppu.categories = new ppu.Categories;
+
       ppu.categories.fetch({
         reset: true
       });
+
       ppu.admin.categoriesCheckboxnew = new ppu.admin.CategoriesCheckbox({
         collection: ppu.categories
       });
+
       ppu.admin.galleries = new ppu.admin.Galleries;
+      
       return ppu.admin.galleries.fetch({
         reset: true,
         data: {
@@ -33,7 +40,7 @@
         }
       });
     },
-    
+
     edit: function(id) {
       ppu.admin.experience = new ppu.Experience({
         id: id

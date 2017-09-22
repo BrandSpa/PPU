@@ -44,7 +44,14 @@ ppu.admin.ExperienceCreate = (function(superClass) {
     data.append("fields[content]", content);
     data.append("fields[lang]", app.lang);
     options = ppu.ajaxOptions("Post", data);
-    return this.model.save(data, $.extend({}, options));
+    return this.model.save(data, $.extend({}, options))
+      .done(function(model) {
+        console.log(model);
+        if (model) {
+
+          // return (window.location = "/admin/experiences2");
+        }
+      });
   };
 
   ExperienceCreate.prototype.stored = function(model) {

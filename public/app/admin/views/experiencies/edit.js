@@ -47,11 +47,12 @@ ppu.admin.ExperienceEdit = (function(superClass) {
     data = new FormData($form[0]);
     data.append("fields[content]", content);
     options = ppu.ajaxOptions("PUT", data);
-    return this.model.save(data, $.extend({}, options)).done(function(model) {
-      if (model) {
-        return (window.location = "/admin/experiences2");
-      }
-    });
+    return this.model.save(data, $.extend({}, options))
+      .done(function(model) {
+        if (model) {
+          return (window.location = "/admin/experiences2");
+        }
+      });
   };
 
   ExperienceEdit.prototype.getCategories = function() {
