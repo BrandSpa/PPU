@@ -5,7 +5,13 @@ class LawyersController < ApplicationController
 
   def show
     slug = params[:id]
-    @lawyer = Lawyer.find_by(slug: slug)
+    law = Lawyer.find_by(slug: slug)
+
+    if law.published
+      @lawyer = law
+    else
+      redirect_to '/'
+    end
   end
 
   # export vcard from lawyer
