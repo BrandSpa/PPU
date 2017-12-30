@@ -27,7 +27,7 @@ export default React.createClass({
 
   render() {
     var areaNodes = this.state.areas.map(function(area) {
-      return (<Area key={area.id} area={area} history={this.props.history} />);
+      return (<Area key={area.id} area={area} history={this.props.router} />);
     }.bind(this));
 
     return (
