@@ -9,7 +9,7 @@ export default React.createClass({
   },
 
   open() {
-    this.props.history.pushState(null, '/areas/' + this.props.area.slug);
+    this.props.history.push('/areas/' + this.props.area.slug);
   },
 
   render() {
