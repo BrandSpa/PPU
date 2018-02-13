@@ -1,0 +1,58 @@
+{
+    "structure": {
+        "copy": [
+            {
+                "from": "",
+                "to": ""
+            }
+        ],
+        "move": [
+            {
+                "from": "",
+                "to": ""
+            }
+        ],
+        "delete": [
+            "app/controllers/HomeController.php",
+            "app/views/hello.php"
+        ],
+        "touch": [
+            "public/css/main.less",
+            "public/css/main.js",
+            ".env.homestead.php"
+        ],
+        "mkdir": [
+            "app/routes",
+            "app/views/layouts",
+            "public/css",
+            "public/js"
+        ]
+    },
+    "composer": {
+        "require": [
+            {
+                "package": "laravel/framework",
+                "version": "4.2.*"
+            }
+        ],
+        "require-dev": {
+            "way/generators": "2.*"
+        },
+        "autoload": {
+            "classmap": [
+                "app/commands",
+                "app/controllers",
+                "app/models",
+                "app/database/migrations",
+                "app/database/seeds",
+                "app/test/TestCase.php"
+            ],
+            "psr-0": [
+
+            ],
+            "psr-4": [
+
+            ]
+        }
+    }
+}
