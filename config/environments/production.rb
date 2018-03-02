@@ -30,7 +30,7 @@ Rails.application.configure do
   # config.force_ssl = true
 
   # Set to :debug to see everything in the log.
-  config.log_level = :info
+  config.log_level = :debug
 
   # Prepend all log lines with the following tags.
   # config.log_tags = [ :subdomain, :uuid ]
@@ -68,8 +68,8 @@ Rails.application.configure do
       address:              'smtp.sendgrid.net',
       port:                 587,
       domain:               'ppulegal.com',
-      user_name:            'aapikey',
-      password:             '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',
+      user_name:            'apikey',
+      password:             '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',
       authentication:       'plain',
       enable_starttls_auto: true  }
 end
